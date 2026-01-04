@@ -83,6 +83,7 @@ function ColorPicker() {
   const presets = ["#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#FF00FF", "#00FFFF", "#FFFFFF", "#000000"];
   const targets = [
     { key: "hair", label: "머리" },
+    { key: "facehair", label: "수염" },
     { key: "cloth", label: "옷" },
     { key: "body", label: "피부" },
     { key: "armor", label: "갑옷" },
