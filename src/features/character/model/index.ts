@@ -12,3 +12,12 @@ export {
 } from "./store";
 
 export { useUnityBridge } from "./useUnityBridge";
+
+export {
+  STARTER_PRESETS,
+  GENDERS,
+  RACES,
+  type StarterPreset,
+  type Gender,
+  type Race,
+} from "./presets";

@@ -16,7 +16,13 @@ export {
   useCharacterActions,
   useUnityBridge,
   PART_TYPES,
+  STARTER_PRESETS,
+  GENDERS,
+  RACES,
   type PartType,
+  type StarterPreset,
+  type Gender,
+  type Race,
 } from "./model";
 
 // UI Components

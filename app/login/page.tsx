@@ -33,12 +33,21 @@ export default function LoginPage() {
         if (error) throw error;
         setMessage("이메일을 확인해주세요!");
       } else {
-        const { error } = await supabase.auth.signInWithPassword({
+        const { data: authData, error } = await supabase.auth.signInWithPassword({
           email,
           password,
         });
         if (error) throw error;
-        router.push("/character-setting");
+
+        // 캐릭터 유무 확인
+        const { data: profile } = await supabase
+          .from("profiles")
+          .select("characters")
+          .eq("id", authData.user.id)
+          .single();
+
+        const hasCharacter = profile?.characters && profile.characters.length > 0;
+        router.push(hasCharacter ? "/game" : "/character-create");
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : "오류가 발생했습니다");
