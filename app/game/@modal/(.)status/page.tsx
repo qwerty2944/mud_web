@@ -1,17 +1,15 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { Unity } from "react-unity-webgl";
-import { usePlayerStore } from "../model/playerStore";
+import { useAuthStore } from "@/features/auth";
+import { usePlayerStore } from "@/features/game";
 import { useUnityBridge } from "@/features/character/model";
 
-interface StatusPanelProps {
-  userId: string;
-  isOpen: boolean;
-  onClose: () => void;
-}
-
-export function StatusPanel({ userId, isOpen, onClose }: StatusPanelProps) {
+export default function StatusModal() {
+  const router = useRouter();
+  const { session } = useAuthStore();
   const {
     profile,
     inventory,
@@ -29,18 +27,30 @@ export function StatusPanel({ userId, isOpen, onClose }: StatusPanelProps) {
 
   // 데이터 로드
   useEffect(() => {
-    if (isOpen && userId) {
-      fetchProfile(userId);
-      fetchInventory(userId);
+    if (session?.user?.id) {
+      fetchProfile(session.user.id);
+      fetchInventory(session.user.id);
     }
-  }, [isOpen, userId, fetchProfile, fetchInventory]);
-
-  if (!isOpen) return null;
+  }, [session?.user?.id, fetchProfile, fetchInventory]);
 
   const mainCharacter = getMainCharacter();
 
+  const handleClose = () => {
+    router.back();
+  };
+
+  // 모달 외부 클릭 시 닫기
+  const handleBackdropClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      handleClose();
+    }
+  };
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/70"
+      onClick={handleBackdropClick}
+    >
       <div className="bg-gray-900 rounded-xl border border-gray-700 w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col">
         {/* 헤더 */}
         <div className="flex items-center justify-between px-4 py-3 bg-gray-800 border-b border-gray-700">
@@ -67,7 +77,7 @@ export function StatusPanel({ userId, isOpen, onClose }: StatusPanelProps) {
             </button>
           </div>
           <button
-            onClick={onClose}
+            onClick={handleClose}
             className="p-2 text-gray-400 hover:text-white transition-colors"
           >
             ✕

@@ -24,7 +24,6 @@ export {
   ChatMessage as ChatMessageComponent,
   PlayerList,
   MapSelector,
-  StatusPanel,
   AVAILABLE_MAPS,
 } from "./ui";
 
