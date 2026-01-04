@@ -65,7 +65,7 @@ export function UnityPortalProvider({ children }: { children: ReactNode }) {
           }}
           aria-hidden="true"
           tabIndex={-1}
-          inert=""
+          inert={true}
         >
           <Unity
             unityProvider={unityProvider}
