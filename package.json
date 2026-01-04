@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "capture-sprites": "tsx scripts/capture-sprite-names.ts",
-    "upload-data": "tsx scripts/upload-to-supabase.ts"
+    "sync-data": "tsx scripts/sync-data.ts",
+    "sync-data:dry": "tsx scripts/sync-data.ts --dry"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
