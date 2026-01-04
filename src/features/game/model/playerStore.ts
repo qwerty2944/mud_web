@@ -1,23 +1,10 @@
 import { create } from "zustand";
 import { supabase } from "@/shared/api";
+import type { SavedCharacter, InventoryItem } from "@/entities/character";
+import { useAppearanceStore } from "@/features/character/model/appearanceStore";
 
-// ============ 타입 정의 ============
-
-export interface PlayerCharacter {
-  id: string;
-  name: string;
-  isMain: boolean;
-  appearance: Record<string, number>;
-  colors: Record<string, string>;
-}
-
-export interface InventoryItem {
-  id: string;
-  itemId: string;
-  itemType: string;
-  quantity: number;
-  acquiredAt: string;
-}
+// Re-export for backward compatibility
+export type { SavedCharacter as PlayerCharacter, InventoryItem };
 
 export interface PlayerProfile {
   id: string;
@@ -31,7 +18,7 @@ export interface PlayerProfile {
   staminaUpdatedAt: string;
   isPremium: boolean;
   premiumUntil: string | null;
-  characters: PlayerCharacter[];
+  characters: SavedCharacter[];
   buffs: any[];
 }
 
@@ -48,9 +35,10 @@ interface PlayerState {
   fetchInventory: (userId: string) => Promise<void>;
   setActiveTab: (tab: "status" | "inventory") => void;
   updateStamina: () => void;
+  loadMainCharacterAppearance: () => void;
 
   // Computed
-  getMainCharacter: () => PlayerCharacter | null;
+  getMainCharacter: () => SavedCharacter | null;
   getExpPercentage: () => number;
   getExpToNextLevel: () => number;
 }
@@ -158,6 +146,14 @@ export const usePlayerStore = create<PlayerState>((set, get) => ({
         },
       });
     }
+  },
+
+  loadMainCharacterAppearance: () => {
+    const mainChar = get().getMainCharacter();
+    if (!mainChar?.appearance || !mainChar?.colors) return;
+
+    const { loadAppearance } = useAppearanceStore.getState();
+    loadAppearance(mainChar.appearance, mainChar.colors);
   },
 
   getMainCharacter: () => {

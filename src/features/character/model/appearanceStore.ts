@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import type { CharacterAppearance, CharacterColors } from "@/entities/character";
 
 // ============ 타입 정의 ============
 
@@ -115,6 +116,11 @@ interface AppearanceStore {
   clearAll: () => void;
   resetColors: () => void;
 
+  // 캐릭터 외형 로드
+  loadAppearance: (appearance: CharacterAppearance, colors: CharacterColors) => void;
+  setPart: (type: PartType, index: number) => void;
+  setColor: (target: "body" | "eye" | "hair" | "facehair" | "cloth" | "armor" | "pant", hex: string) => void;
+
   // Computed (선택자)
   getPartInfo: (type: PartType) => { label: string; current: number; total: number };
   getAnimationInfo: () => { state: string; index: number; total: number; name: string; states: string[] };
@@ -180,6 +186,52 @@ export const useAppearanceStore = create<AppearanceStore>((set, get) => ({
   randomize: () => get().callUnity("JS_Randomize"),
   clearAll: () => get().callUnity("JS_ClearAll"),
   resetColors: () => get().callUnity("JS_ResetColors"),
+
+  // 파츠/색상 직접 설정
+  setPart: (type, index) => {
+    const method = `JS_Set${type.charAt(0).toUpperCase() + type.slice(1)}`;
+    get().callUnity(method, index.toString());
+  },
+
+  setColor: (target, hex) => {
+    const cleanHex = hex.replace("#", "");
+    const methodMap: Record<string, string> = {
+      body: "JS_SetBodyColor",
+      eye: "JS_SetEyeColor",
+      hair: "JS_SetHairColor",
+      facehair: "JS_SetFacehairColor",
+      cloth: "JS_SetClothColor",
+      armor: "JS_SetArmorColor",
+      pant: "JS_SetPantColor",
+    };
+    get().callUnity(methodMap[target], cleanHex);
+  },
+
+  // 저장된 캐릭터 외형 로드
+  loadAppearance: (appearance, colors) => {
+    const { setPart, setColor, isUnityLoaded } = get();
+    if (!isUnityLoaded) return;
+
+    // 파츠 설정
+    if (appearance.bodyIndex >= 0) setPart("body", appearance.bodyIndex);
+    if (appearance.eyeIndex >= 0) setPart("eye", appearance.eyeIndex);
+    if (appearance.hairIndex >= 0) setPart("hair", appearance.hairIndex);
+    if (appearance.facehairIndex >= 0) setPart("facehair", appearance.facehairIndex);
+    if (appearance.clothIndex >= 0) setPart("cloth", appearance.clothIndex);
+    if (appearance.armorIndex >= 0) setPart("armor", appearance.armorIndex);
+    if (appearance.pantIndex >= 0) setPart("pant", appearance.pantIndex);
+    if (appearance.helmetIndex >= 0) setPart("helmet", appearance.helmetIndex);
+    if (appearance.backIndex >= 0) setPart("back", appearance.backIndex);
+
+    // 색상 설정
+    if (colors.body) setColor("body", colors.body);
+    if (colors.eye) setColor("eye", colors.eye);
+    if (colors.hair) setColor("hair", colors.hair);
+    if (colors.facehair) setColor("facehair", colors.facehair);
+    if (colors.cloth) setColor("cloth", colors.cloth);
+    if (colors.armor) setColor("armor", colors.armor);
+    if (colors.pant) setColor("pant", colors.pant);
+  },
 
   // Computed
   getPartInfo: (type) => {
