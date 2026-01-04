@@ -1,7 +1,7 @@
 "use client";
 
-import { UnityCanvas, characterPanelHooks } from "@/features/character";
-import { CharacterPanel } from "@/widgets/character-panel";
+import { characterPanelHooks } from "@/features/character";
+import { CharacterView } from "@/widgets/character-view";
 import { globalStyles } from "@/shared/ui";
 
 export default function CharacterSettingPage() {
@@ -13,18 +13,11 @@ export default function CharacterSettingPage() {
       </header>
 
       {/* 메인 컨텐츠 */}
-      <div className="flex-1 flex flex-col lg:flex-row min-h-0">
-        {/* Unity 캔버스 */}
-        <div className="flex-1 min-h-0 flex items-center justify-center p-2">
-          <div className="w-full h-full max-w-lg">
-            <UnityCanvas />
-          </div>
-        </div>
-
-        {/* 컨트롤 패널 - 위젯 사용 */}
-        <CharacterPanel
+      <div className="flex-1 min-h-0 safe-area-bottom">
+        <CharacterView
           hooks={characterPanelHooks}
-          className="flex-none lg:w-80 max-h-[45vh] lg:max-h-full overflow-y-auto safe-area-bottom"
+          showPanel={true}
+          allowToggle={true}
         />
       </div>
 
