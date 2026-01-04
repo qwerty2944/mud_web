@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "MUG - Fantasy Game",
-  description: "Fantasy MUG Game",
+  title: "MUD - Fantasy Game",
+  description: "Fantasy MUD Game",
 };
 
 export const viewport: Viewport = {

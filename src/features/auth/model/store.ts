@@ -32,7 +32,7 @@ export const useAuthStore = create<AuthStore>()(
       },
     }),
     {
-      name: "mug-auth",
+      name: "mud-auth",
       partialize: (state) => ({ user: state.user }), // session은 저장하지 않음
     }
   )

@@ -1,7 +1,7 @@
-# MUG Web - Claude 개발 가이드
+# MUD Web - Claude 개발 가이드
 
 ## 프로젝트 개요
-Fantasy MUG 게임 웹 클라이언트. Unity WebGL 캐릭터 빌더 + Supabase 백엔드.
+Fantasy MUD 게임 웹 클라이언트. Unity WebGL 캐릭터 빌더 + Supabase 백엔드.
 
 ## 기술 스택
 - **Framework**: Next.js 16 (App Router)
