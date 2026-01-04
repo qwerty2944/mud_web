@@ -18,7 +18,7 @@ import { supabase } from "@/shared/api";
 
 export default function GamePage() {
   const router = useRouter();
-  const { session } = useAuthStore();
+  const { session, signOut } = useAuthStore();
   const { currentMap, setCurrentMap, isConnected, setMyCharacterName, myCharacterName } =
     useGameStore();
   const { maps, fetchMaps, getMapById } = useMapsStore();
@@ -106,6 +106,17 @@ export default function GamePage() {
     }
   };
 
+  // 로그아웃
+  const handleSignOut = async () => {
+    await signOut();
+    router.push("/login");
+  };
+
+  // 피로도 계산
+  const staminaPercent = profile
+    ? Math.round((profile.stamina / profile.maxStamina) * 100)
+    : 100;
+
   if (isLoading) {
     return (
       <div className="h-dvh w-full bg-gray-900 text-white flex items-center justify-center">
@@ -123,37 +134,70 @@ export default function GamePage() {
 
   return (
     <div className="h-dvh w-full bg-gray-900 text-white flex flex-col overflow-hidden">
+      {/* 피로도 게이지 (상단 바) */}
+      <div className="flex-none h-1.5 bg-gray-800">
+        <div
+          className={`h-full transition-all duration-300 ${
+            staminaPercent > 50
+              ? "bg-green-500"
+              : staminaPercent > 20
+              ? "bg-yellow-500"
+              : "bg-red-500"
+          }`}
+          style={{ width: `${staminaPercent}%` }}
+        />
+      </div>
+
       {/* 헤더 */}
-      <header className="flex-none p-3 bg-gray-800 border-b border-gray-700 flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          <span className="text-xl">
-            {getMapById(mapId)?.icon || "🏠"}
-          </span>
-          <div>
-            <h1 className="text-lg font-bold">{currentMap?.name || "시작 마을"}</h1>
-            <p className="text-xs text-gray-500">{currentMap?.description}</p>
+      <header className="flex-none px-3 py-2 bg-gray-800 border-b border-gray-700">
+        {/* 피로도 텍스트 */}
+        <div className="flex items-center justify-between mb-2">
+          <div className="flex items-center gap-2 text-xs text-gray-400">
+            <span>피로도</span>
+            <span className={staminaPercent <= 20 ? "text-red-400" : ""}>
+              {profile?.stamina || 0} / {profile?.maxStamina || 100}
+            </span>
           </div>
-        </div>
-        <div className="flex items-center gap-3">
-          {/* 상태창 링크 */}
-          <Link
-            href="/game/status"
-            className="flex items-center gap-2 px-3 py-1.5 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors"
+          <button
+            onClick={handleSignOut}
+            className="text-xs text-gray-500 hover:text-red-400 transition-colors"
           >
-            <span className="text-sm">👤</span>
-            <span className="text-sm font-medium">{myCharacterName}</span>
-            <span className="text-xs text-gray-400">Lv.{playerLevel}</span>
-          </Link>
-          {/* 재화 표시 */}
-          <div className="hidden sm:flex items-center gap-3 text-sm">
-            <span className="text-yellow-400">💰 {(profile?.gold || 0).toLocaleString()}</span>
-            <span className="text-cyan-400">💎 {(profile?.gems || 0).toLocaleString()}</span>
+            로그아웃
+          </button>
+        </div>
+
+        {/* 메인 헤더 */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <span className="text-xl">
+              {getMapById(mapId)?.icon || "🏠"}
+            </span>
+            <div>
+              <h1 className="text-lg font-bold">{currentMap?.name || "시작 마을"}</h1>
+              <p className="text-xs text-gray-500">{currentMap?.description}</p>
+            </div>
           </div>
-          <span
-            className={`w-2 h-2 rounded-full ${
-              isConnected ? "bg-green-500" : "bg-red-500"
-            }`}
-          />
+          <div className="flex items-center gap-3">
+            {/* 상태창 링크 */}
+            <Link
+              href="/game/status"
+              className="flex items-center gap-2 px-3 py-1.5 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors"
+            >
+              <span className="text-sm">👤</span>
+              <span className="text-sm font-medium">{myCharacterName}</span>
+              <span className="text-xs text-gray-400">Lv.{playerLevel}</span>
+            </Link>
+            {/* 재화 표시 */}
+            <div className="hidden sm:flex items-center gap-3 text-sm">
+              <span className="text-yellow-400">💰 {(profile?.gold || 0).toLocaleString()}</span>
+              <span className="text-cyan-400">💎 {(profile?.gems || 0).toLocaleString()}</span>
+            </div>
+            <span
+              className={`w-2 h-2 rounded-full ${
+                isConnected ? "bg-green-500" : "bg-red-500"
+              }`}
+            />
+          </div>
         </div>
       </header>
 

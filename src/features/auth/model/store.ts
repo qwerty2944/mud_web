@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type { User, Session } from "@supabase/supabase-js";
+import { supabase } from "@/shared/api";
 
 interface AuthStore {
   user: User | null;
@@ -11,6 +12,7 @@ interface AuthStore {
   setSession: (session: Session | null) => void;
   setLoading: (loading: boolean) => void;
   clear: () => void;
+  signOut: () => Promise<void>;
 }
 
 export const useAuthStore = create<AuthStore>()(
@@ -24,6 +26,10 @@ export const useAuthStore = create<AuthStore>()(
       setSession: (session) => set({ session, user: session?.user ?? null }),
       setLoading: (isLoading) => set({ isLoading }),
       clear: () => set({ user: null, session: null }),
+      signOut: async () => {
+        await supabase.auth.signOut();
+        set({ user: null, session: null });
+      },
     }),
     {
       name: "mug-auth",
