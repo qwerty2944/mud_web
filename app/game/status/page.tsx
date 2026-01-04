@@ -78,16 +78,16 @@ export default function StatusPage() {
         </Link>
       </header>
 
-      {/* 컨텐츠 - 고정 높이로 레이아웃 안정화 */}
-      <div className="p-4 max-w-4xl mx-auto" style={{ height: "calc(100dvh - 72px)" }}>
+      {/* 컨텐츠 - Grid로 두 탭 높이 동기화 */}
+      <div className="p-4 max-w-4xl mx-auto">
         {isLoading ? (
-          <div className="flex items-center justify-center h-full">
+          <div className="flex items-center justify-center h-64">
             <div className="animate-spin w-8 h-8 border-2 border-blue-500 border-t-transparent rounded-full" />
           </div>
         ) : (
-          <div className="h-full relative">
-            {/* 상태 탭 */}
-            <div className={`h-full overflow-y-auto ${activeTab === "status" ? "block" : "hidden"}`}>
+          <div className="grid">
+            {/* 상태 탭 - 같은 그리드 셀 공유 */}
+            <div className={`col-start-1 row-start-1 overflow-y-auto ${activeTab === "status" ? "" : "invisible"}`}>
               <div className="flex flex-col lg:flex-row gap-6">
                 {/* 캐릭터 프리뷰 - 항상 마운트 유지 */}
                 <div className="lg:w-1/2">
@@ -181,8 +181,8 @@ export default function StatusPage() {
               </div>
             </div>
 
-            {/* 인벤토리 탭 */}
-            <div className={`h-full overflow-y-auto ${activeTab === "inventory" ? "block" : "hidden"}`}>
+            {/* 인벤토리 탭 - 같은 그리드 셀 공유 */}
+            <div className={`col-start-1 row-start-1 overflow-y-auto ${activeTab === "inventory" ? "" : "invisible"}`}>
               {inventory.length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-full text-gray-500">
                   <p className="text-4xl mb-4">📦</p>
