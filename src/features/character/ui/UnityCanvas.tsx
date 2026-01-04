@@ -48,7 +48,7 @@ export function UnityCanvas() {
       {/* Unity 캔버스 */}
       <div
         className="w-full h-full rounded-lg overflow-hidden"
-        style={{ background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)" }}
+        style={{ background: "transparent" }}
       >
         <Unity
           unityProvider={unityProvider}
