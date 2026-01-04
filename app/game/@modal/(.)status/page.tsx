@@ -4,11 +4,12 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useAuthStore } from "@/features/auth";
 import { usePlayerStore } from "@/features/game";
-import { UnityPortalTarget } from "@/features/character";
+import { UnityPortalTarget, useAppearanceStore } from "@/features/character";
 
 export default function StatusModal() {
   const router = useRouter();
   const { session } = useAuthStore();
+  const { isUnityLoaded } = useAppearanceStore();
   const {
     profile,
     inventory,
@@ -20,6 +21,7 @@ export default function StatusModal() {
     getMainCharacter,
     getExpPercentage,
     getExpToNextLevel,
+    loadMainCharacterAppearance,
   } = usePlayerStore();
 
   // 데이터 로드
@@ -31,6 +33,13 @@ export default function StatusModal() {
   }, [session?.user?.id, fetchProfile, fetchInventory]);
 
   const mainCharacter = getMainCharacter();
+
+  // Unity 로드 후 캐릭터 외형 적용
+  useEffect(() => {
+    if (isUnityLoaded && mainCharacter) {
+      loadMainCharacterAppearance();
+    }
+  }, [isUnityLoaded, mainCharacter, loadMainCharacterAppearance]);
 
   const handleClose = () => {
     router.back();
