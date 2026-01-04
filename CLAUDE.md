@@ -13,19 +13,19 @@ Fantasy MUD 게임 웹 클라이언트. Unity WebGL 캐릭터 빌더 + Supabase 
 
 ```
 src/
-├── app/                    # Next.js App Router
+├── application/            # 앱 레이어 (FSD)
+│   └── providers/          # 앱 프로바이더 (React Query, Auth, Unity 등)
 ├── widgets/                # 복합 UI 블록 (헤더, 사이드바 등)
 ├── features/               # 기능 모듈
 │   ├── auth/               # 인증
 │   ├── character/          # 캐릭터 커스터마이징
 │   └── game/               # 게임 로직
 ├── entities/               # 비즈니스 엔티티
-│   ├── user/
-│   └── character/
+│   └── character/          # 캐릭터 타입/API
 └── shared/                 # 공유 코드
     ├── ui/                 # UI 컴포넌트
-    ├── lib/                # 유틸리티
-    ├── api/                # API 클라이언트
+    ├── api/                # API 클라이언트 (Supabase)
+    ├── types/              # 공용 타입
     └── config/             # 설정
 ```
 
