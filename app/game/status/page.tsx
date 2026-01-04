@@ -78,16 +78,16 @@ export default function StatusPage() {
         </Link>
       </header>
 
-      {/* 컨텐츠 */}
-      <div className="p-4 max-w-4xl mx-auto">
+      {/* 컨텐츠 - 고정 높이로 레이아웃 안정화 */}
+      <div className="p-4 max-w-4xl mx-auto" style={{ height: "calc(100dvh - 72px)" }}>
         {isLoading ? (
-          <div className="flex items-center justify-center h-64">
+          <div className="flex items-center justify-center h-full">
             <div className="animate-spin w-8 h-8 border-2 border-blue-500 border-t-transparent rounded-full" />
           </div>
         ) : (
-          <>
+          <div className="h-full relative">
             {/* 상태 탭 */}
-            <div className={activeTab === "status" ? "block" : "hidden"}>
+            <div className={`h-full overflow-y-auto ${activeTab === "status" ? "block" : "hidden"}`}>
               <div className="flex flex-col lg:flex-row gap-6">
                 {/* 캐릭터 프리뷰 - 항상 마운트 유지 */}
                 <div className="lg:w-1/2">
@@ -182,9 +182,9 @@ export default function StatusPage() {
             </div>
 
             {/* 인벤토리 탭 */}
-            <div className={activeTab === "inventory" ? "block" : "hidden"}>
+            <div className={`h-full overflow-y-auto ${activeTab === "inventory" ? "block" : "hidden"}`}>
               {inventory.length === 0 ? (
-                <div className="text-center py-16 text-gray-500">
+                <div className="flex flex-col items-center justify-center h-full text-gray-500">
                   <p className="text-4xl mb-4">📦</p>
                   <p>인벤토리가 비어있습니다</p>
                 </div>
@@ -209,7 +209,7 @@ export default function StatusPage() {
                 </div>
               )}
             </div>
-          </>
+          </div>
         )}
       </div>
     </div>
