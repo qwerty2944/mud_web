@@ -82,7 +82,7 @@ export default function StatusModal() {
         </div>
 
         {/* 컨텐츠 - Grid로 두 탭 높이 동기화 */}
-        <div className="flex-1 overflow-hidden p-4">
+        <div className="flex-1 overflow-y-auto p-4">
           {isLoading ? (
             <div className="flex items-center justify-center h-full">
               <div className="animate-spin w-8 h-8 border-2 border-blue-500 border-t-transparent rounded-full" />
@@ -90,11 +90,11 @@ export default function StatusModal() {
           ) : (
             <div className="grid">
               {/* 상태 탭 - 같은 그리드 셀 공유 */}
-              <div className={`col-start-1 row-start-1 overflow-y-auto ${activeTab === "status" ? "" : "invisible"}`}>
-                <div className="flex flex-col lg:flex-row gap-6">
-                  {/* 캐릭터 프리뷰 - 항상 마운트 유지 */}
-                  <div className="lg:w-1/2">
-                    <UnityPortalTarget className="bg-gray-800 rounded-lg overflow-hidden aspect-square max-h-80" />
+              <div className={`col-start-1 row-start-1 ${activeTab === "status" ? "" : "invisible"}`}>
+                <div className="flex flex-col lg:flex-row gap-4">
+                  {/* 캐릭터 프리뷰 - 고정 높이 */}
+                  <div className="lg:w-1/2 flex-shrink-0">
+                    <UnityPortalTarget className="bg-gray-800 rounded-lg overflow-hidden h-48 sm:h-56 lg:h-72" />
                     {mainCharacter && (
                       <div className="mt-3 text-center">
                         <h3 className="text-xl font-bold text-white">{mainCharacter.name}</h3>
@@ -185,7 +185,7 @@ export default function StatusModal() {
               </div>
 
               {/* 인벤토리 탭 - 같은 그리드 셀 공유 */}
-              <div className={`col-start-1 row-start-1 overflow-y-auto ${activeTab === "inventory" ? "" : "invisible"}`}>
+              <div className={`col-start-1 row-start-1 ${activeTab === "inventory" ? "" : "invisible"}`}>
                 {inventory.length === 0 ? (
                   <div className="flex flex-col items-center justify-center h-full text-gray-500">
                     <p className="text-4xl mb-4">📦</p>

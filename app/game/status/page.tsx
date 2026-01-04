@@ -87,11 +87,11 @@ export default function StatusPage() {
         ) : (
           <div className="grid">
             {/* 상태 탭 - 같은 그리드 셀 공유 */}
-            <div className={`col-start-1 row-start-1 overflow-y-auto ${activeTab === "status" ? "" : "invisible"}`}>
-              <div className="flex flex-col lg:flex-row gap-6">
-                {/* 캐릭터 프리뷰 - 항상 마운트 유지 */}
-                <div className="lg:w-1/2">
-                  <UnityPortalTarget className="bg-gray-800 rounded-lg overflow-hidden aspect-square max-h-96" />
+            <div className={`col-start-1 row-start-1 ${activeTab === "status" ? "" : "invisible"}`}>
+              <div className="flex flex-col lg:flex-row gap-4">
+                {/* 캐릭터 프리뷰 - 고정 높이 */}
+                <div className="lg:w-1/2 flex-shrink-0">
+                  <UnityPortalTarget className="bg-gray-800 rounded-lg overflow-hidden h-52 sm:h-64 lg:h-80" />
                   {mainCharacter && (
                     <div className="mt-4 text-center">
                       <h2 className="text-2xl font-bold">{mainCharacter.name}</h2>
@@ -182,7 +182,7 @@ export default function StatusPage() {
             </div>
 
             {/* 인벤토리 탭 - 같은 그리드 셀 공유 */}
-            <div className={`col-start-1 row-start-1 overflow-y-auto ${activeTab === "inventory" ? "" : "invisible"}`}>
+            <div className={`col-start-1 row-start-1 ${activeTab === "inventory" ? "" : "invisible"}`}>
               {inventory.length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-full text-gray-500">
                   <p className="text-4xl mb-4">📦</p>
