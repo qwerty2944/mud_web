@@ -19,6 +19,7 @@
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-hook-form": "^7.70.0",
+    "react-hot-toast": "^2.6.0",
     "react-unity-webgl": "^10.1.6",
     "zod": "^4.3.4",
     "zustand": "^5.0.9"

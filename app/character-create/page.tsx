@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 import {
   useAppearanceStore,
   useProfileStore,
@@ -54,7 +55,15 @@ export default function CharacterCreatePage() {
 
   // 캐릭터 저장
   const handleSave = async () => {
-    if (!session?.user?.id || !name.trim()) return;
+    if (!session?.user?.id) {
+      toast.error("로그인이 필요합니다.");
+      return;
+    }
+
+    if (!name.trim()) {
+      toast.error("캐릭터 이름을 입력해주세요.");
+      return;
+    }
 
     setSaving(true);
     try {
@@ -90,16 +99,22 @@ export default function CharacterCreatePage() {
         createdAt: new Date().toISOString(),
       };
 
-      const { error } = await supabase.rpc("save_character", {
+      const { data, error } = await supabase.rpc("save_character", {
         p_user_id: session.user.id,
         p_character: character,
       });
 
-      if (error) throw error;
+      if (error) {
+        console.error("RPC Error:", error);
+        toast.error(`저장 실패: ${error.message || "알 수 없는 오류"}`);
+        return;
+      }
+
+      toast.success("캐릭터가 생성되었습니다!");
       router.push("/game");
-    } catch (err) {
+    } catch (err: any) {
       console.error("캐릭터 저장 실패:", err);
-      alert("캐릭터 저장에 실패했습니다.");
+      toast.error(`저장 실패: ${err?.message || "네트워크 오류"}`);
     } finally {
       setSaving(false);
     }
