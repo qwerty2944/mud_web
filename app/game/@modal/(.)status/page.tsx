@@ -9,7 +9,7 @@ import { UnityPortalTarget, useAppearanceStore } from "@/features/character";
 export default function StatusModal() {
   const router = useRouter();
   const { session } = useAuthStore();
-  const { isUnityLoaded } = useAppearanceStore();
+  const { isUnityLoaded, spriteCounts } = useAppearanceStore();
   const {
     profile,
     inventory,
@@ -34,12 +34,14 @@ export default function StatusModal() {
 
   const mainCharacter = getMainCharacter();
 
-  // Unity 로드 후 캐릭터 외형 적용
+  // Unity 스프라이트 로드 완료 후 캐릭터 외형 적용
   useEffect(() => {
-    if (isUnityLoaded && mainCharacter) {
+    // spriteCounts가 있어야 Unity가 완전히 준비된 상태
+    if (isUnityLoaded && spriteCounts && mainCharacter) {
+      console.log("Loading character appearance:", mainCharacter.appearance);
       loadMainCharacterAppearance();
     }
-  }, [isUnityLoaded, mainCharacter, loadMainCharacterAppearance]);
+  }, [isUnityLoaded, spriteCounts, mainCharacter, loadMainCharacterAppearance]);
 
   const handleClose = () => {
     router.back();
