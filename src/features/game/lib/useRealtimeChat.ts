@@ -20,13 +20,28 @@ export function useRealtimeChat({
   const channelRef = useRef<RealtimeChannel | null>(null);
 
   const { setOnlineUsers, setConnected } = useGameStore();
-  const { addMessage, addMessages, setLoading, lastWhisperFrom, clearMessages } =
-    useChatStore();
+  const {
+    addMessage,
+    addMessages,
+    setLoading,
+    lastWhisperFrom,
+    clearMessages,
+    loadFromCache,
+    saveToCache,
+  } = useChatStore();
 
-  // 채팅 히스토리 로드
+  // 채팅 히스토리 로드 (캐시 우선)
   const loadHistory = useCallback(async () => {
-    setLoading(true);
+    // 1. 캐시에서 먼저 로드 (즉시 표시)
+    const cached = loadFromCache(mapId);
+
+    // 캐시가 있으면 로딩 표시 생략, 없으면 로딩 표시
+    if (cached.length === 0) {
+      setLoading(true);
+    }
+
     try {
+      // 2. 서버에서 최신 데이터 가져오기
       const { data, error } = await supabase.rpc("get_recent_messages", {
         p_map_id: mapId,
         p_limit: 50,
@@ -50,13 +65,16 @@ export function useRealtimeChat({
         // 시간순 정렬 (오래된 것 먼저)
         messages.reverse();
         addMessages(messages);
+
+        // 3. 캐시 업데이트
+        saveToCache(mapId);
       }
     } catch (error) {
       console.error("Failed to load chat history:", error);
     } finally {
       setLoading(false);
     }
-  }, [mapId, addMessages, setLoading]);
+  }, [mapId, addMessages, setLoading, loadFromCache, saveToCache]);
 
   // 유저 위치 등록
   const registerLocation = useCallback(async () => {
@@ -123,9 +141,10 @@ export function useRealtimeChat({
         })
         .then(({ error }) => {
           if (error) console.error("Failed to save message:", error);
+          else saveToCache(mapId); // 성공 시 캐시 업데이트
         });
     },
-    [mapId, userId, characterName, lastWhisperFrom]
+    [mapId, userId, characterName, lastWhisperFrom, saveToCache]
   );
 
   // 시스템 메시지 추가
@@ -226,6 +245,8 @@ export function useRealtimeChat({
 
     // 클린업
     return () => {
+      // 떠나기 전 캐시 저장
+      saveToCache(mapId);
       channel.untrack();
       supabase.removeChannel(channel);
       setConnected(false);
@@ -242,6 +263,7 @@ export function useRealtimeChat({
     registerLocation,
     loadHistory,
     clearMessages,
+    saveToCache,
   ]);
 
   return {
