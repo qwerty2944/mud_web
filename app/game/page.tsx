@@ -5,11 +5,12 @@ import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/features/auth";
 import {
   useGameStore,
+  useMapsStore,
   useRealtimeChat,
   ChatBox,
   PlayerList,
   MapSelector,
-  AVAILABLE_MAPS,
+  getMapDisplayName,
 } from "@/features/game";
 import { supabase } from "@/shared/api";
 
@@ -18,9 +19,18 @@ export default function GamePage() {
   const { session } = useAuthStore();
   const { currentMap, setCurrentMap, isConnected, setMyCharacterName, myCharacterName } =
     useGameStore();
+  const { maps, fetchMaps, getMapById } = useMapsStore();
 
   const [isLoading, setIsLoading] = useState(true);
   const [mapId, setMapId] = useState("starting_village");
+  const [playerLevel, setPlayerLevel] = useState(1);
+
+  // 맵 데이터 로드
+  useEffect(() => {
+    if (maps.length === 0) {
+      fetchMaps();
+    }
+  }, [maps.length, fetchMaps]);
 
   // 캐릭터 정보 로드
   useEffect(() => {
@@ -34,7 +44,7 @@ export default function GamePage() {
         // 프로필에서 캐릭터 정보 가져오기
         const { data, error } = await supabase
           .from("profiles")
-          .select("characters")
+          .select("characters, level")
           .eq("id", session.user.id)
           .single();
 
@@ -47,14 +57,15 @@ export default function GamePage() {
         // 메인 캐릭터 찾기
         const mainCharacter = data.characters.find((c: any) => c.isMain) || data.characters[0];
         setMyCharacterName(mainCharacter.name);
+        setPlayerLevel(data.level || 1);
 
         // 초기 맵 설정
-        const startMap = AVAILABLE_MAPS.find((m) => m.id === "starting_village");
+        const startMap = getMapById("starting_village");
         if (startMap) {
           setCurrentMap({
             id: startMap.id,
-            name: startMap.name,
-            description: startMap.description || "",
+            name: getMapDisplayName(startMap),
+            description: startMap.descriptionKo || "",
           });
         }
       } catch (err) {
@@ -66,7 +77,7 @@ export default function GamePage() {
     }
 
     loadCharacter();
-  }, [session, router, setCurrentMap, setMyCharacterName]);
+  }, [session, router, setCurrentMap, setMyCharacterName, getMapById]);
 
   // Realtime 채팅 연결
   const { sendMessage } = useRealtimeChat({
@@ -77,13 +88,13 @@ export default function GamePage() {
 
   // 맵 변경
   const handleMapChange = (newMapId: string) => {
-    const newMap = AVAILABLE_MAPS.find((m) => m.id === newMapId);
+    const newMap = getMapById(newMapId);
     if (newMap) {
       setMapId(newMapId);
       setCurrentMap({
         id: newMap.id,
-        name: newMap.name,
-        description: newMap.description || "",
+        name: getMapDisplayName(newMap),
+        description: newMap.descriptionKo || "",
       });
     }
   };
@@ -109,7 +120,7 @@ export default function GamePage() {
       <header className="flex-none p-3 bg-gray-800 border-b border-gray-700 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <span className="text-xl">
-            {AVAILABLE_MAPS.find((m) => m.id === mapId)?.icon || "🏠"}
+            {getMapById(mapId)?.icon || "🏠"}
           </span>
           <div>
             <h1 className="text-lg font-bold">{currentMap?.name || "시작 마을"}</h1>
@@ -118,7 +129,7 @@ export default function GamePage() {
         </div>
         <div className="flex items-center gap-2">
           <span className="text-sm text-gray-400">
-            👤 {myCharacterName}
+            Lv.{playerLevel} 👤 {myCharacterName}
           </span>
           <span
             className={`w-2 h-2 rounded-full ${
@@ -145,7 +156,11 @@ export default function GamePage() {
           <PlayerList currentUserId={session.user.id} />
 
           {/* 맵 이동 */}
-          <MapSelector currentMapId={mapId} onMapChange={handleMapChange} />
+          <MapSelector
+            currentMapId={mapId}
+            onMapChange={handleMapChange}
+            playerLevel={playerLevel}
+          />
         </div>
       </div>
     </div>

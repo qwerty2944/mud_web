@@ -10,3 +10,10 @@ export {
   type ChatMessage,
   type MessageType,
 } from "./chatStore";
+
+export {
+  useMapsStore,
+  getMapDisplayName,
+  getMapDescription,
+  type GameMap,
+} from "./mapsStore";

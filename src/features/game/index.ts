@@ -2,11 +2,15 @@
 export {
   useGameStore,
   useChatStore,
+  useMapsStore,
   parseChatCommand,
+  getMapDisplayName,
+  getMapDescription,
   type OnlineUser,
   type MapInfo,
   type ChatMessage,
   type MessageType,
+  type GameMap,
 } from "./model";
 
 // UI
