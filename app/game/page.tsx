@@ -6,10 +6,12 @@ import { useAuthStore } from "@/features/auth";
 import {
   useGameStore,
   useMapsStore,
+  usePlayerStore,
   useRealtimeChat,
   ChatBox,
   PlayerList,
   MapSelector,
+  StatusPanel,
   getMapDisplayName,
 } from "@/features/game";
 import { supabase } from "@/shared/api";
@@ -24,6 +26,9 @@ export default function GamePage() {
   const [isLoading, setIsLoading] = useState(true);
   const [mapId, setMapId] = useState("starting_village");
   const [playerLevel, setPlayerLevel] = useState(1);
+  const [isStatusOpen, setIsStatusOpen] = useState(false);
+
+  const { profile, fetchProfile } = usePlayerStore();
 
   // 맵 데이터 로드
   useEffect(() => {
@@ -59,6 +64,9 @@ export default function GamePage() {
         setMyCharacterName(mainCharacter.name);
         setPlayerLevel(data.level || 1);
 
+        // 프로필 데이터 로드
+        fetchProfile(session.user.id);
+
         // 초기 맵 설정
         const startMap = getMapById("starting_village");
         if (startMap) {
@@ -77,7 +85,7 @@ export default function GamePage() {
     }
 
     loadCharacter();
-  }, [session, router, setCurrentMap, setMyCharacterName, getMapById]);
+  }, [session, router, setCurrentMap, setMyCharacterName, getMapById, fetchProfile]);
 
   // Realtime 채팅 연결
   const { sendMessage } = useRealtimeChat({
@@ -127,10 +135,21 @@ export default function GamePage() {
             <p className="text-xs text-gray-500">{currentMap?.description}</p>
           </div>
         </div>
-        <div className="flex items-center gap-2">
-          <span className="text-sm text-gray-400">
-            Lv.{playerLevel} 👤 {myCharacterName}
-          </span>
+        <div className="flex items-center gap-3">
+          {/* 상태창 버튼 */}
+          <button
+            onClick={() => setIsStatusOpen(true)}
+            className="flex items-center gap-2 px-3 py-1.5 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors"
+          >
+            <span className="text-sm">👤</span>
+            <span className="text-sm font-medium">{myCharacterName}</span>
+            <span className="text-xs text-gray-400">Lv.{playerLevel}</span>
+          </button>
+          {/* 재화 표시 */}
+          <div className="hidden sm:flex items-center gap-3 text-sm">
+            <span className="text-yellow-400">💰 {(profile?.gold || 0).toLocaleString()}</span>
+            <span className="text-cyan-400">💎 {(profile?.gems || 0).toLocaleString()}</span>
+          </div>
           <span
             className={`w-2 h-2 rounded-full ${
               isConnected ? "bg-green-500" : "bg-red-500"
@@ -163,6 +182,13 @@ export default function GamePage() {
           />
         </div>
       </div>
+
+      {/* 상태창 모달 */}
+      <StatusPanel
+        userId={session.user.id}
+        isOpen={isStatusOpen}
+        onClose={() => setIsStatusOpen(false)}
+      />
     </div>
   );
 }

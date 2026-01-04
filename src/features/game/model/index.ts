@@ -17,3 +17,10 @@ export {
   getMapDescription,
   type GameMap,
 } from "./mapsStore";
+
+export {
+  usePlayerStore,
+  type PlayerProfile,
+  type PlayerCharacter,
+  type InventoryItem,
+} from "./playerStore";

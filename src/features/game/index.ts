@@ -3,6 +3,7 @@ export {
   useGameStore,
   useChatStore,
   useMapsStore,
+  usePlayerStore,
   parseChatCommand,
   getMapDisplayName,
   getMapDescription,
@@ -11,6 +12,9 @@ export {
   type ChatMessage,
   type MessageType,
   type GameMap,
+  type PlayerProfile,
+  type PlayerCharacter,
+  type InventoryItem,
 } from "./model";
 
 // UI
@@ -20,6 +24,7 @@ export {
   ChatMessage as ChatMessageComponent,
   PlayerList,
   MapSelector,
+  StatusPanel,
   AVAILABLE_MAPS,
 } from "./ui";
 
