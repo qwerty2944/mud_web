@@ -2,10 +2,9 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { Unity } from "react-unity-webgl";
 import { useAuthStore } from "@/features/auth";
 import { usePlayerStore } from "@/features/game";
-import { useUnityBridge } from "@/features/character/model";
+import { UnityPortalTarget } from "@/features/character";
 
 export default function StatusModal() {
   const router = useRouter();
@@ -22,8 +21,6 @@ export default function StatusModal() {
     getExpPercentage,
     getExpToNextLevel,
   } = usePlayerStore();
-
-  const { unityProvider, isLoaded, loadingProgression } = useUnityBridge();
 
   // 데이터 로드
   useEffect(() => {
@@ -94,30 +91,7 @@ export default function StatusModal() {
             <div className="flex flex-col lg:flex-row gap-6">
               {/* 캐릭터 프리뷰 */}
               <div className="lg:w-1/2">
-                <div className="bg-gray-800 rounded-lg overflow-hidden aspect-square max-h-80">
-                  {!isLoaded ? (
-                    <div className="w-full h-full flex items-center justify-center">
-                      <div className="text-center text-gray-400">
-                        <p className="mb-2">로딩 중... {Math.round(loadingProgression * 100)}%</p>
-                        <div className="w-32 h-2 bg-gray-700 rounded mx-auto">
-                          <div
-                            className="h-full bg-blue-500 rounded"
-                            style={{ width: `${loadingProgression * 100}%` }}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  ) : (
-                    <Unity
-                      unityProvider={unityProvider}
-                      style={{
-                        width: "100%",
-                        height: "100%",
-                        background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-                      }}
-                    />
-                  )}
-                </div>
+                <UnityPortalTarget className="bg-gray-800 rounded-lg overflow-hidden aspect-square max-h-80" />
                 {mainCharacter && (
                   <div className="mt-3 text-center">
                     <h3 className="text-xl font-bold text-white">{mainCharacter.name}</h3>

@@ -3,10 +3,9 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Unity } from "react-unity-webgl";
 import { useAuthStore } from "@/features/auth";
 import { usePlayerStore } from "@/features/game";
-import { useUnityBridge } from "@/features/character/model";
+import { UnityPortalTarget } from "@/features/character";
 
 export default function StatusPage() {
   const router = useRouter();
@@ -23,8 +22,6 @@ export default function StatusPage() {
     getExpPercentage,
     getExpToNextLevel,
   } = usePlayerStore();
-
-  const { unityProvider, isLoaded, loadingProgression } = useUnityBridge();
 
   // 로그인 체크
   useEffect(() => {
@@ -91,30 +88,7 @@ export default function StatusPage() {
           <div className="flex flex-col lg:flex-row gap-6">
             {/* 캐릭터 프리뷰 */}
             <div className="lg:w-1/2">
-              <div className="bg-gray-800 rounded-lg overflow-hidden aspect-square max-h-96">
-                {!isLoaded ? (
-                  <div className="w-full h-full flex items-center justify-center">
-                    <div className="text-center text-gray-400">
-                      <p className="mb-2">캐릭터 로딩 중... {Math.round(loadingProgression * 100)}%</p>
-                      <div className="w-32 h-2 bg-gray-700 rounded mx-auto">
-                        <div
-                          className="h-full bg-blue-500 rounded"
-                          style={{ width: `${loadingProgression * 100}%` }}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  <Unity
-                    unityProvider={unityProvider}
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
-                    }}
-                  />
-                )}
-              </div>
+              <UnityPortalTarget className="bg-gray-800 rounded-lg overflow-hidden aspect-square max-h-96" />
               {mainCharacter && (
                 <div className="mt-4 text-center">
                   <h2 className="text-2xl font-bold">{mainCharacter.name}</h2>

@@ -4,3 +4,4 @@ export { AnimationSelector } from "./AnimationSelector";
 export { ActionButtons } from "./ActionButtons";
 export { UnityCanvas } from "./UnityCanvas";
 export { CharacterConfirmModal } from "./CharacterConfirmModal";
+export { UnityPortalProvider, UnityPortalTarget } from "./UnityPortal";

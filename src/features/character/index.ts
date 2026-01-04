@@ -42,6 +42,8 @@ export {
   ActionButtons,
   UnityCanvas,
   CharacterConfirmModal,
+  UnityPortalProvider,
+  UnityPortalTarget,
 } from "./ui";
 
 // 위젯 주입용 훅 객체
