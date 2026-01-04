@@ -3,13 +3,14 @@ import { create } from "zustand";
 // ============ 타입 정의 ============
 
 export type PartType =
-  | "body" | "eye" | "hair" | "cloth"
+  | "body" | "eye" | "hair" | "facehair" | "cloth"
   | "armor" | "pant" | "helmet" | "back";
 
 export interface SpriteCounts {
   bodyCount: number;
   eyeCount: number;
   hairCount: number;
+  facehairCount: number;
   clothCount: number;
   armorCount: number;
   pantCount: number;
@@ -23,6 +24,7 @@ export interface CharacterState {
   bodyIndex: number;
   eyeIndex: number;
   hairIndex: number;
+  facehairIndex: number;
   clothIndex: number;
   armorIndex: number;
   pantIndex: number;
@@ -35,6 +37,7 @@ export interface CharacterState {
   bodyColor: string;
   eyeColor: string;
   hairColor: string;
+  facehairColor: string;
   clothColor: string;
   armorColor: string;
   pantColor: string;
@@ -60,6 +63,7 @@ const PART_META: Record<PartType, { label: string; indexKey: keyof CharacterStat
   body: { label: "종족", indexKey: "bodyIndex", countKey: "bodyCount", required: true },
   eye: { label: "눈", indexKey: "eyeIndex", countKey: "eyeCount", required: true },
   hair: { label: "머리", indexKey: "hairIndex", countKey: "hairCount", required: false },
+  facehair: { label: "수염", indexKey: "facehairIndex", countKey: "facehairCount", required: false },
   cloth: { label: "옷", indexKey: "clothIndex", countKey: "clothCount", required: false },
   armor: { label: "갑옷", indexKey: "armorIndex", countKey: "armorCount", required: false },
   pant: { label: "바지", indexKey: "pantIndex", countKey: "pantCount", required: false },
@@ -99,7 +103,7 @@ interface CharacterStore {
   prevPart: (type: PartType) => void;
 
   // 색상
-  applyColorTo: (target: "hair" | "cloth" | "body" | "armor") => void;
+  applyColorTo: (target: "hair" | "facehair" | "cloth" | "body" | "armor") => void;
 
   // 애니메이션
   nextAnimation: () => void;
@@ -159,6 +163,7 @@ export const useCharacterStore = create<CharacterStore>((set, get) => ({
     const hex = selectedColor.replace("#", "");
     const methodMap = {
       hair: "JS_SetHairColor",
+      facehair: "JS_SetFacehairColor",
       cloth: "JS_SetClothColor",
       body: "JS_SetBodyColor",
       armor: "JS_SetArmorColor",

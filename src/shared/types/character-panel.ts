@@ -2,7 +2,7 @@
 // features와 widgets 모두 이 타입을 사용
 
 export type PartType =
-  | "body" | "eye" | "hair" | "cloth"
+  | "body" | "eye" | "hair" | "facehair" | "cloth"
   | "armor" | "pant" | "helmet" | "back";
 
 export interface PartInfo {
@@ -27,7 +27,7 @@ export interface AnimationInfo {
 export interface ColorInfo {
   color: string;
   setColor: (color: string) => void;
-  applyTo: (target: "hair" | "cloth" | "body" | "armor") => void;
+  applyTo: (target: "hair" | "facehair" | "cloth" | "body" | "armor") => void;
 }
 
 export interface CharacterActions {
