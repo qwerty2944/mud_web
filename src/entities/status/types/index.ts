@@ -8,7 +8,8 @@ export type BuffType =
   | "spd_up"      // 속도 증가
   | "regen"       // 지속 회복
   | "shield"      // 보호막
-  | "magic_boost"; // 마법 데미지 증가
+  | "magic_boost" // 마법 데미지 증가
+  | "counter";    // 반격 자세 (피해 반사)
 
 // 디버프 종류
 export type DebuffType =
@@ -18,7 +19,8 @@ export type DebuffType =
   | "slow"        // 둔화 (속도 감소)
   | "blind"       // 실명 (명중 감소)
   | "silence"     // 침묵 (마법 불가)
-  | "weaken";     // 약화 (공격력 감소)
+  | "weaken"      // 약화 (공격력 감소)
+  | "stun";       // 기절 (행동 불가)
 
 export type StatusType = BuffType | DebuffType;
 
@@ -196,6 +198,28 @@ export const STATUS_DEFINITIONS: Record<StatusType, StatusDefinition> = {
     icon: "📉",
     description: "공격력이 감소합니다.",
     defaultDuration: 3,
+    stackable: false,
+    maxStacks: 1,
+  },
+  stun: {
+    type: "stun",
+    category: "debuff",
+    nameKo: "기절",
+    nameEn: "Stun",
+    icon: "💫",
+    description: "기절하여 행동할 수 없습니다.",
+    defaultDuration: 1,
+    stackable: false,
+    maxStacks: 1,
+  },
+  counter: {
+    type: "counter",
+    category: "buff",
+    nameKo: "반격 자세",
+    nameEn: "Counter Stance",
+    icon: "🥋",
+    description: "받는 피해의 일부를 반사합니다.",
+    defaultDuration: 2,
     stackable: false,
     maxStacks: 1,
   },

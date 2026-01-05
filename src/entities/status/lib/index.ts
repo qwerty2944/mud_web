@@ -160,10 +160,10 @@ export function hasStatus(effects: StatusEffect[], type: StatusType): boolean {
 }
 
 /**
- * 행동 불가 상태 확인 (빙결 등)
+ * 행동 불가 상태 확인 (빙결, 기절 등)
  */
 export function isIncapacitated(effects: StatusEffect[]): boolean {
-  return hasStatus(effects, "freeze");
+  return hasStatus(effects, "freeze") || hasStatus(effects, "stun");
 }
 
 /**

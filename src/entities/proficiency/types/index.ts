@@ -10,7 +10,8 @@ export type WeaponType =
   | "spear"
   | "bow"
   | "crossbow"
-  | "staff";
+  | "staff"
+  | "fist";
 
 // ============ 마법 속성 ============
 
@@ -44,6 +45,7 @@ export interface Proficiencies {
   bow: number;
   crossbow: number;
   staff: number;
+  fist: number;
   // 마법 숙련
   fire: number;
   ice: number;

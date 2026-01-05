@@ -14,6 +14,13 @@ import {
   getShieldAmount,
   applyDamageToShield,
 } from "@/entities/status";
+import {
+  getBattleStartMessage,
+  getVictoryMessage,
+  getDefeatMessage,
+  getFleeSuccessMessage,
+  getFleeFailMessage,
+} from "@/features/combat/lib/messages";
 
 // 전투 로그 엔트리
 export interface BattleLogEntry {
@@ -135,7 +142,7 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
             turn: 0,
             actor: "system",
             action: "start",
-            message: `${monster.icon} ${monster.nameKo}(와)과의 전투 시작!`,
+            message: getBattleStartMessage(monster.nameKo, monster.icon),
             timestamp: Date.now(),
           },
         ],
@@ -201,7 +208,7 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
               turn: battle.turn,
               actor: "system",
               action: "victory",
-              message: `${battle.monster?.nameKo}을(를) 처치했다!`,
+              message: getVictoryMessage(battle.monster?.nameKo || "적"),
               timestamp: Date.now(),
             },
           ],
@@ -275,7 +282,7 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
               turn: battle.turn,
               actor: "system",
               action: "defeat",
-              message: "당신은 쓰러졌다...",
+              message: getDefeatMessage(),
               timestamp: Date.now(),
             },
           ],
@@ -313,7 +320,7 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
               turn: battle.turn,
               actor: "player",
               action: "flee",
-              message: "도주에 성공했다!",
+              message: getFleeSuccessMessage(),
               timestamp: Date.now(),
             },
           ],
@@ -330,7 +337,7 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
               turn: battle.turn,
               actor: "player",
               action: "flee_fail",
-              message: "도주에 실패했다!",
+              message: getFleeFailMessage(),
               timestamp: Date.now(),
             },
           ],

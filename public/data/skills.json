@@ -194,14 +194,81 @@
       "statusDuration": 2,
       "statusValue": 0,
       "target": "enemy"
+    },
+    {
+      "id": "punch",
+      "nameKo": "펀치",
+      "nameEn": "Punch",
+      "description": "빠른 주먹으로 적을 가격합니다.",
+      "type": "physical_attack",
+      "icon": "👊",
+      "mpCost": 0,
+      "baseDamage": 15,
+      "proficiencyType": "fist",
+      "target": "enemy"
+    },
+    {
+      "id": "kick",
+      "nameKo": "킥",
+      "nameEn": "Kick",
+      "description": "강력한 발차기로 적을 공격합니다.",
+      "type": "physical_attack",
+      "icon": "🦶",
+      "mpCost": 0,
+      "baseDamage": 20,
+      "proficiencyType": "fist",
+      "target": "enemy"
+    },
+    {
+      "id": "combo_strike",
+      "nameKo": "연타",
+      "nameEn": "Combo Strike",
+      "description": "2~4회의 연속 공격을 가합니다.",
+      "type": "physical_attack",
+      "icon": "💥",
+      "mpCost": 5,
+      "baseDamage": 10,
+      "hitCount": [2, 4],
+      "proficiencyType": "fist",
+      "target": "enemy"
+    },
+    {
+      "id": "palm_strike",
+      "nameKo": "장타",
+      "nameEn": "Palm Strike",
+      "description": "기를 모아 강력한 장타를 날립니다. 30% 확률로 기절.",
+      "type": "physical_attack",
+      "icon": "🖐️",
+      "mpCost": 8,
+      "baseDamage": 25,
+      "proficiencyType": "fist",
+      "statusEffect": "stun",
+      "statusChance": 30,
+      "statusDuration": 1,
+      "target": "enemy"
+    },
+    {
+      "id": "counter_stance",
+      "nameKo": "반격 자세",
+      "nameEn": "Counter Stance",
+      "description": "2턴간 받는 공격의 50%를 반사합니다.",
+      "type": "buff",
+      "icon": "🥋",
+      "mpCost": 10,
+      "statusEffect": "counter",
+      "statusDuration": 2,
+      "statusValue": 50,
+      "proficiencyType": "fist",
+      "target": "self"
     }
   ],
   "summary": {
-    "total": 15,
+    "total": 21,
     "byType": {
       "magic_attack": 6,
+      "physical_attack": 5,
       "heal": 1,
-      "buff": 4,
+      "buff": 5,
       "debuff": 4
     }
   }

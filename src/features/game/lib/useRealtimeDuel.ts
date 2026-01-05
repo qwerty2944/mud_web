@@ -266,7 +266,7 @@ export function useRealtimeDuel({
         // 지금은 기본값 사용
         const defaultStats = { str: 10, dex: 10, con: 10, int: 10, wis: 10, cha: 10 };
         const defaultProficiencies = {
-          sword: 0, axe: 0, mace: 0, dagger: 0, spear: 0, bow: 0, crossbow: 0, staff: 0,
+          sword: 0, axe: 0, mace: 0, dagger: 0, spear: 0, bow: 0, crossbow: 0, staff: 0, fist: 0,
           fire: 0, ice: 0, lightning: 0, earth: 0, holy: 0, dark: 0,
         };
 

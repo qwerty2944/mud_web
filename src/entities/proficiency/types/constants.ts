@@ -81,6 +81,15 @@ export const WEAPON_PROFICIENCIES: ProficiencyInfo[] = [
     description: "마법 증폭",
     icon: "🪄",
   },
+  {
+    id: "fist",
+    nameKo: "격투",
+    nameEn: "Martial Arts",
+    category: "weapon",
+    relatedStats: ["str", "dex"],
+    description: "맨손 전투, 빠른 연타",
+    icon: "👊",
+  },
 ];
 
 // ============ 마법 숙련 정보 ============
@@ -230,6 +239,7 @@ export const WEAPON_TYPES: WeaponType[] = [
   "bow",
   "crossbow",
   "staff",
+  "fist",
 ];
 
 export const MAGIC_ELEMENTS: MagicElement[] = [

@@ -7,6 +7,7 @@ import type { ProficiencyType, MagicElement } from "@/entities/proficiency";
 import { getProficiencyInfo } from "@/entities/proficiency";
 import { canMonsterAttack } from "@/entities/monster";
 import { calculateDamage, calculateMonsterDamage, applyCritical } from "../lib/damage";
+import { getAttackMessage, getMonsterAttackMessage } from "../lib/messages";
 
 interface AttackOptions {
   attackType: ProficiencyType;
@@ -31,10 +32,6 @@ export function useAttack() {
 
       const { attackType, proficiencyLevel, attackerStats, baseDamage = 10, playerDefense = 0 } = options;
 
-      // 공격 정보 가져오기
-      const proficiencyInfo = getProficiencyInfo(attackType);
-      const attackName = proficiencyInfo?.nameKo || attackType;
-
       // 데미지 계산
       let damage = calculateDamage({
         baseDamage,
@@ -49,11 +46,8 @@ export function useAttack() {
       const { damage: finalDamage, isCritical } = applyCritical(damage, attackerStats.dex);
       damage = finalDamage;
 
-      // 메시지 생성
-      let message = `${attackName}(으)로 ${battle.monster.nameKo}에게 ${damage} 데미지!`;
-      if (isCritical) {
-        message = `치명타! ${message}`;
-      }
+      // 창의적인 메시지 생성
+      const message = getAttackMessage(attackType, battle.monster.nameKo, damage, isCritical);
 
       // 플레이어 공격 적용
       playerAttack(damage, message, attackType);
@@ -65,7 +59,7 @@ export function useAttack() {
         const monsterDamage = calculateMonsterDamage(battle.monster.stats.attack, playerDefense);
 
         if (monsterDamage > 0) {
-          const monsterMessage = `${battle.monster.nameKo}의 반격! ${monsterDamage} 데미지를 받았다.`;
+          const monsterMessage = getMonsterAttackMessage(battle.monster.nameKo, monsterDamage);
           // 약간의 딜레이 후 몬스터 공격 (UI 애니메이션용)
           setTimeout(() => {
             monsterAttack(monsterDamage, monsterMessage);

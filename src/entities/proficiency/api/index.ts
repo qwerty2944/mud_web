@@ -78,6 +78,7 @@ function mapToProficiencies(data: any): Proficiencies {
     bow: data.bow ?? 0,
     crossbow: data.crossbow ?? 0,
     staff: data.staff ?? 0,
+    fist: data.fist ?? 0,
     // 마법
     fire: data.fire ?? 0,
     ice: data.ice ?? 0,

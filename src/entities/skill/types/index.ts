@@ -35,11 +35,13 @@ export interface Skill {
   baseDamage?: number;
   element?: MagicElement;
   proficiencyType?: ProficiencyType;
+  hitCount?: [number, number];  // [min, max] 다중 타격
 
   // 버프/디버프 스킬용
   statusEffect?: StatusType;
   statusDuration?: number;
   statusValue?: number;
+  statusChance?: number;  // 상태이상 발동 확률 (%)
 
   // 회복 스킬용
   healAmount?: number;
