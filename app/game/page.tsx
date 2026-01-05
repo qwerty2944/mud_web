@@ -17,6 +17,7 @@ import {
   useProfile,
   getMainCharacter,
   getStaminaPercent,
+  updateCurrentMap,
 } from "@/entities/user";
 import {
   useMaps,
@@ -42,8 +43,8 @@ export default function GamePage() {
   const { data: profile, isLoading: profileLoading } = useProfile(session?.user?.id);
   const { data: maps = [] } = useMaps();
 
-  // 로컬 UI 상태
-  const [mapId, setMapId] = useState("town_square");
+  // 로컬 UI 상태 - 프로필에서 마지막 위치 로드
+  const [mapId, setMapId] = useState<string | null>(null);
   const [showThemeModal, setShowThemeModal] = useState(false);
 
   // 전투 관련
@@ -74,35 +75,54 @@ export default function GamePage() {
     }
   }, [session, profile, profileLoading, router, setMyCharacterName]);
 
-  // 맵 로드 후 현재 맵 설정
+  // 프로필에서 마지막 위치 로드
   useEffect(() => {
-    if (maps.length > 0 && !currentMap) {
-      const startMap = getMapById(maps, "town_square");
-      if (startMap) {
+    if (profile && maps.length > 0 && mapId === null) {
+      const savedMapId = profile.currentMapId || "town_square";
+      const savedMap = getMapById(maps, savedMapId);
+      if (savedMap) {
+        setMapId(savedMapId);
         setCurrentMap({
-          id: startMap.id,
-          name: getMapDisplayName(startMap),
-          description: startMap.descriptionKo || "",
+          id: savedMap.id,
+          name: getMapDisplayName(savedMap),
+          description: savedMap.descriptionKo || "",
         });
+      } else {
+        // 저장된 맵이 없으면 기본 위치로
+        const defaultMap = getMapById(maps, "town_square");
+        if (defaultMap) {
+          setMapId("town_square");
+          setCurrentMap({
+            id: defaultMap.id,
+            name: getMapDisplayName(defaultMap),
+            description: defaultMap.descriptionKo || "",
+          });
+        }
       }
     }
-  }, [maps, currentMap, setCurrentMap]);
+  }, [profile, maps, mapId, setCurrentMap]);
 
   const { sendMessage } = useRealtimeChat({
-    mapId,
+    mapId: mapId || "town_square",
     userId: session?.user?.id || "",
     characterName: myCharacterName,
   });
 
-  const handleMapChange = (newMapId: string) => {
+  const handleMapChange = async (newMapId: string) => {
     const newMap = getMapById(maps, newMapId);
-    if (newMap) {
+    if (newMap && session?.user?.id) {
       setMapId(newMapId);
       setCurrentMap({
         id: newMap.id,
         name: getMapDisplayName(newMap),
         description: newMap.descriptionKo || "",
       });
+      // 서버에 위치 저장
+      try {
+        await updateCurrentMap(session.user.id, newMapId);
+      } catch (error) {
+        console.error("Failed to save location:", error);
+      }
     }
   };
 
@@ -229,7 +249,7 @@ export default function GamePage() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <span className="text-xl">
-              {getMapById(maps, mapId)?.icon || "🏠"}
+              {getMapById(maps, mapId || "town_square")?.icon || "🏠"}
             </span>
             <div>
               <h1 className="text-lg font-bold font-mono" style={{ color: theme.colors.text }}>
@@ -288,7 +308,7 @@ export default function GamePage() {
 
           {/* 몬스터 목록 */}
           <MonsterList
-            mapId={mapId}
+            mapId={mapId || "town_square"}
             playerLevel={profile.level}
             onSelectMonster={handleSelectMonster}
             disabled={battle.isInBattle}
@@ -296,7 +316,7 @@ export default function GamePage() {
 
           {/* 맵 이동 */}
           <MapSelector
-            currentMapId={mapId}
+            currentMapId={mapId || "town_square"}
             onMapChange={handleMapChange}
             playerLevel={profile.level}
           />

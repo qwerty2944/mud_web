@@ -16,4 +16,5 @@ export interface UserProfile {
   premiumUntil: string | null;
   characters: SavedCharacter[];
   buffs: any[];
+  currentMapId: string;
 }

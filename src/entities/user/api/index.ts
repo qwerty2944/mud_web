@@ -26,5 +26,17 @@ export async function fetchProfile(userId: string): Promise<UserProfile> {
     premiumUntil: data.premium_until,
     characters: data.characters || [],
     buffs: data.buffs || [],
+    currentMapId: data.current_map_id || "town_square",
   };
+}
+
+// ============ 위치 업데이트 API ============
+
+export async function updateCurrentMap(userId: string, mapId: string): Promise<void> {
+  const { error } = await supabase
+    .from("profiles")
+    .update({ current_map_id: mapId })
+    .eq("id", userId);
+
+  if (error) throw error;
 }
