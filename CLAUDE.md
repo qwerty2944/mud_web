@@ -617,9 +617,17 @@ const { activeDuel, isInDuel } = usePvpStore();
 ### UI 컴포넌트
 | 컴포넌트 | 파일 | 용도 |
 |---------|------|------|
-| WorldMap | `src/features/game/ui/WorldMap.tsx` | 시각적 맵 (노드-엣지) |
+| WorldMap | `src/features/game/ui/WorldMap.tsx` | 맵 목록 (데이터 기반) |
 | WorldMapModal | `src/features/game/ui/WorldMapModal.tsx` | 월드맵 모달 래퍼 |
 | MapSelector | `src/features/game/ui/MapSelector.tsx` | 드롭다운 이동 UI |
+
+### 월드맵 상태 표시
+| 상태 | 색상 | 설명 |
+|------|------|------|
+| 현재 위치 | primary (●) | 플레이어가 현재 있는 맵 |
+| 이동 가능 | success (●) | 연결되어 있고 레벨 충족 |
+| 연결 안됨 | textMuted (●) | 현재 맵에서 직접 이동 불가 |
+| 레벨 부족 | error (🔒) | minLevel 미충족 |
 
 ### 사용법
 ```typescript
