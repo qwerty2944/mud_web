@@ -16,7 +16,13 @@ export function useStartBattle(options?: UseStartBattleOptions) {
   const { startBattle, battle } = useBattleStore();
 
   const start = useCallback(
-    (monster: Monster, playerHp: number, playerMaxHp: number) => {
+    (
+      monster: Monster,
+      playerHp: number,
+      playerMaxHp: number,
+      playerMp: number,
+      playerMaxMp: number
+    ) => {
       // 이미 전투 중이면 무시
       if (battle.isInBattle) {
         console.warn("Already in battle");
@@ -29,7 +35,7 @@ export function useStartBattle(options?: UseStartBattleOptions) {
       //   return false;
       // }
 
-      startBattle(monster, playerHp, playerMaxHp);
+      startBattle(monster, playerHp, playerMaxHp, playerMp, playerMaxMp);
       options?.onBattleStart?.(monster);
 
       return true;

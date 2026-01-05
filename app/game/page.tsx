@@ -6,7 +6,6 @@ import Link from "next/link";
 import { useAuthStore } from "@/features/auth";
 import {
   useGameStore,
-  useChatStore,
   useRealtimeChat,
   ChatBox,
   PlayerList,
@@ -28,7 +27,7 @@ import type { Monster } from "@/entities/monster";
 import { useProficiencies } from "@/entities/proficiency";
 import type { ProficiencyType } from "@/entities/proficiency";
 import { useBattleStore } from "@/application/stores";
-import { useStartBattle, useAttack, useEndBattle } from "@/features/combat";
+import { useStartBattle } from "@/features/combat";
 import { useThemeStore } from "@/shared/config";
 import { ThemeSettingsModal } from "@/shared/ui";
 
@@ -50,13 +49,10 @@ export default function GamePage() {
   // 전투 관련
   const { battle, resetBattle } = useBattleStore();
   const { start: startBattle } = useStartBattle();
-  const { attack: performAttack } = useAttack();
   const { data: proficiencies } = useProficiencies(session?.user?.id);
 
   const mainCharacter = getMainCharacter(profile);
   const staminaPercent = getStaminaPercent(profile);
-  const currentMapData = getMapById(maps, mapId);
-  const isSafeZone = currentMapData?.isSafeZone ?? true;
 
   // 캐릭터 정보 로드
   useEffect(() => {
@@ -122,28 +118,13 @@ export default function GamePage() {
 
       // 기본 HP 계산 (레벨 기반)
       const playerHp = 50 + profile.level * 10;
-      startBattle(monster, playerHp, playerHp);
+      // 기본 MP 계산 (레벨 + INT 기반)
+      const baseInt = mainCharacter?.stats?.int ?? 10;
+      const playerMp = 30 + profile.level * 5 + Math.floor(baseInt * 0.5);
+
+      startBattle(monster, playerHp, playerHp, playerMp, playerMp);
     },
-    [profile, battle.isInBattle, startBattle]
-  );
-
-  // 공격
-  const handleAttack = useCallback(
-    (weaponType: ProficiencyType) => {
-      if (!mainCharacter?.stats) return;
-
-      const stats = mainCharacter.stats;
-      const profLevel = proficiencies?.[weaponType] ?? 0;
-
-      performAttack({
-        attackType: weaponType,
-        proficiencyLevel: profLevel,
-        attackerStats: stats,
-        baseDamage: 10 + (profile?.level ?? 1),
-        playerDefense: Math.floor((stats.con || 10) * 0.5),
-      });
-    },
-    [mainCharacter, proficiencies, performAttack, profile]
+    [profile, battle.isInBattle, startBattle, mainCharacter]
   );
 
   // 전투 승리
@@ -305,15 +286,13 @@ export default function GamePage() {
           {/* 접속 유저 */}
           <PlayerList currentUserId={session.user.id} />
 
-          {/* 몬스터 목록 (비안전지대에서만) */}
-          {!isSafeZone && (
-            <MonsterList
-              mapId={mapId}
-              playerLevel={profile.level}
-              onSelectMonster={handleSelectMonster}
-              disabled={battle.isInBattle}
-            />
-          )}
+          {/* 몬스터 목록 */}
+          <MonsterList
+            mapId={mapId}
+            playerLevel={profile.level}
+            onSelectMonster={handleSelectMonster}
+            disabled={battle.isInBattle}
+          />
 
           {/* 맵 이동 */}
           <MapSelector
@@ -329,7 +308,6 @@ export default function GamePage() {
         <BattlePanel
           characterStats={mainCharacter.stats}
           proficiencies={proficiencies || ({} as Record<ProficiencyType, number>)}
-          onAttack={handleAttack}
           onFlee={handleFlee}
           onVictory={handleVictory}
           onDefeat={handleDefeat}

@@ -2,6 +2,7 @@
 export { useStartBattle } from "./start-battle";
 export { useAttack } from "./attack";
 export { useEndBattle } from "./end-battle";
+export { useCastSpell } from "./cast-spell";
 
 // Lib (Damage Calculation)
 export {
