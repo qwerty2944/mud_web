@@ -18,20 +18,22 @@ export interface StarterPreset {
 // 능력치 시스템
 export interface CharacterStats {
   str: number; // 힘 - 물리 공격력, 무게 제한
-  dex: number; // 민첩 - 명중, 회피, 치명타
+  dex: number; // 민첩 - 명중, 회피
   con: number; // 체력 - HP, 방어력
   int: number; // 지능 - 마법 공격력, 마나
   wis: number; // 지혜 - 마법 방어, 마나 회복
   cha: number; // 매력 - 상점 가격, NPC 호감도
+  lck: number; // 행운 - 치명타 확률, 치명타 피해
 }
 
 export const STAT_NAMES: Record<keyof CharacterStats, { ko: string; desc: string }> = {
   str: { ko: "힘", desc: "물리 공격력, 무게 제한" },
-  dex: { ko: "민첩", desc: "명중, 회피, 치명타" },
+  dex: { ko: "민첩", desc: "명중, 회피" },
   con: { ko: "체력", desc: "HP, 방어력" },
   int: { ko: "지능", desc: "마법 공격력, 마나" },
   wis: { ko: "지혜", desc: "마법 방어, 마나 회복" },
   cha: { ko: "매력", desc: "상점 가격, NPC 호감도" },
+  lck: { ko: "행운", desc: "치명타 확률, 치명타 피해" },
 };
 
 // 기본 스탯 (모든 종족 공통)
@@ -42,6 +44,7 @@ export const BASE_STATS: CharacterStats = {
   int: 10,
   wis: 10,
   cha: 10,
+  lck: 10,
 };
 
 // 배분 가능한 보너스 포인트

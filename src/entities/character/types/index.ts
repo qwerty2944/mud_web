@@ -45,5 +45,6 @@ export interface CharacterStats {
   int: number;
   wis: number;
   cha: number;
+  lck: number; // 행운 - 치명타 확률 및 피해량
 }
 

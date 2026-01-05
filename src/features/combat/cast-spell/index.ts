@@ -112,8 +112,9 @@ export function useCastSpell(options: UseCastSpellOptions = {}) {
           targetDefense: battle.monster.stats.defense,
         });
 
-        // 크리티컬 판정
-        const { damage: finalDamage, isCritical } = applyCritical(damage, casterStats.dex);
+        // 크리티컬 판정 (LCK + DEX 기반)
+        const lck = casterStats.lck ?? 10;
+        const { damage: finalDamage, isCritical } = applyCritical(damage, lck, casterStats.dex);
         totalDamage += finalDamage;
       }
 
@@ -179,11 +180,9 @@ export function useCastSpell(options: UseCastSpellOptions = {}) {
         damage = Math.floor(damage * (1 + magicModifier / 100));
       }
 
-      // 크리티컬 판정 (INT 기반)
-      const { damage: finalDamage, isCritical } = applyCritical(
-        damage,
-        casterStats.int * 0.5 // 마법은 INT 기반 크리티컬
-      );
+      // 크리티컬 판정 (LCK + INT 기반)
+      const lck = casterStats.lck ?? 10;
+      const { damage: finalDamage, isCritical } = applyCritical(damage, lck, casterStats.int);
 
       // 창의적인 공격 메시지
       const message = getAttackMessage(

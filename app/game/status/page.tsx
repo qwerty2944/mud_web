@@ -179,6 +179,32 @@ export default function StatusPage() {
                     </div>
                   </div>
 
+                  {/* 능력치 */}
+                  {mainCharacter?.stats && (
+                    <div className="p-4" style={{ background: theme.colors.bgDark }}>
+                      <div className="text-sm font-mono mb-3" style={{ color: theme.colors.textMuted }}>능력치</div>
+                      <div className="grid grid-cols-2 gap-2">
+                        {[
+                          { key: "str", label: "힘", icon: "💪" },
+                          { key: "dex", label: "민첩", icon: "🏃" },
+                          { key: "con", label: "체력", icon: "❤️" },
+                          { key: "int", label: "지능", icon: "🧠" },
+                          { key: "wis", label: "지혜", icon: "🔮" },
+                          { key: "cha", label: "매력", icon: "✨" },
+                          { key: "lck", label: "행운", icon: "🍀" },
+                        ].map(({ key, label, icon }) => (
+                          <div key={key} className="flex items-center gap-2">
+                            <span className="text-sm">{icon}</span>
+                            <span className="text-xs font-mono" style={{ color: theme.colors.textMuted }}>{label}</span>
+                            <span className="font-mono font-medium ml-auto" style={{ color: theme.colors.text }}>
+                              {(mainCharacter.stats as any)[key] ?? 10}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
                   {/* 재화 */}
                   <div className="p-4 grid grid-cols-2 gap-4" style={{ background: theme.colors.bgDark }}>
                     <div className="flex items-center gap-3">

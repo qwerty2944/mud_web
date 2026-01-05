@@ -42,8 +42,9 @@ export function useAttack() {
         targetElement: battle.monster.element,
       });
 
-      // 크리티컬 히트 체크
-      const { damage: finalDamage, isCritical } = applyCritical(damage, attackerStats.dex);
+      // 크리티컬 히트 체크 (LCK + DEX 기반)
+      const lck = attackerStats.lck ?? 10;
+      const { damage: finalDamage, isCritical } = applyCritical(damage, lck, attackerStats.dex);
       damage = finalDamage;
 
       // 창의적인 메시지 생성

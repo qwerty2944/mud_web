@@ -80,8 +80,11 @@ export function calculatePvpDamage(params: PvpDamageParams): {
     targetElement: null, // PvP는 속성 상성 없음 (마법 간 상성만)
   });
 
-  // 크리티컬 적용
-  const { damage: finalDamage, isCritical } = applyCritical(damage, attacker.stats.dex);
+  // 크리티컬 적용 (LCK + DEX/INT 기반)
+  const lck = attacker.stats.lck ?? 10;
+  const isPhysical = weaponTypes.includes(attackType);
+  const secondaryStat = isPhysical ? attacker.stats.dex : attacker.stats.int;
+  const { damage: finalDamage, isCritical } = applyCritical(damage, lck, secondaryStat);
 
   return {
     damage: Math.max(1, finalDamage), // 최소 1 데미지

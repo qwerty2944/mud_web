@@ -125,28 +125,45 @@ export function calculateMonsterDamage(
 }
 
 /**
- * 크리티컬 히트 확률 계산
- * DEX 기반: 5% + (DEX * 0.1)%
+ * 크리티컬 히트 확률 계산 (LCK 기반)
+ * 물리: 5% + LCK * 0.3 + DEX * 0.05 (최대 60%)
+ * 마법: 5% + LCK * 0.3 + INT * 0.05 (최대 60%)
  */
-export function getCriticalChance(dex: number): number {
-  return Math.min(50, 5 + dex * 0.1); // 최대 50%
+export function getCriticalChance(lck: number, secondaryStat: number): number {
+  const base = 5;
+  const lckBonus = lck * 0.3;
+  const secondaryBonus = secondaryStat * 0.05;
+  return Math.min(60, base + lckBonus + secondaryBonus);
 }
 
 /**
- * 크리티컬 데미지 배율
+ * 크리티컬 데미지 배율 계산 (LCK 기반)
+ * 기본 1.5배 + LCK * 0.01 (최대 2.5배)
  */
-export const CRITICAL_MULTIPLIER = 1.5;
+export function getCriticalMultiplier(lck: number): number {
+  const base = 1.5;
+  const lckBonus = lck * 0.01;
+  return Math.min(2.5, base + lckBonus);
+}
 
 /**
  * 크리티컬 히트 적용
+ * @param damage 기본 데미지
+ * @param lck 행운 스탯
+ * @param secondaryStat 물리: DEX, 마법: INT
  */
-export function applyCritical(damage: number, dex: number): { damage: number; isCritical: boolean } {
-  const critChance = getCriticalChance(dex);
+export function applyCritical(
+  damage: number,
+  lck: number,
+  secondaryStat: number
+): { damage: number; isCritical: boolean; multiplier: number } {
+  const critChance = getCriticalChance(lck, secondaryStat);
   const isCritical = Math.random() * 100 < critChance;
 
   if (isCritical) {
-    return { damage: Math.floor(damage * CRITICAL_MULTIPLIER), isCritical: true };
+    const multiplier = getCriticalMultiplier(lck);
+    return { damage: Math.floor(damage * multiplier), isCritical: true, multiplier };
   }
 
-  return { damage, isCritical: false };
+  return { damage, isCritical: false, multiplier: 1.0 };
 }
