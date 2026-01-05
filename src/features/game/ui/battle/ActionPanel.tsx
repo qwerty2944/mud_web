@@ -1,10 +1,11 @@
 "use client";
 
 import { useThemeStore } from "@/shared/config";
-import { useBattleStore } from "@/application/stores";
+import { useBattleStore, useEquipmentStore } from "@/application/stores";
 import type { SkillCategory, Skill } from "@/entities/skill";
-import type { ProficiencyType } from "@/entities/proficiency";
-import { useMagicAttackSkills, useBuffSkills, useDebuffSkills } from "@/entities/skill";
+import type { ProficiencyType, WeaponType } from "@/entities/proficiency";
+import { getProficiencyInfo } from "@/entities/proficiency";
+import { useSkills } from "@/entities/skill";
 
 interface ActionPanelProps {
   activeTab: SkillCategory;
@@ -14,18 +15,6 @@ interface ActionPanelProps {
   onFlee: () => void;
   disabled?: boolean;
 }
-
-// 무기 버튼 정의
-const WEAPON_BUTTONS: { type: ProficiencyType; icon: string; label: string }[] = [
-  { type: "sword", icon: "⚔️", label: "검" },
-  { type: "axe", icon: "🪓", label: "도끼" },
-  { type: "mace", icon: "🔨", label: "둔기" },
-  { type: "dagger", icon: "🗡️", label: "단검" },
-  { type: "spear", icon: "🔱", label: "창" },
-  { type: "bow", icon: "🏹", label: "활" },
-  { type: "crossbow", icon: "🎯", label: "석궁" },
-  { type: "staff", icon: "🪄", label: "지팡이" },
-];
 
 export function ActionPanel({
   activeTab,
@@ -37,25 +26,50 @@ export function ActionPanel({
 }: ActionPanelProps) {
   const { theme } = useThemeStore();
   const { canUseSkill, isPlayerSilenced } = useBattleStore();
+  const { weapon, learnedSkills } = useEquipmentStore();
 
   // 스킬 데이터 로드
-  const { data: magicSkills = [] } = useMagicAttackSkills();
-  const { data: buffSkills = [] } = useBuffSkills();
-  const { data: debuffSkills = [] } = useDebuffSkills();
+  const { data: allSkills = [] } = useSkills();
+
+  // 배운 스킬만 필터링
+  const learnedSkillData = allSkills.filter((skill) =>
+    learnedSkills.includes(skill.id)
+  );
+
+  // 마법 공격 스킬
+  const magicSkills = learnedSkillData.filter(
+    (skill) => skill.type === "magic_attack"
+  );
+
+  // 버프/힐 스킬
+  const buffSkills = learnedSkillData.filter(
+    (skill) => skill.type === "buff" || skill.type === "heal"
+  );
+
+  // 디버프 스킬
+  const debuffSkills = learnedSkillData.filter(
+    (skill) => skill.type === "debuff"
+  );
 
   const isSilenced = isPlayerSilenced();
 
+  // 장착 무기 정보
+  const equippedWeaponType = weapon?.itemType as WeaponType | null;
+  const weaponInfo = equippedWeaponType
+    ? getProficiencyInfo(equippedWeaponType)
+    : null;
+
   return (
     <div className="p-3 space-y-3">
-      {/* 무기 탭 */}
+      {/* 무기 탭 - 장착된 무기 또는 맨손 */}
       {activeTab === "weapon" && (
-        <div className="grid grid-cols-4 gap-2">
-          {WEAPON_BUTTONS.map(({ type, icon, label }) => (
+        <div className="space-y-2">
+          {/* 장착된 무기가 있으면 */}
+          {weapon ? (
             <button
-              key={type}
-              onClick={() => onWeaponAttack(type)}
+              onClick={() => onWeaponAttack(equippedWeaponType!)}
               disabled={disabled}
-              className="flex flex-col items-center gap-1 py-2 px-1 transition-colors font-mono text-sm"
+              className="w-full flex items-center gap-4 py-3 px-4 transition-colors font-mono"
               style={{
                 background: theme.colors.bgLight,
                 border: `1px solid ${theme.colors.border}`,
@@ -64,13 +78,71 @@ export function ActionPanel({
                 cursor: disabled ? "not-allowed" : "pointer",
               }}
             >
-              <span className="text-lg">{icon}</span>
-              <span className="text-xs">{label}</span>
-              <span className="text-xs" style={{ color: theme.colors.textMuted }}>
-                Lv.{proficiencies[type] || 0}
-              </span>
+              <span className="text-3xl">{weapon.icon}</span>
+              <div className="flex-1 text-left">
+                <div className="font-medium">{weapon.itemName}</div>
+                <div
+                  className="text-xs"
+                  style={{ color: theme.colors.textMuted }}
+                >
+                  {weaponInfo?.nameKo} · Lv.{proficiencies[equippedWeaponType!] || 0}
+                </div>
+              </div>
+              <div
+                className="text-sm px-2 py-1"
+                style={{
+                  background: theme.colors.primary + "20",
+                  color: theme.colors.primary,
+                }}
+              >
+                공격
+              </div>
             </button>
-          ))}
+          ) : (
+            /* 맨손 공격 */
+            <button
+              onClick={() => onWeaponAttack("fist" as ProficiencyType)}
+              disabled={disabled}
+              className="w-full flex items-center gap-4 py-3 px-4 transition-colors font-mono"
+              style={{
+                background: theme.colors.bgLight,
+                border: `1px solid ${theme.colors.border}`,
+                color: theme.colors.text,
+                opacity: disabled ? 0.5 : 1,
+                cursor: disabled ? "not-allowed" : "pointer",
+              }}
+            >
+              <span className="text-3xl">👊</span>
+              <div className="flex-1 text-left">
+                <div className="font-medium">맨손</div>
+                <div
+                  className="text-xs"
+                  style={{ color: theme.colors.textMuted }}
+                >
+                  무기 없음
+                </div>
+              </div>
+              <div
+                className="text-sm px-2 py-1"
+                style={{
+                  background: theme.colors.textMuted + "20",
+                  color: theme.colors.textMuted,
+                }}
+              >
+                공격
+              </div>
+            </button>
+          )}
+
+          {/* 무기 장착 안내 */}
+          {!weapon && (
+            <div
+              className="text-center py-2 text-xs font-mono"
+              style={{ color: theme.colors.textMuted }}
+            >
+              인벤토리에서 무기를 장착하세요
+            </div>
+          )}
         </div>
       )}
 
@@ -85,21 +157,33 @@ export function ActionPanel({
               🤐 침묵 상태 - 마법 사용 불가
             </div>
           )}
-          <div className="grid grid-cols-3 gap-2">
-            {magicSkills.map((skill) => {
-              const canCast = canUseSkill(skill.mpCost) && !isSilenced;
-              return (
-                <SkillButton
-                  key={skill.id}
-                  skill={skill}
-                  proficiency={proficiencies[skill.proficiencyType as ProficiencyType] || 0}
-                  canCast={canCast}
-                  disabled={disabled || !canCast}
-                  onClick={() => onCastSkill(skill)}
-                />
-              );
-            })}
-          </div>
+
+          {magicSkills.length > 0 ? (
+            <div className="grid grid-cols-3 gap-2">
+              {magicSkills.map((skill) => {
+                const canCast = canUseSkill(skill.mpCost) && !isSilenced;
+                return (
+                  <SkillButton
+                    key={skill.id}
+                    skill={skill}
+                    proficiency={
+                      proficiencies[skill.proficiencyType as ProficiencyType] || 0
+                    }
+                    canCast={canCast}
+                    disabled={disabled || !canCast}
+                    onClick={() => onCastSkill(skill)}
+                  />
+                );
+              })}
+            </div>
+          ) : (
+            <div
+              className="text-center py-4 font-mono text-sm"
+              style={{ color: theme.colors.textMuted }}
+            >
+              배운 마법이 없습니다
+            </div>
+          )}
         </div>
       )}
 
@@ -114,52 +198,67 @@ export function ActionPanel({
               🤐 침묵 상태 - 마법 사용 불가
             </div>
           )}
+
           {/* 버프 */}
-          <div>
-            <div
-              className="text-xs font-mono mb-1"
-              style={{ color: theme.colors.textMuted }}
-            >
-              💚 버프
+          {buffSkills.length > 0 && (
+            <div>
+              <div
+                className="text-xs font-mono mb-1"
+                style={{ color: theme.colors.textMuted }}
+              >
+                💚 버프/회복
+              </div>
+              <div className="grid grid-cols-3 gap-2">
+                {buffSkills.map((skill) => {
+                  const canCast = canUseSkill(skill.mpCost) && !isSilenced;
+                  return (
+                    <SkillButton
+                      key={skill.id}
+                      skill={skill}
+                      canCast={canCast}
+                      disabled={disabled || !canCast}
+                      onClick={() => onCastSkill(skill)}
+                    />
+                  );
+                })}
+              </div>
             </div>
-            <div className="grid grid-cols-3 gap-2">
-              {buffSkills.map((skill) => {
-                const canCast = canUseSkill(skill.mpCost) && !isSilenced;
-                return (
-                  <SkillButton
-                    key={skill.id}
-                    skill={skill}
-                    canCast={canCast}
-                    disabled={disabled || !canCast}
-                    onClick={() => onCastSkill(skill)}
-                  />
-                );
-              })}
-            </div>
-          </div>
+          )}
+
           {/* 디버프 */}
-          <div>
+          {debuffSkills.length > 0 && (
+            <div>
+              <div
+                className="text-xs font-mono mb-1"
+                style={{ color: theme.colors.textMuted }}
+              >
+                ☠️ 디버프
+              </div>
+              <div className="grid grid-cols-3 gap-2">
+                {debuffSkills.map((skill) => {
+                  const canCast = canUseSkill(skill.mpCost) && !isSilenced;
+                  return (
+                    <SkillButton
+                      key={skill.id}
+                      skill={skill}
+                      canCast={canCast}
+                      disabled={disabled || !canCast}
+                      onClick={() => onCastSkill(skill)}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
+          {buffSkills.length === 0 && debuffSkills.length === 0 && (
             <div
-              className="text-xs font-mono mb-1"
+              className="text-center py-4 font-mono text-sm"
               style={{ color: theme.colors.textMuted }}
             >
-              ☠️ 디버프
+              배운 보조 스킬이 없습니다
             </div>
-            <div className="grid grid-cols-3 gap-2">
-              {debuffSkills.map((skill) => {
-                const canCast = canUseSkill(skill.mpCost) && !isSilenced;
-                return (
-                  <SkillButton
-                    key={skill.id}
-                    skill={skill}
-                    canCast={canCast}
-                    disabled={disabled || !canCast}
-                    onClick={() => onCastSkill(skill)}
-                  />
-                );
-              })}
-            </div>
-          </div>
+          )}
         </div>
       )}
 
@@ -234,7 +333,7 @@ function SkillButton({
       >
         MP {skill.mpCost}
       </span>
-      {proficiency !== undefined && (
+      {proficiency !== undefined && proficiency > 0 && (
         <span className="text-[10px]" style={{ color: theme.colors.textMuted }}>
           Lv.{proficiency}
         </span>

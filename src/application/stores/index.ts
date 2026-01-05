@@ -48,6 +48,14 @@ export {
   type DuelState,
 } from "./pvpStore";
 
+// ============ Equipment ============
+export {
+  useEquipmentStore,
+  getEquippedWeaponType,
+  type EquipmentSlot,
+  type EquippedItem,
+} from "./equipmentStore";
+
 // ============ UI ============
 export { useThemeStore } from "./themeStore";
 export { useModalStore, useModal, type ModalConfig } from "./modalStore";
