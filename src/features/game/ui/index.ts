@@ -6,3 +6,5 @@ export { MapSelector, AVAILABLE_MAPS } from "./MapSelector";
 export { PlayerContextMenu } from "./PlayerContextMenu";
 export { DuelRequestModal } from "./DuelRequestModal";
 export { DuelBattlePanel } from "./DuelBattlePanel";
+export { BattlePanel } from "./BattlePanel";
+export { MonsterList } from "./MonsterList";

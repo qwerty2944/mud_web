@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useAuthStore } from "@/features/auth";
@@ -11,6 +11,8 @@ import {
   ChatBox,
   PlayerList,
   MapSelector,
+  MonsterList,
+  BattlePanel,
 } from "@/features/game";
 import {
   useProfile,
@@ -22,6 +24,11 @@ import {
   getMapById,
   getMapDisplayName,
 } from "@/entities/map";
+import type { Monster } from "@/entities/monster";
+import { useProficiencies } from "@/entities/proficiency";
+import type { ProficiencyType } from "@/entities/proficiency";
+import { useBattleStore } from "@/application/stores";
+import { useStartBattle, useAttack, useEndBattle } from "@/features/combat";
 import { useThemeStore } from "@/shared/config";
 import { ThemeSettingsModal } from "@/shared/ui";
 
@@ -40,8 +47,16 @@ export default function GamePage() {
   const [mapId, setMapId] = useState("town_square");
   const [showThemeModal, setShowThemeModal] = useState(false);
 
+  // 전투 관련
+  const { battle, resetBattle } = useBattleStore();
+  const { start: startBattle } = useStartBattle();
+  const { attack: performAttack } = useAttack();
+  const { data: proficiencies } = useProficiencies(session?.user?.id);
+
   const mainCharacter = getMainCharacter(profile);
   const staminaPercent = getStaminaPercent(profile);
+  const currentMapData = getMapById(maps, mapId);
+  const isSafeZone = currentMapData?.isSafeZone ?? true;
 
   // 캐릭터 정보 로드
   useEffect(() => {
@@ -99,6 +114,55 @@ export default function GamePage() {
     await signOut();
     router.push("/login");
   };
+
+  // 전투 시작
+  const handleSelectMonster = useCallback(
+    (monster: Monster) => {
+      if (!profile || battle.isInBattle) return;
+
+      // 기본 HP 계산 (레벨 기반)
+      const playerHp = 50 + profile.level * 10;
+      startBattle(monster, playerHp, playerHp);
+    },
+    [profile, battle.isInBattle, startBattle]
+  );
+
+  // 공격
+  const handleAttack = useCallback(
+    (weaponType: ProficiencyType) => {
+      if (!mainCharacter?.stats) return;
+
+      const stats = mainCharacter.stats;
+      const profLevel = proficiencies?.[weaponType] ?? 0;
+
+      performAttack({
+        attackType: weaponType,
+        proficiencyLevel: profLevel,
+        attackerStats: stats,
+        baseDamage: 10 + (profile?.level ?? 1),
+        playerDefense: Math.floor((stats.con || 10) * 0.5),
+      });
+    },
+    [mainCharacter, proficiencies, performAttack, profile]
+  );
+
+  // 전투 승리
+  const handleVictory = useCallback(() => {
+    // TODO: 보상 지급 (exp, gold)
+    console.log("[Battle] Victory! Rewards:", battle.monster?.rewards);
+    setTimeout(() => resetBattle(), 500);
+  }, [battle.monster, resetBattle]);
+
+  // 전투 패배
+  const handleDefeat = useCallback(() => {
+    console.log("[Battle] Defeat...");
+    setTimeout(() => resetBattle(), 500);
+  }, [resetBattle]);
+
+  // 도주
+  const handleFlee = useCallback(() => {
+    console.log("[Battle] Fled!");
+  }, []);
 
   if (profileLoading || !profile) {
     return (
@@ -241,6 +305,16 @@ export default function GamePage() {
           {/* 접속 유저 */}
           <PlayerList currentUserId={session.user.id} />
 
+          {/* 몬스터 목록 (비안전지대에서만) */}
+          {!isSafeZone && (
+            <MonsterList
+              mapId={mapId}
+              playerLevel={profile.level}
+              onSelectMonster={handleSelectMonster}
+              disabled={battle.isInBattle}
+            />
+          )}
+
           {/* 맵 이동 */}
           <MapSelector
             currentMapId={mapId}
@@ -249,6 +323,18 @@ export default function GamePage() {
           />
         </div>
       </div>
+
+      {/* 전투 패널 */}
+      {battle.isInBattle && mainCharacter?.stats && (
+        <BattlePanel
+          characterStats={mainCharacter.stats}
+          proficiencies={proficiencies || ({} as Record<ProficiencyType, number>)}
+          onAttack={handleAttack}
+          onFlee={handleFlee}
+          onVictory={handleVictory}
+          onDefeat={handleDefeat}
+        />
+      )}
 
       {/* 테마 설정 모달 */}
       <ThemeSettingsModal open={showThemeModal} onClose={() => setShowThemeModal(false)} />

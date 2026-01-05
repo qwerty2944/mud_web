@@ -25,6 +25,8 @@ export {
   PlayerContextMenu,
   DuelRequestModal,
   DuelBattlePanel,
+  BattlePanel,
+  MonsterList,
 } from "./ui";
 
 // Hooks
