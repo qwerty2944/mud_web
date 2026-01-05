@@ -38,22 +38,34 @@ export interface AttackParams {
 }
 
 /**
+ * 데미지 편차 적용 (±15%)
+ * @param damage 기본 데미지
+ * @returns 편차 적용된 데미지
+ */
+export function applyDamageVariance(damage: number): number {
+  const variance = 0.15; // ±15%
+  const multiplier = 1 + (Math.random() * 2 - 1) * variance; // 0.85 ~ 1.15
+  return Math.max(1, Math.floor(damage * multiplier));
+}
+
+/**
  * 물리 데미지 계산
- * 공식: (baseDamage + STR * 0.5) * proficiencyMultiplier - targetDefense
+ * 공식: (baseDamage + STR * 0.5) * proficiencyMultiplier * variance - targetDefense
  */
 export function calculatePhysicalDamage(params: PhysicalAttackParams): number {
   const { baseDamage, attackerStr, proficiencyLevel, targetDefense } = params;
 
   const rawDamage = baseDamage + attackerStr * 0.5;
   const proficiencyMultiplier = getDamageMultiplier(proficiencyLevel);
-  const finalDamage = rawDamage * proficiencyMultiplier - targetDefense;
+  const baseResult = rawDamage * proficiencyMultiplier - targetDefense;
+  const finalDamage = applyDamageVariance(baseResult);
 
-  return Math.max(1, Math.floor(finalDamage)); // 최소 1 데미지
+  return Math.max(1, finalDamage); // 최소 1 데미지
 }
 
 /**
  * 마법 데미지 계산
- * 공식: (baseDamage + INT * 0.8) * proficiencyMultiplier * effectivenessMultiplier * dayBoost - (defense * 0.3)
+ * 공식: (baseDamage + INT * 0.8) * proficiencyMultiplier * effectivenessMultiplier * dayBoost * variance - (defense * 0.3)
  */
 export function calculateMagicDamage(params: MagicAttackParams): number {
   const { baseDamage, attackerInt, element, proficiencyLevel, targetDefense, targetElement } =
@@ -73,10 +85,11 @@ export function calculateMagicDamage(params: MagicAttackParams): number {
   // 마법 방어 (물리 방어의 30%만 적용)
   const magicDefense = targetDefense * 0.3;
 
-  const finalDamage =
+  const baseResult =
     rawDamage * proficiencyMultiplier * effectivenessMultiplier * dayBoostMultiplier - magicDefense;
+  const finalDamage = applyDamageVariance(baseResult);
 
-  return Math.max(1, Math.floor(finalDamage));
+  return Math.max(1, finalDamage);
 }
 
 /**
@@ -114,14 +127,15 @@ export function calculateDamage(params: AttackParams): number {
 }
 
 /**
- * 몬스터 데미지 계산 (간단 버전)
+ * 몬스터 데미지 계산 (편차 적용)
  */
 export function calculateMonsterDamage(
   monsterAttack: number,
   playerDefense: number = 0
 ): number {
-  const damage = monsterAttack - playerDefense * 0.5;
-  return Math.max(0, Math.floor(damage));
+  const baseDamage = monsterAttack - playerDefense * 0.5;
+  const finalDamage = applyDamageVariance(baseDamage);
+  return Math.max(0, finalDamage);
 }
 
 /**
