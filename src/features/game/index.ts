@@ -27,6 +27,7 @@ export {
   DuelBattlePanel,
   BattlePanel,
   MonsterList,
+  WorldMap,
 } from "./ui";
 
 // Hooks

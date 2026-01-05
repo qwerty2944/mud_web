@@ -9,7 +9,7 @@ import {
   useRealtimeChat,
   ChatBox,
   PlayerList,
-  MapSelector,
+  WorldMap,
   MonsterList,
   BattlePanel,
 } from "@/features/game";
@@ -314,10 +314,10 @@ export default function GamePage() {
             disabled={battle.isInBattle}
           />
 
-          {/* 맵 이동 */}
-          <MapSelector
+          {/* 월드맵 */}
+          <WorldMap
             currentMapId={mapId || "town_square"}
-            onMapChange={handleMapChange}
+            onMapSelect={handleMapChange}
             playerLevel={profile.level}
           />
         </div>

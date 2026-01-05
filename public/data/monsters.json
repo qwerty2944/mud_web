@@ -93,17 +93,91 @@
         "ko": "오래 살아 지혜로운 다람쥐. 더 강한 대지의 힘을 가지고 있다.",
         "en": "A wise old squirrel. Has stronger earth powers."
       }
+    },
+    {
+      "id": "wolf",
+      "nameKo": "늑대",
+      "nameEn": "Wolf",
+      "mapId": "deep_forest",
+      "level": 5,
+      "element": null,
+      "stats": {
+        "hp": 80,
+        "attack": 15,
+        "defense": 5,
+        "speed": 10
+      },
+      "rewards": {
+        "exp": 30,
+        "gold": 15
+      },
+      "drops": [
+        {
+          "itemId": "wolf_fang",
+          "chance": 0.3,
+          "quantity": [1, 2]
+        },
+        {
+          "itemId": "wolf_pelt",
+          "chance": 0.15,
+          "quantity": [1, 1]
+        }
+      ],
+      "behavior": "aggressive",
+      "icon": "🐺",
+      "description": {
+        "ko": "깊은 숲에 서식하는 늑대. 날카로운 이빨로 공격한다.",
+        "en": "A wolf living deep in the forest. Attacks with sharp fangs."
+      }
+    },
+    {
+      "id": "forest_spider",
+      "nameKo": "숲거미",
+      "nameEn": "Forest Spider",
+      "mapId": "deep_forest",
+      "level": 6,
+      "element": "dark",
+      "stats": {
+        "hp": 60,
+        "attack": 12,
+        "defense": 3,
+        "speed": 12
+      },
+      "rewards": {
+        "exp": 35,
+        "gold": 20
+      },
+      "drops": [
+        {
+          "itemId": "spider_silk",
+          "chance": 0.4,
+          "quantity": [1, 3]
+        },
+        {
+          "itemId": "spider_venom",
+          "chance": 0.1,
+          "quantity": [1, 1]
+        }
+      ],
+      "behavior": "aggressive",
+      "icon": "🕷️",
+      "description": {
+        "ko": "어둠 속에 숨어 있는 거대한 거미. 독을 가지고 있다.",
+        "en": "A giant spider lurking in the darkness. Has venom."
+      }
     }
   ],
   "summary": {
-    "total": 3,
+    "total": 5,
     "byMap": {
       "training_ground": 1,
-      "forest_entrance": 2
+      "forest_entrance": 2,
+      "deep_forest": 2
     },
     "byElement": {
-      "neutral": 1,
-      "earth": 2
+      "neutral": 2,
+      "earth": 2,
+      "dark": 1
     }
   }
 }

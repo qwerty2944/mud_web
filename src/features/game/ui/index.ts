@@ -8,3 +8,4 @@ export { DuelRequestModal } from "./DuelRequestModal";
 export { DuelBattlePanel } from "./DuelBattlePanel";
 export { BattlePanel } from "./BattlePanel";
 export { MonsterList } from "./MonsterList";
+export { WorldMap } from "./WorldMap";
