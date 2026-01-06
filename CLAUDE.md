@@ -391,6 +391,25 @@ const boost = getDayBoostMultiplier("fire"); // 화요일이면 1.2, 아니면 1
 - 데미지 편차 (±15%)
 - 공격 판정: 빗맞음 → 회피 → 막기 → 치명타 → 명중
 - 회피(DEX), 막기(CON), 치명타(LCK) 스탯 연동
+- 선공/비선공 시스템 (몬스터 behavior 기반)
+
+### 선공 시스템 (Preemptive Strike)
+
+몬스터 `behavior` 필드에 따라 선공이 결정됨. 상세 기획은 [docs/preemptive-system.md](docs/preemptive-system.md) 참조.
+
+| behavior | 선공 | 설명 |
+|----------|------|------|
+| `passive` | 플레이어 | 공격 안 함 (훈련용) |
+| `defensive` | 플레이어 | 방어적, 플레이어가 먼저 |
+| `aggressive` | **몬스터** | 공격적, 몬스터가 선제공격 |
+
+```typescript
+// BattleState 선공 관련 필드
+interface BattleState {
+  isPreemptivePhase: boolean;  // 선제공격 단계
+  monsterGoesFirst: boolean;   // 몬스터 선공 여부
+}
+```
 
 ### 사용법
 ```typescript
