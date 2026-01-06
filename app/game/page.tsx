@@ -336,8 +336,6 @@ export default function GamePage() {
             userId={session.user.id}
             onSend={sendMessage}
             isConnected={isConnected}
-            whisperCharges={profile.whisperCharges}
-            crystalTier={profile.crystalTier}
           />
         </div>
 

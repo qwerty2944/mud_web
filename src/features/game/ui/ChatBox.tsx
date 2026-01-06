@@ -10,11 +10,9 @@ interface ChatBoxProps {
   userId: string;
   onSend: (message: string) => void;
   isConnected: boolean;
-  whisperCharges?: number;
-  crystalTier?: string | null;
 }
 
-export function ChatBox({ userId, onSend, isConnected, whisperCharges = 0, crystalTier }: ChatBoxProps) {
+export function ChatBox({ userId, onSend, isConnected }: ChatBoxProps) {
   const { theme } = useThemeStore();
   const { messages } = useChatStore();
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -22,8 +20,6 @@ export function ChatBox({ userId, onSend, isConnected, whisperCharges = 0, cryst
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
-
-  const hasWhisperAbility = whisperCharges > 0;
 
   return (
     <div
@@ -41,22 +37,9 @@ export function ChatBox({ userId, onSend, isConnected, whisperCharges = 0, cryst
           borderColor: theme.colors.border,
         }}
       >
-        <div className="flex items-center gap-3">
-          <span className="text-sm font-mono font-medium" style={{ color: theme.colors.text }}>
-            💬 채팅
-          </span>
-          {/* 크리스탈 충전량 표시 */}
-          <span
-            className="text-xs px-2 py-0.5 font-mono"
-            style={{
-              background: hasWhisperAbility ? `${theme.colors.primary}20` : `${theme.colors.textMuted}20`,
-              color: hasWhisperAbility ? theme.colors.primary : theme.colors.textMuted,
-            }}
-            title={hasWhisperAbility ? `귓속말 ${whisperCharges}회 가능` : "통신용 크리스탈 필요"}
-          >
-            🔮 {whisperCharges}
-          </span>
-        </div>
+        <span className="text-sm font-mono font-medium" style={{ color: theme.colors.text }}>
+          💬 채팅
+        </span>
         <span
           className="text-xs px-2 py-0.5 font-mono"
           style={{
