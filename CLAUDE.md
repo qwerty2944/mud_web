@@ -92,11 +92,17 @@ src/
 │   │   ├── api/                # DB 조회/저장
 │   │   ├── types/              # 타입 정의
 │   │   └── index.ts
-│   └── proficiency/
-│       ├── api/                # DB 조회/수정 (fetchProficiencies, increaseProficiency)
-│       ├── queries/            # React Query 훅 (useProficiencies)
-│       ├── lib/                # 유틸리티 (getRank, getDamageBonus, getMagicEffectiveness)
-│       ├── types/              # 타입 및 상수 정의
+│   ├── proficiency/
+│   │   ├── api/                # DB 조회/수정 (fetchProficiencies, increaseProficiency)
+│   │   ├── queries/            # React Query 훅 (useProficiencies)
+│   │   ├── lib/                # 유틸리티 (getRank, getDamageBonus, getMagicEffectiveness)
+│   │   ├── types/              # 타입 및 상수 정의
+│   │   └── index.ts
+│   └── item/
+│       ├── api/                # JSON 데이터 로드 (fetchItems, fetchItemById)
+│       ├── queries/            # React Query 훅 (useItems, useItem)
+│       ├── lib/                # 유틸리티 (getRarityColor, calculateWeight)
+│       ├── types/              # 아이템 타입, 등급, 무게 설정
 │       └── index.ts
 └── shared/                 # 공유 코드
     ├── ui/                 # UI 컴포넌트
@@ -470,6 +476,213 @@ const mySkills = allSkills.filter(s => learnedSkills.includes(s.id));
 const magicSkills = mySkills.filter(s =>
   s.type === "magic_attack" || s.type === "heal"
 );
+```
+
+## 아이템 시스템 (Item)
+
+아이템 데이터 관리 및 인벤토리 연동. 상세 기획은 `/public/data/items.json` 참조.
+
+### 아이템 분류 (ItemType)
+| 타입 | 설명 | 스택 |
+|------|------|------|
+| `equipment` | 장비 (무기, 방어구) | 불가 |
+| `consumable` | 소비 (물약, 음식) | 20 |
+| `material` | 재료 (드랍템) | 99 |
+| `misc` | 기타 (열쇠, 퀘스트) | 10 |
+
+### 등급 시스템 (Rarity) - 아키에이지 13단계
+
+| Tier | 등급 | 한글 | 색상 | 드랍 배율 | 가치 배율 |
+|------|------|------|------|----------|----------|
+| 0 | crude | 저급 | gray-500 | 1.5x | 0.5x |
+| 1 | common | 일반 | gray-300 | 1.0x | 1.0x |
+| 2 | grand | 고급 | green | 0.6x | 2.0x |
+| 3 | rare | 희귀 | blue | 0.35x | 4.0x |
+| 4 | arcane | 고대 | yellow | 0.2x | 8.0x |
+| 5 | heroic | 영웅 | orange | 0.12x | 15.0x |
+| 6 | unique | 유일 | purple | 0.07x | 30.0x |
+| 7 | celestial | 유물 | red | 0.03x | 60.0x |
+| 8 | divine | 경이 | pink | 0.015x | 120.0x |
+| 9 | epic | 서사 | cyan | 0.007x | 250.0x |
+| 10 | legendary | 전설 | amber | 0.003x | 500.0x |
+| 11 | mythic | 신화 | red-pink | 0.001x | 1000.0x |
+| 12 | eternal | 태초 | gold | 0.0003x | 2500.0x |
+
+### 무게 시스템
+```
+최대 소지량 = 50kg + (STR × 2kg)
+과적 (100~150%) = 속도 50% 감소
+150% 초과 = 아이템 획득 불가
+```
+
+### 사용법
+```typescript
+import { useItems, useItem, getRarityColor, calculateMaxCarryCapacity } from "@/entities/item";
+import { useAddItem } from "@/features/inventory";
+
+// 아이템 조회
+const { data: items } = useItems();
+const { data: acorn } = useItem("acorn");
+
+// 등급 색상
+const color = getRarityColor("rare"); // #3B82F6
+
+// 무게 계산
+const maxWeight = calculateMaxCarryCapacity({ str: 15 }); // 80kg
+
+// 인벤토리 추가
+const addItem = useAddItem(userId);
+addItem.mutate({ itemId: "acorn", itemType: "material", quantity: 3 });
+```
+
+### 몬스터 드랍
+전투 승리 시 자동으로 드랍 아이템이 인벤토리에 추가됩니다.
+- 드랍 확률은 `monsters.json`의 `drops` 필드에 정의
+- 등급에 따라 드랍 확률이 조정됨
+
+## 경험치/레벨 시스템 (Experience/Level)
+
+전투 승리 시 경험치 획득, 레벨업 처리.
+
+### 레벨업 공식
+```
+필요 경험치 = 현재 레벨 × 100
+예: Lv.1 → 100exp, Lv.5 → 500exp, Lv.10 → 1000exp
+```
+
+### 경험치 보너스
+| 조건 | 배율 |
+|------|------|
+| 높은 레벨 몬스터 | +10% × 레벨 차이 |
+| 5레벨 이하 몬스터 | -50% |
+| 기본 | 100% |
+
+### 사용법
+```typescript
+import { checkLevelUp, getExpForLevel, updateProfile } from "@/entities/user";
+
+// 레벨업 체크
+const result = checkLevelUp(currentLevel, currentExp + gainedExp);
+// { newLevel: 2, newExp: 50, leveledUp: true, levelsGained: 1 }
+
+// 프로필 업데이트
+await updateProfile({
+  userId,
+  level: result.newLevel,
+  experience: result.newExp,
+  gold: profile.gold + rewards.gold,
+});
+```
+
+## 피로도 시스템 (Stamina)
+
+행동에 피로도를 소모하고, 시간이 지나면 자동 회복.
+
+### 피로도 소모
+| 행동 | 소모량 |
+|------|--------|
+| 맵 이동 | 5 |
+| 전투 시작 | 3 |
+| 전투 턴당 | 1 |
+| PvP 결투 | 10 |
+
+### 피로도 회복
+```
+회복 속도 = 1분당 1 피로도
+최대 피로도 = 100 (기본)
+```
+
+### DB 함수
+| 함수 | 설명 |
+|------|------|
+| `consume_stamina(user_id, amount)` | 피로도 소모 (자동 회복 적용) |
+| `restore_stamina(user_id, amount)` | 피로도 회복 |
+| `calculate_stamina(current, max, last_updated)` | 시간 기반 회복량 계산 |
+
+### 사용법
+```typescript
+import { consumeStamina, STAMINA_COST, useConsumeStamina } from "@/entities/user";
+import { useConsumeStamina } from "@/features/stamina";
+
+// 직접 호출
+const result = await consumeStamina(userId, STAMINA_COST.MAP_MOVE);
+if (!result.success) {
+  toast.error(result.message); // "피로도가 부족합니다"
+}
+
+// 훅 사용
+const consume = useConsumeStamina(userId);
+consume.mutate(5); // 피로도 5 소모
+```
+
+### 자동 적용 위치
+- `useStartBattle`: 전투 시작 시 피로도 소모
+- `useUpdateLocation`: 맵 이동 시 피로도 소모
+- `useProfile`: 1분마다 자동 리프레시 (피로도 회복 반영)
+
+## 통신용 크리스탈 시스템 (Whisper Crystal)
+
+귓속말(/w) 기능을 사용하기 위해 필요한 크리스탈 충전 시스템.
+
+### 크리스탈 등급
+| ID | 이름 | 충전량 | 기능 |
+|---|------|--------|------|
+| `crystal_basic` | 기본 크리스탈 | 10회 | 귓속말 /w |
+| `crystal_advanced` | 고급 크리스탈 | 30회 | 귓속말 /w, 빠른 답장 /r |
+| `crystal_superior` | 최고급 크리스탈 | 100회 | 귓속말 /w, 빠른 답장 /r |
+
+### 명령어
+| 명령어 | 설명 | 필요 등급 |
+|--------|------|----------|
+| `/w 닉네임 메시지` | 해당 유저에게 귓속말 | basic 이상 |
+| `/r 메시지` | 마지막 귓말 상대에게 답장 | advanced 이상 |
+
+### DB 컬럼 (profiles)
+| 컬럼 | 타입 | 설명 |
+|------|------|------|
+| `whisper_charges` | INTEGER | 남은 충전 횟수 |
+| `crystal_tier` | TEXT | 현재 크리스탈 등급 (basic/advanced/superior/null) |
+
+### DB 함수
+| 함수 | 설명 |
+|------|------|
+| `use_crystal(user_id, tier, charges)` | 크리스탈 활성화 → 새 충전량 반환 |
+| `consume_whisper_charge(user_id)` | 귓말 1회 소모 → `{success, remaining, tier}` |
+
+### 사용법
+```typescript
+import { useUseCrystal, isCrystalItem, getCrystalCharges } from "@/features/inventory";
+import { consumeWhisperCharge } from "@/entities/user";
+
+// 크리스탈 아이템 확인
+if (isCrystalItem(itemId)) {
+  const charges = getCrystalCharges(itemId); // 10, 30, 100
+}
+
+// 인벤토리에서 크리스탈 사용
+const useCrystal = useUseCrystal(userId);
+useCrystal.mutate({ crystalId: "crystal_basic", inventoryId: item.id });
+
+// 귓말 시 자동으로 충전 소모 (useRealtimeChat 내부에서 처리)
+// - 충전 부족 시 "통신용 크리스탈이 필요합니다" 토스트
+// - /r 명령어를 basic 등급으로 시도 시 "고급 크리스탈 이상이 필요합니다" 토스트
+```
+
+### 폴더 구조
+```
+src/
+├── entities/user/
+│   ├── api/index.ts          # useCrystal(), consumeWhisperCharge()
+│   └── types/index.ts        # CrystalTier 타입
+│
+├── features/
+│   ├── inventory/
+│   │   └── use-crystal/      # useUseCrystal 훅
+│   │
+│   └── game/lib/
+│       └── useRealtimeChat.ts  # 귓말 시 충전 체크/소모
+│
+└── public/data/items.json    # crystal_basic, crystal_advanced, crystal_superior
 ```
 
 ## PvP 결투 시스템 (Duel)

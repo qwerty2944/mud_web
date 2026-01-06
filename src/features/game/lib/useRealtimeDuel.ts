@@ -67,6 +67,7 @@ export function useRealtimeDuel({
     addPendingRequest,
     removePendingRequest,
     clearExpiredRequests,
+    setDeclineNotice,
     startDuel,
     applyAction,
     switchTurn,
@@ -75,6 +76,7 @@ export function useRealtimeDuel({
     activeDuel,
     pendingRequests,
     sentRequest,
+    declineNotice,
   } = usePvpStore();
 
   const expiryTimerRef = useRef<NodeJS.Timeout | null>(null);
@@ -326,7 +328,11 @@ export function useRealtimeDuel({
 
         onDuelStart?.();
       } else {
-        // 거절됨
+        // 거절됨 - 알림 표시
+        setDeclineNotice({
+          targetName: payload.targetName,
+          timestamp: Date.now(),
+        });
         setSentRequest(null);
       }
     };
@@ -395,6 +401,7 @@ export function useRealtimeDuel({
     addPendingRequest,
     removePendingRequest,
     setSentRequest,
+    setDeclineNotice,
     startDuel,
     applyAction,
     switchTurn,
@@ -403,6 +410,11 @@ export function useRealtimeDuel({
     onDuelStart,
     onDuelEnd,
   ]);
+
+  // 거절 알림 초기화
+  const clearDeclineNotice = useCallback(() => {
+    setDeclineNotice(null);
+  }, [setDeclineNotice]);
 
   return {
     // 도전 신청
@@ -419,6 +431,8 @@ export function useRealtimeDuel({
     pendingRequests,
     activeDuel,
     isInDuel: activeDuel !== null && activeDuel.result === "ongoing",
+    declineNotice,
+    clearDeclineNotice,
 
     // 결투 종료 후 리셋
     resetDuel,

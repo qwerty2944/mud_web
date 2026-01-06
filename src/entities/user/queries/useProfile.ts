@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { fetchProfile } from "../api";
 import type { UserProfile } from "../types";
 import type { SavedCharacter } from "@/entities/character";
+import { getExpForLevel } from "../types/constants";
 
 // ============ Query Keys ============
 
@@ -19,7 +20,8 @@ export function useProfile(userId: string | undefined) {
     queryKey: profileKeys.detail(userId || ""),
     queryFn: () => fetchProfile(userId!),
     enabled: !!userId,
-    staleTime: 60 * 1000, // 1분
+    staleTime: 30 * 1000, // 30초
+    refetchInterval: 60 * 1000, // 1분마다 리프레시 (피로도 회복 반영)
   });
 }
 
@@ -88,8 +90,4 @@ export function calculateRecoveredStamina(profile: UserProfile): {
   };
 }
 
-// ============ Private Helpers ============
-
-function getExpForLevel(level: number): number {
-  return level * 100;
-}
+// getExpForLevel is imported from types/constants

@@ -13,6 +13,7 @@ interface PlayerContextMenuProps {
   onViewProfile?: (target: OnlineUser) => void;
   canDuel?: boolean;
   isMe?: boolean;
+  hasPendingRequestTo?: boolean; // 이 대상에게 이미 요청을 보낸 상태인지
 }
 
 export function PlayerContextMenu({
@@ -24,6 +25,7 @@ export function PlayerContextMenu({
   onViewProfile,
   canDuel = true,
   isMe = false,
+  hasPendingRequestTo = false,
 }: PlayerContextMenuProps) {
   const { theme } = useThemeStore();
   const menuRef = useRef<HTMLDivElement>(null);
@@ -94,20 +96,27 @@ export function PlayerContextMenu({
         {/* 결투 신청 - 자기 자신이 아니고, canDuel이 true일 때만 표시 */}
         {!isMe && canDuel && (
           <div
-            style={menuItemStyle}
+            style={{
+              ...menuItemStyle,
+              cursor: hasPendingRequestTo ? "default" : "pointer",
+              color: hasPendingRequestTo ? theme.colors.textMuted : theme.colors.text,
+            }}
             onClick={() => {
+              if (hasPendingRequestTo) return; // 이미 요청 보낸 상태면 무시
               onDuelRequest(targetUser);
               onClose();
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = `${theme.colors.primary}20`;
+              if (!hasPendingRequestTo) {
+                e.currentTarget.style.background = `${theme.colors.primary}20`;
+              }
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.background = "transparent";
             }}
           >
-            <span>⚔️</span>
-            <span>결투 신청</span>
+            <span>{hasPendingRequestTo ? "⏳" : "⚔️"}</span>
+            <span>{hasPendingRequestTo ? "대기중..." : "결투 신청"}</span>
           </div>
         )}
 

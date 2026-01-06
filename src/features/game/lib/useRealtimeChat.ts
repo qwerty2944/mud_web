@@ -5,8 +5,11 @@ import { supabase } from "@/shared/api";
 import { useGameStore, useChatStore, parseChatCommand, type OnlineUser } from "@/application/stores";
 import { fetchRecentMessages, saveMessage, type ChatMessage } from "@/entities/chat";
 import { useMaps, getMapById } from "@/entities/map";
+import { useProfile, consumeWhisperCharge, profileKeys } from "@/entities/user";
 import { updateLocation as updateLocationApi } from "@/features/game/update-location";
+import { useQueryClient } from "@tanstack/react-query";
 import type { RealtimeChannel } from "@supabase/supabase-js";
+import toast from "react-hot-toast";
 
 interface UseRealtimeChatProps {
   mapId: string;
@@ -21,9 +24,11 @@ export function useRealtimeChat({
 }: UseRealtimeChatProps) {
   const channelRef = useRef<RealtimeChannel | null>(null);
   const mountedRef = useRef(true);
+  const queryClient = useQueryClient();
 
   const { setOnlineUsers, setConnected } = useGameStore();
   const { data: maps = [] } = useMaps();
+  const { data: profile } = useProfile(userId);
   const {
     addMessage,
     addMessages,
@@ -64,12 +69,43 @@ export function useRealtimeChat({
 
   // 메시지 전송
   const sendMessage = useCallback(
-    async (input: string) => {
+    async (input: string): Promise<boolean> => {
       const parsed = parseChatCommand(input, lastWhisperFrom);
-      if (!parsed) return;
+      if (!parsed) return false;
 
       const channel = channelRef.current;
-      if (!channel) return;
+      if (!channel) return false;
+
+      // 귓속말 체크: 크리스탈 충전 필요
+      if (parsed.type === "whisper") {
+        // /r 명령어는 advanced 이상 크리스탈 필요
+        const isReplyCommand = input.trim().startsWith("/r ");
+        if (isReplyCommand && profile?.crystalTier === "basic") {
+          toast.error("빠른 답장(/r)은 고급 크리스탈 이상이 필요합니다");
+          return false;
+        }
+
+        // 충전량 체크
+        if (!profile || profile.whisperCharges <= 0) {
+          toast.error("통신용 크리스탈이 필요합니다");
+          return false;
+        }
+
+        // 충전 소모
+        try {
+          const result = await consumeWhisperCharge(userId);
+          if (!result.success) {
+            toast.error("통신용 크리스탈이 필요합니다");
+            return false;
+          }
+          // 프로필 캐시 무효화
+          queryClient.invalidateQueries({ queryKey: profileKeys.detail(userId) });
+        } catch (error) {
+          console.error("Failed to consume whisper charge:", error);
+          toast.error("크리스탈 사용 중 오류가 발생했습니다");
+          return false;
+        }
+      }
 
       const messageId = `${userId}-${Date.now()}`;
       const message: ChatMessage = {
@@ -112,8 +148,10 @@ export function useRealtimeChat({
       })
         .then(() => saveToCache(mapId))
         .catch((error) => console.error("Failed to save message:", error));
+
+      return true;
     },
-    [mapId, userId, characterName, lastWhisperFrom, saveToCache, addMessage]
+    [mapId, userId, characterName, lastWhisperFrom, saveToCache, addMessage, profile, queryClient]
   );
 
   // 시스템 메시지 추가

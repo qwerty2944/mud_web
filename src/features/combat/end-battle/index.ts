@@ -5,8 +5,12 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useBattleStore } from "@/application/stores";
 import { rollDrops, calculateExpBonus } from "@/entities/monster";
 import { useGainProficiency } from "@/features/proficiency";
-import { profileKeys } from "@/entities/user";
+import { profileKeys, updateProfile, checkLevelUp, useProfile } from "@/entities/user";
+import { inventoryKeys } from "@/entities/inventory";
+import { fetchItemById } from "@/entities/item";
+import { addItem } from "@/features/inventory";
 import type { ProficiencyType } from "@/entities/proficiency";
+import toast from "react-hot-toast";
 
 interface BattleRewards {
   exp: number;
@@ -16,11 +20,14 @@ interface BattleRewards {
     type: ProficiencyType;
     amount: number;
   };
+  levelUp?: {
+    newLevel: number;
+    levelsGained: number;
+  };
 }
 
 interface UseEndBattleOptions {
   userId: string | undefined;
-  playerLevel?: number;
   onVictory?: (rewards: BattleRewards) => void;
   onDefeat?: () => void;
   onFled?: () => void;
@@ -30,10 +37,13 @@ interface UseEndBattleOptions {
  * 전투 종료 훅
  */
 export function useEndBattle(options: UseEndBattleOptions) {
-  const { userId, playerLevel = 1, onVictory, onDefeat, onFled } = options;
+  const { userId, onVictory, onDefeat, onFled } = options;
   const { battle, resetBattle } = useBattleStore();
   const queryClient = useQueryClient();
   const gainProficiency = useGainProficiency(userId);
+  const { data: profile } = useProfile(userId);
+
+  const playerLevel = profile?.level ?? 1;
 
   // 보상 지급 처리
   const processRewards = useCallback((): BattleRewards | null => {
@@ -63,9 +73,40 @@ export function useEndBattle(options: UseEndBattleOptions) {
   // 승리 처리
   const handleVictory = useCallback(async () => {
     const rewards = processRewards();
-    if (!rewards) return;
+    if (!rewards || !profile) return;
 
-    // 숙련도 증가
+    // 1. 경험치/골드 지급 + 레벨업 체크
+    if (userId) {
+      try {
+        const totalExp = profile.experience + rewards.exp;
+        const levelUpResult = checkLevelUp(profile.level, totalExp);
+
+        await updateProfile({
+          userId,
+          level: levelUpResult.newLevel,
+          experience: levelUpResult.newExp,
+          gold: profile.gold + rewards.gold,
+        });
+
+        // 레벨업 알림
+        if (levelUpResult.leveledUp) {
+          rewards.levelUp = {
+            newLevel: levelUpResult.newLevel,
+            levelsGained: levelUpResult.levelsGained,
+          };
+
+          if (levelUpResult.levelsGained === 1) {
+            toast.success(`레벨 업! Lv.${levelUpResult.newLevel}`);
+          } else {
+            toast.success(`${levelUpResult.levelsGained} 레벨 상승! Lv.${levelUpResult.newLevel}`);
+          }
+        }
+      } catch (error) {
+        console.error("Failed to update profile:", error);
+      }
+    }
+
+    // 2. 숙련도 증가
     if (rewards.proficiencyGain && userId) {
       try {
         await gainProficiency.mutateAsync({
@@ -77,17 +118,34 @@ export function useEndBattle(options: UseEndBattleOptions) {
       }
     }
 
-    // TODO: 경험치, 골드, 아이템 지급 (profile 업데이트)
-    // await updateProfile({ exp: profile.exp + rewards.exp, gold: profile.gold + rewards.gold });
+    // 3. 드롭 아이템 인벤토리에 추가
+    if (rewards.drops.length > 0 && userId) {
+      for (const drop of rewards.drops) {
+        try {
+          const item = await fetchItemById(drop.itemId);
+          if (item) {
+            await addItem({
+              userId,
+              itemId: drop.itemId,
+              itemType: item.type,
+              quantity: drop.quantity,
+            });
+          }
+        } catch (error) {
+          console.error("Failed to add drop item:", error);
+        }
+      }
+    }
 
-    // 캐시 무효화
+    // 4. 캐시 무효화
     if (userId) {
       queryClient.invalidateQueries({ queryKey: profileKeys.detail(userId) });
+      queryClient.invalidateQueries({ queryKey: inventoryKeys.detail(userId) });
     }
 
     onVictory?.(rewards);
     resetBattle();
-  }, [processRewards, userId, gainProficiency, queryClient, onVictory, resetBattle]);
+  }, [processRewards, profile, userId, gainProficiency, queryClient, onVictory, resetBattle]);
 
   // 패배 처리
   const handleDefeat = useCallback(() => {

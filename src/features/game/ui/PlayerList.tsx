@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
-import { useGameStore, type OnlineUser } from "@/application/stores";
+import { useGameStore, usePvpStore, type OnlineUser } from "@/application/stores";
 import { useThemeStore } from "@/shared/config";
 import { PlayerContextMenu } from "./PlayerContextMenu";
 
@@ -28,6 +28,7 @@ export function PlayerList({
 }: PlayerListProps) {
   const { theme } = useThemeStore();
   const { onlineUsers } = useGameStore();
+  const { sentRequest } = usePvpStore();
 
   const [contextMenu, setContextMenu] = useState<ContextMenuState>({
     isOpen: false,
@@ -193,6 +194,7 @@ export function PlayerList({
           onViewProfile={onViewProfile ? handleViewProfile : undefined}
           canDuel={canDuel}
           isMe={contextMenu.targetUser.userId === currentUserId}
+          hasPendingRequestTo={sentRequest?.targetId === contextMenu.targetUser.userId}
         />
       )}
     </>

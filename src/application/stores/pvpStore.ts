@@ -74,17 +74,25 @@ export interface DuelState {
 
 // ============ 초기 상태 ============
 
+// 거절 알림
+export interface DuelDeclineNotice {
+  targetName: string;
+  timestamp: number;
+}
+
 interface PvpStoreState {
   // State
   pendingRequests: DuelRequest[]; // 받은 도전 신청
   sentRequest: DuelRequest | null; // 보낸 도전 신청
   activeDuel: DuelState | null; // 진행 중인 결투
+  declineNotice: DuelDeclineNotice | null; // 거절 알림
 }
 
 const initialState: PvpStoreState = {
   pendingRequests: [],
   sentRequest: null,
   activeDuel: null,
+  declineNotice: null,
 };
 
 // ============ 스토어 ============
@@ -95,6 +103,7 @@ interface PvpStore extends PvpStoreState {
   addPendingRequest: (request: DuelRequest) => void;
   removePendingRequest: (challengerId: string) => void;
   clearExpiredRequests: () => void;
+  setDeclineNotice: (notice: DuelDeclineNotice | null) => void;
 
   // Actions - 결투 진행
   startDuel: (duelState: DuelState) => void;
@@ -145,6 +154,8 @@ export const usePvpStore = create<PvpStore>((set, get) => ({
       pendingRequests: pendingRequests.filter((r) => r.expiresAt > now),
     });
   },
+
+  setDeclineNotice: (notice) => set({ declineNotice: notice }),
 
   // ============ 결투 진행 관련 ============
 

@@ -12,3 +12,6 @@ export { useItem, useUseItem } from "./use-item";
 
 // move-item
 export { moveItem, useMoveItem } from "./move-item";
+
+// use-crystal
+export { useUseCrystal, isCrystalItem, getCrystalCharges } from "./use-crystal";

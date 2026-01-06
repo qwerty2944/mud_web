@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import toast from "react-hot-toast";
 import { useAuthStore } from "@/features/auth";
 import {
   useGameStore,
@@ -28,7 +29,7 @@ import {
 import type { Monster } from "@/entities/monster";
 import { useProficiencies } from "@/entities/proficiency";
 import type { ProficiencyType } from "@/entities/proficiency";
-import { useBattleStore } from "@/application/stores";
+import { useBattleStore, usePvpStore } from "@/application/stores";
 import { useStartBattle } from "@/features/combat";
 import { useThemeStore } from "@/shared/config";
 import { ThemeSettingsModal } from "@/shared/ui";
@@ -53,6 +54,20 @@ export default function GamePage() {
   const { battle, resetBattle } = useBattleStore();
   const { start: startBattle } = useStartBattle();
   const { data: proficiencies } = useProficiencies(session?.user?.id);
+
+  // PvP 관련
+  const { declineNotice, setDeclineNotice } = usePvpStore();
+
+  // 결투 거절 알림 표시
+  useEffect(() => {
+    if (declineNotice) {
+      toast(`${declineNotice.targetName}님이 결투를 거절했습니다.`, {
+        icon: "⚔️",
+        duration: 3000,
+      });
+      setDeclineNotice(null);
+    }
+  }, [declineNotice, setDeclineNotice]);
 
   const mainCharacter = getMainCharacter(profile);
   const staminaPercent = getStaminaPercent(profile);

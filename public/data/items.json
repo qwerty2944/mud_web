@@ -1,0 +1,483 @@
+{
+  "version": "1.0.0",
+  "generatedAt": "2026-01-06T00:00:00.000Z",
+  "items": [
+    {
+      "id": "acorn",
+      "nameKo": "도토리",
+      "nameEn": "Acorn",
+      "description": {
+        "ko": "다람쥐가 좋아하는 도토리. 재료로 사용할 수 있다.",
+        "en": "An acorn loved by squirrels. Can be used as a material."
+      },
+      "type": "material",
+      "rarity": "common",
+      "icon": "🌰",
+      "weight": 0.1,
+      "value": 5,
+      "sellPrice": 2,
+      "stackable": true,
+      "maxStack": 99,
+      "tags": ["nature", "squirrel", "food"]
+    },
+    {
+      "id": "squirrel_tail",
+      "nameKo": "다람쥐 꼬리",
+      "nameEn": "Squirrel Tail",
+      "description": {
+        "ko": "다람쥐의 푹신한 꼬리. 희귀한 재료이다.",
+        "en": "A fluffy squirrel tail. A rare material."
+      },
+      "type": "material",
+      "rarity": "grand",
+      "icon": "🦊",
+      "weight": 0.2,
+      "value": 50,
+      "sellPrice": 25,
+      "stackable": true,
+      "maxStack": 99,
+      "tags": ["nature", "squirrel", "fur"]
+    },
+    {
+      "id": "squirrel_fur",
+      "nameKo": "다람쥐 털",
+      "nameEn": "Squirrel Fur",
+      "description": {
+        "ko": "부드러운 다람쥐 털. 방한 용품 재료로 좋다.",
+        "en": "Soft squirrel fur. Good for making warm clothing."
+      },
+      "type": "material",
+      "rarity": "grand",
+      "icon": "🧶",
+      "weight": 0.15,
+      "value": 30,
+      "sellPrice": 15,
+      "stackable": true,
+      "maxStack": 99,
+      "tags": ["nature", "squirrel", "fur"]
+    },
+    {
+      "id": "wolf_fang",
+      "nameKo": "늑대 이빨",
+      "nameEn": "Wolf Fang",
+      "description": {
+        "ko": "날카로운 늑대 이빨. 무기 제작에 사용된다.",
+        "en": "A sharp wolf fang. Used in weapon crafting."
+      },
+      "type": "material",
+      "rarity": "grand",
+      "icon": "🦷",
+      "weight": 0.3,
+      "value": 45,
+      "sellPrice": 22,
+      "stackable": true,
+      "maxStack": 99,
+      "tags": ["wolf", "bone", "weapon_material"]
+    },
+    {
+      "id": "wolf_pelt",
+      "nameKo": "늑대 가죽",
+      "nameEn": "Wolf Pelt",
+      "description": {
+        "ko": "튼튼한 늑대 가죽. 고급 방어구 재료.",
+        "en": "Sturdy wolf pelt. Material for high-quality armor."
+      },
+      "type": "material",
+      "rarity": "rare",
+      "icon": "🐺",
+      "weight": 1.5,
+      "value": 150,
+      "sellPrice": 75,
+      "stackable": true,
+      "maxStack": 20,
+      "tags": ["wolf", "leather", "armor_material"]
+    },
+    {
+      "id": "spider_silk",
+      "nameKo": "거미줄",
+      "nameEn": "Spider Silk",
+      "description": {
+        "ko": "질긴 거미줄. 다양한 용도로 쓰인다.",
+        "en": "Tough spider silk. Has various uses."
+      },
+      "type": "material",
+      "rarity": "common",
+      "icon": "🕸️",
+      "weight": 0.05,
+      "value": 15,
+      "sellPrice": 7,
+      "stackable": true,
+      "maxStack": 99,
+      "tags": ["spider", "thread", "craft"]
+    },
+    {
+      "id": "spider_venom",
+      "nameKo": "거미 독",
+      "nameEn": "Spider Venom",
+      "description": {
+        "ko": "위험한 거미 독. 연금술 재료로 귀하다.",
+        "en": "Dangerous spider venom. A valuable alchemy ingredient."
+      },
+      "type": "material",
+      "rarity": "rare",
+      "icon": "☠️",
+      "weight": 0.1,
+      "value": 200,
+      "sellPrice": 100,
+      "stackable": true,
+      "maxStack": 10,
+      "tags": ["spider", "poison", "alchemy"]
+    },
+    {
+      "id": "health_potion_small",
+      "nameKo": "소형 체력 물약",
+      "nameEn": "Small Health Potion",
+      "description": {
+        "ko": "HP를 30 회복한다.",
+        "en": "Restores 30 HP."
+      },
+      "type": "consumable",
+      "rarity": "common",
+      "icon": "🧪",
+      "weight": 0.5,
+      "value": 25,
+      "sellPrice": 10,
+      "stackable": true,
+      "maxStack": 20,
+      "tags": ["potion", "healing"],
+      "consumableEffect": {
+        "type": "heal",
+        "value": 30,
+        "target": "self"
+      }
+    },
+    {
+      "id": "health_potion_medium",
+      "nameKo": "중형 체력 물약",
+      "nameEn": "Medium Health Potion",
+      "description": {
+        "ko": "HP를 60 회복한다.",
+        "en": "Restores 60 HP."
+      },
+      "type": "consumable",
+      "rarity": "grand",
+      "icon": "🧪",
+      "weight": 0.5,
+      "value": 60,
+      "sellPrice": 30,
+      "stackable": true,
+      "maxStack": 20,
+      "tags": ["potion", "healing"],
+      "consumableEffect": {
+        "type": "heal",
+        "value": 60,
+        "target": "self"
+      }
+    },
+    {
+      "id": "mana_potion_small",
+      "nameKo": "소형 마나 물약",
+      "nameEn": "Small Mana Potion",
+      "description": {
+        "ko": "MP를 20 회복한다.",
+        "en": "Restores 20 MP."
+      },
+      "type": "consumable",
+      "rarity": "common",
+      "icon": "💧",
+      "weight": 0.5,
+      "value": 30,
+      "sellPrice": 15,
+      "stackable": true,
+      "maxStack": 20,
+      "tags": ["potion", "mana"],
+      "consumableEffect": {
+        "type": "mana",
+        "value": 20,
+        "target": "self"
+      }
+    },
+    {
+      "id": "antidote",
+      "nameKo": "해독제",
+      "nameEn": "Antidote",
+      "description": {
+        "ko": "독 상태를 치료한다.",
+        "en": "Cures poison status."
+      },
+      "type": "consumable",
+      "rarity": "common",
+      "icon": "💊",
+      "weight": 0.3,
+      "value": 20,
+      "sellPrice": 10,
+      "stackable": true,
+      "maxStack": 10,
+      "tags": ["medicine", "cure"],
+      "consumableEffect": {
+        "type": "cure",
+        "value": 0,
+        "target": "self",
+        "statusEffect": "poison"
+      }
+    },
+    {
+      "id": "wooden_sword",
+      "nameKo": "나무 검",
+      "nameEn": "Wooden Sword",
+      "description": {
+        "ko": "초보자용 나무 검. 가볍지만 약하다.",
+        "en": "A wooden sword for beginners. Light but weak."
+      },
+      "type": "equipment",
+      "rarity": "common",
+      "icon": "🗡️",
+      "weight": 2.0,
+      "value": 50,
+      "sellPrice": 20,
+      "stackable": false,
+      "tags": ["weapon", "sword"],
+      "equipmentData": {
+        "slot": "weapon",
+        "weaponType": "sword",
+        "stats": {
+          "attack": 5
+        },
+        "requiredLevel": 1
+      }
+    },
+    {
+      "id": "iron_sword",
+      "nameKo": "철 검",
+      "nameEn": "Iron Sword",
+      "description": {
+        "ko": "단단한 철로 만든 검. 믿을 만한 무기.",
+        "en": "A sword made of solid iron. A reliable weapon."
+      },
+      "type": "equipment",
+      "rarity": "grand",
+      "icon": "⚔️",
+      "weight": 3.5,
+      "value": 200,
+      "sellPrice": 80,
+      "stackable": false,
+      "tags": ["weapon", "sword"],
+      "equipmentData": {
+        "slot": "weapon",
+        "weaponType": "sword",
+        "stats": {
+          "attack": 12
+        },
+        "requiredLevel": 5
+      }
+    },
+    {
+      "id": "leather_armor",
+      "nameKo": "가죽 갑옷",
+      "nameEn": "Leather Armor",
+      "description": {
+        "ko": "가벼운 가죽 갑옷. 기본적인 보호를 제공한다.",
+        "en": "Light leather armor. Provides basic protection."
+      },
+      "type": "equipment",
+      "rarity": "common",
+      "icon": "🧥",
+      "weight": 5.0,
+      "value": 100,
+      "sellPrice": 40,
+      "stackable": false,
+      "tags": ["armor", "leather"],
+      "equipmentData": {
+        "slot": "armor",
+        "stats": {
+          "defense": 3
+        },
+        "requiredLevel": 1
+      }
+    },
+    {
+      "id": "wooden_staff",
+      "nameKo": "나무 지팡이",
+      "nameEn": "Wooden Staff",
+      "description": {
+        "ko": "마법사용 나무 지팡이. 마력을 약간 증폭시킨다.",
+        "en": "A wooden staff for mages. Slightly amplifies magic power."
+      },
+      "type": "equipment",
+      "rarity": "common",
+      "icon": "🪄",
+      "weight": 1.5,
+      "value": 60,
+      "sellPrice": 25,
+      "stackable": false,
+      "tags": ["weapon", "staff", "magic"],
+      "equipmentData": {
+        "slot": "weapon",
+        "weaponType": "staff",
+        "stats": {
+          "magic": 8
+        },
+        "requiredLevel": 1
+      }
+    },
+    {
+      "id": "leather_cap",
+      "nameKo": "가죽 모자",
+      "nameEn": "Leather Cap",
+      "description": {
+        "ko": "간단한 가죽 모자. 머리를 보호한다.",
+        "en": "A simple leather cap. Protects the head."
+      },
+      "type": "equipment",
+      "rarity": "common",
+      "icon": "🎩",
+      "weight": 0.5,
+      "value": 40,
+      "sellPrice": 16,
+      "stackable": false,
+      "tags": ["helmet", "leather"],
+      "equipmentData": {
+        "slot": "helmet",
+        "stats": {
+          "defense": 1
+        },
+        "requiredLevel": 1
+      }
+    },
+    {
+      "id": "copper_ring",
+      "nameKo": "구리 반지",
+      "nameEn": "Copper Ring",
+      "description": {
+        "ko": "평범한 구리 반지. 약간의 행운을 가져다준다.",
+        "en": "An ordinary copper ring. Brings a little luck."
+      },
+      "type": "equipment",
+      "rarity": "common",
+      "icon": "💍",
+      "weight": 0.1,
+      "value": 30,
+      "sellPrice": 12,
+      "stackable": false,
+      "tags": ["accessory", "ring"],
+      "equipmentData": {
+        "slot": "accessory",
+        "stats": {
+          "critRate": 1
+        },
+        "requiredLevel": 1
+      }
+    },
+    {
+      "id": "old_key",
+      "nameKo": "낡은 열쇠",
+      "nameEn": "Old Key",
+      "description": {
+        "ko": "무엇을 여는 열쇠일까? 어딘가에 쓸 수 있을 것 같다.",
+        "en": "What does this key open? It might be useful somewhere."
+      },
+      "type": "misc",
+      "rarity": "common",
+      "icon": "🔑",
+      "weight": 0.1,
+      "value": 0,
+      "sellPrice": 1,
+      "stackable": true,
+      "maxStack": 10,
+      "tags": ["key", "quest"]
+    },
+    {
+      "id": "crystal_basic",
+      "nameKo": "기본 통신용 크리스탈",
+      "nameEn": "Basic Communication Crystal",
+      "description": {
+        "ko": "마력을 담은 크리스탈. 귓속말을 보낼 수 있다. (10회 충전)",
+        "en": "A crystal infused with magic. Allows sending whispers. (10 charges)"
+      },
+      "type": "consumable",
+      "rarity": "common",
+      "icon": "🔮",
+      "weight": 0.2,
+      "value": 50,
+      "sellPrice": 20,
+      "stackable": false,
+      "tags": ["crystal", "communication"],
+      "consumableEffect": {
+        "type": "buff",
+        "value": 10,
+        "target": "self",
+        "statusEffect": "whisper_enabled"
+      }
+    },
+    {
+      "id": "crystal_advanced",
+      "nameKo": "고급 통신용 크리스탈",
+      "nameEn": "Advanced Communication Crystal",
+      "description": {
+        "ko": "강화된 크리스탈. 귓속말과 빠른 답장(/r)이 가능하다. (30회 충전)",
+        "en": "An enhanced crystal. Allows whispers and quick reply (/r). (30 charges)"
+      },
+      "type": "consumable",
+      "rarity": "grand",
+      "icon": "💎",
+      "weight": 0.2,
+      "value": 150,
+      "sellPrice": 60,
+      "stackable": false,
+      "tags": ["crystal", "communication"],
+      "consumableEffect": {
+        "type": "buff",
+        "value": 30,
+        "target": "self",
+        "statusEffect": "whisper_reply_enabled"
+      }
+    },
+    {
+      "id": "crystal_superior",
+      "nameKo": "상급 통신용 크리스탈",
+      "nameEn": "Superior Communication Crystal",
+      "description": {
+        "ko": "최상급 크리스탈. 모든 통신 기능 사용 가능. (100회 충전)",
+        "en": "A superior crystal. All communication features available. (100 charges)"
+      },
+      "type": "consumable",
+      "rarity": "rare",
+      "icon": "✨",
+      "weight": 0.2,
+      "value": 500,
+      "sellPrice": 200,
+      "stackable": false,
+      "tags": ["crystal", "communication"],
+      "consumableEffect": {
+        "type": "buff",
+        "value": 100,
+        "target": "self",
+        "statusEffect": "whisper_all_enabled"
+      }
+    }
+  ],
+  "summary": {
+    "total": 21,
+    "byType": {
+      "equipment": 6,
+      "consumable": 7,
+      "material": 7,
+      "misc": 1
+    },
+    "byRarity": {
+      "crude": 0,
+      "common": 14,
+      "grand": 4,
+      "rare": 3,
+      "arcane": 0,
+      "heroic": 0,
+      "unique": 0,
+      "celestial": 0,
+      "divine": 0,
+      "epic": 0,
+      "legendary": 0,
+      "mythic": 0,
+      "eternal": 0
+    }
+  }
+}

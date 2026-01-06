@@ -2,6 +2,8 @@ import type { SavedCharacter } from "@/entities/character";
 
 // ============ 프로필 타입 ============
 
+export type CrystalTier = "basic" | "advanced" | "superior" | null;
+
 export interface UserProfile {
   id: string;
   nickname: string | null;
@@ -17,4 +19,7 @@ export interface UserProfile {
   characters: SavedCharacter[];
   buffs: any[];
   currentMapId: string;
+  // 귓속말 크리스탈 시스템
+  whisperCharges: number;
+  crystalTier: CrystalTier;
 }
