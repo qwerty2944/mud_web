@@ -46,29 +46,31 @@ export function useEndBattle(options: UseEndBattleOptions) {
   const playerLevel = profile?.level ?? 1;
 
   // 보상 지급 처리
+  // 주의: useBattleStore.getState()로 직접 읽어서 stale 클로저 문제 방지
   const processRewards = useCallback((): BattleRewards | null => {
-    if (!battle.monster || battle.result !== "victory") return null;
+    const currentBattle = useBattleStore.getState().battle;
+    if (!currentBattle.monster || currentBattle.result !== "victory") return null;
 
     // 경험치 계산 (레벨 차이 보너스)
-    const exp = calculateExpBonus(battle.monster, playerLevel);
+    const exp = calculateExpBonus(currentBattle.monster, playerLevel);
 
     // 골드
-    const gold = battle.monster.rewards.gold;
+    const gold = currentBattle.monster.rewards.gold;
 
     // 드롭 아이템 롤
-    const drops = rollDrops(battle.monster.drops);
+    const drops = rollDrops(currentBattle.monster.drops);
 
     // 숙련도 증가 (사용한 무기/마법)
     let proficiencyGain: BattleRewards["proficiencyGain"] = undefined;
-    if (battle.usedWeaponType) {
+    if (currentBattle.usedWeaponType) {
       proficiencyGain = {
-        type: battle.usedWeaponType as ProficiencyType,
+        type: currentBattle.usedWeaponType as ProficiencyType,
         amount: 1,
       };
     }
 
     return { exp, gold, drops, proficiencyGain };
-  }, [battle, playerLevel]);
+  }, [playerLevel]);
 
   // 승리 처리
   const handleVictory = useCallback(async () => {

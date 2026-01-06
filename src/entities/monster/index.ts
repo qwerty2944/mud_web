@@ -7,7 +7,12 @@ export type {
   MonsterBehavior,
   MonsterDescription,
   MonstersData,
+  MonsterType,
+  MonsterTypeInfo,
 } from "./types";
+
+// Constants
+export { MONSTER_TYPE_INFO } from "./types";
 
 // API
 export {

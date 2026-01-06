@@ -1,11 +1,12 @@
 {
-  "version": "1.0.0",
-  "generatedAt": "2026-01-05T00:00:00.000Z",
+  "version": "1.1.0",
+  "generatedAt": "2026-01-06T00:00:00.000Z",
   "monsters": [
     {
       "id": "scarecrow",
       "nameKo": "허수아비",
       "nameEn": "Scarecrow",
+      "type": "construct",
       "mapId": "training_ground",
       "level": 1,
       "element": null,
@@ -31,6 +32,7 @@
       "id": "squirrel",
       "nameKo": "다람쥐",
       "nameEn": "Squirrel",
+      "type": "beast",
       "mapId": "forest_entrance",
       "level": 2,
       "element": "earth",
@@ -42,7 +44,7 @@
       },
       "rewards": {
         "exp": 10,
-        "gold": 5
+        "gold": 0
       },
       "drops": [
         {
@@ -52,7 +54,7 @@
         },
         {
           "itemId": "squirrel_tail",
-          "chance": 0.1,
+          "chance": 0.15,
           "quantity": [1, 1]
         }
       ],
@@ -67,6 +69,7 @@
       "id": "squirrel_elder",
       "nameKo": "늙은 다람쥐",
       "nameEn": "Elder Squirrel",
+      "type": "beast",
       "mapId": "forest_entrance",
       "level": 3,
       "element": "earth",
@@ -78,7 +81,7 @@
       },
       "rewards": {
         "exp": 18,
-        "gold": 10
+        "gold": 0
       },
       "drops": [
         {
@@ -87,8 +90,8 @@
           "quantity": [2, 4]
         },
         {
-          "itemId": "squirrel_fur",
-          "chance": 0.1,
+          "itemId": "squirrel_tail",
+          "chance": 0.2,
           "quantity": [1, 1]
         }
       ],
@@ -100,9 +103,47 @@
       }
     },
     {
+      "id": "forest_bandit",
+      "nameKo": "숲속 도적",
+      "nameEn": "Forest Bandit",
+      "type": "humanoid",
+      "mapId": "forest_entrance",
+      "level": 4,
+      "element": null,
+      "stats": {
+        "hp": 45,
+        "attack": 12,
+        "defense": 6,
+        "speed": 9
+      },
+      "rewards": {
+        "exp": 25,
+        "gold": 15
+      },
+      "drops": [
+        {
+          "itemId": "stolen_coin",
+          "chance": 0.5,
+          "quantity": [5, 15]
+        },
+        {
+          "itemId": "rusty_dagger",
+          "chance": 0.08,
+          "quantity": [1, 1]
+        }
+      ],
+      "behavior": "aggressive",
+      "icon": "🗡️",
+      "description": {
+        "ko": "숲에 숨어 여행자를 습격하는 도적.",
+        "en": "A bandit who hides in the forest and ambushes travelers."
+      }
+    },
+    {
       "id": "wolf",
       "nameKo": "늑대",
       "nameEn": "Wolf",
+      "type": "beast",
       "mapId": "deep_forest",
       "level": 5,
       "element": null,
@@ -114,7 +155,7 @@
       },
       "rewards": {
         "exp": 30,
-        "gold": 15
+        "gold": 0
       },
       "drops": [
         {
@@ -139,6 +180,7 @@
       "id": "forest_spider",
       "nameKo": "숲거미",
       "nameEn": "Forest Spider",
+      "type": "beast",
       "mapId": "deep_forest",
       "level": 6,
       "element": "dark",
@@ -150,7 +192,7 @@
       },
       "rewards": {
         "exp": 35,
-        "gold": 20
+        "gold": 0
       },
       "drops": [
         {
@@ -173,16 +215,21 @@
     }
   ],
   "summary": {
-    "total": 5,
+    "total": 6,
     "byMap": {
       "training_ground": 1,
-      "forest_entrance": 2,
+      "forest_entrance": 3,
       "deep_forest": 2
     },
     "byElement": {
-      "neutral": 2,
+      "neutral": 3,
       "earth": 2,
       "dark": 1
+    },
+    "byType": {
+      "construct": 1,
+      "beast": 4,
+      "humanoid": 1
     }
   }
 }

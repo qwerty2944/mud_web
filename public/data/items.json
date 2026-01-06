@@ -129,6 +129,42 @@
       "tags": ["spider", "poison", "alchemy"]
     },
     {
+      "id": "stolen_coin",
+      "nameKo": "훔친 동전",
+      "nameEn": "Stolen Coin",
+      "description": {
+        "ko": "도적에게서 얻은 동전 더미. 누군가의 것이었을 것이다.",
+        "en": "A pile of coins from a bandit. Must have belonged to someone."
+      },
+      "type": "material",
+      "rarity": "common",
+      "icon": "🪙",
+      "weight": 0.05,
+      "value": 1,
+      "sellPrice": 1,
+      "stackable": true,
+      "maxStack": 999,
+      "tags": ["coin", "bandit", "currency"]
+    },
+    {
+      "id": "rusty_dagger",
+      "nameKo": "녹슨 단검",
+      "nameEn": "Rusty Dagger",
+      "description": {
+        "ko": "녹이 슨 낡은 단검. 녹여서 재료로 사용할 수 있다.",
+        "en": "An old rusty dagger. Can be melted for materials."
+      },
+      "type": "material",
+      "rarity": "common",
+      "icon": "🗡️",
+      "weight": 0.8,
+      "value": 15,
+      "sellPrice": 8,
+      "stackable": true,
+      "maxStack": 20,
+      "tags": ["weapon", "bandit", "metal", "scrap"]
+    },
+    {
       "id": "health_potion_small",
       "nameKo": "소형 체력 물약",
       "nameEn": "Small Health Potion",
@@ -457,16 +493,16 @@
     }
   ],
   "summary": {
-    "total": 21,
+    "total": 23,
     "byType": {
       "equipment": 6,
       "consumable": 7,
-      "material": 7,
+      "material": 9,
       "misc": 1
     },
     "byRarity": {
       "crude": 0,
-      "common": 14,
+      "common": 16,
       "grand": 4,
       "rare": 3,
       "arcane": 0,
