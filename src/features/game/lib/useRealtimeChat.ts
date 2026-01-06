@@ -237,7 +237,9 @@ export function useRealtimeChat({
     });
 
     // 구독 시작
-    channel.subscribe(async (status) => {
+    channel.subscribe(async (status, err) => {
+      console.log("[Realtime] Channel status:", status, err);
+
       if (status === "SUBSCRIBED" && mountedRef.current) {
         setConnected(true);
 
@@ -256,6 +258,12 @@ export function useRealtimeChat({
           const mapName = getMapById(maps, mapId)?.nameKo || mapId;
           addSystemMessage(`${mapName}에 입장했습니다.`);
         }
+      } else if (status === "CHANNEL_ERROR") {
+        console.error("[Realtime] Channel error:", err);
+        setConnected(false);
+      } else if (status === "TIMED_OUT") {
+        console.error("[Realtime] Channel timed out");
+        setConnected(false);
       }
     });
 
