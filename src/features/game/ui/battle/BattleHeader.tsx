@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState, useRef } from "react";
 import { useThemeStore } from "@/shared/config";
 import { useBattleStore } from "@/application/stores";
 import { StatusEffectDisplay } from "./StatusEffectDisplay";
@@ -13,6 +14,31 @@ export function BattleHeader() {
     getPlayerMpPercent,
     getPlayerShieldAmount,
   } = useBattleStore();
+
+  // 데미지 피드백 애니메이션 상태
+  const [monsterDamageShake, setMonsterDamageShake] = useState(false);
+  const [playerDamageShake, setPlayerDamageShake] = useState(false);
+  const prevMonsterHp = useRef(battle.monsterCurrentHp);
+  const prevPlayerHp = useRef(battle.playerCurrentHp);
+
+  // HP 변화 감지 및 애니메이션 트리거
+  useEffect(() => {
+    if (battle.monsterCurrentHp < prevMonsterHp.current) {
+      setMonsterDamageShake(true);
+      const timer = setTimeout(() => setMonsterDamageShake(false), 300);
+      return () => clearTimeout(timer);
+    }
+    prevMonsterHp.current = battle.monsterCurrentHp;
+  }, [battle.monsterCurrentHp]);
+
+  useEffect(() => {
+    if (battle.playerCurrentHp < prevPlayerHp.current) {
+      setPlayerDamageShake(true);
+      const timer = setTimeout(() => setPlayerDamageShake(false), 300);
+      return () => clearTimeout(timer);
+    }
+    prevPlayerHp.current = battle.playerCurrentHp;
+  }, [battle.playerCurrentHp]);
 
   if (!battle.monster) return null;
 
@@ -66,7 +92,12 @@ export function BattleHeader() {
       {/* HP/MP 바 영역 */}
       <div className="p-4 space-y-3">
         {/* 몬스터 HP */}
-        <div>
+        <div
+          className={`transition-transform ${monsterDamageShake ? "animate-shake" : ""}`}
+          style={{
+            animation: monsterDamageShake ? "shake 0.3s ease-in-out" : "none",
+          }}
+        >
           <div className="flex justify-between items-center text-xs font-mono mb-1">
             <div className="flex items-center gap-2">
               <span style={{ color: theme.colors.error }}>
@@ -78,26 +109,37 @@ export function BattleHeader() {
                 compact
               />
             </div>
-            <span style={{ color: theme.colors.textMuted }}>
+            <span
+              className={`transition-all ${monsterDamageShake ? "scale-110 font-bold" : ""}`}
+              style={{ color: monsterDamageShake ? theme.colors.error : theme.colors.textMuted }}
+            >
               {battle.monsterCurrentHp} / {battle.monster.stats.hp}
             </span>
           </div>
           <div
-            className="h-4 overflow-hidden"
+            className="h-4 overflow-hidden relative"
             style={{ background: theme.colors.bgDark }}
           >
             <div
               className="h-full transition-all duration-300"
               style={{
                 width: `${monsterHpPercent}%`,
-                background: theme.colors.error,
+                background: monsterDamageShake
+                  ? `linear-gradient(90deg, ${theme.colors.error}, ${theme.colors.warning})`
+                  : theme.colors.error,
+                boxShadow: monsterDamageShake ? `0 0 10px ${theme.colors.error}` : "none",
               }}
             />
           </div>
         </div>
 
         {/* 플레이어 HP */}
-        <div>
+        <div
+          className={`transition-transform ${playerDamageShake ? "animate-shake" : ""}`}
+          style={{
+            animation: playerDamageShake ? "shake 0.3s ease-in-out" : "none",
+          }}
+        >
           <div className="flex justify-between items-center text-xs font-mono mb-1">
             <div className="flex items-center gap-2">
               <span style={{ color: theme.colors.success }}>나</span>
@@ -118,26 +160,44 @@ export function BattleHeader() {
                 compact
               />
             </div>
-            <span style={{ color: theme.colors.textMuted }}>
+            <span
+              className={`transition-all ${playerDamageShake ? "scale-110 font-bold" : ""}`}
+              style={{
+                color: playerDamageShake
+                  ? theme.colors.error
+                  : playerHpPercent <= 20
+                  ? theme.colors.error
+                  : theme.colors.textMuted,
+              }}
+            >
               {battle.playerCurrentHp} / {battle.playerMaxHp}
             </span>
           </div>
           <div
-            className="h-4 overflow-hidden"
+            className="h-4 overflow-hidden relative"
             style={{ background: theme.colors.bgDark }}
           >
             <div
               className="h-full transition-all duration-300"
               style={{
                 width: `${playerHpPercent}%`,
-                background:
-                  playerHpPercent > 50
-                    ? theme.colors.success
-                    : playerHpPercent > 20
-                    ? theme.colors.warning
-                    : theme.colors.error,
+                background: playerDamageShake
+                  ? `linear-gradient(90deg, ${theme.colors.error}, ${theme.colors.warning})`
+                  : playerHpPercent > 50
+                  ? theme.colors.success
+                  : playerHpPercent > 20
+                  ? theme.colors.warning
+                  : theme.colors.error,
+                boxShadow: playerDamageShake ? `0 0 10px ${theme.colors.error}` : "none",
               }}
             />
+            {/* 낮은 HP 경고 */}
+            {playerHpPercent <= 20 && !playerDamageShake && (
+              <div
+                className="absolute inset-0 animate-pulse"
+                style={{ background: `${theme.colors.error}20` }}
+              />
+            )}
           </div>
         </div>
 
