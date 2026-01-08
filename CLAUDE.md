@@ -1166,10 +1166,10 @@ const [showWorldMap, setShowWorldMap] = useState(false);
 ### 탭 구성
 | 탭 | 내용 | 데이터 소스 |
 |---|------|------------|
-| 상태 | 캐릭터 프리뷰, 레벨, 경험치, 스태미나, 능력치, 재화 | `useProfile` |
-| 숙련도 | 무기 9종 + 마법 6종 숙련도 | `useProficiencies` |
+| 상태 | 캐릭터 프리뷰, 레벨, 경험치, **HP/MP**, 스태미나, 능력치, 재화 | `useProfile` |
+| 숙련도 | 무기 12종 + 마법 6종 숙련도 | `useProficiencies` |
 | 스킬 | 습득한 스킬 목록 | `equipmentStore.learnedSkills` |
-| 장비 | 4슬롯 장비 현황 (무기, 갑옷, 투구, 장신구) | `equipmentStore` |
+| 장비 | 12슬롯 장비 현황 (무기, 방어구, 장신구) | `equipmentStore` |
 | 인벤토리 | 보유 아이템 그리드 | `useInventory` |
 
 ### 파일
@@ -1373,3 +1373,161 @@ import { AtmosphericText } from "@/entities/game-time";
 - 황혼 + 숲 입구: "개와 늑대의 시간. 숲이 깨어난다."
 - 밤 + 깊은 숲: "완벽한 어둠. 발 밑도 보이지 않는다."
 - 새벽 + 시작 마을: "마을에 첫 닭울음 소리가 울려퍼진다."
+
+## HP/MP 시스템
+
+캐릭터의 체력(HP)과 마나(MP)를 관리하는 시스템.
+
+### HP 계산
+```typescript
+최대 HP = 50 + (CON × 5) + (레벨 × 10)
+
+// 예시: CON 11, 레벨 2
+// 50 + (11 × 5) + (2 × 10) = 50 + 55 + 20 = 125
+```
+
+| CON | Lv.1 HP | Lv.5 HP | Lv.10 HP |
+|-----|---------|---------|----------|
+| 10 | 110 | 150 | 200 |
+| 15 | 135 | 175 | 225 |
+| 20 | 160 | 200 | 250 |
+
+### MP 계산
+```typescript
+최대 MP = 20 + (WIS × 3) + INT
+
+// 예시: WIS 10, INT 10
+// 20 + (10 × 3) + 10 = 20 + 30 + 10 = 60
+```
+
+| WIS | INT | MP |
+|-----|-----|-----|
+| 10 | 10 | 60 |
+| 15 | 12 | 77 |
+| 20 | 15 | 95 |
+
+### DB 저장
+| 컬럼 | 타입 | 설명 |
+|------|------|------|
+| `current_hp` | INTEGER | 현재 HP (null이면 최대HP) |
+| `current_mp` | INTEGER | 현재 MP (null이면 최대MP) |
+
+### 전투 후 HP/MP 저장
+전투 종료 시 (승리/패배/도주) 현재 HP와 MP가 DB에 저장됩니다.
+
+```typescript
+// 전투 종료 후 자동 저장
+await updateProfile({
+  userId,
+  currentHp: battleState.playerCurrentHp,
+  currentMp: battleState.playerMp,
+});
+```
+
+### UI 표시
+상태창(상태 탭)에서 HP/MP 바로 확인 가능:
+- ❤️ HP: 빨간색 바 (50% 이하 노란색, 20% 이하 진한 빨강)
+- 💧 MP: 파란색(primary) 바
+
+## 숙련도 시스템 확장 (v2)
+
+무기 숙련도가 12종으로 확장되었습니다.
+
+### 무기 숙련도 (12종)
+| ID | 이름 | 아이콘 | 관련 스탯 | 설명 |
+|----|------|--------|----------|------|
+| light_sword | 세검 | 🗡️ | DEX | 찌르기 특화 |
+| medium_sword | 중검 | ⚔️ | STR/DEX | 베기 특화 |
+| great_sword | 대검 | 🗡️ | STR | 베기/패리 |
+| axe | 도끼 | 🪓 | STR | 강력한 일격 |
+| mace | 둔기 | 🔨 | STR | 방어 무시 |
+| dagger | 단검 | 🔪 | DEX | 빠른 연속 공격 |
+| spear | 창 | 🔱 | STR/DEX | 긴 사거리 |
+| bow | 활 | 🏹 | DEX | 원거리 |
+| crossbow | 석궁 | 🎯 | DEX | 강한 원거리 |
+| staff | 지팡이 | 🪄 | INT/WIS | 마법 증폭 |
+| fist | 주먹 | 👊 | STR/DEX | 맨손 격투 |
+| shield | 방패 | 🛡️ | CON | 방어 특화 |
+
+### 숙련도 획득 (레벨 기반)
+몬스터 레벨과 플레이어 레벨 차이에 따라 숙련도 획득량이 결정됩니다.
+
+| 레벨 차이 | 획득량 | 설명 |
+|----------|--------|------|
+| 몬스터 > 플레이어+5 | 3 | 높은 레벨 도전 보너스 |
+| 몬스터 > 플레이어 | 2 | 약간 높은 몬스터 |
+| 몬스터 = 플레이어 | 1 | 동등 레벨 |
+| 몬스터 < 플레이어-5 | 0 | 너무 낮은 몬스터 |
+
+```typescript
+import { calculateProficiencyGain } from "@/entities/proficiency";
+
+const result = calculateProficiencyGain({
+  proficiencyType: "medium_sword",
+  currentProficiency: 30,
+  playerLevel: 5,
+  monsterLevel: 7,
+  attackSuccess: true,
+});
+// { gained: true, amount: 2, levelDiff: 2, reason: "success" }
+```
+
+### 숙련도 상수 export
+```typescript
+import {
+  WEAPON_PROFICIENCIES,      // 무기 12종
+  MAGIC_PROFICIENCIES,       // 마법 6종
+  MARTIAL_PROFICIENCIES,     // 무술 (fist)
+  ALL_PROFICIENCIES,         // 전체 숙련도
+  PROFICIENCY_RANKS,         // 등급 (초보~대가)
+} from "@/entities/proficiency";
+```
+
+## 데미지 계산 시스템
+
+전투 데미지 계산을 위한 함수들.
+
+### 물리 데미지
+```typescript
+import { calculatePhysicalDamage } from "@/features/combat";
+
+const damage = calculatePhysicalDamage({
+  baseDamage: 10,
+  str: 15,
+  proficiencyLevel: 30,
+  proficiencyBonus: getDamageBonus(30), // +10%
+  criticalHit: false,
+  criticalMultiplier: 1.5,
+});
+```
+
+### 마법 데미지
+```typescript
+import { calculateMagicDamage } from "@/features/combat";
+
+const damage = calculateMagicDamage({
+  baseDamage: 20,
+  int: 15,
+  proficiencyLevel: 40,
+  element: "fire",
+  targetElement: "ice",      // 상성 보너스
+  period: "day",             // 시간대 보너스
+  weather: "sunny",          // 날씨 보너스
+});
+```
+
+### 판정 순서
+1. **빗맞음** (10%) - 완전 실패
+2. **회피** (DEX 기반) - 완전 회피
+3. **막기** (CON 기반) - 데미지 절반
+4. **치명타** (LCK 기반) - 1.5~2.5배
+5. **명중** - 일반 데미지
+
+### 전투 메시지
+| 판정 | 메시지 예시 |
+|------|------------|
+| 빗맞음 | "공격이 허공을 가른다!" |
+| 회피 | "🌀 몬스터가 교묘하게 피했다!" |
+| 막기 | "🛡️ 몬스터가 공격을 막았다!" |
+| 치명타 | "💥 치명타! 15 데미지!" |
+| 명중 | "검으로 10 데미지를 입혔다!" |
