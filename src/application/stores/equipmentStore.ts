@@ -75,7 +75,8 @@ interface EquipmentState {
 }
 
 // 기본 시작 스킬 (heal은 마법 시스템으로 이전됨)
-const DEFAULT_SKILLS: string[] = [];
+// 패시브 스킬: iron_skin(철갑 피부), thorns_aura(가시 오라)
+const DEFAULT_SKILLS: string[] = ["iron_skin", "thorns_aura"];
 
 const initialEquipmentState = {
   // 외형 슬롯

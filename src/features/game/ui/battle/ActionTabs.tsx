@@ -3,17 +3,18 @@
 import { useThemeStore } from "@/shared/config";
 
 // 전투 액션 탭 타입
-export type BattleActionTab = "weapon" | "magic" | "support" | "item";
+export type BattleActionTab = "weapon" | "defense" | "magic" | "support" | "item";
 
 // 전투 액션 탭 정보
 const BATTLE_ACTION_TABS: Record<BattleActionTab, { nameKo: string; icon: string }> = {
-  weapon: { nameKo: "무기", icon: "⚔️" },
+  weapon: { nameKo: "공격", icon: "⚔️" },
+  defense: { nameKo: "방어", icon: "🛡️" },
   magic: { nameKo: "마법", icon: "✨" },
-  support: { nameKo: "지원", icon: "💊" },
-  item: { nameKo: "아이템", icon: "🎒" },
+  support: { nameKo: "보조", icon: "💊" },
+  item: { nameKo: "소비", icon: "🎒" },
 };
 
-const TAB_ORDER: BattleActionTab[] = ["weapon", "magic", "support", "item"];
+const TAB_ORDER: BattleActionTab[] = ["weapon", "defense", "magic", "support", "item"];
 
 interface ActionTabsProps {
   activeTab: BattleActionTab;

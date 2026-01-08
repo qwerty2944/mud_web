@@ -12,6 +12,7 @@ import type { StatusType } from "@/entities/status";
  * - buff: 버프 (자신/아군 강화)
  * - debuff: 디버프 (적 약화)
  * - heal: 치유 스킬
+ * - passive: 패시브 스킬 (조건 충족 시 자동 발동)
  * - life: 생활 스킬 (향후 추가)
  */
 export type SkillType =
@@ -23,6 +24,7 @@ export type SkillType =
   | "buff"
   | "debuff"
   | "heal"
+  | "passive"
   | "life";
 
 /**
@@ -82,6 +84,41 @@ export interface SkillRequirements {
   stats?: SkillStatRequirements;
   /** 필요 장비 (예: "shield") */
   equipment?: string;
+}
+
+// ============ 패시브 스킬 트리거 ============
+
+/**
+ * 패시브 스킬 발동 조건
+ */
+export type PassiveTrigger =
+  | "on_hit"           // 피격 시
+  | "on_block"         // 막기 성공 시
+  | "on_dodge"         // 회피 성공 시
+  | "on_critical_hit"  // 치명타 발동 시
+  | "on_low_hp"        // HP 낮을 때 (30% 이하)
+  | "on_battle_start"  // 전투 시작 시
+  | "on_turn_start";   // 매 턴 시작 시
+
+/**
+ * 패시브 스킬 효과 타입
+ */
+export type PassiveEffectType =
+  | "damage_reflect"   // 피해 반사
+  | "heal_on_hit"      // 피격 시 회복
+  | "counter_attack"   // 반격
+  | "stat_boost"       // 스탯 상승
+  | "damage_reduce"    // 피해 감소
+  | "thorns";          // 가시 (피격 시 고정 피해)
+
+/**
+ * 패시브 스킬 효과 설정
+ */
+export interface PassiveEffect {
+  type: PassiveEffectType;
+  value: number;           // 효과 수치 (%, 고정값 등)
+  chance?: number;         // 발동 확률 (0-100, 기본 100)
+  duration?: number;       // 지속 턴 (stat_boost 등)
 }
 
 // ============ 스킬 특수 효과 ============
@@ -169,6 +206,12 @@ export interface Skill {
   healPercent?: number;
   /** HP 고정 회복량 */
   healAmount?: number;
+
+  // 패시브 스킬용
+  /** 패시브 발동 조건 */
+  passiveTrigger?: PassiveTrigger;
+  /** 패시브 효과 */
+  passiveEffect?: PassiveEffect;
 
   // 숙련도 및 속성 (마법/무기)
   /** 관련 숙련도 타입 (weapon type 또는 magic element) */

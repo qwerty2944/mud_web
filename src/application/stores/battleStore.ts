@@ -59,6 +59,10 @@ export interface BattleState {
   playerDebuffs: StatusEffect[];
   monsterBuffs: StatusEffect[];
   monsterDebuffs: StatusEffect[];
+
+  // 방어 행동
+  defensiveStance: "none" | "guard" | "dodge" | "counter"; // 방어 자세
+  defensiveValue: number; // 방어 보너스 수치
 }
 
 // 초기 상태
@@ -80,6 +84,8 @@ const initialBattleState: BattleState = {
   playerDebuffs: [],
   monsterBuffs: [],
   monsterDebuffs: [],
+  defensiveStance: "none",
+  defensiveValue: 0,
 };
 
 interface BattleStore {
@@ -105,6 +111,11 @@ interface BattleStore {
   // MP 관리
   useMp: (amount: number) => boolean;
   healHp: (amount: number) => void;
+
+  // 방어 행동
+  setDefensiveStance: (stance: "none" | "guard" | "dodge" | "counter", value?: number) => void;
+  clearDefensiveStance: () => void;
+  getDefensiveStance: () => { stance: string; value: number };
 
   // 상태이상 관리
   applyPlayerStatus: (type: StatusType, value: number, duration?: number) => void;
@@ -164,6 +175,8 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
         playerDebuffs: [],
         monsterBuffs: [],
         monsterDebuffs: [],
+        defensiveStance: "none",
+        defensiveValue: 0,
       },
     });
   },
@@ -499,6 +512,36 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
         message: `HP를 ${actualHeal} 회복했다!`,
       });
     }
+  },
+
+  // 방어 자세 설정
+  setDefensiveStance: (stance, value = 0) => {
+    const { battle } = get();
+    set({
+      battle: {
+        ...battle,
+        defensiveStance: stance,
+        defensiveValue: value,
+      },
+    });
+  },
+
+  // 방어 자세 초기화
+  clearDefensiveStance: () => {
+    const { battle } = get();
+    set({
+      battle: {
+        ...battle,
+        defensiveStance: "none",
+        defensiveValue: 0,
+      },
+    });
+  },
+
+  // 방어 자세 가져오기
+  getDefensiveStance: () => {
+    const { battle } = get();
+    return { stance: battle.defensiveStance, value: battle.defensiveValue };
   },
 
   // 플레이어에게 상태이상 적용

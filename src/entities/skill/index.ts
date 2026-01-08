@@ -7,6 +7,9 @@ export type {
   SkillTarget,
   SkillStatRequirements,
   SkillRequirements,
+  PassiveTrigger,
+  PassiveEffectType,
+  PassiveEffect,
   BonusVsType,
   Skill,
   LifeSkillType,
@@ -43,3 +46,13 @@ export {
   useWeaponCategorySkills,
   useDefenseBonusSkills,
 } from "./queries";
+
+// Passive Skills
+export type { PassiveSkillResult } from "./lib/passive";
+export {
+  checkPassiveSkill,
+  filterPassiveSkills,
+  processOnHitPassives,
+  processLowHpPassives,
+  DEFAULT_PASSIVE_SKILLS,
+} from "./lib/passive";

@@ -5,6 +5,9 @@ export { useEndBattle } from "./end-battle";
 export { useCastSpell } from "./cast-spell";
 export { useSpellCast } from "./spell-cast";
 
+// Passive Skills
+export { usePassiveSkills } from "./lib/usePassiveSkills";
+
 // Lib (Damage Calculation)
 export {
   calculatePhysicalDamage,

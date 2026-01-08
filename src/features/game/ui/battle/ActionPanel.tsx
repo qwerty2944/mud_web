@@ -8,10 +8,14 @@ import { getProficiencyInfo } from "@/entities/proficiency";
 import { useSkills } from "@/entities/skill";
 import type { BattleActionTab } from "./ActionTabs";
 
+// 방어 행동 타입
+export type DefenseAction = "guard" | "dodge" | "counter";
+
 interface ActionPanelProps {
   activeTab: BattleActionTab;
   proficiencies: Record<ProficiencyType, number>;
   onWeaponAttack: (weaponType: CombatProficiencyType) => void;
+  onDefenseAction: (action: DefenseAction) => void;
   onCastSkill: (skill: Skill) => void;
   onFlee: () => void;
   disabled?: boolean;
@@ -21,6 +25,7 @@ export function ActionPanel({
   activeTab,
   proficiencies,
   onWeaponAttack,
+  onDefenseAction,
   onCastSkill,
   onFlee,
   disabled = false,
@@ -65,7 +70,7 @@ export function ActionPanel({
     : null;
 
   return (
-    <div className="p-3 space-y-3">
+    <div className="p-3 space-y-3 min-h-[200px]">
       {/* 무기 탭 - 장착된 무기 또는 맨손 */}
       {activeTab === "weapon" && (
         <div className="space-y-2">
@@ -148,6 +153,104 @@ export function ActionPanel({
               인벤토리에서 무기를 장착하세요
             </div>
           )}
+        </div>
+      )}
+
+      {/* 방어 탭 */}
+      {activeTab === "defense" && (
+        <div className="space-y-2">
+          {/* 방어 자세 */}
+          <button
+            onClick={() => onDefenseAction("guard")}
+            disabled={disabled}
+            className="w-full flex items-center gap-4 py-3 px-4 transition-colors font-mono"
+            style={{
+              background: theme.colors.bgLight,
+              border: `1px solid ${theme.colors.border}`,
+              color: theme.colors.text,
+              opacity: disabled ? 0.5 : 1,
+              cursor: disabled ? "not-allowed" : "pointer",
+            }}
+          >
+            <span className="text-3xl">🛡️</span>
+            <div className="flex-1 text-left">
+              <div className="font-medium">방어 자세</div>
+              <div className="text-xs" style={{ color: theme.colors.textMuted }}>
+                다음 공격 피해 50% 감소
+              </div>
+            </div>
+            <div
+              className="text-sm px-2 py-1"
+              style={{
+                background: theme.colors.primary + "20",
+                color: theme.colors.primary,
+              }}
+            >
+              방어
+            </div>
+          </button>
+
+          {/* 회피 집중 */}
+          <button
+            onClick={() => onDefenseAction("dodge")}
+            disabled={disabled}
+            className="w-full flex items-center gap-4 py-3 px-4 transition-colors font-mono"
+            style={{
+              background: theme.colors.bgLight,
+              border: `1px solid ${theme.colors.border}`,
+              color: theme.colors.text,
+              opacity: disabled ? 0.5 : 1,
+              cursor: disabled ? "not-allowed" : "pointer",
+            }}
+          >
+            <span className="text-3xl">💨</span>
+            <div className="flex-1 text-left">
+              <div className="font-medium">회피 집중</div>
+              <div className="text-xs" style={{ color: theme.colors.textMuted }}>
+                다음 공격 회피 확률 +40%
+              </div>
+            </div>
+            <div
+              className="text-sm px-2 py-1"
+              style={{
+                background: theme.colors.success + "20",
+                color: theme.colors.success,
+              }}
+            >
+              회피
+            </div>
+          </button>
+
+          {/* 반격 대기 */}
+          <button
+            onClick={() => onDefenseAction("counter")}
+            disabled={disabled}
+            className="w-full flex items-center gap-4 py-3 px-4 transition-colors font-mono"
+            style={{
+              background: theme.colors.bgLight,
+              border: `1px solid ${theme.colors.border}`,
+              color: theme.colors.text,
+              opacity: disabled ? 0.5 : 1,
+              cursor: disabled ? "not-allowed" : "pointer",
+            }}
+          >
+            <span className="text-3xl">⚡</span>
+            <div className="flex-1 text-left">
+              <div className="font-medium">반격 대기</div>
+              <div className="text-xs" style={{ color: theme.colors.textMuted }}>
+                막기 성공 시 100% 반격
+              </div>
+            </div>
+            <div
+              className="text-sm px-2 py-1"
+              style={{
+                background: theme.colors.warning + "20",
+                color: theme.colors.warning,
+              }}
+            >
+              반격
+            </div>
+          </button>
         </div>
       )}
 
