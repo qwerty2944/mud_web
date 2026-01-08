@@ -42,6 +42,7 @@ export function BattlePanel({
   } = useBattleStore();
 
   const [activeTab, setActiveTab] = useState<BattleActionTab>("weapon");
+  const [isProcessing, setIsProcessing] = useState(false); // 공격 처리 중 연타 방지
 
   // 몬스터 턴 처리 (마법/버프 사용 후)
   const handleMonsterTurn = useCallback(() => {
@@ -83,9 +84,12 @@ export function BattlePanel({
   // 무기 공격 핸들러
   const handleWeaponAttack = useCallback(
     (weaponType: CombatProficiencyType) => {
-      if (isPlayerIncapacitated()) {
+      if (isPlayerIncapacitated() || isProcessing) {
         return;
       }
+
+      // 연타 방지: 공격 시작 시 처리 중 상태로 전환
+      setIsProcessing(true);
 
       const stats = characterStats;
       const profLevel = proficiencies[weaponType] ?? 0;
@@ -103,6 +107,11 @@ export function BattlePanel({
 
       // 상태이상 지속시간 감소
       tickAllStatuses();
+
+      // 몬스터 반격 딜레이(500ms) + 여유시간 후 버튼 다시 활성화
+      setTimeout(() => {
+        setIsProcessing(false);
+      }, 700);
     },
     [
       characterStats,
@@ -111,6 +120,7 @@ export function BattlePanel({
       processStatusEffects,
       tickAllStatuses,
       isPlayerIncapacitated,
+      isProcessing,
       battle.turn,
     ]
   );
@@ -118,9 +128,12 @@ export function BattlePanel({
   // 스킬 시전 핸들러
   const handleCastSkill = useCallback(
     (skill: Skill) => {
-      if (isPlayerIncapacitated()) {
+      if (isPlayerIncapacitated() || isProcessing) {
         return;
       }
+
+      // 연타 방지
+      setIsProcessing(true);
 
       // 상태이상 처리 (턴 시작)
       processStatusEffects();
@@ -137,6 +150,11 @@ export function BattlePanel({
 
       // 상태이상 지속시간 감소
       tickAllStatuses();
+
+      // 몬스터 반격 딜레이 후 버튼 다시 활성화
+      setTimeout(() => {
+        setIsProcessing(false);
+      }, 700);
     },
     [
       characterStats,
@@ -145,19 +163,26 @@ export function BattlePanel({
       processStatusEffects,
       tickAllStatuses,
       isPlayerIncapacitated,
+      isProcessing,
     ]
   );
 
   // 도주 핸들러
   const handleFlee = useCallback(() => {
+    if (isProcessing) return;
+
+    setIsProcessing(true);
     const success = playerFlee();
     if (success) {
       onFlee();
     } else {
       // 도주 실패 시 몬스터 턴
-      setTimeout(handleMonsterTurn, 500);
+      setTimeout(() => {
+        handleMonsterTurn();
+        setIsProcessing(false);
+      }, 500);
     }
-  }, [playerFlee, onFlee, handleMonsterTurn]);
+  }, [playerFlee, onFlee, handleMonsterTurn, isProcessing]);
 
   // 전투 종료 처리 (수동 닫기)
   const handleCloseBattle = useCallback(() => {
@@ -256,7 +281,7 @@ export function BattlePanel({
             <ActionTabs
               activeTab={activeTab}
               onTabChange={setActiveTab}
-              disabled={isIncapacitated}
+              disabled={isIncapacitated || isProcessing}
             />
 
             {/* 액션 패널 */}
@@ -266,7 +291,7 @@ export function BattlePanel({
               onWeaponAttack={handleWeaponAttack}
               onCastSkill={handleCastSkill}
               onFlee={handleFlee}
-              disabled={isIncapacitated}
+              disabled={isIncapacitated || isProcessing}
             />
           </>
         ) : (
