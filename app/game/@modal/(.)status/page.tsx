@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useAuthStore } from "@/features/auth";
 import { UnityCanvas, useAppearanceStore } from "@/features/character";
 import {
@@ -16,6 +16,7 @@ import type { ProficiencyType } from "@/entities/proficiency";
 import { useEquipmentStore } from "@/application/stores";
 import { useThemeStore } from "@/shared/config";
 import { SLOT_CONFIG, type EquipmentSlot } from "@/entities/item";
+import { calculateDerivedStats } from "@/entities/character";
 
 type TabType = "status" | "proficiency" | "skills" | "equipment" | "inventory";
 
@@ -37,6 +38,16 @@ export default function StatusModal() {
   const [activeTab, setActiveTab] = useState<TabType>("status");
 
   const mainCharacter = getMainCharacter(profile);
+
+  // 파생 스탯 계산
+  const derivedStats = useMemo(() => {
+    if (!mainCharacter?.stats) return null;
+    return calculateDerivedStats(
+      mainCharacter.stats,
+      equipmentStore.getTotalStats(),
+      profile?.level ?? 1
+    );
+  }, [mainCharacter?.stats, equipmentStore, profile?.level]);
 
   // Unity 스프라이트 로드 완료 후 캐릭터 외형 적용
   useEffect(() => {
@@ -278,6 +289,169 @@ export default function StatusModal() {
                             </div>
                           ))}
                         </div>
+                      </div>
+                    )}
+
+                    {/* 파생 전투 스탯 */}
+                    {derivedStats && (
+                      <div className="p-4 space-y-4" style={{ background: theme.colors.bgDark }}>
+                        {/* 공격/방어력 */}
+                        <div>
+                          <div className="text-sm font-mono mb-2" style={{ color: theme.colors.textMuted }}>전투 능력</div>
+                          <div className="grid grid-cols-2 gap-2 text-xs">
+                            <div className="flex justify-between">
+                              <span className="font-mono" style={{ color: theme.colors.textMuted }}>⚔️ 물리 공격</span>
+                              <span className="font-mono font-medium" style={{ color: theme.colors.error }}>{derivedStats.totalPhysicalAttack}</span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span className="font-mono" style={{ color: theme.colors.textMuted }}>🛡️ 물리 방어</span>
+                              <span className="font-mono font-medium" style={{ color: theme.colors.primary }}>{derivedStats.totalPhysicalDefense}</span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span className="font-mono" style={{ color: theme.colors.textMuted }}>✨ 마법 공격</span>
+                              <span className="font-mono font-medium" style={{ color: theme.colors.error }}>{derivedStats.totalMagicAttack}</span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span className="font-mono" style={{ color: theme.colors.textMuted }}>🔮 마법 방어</span>
+                              <span className="font-mono font-medium" style={{ color: theme.colors.primary }}>{derivedStats.totalMagicDefense}</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* 치명타/암습 */}
+                        <div>
+                          <div className="text-sm font-mono mb-2" style={{ color: theme.colors.textMuted }}>치명타/암습</div>
+                          <div className="grid grid-cols-2 gap-2 text-xs">
+                            <div className="flex justify-between">
+                              <span className="font-mono" style={{ color: theme.colors.textMuted }}>💥 치명타 확률</span>
+                              <span className="font-mono font-medium" style={{ color: theme.colors.warning }}>{derivedStats.critChance.toFixed(1)}%</span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span className="font-mono" style={{ color: theme.colors.textMuted }}>💥 치명타 피해</span>
+                              <span className="font-mono font-medium" style={{ color: theme.colors.warning }}>{derivedStats.critDamage}%</span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span className="font-mono" style={{ color: theme.colors.textMuted }}>🗡️ 암습 확률</span>
+                              <span className="font-mono font-medium" style={{ color: theme.colors.text }}>{derivedStats.totalAmbushChance}%</span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span className="font-mono" style={{ color: theme.colors.textMuted }}>🗡️ 암습 피해</span>
+                              <span className="font-mono font-medium" style={{ color: theme.colors.text }}>{derivedStats.totalAmbushDamage}%</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* 회피/막기 */}
+                        <div>
+                          <div className="text-sm font-mono mb-2" style={{ color: theme.colors.textMuted }}>방어 능력</div>
+                          <div className="grid grid-cols-2 gap-2 text-xs">
+                            <div className="flex justify-between">
+                              <span className="font-mono" style={{ color: theme.colors.textMuted }}>🌀 회피</span>
+                              <span className="font-mono font-medium" style={{ color: theme.colors.success }}>{derivedStats.totalDodgeChance}%</span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span className="font-mono" style={{ color: theme.colors.textMuted }}>🛡️ 막기</span>
+                              <span className="font-mono font-medium" style={{ color: theme.colors.success }}>{derivedStats.totalBlockChance}%</span>
+                            </div>
+                            <div className="flex justify-between">
+                              <span className="font-mono" style={{ color: theme.colors.textMuted }}>⚔️ 무기막기</span>
+                              <span className="font-mono font-medium" style={{ color: theme.colors.success }}>{derivedStats.totalWeaponBlockChance}%</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* 물리 저항 (베기/찌르기/타격) */}
+                        <div>
+                          <div className="text-sm font-mono mb-2" style={{ color: theme.colors.textMuted }}>물리 저항</div>
+                          <div className="grid grid-cols-3 gap-2 text-xs">
+                            <div className="flex flex-col items-center p-2" style={{ background: theme.colors.bgLight }}>
+                              <span className="font-mono" style={{ color: theme.colors.textMuted }}>베기</span>
+                              <span className="font-mono font-medium" style={{
+                                color: derivedStats.totalPhysicalResistance.slashResist < 1 ? theme.colors.success :
+                                       derivedStats.totalPhysicalResistance.slashResist > 1 ? theme.colors.error : theme.colors.text
+                              }}>
+                                {derivedStats.totalPhysicalResistance.slashResist < 1 ? "강함" :
+                                 derivedStats.totalPhysicalResistance.slashResist > 1 ? "약함" : "보통"}
+                              </span>
+                            </div>
+                            <div className="flex flex-col items-center p-2" style={{ background: theme.colors.bgLight }}>
+                              <span className="font-mono" style={{ color: theme.colors.textMuted }}>찌르기</span>
+                              <span className="font-mono font-medium" style={{
+                                color: derivedStats.totalPhysicalResistance.pierceResist < 1 ? theme.colors.success :
+                                       derivedStats.totalPhysicalResistance.pierceResist > 1 ? theme.colors.error : theme.colors.text
+                              }}>
+                                {derivedStats.totalPhysicalResistance.pierceResist < 1 ? "강함" :
+                                 derivedStats.totalPhysicalResistance.pierceResist > 1 ? "약함" : "보통"}
+                              </span>
+                            </div>
+                            <div className="flex flex-col items-center p-2" style={{ background: theme.colors.bgLight }}>
+                              <span className="font-mono" style={{ color: theme.colors.textMuted }}>타격</span>
+                              <span className="font-mono font-medium" style={{
+                                color: derivedStats.totalPhysicalResistance.crushResist < 1 ? theme.colors.success :
+                                       derivedStats.totalPhysicalResistance.crushResist > 1 ? theme.colors.error : theme.colors.text
+                              }}>
+                                {derivedStats.totalPhysicalResistance.crushResist < 1 ? "강함" :
+                                 derivedStats.totalPhysicalResistance.crushResist > 1 ? "약함" : "보통"}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* 속성 강화/저항 */}
+                        <div>
+                          <div className="text-sm font-mono mb-2" style={{ color: theme.colors.textMuted }}>속성 강화/저항</div>
+                          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs">
+                            {[
+                              { key: "fire", label: "화염", icon: "🔥" },
+                              { key: "ice", label: "냉기", icon: "❄️" },
+                              { key: "lightning", label: "번개", icon: "⚡" },
+                              { key: "earth", label: "대지", icon: "🪨" },
+                              { key: "holy", label: "신성", icon: "✨" },
+                              { key: "dark", label: "암흑", icon: "🌑" },
+                            ].map(({ key, label, icon }) => {
+                              const boost = derivedStats.totalElementBoost[key as keyof typeof derivedStats.totalElementBoost] ?? 0;
+                              const resist = derivedStats.totalElementResist[key as keyof typeof derivedStats.totalElementResist] ?? 0;
+                              if (boost === 0 && resist === 0) return null;
+                              return (
+                                <div key={key} className="flex flex-col p-2" style={{ background: theme.colors.bgLight }}>
+                                  <span className="font-mono text-center mb-1">{icon} {label}</span>
+                                  <div className="flex justify-between">
+                                    {boost > 0 && <span style={{ color: theme.colors.error }}>+{boost}%</span>}
+                                    {resist > 0 && <span style={{ color: theme.colors.success }}>저항{resist}%</span>}
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                          {/* 모든 속성이 0인 경우 */}
+                          {Object.values(derivedStats.totalElementBoost).every(v => v === 0) &&
+                           Object.values(derivedStats.totalElementResist).every(v => v === 0) && (
+                            <div className="text-xs font-mono text-center py-2" style={{ color: theme.colors.textMuted }}>
+                              속성 강화/저항 없음
+                            </div>
+                          )}
+                        </div>
+
+                        {/* 관통 */}
+                        {(derivedStats.totalPhysicalPenetration > 0 || derivedStats.totalMagicPenetration > 0) && (
+                          <div>
+                            <div className="text-sm font-mono mb-2" style={{ color: theme.colors.textMuted }}>방어 관통</div>
+                            <div className="grid grid-cols-2 gap-2 text-xs">
+                              {derivedStats.totalPhysicalPenetration > 0 && (
+                                <div className="flex justify-between">
+                                  <span className="font-mono" style={{ color: theme.colors.textMuted }}>물리 관통</span>
+                                  <span className="font-mono font-medium" style={{ color: theme.colors.warning }}>{derivedStats.totalPhysicalPenetration}%</span>
+                                </div>
+                              )}
+                              {derivedStats.totalMagicPenetration > 0 && (
+                                <div className="flex justify-between">
+                                  <span className="font-mono" style={{ color: theme.colors.textMuted }}>마법 관통</span>
+                                  <span className="font-mono font-medium" style={{ color: theme.colors.warning }}>{derivedStats.totalMagicPenetration}%</span>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        )}
                       </div>
                     )}
 
