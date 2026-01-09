@@ -74,6 +74,8 @@ const COLOR_PRESETS = ["#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#FF00FF", "#
 // 파츠별 기본 색상
 const DEFAULT_COLORS: Partial<Record<PartType, string>> = {
   eye: "#6B4226", // 눈: 갈색
+  hair: "#6B4226", // 머리: 갈색
+  facehair: "#6B4226", // 수염: 갈색
 };
 
 function PartSelector({ type }: { type: PartType }) {

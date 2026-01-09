@@ -7,8 +7,8 @@ import { useAppearanceStore, type SpriteNames } from "@/application/stores";
 const UNITY_OBJECT_NAME = "SPUM_20260103203421028";
 
 // 기본값 상수
-const DEFAULT_BODY_INDEX = 11; // 12번째 종족 (human_1)
-const DEFAULT_EYE_COLOR = "6B4226"; // 갈색
+const DEFAULT_BODY_INDEX = 11; // 12번째 종족 (human_1), 0-indexed
+const DEFAULT_BROWN_COLOR = "6B4226"; // 갈색 (눈, 머리, 수염)
 
 interface UnityContextValue {
   unityProvider: ReturnType<typeof useUnityContext>["unityProvider"];
@@ -57,10 +57,16 @@ export function UnityProvider({ children }: { children: ReactNode }) {
     if (isInitialized.current || !spritesReady.current) return;
     isInitialized.current = true;
 
-    // 기본값 설정: 종족 12번 (인덱스 11), 눈 색상 갈색
+    console.log("[UnityProvider] Applying defaults: body=11, colors=brown");
+
+    // 기본값 설정: 종족 12번 (인덱스 11)
     sendMessage(UNITY_OBJECT_NAME, "JS_SetBody", DEFAULT_BODY_INDEX.toString());
-    sendMessage(UNITY_OBJECT_NAME, "JS_SetLeftEyeColor", DEFAULT_EYE_COLOR);
-    sendMessage(UNITY_OBJECT_NAME, "JS_SetRightEyeColor", DEFAULT_EYE_COLOR);
+
+    // 색상 설정: 눈, 머리, 수염 모두 갈색
+    sendMessage(UNITY_OBJECT_NAME, "JS_SetLeftEyeColor", DEFAULT_BROWN_COLOR);
+    sendMessage(UNITY_OBJECT_NAME, "JS_SetRightEyeColor", DEFAULT_BROWN_COLOR);
+    sendMessage(UNITY_OBJECT_NAME, "JS_SetHairColor", DEFAULT_BROWN_COLOR);
+    sendMessage(UNITY_OBJECT_NAME, "JS_SetFacehairColor", DEFAULT_BROWN_COLOR);
   };
 
   // Unity 이벤트 리스너
@@ -106,8 +112,8 @@ export function UnityProvider({ children }: { children: ReactNode }) {
         setSpriteNames(names);
         spritesReady.current = true;
 
-        // 스프라이트 로드 후 바로 기본값 적용 시도
-        setTimeout(applyDefaults, 200);
+        // 스프라이트 로드 후 기본값 적용 (충분한 딜레이로 Unity 안정화 대기)
+        setTimeout(applyDefaults, 500);
       } catch (err) {
         console.error("Failed to load sprite names:", err);
       }
