@@ -234,18 +234,20 @@ export const useAppearanceStore = create<AppearanceStore>((set, get) => ({
   setSpriteCounts: (counts) => set({ spriteCounts: counts }),
   setSpriteNames: (names) => set({ spriteNames: names }),
   setCharacterState: (state) => {
-    // 손별 무기 상태도 동기화
-    const leftWeaponType = state.leftWeaponType?.toLowerCase() as WeaponPartType | null;
-    const rightWeaponType = state.rightWeaponType?.toLowerCase() as WeaponPartType | null;
+    // 손별 무기 상태도 동기화 (빈 문자열 체크 후 캐스팅)
+    const leftType = state.leftWeaponType;
+    const rightType = state.rightWeaponType;
+    const leftWeaponType = leftType && leftType !== "" ? leftType.toLowerCase() as WeaponPartType : null;
+    const rightWeaponType = rightType && rightType !== "" ? rightType.toLowerCase() as WeaponPartType : null;
 
     set({
       characterState: state,
       leftHandWeapon: {
-        weaponType: leftWeaponType && leftWeaponType !== "" ? leftWeaponType : null,
+        weaponType: leftWeaponType,
         index: state.leftWeaponIndex ?? -1,
       },
       rightHandWeapon: {
-        weaponType: rightWeaponType && rightWeaponType !== "" ? rightWeaponType : null,
+        weaponType: rightWeaponType,
         index: state.rightWeaponIndex ?? -1,
       },
     });
