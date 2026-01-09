@@ -120,8 +120,8 @@ const PART_META: Record<PartType, { label: string; indexKey: keyof CharacterStat
   cloth: { label: "옷", indexKey: "clothIndex", countKey: "clothCount", required: false, colorKey: "clothColor" },
   armor: { label: "갑옷", indexKey: "armorIndex", countKey: "armorCount", required: false, colorKey: "armorColor" },
   pant: { label: "바지", indexKey: "pantIndex", countKey: "pantCount", required: false, colorKey: "pantColor" },
-  helmet: { label: "투구", indexKey: "helmetIndex", countKey: "helmetCount", required: false }, // Unity 색상 미구현
-  back: { label: "등", indexKey: "backIndex", countKey: "backCount", required: false }, // Unity 색상 미구현
+  helmet: { label: "투구", indexKey: "helmetIndex", countKey: "helmetCount", required: false, colorKey: "helmetColor" },
+  back: { label: "등", indexKey: "backIndex", countKey: "backCount", required: false, colorKey: "backColor" },
   // 무기 파츠
   sword: { label: "검", indexKey: "swordIndex", countKey: "swordCount", required: false, colorKey: "swordColor" },
   shield: { label: "방패", indexKey: "shieldIndex", countKey: "shieldCount", required: false, colorKey: "shieldColor" },
