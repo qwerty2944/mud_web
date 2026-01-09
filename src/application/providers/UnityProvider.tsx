@@ -47,28 +47,38 @@ export function UnityProvider({ children }: { children: ReactNode }) {
   // Unity 이벤트 리스너
   useEffect(() => {
     const handleCharacterChanged = (e: CustomEvent) => setCharacterState(e.detail);
-    const handleSpritesLoaded = (e: CustomEvent) => {
-      const data = e.detail;
+    const handleSpritesLoaded = async (e: CustomEvent) => {
+      const unityData = e.detail;
       // counts 설정
-      setSpriteCounts(data);
-      // names 설정 (Unity에서 보내는 이름 사용)
-      const names: SpriteNames = {
-        bodyNames: data.bodyNames || [],
-        eyeNames: data.eyeNames || [],
-        hairNames: data.hairNames || [],
-        facehairNames: data.facehairNames || [],
-        clothNames: data.clothNames || [],
-        armorNames: data.armorNames || [],
-        pantNames: data.pantNames || [],
-        helmetNames: data.helmetNames || [],
-        backNames: data.backNames || [],
-        swordNames: data.swordNames || [],
-        shieldNames: data.shieldNames || [],
-        axeNames: data.axeNames || [],
-        bowNames: data.bowNames || [],
-        wandNames: data.wandNames || [],
-      };
-      setSpriteNames(names);
+      setSpriteCounts(unityData);
+
+      // Unity에서 일부 이름만 보내므로 all-sprites.json에서 나머지 로드
+      try {
+        const res = await fetch("/data/character/all-sprites.json");
+        const jsonData = await res.json();
+
+        // Unity 데이터 우선, 없으면 JSON 폴백
+        const names: SpriteNames = {
+          bodyNames: unityData.bodyNames?.length ? unityData.bodyNames : (jsonData.bodyNames || []),
+          eyeNames: unityData.eyeNames?.length ? unityData.eyeNames : (jsonData.eyeNames || []),
+          hairNames: unityData.hairNames?.length ? unityData.hairNames : (jsonData.hairNames || []),
+          facehairNames: unityData.facehairNames?.length ? unityData.facehairNames : (jsonData.facehairNames || []),
+          clothNames: unityData.clothNames?.length ? unityData.clothNames : (jsonData.clothNames || []),
+          armorNames: unityData.armorNames?.length ? unityData.armorNames : (jsonData.armorNames || []),
+          // Unity에서 안 보내는 것들은 JSON에서
+          pantNames: jsonData.pantNames || [],
+          helmetNames: jsonData.helmetNames || [],
+          backNames: jsonData.backNames || [],
+          swordNames: jsonData.swordNames || [],
+          shieldNames: jsonData.shieldNames || [],
+          axeNames: jsonData.axeNames || [],
+          bowNames: jsonData.bowNames || [],
+          wandNames: jsonData.wandNames || [],
+        };
+        setSpriteNames(names);
+      } catch (err) {
+        console.error("Failed to load sprite names:", err);
+      }
     };
     const handleAnimationsLoaded = (e: CustomEvent) => setAnimationCounts(e.detail);
     const handleAnimationChanged = (e: CustomEvent) => setAnimationState(e.detail);
