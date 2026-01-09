@@ -406,7 +406,7 @@ export const useAppearanceStore = create<AppearanceStore>((set, get) => ({
   // 외형만 랜덤화 (장비는 유지)
   // 외형: 종족, 눈, 머리, 수염
   randomizeAppearance: () => {
-    const { callUnity, spriteCounts } = get();
+    const { callUnity, spriteCounts, characterState } = get();
     if (!spriteCounts) return;
 
     // 랜덤 인덱스 생성 (필수 파츠는 항상 값 존재)
@@ -417,17 +417,34 @@ export const useAppearanceStore = create<AppearanceStore>((set, get) => ({
       return Math.random() < 0.3 ? -1 : Math.floor(Math.random() * count);
     };
 
-    // 외형 파츠 랜덤화
-    callUnity("JS_SetBody", randomIndex(spriteCounts.bodyCount, true).toString());
-    callUnity("JS_SetEye", randomIndex(spriteCounts.eyeCount, true).toString());
-    callUnity("JS_SetHair", randomIndex(spriteCounts.hairCount, false).toString());
-    callUnity("JS_SetFacehair", randomIndex(spriteCounts.facehairCount, false).toString());
+    // 랜덤 인덱스 생성
+    const bodyIdx = randomIndex(spriteCounts.bodyCount, true);
+    const eyeIdx = randomIndex(spriteCounts.eyeCount, true);
+    const hairIdx = randomIndex(spriteCounts.hairCount, false);
+    const facehairIdx = randomIndex(spriteCounts.facehairCount, false);
+
+    // Unity 호출
+    callUnity("JS_SetBody", bodyIdx.toString());
+    callUnity("JS_SetEye", eyeIdx.toString());
+    callUnity("JS_SetHair", hairIdx.toString());
+    callUnity("JS_SetFacehair", facehairIdx.toString());
+
+    // Store 상태 업데이트
+    set({
+      characterState: characterState ? {
+        ...characterState,
+        bodyIndex: bodyIdx,
+        eyeIndex: eyeIdx,
+        hairIndex: hairIdx,
+        facehairIndex: facehairIdx,
+      } : null,
+    });
   },
 
   // 장비만 랜덤화 (캐릭터 외형은 유지)
   // 장비: 투구, 갑옷, 의복, 바지, 등, 무기, 방패
   randomizeEquipment: () => {
-    const { callUnity, spriteCounts } = get();
+    const { callUnity, spriteCounts, characterState } = get();
     if (!spriteCounts) return;
 
     // 랜덤 인덱스 생성 (30% 확률로 없음)
@@ -436,45 +453,68 @@ export const useAppearanceStore = create<AppearanceStore>((set, get) => ({
       return Math.random() < 0.3 ? -1 : Math.floor(Math.random() * count);
     };
 
-    // 방어구 장비 랜덤화
-    callUnity("JS_SetHelmet", randomIndex(spriteCounts.helmetCount).toString());
-    callUnity("JS_SetArmor", randomIndex(spriteCounts.armorCount).toString());
-    callUnity("JS_SetCloth", randomIndex(spriteCounts.clothCount).toString());
-    callUnity("JS_SetPant", randomIndex(spriteCounts.pantCount).toString());
-    callUnity("JS_SetBack", randomIndex(spriteCounts.backCount).toString());
+    // 방어구 랜덤 인덱스 생성
+    const helmetIdx = randomIndex(spriteCounts.helmetCount);
+    const armorIdx = randomIndex(spriteCounts.armorCount);
+    const clothIdx = randomIndex(spriteCounts.clothCount);
+    const pantIdx = randomIndex(spriteCounts.pantCount);
+    const backIdx = randomIndex(spriteCounts.backCount);
 
-    // 무기 전부 클리어
-    callUnity("JS_SetSword", "-1");
-    callUnity("JS_SetAxe", "-1");
-    callUnity("JS_SetBow", "-1");
-    callUnity("JS_SetWand", "-1");
-    callUnity("JS_SetShield", "-1");
+    // 방어구 Unity 호출
+    callUnity("JS_SetHelmet", helmetIdx.toString());
+    callUnity("JS_SetArmor", armorIdx.toString());
+    callUnity("JS_SetCloth", clothIdx.toString());
+    callUnity("JS_SetPant", pantIdx.toString());
+    callUnity("JS_SetBack", backIdx.toString());
+
+    // 기존 무기 전부 클리어
+    callUnity("JS_ClearRightWeapon");
+    callUnity("JS_ClearLeftWeapon");
 
     // 오른손: sword, axe, bow, wand 중 하나 또는 없음
     const rightWeaponTypes: (WeaponPartType | null)[] = ["sword", "axe", "bow", "wand", null];
     const rightType = rightWeaponTypes[Math.floor(Math.random() * rightWeaponTypes.length)];
+    let rightWeaponIndex = -1;
 
     if (rightType) {
       const countKey = `${rightType}Count` as keyof SpriteCounts;
       const total = spriteCounts[countKey] as number;
       if (total > 0) {
-        const index = Math.floor(Math.random() * total);
-        const methodMap: Record<WeaponPartType, string> = {
-          sword: "JS_SetSword",
-          axe: "JS_SetAxe",
-          bow: "JS_SetBow",
-          wand: "JS_SetWand",
-          shield: "JS_SetShield",
-        };
-        callUnity(methodMap[rightType], index.toString());
+        rightWeaponIndex = Math.floor(Math.random() * total);
+        const typeName = rightType.charAt(0).toUpperCase() + rightType.slice(1);
+        callUnity("JS_SetRightWeapon", `${typeName},${rightWeaponIndex}`);
       }
     }
 
     // 왼손: shield 또는 없음 (50% 확률)
+    let leftType: WeaponPartType | null = null;
+    let leftWeaponIndex = -1;
     if (Math.random() < 0.5 && spriteCounts.shieldCount > 0) {
-      const index = Math.floor(Math.random() * spriteCounts.shieldCount);
-      callUnity("JS_SetShield", index.toString());
+      leftType = "shield";
+      leftWeaponIndex = Math.floor(Math.random() * spriteCounts.shieldCount);
+      callUnity("JS_SetLeftWeapon", `Shield,${leftWeaponIndex}`);
     }
+
+    // Store 상태 업데이트 - 방어구
+    set({
+      characterState: characterState ? {
+        ...characterState,
+        helmetIndex: helmetIdx,
+        armorIndex: armorIdx,
+        clothIndex: clothIdx,
+        pantIndex: pantIdx,
+        backIndex: backIdx,
+      } : null,
+      // 손 무기 상태 업데이트
+      rightHandWeapon: {
+        weaponType: rightType,
+        index: rightWeaponIndex,
+      },
+      leftHandWeapon: {
+        weaponType: leftType,
+        index: leftWeaponIndex,
+      },
+    });
   },
   clearAll: () => {
     const { callUnity } = get();
