@@ -171,6 +171,7 @@ interface AppearanceStore {
   // 파츠 조작
   nextPart: (type: PartType) => void;
   prevPart: (type: PartType) => void;
+  clearPart: (type: PartType) => void;
 
   // 손별 무기 조작
   setHandWeaponType: (hand: HandType, weaponType: WeaponPartType | null) => void;
@@ -249,20 +250,19 @@ export const useAppearanceStore = create<AppearanceStore>((set, get) => ({
   // 파츠 조작
   nextPart: (type) => {
     const weaponTypes: WeaponPartType[] = ["sword", "shield", "axe", "bow", "wand"];
+    const { characterState, spriteCounts, callUnity } = get();
+    const meta = PART_META[type];
+    const current = (characterState?.[meta.indexKey] as number) ?? 0;
+    const total = (spriteCounts?.[meta.countKey] as number) ?? 0;
+
+    if (total === 0) return;
+
+    // 다음 인덱스 계산: 0 → 1 → ... → total-1 → 0 (순환, -1로 가지 않음)
+    // 현재가 -1(없음)인 경우 0으로 설정
+    const next = current < 0 ? 0 : (current + 1) % total;
 
     if (weaponTypes.includes(type as WeaponPartType)) {
       // 무기는 JS_SetRightWeapon/JS_SetLeftWeapon 사용
-      const { characterState, spriteCounts, callUnity } = get();
-      const meta = PART_META[type];
-      const current = (characterState?.[meta.indexKey] as number) ?? -1;
-      const total = (spriteCounts?.[meta.countKey] as number) ?? 0;
-
-      if (total === 0) return;
-
-      // 다음 인덱스 계산: -1 → 0 → 1 → ... → total-1 → -1
-      const next = current + 1 >= total ? -1 : current + 1;
-
-      // shield는 왼손, 나머지는 오른손
       const method = type === "shield" ? "JS_SetLeftWeapon" : "JS_SetRightWeapon";
       const weaponTypeName = type.charAt(0).toUpperCase() + type.slice(1);
       callUnity(method, `${weaponTypeName},${next}`);
@@ -275,26 +275,26 @@ export const useAppearanceStore = create<AppearanceStore>((set, get) => ({
         } : null,
       }));
     } else {
-      const method = `JS_Next${type.charAt(0).toUpperCase() + type.slice(1)}`;
-      get().callUnity(method);
+      // 일반 파츠는 JS_SetXxx 사용 (0-total 범위만 순환)
+      const method = `JS_Set${type.charAt(0).toUpperCase() + type.slice(1)}`;
+      callUnity(method, next.toString());
     }
   },
   prevPart: (type) => {
     const weaponTypes: WeaponPartType[] = ["sword", "shield", "axe", "bow", "wand"];
+    const { characterState, spriteCounts, callUnity } = get();
+    const meta = PART_META[type];
+    const current = (characterState?.[meta.indexKey] as number) ?? 0;
+    const total = (spriteCounts?.[meta.countKey] as number) ?? 0;
+
+    if (total === 0) return;
+
+    // 이전 인덱스 계산: 0 ← 1 ← ... ← total-1 (순환, -1로 가지 않음)
+    // 현재가 -1(없음)인 경우 마지막으로 설정
+    const prev = current <= 0 ? total - 1 : current - 1;
 
     if (weaponTypes.includes(type as WeaponPartType)) {
       // 무기는 JS_SetRightWeapon/JS_SetLeftWeapon 사용
-      const { characterState, spriteCounts, callUnity } = get();
-      const meta = PART_META[type];
-      const current = (characterState?.[meta.indexKey] as number) ?? -1;
-      const total = (spriteCounts?.[meta.countKey] as number) ?? 0;
-
-      if (total === 0) return;
-
-      // 이전 인덱스 계산: -1 ← 0 ← 1 ← ... ← total-1
-      const prev = current <= -1 ? total - 1 : current - 1;
-
-      // shield는 왼손, 나머지는 오른손
       const method = type === "shield" ? "JS_SetLeftWeapon" : "JS_SetRightWeapon";
       const weaponTypeName = type.charAt(0).toUpperCase() + type.slice(1);
       callUnity(method, `${weaponTypeName},${prev}`);
@@ -307,8 +307,37 @@ export const useAppearanceStore = create<AppearanceStore>((set, get) => ({
         } : null,
       }));
     } else {
-      const method = `JS_Prev${type.charAt(0).toUpperCase() + type.slice(1)}`;
-      get().callUnity(method);
+      // 일반 파츠는 JS_SetXxx 사용 (0-total 범위만 순환)
+      const method = `JS_Set${type.charAt(0).toUpperCase() + type.slice(1)}`;
+      callUnity(method, prev.toString());
+    }
+  },
+  // 명시적으로 파츠를 없음(-1) 상태로 설정 (body, eye는 불가)
+  clearPart: (type) => {
+    const meta = PART_META[type];
+    // 필수 파츠는 클리어 불가
+    if (meta.required) return;
+
+    const weaponTypes: WeaponPartType[] = ["sword", "shield", "axe", "bow", "wand"];
+    const { callUnity } = get();
+
+    if (weaponTypes.includes(type as WeaponPartType)) {
+      // 무기는 -1로 설정
+      const method = type === "shield" ? "JS_SetLeftWeapon" : "JS_SetRightWeapon";
+      const weaponTypeName = type.charAt(0).toUpperCase() + type.slice(1);
+      callUnity(method, `${weaponTypeName},-1`);
+
+      // 로컬 상태 업데이트
+      set((state) => ({
+        characterState: state.characterState ? {
+          ...state.characterState,
+          [meta.indexKey]: -1,
+        } : null,
+      }));
+    } else {
+      // 일반 파츠는 JS_SetXxx에 -1 전달
+      const method = `JS_Set${type.charAt(0).toUpperCase() + type.slice(1)}`;
+      callUnity(method, "-1");
     }
   },
 
@@ -553,20 +582,15 @@ export const useAppearanceStore = create<AppearanceStore>((set, get) => ({
     const total = spriteCounts[countKey] as number;
     if (total === 0) return;
 
-    // -1 → 0 → 1 → ... → total-1 → -1 순환
-    const nextIndex = current.index + 1 >= total ? -1 : current.index + 1;
+    // 0 → 1 → ... → total-1 → 0 순환 (-1로 가지 않음)
+    // 현재가 -1(없음)인 경우 0으로 설정
+    const nextIndex = current.index < 0 ? 0 : (current.index + 1) % total;
     set({ [stateKey]: { ...current, index: nextIndex } });
 
     if (isUnityLoaded) {
-      if (nextIndex === -1) {
-        // 무기 해제
-        const clearMethod = hand === "left" ? "JS_ClearLeftWeapon" : "JS_ClearRightWeapon";
-        callUnity(clearMethod);
-      } else {
-        const method = hand === "left" ? "JS_SetLeftWeapon" : "JS_SetRightWeapon";
-        const typeName = current.weaponType.charAt(0).toUpperCase() + current.weaponType.slice(1);
-        callUnity(method, `${typeName},${nextIndex}`);
-      }
+      const method = hand === "left" ? "JS_SetLeftWeapon" : "JS_SetRightWeapon";
+      const typeName = current.weaponType.charAt(0).toUpperCase() + current.weaponType.slice(1);
+      callUnity(method, `${typeName},${nextIndex}`);
     }
   },
 
@@ -581,20 +605,15 @@ export const useAppearanceStore = create<AppearanceStore>((set, get) => ({
     const total = spriteCounts[countKey] as number;
     if (total === 0) return;
 
-    // -1 ← 0 ← 1 ← ... ← total-1 순환
-    const prevIndex = current.index <= -1 ? total - 1 : current.index - 1;
+    // 0 ← 1 ← ... ← total-1 순환 (-1로 가지 않음)
+    // 현재가 -1(없음)인 경우 마지막으로 설정
+    const prevIndex = current.index <= 0 ? total - 1 : current.index - 1;
     set({ [stateKey]: { ...current, index: prevIndex } });
 
     if (isUnityLoaded) {
-      if (prevIndex === -1) {
-        // 무기 해제
-        const clearMethod = hand === "left" ? "JS_ClearLeftWeapon" : "JS_ClearRightWeapon";
-        callUnity(clearMethod);
-      } else {
-        const method = hand === "left" ? "JS_SetLeftWeapon" : "JS_SetRightWeapon";
-        const typeName = current.weaponType.charAt(0).toUpperCase() + current.weaponType.slice(1);
-        callUnity(method, `${typeName},${prevIndex}`);
-      }
+      const method = hand === "left" ? "JS_SetLeftWeapon" : "JS_SetRightWeapon";
+      const typeName = current.weaponType.charAt(0).toUpperCase() + current.weaponType.slice(1);
+      callUnity(method, `${typeName},${prevIndex}`);
     }
   },
 
@@ -663,14 +682,18 @@ export const useAppearanceStore = create<AppearanceStore>((set, get) => ({
 export function useAppearancePart(type: PartType) {
   const store = useAppearanceStore();
   const info = store.getPartInfo(type);
+  const meta = PART_META[type];
 
   return {
     ...info,
+    // 필수 파츠 여부 (body, eye는 클리어 불가)
+    isRequired: meta.required,
     next: () => store.nextPart(type),
     prev: () => store.prevPart(type),
+    // 명시적으로 없음(-1) 상태로 설정 (필수 파츠는 동작 안함)
+    clear: () => store.clearPart(type),
     setColor: (hex: string) => {
       // 색상 적용 가능한 파츠만
-      const meta = PART_META[type];
       if (meta.colorKey) {
         store.setColor(type as "body" | "eye" | "hair" | "facehair" | "cloth" | "armor" | "pant" | "helmet" | "back", hex);
       }

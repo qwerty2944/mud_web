@@ -71,16 +71,12 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
 
 const COLOR_PRESETS = ["#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#FF00FF", "#00FFFF", "#FFFFFF", "#000000", "#808080", "#FFD700"];
 
-// 필수 파츠 (항상 유효한 인덱스, -1 불가)
-const REQUIRED_PARTS: PartType[] = ["body", "eye"];
-
 function PartSelector({ type }: { type: PartType }) {
   const { usePart } = useHooks();
-  const { label, current, total, name, hasColor, next, prev, setColor } = usePart(type);
+  const { label, current, total, name, hasColor, isRequired, next, prev, clear, setColor } = usePart(type);
   const [showColorPicker, setShowColorPicker] = useState(false);
   const [localColor, setLocalColor] = useState("#FFFFFF");
 
-  const isRequired = REQUIRED_PARTS.includes(type);
   const isEmpty = current < 0;
 
   // 인덱스 표시: 필수 파츠는 항상 숫자, 선택 파츠는 "없음" 가능
@@ -99,6 +95,16 @@ function PartSelector({ type }: { type: PartType }) {
               style={{ backgroundColor: localColor }}
               title="색상 변경"
             />
+          )}
+          {/* 없음 버튼 (필수 파츠가 아닌 경우에만 표시) */}
+          {!isRequired && (
+            <button
+              onClick={clear}
+              className={`px-1.5 py-0.5 text-xs rounded ${isEmpty ? "bg-red-600 text-white" : "bg-gray-600 text-gray-300 hover:bg-red-600"}`}
+              title="없음으로 설정"
+            >
+              ✕
+            </button>
           )}
         </div>
         <div className="flex items-center gap-1">
@@ -196,14 +202,24 @@ function ActionButtons() {
 
 function WeaponSelector({ type }: { type: WeaponPartType }) {
   const { usePart } = useHooks();
-  const { label, current, total, next, prev } = usePart(type);
+  const { label, current, total, next, prev, clear } = usePart(type);
 
   const isEmpty = current < 0;
   const displayIndex = isEmpty ? "없음" : `${current + 1}`;
 
   return (
     <div className="flex items-center justify-between text-sm">
-      <span className="w-14 text-gray-400">{label}</span>
+      <div className="flex items-center gap-1">
+        <span className="w-12 text-gray-400">{label}</span>
+        {/* 없음 버튼 */}
+        <button
+          onClick={clear}
+          className={`px-1.5 py-0.5 text-xs rounded ${isEmpty ? "bg-red-600 text-white" : "bg-gray-600 text-gray-300 hover:bg-red-600"}`}
+          title="없음으로 설정"
+        >
+          ✕
+        </button>
+      </div>
       <div className="flex items-center gap-1">
         <button onClick={prev} className="btn-icon">&lt;</button>
         <span className="w-14 text-center text-xs">
@@ -219,7 +235,7 @@ function HandWeaponSelector({ hand }: { hand: HandType }) {
   const { useHandWeapon, weaponPartTypes } = useHooks();
   if (!useHandWeapon) return null;
 
-  const { weaponType, index, total, name, setWeaponType, next, prev } = useHandWeapon(hand);
+  const { weaponType, index, total, name, setWeaponType, next, prev, clear } = useHandWeapon(hand);
 
   const handLabel = hand === "left" ? "🤚 왼손" : "✋ 오른손";
   const weaponLabels: Record<WeaponPartType, string> = {
@@ -229,6 +245,8 @@ function HandWeaponSelector({ hand }: { hand: HandType }) {
     bow: "활",
     wand: "지팡이",
   };
+
+  const isEmpty = index < 0;
 
   return (
     <div className="bg-gray-700/50 rounded p-2 space-y-1">
@@ -253,14 +271,22 @@ function HandWeaponSelector({ hand }: { hand: HandType }) {
       {weaponType && (
         <div className="flex items-center justify-between text-sm">
           <div className="flex items-center gap-1">
+            {/* 없음 버튼 */}
+            <button
+              onClick={clear}
+              className={`px-1.5 py-0.5 text-xs rounded ${isEmpty ? "bg-red-600 text-white" : "bg-gray-600 text-gray-300 hover:bg-red-600"}`}
+              title="없음으로 설정"
+            >
+              ✕
+            </button>
             <button onClick={prev} className="btn-icon">&lt;</button>
             <span className="w-14 text-center text-xs">
-              {index >= 0 ? `${index + 1}/${total}` : `없음/${total}`}
+              {isEmpty ? "없음" : `${index + 1}`}/{total}
             </span>
             <button onClick={next} className="btn-icon">&gt;</button>
           </div>
           <span className="text-xs text-gray-400 truncate max-w-[120px]" title={name}>
-            {index >= 0 ? (name || "-") : "(없음)"}
+            {isEmpty ? "(없음)" : (name || "-")}
           </span>
         </div>
       )}

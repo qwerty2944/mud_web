@@ -16,8 +16,10 @@ export interface PartInfo {
   total: number;
   name: string;
   hasColor: boolean;
+  isRequired: boolean; // 필수 파츠 여부 (body, eye는 true)
   next: () => void;
   prev: () => void;
+  clear: () => void; // 명시적으로 없음(-1) 상태로 설정 (필수 파츠는 동작 안함)
   setColor: (hex: string) => void;
 }
 

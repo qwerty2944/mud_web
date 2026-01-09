@@ -76,6 +76,13 @@ export function UnityProvider({ children }: { children: ReactNode }) {
           wandNames: jsonData.wandNames || [],
         };
         setSpriteNames(names);
+
+        // 기본값 설정: Human_1 (인덱스 3), Eye (인덱스 0)
+        // all-sprites.json 기준 정렬된 순서에서 Human_1은 4번째(인덱스 3)
+        setTimeout(() => {
+          sendMessage(UNITY_OBJECT_NAME, "JS_SetBody", "3"); // Human_1
+          // Eye는 body와 함께 설정되므로 별도 호출 불필요 (인덱스 0이 기본)
+        }, 100);
       } catch (err) {
         console.error("Failed to load sprite names:", err);
       }
@@ -84,17 +91,17 @@ export function UnityProvider({ children }: { children: ReactNode }) {
     const handleAnimationChanged = (e: CustomEvent) => setAnimationState(e.detail);
 
     window.addEventListener("unityCharacterChanged", handleCharacterChanged as EventListener);
-    window.addEventListener("unitySpritesLoaded", handleSpritesLoaded as EventListener);
+    window.addEventListener("unitySpritesLoaded", handleSpritesLoaded as unknown as EventListener);
     window.addEventListener("unityAnimationsLoaded", handleAnimationsLoaded as EventListener);
     window.addEventListener("unityAnimationChanged", handleAnimationChanged as EventListener);
 
     return () => {
       window.removeEventListener("unityCharacterChanged", handleCharacterChanged as EventListener);
-      window.removeEventListener("unitySpritesLoaded", handleSpritesLoaded as EventListener);
+      window.removeEventListener("unitySpritesLoaded", handleSpritesLoaded as unknown as EventListener);
       window.removeEventListener("unityAnimationsLoaded", handleAnimationsLoaded as EventListener);
       window.removeEventListener("unityAnimationChanged", handleAnimationChanged as EventListener);
     };
-  }, [setCharacterState, setSpriteCounts, setAnimationCounts, setAnimationState, setSpriteNames]);
+  }, [setCharacterState, setSpriteCounts, setAnimationCounts, setAnimationState, setSpriteNames, sendMessage]);
 
   return (
     <UnityCtx.Provider value={{ unityProvider, isLoaded, loadingProgression }}>
