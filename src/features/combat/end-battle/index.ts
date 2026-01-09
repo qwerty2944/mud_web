@@ -5,7 +5,14 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useBattleStore } from "@/application/stores";
 import { rollDrops, calculateExpBonus } from "@/entities/monster";
 import { useGainProficiency } from "@/features/proficiency";
-import { profileKeys, updateProfile, checkLevelUp, useProfile } from "@/entities/user";
+import {
+  profileKeys,
+  updateProfile,
+  checkLevelUp,
+  useProfile,
+  getRespawnLocation,
+  updateProfileAfterDefeat,
+} from "@/entities/user";
 import { inventoryKeys } from "@/entities/inventory";
 import { fetchItemById } from "@/entities/item";
 import { addItem } from "@/features/inventory";
@@ -22,6 +29,12 @@ import {
   canGainProficiency,
   useProficiencies,
 } from "@/entities/proficiency";
+import {
+  checkInjuryOccurrence,
+  getInjuryOccurredMessage,
+  INJURY_CONFIG,
+} from "@/entities/injury";
+import { getMapById, useMaps, getMapDisplayName } from "@/entities/map";
 import toast from "react-hot-toast";
 
 interface BattleRewards {
@@ -59,6 +72,7 @@ export function useEndBattle(options: UseEndBattleOptions) {
   const gainProficiency = useGainProficiency(userId);
   const { data: profile } = useProfile(userId);
   const { data: proficiencies } = useProficiencies(userId);
+  const { data: maps = [] } = useMaps();
 
   const playerLevel = profile?.level ?? 1;
 
@@ -231,29 +245,84 @@ export function useEndBattle(options: UseEndBattleOptions) {
   // 패배 처리
   const handleDefeat = useCallback(async () => {
     const currentBattleState = useBattleStore.getState().battle;
+    const monster = currentBattleState.monster;
 
     // UI 먼저 닫기
     resetBattle();
 
-    // 패배 시 HP/MP 저장 (HP는 0 또는 낮은 상태)
-    if (userId) {
+    if (!userId || !profile) {
+      onDefeat?.();
+      return;
+    }
+
+    try {
+      // 1. 부상 발생 판정
+      let injuryResult = null;
+      if (monster) {
+        injuryResult = checkInjuryOccurrence({
+          currentHp: currentBattleState.playerCurrentHp,
+          maxHp: currentBattleState.playerMaxHp,
+          playerLevel: profile.level,
+          monsterLevel: monster.level,
+          monsterNameKo: monster.nameKo,
+          isCriticalHit: false,
+        });
+      }
+
+      // 2. 귀환 위치 결정 (종교 제단 또는 시작 마을)
+      const respawnMapId = await getRespawnLocation(profile.religionId);
+      const respawnMap = getMapById(maps, respawnMapId);
+      const respawnMapName = respawnMap ? getMapDisplayName(respawnMap) : "시작 마을";
+
+      // 3. DB 업데이트 (HP=1, 귀환 위치, 부상)
+      await updateProfileAfterDefeat({
+        userId,
+        currentHp: 1, // HP를 1로 설정 (0이 아님)
+        currentMp: currentBattleState.playerMp,
+        currentMapId: respawnMapId,
+        newInjury: injuryResult?.injury || null,
+      });
+
+      // 4. 사망 메시지 표시
+      toast.error(`💀 ${monster?.nameKo || "몬스터"}에게 쓰러졌습니다...`, {
+        duration: 3000,
+      });
+
+      // 5. 부상 메시지 표시
+      if (injuryResult?.occurred && injuryResult.type) {
+        const injuryConfig = INJURY_CONFIG[injuryResult.type];
+        toast.error(
+          `${injuryConfig.icon} ${injuryConfig.nameKo}을 입었습니다! (최대 HP -${injuryConfig.maxHpReduction * 100}%)`,
+          { duration: 4000 }
+        );
+      }
+
+      // 6. 귀환 메시지 표시
+      toast(`⛪ ${respawnMapName}(으)로 귀환합니다...`, {
+        icon: "🏠",
+        duration: 3000,
+      });
+
+      // 7. 캐시 무효화
+      queryClient.invalidateQueries({ queryKey: profileKeys.detail(userId) });
+    } catch (error) {
+      console.error("Failed to process defeat:", error);
+
+      // 에러 발생 시에도 기본 HP/MP 저장 시도
       try {
         await updateProfile({
           userId,
-          currentHp: currentBattleState.playerCurrentHp,
+          currentHp: 1,
           currentMp: currentBattleState.playerMp,
         });
-
-        // 캐시 무효화
         queryClient.invalidateQueries({ queryKey: profileKeys.detail(userId) });
-      } catch (error) {
-        console.error("Failed to save HP/MP after defeat:", error);
+      } catch (e) {
+        console.error("Failed to save HP/MP after defeat:", e);
       }
     }
 
-    // TODO: 패널티 처리 (골드 손실 등)
     onDefeat?.();
-  }, [userId, onDefeat, resetBattle, queryClient]);
+  }, [userId, profile, maps, onDefeat, resetBattle, queryClient]);
 
   // 도주 처리
   const handleFled = useCallback(async () => {

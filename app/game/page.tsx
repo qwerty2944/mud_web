@@ -14,7 +14,11 @@ import {
   WorldMapModal,
   MonsterList,
   BattlePanel,
+  NpcList,
+  HealerDialog,
+  InjuryDisplay,
 } from "@/features/game";
+import { useNpcsByMap, type Npc } from "@/entities/npc";
 import {
   useProfile,
   getMainCharacter,
@@ -52,6 +56,10 @@ export default function GamePage() {
   const [mapId, setMapId] = useState<string | null>(null);
   const [showThemeModal, setShowThemeModal] = useState(false);
   const [showWorldMap, setShowWorldMap] = useState(false);
+  const [selectedNpc, setSelectedNpc] = useState<Npc | null>(null);
+
+  // NPC 조회
+  const { data: npcs = [] } = useNpcsByMap(mapId || "starting_village");
 
   // 전투 관련
   const { battle } = useBattleStore();
@@ -217,6 +225,17 @@ export default function GamePage() {
     endBattle();
   }, [endBattle]);
 
+  // NPC 선택 핸들러
+  const handleSelectNpc = useCallback(
+    (npcId: string) => {
+      const npc = npcs.find((n) => n.id === npcId);
+      if (npc) {
+        setSelectedNpc(npc);
+      }
+    },
+    [npcs]
+  );
+
   if (profileLoading || !profile) {
     return (
       <div
@@ -357,6 +376,10 @@ export default function GamePage() {
               >
                 Lv.{profile.level}
               </span>
+              {/* 부상 표시 */}
+              {profile.injuries.length > 0 && (
+                <InjuryDisplay injuries={profile.injuries} compact />
+              )}
             </Link>
             {/* 재화 표시 (태블릿 이상) */}
             <div className="hidden md:flex items-center gap-2 text-xs sm:text-sm font-mono">
@@ -394,6 +417,13 @@ export default function GamePage() {
             mapId={mapId || "town_square"}
             playerLevel={profile.level}
             onSelectMonster={handleSelectMonster}
+            disabled={battle.isInBattle}
+          />
+
+          {/* NPC 목록 */}
+          <NpcList
+            mapId={mapId || "starting_village"}
+            onSelectNpc={handleSelectNpc}
             disabled={battle.isInBattle}
           />
 
@@ -442,6 +472,17 @@ export default function GamePage() {
         onMapSelect={handleMapChange}
         playerLevel={profile.level}
       />
+
+      {/* 치료사 NPC 다이얼로그 */}
+      {selectedNpc && selectedNpc.type === "healer" && (
+        <HealerDialog
+          npc={selectedNpc}
+          injuries={profile.injuries}
+          playerGold={profile.gold}
+          userId={session.user.id}
+          onClose={() => setSelectedNpc(null)}
+        />
+      )}
 
       {/* 시간대별 명도 오버레이 */}
       <div

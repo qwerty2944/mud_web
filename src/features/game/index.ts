@@ -29,6 +29,9 @@ export {
   MonsterList,
   WorldMap,
   WorldMapModal,
+  NpcList,
+  HealerDialog,
+  InjuryDisplay,
 } from "./ui";
 
 // Hooks

@@ -10,3 +10,6 @@ export { BattlePanel } from "./BattlePanel";
 export { MonsterList } from "./MonsterList";
 export { WorldMap } from "./WorldMap";
 export { WorldMapModal } from "./WorldMapModal";
+export { NpcList } from "./NpcList";
+export { HealerDialog } from "./HealerDialog";
+export { InjuryDisplay } from "./InjuryDisplay";

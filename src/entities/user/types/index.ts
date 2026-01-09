@@ -1,4 +1,5 @@
 import type { SavedCharacter } from "@/entities/character";
+import type { CharacterInjury } from "@/entities/injury";
 
 // ============ 프로필 타입 ============
 
@@ -25,4 +26,8 @@ export interface UserProfile {
   // 현재 HP/MP (null이면 최대값)
   currentHp: number | null;
   currentMp: number | null;
+  // 부상 시스템
+  injuries: CharacterInjury[];
+  // 종교 시스템
+  religionId: string | null;
 }
