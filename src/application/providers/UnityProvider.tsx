@@ -1,10 +1,14 @@
 "use client";
 
-import { createContext, useContext, useEffect, ReactNode } from "react";
+import { createContext, useContext, useEffect, useRef, ReactNode } from "react";
 import { useUnityContext } from "react-unity-webgl";
 import { useAppearanceStore, type SpriteNames } from "@/application/stores";
 
 const UNITY_OBJECT_NAME = "SPUM_20260103203421028";
+
+// 기본값 상수
+const DEFAULT_BODY_INDEX = 11; // 12번째 종족 (human_1)
+const DEFAULT_EYE_COLOR = "6B4226"; // 갈색
 
 interface UnityContextValue {
   unityProvider: ReturnType<typeof useUnityContext>["unityProvider"];
@@ -25,6 +29,10 @@ export function UnityProvider({ children }: { children: ReactNode }) {
     setAnimationCounts,
   } = useAppearanceStore();
 
+  // 초기화 완료 추적
+  const isInitialized = useRef(false);
+  const spritesReady = useRef(false);
+
   const { unityProvider, sendMessage, isLoaded, loadingProgression } = useUnityContext({
     loaderUrl: "/unity/characterbuilder.loader.js",
     dataUrl: "/unity/characterbuilder.data",
@@ -44,9 +52,29 @@ export function UnityProvider({ children }: { children: ReactNode }) {
     }
   }, [isLoaded, sendMessage, setUnityLoaded, setSendMessage]);
 
+  // 기본값 적용 함수
+  const applyDefaults = () => {
+    if (isInitialized.current || !spritesReady.current) return;
+    isInitialized.current = true;
+
+    // 기본값 설정: 종족 12번 (인덱스 11), 눈 색상 갈색
+    sendMessage(UNITY_OBJECT_NAME, "JS_SetBody", DEFAULT_BODY_INDEX.toString());
+    sendMessage(UNITY_OBJECT_NAME, "JS_SetLeftEyeColor", DEFAULT_EYE_COLOR);
+    sendMessage(UNITY_OBJECT_NAME, "JS_SetRightEyeColor", DEFAULT_EYE_COLOR);
+  };
+
   // Unity 이벤트 리스너
   useEffect(() => {
-    const handleCharacterChanged = (e: CustomEvent) => setCharacterState(e.detail);
+    const handleCharacterChanged = (e: CustomEvent) => {
+      setCharacterState(e.detail);
+
+      // 스프라이트 준비 완료 후 첫 캐릭터 상태 수신 시 기본값 적용
+      if (spritesReady.current && !isInitialized.current) {
+        // 약간의 딜레이 후 기본값 적용 (Unity 상태 안정화)
+        setTimeout(applyDefaults, 50);
+      }
+    };
+
     const handleSpritesLoaded = async (e: CustomEvent) => {
       const unityData = e.detail;
       // counts 설정
@@ -76,13 +104,10 @@ export function UnityProvider({ children }: { children: ReactNode }) {
           wandNames: jsonData.wandNames || [],
         };
         setSpriteNames(names);
+        spritesReady.current = true;
 
-        // 기본값 설정: Human_1 (인덱스 3), Eye (인덱스 0)
-        // all-sprites.json 기준 정렬된 순서에서 Human_1은 4번째(인덱스 3)
-        setTimeout(() => {
-          sendMessage(UNITY_OBJECT_NAME, "JS_SetBody", "3"); // Human_1
-          // Eye는 body와 함께 설정되므로 별도 호출 불필요 (인덱스 0이 기본)
-        }, 100);
+        // 스프라이트 로드 후 바로 기본값 적용 시도
+        setTimeout(applyDefaults, 200);
       } catch (err) {
         console.error("Failed to load sprite names:", err);
       }

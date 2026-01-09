@@ -113,7 +113,7 @@ type SendMessageFn = (objectName: string, methodName: string, param?: string) =>
 // ============ 파츠 메타데이터 ============
 
 const PART_META: Record<PartType, { label: string; indexKey: keyof CharacterState; countKey: keyof SpriteCounts; required: boolean; colorKey?: keyof CharacterState }> = {
-  body: { label: "종족", indexKey: "bodyIndex", countKey: "bodyCount", required: true, colorKey: "bodyColor" },
+  body: { label: "종족", indexKey: "bodyIndex", countKey: "bodyCount", required: true }, // 종족 색상 변경 비활성화
   eye: { label: "눈", indexKey: "eyeIndex", countKey: "eyeCount", required: true, colorKey: "eyeColor" },
   hair: { label: "머리", indexKey: "hairIndex", countKey: "hairCount", required: false, colorKey: "hairColor" },
   facehair: { label: "수염", indexKey: "facehairIndex", countKey: "facehairCount", required: false, colorKey: "facehairColor" },
@@ -322,10 +322,18 @@ export const useAppearanceStore = create<AppearanceStore>((set, get) => ({
     const { callUnity } = get();
 
     if (weaponTypes.includes(type as WeaponPartType)) {
-      // 무기는 -1로 설정
-      const method = type === "shield" ? "JS_SetLeftWeapon" : "JS_SetRightWeapon";
-      const weaponTypeName = type.charAt(0).toUpperCase() + type.slice(1);
-      callUnity(method, `${weaponTypeName},-1`);
+      // 무기는 Clear 메서드 사용 + -1 설정
+      // shield는 왼손, 나머지는 오른손
+      if (type === "shield") {
+        callUnity("JS_ClearLeftWeapon");
+      } else {
+        callUnity("JS_ClearRightWeapon");
+      }
+
+      // 해당 무기 타입 인덱스도 -1로 설정
+      const typeName = type.charAt(0).toUpperCase() + type.slice(1);
+      const setMethod = type === "shield" ? "JS_SetLeftWeapon" : "JS_SetRightWeapon";
+      callUnity(setMethod, `${typeName},-1`);
 
       // 로컬 상태 업데이트
       set((state) => ({
@@ -619,13 +627,21 @@ export const useAppearanceStore = create<AppearanceStore>((set, get) => ({
 
   clearHandWeapon: (hand) => {
     const stateKey = hand === "left" ? "leftHandWeapon" : "rightHandWeapon";
-    set({ [stateKey]: { weaponType: null, index: -1 } });
+    const currentWeapon = get()[stateKey];
 
     const { callUnity, isUnityLoaded } = get();
-    if (isUnityLoaded) {
-      const method = hand === "left" ? "JS_ClearLeftWeapon" : "JS_ClearRightWeapon";
-      callUnity(method);
+    if (isUnityLoaded && currentWeapon.weaponType) {
+      // 먼저 무기 타입을 -1로 설정해서 Unity에서 무기 해제
+      const setMethod = hand === "left" ? "JS_SetLeftWeapon" : "JS_SetRightWeapon";
+      const typeName = currentWeapon.weaponType.charAt(0).toUpperCase() + currentWeapon.weaponType.slice(1);
+      callUnity(setMethod, `${typeName},-1`);
+
+      // 그 다음 Clear 메서드 호출
+      const clearMethod = hand === "left" ? "JS_ClearLeftWeapon" : "JS_ClearRightWeapon";
+      callUnity(clearMethod);
     }
+
+    set({ [stateKey]: { weaponType: null, index: -1 } });
   },
 
   getHandWeaponName: (hand) => {

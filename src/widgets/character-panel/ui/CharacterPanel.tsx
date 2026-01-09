@@ -71,11 +71,16 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
 
 const COLOR_PRESETS = ["#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#FF00FF", "#00FFFF", "#FFFFFF", "#000000", "#808080", "#FFD700"];
 
+// 파츠별 기본 색상
+const DEFAULT_COLORS: Partial<Record<PartType, string>> = {
+  eye: "#6B4226", // 눈: 갈색
+};
+
 function PartSelector({ type }: { type: PartType }) {
   const { usePart } = useHooks();
   const { label, current, total, name, hasColor, isRequired, next, prev, clear, setColor } = usePart(type);
   const [showColorPicker, setShowColorPicker] = useState(false);
-  const [localColor, setLocalColor] = useState("#FFFFFF");
+  const [localColor, setLocalColor] = useState(DEFAULT_COLORS[type] || "#FFFFFF");
 
   const isEmpty = current < 0;
 
