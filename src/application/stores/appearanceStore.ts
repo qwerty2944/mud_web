@@ -389,7 +389,50 @@ export const useAppearanceStore = create<AppearanceStore>((set, get) => ({
   changeAnimationState: (state) => get().callUnity("JS_SetAnimationState", state),
 
   // 유틸리티
-  randomize: () => get().callUnity("JS_Randomize"),
+  randomize: () => {
+    const { callUnity, spriteCounts } = get();
+    if (!spriteCounts) {
+      // 스프라이트 정보 없으면 Unity 기본 랜덤 사용
+      callUnity("JS_Randomize");
+      return;
+    }
+
+    // 외형 파츠는 Unity 랜덤 사용
+    callUnity("JS_Randomize");
+
+    // 무기는 직접 랜덤 (손별로 하나씩만)
+    // 먼저 양손 무기 클리어
+    callUnity("JS_ClearLeftWeapon");
+    callUnity("JS_ClearRightWeapon");
+
+    // 오른손: sword, axe, bow, wand 중 하나 또는 없음
+    const rightWeaponTypes: (WeaponPartType | null)[] = ["sword", "axe", "bow", "wand", null];
+    const rightType = rightWeaponTypes[Math.floor(Math.random() * rightWeaponTypes.length)];
+
+    if (rightType) {
+      const countKey = `${rightType}Count` as keyof SpriteCounts;
+      const total = spriteCounts[countKey] as number;
+      if (total > 0) {
+        const index = Math.floor(Math.random() * total);
+        const typeName = rightType.charAt(0).toUpperCase() + rightType.slice(1);
+        callUnity("JS_SetRightWeapon", `${typeName},${index}`);
+      }
+    }
+
+    // 왼손: shield 또는 없음
+    const leftWeaponTypes: (WeaponPartType | null)[] = ["shield", null];
+    const leftType = leftWeaponTypes[Math.floor(Math.random() * leftWeaponTypes.length)];
+
+    if (leftType) {
+      const countKey = `${leftType}Count` as keyof SpriteCounts;
+      const total = spriteCounts[countKey] as number;
+      if (total > 0) {
+        const index = Math.floor(Math.random() * total);
+        const typeName = leftType.charAt(0).toUpperCase() + leftType.slice(1);
+        callUnity("JS_SetLeftWeapon", `${typeName},${index}`);
+      }
+    }
+  },
   clearAll: () => {
     const { callUnity } = get();
     callUnity("JS_ClearAll");
