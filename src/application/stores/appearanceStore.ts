@@ -502,19 +502,22 @@ export const useAppearanceStore = create<AppearanceStore>((set, get) => ({
   // 손별 무기 조작
   setHandWeaponType: (hand, weaponType) => {
     const stateKey = hand === "left" ? "leftHandWeapon" : "rightHandWeapon";
-    set({ [stateKey]: { weaponType, index: weaponType ? 0 : -1 } });
-
-    // Unity에 무기 설정
     const { callUnity, isUnityLoaded } = get();
-    if (!isUnityLoaded) return;
 
-    const method = hand === "left" ? "JS_SetLeftWeapon" : "JS_SetRightWeapon";
-    if (weaponType) {
-      const typeName = weaponType.charAt(0).toUpperCase() + weaponType.slice(1);
-      callUnity(method, `${typeName},0`);
-    } else {
+    // 먼저 해당 손의 기존 무기 해제 (Unity에서 다른 타입 무기가 중첩되지 않도록)
+    if (isUnityLoaded) {
       const clearMethod = hand === "left" ? "JS_ClearLeftWeapon" : "JS_ClearRightWeapon";
       callUnity(clearMethod);
+    }
+
+    // 상태 업데이트
+    set({ [stateKey]: { weaponType, index: weaponType ? 0 : -1 } });
+
+    // 새 무기 설정
+    if (isUnityLoaded && weaponType) {
+      const method = hand === "left" ? "JS_SetLeftWeapon" : "JS_SetRightWeapon";
+      const typeName = weaponType.charAt(0).toUpperCase() + weaponType.slice(1);
+      callUnity(method, `${typeName},0`);
     }
   },
 
@@ -529,13 +532,20 @@ export const useAppearanceStore = create<AppearanceStore>((set, get) => ({
     const total = spriteCounts[countKey] as number;
     if (total === 0) return;
 
-    const nextIndex = current.index + 1 >= total ? 0 : current.index + 1;
+    // -1 → 0 → 1 → ... → total-1 → -1 순환
+    const nextIndex = current.index + 1 >= total ? -1 : current.index + 1;
     set({ [stateKey]: { ...current, index: nextIndex } });
 
     if (isUnityLoaded) {
-      const method = hand === "left" ? "JS_SetLeftWeapon" : "JS_SetRightWeapon";
-      const typeName = current.weaponType.charAt(0).toUpperCase() + current.weaponType.slice(1);
-      callUnity(method, `${typeName},${nextIndex}`);
+      if (nextIndex === -1) {
+        // 무기 해제
+        const clearMethod = hand === "left" ? "JS_ClearLeftWeapon" : "JS_ClearRightWeapon";
+        callUnity(clearMethod);
+      } else {
+        const method = hand === "left" ? "JS_SetLeftWeapon" : "JS_SetRightWeapon";
+        const typeName = current.weaponType.charAt(0).toUpperCase() + current.weaponType.slice(1);
+        callUnity(method, `${typeName},${nextIndex}`);
+      }
     }
   },
 
@@ -550,13 +560,20 @@ export const useAppearanceStore = create<AppearanceStore>((set, get) => ({
     const total = spriteCounts[countKey] as number;
     if (total === 0) return;
 
-    const prevIndex = current.index <= 0 ? total - 1 : current.index - 1;
+    // -1 ← 0 ← 1 ← ... ← total-1 순환
+    const prevIndex = current.index <= -1 ? total - 1 : current.index - 1;
     set({ [stateKey]: { ...current, index: prevIndex } });
 
     if (isUnityLoaded) {
-      const method = hand === "left" ? "JS_SetLeftWeapon" : "JS_SetRightWeapon";
-      const typeName = current.weaponType.charAt(0).toUpperCase() + current.weaponType.slice(1);
-      callUnity(method, `${typeName},${prevIndex}`);
+      if (prevIndex === -1) {
+        // 무기 해제
+        const clearMethod = hand === "left" ? "JS_ClearLeftWeapon" : "JS_ClearRightWeapon";
+        callUnity(clearMethod);
+      } else {
+        const method = hand === "left" ? "JS_SetLeftWeapon" : "JS_SetRightWeapon";
+        const typeName = current.weaponType.charAt(0).toUpperCase() + current.weaponType.slice(1);
+        callUnity(method, `${typeName},${prevIndex}`);
+      }
     }
   },
 

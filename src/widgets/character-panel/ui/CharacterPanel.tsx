@@ -268,12 +268,12 @@ function HandWeaponSelector({ hand }: { hand: HandType }) {
           <div className="flex items-center gap-1">
             <button onClick={prev} className="btn-icon">&lt;</button>
             <span className="w-12 text-center text-xs">
-              {index + 1}/{total}
+              {index >= 0 ? `${index + 1}/${total}` : `-/${total}`}
             </span>
             <button onClick={next} className="btn-icon">&gt;</button>
           </div>
           <span className="text-xs text-gray-400 truncate max-w-[120px]" title={name}>
-            {name || "-"}
+            {index >= 0 ? (name || "-") : "(없음)"}
           </span>
         </div>
       )}
