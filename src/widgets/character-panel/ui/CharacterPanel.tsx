@@ -71,11 +71,20 @@ function Section({ title, children }: { title: string; children: ReactNode }) {
 
 const COLOR_PRESETS = ["#FF0000", "#00FF00", "#0000FF", "#FFFF00", "#FF00FF", "#00FFFF", "#FFFFFF", "#000000", "#808080", "#FFD700"];
 
+// 필수 파츠 (항상 유효한 인덱스, -1 불가)
+const REQUIRED_PARTS: PartType[] = ["body", "eye"];
+
 function PartSelector({ type }: { type: PartType }) {
   const { usePart } = useHooks();
   const { label, current, total, name, hasColor, next, prev, setColor } = usePart(type);
   const [showColorPicker, setShowColorPicker] = useState(false);
   const [localColor, setLocalColor] = useState("#FFFFFF");
+
+  const isRequired = REQUIRED_PARTS.includes(type);
+  const isEmpty = current < 0;
+
+  // 인덱스 표시: 필수 파츠는 항상 숫자, 선택 파츠는 "없음" 가능
+  const displayIndex = isEmpty ? "없음" : `${current + 1}`;
 
   return (
     <div className="bg-gray-700/30 rounded p-1.5 space-y-1">
@@ -94,8 +103,8 @@ function PartSelector({ type }: { type: PartType }) {
         </div>
         <div className="flex items-center gap-1">
           <button onClick={prev} className="btn-icon text-xs">&lt;</button>
-          <span className="w-12 text-center text-xs">
-            {current >= 0 ? current + 1 : "-"}/{total}
+          <span className="w-14 text-center text-xs">
+            {displayIndex}/{total}
           </span>
           <button onClick={next} className="btn-icon text-xs">&gt;</button>
         </div>
@@ -103,7 +112,7 @@ function PartSelector({ type }: { type: PartType }) {
 
       {/* 둘째 줄: 파일명 */}
       <div className="text-xs text-gray-500 truncate pl-1" title={name}>
-        {current >= 0 ? (name || "-") : "(없음)"}
+        {isEmpty ? "(없음)" : (name || "-")}
       </div>
 
       {/* 색상 피커 (토글) */}
@@ -189,13 +198,16 @@ function WeaponSelector({ type }: { type: WeaponPartType }) {
   const { usePart } = useHooks();
   const { label, current, total, next, prev } = usePart(type);
 
+  const isEmpty = current < 0;
+  const displayIndex = isEmpty ? "없음" : `${current + 1}`;
+
   return (
     <div className="flex items-center justify-between text-sm">
       <span className="w-14 text-gray-400">{label}</span>
       <div className="flex items-center gap-1">
         <button onClick={prev} className="btn-icon">&lt;</button>
         <span className="w-14 text-center text-xs">
-          {current >= 0 ? current + 1 : "-"}/{total}
+          {displayIndex}/{total}
         </span>
         <button onClick={next} className="btn-icon">&gt;</button>
       </div>
@@ -242,8 +254,8 @@ function HandWeaponSelector({ hand }: { hand: HandType }) {
         <div className="flex items-center justify-between text-sm">
           <div className="flex items-center gap-1">
             <button onClick={prev} className="btn-icon">&lt;</button>
-            <span className="w-12 text-center text-xs">
-              {index >= 0 ? `${index + 1}/${total}` : `-/${total}`}
+            <span className="w-14 text-center text-xs">
+              {index >= 0 ? `${index + 1}/${total}` : `없음/${total}`}
             </span>
             <button onClick={next} className="btn-icon">&gt;</button>
           </div>

@@ -86,6 +86,8 @@ export interface CharacterState {
   clothColor: string;
   armorColor: string;
   pantColor: string;
+  helmetColor: string;
+  backColor: string;
   // 무기 색상 (hex, 기본값은 빈 문자열 = 원본 색상)
   swordColor: string;
   shieldColor: string;
@@ -118,8 +120,8 @@ const PART_META: Record<PartType, { label: string; indexKey: keyof CharacterStat
   cloth: { label: "옷", indexKey: "clothIndex", countKey: "clothCount", required: false, colorKey: "clothColor" },
   armor: { label: "갑옷", indexKey: "armorIndex", countKey: "armorCount", required: false, colorKey: "armorColor" },
   pant: { label: "바지", indexKey: "pantIndex", countKey: "pantCount", required: false, colorKey: "pantColor" },
-  helmet: { label: "투구", indexKey: "helmetIndex", countKey: "helmetCount", required: false },
-  back: { label: "등", indexKey: "backIndex", countKey: "backCount", required: false },
+  helmet: { label: "투구", indexKey: "helmetIndex", countKey: "helmetCount", required: false, colorKey: "helmetColor" },
+  back: { label: "등", indexKey: "backIndex", countKey: "backCount", required: false, colorKey: "backColor" },
   // 무기 파츠
   sword: { label: "검", indexKey: "swordIndex", countKey: "swordCount", required: false, colorKey: "swordColor" },
   shield: { label: "방패", indexKey: "shieldIndex", countKey: "shieldCount", required: false, colorKey: "shieldColor" },
@@ -193,7 +195,7 @@ interface AppearanceStore {
   // 캐릭터 외형 로드
   loadAppearance: (appearance: CharacterAppearance, colors: CharacterColors) => void;
   setPart: (type: PartType, index: number) => void;
-  setColor: (target: "body" | "eye" | "hair" | "facehair" | "cloth" | "armor" | "pant", hex: string) => void;
+  setColor: (target: "body" | "eye" | "hair" | "facehair" | "cloth" | "armor" | "pant" | "helmet" | "back", hex: string) => void;
 
   // 장비 외형 연동
   setEquipmentAppearance: (slot: EquipmentSlot, index: number | null) => void;
@@ -355,6 +357,8 @@ export const useAppearanceStore = create<AppearanceStore>((set, get) => ({
       cloth: "JS_SetClothColor",
       armor: "JS_SetArmorColor",
       pant: "JS_SetPantColor",
+      helmet: "JS_SetHelmetColor",
+      back: "JS_SetBackColor",
     };
     get().callUnity(methodMap[target], cleanHex);
   },
@@ -668,7 +672,7 @@ export function useAppearancePart(type: PartType) {
       // 색상 적용 가능한 파츠만
       const meta = PART_META[type];
       if (meta.colorKey) {
-        store.setColor(type as "body" | "eye" | "hair" | "facehair" | "cloth" | "armor" | "pant", hex);
+        store.setColor(type as "body" | "eye" | "hair" | "facehair" | "cloth" | "armor" | "pant" | "helmet" | "back", hex);
       }
     },
   };
