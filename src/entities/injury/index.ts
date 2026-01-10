@@ -14,7 +14,8 @@ export {
   INJURY_TYPES,
   getInjuryLevelMultiplier,
   getInjuryConfig,
-  calculateTotalHpReduction,
+  calculateTotalRecoveryReduction,
+  calculateTotalHpReduction, // alias for backwards compatibility
   calculateNaturalHealTime,
 } from "./types/constants";
 

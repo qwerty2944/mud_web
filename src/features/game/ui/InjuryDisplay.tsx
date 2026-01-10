@@ -27,7 +27,7 @@ export function InjuryDisplay({ injuries, compact = false }: InjuryDisplayProps)
           return (
             <span
               key={index}
-              title={`${config.nameKo} (HP -${config.maxHpReduction * 100}%)`}
+              title={`${config.nameKo} (HP 회복 상한 -${config.hpRecoveryReduction * 100}%)`}
               className="text-sm"
             >
               {config.icon}
@@ -61,7 +61,7 @@ export function InjuryDisplay({ injuries, compact = false }: InjuryDisplayProps)
                   {config.nameKo}
                 </span>
                 <span style={{ color: theme.colors.textMuted }} className="text-xs">
-                  HP -{config.maxHpReduction * 100}%
+                  HP -{config.hpRecoveryReduction * 100}%
                 </span>
               </div>
               {remainingTime && (

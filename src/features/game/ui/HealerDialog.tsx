@@ -162,7 +162,7 @@ export function HealerDialog({
                         className="text-xs font-mono"
                         style={{ color: theme.colors.textMuted }}
                       >
-                        HP -{config.maxHpReduction * 100}%
+                        HP 회복 상한 -{config.hpRecoveryReduction * 100}%
                       </span>
                     </div>
 
