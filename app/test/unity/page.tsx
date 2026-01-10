@@ -1,11 +1,19 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
-import { characterPanelHooks } from "@/features/character";
+import { characterPanelHooks, useAppearanceStore } from "@/features/character";
 import { CharacterView } from "@/widgets/character-view";
 import { globalStyles } from "@/shared/ui";
 
 export default function UnityTestPage() {
+  const { clearAll } = useAppearanceStore();
+
+  // 페이지 진입 시 Unity 상태 초기화
+  useEffect(() => {
+    clearAll();
+  }, [clearAll]);
+
   return (
     <div className="h-dvh w-full bg-gray-900 text-white flex flex-col overflow-hidden">
       {/* 헤더 */}

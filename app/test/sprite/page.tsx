@@ -35,9 +35,14 @@ function spritesToItems(sprites: string[]): SpriteItem[] {
 }
 
 export default function SpriteTestPage() {
-  const { callUnity, characterState } = useAppearanceStore();
+  const { callUnity, characterState, clearAll } = useAppearanceStore();
   const [categories, setCategories] = useState<Record<string, CategoryData>>({});
   const [loading, setLoading] = useState(true);
+
+  // 페이지 진입 시 Unity 상태 초기화
+  useEffect(() => {
+    clearAll();
+  }, [clearAll]);
 
   useEffect(() => {
     async function loadMappings() {
