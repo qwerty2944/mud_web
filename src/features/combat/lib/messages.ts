@@ -100,6 +100,14 @@ const FIST_ATTACK_MESSAGES = [
   (name: string, dmg: number) => `몸 전체를 실은 일격! ${name}이(가) 비틀거린다! ${dmg}!`,
 ];
 
+const SHIELD_ATTACK_MESSAGES = [
+  (name: string, dmg: number) => `방패로 ${name}을(를) 강타했다! ${dmg} 데미지!`,
+  (name: string, dmg: number) => `방패의 모서리가 ${name}을(를) 가격했다! ${dmg}!`,
+  (name: string, dmg: number) => `${name}에게 쉴드 배시! ${dmg} 데미지!`,
+  (name: string, dmg: number) => `방패로 ${name}을(를) 밀쳤다! ${dmg}!`,
+  (name: string, dmg: number) => `강철 방패가 ${name}을(를) 내리쳤다! ${dmg} 데미지!`,
+];
+
 // 마법 공격 메시지
 const FIRE_ATTACK_MESSAGES = [
   (name: string, dmg: number) => `불꽃이 ${name}을(를) 집어삼켰다! ${dmg} 데미지!`,
@@ -170,6 +178,7 @@ const ATTACK_MESSAGES: Record<CombatProficiencyType, ((name: string, dmg: number
   crossbow: CROSSBOW_ATTACK_MESSAGES,
   staff: STAFF_ATTACK_MESSAGES,
   fist: FIST_ATTACK_MESSAGES,
+  shield: SHIELD_ATTACK_MESSAGES,
   fire: FIRE_ATTACK_MESSAGES,
   ice: ICE_ATTACK_MESSAGES,
   lightning: LIGHTNING_ATTACK_MESSAGES,
@@ -531,6 +540,7 @@ const WEAPON_BLOCK_SPECIAL_MESSAGES: Record<WeaponBlockSpecial, string[]> = {
     "무장해제 성공!",
     "적의 손에서 무기가 빠져나갔다!",
   ],
+  none: [],
 };
 
 /**

@@ -19,11 +19,8 @@
   "unlockCondition": "특수 이벤트로 뱀파이어화 가능",
   "appearance": {
     "body": {
-      "availableSpriteIds": ["Human_1", "Human_2", "Human_3", "Human_4", "Human_5", "Elf_1", "Elf_2"]
-    },
-    "skinTones": {
-      "available": ["pale", "deathly_pale", "ashen", "marble"],
-      "default": "pale"
+      "spriteId": "Human_1",
+      "defaultColor": "#FAF0E6"
     }
   },
   "resistances": {

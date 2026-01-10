@@ -17,11 +17,8 @@
   },
   "appearance": {
     "body": {
-      "availableSpriteIds": ["Elf_1", "Elf_2", "New_Elf_1", "New_Elf_2"]
-    },
-    "skinTones": {
-      "available": ["obsidian", "charcoal", "purple", "blue_gray"],
-      "default": "obsidian"
+      "spriteId": "New_Elf_1",
+      "defaultColor": "#2F2F4F"
     }
   },
   "resistances": {

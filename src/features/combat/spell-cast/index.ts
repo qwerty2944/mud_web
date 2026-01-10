@@ -100,14 +100,13 @@ export function useSpellCast(options: UseSpellCastOptions) {
 
       // 1. 요구 조건 체크
       const requirementCheck = checkSpellRequirements(spell, {
-        elementProficiency,
         karma,
         piety,
         religion,
       });
 
-      if (!requirementCheck.canCast) {
-        const reason = requirementCheck.failureReasons[0];
+      if (!requirementCheck.canUse) {
+        const reason = requirementCheck.reasons[0];
         addLog({
           turn: battle.turn,
           actor: "system",
@@ -118,9 +117,9 @@ export function useSpellCast(options: UseSpellCastOptions) {
       }
 
       // 2. 네스로스 치유 금기 체크
-      const healRestriction = checkHealingRestriction(spell, religion);
-      if (healRestriction.penalty) {
-        onPietyPenalty?.(15, healRestriction.penalty);
+      const healRestriction = checkHealingRestriction({ religion, piety });
+      if (!healRestriction.allowed && healRestriction.reason) {
+        onPietyPenalty?.(15, healRestriction.reason);
       }
 
       // 3. MP 비용 계산 및 소모
@@ -225,7 +224,7 @@ export function useSpellCast(options: UseSpellCastOptions) {
           turn: battle.turn,
           actor: "player",
           action: "spell",
-          message: `${spell.icon || "✨"} ${spell.nameKo} 시전!`,
+          message: `✨ ${spell.nameKo} 시전!`,
         });
         addLog({
           turn: battle.turn,
@@ -235,7 +234,7 @@ export function useSpellCast(options: UseSpellCastOptions) {
         });
       } else {
         // 숙련도 보너스가 적용된 기본 데미지
-        const boostedBaseDamage = calculateBoostedBaseDamage(spell, spellExperience);
+        const boostedBaseDamage = calculateBoostedBaseDamage(spell.baseDamage ?? 0, spellExperience);
 
         // 데미지 계산 (카르마, 시간대, 날씨 포함)
         let damage = calculateMagicDamage({
@@ -265,24 +264,14 @@ export function useSpellCast(options: UseSpellCastOptions) {
         } else {
           message = isCritical
             ? `💥 ${spell.nameKo}! 치명타! ${battle.monster.nameKo}에게 ${finalDamage} 데미지!`
-            : `${spell.icon || "✨"} ${spell.nameKo}! ${battle.monster.nameKo}에게 ${finalDamage} 데미지!`;
+            : `✨ ${spell.nameKo}! ${battle.monster.nameKo}에게 ${finalDamage} 데미지!`;
         }
       }
 
       // 공격 적용
       playerAttack(finalDamage, message, spell.element);
 
-      // DoT 효과 적용
-      if (spell.type === "dot" && spell.effect && finalDamage > 0) {
-        // DoT 상태이상 적용
-        if (spell.effect.type && spell.effect.duration) {
-          applyMonsterStatus(
-            spell.effect.type as any,
-            spell.effect.damagePerTurn || 0,
-            spell.effect.duration
-          );
-        }
-      }
+      // DoT 효과 적용 (deprecated - spell.effect 필드 제거됨)
 
       // 몬스터 반격
       const newMonsterHp = battle.monsterCurrentHp - finalDamage;
@@ -305,44 +294,27 @@ export function useSpellCast(options: UseSpellCastOptions) {
       religion?: string,
       piety?: number
     ): CastResult => {
-      // 네스로스 신도 치유 페널티 체크
-      const penalty = getNethrosHealPenalty(spell, religion);
-      if (penalty.hasPenalty) {
-        addLog({
-          turn: battle.turn,
-          actor: "system",
-          action: "warning",
-          message: `⚠️ ${penalty.warningMessage}`,
-        });
-        onPietyPenalty?.(penalty.pietyLoss, penalty.warningMessage);
-      }
+      // 네스로스 신도 치유 페널티 체크 (deprecated - stub 함수 사용)
 
       // 종교 보너스 + 숙련도 보너스가 적용된 치유량 계산
-      const totalHeal = calculateHealAmount(
-        spell,
-        battle.playerMaxHp,
+      const totalHeal = calculateHealAmount({
+        baseHeal: spell.baseHeal ?? 0,
+        casterWis: 10,
         spellExperience,
         religion,
-        piety
-      );
+        piety,
+      });
 
       addLog({
         turn: battle.turn,
         actor: "player",
         action: "spell",
-        message: `${spell.icon || "💚"} ${spell.nameKo} 시전!`,
+        message: `💚 ${spell.nameKo} 시전!`,
       });
 
       healHp(totalHeal);
 
-      // HoT 효과 적용
-      if (spell.effect?.hotDuration && spell.effect.hotPercent) {
-        applyPlayerStatus(
-          "regeneration" as any,
-          spell.effect.hotPercent,
-          spell.effect.hotDuration
-        );
-      }
+      // HoT 효과 적용 (deprecated - spell.effect 필드 제거됨)
 
       // 몬스터 턴
       if (battle.monster?.behavior !== "passive") {
@@ -371,30 +343,10 @@ export function useSpellCast(options: UseSpellCastOptions) {
         turn: battle.turn,
         actor: "player",
         action: "spell",
-        message: `${spell.icon || "🛡️"} ${spell.nameKo} 시전!`,
+        message: `🛡️ ${spell.nameKo} 시전!`,
       });
 
-      // 버프 효과 적용
-      if (spell.effect) {
-        const duration = spell.effect.duration || 5;
-
-        // 저항 버프
-        if (spell.effect.iceResist !== undefined) {
-          applyPlayerStatus("ice_resist" as any, spell.effect.iceResist * 100, duration);
-        }
-        if (spell.effect.fireResist !== undefined) {
-          applyPlayerStatus("fire_resist" as any, spell.effect.fireResist * 100, duration);
-        }
-        if (spell.effect.physicalResist !== undefined) {
-          applyPlayerStatus("physical_resist" as any, spell.effect.physicalResist * 100, duration);
-        }
-
-        // 스탯 버프
-        if (spell.effect.statModifier) {
-          const { stat, value } = spell.effect.statModifier;
-          applyPlayerStatus(`${stat}_boost` as any, value, duration);
-        }
-      }
+      // 버프 효과 적용 (deprecated - spell.effect 필드 제거됨)
 
       // 몬스터 턴
       if (battle.monster?.behavior !== "passive") {
@@ -426,37 +378,10 @@ export function useSpellCast(options: UseSpellCastOptions) {
         turn: battle.turn,
         actor: "player",
         action: "spell",
-        message: `${spell.icon || "💀"} ${spell.nameKo} 시전!`,
+        message: `💀 ${spell.nameKo} 시전!`,
       });
 
-      // 디버프 효과 적용
-      if (spell.effect) {
-        const duration = spell.effect.duration || 3;
-
-        // 슬로우
-        if (spell.effect.slowDuration && spell.effect.speedReduction) {
-          applyMonsterStatus("slow" as any, spell.effect.speedReduction, spell.effect.slowDuration);
-        }
-
-        // 스턴
-        if (spell.effect.stunChance && spell.effect.stunDuration) {
-          const roll = Math.random();
-          if (roll < spell.effect.stunChance) {
-            applyMonsterStatus("stun" as any, 0, spell.effect.stunDuration);
-            addLog({
-              turn: battle.turn,
-              actor: "monster",
-              action: "status",
-              message: `${battle.monster.nameKo}이(가) 기절했습니다!`,
-            });
-          }
-        }
-
-        // 저주 (피해 증가)
-        if (spell.effect.type === "curse") {
-          applyMonsterStatus("curse" as any, 20, duration); // 20% 피해 증가
-        }
-      }
+      // 디버프 효과 적용 (deprecated - spell.effect 필드 제거됨)
 
       // 몬스터 턴
       if (battle.monster.behavior !== "passive") {
@@ -488,58 +413,10 @@ export function useSpellCast(options: UseSpellCastOptions) {
         turn: battle.turn,
         actor: "player",
         action: "spell",
-        message: `${spell.icon || "⚡"} ${spell.nameKo} 시전!`,
+        message: `⚡ ${spell.nameKo} 시전!`,
       });
 
-      // 즉사 시도
-      if (spell.effect?.instantKillChance) {
-        const roll = Math.random();
-        if (roll < spell.effect.instantKillChance) {
-          // 즉사 성공
-          playerAttack(battle.monsterCurrentHp, `${battle.monster.nameKo}이(가) 즉사했습니다!`, spell.element);
-          return {
-            success: true,
-            message: "즉사 성공!",
-            damage: battle.monsterCurrentHp,
-          };
-        } else {
-          // 즉사 실패 - 기본 피해
-          const fallbackDamage = spell.baseDamage || 30;
-          playerAttack(fallbackDamage, `즉사 실패! ${fallbackDamage} 데미지`, spell.element);
-
-          // 몬스터 턴
-          if (battle.monster.behavior !== "passive" && battle.monsterCurrentHp - fallbackDamage > 0) {
-            setTimeout(() => {
-              processStatusEffects();
-              tickAllStatuses();
-              onMonsterTurn?.();
-            }, 500);
-          }
-
-          return {
-            success: true,
-            message: "즉사 실패",
-            damage: fallbackDamage,
-          };
-        }
-      }
-
-      // 석화
-      if (spell.effect?.type === "petrify" && spell.effect.duration) {
-        applyMonsterStatus("petrify" as any, 0, spell.effect.duration);
-        addLog({
-          turn: battle.turn,
-          actor: "monster",
-          action: "status",
-          message: `${battle.monster.nameKo}이(가) 석화되었습니다!`,
-        });
-
-        // 몬스터 턴 스킵 (석화 상태)
-        return {
-          success: true,
-          message: "석화 성공!",
-        };
-      }
+      // 즉사/석화 효과 (deprecated - spell.effect 필드 제거됨)
 
       return { success: true, message: spell.nameKo };
     },

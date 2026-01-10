@@ -698,5 +698,8 @@ export function getWeaponBlockSpecialDescription(
       return { nameKo: "마법 반사", description: "마법 공격을 일부 반사합니다." };
     case "disarm":
       return { nameKo: "무장해제", description: "적의 무기를 떨어뜨립니다." };
+    case "none":
+    default:
+      return { nameKo: "없음", description: "특수 효과 없음" };
   }
 }

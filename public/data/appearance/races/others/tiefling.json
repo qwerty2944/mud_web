@@ -16,11 +16,8 @@
   },
   "appearance": {
     "body": {
-      "availableSpriteIds": ["Devil_1"]
-    },
-    "skinTones": {
-      "available": ["red", "dark_red", "purple", "maroon", "copper"],
-      "default": "red"
+      "spriteId": "Devil_1",
+      "defaultColor": "#8B0000"
     }
   },
   "resistances": {

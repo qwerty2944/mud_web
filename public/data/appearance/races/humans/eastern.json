@@ -16,11 +16,8 @@
   },
   "appearance": {
     "body": {
-      "availableSpriteIds": ["Human_1", "Human_2", "Human_3", "Human_4", "Human_5"]
-    },
-    "skinTones": {
-      "available": ["fair", "light", "medium", "tan"],
-      "default": "light"
+      "spriteId": "Human_1",
+      "defaultColor": "#C4A484"
     }
   },
   "resistances": {

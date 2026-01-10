@@ -17,11 +17,8 @@
   },
   "appearance": {
     "body": {
-      "availableSpriteIds": ["Elf_1", "Elf_2", "New_Elf_1", "New_Elf_2"]
-    },
-    "skinTones": {
-      "available": ["tan", "olive", "copper", "brown"],
-      "default": "copper"
+      "spriteId": "Elf_1",
+      "defaultColor": "#B87333"
     }
   },
   "resistances": {

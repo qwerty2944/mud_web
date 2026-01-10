@@ -17,11 +17,8 @@
   "playable": false,
   "appearance": {
     "body": {
-      "availableSpriteIds": ["Skelton_1"]
-    },
-    "skinTones": {
-      "available": ["bone", "aged_bone", "dark_bone"],
-      "default": "bone"
+      "spriteId": "Skelton_1",
+      "defaultColor": "#F5F5DC"
     }
   },
   "resistances": {

@@ -17,11 +17,8 @@
   },
   "appearance": {
     "body": {
-      "availableSpriteIds": ["Orc_1", "Orc_2", "Orc_3", "Orc_4"]
-    },
-    "skinTones": {
-      "available": ["light_gray", "gray", "dark_gray", "slate"],
-      "default": "gray"
+      "spriteId": "Orc_2",
+      "defaultColor": "#708090"
     }
   },
   "resistances": {

@@ -19,11 +19,8 @@
   "playable": false,
   "appearance": {
     "body": {
-      "availableSpriteIds": ["Zombie_1", "Zombie_2", "Zombie_3", "Zombie_4", "Zombie_5", "Zombie_6"]
-    },
-    "skinTones": {
-      "available": ["pale_gray", "greenish", "purple", "rotting"],
-      "default": "greenish"
+      "spriteId": "Zombie_1",
+      "defaultColor": "#556B2F"
     }
   },
   "resistances": {

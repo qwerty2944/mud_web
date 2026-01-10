@@ -666,7 +666,7 @@ export function StatusModal({ open, onClose }: StatusModalProps) {
                                     {prof.nameKo}
                                   </span>
                                   <div className="text-[10px] font-mono" style={{ color: theme.colors.textMuted }}>
-                                    {prof.description}
+                                    {prof.nameEn}
                                   </div>
                                 </div>
                                 <span className="text-sm font-mono" style={{ color: theme.colors.error }}>

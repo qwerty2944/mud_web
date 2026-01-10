@@ -53,11 +53,11 @@
     { "id": "eternal", "nameKo": "태초", "tier": 12, "color": "#FFD700" }
   ],
   "spriteColorSystem": {
-    "description": "같은 spriteIndex에 다른 color를 적용하여 아이템 변형 생성",
+    "description": "같은 spriteId에 다른 color를 적용하여 아이템 변형 생성",
     "example": {
-      "item1": { "id": "iron_sword", "spriteIndex": 0, "color": null, "comment": "기본 색상" },
-      "item2": { "id": "legendary_sword", "spriteIndex": 0, "color": "#FFD700", "comment": "황금색 변형" },
-      "item3": { "id": "cursed_sword", "spriteIndex": 0, "color": "#4B0082", "comment": "보라색 저주 변형" }
+      "item1": { "id": "iron_sword", "spriteId": "elf_weapon_01", "color": null, "comment": "기본 색상" },
+      "item2": { "id": "legendary_sword", "spriteId": "elf_weapon_01", "color": "#FFD700", "comment": "황금색 변형" },
+      "item3": { "id": "cursed_sword", "spriteId": "elf_weapon_01", "color": "#4B0082", "comment": "보라색 저주 변형" }
     }
   }
 }

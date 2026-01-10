@@ -159,6 +159,7 @@ export function generateAttackMessage(params: AttackMessageParams): string {
     crossbow: "석궁",
     staff: "지팡이",
     fist: "격투",
+    shield: "방패",
     fire: "화염",
     ice: "냉기",
     lightning: "번개",
