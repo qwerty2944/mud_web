@@ -478,8 +478,9 @@ export default function GamePage() {
       </div>
 
       {/* 전투 패널 */}
-      {battle.isInBattle && mainCharacter?.stats && (
+      {battle.isInBattle && mainCharacter?.stats && session?.user?.id && (
         <BattlePanel
+          characterId={session.user.id}
           characterStats={mainCharacter.stats}
           proficiencies={proficiencies}
           onFlee={handleFlee}

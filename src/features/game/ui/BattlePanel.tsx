@@ -4,14 +4,15 @@ import { useState, useEffect, useCallback, useMemo } from "react";
 import { useBattleStore } from "@/application/stores";
 import { useThemeStore } from "@/shared/config";
 import type { CharacterStats } from "@/entities/character";
-import type { Proficiencies, CombatProficiencyType } from "@/entities/proficiency";
-import { getProficiencyValue } from "@/entities/proficiency";
+import type { Proficiencies } from "@/entities/proficiency";
 import type { Ability } from "@/entities/ability";
 import {
   useAbilities,
-  useAttackAbilities,
+  useUserAbilities,
   fetchMonsterAbilities,
+  getLearnedAbilities,
   type RawMonsterAbility,
+  type UserAbilities,
 } from "@/entities/ability";
 import { useAbility, useExecuteQueue } from "@/features/combat";
 import { BattleHeader } from "./battle/BattleHeader";
@@ -19,7 +20,11 @@ import { BattleLog } from "./battle/BattleLog";
 import { ActionQueue } from "./battle/ActionQueue";
 import { AbilitySelector } from "./battle/AbilitySelector";
 
+// 전투 탭 타입
+type BattleTab = "attack" | "defense" | "magic" | "item";
+
 interface BattlePanelProps {
+  characterId: string;
   characterStats: CharacterStats;
   proficiencies: Proficiencies | undefined;
   onFlee: () => void;
@@ -28,6 +33,7 @@ interface BattlePanelProps {
 }
 
 export function BattlePanel({
+  characterId,
   characterStats,
   proficiencies,
   onFlee,
@@ -42,12 +48,12 @@ export function BattlePanel({
     dealDamageToPlayer,
   } = useBattleStore();
 
-  const [activeTab, setActiveTab] = useState<"attack" | "skill" | "defense">("attack");
+  const [activeTab, setActiveTab] = useState<BattleTab>("attack");
   const [monsterAbilitiesData, setMonsterAbilitiesData] = useState<Map<string, RawMonsterAbility>>(new Map());
 
   // 어빌리티 데이터 로드
   const { data: allAbilities = [] } = useAbilities();
-  const { data: attackAbilities = [] } = useAttackAbilities();
+  const { data: userAbilities } = useUserAbilities(characterId);
 
   // useAbility 훅
   const {
@@ -69,39 +75,48 @@ export function BattlePanel({
     fetchMonsterAbilities().then(setMonsterAbilitiesData);
   }, []);
 
-  // 어빌리티 레벨 (숙련도 기반) - 0이면 배우지 않은 것
+  // 배운 어빌리티와 레벨 (userAbilities 기반)
+  const learnedAbilities = useMemo(() => {
+    if (!userAbilities) return {};
+    return getLearnedAbilities(userAbilities);
+  }, [userAbilities]);
+
+  // 어빌리티 레벨 맵
   const abilityLevels = useMemo(() => {
     const levels: Record<string, number> = {};
-    allAbilities.forEach((ability) => {
-      if (ability.category && proficiencies) {
-        // 숙련도 값이 그대로 레벨 (0이면 아직 배우지 않음)
-        levels[ability.id] = getProficiencyValue(
-          proficiencies,
-          ability.category as CombatProficiencyType
-        ) || 0;
-      } else {
-        // 카테고리가 없는 기본 스킬은 레벨 1
-        levels[ability.id] = 1;
-      }
-    });
+    for (const [id, progress] of Object.entries(learnedAbilities)) {
+      levels[id] = progress.level;
+    }
     return levels;
-  }, [allAbilities, proficiencies]);
+  }, [learnedAbilities]);
+
+  // 배운 어빌리티 목록 (allAbilities에서 learnedAbilities에 있는 것만 필터)
+  const myAbilities = useMemo(() => {
+    const learnedIds = new Set(Object.keys(learnedAbilities));
+    return allAbilities.filter((a) => learnedIds.has(a.id));
+  }, [allAbilities, learnedAbilities]);
 
   // 탭별 어빌리티 필터
   const filteredAbilities = useMemo(() => {
     switch (activeTab) {
       case "attack":
-        return attackAbilities;
-      case "skill":
-        return allAbilities.filter(
-          (a) => a.type === "buff" || a.type === "debuff" || a.type === "heal"
+        // 공격 스킬만 (combat 카테고리의 attack 타입)
+        return myAbilities.filter(
+          (a) => a.type === "attack" && a.usageContext === "combat_only"
         );
       case "defense":
-        return allAbilities.filter((a) => a.type === "defense");
+        // 방어 스킬 (block, dodge 등)
+        return myAbilities.filter((a) => a.type === "defense" || a.id === "block" || a.id === "dodge");
+      case "magic":
+        // 마법 스킬 (spell 소스)
+        return myAbilities.filter((a) => a.source === "spell");
+      case "item":
+        // 아이템 사용 (향후 구현)
+        return [];
       default:
         return [];
     }
-  }, [activeTab, attackAbilities, allAbilities]);
+  }, [activeTab, myAbilities]);
 
   // 어빌리티 선택 핸들러
   const handleSelectAbility = useCallback(
@@ -198,28 +213,39 @@ export function BattlePanel({
               className="flex border-t"
               style={{ borderColor: theme.colors.border }}
             >
-              {(["attack", "skill", "defense"] as const).map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  disabled={isExecuting}
-                  className="flex-1 px-4 py-2 font-mono text-sm transition-colors"
-                  style={{
-                    background:
-                      activeTab === tab ? theme.colors.bgLight : "transparent",
-                    color:
-                      activeTab === tab
-                        ? theme.colors.primary
-                        : theme.colors.textMuted,
-                    borderBottom:
-                      activeTab === tab
-                        ? `2px solid ${theme.colors.primary}`
-                        : "2px solid transparent",
-                  }}
-                >
-                  {tab === "attack" ? "⚔️ 공격" : tab === "skill" ? "✨ 스킬" : "🛡️ 방어"}
-                </button>
-              ))}
+              {(["attack", "defense", "magic", "item"] as const).map((tab) => {
+                const tabLabels: Record<BattleTab, string> = {
+                  attack: "⚔️ 공격",
+                  defense: "🛡️ 방어",
+                  magic: "🔮 마법",
+                  item: "📦 아이템",
+                };
+                return (
+                  <button
+                    key={tab}
+                    onClick={() => setActiveTab(tab)}
+                    disabled={isExecuting || tab === "item"} // 아이템 탭 비활성화
+                    className="flex-1 px-4 py-2 font-mono text-sm transition-colors"
+                    style={{
+                      background:
+                        activeTab === tab ? theme.colors.bgLight : "transparent",
+                      color:
+                        activeTab === tab
+                          ? theme.colors.primary
+                          : tab === "item"
+                          ? theme.colors.textMuted + "80"
+                          : theme.colors.textMuted,
+                      borderBottom:
+                        activeTab === tab
+                          ? `2px solid ${theme.colors.primary}`
+                          : "2px solid transparent",
+                      opacity: tab === "item" ? 0.5 : 1,
+                    }}
+                  >
+                    {tabLabels[tab]}
+                  </button>
+                );
+              })}
             </div>
 
             {/* 어빌리티 선택 */}
