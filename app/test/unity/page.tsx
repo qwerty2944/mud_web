@@ -9,11 +9,11 @@ export default function UnityTestPage() {
   return (
     <div className="h-dvh w-full bg-gray-900 text-white flex flex-col overflow-hidden">
       {/* 헤더 */}
-      <header className="flex-none p-3 border-b border-gray-700 safe-area-top flex items-center justify-between">
+      <header className="flex-none p-3 border-b border-gray-700 safe-area-top flex items-center justify-between relative z-50">
         <h1 className="text-lg font-bold">유니티 테스트</h1>
         <Link
           href="/test"
-          className="text-sm text-gray-400 hover:text-white"
+          className="text-sm text-gray-400 hover:text-white px-3 py-2"
         >
           ← 목록
         </Link>

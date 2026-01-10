@@ -222,7 +222,7 @@ export default function GameTestPage() {
         <div className="w-96 bg-gray-800 p-4 overflow-y-auto">
           <div className="flex items-center justify-between mb-4">
             <h1 className="text-xl font-bold">종족별 장비 테스트</h1>
-            <Link href="/test" className="text-sm text-gray-400 hover:text-white">
+            <Link href="/test" className="text-sm text-gray-400 hover:text-white px-3 py-2">
               ← 목록
             </Link>
           </div>
