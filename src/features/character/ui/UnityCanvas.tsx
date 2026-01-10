@@ -1,12 +1,23 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { Unity } from "react-unity-webgl";
+import { useState, useEffect, useRef, useId } from "react";
 import { useUnityBridge } from "@/application/providers";
 
 export function UnityCanvas() {
-  const { unityProvider, isLoaded, loadingProgression } = useUnityBridge();
+  const { isLoaded, loadingProgression, registerViewport, unregisterViewport } = useUnityBridge();
   const [showSlowMessage, setShowSlowMessage] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const viewportId = useId();
+
+  // Viewport 등록/해제
+  useEffect(() => {
+    if (containerRef.current) {
+      registerViewport(viewportId, containerRef.current);
+    }
+    return () => {
+      unregisterViewport(viewportId);
+    };
+  }, [viewportId, registerViewport, unregisterViewport]);
 
   // 90% 이상에서 10초 이상 멈추면 안내 메시지 표시
   useEffect(() => {
@@ -45,17 +56,12 @@ export function UnityCanvas() {
         </div>
       )}
 
-      {/* Unity 캔버스 */}
+      {/* Unity canvas가 Portal로 렌더링될 컨테이너 */}
       <div
+        ref={containerRef}
         className="w-full h-full rounded-lg overflow-hidden"
         style={{ background: "transparent" }}
-      >
-        <Unity
-          unityProvider={unityProvider}
-          devicePixelRatio={typeof window !== "undefined" ? window.devicePixelRatio : 1}
-          style={{ width: "100%", height: "100%", background: "transparent" }}
-        />
-      </div>
+      />
     </div>
   );
 }

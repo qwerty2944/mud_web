@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { UnityCanvas, useAppearanceStore } from "@/features/character";
+import { DynamicUnityCanvas, useAppearanceStore } from "@/features/character";
 
 interface CharacterCreatorProps {
   className?: string;
@@ -89,7 +89,7 @@ export function CharacterCreator({ className = "" }: CharacterCreatorProps) {
       {/* Unity 캔버스 */}
       <div className="flex-1 min-h-0 flex items-center justify-center p-2">
         <div className="w-full h-full max-w-lg">
-          <UnityCanvas />
+          <DynamicUnityCanvas />
         </div>
       </div>
 

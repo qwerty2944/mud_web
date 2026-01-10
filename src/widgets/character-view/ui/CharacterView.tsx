@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { UnityCanvas } from "@/features/character";
+import { DynamicUnityCanvas } from "@/features/character";
 import { CharacterPanel } from "@/widgets/character-panel";
 import type { CharacterPanelHooks } from "@/shared/types";
 
@@ -25,7 +25,7 @@ export function CharacterView({
       {/* Unity 캔버스 */}
       <div className="flex-1 min-h-0 flex items-center justify-center p-2">
         <div className="w-full h-full max-w-2xl relative">
-          <UnityCanvas />
+          <DynamicUnityCanvas />
 
           {/* 토글 버튼 */}
           {allowToggle && (

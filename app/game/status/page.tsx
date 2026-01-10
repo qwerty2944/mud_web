@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useAuthStore } from "@/features/auth";
-import { UnityCanvas, useAppearanceStore } from "@/features/character";
+import { DynamicUnityCanvas, useAppearanceStore } from "@/features/character";
 import {
   useProfile,
   getMainCharacter,
@@ -124,7 +124,7 @@ export default function StatusPage() {
                     className="overflow-hidden h-52 sm:h-64 lg:h-80"
                     style={{ background: theme.colors.bgDark }}
                   >
-                    <UnityCanvas />
+                    <DynamicUnityCanvas />
                   </div>
                   {mainCharacter && (
                     <div className="mt-4 text-center">

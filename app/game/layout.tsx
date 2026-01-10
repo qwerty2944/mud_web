@@ -4,14 +4,8 @@ import { ReactNode } from "react";
 
 interface GameLayoutProps {
   children: ReactNode;
-  modal: ReactNode;
 }
 
-export default function GameLayout({ children, modal }: GameLayoutProps) {
-  return (
-    <>
-      {children}
-      {modal}
-    </>
-  );
+export default function GameLayout({ children }: GameLayoutProps) {
+  return <>{children}</>;
 }

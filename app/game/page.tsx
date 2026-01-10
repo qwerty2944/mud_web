@@ -2,7 +2,6 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 import toast from "react-hot-toast";
 import { useAuthStore } from "@/features/auth";
 import {
@@ -40,6 +39,7 @@ import { useStartBattle, useEndBattle } from "@/features/combat";
 import { useUpdateLocation } from "@/features/game";
 import { useThemeStore } from "@/shared/config";
 import { ThemeSettingsModal } from "@/shared/ui";
+import { StatusModal } from "@/widgets/status-modal";
 
 export default function GamePage() {
   const router = useRouter();
@@ -56,6 +56,7 @@ export default function GamePage() {
   const [mapId, setMapId] = useState<string | null>(null);
   const [showThemeModal, setShowThemeModal] = useState(false);
   const [showWorldMap, setShowWorldMap] = useState(false);
+  const [showStatusModal, setShowStatusModal] = useState(false);
   const [selectedNpc, setSelectedNpc] = useState<Npc | null>(null);
 
   // NPC 조회
@@ -353,9 +354,9 @@ export default function GamePage() {
 
           {/* 오른쪽: 캐릭터 정보 + 접속 상태 */}
           <div className="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
-            {/* 상태창 링크 */}
-            <Link
-              href="/game/status"
+            {/* 상태창 버튼 */}
+            <button
+              onClick={() => setShowStatusModal(true)}
               className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1 sm:py-1.5 transition-colors"
               style={{
                 background: theme.colors.bgDark,
@@ -377,7 +378,7 @@ export default function GamePage() {
               {profile.injuries.length > 0 && (
                 <InjuryDisplay injuries={profile.injuries} compact />
               )}
-            </Link>
+            </button>
             {/* 재화 표시 (태블릿 이상) */}
             <div className="hidden md:flex items-center gap-2 text-xs sm:text-sm font-mono">
               <span style={{ color: theme.colors.warning }}>💰 {profile.gold.toLocaleString()}</span>
@@ -480,6 +481,9 @@ export default function GamePage() {
           onClose={() => setSelectedNpc(null)}
         />
       )}
+
+      {/* 상태창 모달 */}
+      <StatusModal open={showStatusModal} onClose={() => setShowStatusModal(false)} />
 
       {/* 시간대별 명도 오버레이 */}
       <div

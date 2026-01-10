@@ -51,6 +51,7 @@ export {
   AnimationSelector,
   ActionButtons,
   UnityCanvas,
+  DynamicUnityCanvas,
   CharacterConfirmModal,
 } from "./ui";
 

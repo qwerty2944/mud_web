@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import { UnityCanvas, useAppearanceStore } from "@/features/character";
+import { DynamicUnityCanvas, useAppearanceStore } from "@/features/character";
 
 interface SpriteItem {
   id: string;
@@ -241,7 +241,7 @@ export default function RaceEquipmentTestPage() {
         {/* Unity 캔버스 */}
         <div className="flex-1 flex items-center justify-center p-4">
           <div className="w-full max-w-md aspect-square">
-            <UnityCanvas />
+            <DynamicUnityCanvas />
           </div>
         </div>
 
