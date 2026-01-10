@@ -1,0 +1,63 @@
+{
+  "version": "1.0.0",
+  "description": "아이템 데이터 인덱스",
+  "categories": {
+    "consumable": {
+      "path": "/data/items/consumables",
+      "files": ["potions.json", "food.json", "scrolls.json"],
+      "description": "소비 아이템 (물약, 음식, 주문서)"
+    },
+    "material": {
+      "path": "/data/items/materials",
+      "files": ["ores.json", "herbs.json", "drops.json", "gems.json"],
+      "description": "재료 아이템 (광석, 약초, 드랍템, 보석)"
+    },
+    "equipment": {
+      "weapons": {
+        "path": "/data/items/equipment/weapons",
+        "files": ["swords.json", "daggers.json", "axes.json", "bows.json", "wands.json", "shields.json", "spears.json"],
+        "description": "무기 장비",
+        "spriteMapping": "/data/sprites/equipment/weapon"
+      },
+      "armors": {
+        "path": "/data/items/equipment/armors",
+        "files": ["helmets.json", "chests.json", "clothes.json", "pants.json", "backs.json"],
+        "description": "방어구 장비",
+        "spriteMapping": "/data/sprites/equipment/armor"
+      },
+      "accessories": {
+        "path": "/data/items/equipment/accessories",
+        "files": ["rings.json", "necklaces.json"],
+        "description": "장신구"
+      }
+    },
+    "misc": {
+      "path": "/data/items/misc",
+      "files": ["quest.json", "keys.json"],
+      "description": "기타 아이템 (퀘스트, 열쇠)"
+    }
+  },
+  "rarities": [
+    { "id": "crude", "nameKo": "저급", "tier": 0, "color": "#6B7280" },
+    { "id": "common", "nameKo": "일반", "tier": 1, "color": "#D1D5DB" },
+    { "id": "grand", "nameKo": "고급", "tier": 2, "color": "#22C55E" },
+    { "id": "rare", "nameKo": "희귀", "tier": 3, "color": "#3B82F6" },
+    { "id": "arcane", "nameKo": "고대", "tier": 4, "color": "#EAB308" },
+    { "id": "heroic", "nameKo": "영웅", "tier": 5, "color": "#F97316" },
+    { "id": "unique", "nameKo": "유일", "tier": 6, "color": "#A855F7" },
+    { "id": "celestial", "nameKo": "유물", "tier": 7, "color": "#EF4444" },
+    { "id": "divine", "nameKo": "경이", "tier": 8, "color": "#EC4899" },
+    { "id": "epic", "nameKo": "서사", "tier": 9, "color": "#06B6D4" },
+    { "id": "legendary", "nameKo": "전설", "tier": 10, "color": "#F59E0B" },
+    { "id": "mythic", "nameKo": "신화", "tier": 11, "color": "#DC2626" },
+    { "id": "eternal", "nameKo": "태초", "tier": 12, "color": "#FFD700" }
+  ],
+  "spriteColorSystem": {
+    "description": "같은 spriteIndex에 다른 color를 적용하여 아이템 변형 생성",
+    "example": {
+      "item1": { "id": "iron_sword", "spriteIndex": 0, "color": null, "comment": "기본 색상" },
+      "item2": { "id": "legendary_sword", "spriteIndex": 0, "color": "#FFD700", "comment": "황금색 변형" },
+      "item3": { "id": "cursed_sword", "spriteIndex": 0, "color": "#4B0082", "comment": "보라색 저주 변형" }
+    }
+  }
+}

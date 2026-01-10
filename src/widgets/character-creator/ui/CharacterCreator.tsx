@@ -50,17 +50,17 @@ export function CharacterCreator({ className = "" }: CharacterCreatorProps) {
 
   // 매핑 데이터 로드
   useEffect(() => {
-    fetch("/data/character/eye-mapping.json")
+    fetch("/data/sprites/appearance/eye.json")
       .then((res) => res.json())
       .then((data) => setEyeMappings(data.eyes))
       .catch(console.error);
 
-    fetch("/data/character/hair-mapping.json")
+    fetch("/data/sprites/appearance/hair.json")
       .then((res) => res.json())
       .then((data) => setHairMappings(data.hairs))
       .catch(console.error);
 
-    fetch("/data/character/facehair-mapping.json")
+    fetch("/data/sprites/appearance/facehair.json")
       .then((res) => res.json())
       .then((data) => setFacehairMappings(data.facehairs))
       .catch(console.error);

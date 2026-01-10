@@ -1,0 +1,75 @@
+{
+  "id": "eastern_human",
+  "category": "human",
+  "nameKo": "동부인",
+  "nameEn": "Easterner",
+  "description": "고대 제국의 후예로, 동방의 신비로운 문화를 간직한 민족. 검은 머리카락과 갈색 눈이 특징이다.",
+  "lore": "수천 년의 역사를 자랑하는 동방 제국의 후예들이다. 무술과 명상, 그리고 자연과의 조화를 중시한다. 섬세한 예술과 정교한 기술로 유명하며, 전통적인 검술과 마법이 결합된 독특한 전투 스타일을 발전시켰다.",
+  "traits": {
+    "innate": ["disciplined", "balanced_mind"],
+    "optional": ["martial_artist", "spirit_touched"]
+  },
+  "statModifiers": {
+    "dex": 2,
+    "wis": 1,
+    "str": -1
+  },
+  "appearance": {
+    "body": {
+      "availableIndices": [3, 4, 5, 6, 7],
+      "spriteNames": ["Human_1", "Human_2", "Human_3", "Human_4", "Human_5"]
+    },
+    "skinTones": {
+      "available": ["fair", "light", "medium", "tan"],
+      "default": "light",
+      "colors": {
+        "fair": "#FFE4C4",
+        "light": "#F5DEB3",
+        "medium": "#DEB887",
+        "tan": "#D2B48C"
+      }
+    },
+    "eye": {
+      "availableIndices": [0, 2, 3, 7, 8, 9, 10, 11, 12, 13, 14],
+      "colors": {
+        "available": ["brown", "black", "hazel", "amber"],
+        "default": "brown",
+        "values": {
+          "brown": "#8B4513",
+          "black": "#1C1C1C",
+          "hazel": "#8E7618",
+          "amber": "#FFBF00"
+        }
+      }
+    },
+    "hair": {
+      "availableIndices": "all",
+      "colors": {
+        "available": ["black", "dark_brown", "brown", "white", "gray"],
+        "default": "black",
+        "values": {
+          "black": "#1C1C1C",
+          "dark_brown": "#3D2314",
+          "brown": "#5D4037",
+          "white": "#FFFFFF",
+          "gray": "#808080"
+        }
+      }
+    },
+    "facehair": {
+      "availableIndices": "all",
+      "colors": "same_as_hair"
+    }
+  },
+  "resistances": {
+    "lightning": 10
+  },
+  "startingLocation": "eastern_temple",
+  "languages": ["common", "eastern"],
+  "lifespan": {
+    "adult": 18,
+    "middle": 45,
+    "old": 65,
+    "max": 90
+  }
+}

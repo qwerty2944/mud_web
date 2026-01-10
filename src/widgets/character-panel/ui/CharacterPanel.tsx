@@ -388,7 +388,9 @@ function HandWeaponSelector({ hand }: { hand: HandType }) {
     shield: "방패",
     axe: "도끼",
     bow: "활",
+    spear: "창",
     wand: "지팡이",
+    dagger: "단검",
   };
 
   const isEmpty = index < 0;

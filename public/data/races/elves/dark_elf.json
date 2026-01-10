@@ -1,0 +1,86 @@
+{
+  "id": "dark_elf",
+  "category": "elf",
+  "nameKo": "다크엘프",
+  "nameEn": "Dark Elf",
+  "description": "지하 세계에서 살아가는 엘프. 검푸른 피부와 붉은 또는 하얀 눈이 특징이다.",
+  "lore": "고대에 다른 엘프들과 갈라져 지하 세계로 떠난 엘프들이다. 어둠 속에서 살아남기 위해 독과 암살술을 발전시켰다. 거미의 여신을 숭배하는 자들과 그로부터 벗어나려는 자들로 나뉘어 있다. 지상의 다른 종족들에게 두려움의 대상이다.",
+  "traits": {
+    "innate": ["superior_darkvision", "sunlight_sensitivity"],
+    "optional": ["poison_master", "shadow_magic"]
+  },
+  "statModifiers": {
+    "dex": 2,
+    "cha": 1,
+    "wis": -1,
+    "lck": -1
+  },
+  "appearance": {
+    "body": {
+      "availableIndices": [1, 2, 8, 9],
+      "spriteNames": ["Elf_1", "Elf_2", "New_Elf_1", "New_Elf_2"]
+    },
+    "skinTones": {
+      "available": ["obsidian", "charcoal", "purple", "blue_gray"],
+      "default": "obsidian",
+      "colors": {
+        "obsidian": "#36454F",
+        "charcoal": "#2F4F4F",
+        "purple": "#483D8B",
+        "blue_gray": "#6A5ACD"
+      }
+    },
+    "eye": {
+      "availableIndices": [0, 2, 3, 7, 8, 9, 10, 11, 12, 13, 14],
+      "colors": {
+        "available": ["red", "violet", "white", "amber", "pale_yellow"],
+        "default": "red",
+        "values": {
+          "red": "#DC143C",
+          "violet": "#8B008B",
+          "white": "#F5F5F5",
+          "amber": "#FFBF00",
+          "pale_yellow": "#FFFFE0"
+        }
+      }
+    },
+    "hair": {
+      "availableIndices": "all",
+      "colors": {
+        "available": ["white", "silver", "pale_violet", "pale_blue", "pale_gray"],
+        "default": "white",
+        "values": {
+          "white": "#FFFFFF",
+          "silver": "#C0C0C0",
+          "pale_violet": "#DDA0DD",
+          "pale_blue": "#B0E0E6",
+          "pale_gray": "#D3D3D3"
+        }
+      }
+    },
+    "facehair": {
+      "availableIndices": [],
+      "note": "엘프는 수염이 자라지 않음"
+    }
+  },
+  "resistances": {
+    "dark": 20,
+    "holy": -20
+  },
+  "vulnerabilities": {
+    "sunlight": true,
+    "note": "낮 시간대 전투 시 명중 -10%"
+  },
+  "abilities": {
+    "darkvision": 120,
+    "poisonResist": 25
+  },
+  "startingLocation": "underground_city",
+  "languages": ["common", "elvish", "undercommon"],
+  "lifespan": {
+    "adult": 100,
+    "middle": 350,
+    "old": 550,
+    "max": 750
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "category": "equipment",
+  "subcategory": "armor",
+  "slot": "cloth",
+  "spriteMapping": "/data/sprites/equipment/armor/cloth.json",
+  "items": [
+    {
+      "id": "simple_tunic",
+      "nameKo": "단순한 튜닉",
+      "nameEn": "Simple Tunic",
+      "description": "평범한 천으로 만든 튜닉.",
+      "rarity": "crude",
+      "value": 10,
+      "weight": 0.3,
+      "spriteIndex": 0,
+      "color": "#D2B48C",
+      "stats": {
+        "defense": 1
+      },
+      "requirements": {
+        "level": 1
+      }
+    },
+    {
+      "id": "traveler_clothes",
+      "nameKo": "여행자의 옷",
+      "nameEn": "Traveler's Clothes",
+      "description": "여행자가 입는 편한 옷.",
+      "rarity": "common",
+      "value": 50,
+      "weight": 0.8,
+      "spriteIndex": 10,
+      "color": null,
+      "stats": {
+        "defense": 3,
+        "moveSpeed": 5
+      },
+      "requirements": {
+        "level": 1
+      }
+    },
+    {
+      "id": "reinforced_clothes",
+      "nameKo": "강화된 옷",
+      "nameEn": "Reinforced Clothes",
+      "description": "가죽으로 보강된 옷.",
+      "rarity": "grand",
+      "value": 180,
+      "weight": 1.2,
+      "spriteIndex": 20,
+      "color": null,
+      "stats": {
+        "defense": 8,
+        "dex": 1
+      },
+      "requirements": {
+        "level": 5
+      }
+    },
+    {
+      "id": "rogue_outfit",
+      "nameKo": "도적의 복장",
+      "nameEn": "Rogue's Outfit",
+      "description": "도적들이 애용하는 검은 옷.",
+      "rarity": "rare",
+      "value": 450,
+      "weight": 1.0,
+      "spriteIndex": 30,
+      "color": "#2F4F4F",
+      "stats": {
+        "defense": 10,
+        "dex": 3,
+        "critChance": 3
+      },
+      "requirements": {
+        "level": 12,
+        "dex": 10
+      }
+    },
+    {
+      "id": "hunter_garb",
+      "nameKo": "사냥꾼의 의복",
+      "nameEn": "Hunter's Garb",
+      "description": "사냥꾼이 입는 기능적인 옷.",
+      "rarity": "rare",
+      "value": 500,
+      "weight": 1.2,
+      "spriteIndex": 40,
+      "color": "#556B2F",
+      "stats": {
+        "defense": 12,
+        "dex": 2,
+        "range": 1
+      },
+      "requirements": {
+        "level": 12,
+        "dex": 10
+      }
+    },
+    {
+      "id": "shadow_garb",
+      "nameKo": "그림자의 의복",
+      "nameEn": "Shadow Garb",
+      "description": "어둠에 녹아드는 검은 옷.",
+      "rarity": "arcane",
+      "value": 1500,
+      "weight": 0.8,
+      "spriteIndex": 50,
+      "color": "#1C1C1C",
+      "stats": {
+        "defense": 15,
+        "dex": 4,
+        "critChance": 5,
+        "dodgeBonus": 5
+      },
+      "requirements": {
+        "level": 20,
+        "dex": 15
+      }
+    },
+    {
+      "id": "assassin_attire",
+      "nameKo": "암살자의 복장",
+      "nameEn": "Assassin's Attire",
+      "description": "암살 길드의 특수 복장.",
+      "rarity": "heroic",
+      "value": 4000,
+      "weight": 0.6,
+      "spriteIndex": 60,
+      "color": "#2F0A3C",
+      "stats": {
+        "defense": 18,
+        "dex": 5,
+        "critChance": 8,
+        "critDamage": 15,
+        "moveSpeed": 10
+      },
+      "requirements": {
+        "level": 28,
+        "dex": 22
+      }
+    },
+    {
+      "id": "legendary_clothes",
+      "nameKo": "전설의 의복",
+      "nameEn": "Legendary Clothes",
+      "description": "바람처럼 빠르다는 전설의 옷.",
+      "rarity": "legendary",
+      "value": 55000,
+      "weight": 0.5,
+      "spriteIndex": 80,
+      "color": "#FFD700",
+      "stats": {
+        "defense": 30,
+        "dex": 8,
+        "critChance": 12,
+        "critDamage": 25,
+        "dodgeBonus": 10,
+        "allStats": 2
+      },
+      "requirements": {
+        "level": 50,
+        "dex": 30
+      }
+    }
+  ]
+}

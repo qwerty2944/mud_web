@@ -1,0 +1,87 @@
+{
+  "id": "zombie",
+  "category": "undead",
+  "nameKo": "좀비",
+  "nameEn": "Zombie",
+  "description": "부패한 육체로 되살아난 언데드. 느리지만 강인하다.",
+  "lore": "시체가 어둠의 마법이나 저주로 되살아난 존재들이다. 스켈레톤보다 강하고 튼튼하지만 더 느리다. 대부분 생전의 기억이 없고 본능에 따라 움직이지만, 강력한 좀비는 지능을 유지하기도 한다.",
+  "traits": {
+    "innate": ["undead_resilience", "shambling"],
+    "optional": ["relentless", "plague_bearer"]
+  },
+  "statModifiers": {
+    "str": 2,
+    "con": 3,
+    "dex": -3,
+    "int": -2,
+    "cha": -4
+  },
+  "playable": false,
+  "appearance": {
+    "body": {
+      "availableIndices": [15, 16, 17, 18, 19, 20],
+      "spriteNames": ["Zombie_1", "Zombie_2", "Zombie_3", "Zombie_4", "Zombie_5", "Zombie_6"]
+    },
+    "skinTones": {
+      "available": ["pale_gray", "greenish", "purple", "rotting"],
+      "default": "greenish",
+      "colors": {
+        "pale_gray": "#A9A9A9",
+        "greenish": "#6B8E6B",
+        "purple": "#8B668B",
+        "rotting": "#5F5F5F"
+      }
+    },
+    "eye": {
+      "availableIndices": [0, 1],
+      "colors": {
+        "available": ["white", "yellow", "red", "empty"],
+        "default": "white",
+        "values": {
+          "white": "#F5F5F5",
+          "yellow": "#FFFF00",
+          "red": "#FF0000",
+          "empty": "#000000"
+        }
+      }
+    },
+    "hair": {
+      "availableIndices": "all",
+      "note": "일부 좀비는 머리카락이 남아있음",
+      "colors": {
+        "available": ["black_gray", "brown_gray", "white", "none"],
+        "default": "black_gray",
+        "values": {
+          "black_gray": "#2F2F2F",
+          "brown_gray": "#4A3728",
+          "white": "#D3D3D3",
+          "none": null
+        }
+      }
+    },
+    "facehair": {
+      "availableIndices": [],
+      "note": "좀비는 수염이 거의 없음"
+    }
+  },
+  "resistances": {
+    "dark": 25,
+    "poison": 100,
+    "holy": -40
+  },
+  "immunities": ["poison", "disease"],
+  "vulnerabilities": ["holy", "fire"],
+  "abilities": {
+    "darkvision": 60,
+    "noBreathing": true,
+    "noSleeping": true,
+    "undeadFortitude": {
+      "note": "HP가 0이 되어도 CON 판정 성공시 1HP로 생존"
+    }
+  },
+  "startingLocation": null,
+  "languages": ["none"],
+  "lifespan": {
+    "note": "언데드는 완전히 파괴되기 전까지 존재"
+  }
+}

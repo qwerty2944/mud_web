@@ -1,0 +1,114 @@
+{
+  "category": "material",
+  "subcategory": "gem",
+  "items": [
+    {
+      "id": "gem_ruby",
+      "nameKo": "루비",
+      "nameEn": "Ruby",
+      "description": "붉게 빛나는 보석. 화염 속성 강화에 사용.",
+      "icon": "gem_red",
+      "rarity": "rare",
+      "stackSize": 30,
+      "value": 150,
+      "weight": 0.1,
+      "element": "fire"
+    },
+    {
+      "id": "gem_sapphire",
+      "nameKo": "사파이어",
+      "nameEn": "Sapphire",
+      "description": "차갑게 빛나는 푸른 보석. 냉기 속성 강화에 사용.",
+      "icon": "gem_blue",
+      "rarity": "rare",
+      "stackSize": 30,
+      "value": 150,
+      "weight": 0.1,
+      "element": "ice"
+    },
+    {
+      "id": "gem_topaz",
+      "nameKo": "토파즈",
+      "nameEn": "Topaz",
+      "description": "번개처럼 빛나는 노란 보석. 번개 속성 강화에 사용.",
+      "icon": "gem_yellow",
+      "rarity": "rare",
+      "stackSize": 30,
+      "value": 150,
+      "weight": 0.1,
+      "element": "lightning"
+    },
+    {
+      "id": "gem_emerald",
+      "nameKo": "에메랄드",
+      "nameEn": "Emerald",
+      "description": "자연의 힘이 담긴 녹색 보석. 대지 속성 강화에 사용.",
+      "icon": "gem_green",
+      "rarity": "rare",
+      "stackSize": 30,
+      "value": 150,
+      "weight": 0.1,
+      "element": "earth"
+    },
+    {
+      "id": "gem_diamond",
+      "nameKo": "다이아몬드",
+      "nameEn": "Diamond",
+      "description": "완벽하게 투명한 최고급 보석. 신성 속성 강화에 사용.",
+      "icon": "gem_white",
+      "rarity": "heroic",
+      "stackSize": 20,
+      "value": 500,
+      "weight": 0.1,
+      "element": "holy"
+    },
+    {
+      "id": "gem_onyx",
+      "nameKo": "오닉스",
+      "nameEn": "Onyx",
+      "description": "칠흑같이 어두운 보석. 암흑 속성 강화에 사용.",
+      "icon": "gem_black",
+      "rarity": "heroic",
+      "stackSize": 20,
+      "value": 450,
+      "weight": 0.1,
+      "element": "dark"
+    },
+    {
+      "id": "gem_amethyst",
+      "nameKo": "자수정",
+      "nameEn": "Amethyst",
+      "description": "보라색 빛의 아름다운 보석. MP 강화에 사용.",
+      "icon": "gem_purple",
+      "rarity": "arcane",
+      "stackSize": 25,
+      "value": 200,
+      "weight": 0.1,
+      "statBonus": "mp"
+    },
+    {
+      "id": "gem_garnet",
+      "nameKo": "가넷",
+      "nameEn": "Garnet",
+      "description": "진한 적색의 보석. HP 강화에 사용.",
+      "icon": "gem_darkred",
+      "rarity": "arcane",
+      "stackSize": 25,
+      "value": 200,
+      "weight": 0.1,
+      "statBonus": "hp"
+    },
+    {
+      "id": "gem_chaos",
+      "nameKo": "혼돈의 보석",
+      "nameEn": "Chaos Gem",
+      "description": "무지개빛으로 빛나는 기이한 보석. 모든 속성을 담고 있다.",
+      "icon": "gem_rainbow",
+      "rarity": "legendary",
+      "stackSize": 5,
+      "value": 5000,
+      "weight": 0.2,
+      "element": "all"
+    }
+  ]
+}

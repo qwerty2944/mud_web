@@ -1,0 +1,150 @@
+{
+  "category": "material",
+  "subcategory": "drop",
+  "items": [
+    {
+      "id": "acorn",
+      "nameKo": "도토리",
+      "nameEn": "Acorn",
+      "description": "다람쥐가 모아둔 도토리.",
+      "icon": "drop_acorn",
+      "rarity": "crude",
+      "stackSize": 99,
+      "value": 2,
+      "weight": 0.05,
+      "source": ["squirrel", "elder_squirrel"]
+    },
+    {
+      "id": "wolf_fang",
+      "nameKo": "늑대 송곳니",
+      "nameEn": "Wolf Fang",
+      "description": "날카로운 늑대의 송곳니.",
+      "icon": "drop_fang",
+      "rarity": "common",
+      "stackSize": 99,
+      "value": 15,
+      "weight": 0.1,
+      "source": ["wolf", "alpha_wolf"]
+    },
+    {
+      "id": "wolf_pelt",
+      "nameKo": "늑대 가죽",
+      "nameEn": "Wolf Pelt",
+      "description": "질긴 늑대의 가죽.",
+      "icon": "drop_pelt",
+      "rarity": "common",
+      "stackSize": 50,
+      "value": 25,
+      "weight": 0.5,
+      "source": ["wolf", "alpha_wolf"]
+    },
+    {
+      "id": "spider_silk",
+      "nameKo": "거미줄",
+      "nameEn": "Spider Silk",
+      "description": "질기고 끈적이는 거미줄.",
+      "icon": "drop_silk",
+      "rarity": "common",
+      "stackSize": 99,
+      "value": 18,
+      "weight": 0.05,
+      "source": ["forest_spider", "giant_spider"]
+    },
+    {
+      "id": "spider_venom",
+      "nameKo": "거미 독액",
+      "nameEn": "Spider Venom",
+      "description": "독 무기 제작에 사용되는 독액.",
+      "icon": "drop_venom",
+      "rarity": "grand",
+      "stackSize": 50,
+      "value": 40,
+      "weight": 0.1,
+      "source": ["forest_spider", "giant_spider"]
+    },
+    {
+      "id": "slime_core",
+      "nameKo": "슬라임 핵",
+      "nameEn": "Slime Core",
+      "description": "슬라임의 중심에서 발견되는 젤리 같은 구슬.",
+      "icon": "drop_slime",
+      "rarity": "common",
+      "stackSize": 99,
+      "value": 12,
+      "weight": 0.2,
+      "source": ["slime", "king_slime"]
+    },
+    {
+      "id": "goblin_ear",
+      "nameKo": "고블린 귀",
+      "nameEn": "Goblin Ear",
+      "description": "고블린의 뾰족한 귀. 현상금 증거용.",
+      "icon": "drop_ear",
+      "rarity": "common",
+      "stackSize": 99,
+      "value": 20,
+      "weight": 0.05,
+      "source": ["goblin", "goblin_shaman"]
+    },
+    {
+      "id": "skeleton_bone",
+      "nameKo": "해골 뼈",
+      "nameEn": "Skeleton Bone",
+      "description": "언데드에서 떨어진 뼈 조각.",
+      "icon": "drop_bone",
+      "rarity": "common",
+      "stackSize": 99,
+      "value": 15,
+      "weight": 0.2,
+      "source": ["skeleton", "skeleton_warrior"]
+    },
+    {
+      "id": "magic_essence",
+      "nameKo": "마력의 정수",
+      "nameEn": "Magic Essence",
+      "description": "응축된 마력 덩어리.",
+      "icon": "drop_essence",
+      "rarity": "rare",
+      "stackSize": 50,
+      "value": 100,
+      "weight": 0.1,
+      "source": ["any_magical"]
+    },
+    {
+      "id": "dragon_scale",
+      "nameKo": "용의 비늘",
+      "nameEn": "Dragon Scale",
+      "description": "드래곤의 단단한 비늘 조각.",
+      "icon": "drop_scale",
+      "rarity": "heroic",
+      "stackSize": 20,
+      "value": 800,
+      "weight": 0.5,
+      "source": ["dragon", "drake"]
+    },
+    {
+      "id": "phoenix_feather",
+      "nameKo": "불사조의 깃털",
+      "nameEn": "Phoenix Feather",
+      "description": "불꽃처럼 타오르는 신비로운 깃털.",
+      "icon": "drop_feather",
+      "rarity": "unique",
+      "stackSize": 10,
+      "value": 2000,
+      "weight": 0.1,
+      "source": ["phoenix"]
+    },
+    {
+      "id": "demon_heart",
+      "nameKo": "악마의 심장",
+      "nameEn": "Demon Heart",
+      "description": "여전히 맥동하는 악마의 검은 심장.",
+      "icon": "drop_heart",
+      "rarity": "unique",
+      "stackSize": 5,
+      "value": 3000,
+      "weight": 1.0,
+      "source": ["demon", "arch_demon"]
+    }
+  ]
+}

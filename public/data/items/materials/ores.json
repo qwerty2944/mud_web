@@ -1,0 +1,94 @@
+{
+  "category": "material",
+  "subcategory": "ore",
+  "items": [
+    {
+      "id": "copper_ore",
+      "nameKo": "구리 광석",
+      "nameEn": "Copper Ore",
+      "description": "붉은빛이 도는 기본 광석.",
+      "icon": "ore_copper",
+      "rarity": "crude",
+      "stackSize": 99,
+      "value": 5,
+      "weight": 1.0
+    },
+    {
+      "id": "iron_ore",
+      "nameKo": "철 광석",
+      "nameEn": "Iron Ore",
+      "description": "대장간에서 가장 많이 사용되는 광석.",
+      "icon": "ore_iron",
+      "rarity": "common",
+      "stackSize": 99,
+      "value": 10,
+      "weight": 1.2
+    },
+    {
+      "id": "silver_ore",
+      "nameKo": "은 광석",
+      "nameEn": "Silver Ore",
+      "description": "은빛으로 빛나는 광석. 마법 무기 제작에 사용.",
+      "icon": "ore_silver",
+      "rarity": "grand",
+      "stackSize": 99,
+      "value": 30,
+      "weight": 1.0
+    },
+    {
+      "id": "gold_ore",
+      "nameKo": "금 광석",
+      "nameEn": "Gold Ore",
+      "description": "황금빛으로 빛나는 귀중한 광석.",
+      "icon": "ore_gold",
+      "rarity": "rare",
+      "stackSize": 99,
+      "value": 80,
+      "weight": 1.5
+    },
+    {
+      "id": "mithril_ore",
+      "nameKo": "미스릴 광석",
+      "nameEn": "Mithril Ore",
+      "description": "은빛 푸른 광채를 내는 희귀 광석.",
+      "icon": "ore_mithril",
+      "rarity": "arcane",
+      "stackSize": 50,
+      "value": 200,
+      "weight": 0.8
+    },
+    {
+      "id": "adamantite_ore",
+      "nameKo": "아다만타이트 광석",
+      "nameEn": "Adamantite Ore",
+      "description": "세상에서 가장 단단한 금속의 원석.",
+      "icon": "ore_adamantite",
+      "rarity": "heroic",
+      "stackSize": 30,
+      "value": 500,
+      "weight": 2.0
+    },
+    {
+      "id": "orichalcum_ore",
+      "nameKo": "오리하르콘 광석",
+      "nameEn": "Orichalcum Ore",
+      "description": "전설 속 금속의 원석. 붉은 금빛을 낸다.",
+      "icon": "ore_orichalcum",
+      "rarity": "unique",
+      "stackSize": 20,
+      "value": 1500,
+      "weight": 1.8
+    },
+    {
+      "id": "dark_ore",
+      "nameKo": "암흑 광석",
+      "nameEn": "Dark Ore",
+      "description": "빛을 흡수하는 기이한 광석.",
+      "icon": "ore_dark",
+      "rarity": "unique",
+      "stackSize": 20,
+      "value": 1200,
+      "weight": 1.5
+    }
+  ]
+}

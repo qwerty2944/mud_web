@@ -1,0 +1,181 @@
+{
+  "category": "equipment",
+  "subcategory": "weapon",
+  "weaponType": "bow",
+  "spriteMapping": "/data/sprites/equipment/weapon/bow.json",
+  "items": [
+    {
+      "id": "wooden_bow",
+      "nameKo": "나무 활",
+      "nameEn": "Wooden Bow",
+      "description": "단순한 나무로 만든 활.",
+      "rarity": "crude",
+      "value": 30,
+      "weight": 1.5,
+      "spriteIndex": 0,
+      "color": "#8B4513",
+      "stats": {
+        "damage": 6,
+        "attackSpeed": 1.1,
+        "range": 3
+      },
+      "requirements": {
+        "level": 1
+      }
+    },
+    {
+      "id": "short_bow",
+      "nameKo": "단궁",
+      "nameEn": "Short Bow",
+      "description": "휴대하기 좋은 작은 활.",
+      "rarity": "common",
+      "value": 80,
+      "weight": 1.2,
+      "spriteIndex": 0,
+      "color": null,
+      "stats": {
+        "damage": 9,
+        "attackSpeed": 1.2,
+        "range": 3
+      },
+      "requirements": {
+        "level": 1,
+        "dex": 5
+      }
+    },
+    {
+      "id": "long_bow",
+      "nameKo": "장궁",
+      "nameEn": "Long Bow",
+      "description": "긴 사거리의 대형 활.",
+      "rarity": "grand",
+      "value": 300,
+      "weight": 2.0,
+      "spriteIndex": 1,
+      "color": null,
+      "stats": {
+        "damage": 16,
+        "attackSpeed": 1.0,
+        "range": 5
+      },
+      "requirements": {
+        "level": 5,
+        "dex": 8,
+        "str": 5
+      }
+    },
+    {
+      "id": "composite_bow",
+      "nameKo": "합성궁",
+      "nameEn": "Composite Bow",
+      "description": "여러 재료를 합성해 만든 강력한 활.",
+      "rarity": "rare",
+      "value": 700,
+      "weight": 1.8,
+      "spriteIndex": 2,
+      "color": null,
+      "stats": {
+        "damage": 22,
+        "attackSpeed": 1.15,
+        "range": 4,
+        "critChance": 5
+      },
+      "requirements": {
+        "level": 12,
+        "dex": 12
+      }
+    },
+    {
+      "id": "elven_bow",
+      "nameKo": "엘프의 활",
+      "nameEn": "Elven Bow",
+      "description": "엘프 장인이 만든 우아한 활.",
+      "rarity": "arcane",
+      "value": 2200,
+      "weight": 1.0,
+      "spriteIndex": 3,
+      "color": "#90EE90",
+      "stats": {
+        "damage": 28,
+        "attackSpeed": 1.25,
+        "range": 5,
+        "critChance": 8,
+        "dex": 2
+      },
+      "requirements": {
+        "level": 20,
+        "dex": 16
+      }
+    },
+    {
+      "id": "wind_bow",
+      "nameKo": "바람의 활",
+      "nameEn": "Wind Bow",
+      "description": "바람의 정령이 깃든 마법 활.",
+      "rarity": "heroic",
+      "value": 5000,
+      "weight": 0.8,
+      "spriteIndex": 4,
+      "color": "#87CEEB",
+      "stats": {
+        "damage": 30,
+        "attackSpeed": 1.4,
+        "range": 6,
+        "critChance": 10,
+        "dodgeBonus": 5
+      },
+      "requirements": {
+        "level": 25,
+        "dex": 20
+      }
+    },
+    {
+      "id": "phoenix_bow",
+      "nameKo": "불사조의 활",
+      "nameEn": "Phoenix Bow",
+      "description": "불사조의 깃털로 만든 화염의 활.",
+      "rarity": "unique",
+      "value": 12000,
+      "weight": 1.2,
+      "spriteIndex": 5,
+      "color": "#FF4500",
+      "stats": {
+        "damage": 38,
+        "attackSpeed": 1.2,
+        "range": 5,
+        "elementDamage": {
+          "element": "fire",
+          "value": 20
+        },
+        "critChance": 12
+      },
+      "requirements": {
+        "level": 35,
+        "dex": 24
+      }
+    },
+    {
+      "id": "legendary_bow",
+      "nameKo": "전설의 활",
+      "nameEn": "Legendary Bow",
+      "description": "백발백중이라 전해지는 전설의 활.",
+      "rarity": "legendary",
+      "value": 85000,
+      "weight": 1.5,
+      "spriteIndex": 8,
+      "color": "#FFD700",
+      "stats": {
+        "damage": 55,
+        "attackSpeed": 1.35,
+        "range": 7,
+        "critChance": 18,
+        "critDamage": 30,
+        "allStats": 3
+      },
+      "requirements": {
+        "level": 50,
+        "dex": 32
+      }
+    }
+  ]
+}

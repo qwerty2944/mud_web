@@ -1,0 +1,223 @@
+{
+  "category": "equipment",
+  "subcategory": "armor",
+  "slot": "back",
+  "spriteMapping": "/data/sprites/equipment/armor/back.json",
+  "items": [
+    {
+      "id": "simple_cape",
+      "nameKo": "단순한 망토",
+      "nameEn": "Simple Cape",
+      "description": "평범한 천 망토.",
+      "rarity": "crude",
+      "value": 15,
+      "weight": 0.3,
+      "spriteIndex": 0,
+      "color": "#8B4513",
+      "stats": {
+        "defense": 1
+      },
+      "requirements": {
+        "level": 1
+      }
+    },
+    {
+      "id": "traveler_cloak",
+      "nameKo": "여행자의 망토",
+      "nameEn": "Traveler's Cloak",
+      "description": "여행자가 두르는 망토.",
+      "rarity": "common",
+      "value": 50,
+      "weight": 0.5,
+      "spriteIndex": 3,
+      "color": null,
+      "stats": {
+        "defense": 3,
+        "moveSpeed": 3
+      },
+      "requirements": {
+        "level": 1
+      }
+    },
+    {
+      "id": "adventurer_cloak",
+      "nameKo": "모험가의 망토",
+      "nameEn": "Adventurer's Cloak",
+      "description": "모험가가 착용하는 튼튼한 망토.",
+      "rarity": "grand",
+      "value": 180,
+      "weight": 0.8,
+      "spriteIndex": 6,
+      "color": null,
+      "stats": {
+        "defense": 6,
+        "allElementResist": 3
+      },
+      "requirements": {
+        "level": 5
+      }
+    },
+    {
+      "id": "knight_cape",
+      "nameKo": "기사의 망토",
+      "nameEn": "Knight's Cape",
+      "description": "왕국 기사단의 망토.",
+      "rarity": "rare",
+      "value": 450,
+      "weight": 1.0,
+      "spriteIndex": 10,
+      "color": "#1E3A5F",
+      "stats": {
+        "defense": 10,
+        "str": 1,
+        "con": 1
+      },
+      "requirements": {
+        "level": 12,
+        "str": 8
+      }
+    },
+    {
+      "id": "mage_cloak",
+      "nameKo": "마법사의 망토",
+      "nameEn": "Mage's Cloak",
+      "description": "마법사가 두르는 신비로운 망토.",
+      "rarity": "rare",
+      "value": 500,
+      "weight": 0.5,
+      "spriteIndex": 12,
+      "color": "#4B0082",
+      "stats": {
+        "defense": 4,
+        "magicDefense": 12,
+        "int": 2,
+        "mp": 20
+      },
+      "requirements": {
+        "level": 12,
+        "int": 10
+      }
+    },
+    {
+      "id": "shadow_cloak",
+      "nameKo": "그림자 망토",
+      "nameEn": "Shadow Cloak",
+      "description": "어둠에 녹아드는 검은 망토.",
+      "rarity": "arcane",
+      "value": 1500,
+      "weight": 0.4,
+      "spriteIndex": 15,
+      "color": "#1C1C1C",
+      "stats": {
+        "defense": 8,
+        "dex": 3,
+        "dodgeBonus": 5,
+        "critChance": 3
+      },
+      "requirements": {
+        "level": 20,
+        "dex": 14
+      }
+    },
+    {
+      "id": "phoenix_wings",
+      "nameKo": "불사조의 날개",
+      "nameEn": "Phoenix Wings",
+      "description": "불사조 깃털로 만든 망토.",
+      "rarity": "heroic",
+      "value": 6000,
+      "weight": 0.3,
+      "spriteIndex": 20,
+      "color": "#FF4500",
+      "stats": {
+        "defense": 12,
+        "magicDefense": 15,
+        "elementBonus": {
+          "element": "fire",
+          "value": 15
+        },
+        "elementResist": {
+          "element": "fire",
+          "value": 25
+        }
+      },
+      "requirements": {
+        "level": 28,
+        "int": 18
+      }
+    },
+    {
+      "id": "angel_wings",
+      "nameKo": "천사의 날개",
+      "nameEn": "Angel Wings",
+      "description": "천상의 힘이 깃든 순백의 날개.",
+      "rarity": "unique",
+      "value": 20000,
+      "weight": 0.2,
+      "spriteIndex": 25,
+      "color": "#FFFACD",
+      "stats": {
+        "defense": 15,
+        "magicDefense": 25,
+        "healBonus": 20,
+        "elementBonus": {
+          "element": "holy",
+          "value": 20
+        },
+        "wis": 4
+      },
+      "requirements": {
+        "level": 38,
+        "wis": 25,
+        "karma": 30
+      }
+    },
+    {
+      "id": "demon_wings",
+      "nameKo": "악마의 날개",
+      "nameEn": "Demon Wings",
+      "description": "암흑의 힘이 깃든 검은 날개.",
+      "rarity": "unique",
+      "value": 18000,
+      "weight": 0.3,
+      "spriteIndex": 25,
+      "color": "#2F0A3C",
+      "stats": {
+        "defense": 12,
+        "magicDefense": 20,
+        "lifesteal": 8,
+        "elementBonus": {
+          "element": "dark",
+          "value": 25
+        },
+        "int": 4
+      },
+      "requirements": {
+        "level": 38,
+        "int": 25,
+        "karma": -30
+      }
+    },
+    {
+      "id": "legendary_cloak",
+      "nameKo": "전설의 망토",
+      "nameEn": "Legendary Cloak",
+      "description": "모든 것을 감싸는 전설의 망토.",
+      "rarity": "legendary",
+      "value": 45000,
+      "weight": 0.5,
+      "spriteIndex": 30,
+      "color": "#FFD700",
+      "stats": {
+        "defense": 25,
+        "magicDefense": 35,
+        "allStats": 4,
+        "allElementResist": 15,
+        "dodgeBonus": 8
+      },
+      "requirements": {
+        "level": 50
+      }
+    }
+  ]
+}

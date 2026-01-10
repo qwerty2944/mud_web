@@ -8,10 +8,10 @@ export type PartType =
   | "body" | "eye" | "hair" | "facehair" | "cloth"
   | "armor" | "pant" | "helmet" | "back"
   // 무기 파츠 (12슬롯 장비 시스템용)
-  | "sword" | "shield" | "axe" | "bow" | "wand";
+  | "sword" | "shield" | "axe" | "bow" | "spear" | "wand" | "dagger";
 
 // 무기 타입 (스프라이트 카테고리와 매핑)
-export type WeaponPartType = "sword" | "shield" | "axe" | "bow" | "wand";
+export type WeaponPartType = "sword" | "shield" | "axe" | "bow" | "spear" | "wand" | "dagger";
 
 export interface SpriteCounts {
   bodyCount: number;
@@ -28,7 +28,9 @@ export interface SpriteCounts {
   shieldCount: number;
   axeCount: number;
   bowCount: number;
+  spearCount: number;
   wandCount: number;
+  daggerCount: number;
 }
 
 // 스프라이트 이름 데이터 (all-sprites.json)
@@ -46,7 +48,9 @@ export interface SpriteNames {
   shieldNames: string[];
   axeNames: string[];
   bowNames: string[];
+  spearNames: string[];
   wandNames: string[];
+  daggerNames: string[];
 }
 
 // 손별 무기 상태
@@ -72,7 +76,9 @@ export interface CharacterState {
   shieldIndex: number;
   axeIndex: number;
   bowIndex: number;
+  spearIndex: number;
   wandIndex: number;
+  daggerIndex: number;
   // 기존 호환용 (deprecated)
   leftWeaponIndex: number;
   rightWeaponIndex: number;
@@ -93,7 +99,9 @@ export interface CharacterState {
   shieldColor: string;
   axeColor: string;
   bowColor: string;
+  spearColor: string;
   wandColor: string;
+  daggerColor: string;
 }
 
 export interface AnimationState {
@@ -127,16 +135,18 @@ const PART_META: Record<PartType, { label: string; indexKey: keyof CharacterStat
   shield: { label: "방패", indexKey: "shieldIndex", countKey: "shieldCount", required: false, colorKey: "shieldColor" },
   axe: { label: "도끼", indexKey: "axeIndex", countKey: "axeCount", required: false, colorKey: "axeColor" },
   bow: { label: "활", indexKey: "bowIndex", countKey: "bowCount", required: false, colorKey: "bowColor" },
+  spear: { label: "창", indexKey: "spearIndex", countKey: "spearCount", required: false, colorKey: "spearColor" },
   wand: { label: "지팡이", indexKey: "wandIndex", countKey: "wandCount", required: false, colorKey: "wandColor" },
+  dagger: { label: "단검", indexKey: "daggerIndex", countKey: "daggerCount", required: false, colorKey: "daggerColor" },
 };
 
 // 캐릭터 외형용 파츠 (무기 제외)
 export const PART_TYPES = Object.keys(PART_META).filter(
-  (key) => !["sword", "shield", "axe", "bow", "wand"].includes(key)
+  (key) => !["sword", "shield", "axe", "bow", "spear", "wand", "dagger"].includes(key)
 ) as PartType[];
 
 // 무기 파츠만
-export const WEAPON_PART_TYPES: WeaponPartType[] = ["sword", "shield", "axe", "bow", "wand"];
+export const WEAPON_PART_TYPES: WeaponPartType[] = ["sword", "shield", "axe", "bow", "spear", "wand", "dagger"];
 
 // ============ 스토어 ============
 
@@ -271,7 +281,7 @@ export const useAppearanceStore = create<AppearanceStore>((set, get) => ({
 
   // 파츠 조작
   nextPart: (type) => {
-    const weaponTypes: WeaponPartType[] = ["sword", "shield", "axe", "bow", "wand"];
+    const weaponTypes: WeaponPartType[] = WEAPON_PART_TYPES;
     const { characterState, spriteCounts, callUnity } = get();
     const meta = PART_META[type];
     const current = (characterState?.[meta.indexKey] as number) ?? 0;
@@ -303,7 +313,7 @@ export const useAppearanceStore = create<AppearanceStore>((set, get) => ({
     }
   },
   prevPart: (type) => {
-    const weaponTypes: WeaponPartType[] = ["sword", "shield", "axe", "bow", "wand"];
+    const weaponTypes: WeaponPartType[] = WEAPON_PART_TYPES;
     const { characterState, spriteCounts, callUnity } = get();
     const meta = PART_META[type];
     const current = (characterState?.[meta.indexKey] as number) ?? 0;
@@ -340,7 +350,7 @@ export const useAppearanceStore = create<AppearanceStore>((set, get) => ({
     // 필수 파츠는 클리어 불가
     if (meta.required) return;
 
-    const weaponTypes: WeaponPartType[] = ["sword", "shield", "axe", "bow", "wand"];
+    const weaponTypes: WeaponPartType[] = WEAPON_PART_TYPES;
     const { callUnity } = get();
 
     if (weaponTypes.includes(type as WeaponPartType)) {
@@ -452,7 +462,9 @@ export const useAppearanceStore = create<AppearanceStore>((set, get) => ({
         shieldIndex: -1,
         axeIndex: -1,
         bowIndex: -1,
+        spearIndex: -1,
         wandIndex: -1,
+        daggerIndex: -1,
         leftWeaponIndex: -1,
         rightWeaponIndex: -1,
         leftWeaponType: "",
@@ -470,7 +482,9 @@ export const useAppearanceStore = create<AppearanceStore>((set, get) => ({
         shieldColor: "",
         axeColor: "",
         bowColor: "",
+        spearColor: "",
         wandColor: "",
+        daggerColor: "",
       },
     }));
   },
@@ -505,8 +519,8 @@ export const useAppearanceStore = create<AppearanceStore>((set, get) => ({
     callUnity("JS_ClearRightWeapon");
     callUnity("JS_ClearLeftWeapon");
 
-    // 오른손: sword, axe, bow, wand 중 하나 또는 없음
-    const rightWeaponTypes: (WeaponPartType | null)[] = ["sword", "axe", "bow", "wand", null];
+    // 오른손: sword, axe, bow, spear, wand, dagger 중 하나 또는 없음
+    const rightWeaponTypes: (WeaponPartType | null)[] = ["sword", "axe", "bow", "spear", "wand", "dagger", null];
     const rightType = rightWeaponTypes[Math.floor(Math.random() * rightWeaponTypes.length)];
     let rightWeaponIndex = -1;
 
@@ -553,7 +567,9 @@ export const useAppearanceStore = create<AppearanceStore>((set, get) => ({
         shieldIndex: -1,
         axeIndex: -1,
         bowIndex: -1,
+        spearIndex: -1,
         wandIndex: -1,
+        daggerIndex: -1,
         leftWeaponIndex: leftWeaponIndex,
         rightWeaponIndex: rightWeaponIndex,
         leftWeaponType: leftType || "",
@@ -571,7 +587,9 @@ export const useAppearanceStore = create<AppearanceStore>((set, get) => ({
         shieldColor: "",
         axeColor: "",
         bowColor: "",
+        spearColor: "",
         wandColor: "",
+        daggerColor: "",
       },
       // 손 무기 상태 업데이트
       rightHandWeapon: {
@@ -703,7 +721,7 @@ export const useAppearanceStore = create<AppearanceStore>((set, get) => ({
     const { category, index, color } = sprite;
 
     // 무기 카테고리인 경우
-    if (["sword", "shield", "axe", "bow", "wand"].includes(category)) {
+    if (["sword", "shield", "axe", "bow", "spear", "wand", "dagger"].includes(category)) {
       setWeaponSprite(category, index, color);
       return;
     }
@@ -744,7 +762,9 @@ export const useAppearanceStore = create<AppearanceStore>((set, get) => ({
       sword: { setIndex: "JS_SetSword", setColor: "JS_SetSwordColor", hand: "right" },
       axe: { setIndex: "JS_SetAxe", setColor: "JS_SetAxeColor", hand: "right" },
       bow: { setIndex: "JS_SetBow", setColor: "JS_SetBowColor", hand: "right" },
+      spear: { setIndex: "JS_SetSpear", setColor: "JS_SetSpearColor", hand: "right" },
       wand: { setIndex: "JS_SetWand", setColor: "JS_SetWandColor", hand: "right" },
+      dagger: { setIndex: "JS_SetDagger", setColor: "JS_SetDaggerColor", hand: "right" },
       shield: { setIndex: "JS_SetShield", setColor: "JS_SetShieldColor", hand: "left" },
     };
 
@@ -992,7 +1012,9 @@ export function useWeaponColor() {
         shield: "JS_SetShieldColor",
         axe: "JS_SetAxeColor",
         bow: "JS_SetBowColor",
+        spear: "JS_SetSpearColor",
         wand: "JS_SetWandColor",
+        dagger: "JS_SetDaggerColor",
       };
       callUnity(methodMap[target], hex);
     },

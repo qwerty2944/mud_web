@@ -1,0 +1,178 @@
+{
+  "category": "equipment",
+  "subcategory": "weapon",
+  "weaponType": "dagger",
+  "spriteMapping": "/data/sprites/equipment/weapon/dagger.json",
+  "items": [
+    {
+      "id": "rusty_dagger",
+      "nameKo": "녹슨 단검",
+      "nameEn": "Rusty Dagger",
+      "description": "녹이 슨 오래된 단검.",
+      "rarity": "crude",
+      "value": 15,
+      "weight": 0.8,
+      "spriteIndex": 0,
+      "color": "#8B4513",
+      "stats": {
+        "damage": 4,
+        "attackSpeed": 1.3
+      },
+      "requirements": {
+        "level": 1
+      }
+    },
+    {
+      "id": "iron_dagger",
+      "nameKo": "철 단검",
+      "nameEn": "Iron Dagger",
+      "description": "기본적인 철제 단검.",
+      "rarity": "common",
+      "value": 60,
+      "weight": 1.0,
+      "spriteIndex": 0,
+      "color": null,
+      "stats": {
+        "damage": 7,
+        "attackSpeed": 1.3
+      },
+      "requirements": {
+        "level": 1,
+        "dex": 5
+      }
+    },
+    {
+      "id": "steel_dagger",
+      "nameKo": "강철 단검",
+      "nameEn": "Steel Dagger",
+      "description": "날카롭게 벼려진 강철 단검.",
+      "rarity": "grand",
+      "value": 200,
+      "weight": 1.0,
+      "spriteIndex": 0,
+      "color": "#A9A9A9",
+      "stats": {
+        "damage": 12,
+        "attackSpeed": 1.35,
+        "critChance": 3
+      },
+      "requirements": {
+        "level": 5,
+        "dex": 8
+      }
+    },
+    {
+      "id": "assassin_dagger",
+      "nameKo": "암살자의 단검",
+      "nameEn": "Assassin's Dagger",
+      "description": "암살 길드에서 사용하는 특수 단검.",
+      "rarity": "rare",
+      "value": 600,
+      "weight": 0.8,
+      "spriteIndex": 1,
+      "color": "#2F4F4F",
+      "stats": {
+        "damage": 15,
+        "attackSpeed": 1.4,
+        "critChance": 8,
+        "critDamage": 10
+      },
+      "requirements": {
+        "level": 12,
+        "dex": 12
+      }
+    },
+    {
+      "id": "poison_dagger",
+      "nameKo": "맹독 단검",
+      "nameEn": "Poison Dagger",
+      "description": "독이 발린 위험한 단검.",
+      "rarity": "rare",
+      "value": 750,
+      "weight": 1.0,
+      "spriteIndex": 1,
+      "color": "#32CD32",
+      "stats": {
+        "damage": 12,
+        "attackSpeed": 1.35,
+        "statusEffect": {
+          "type": "poison",
+          "chance": 25,
+          "damage": 5,
+          "duration": 3
+        }
+      },
+      "requirements": {
+        "level": 12,
+        "dex": 10
+      }
+    },
+    {
+      "id": "mithril_dagger",
+      "nameKo": "미스릴 단검",
+      "nameEn": "Mithril Dagger",
+      "description": "번개처럼 빠른 미스릴 단검.",
+      "rarity": "arcane",
+      "value": 2000,
+      "weight": 0.6,
+      "spriteIndex": 1,
+      "color": "#87CEEB",
+      "stats": {
+        "damage": 20,
+        "attackSpeed": 1.5,
+        "critChance": 10
+      },
+      "requirements": {
+        "level": 20,
+        "dex": 15
+      }
+    },
+    {
+      "id": "shadow_dagger",
+      "nameKo": "그림자 단검",
+      "nameEn": "Shadow Dagger",
+      "description": "그림자처럼 보이지 않는 암흑의 단검.",
+      "rarity": "heroic",
+      "value": 4500,
+      "weight": 0.5,
+      "spriteIndex": 1,
+      "color": "#1C1C1C",
+      "stats": {
+        "damage": 25,
+        "attackSpeed": 1.45,
+        "critChance": 15,
+        "critDamage": 20,
+        "elementDamage": {
+          "element": "dark",
+          "value": 10
+        }
+      },
+      "requirements": {
+        "level": 25,
+        "dex": 18
+      }
+    },
+    {
+      "id": "legendary_dagger",
+      "nameKo": "전설의 단검",
+      "nameEn": "Legendary Dagger",
+      "description": "전설로 전해지는 황금빛 단검.",
+      "rarity": "legendary",
+      "value": 80000,
+      "weight": 0.7,
+      "spriteIndex": 1,
+      "color": "#FFD700",
+      "stats": {
+        "damage": 45,
+        "attackSpeed": 1.6,
+        "critChance": 20,
+        "critDamage": 40,
+        "allStats": 3
+      },
+      "requirements": {
+        "level": 50,
+        "dex": 30
+      }
+    }
+  ]
+}

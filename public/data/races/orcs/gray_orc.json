@@ -1,0 +1,79 @@
+{
+  "id": "gray_orc",
+  "category": "orc",
+  "nameKo": "회색 오크",
+  "nameEn": "Gray Orc",
+  "description": "산악 지대에서 살아가는 더 지능적인 오크. 회색 피부와 냉정한 성격이 특징이다.",
+  "lore": "높은 산맥의 동굴과 요새에서 살아가는 오크의 아종이다. 일반 오크보다 지능이 높고 전술적이며, 조직적인 군대를 운용한다. 차가운 환경에 적응하여 회색 피부를 가지게 되었으며, 철기 제작에도 능숙하다.",
+  "traits": {
+    "innate": ["tactical_mind", "mountain_adaptation"],
+    "optional": ["war_strategist", "ironworker"]
+  },
+  "statModifiers": {
+    "str": 2,
+    "con": 1,
+    "int": 1,
+    "cha": -2
+  },
+  "appearance": {
+    "body": {
+      "availableIndices": [10, 11, 12, 13],
+      "spriteNames": ["Orc_1", "Orc_2", "Orc_3", "Orc_4"]
+    },
+    "skinTones": {
+      "available": ["light_gray", "gray", "dark_gray", "slate"],
+      "default": "gray",
+      "colors": {
+        "light_gray": "#A9A9A9",
+        "gray": "#808080",
+        "dark_gray": "#696969",
+        "slate": "#708090"
+      }
+    },
+    "eye": {
+      "availableIndices": [0, 2, 3, 7, 8, 9, 10, 11, 12, 13, 14],
+      "colors": {
+        "available": ["yellow", "amber", "gray", "blue", "white"],
+        "default": "yellow",
+        "values": {
+          "yellow": "#FFD700",
+          "amber": "#FFBF00",
+          "gray": "#708090",
+          "blue": "#4682B4",
+          "white": "#F5F5F5"
+        }
+      }
+    },
+    "hair": {
+      "availableIndices": "all",
+      "colors": {
+        "available": ["black", "dark_gray", "white", "silver"],
+        "default": "black",
+        "values": {
+          "black": "#1C1C1C",
+          "dark_gray": "#2F4F4F",
+          "white": "#FFFFFF",
+          "silver": "#C0C0C0"
+        }
+      }
+    },
+    "facehair": {
+      "availableIndices": "all",
+      "colors": "same_as_hair"
+    }
+  },
+  "resistances": {
+    "ice": 15
+  },
+  "abilities": {
+    "darkvision": 60
+  },
+  "startingLocation": "mountain_fortress",
+  "languages": ["common", "orcish", "dwarvish"],
+  "lifespan": {
+    "adult": 14,
+    "middle": 35,
+    "old": 55,
+    "max": 80
+  }
+}

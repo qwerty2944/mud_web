@@ -1,0 +1,116 @@
+{
+  "category": "material",
+  "subcategory": "herb",
+  "items": [
+    {
+      "id": "herb_healing",
+      "nameKo": "치유초",
+      "nameEn": "Healing Herb",
+      "description": "녹색 잎의 약초. 체력 포션 제조에 사용.",
+      "icon": "herb_green",
+      "rarity": "common",
+      "stackSize": 99,
+      "value": 8,
+      "weight": 0.1
+    },
+    {
+      "id": "herb_mana",
+      "nameKo": "마나초",
+      "nameEn": "Mana Herb",
+      "description": "푸른 잎의 약초. 마나 포션 제조에 사용.",
+      "icon": "herb_blue",
+      "rarity": "common",
+      "stackSize": 99,
+      "value": 10,
+      "weight": 0.1
+    },
+    {
+      "id": "herb_antidote",
+      "nameKo": "해독초",
+      "nameEn": "Antidote Herb",
+      "description": "연두색 잎의 약초. 해독제 제조에 사용.",
+      "icon": "herb_lime",
+      "rarity": "common",
+      "stackSize": 99,
+      "value": 12,
+      "weight": 0.1
+    },
+    {
+      "id": "herb_fire",
+      "nameKo": "화염초",
+      "nameEn": "Fire Herb",
+      "description": "붉은 잎을 가진 열기를 품은 약초.",
+      "icon": "herb_red",
+      "rarity": "grand",
+      "stackSize": 50,
+      "value": 25,
+      "weight": 0.1
+    },
+    {
+      "id": "herb_ice",
+      "nameKo": "냉기초",
+      "nameEn": "Ice Herb",
+      "description": "서리가 맺힌 차가운 약초.",
+      "icon": "herb_cyan",
+      "rarity": "grand",
+      "stackSize": 50,
+      "value": 25,
+      "weight": 0.1
+    },
+    {
+      "id": "herb_lightning",
+      "nameKo": "번개초",
+      "nameEn": "Lightning Herb",
+      "description": "전기가 흐르는 듯한 노란 약초.",
+      "icon": "herb_yellow",
+      "rarity": "grand",
+      "stackSize": 50,
+      "value": 25,
+      "weight": 0.1
+    },
+    {
+      "id": "herb_moonlight",
+      "nameKo": "달빛초",
+      "nameEn": "Moonlight Herb",
+      "description": "밤에만 피는 은빛 약초. 강화 물약 제조에 필수.",
+      "icon": "herb_silver",
+      "rarity": "rare",
+      "stackSize": 30,
+      "value": 80,
+      "weight": 0.1
+    },
+    {
+      "id": "herb_sunlight",
+      "nameKo": "햇빛초",
+      "nameEn": "Sunlight Herb",
+      "description": "한낮에만 피는 금빛 약초. 엘릭서 제조에 필수.",
+      "icon": "herb_gold",
+      "rarity": "rare",
+      "stackSize": 30,
+      "value": 100,
+      "weight": 0.1
+    },
+    {
+      "id": "herb_divine",
+      "nameKo": "신성초",
+      "nameEn": "Divine Herb",
+      "description": "성스러운 기운이 감도는 희귀 약초.",
+      "icon": "herb_white",
+      "rarity": "arcane",
+      "stackSize": 20,
+      "value": 250,
+      "weight": 0.1
+    },
+    {
+      "id": "herb_cursed",
+      "nameKo": "저주초",
+      "nameEn": "Cursed Herb",
+      "description": "어둠의 기운이 감도는 위험한 약초.",
+      "icon": "herb_purple",
+      "rarity": "arcane",
+      "stackSize": 20,
+      "value": 200,
+      "weight": 0.1
+    }
+  ]
+}

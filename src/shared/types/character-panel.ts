@@ -5,10 +5,10 @@ export type PartType =
   | "body" | "eye" | "hair" | "facehair" | "cloth"
   | "armor" | "pant" | "helmet" | "back"
   // 무기 파츠 (스프라이트 + 색상 시스템)
-  | "sword" | "shield" | "axe" | "bow" | "wand";
+  | "sword" | "shield" | "axe" | "bow" | "spear" | "wand" | "dagger";
 
 // 무기 파츠 타입
-export type WeaponPartType = "sword" | "shield" | "axe" | "bow" | "wand";
+export type WeaponPartType = "sword" | "shield" | "axe" | "bow" | "spear" | "wand" | "dagger";
 
 export interface PartInfo {
   label: string;

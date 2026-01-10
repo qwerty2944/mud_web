@@ -1,0 +1,190 @@
+{
+  "category": "equipment",
+  "subcategory": "armor",
+  "slot": "helmet",
+  "spriteMapping": "/data/sprites/equipment/armor/helmet.json",
+  "items": [
+    {
+      "id": "leather_cap",
+      "nameKo": "가죽 모자",
+      "nameEn": "Leather Cap",
+      "description": "가죽으로 만든 기본 모자.",
+      "rarity": "crude",
+      "value": 20,
+      "weight": 0.5,
+      "spriteIndex": 0,
+      "color": "#8B4513",
+      "stats": {
+        "defense": 2
+      },
+      "requirements": {
+        "level": 1
+      }
+    },
+    {
+      "id": "iron_helmet",
+      "nameKo": "철 투구",
+      "nameEn": "Iron Helmet",
+      "description": "철로 만든 기본 투구.",
+      "rarity": "common",
+      "value": 80,
+      "weight": 2.0,
+      "spriteIndex": 5,
+      "color": null,
+      "stats": {
+        "defense": 5
+      },
+      "requirements": {
+        "level": 1,
+        "con": 5
+      }
+    },
+    {
+      "id": "steel_helmet",
+      "nameKo": "강철 투구",
+      "nameEn": "Steel Helmet",
+      "description": "단단한 강철 투구.",
+      "rarity": "grand",
+      "value": 250,
+      "weight": 2.5,
+      "spriteIndex": 10,
+      "color": null,
+      "stats": {
+        "defense": 10
+      },
+      "requirements": {
+        "level": 5,
+        "con": 8
+      }
+    },
+    {
+      "id": "knight_helmet",
+      "nameKo": "기사의 투구",
+      "nameEn": "Knight's Helmet",
+      "description": "왕국 기사단의 투구.",
+      "rarity": "rare",
+      "value": 600,
+      "weight": 3.0,
+      "spriteIndex": 15,
+      "color": null,
+      "stats": {
+        "defense": 16,
+        "str": 1
+      },
+      "requirements": {
+        "level": 12,
+        "str": 8,
+        "con": 10
+      }
+    },
+    {
+      "id": "wizard_hat",
+      "nameKo": "마법사의 모자",
+      "nameEn": "Wizard Hat",
+      "description": "마법사가 쓰는 뾰족한 모자.",
+      "rarity": "rare",
+      "value": 550,
+      "weight": 0.3,
+      "spriteIndex": 20,
+      "color": "#4B0082",
+      "stats": {
+        "defense": 3,
+        "magicDefense": 12,
+        "int": 2,
+        "mp": 15
+      },
+      "requirements": {
+        "level": 12,
+        "int": 10
+      }
+    },
+    {
+      "id": "elven_circlet",
+      "nameKo": "엘프의 관",
+      "nameEn": "Elven Circlet",
+      "description": "엘프 귀족이 쓰는 우아한 관.",
+      "rarity": "arcane",
+      "value": 1500,
+      "weight": 0.2,
+      "spriteIndex": 25,
+      "color": "#90EE90",
+      "stats": {
+        "defense": 5,
+        "magicDefense": 18,
+        "int": 3,
+        "wis": 2
+      },
+      "requirements": {
+        "level": 18,
+        "int": 14
+      }
+    },
+    {
+      "id": "dragon_helm",
+      "nameKo": "드래곤 투구",
+      "nameEn": "Dragon Helm",
+      "description": "드래곤의 머리를 본뜬 투구.",
+      "rarity": "heroic",
+      "value": 4000,
+      "weight": 3.5,
+      "spriteIndex": 30,
+      "color": "#DC143C",
+      "stats": {
+        "defense": 25,
+        "str": 3,
+        "elementResist": {
+          "element": "fire",
+          "value": 20
+        }
+      },
+      "requirements": {
+        "level": 25,
+        "str": 15,
+        "con": 15
+      }
+    },
+    {
+      "id": "crown_of_wisdom",
+      "nameKo": "지혜의 왕관",
+      "nameEn": "Crown of Wisdom",
+      "description": "고대 현자가 착용했던 왕관.",
+      "rarity": "unique",
+      "value": 12000,
+      "weight": 0.5,
+      "spriteIndex": 35,
+      "color": "#FFD700",
+      "stats": {
+        "defense": 10,
+        "magicDefense": 30,
+        "int": 5,
+        "wis": 5,
+        "mp": 50
+      },
+      "requirements": {
+        "level": 35,
+        "int": 25
+      }
+    },
+    {
+      "id": "legendary_helmet",
+      "nameKo": "전설의 투구",
+      "nameEn": "Legendary Helmet",
+      "description": "모든 공격을 막아낸다는 전설의 투구.",
+      "rarity": "legendary",
+      "value": 60000,
+      "weight": 2.5,
+      "spriteIndex": 40,
+      "color": "#FFD700",
+      "stats": {
+        "defense": 40,
+        "magicDefense": 30,
+        "allStats": 3,
+        "allElementResist": 10
+      },
+      "requirements": {
+        "level": 50,
+        "con": 25
+      }
+    }
+  ]
+}

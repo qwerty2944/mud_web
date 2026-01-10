@@ -1,0 +1,121 @@
+{
+  "race": "orc",
+  "note": "오크는 엄니가 특징이며, 수염보다 엄니 장식이 중요",
+  "variants": {
+    "green_orc": {
+      "nameKo": "녹색 오크",
+      "male": {
+        "tusks": {
+          "available": [16, 17, 18, 19],
+          "recommended": [17, 18],
+          "required": true,
+          "note": "오크 남성은 반드시 엄니가 있음. 큰 엄니일수록 강함의 상징",
+          "decorations": {
+            "available": ["metal_caps", "carvings", "war_paint"],
+            "note": "엄니 장식은 전투 업적을 나타냄"
+          }
+        },
+        "beard": {
+          "available": [9, 10],
+          "recommended": [],
+          "required": false,
+          "commonChance": 20,
+          "note": "일부 오크만 수염을 기름"
+        },
+        "mustache": {
+          "available": [],
+          "note": "오크는 콧수염을 거의 기르지 않음"
+        }
+      },
+      "female": {
+        "tusks": {
+          "available": [16, 17],
+          "recommended": [16],
+          "required": true,
+          "note": "여성 오크도 엄니가 있지만 남성보다 작음"
+        },
+        "makeup": {
+          "available": [],
+          "note": "오크 여성은 화장 대신 전쟁 페인트"
+        }
+      },
+      "all": {
+        "accessories": {
+          "available": [0, 1, 2, 3, 5],
+          "recommended": [0, 1, 5, 2],
+          "note": "전투 흉터와 부족 문신이 매우 흔함",
+          "warPaint": {
+            "available": true,
+            "colors": ["red", "black", "white"],
+            "note": "전투 전 바르는 페인트"
+          }
+        }
+      },
+      "colors": {
+        "available": ["black", "dark_brown", "dark_red", "gray"],
+        "default": "black",
+        "values": {
+          "black": "#1C1C1C",
+          "dark_brown": "#3D2314",
+          "dark_red": "#8B0000",
+          "gray": "#696969"
+        }
+      }
+    },
+    "gray_orc": {
+      "nameKo": "회색 오크",
+      "male": {
+        "tusks": {
+          "available": [16, 17, 18, 19],
+          "recommended": [17, 19],
+          "required": true,
+          "note": "회색 오크는 엄니에 철 장식을 많이 함",
+          "decorations": {
+            "available": ["iron_caps", "silver_bands", "rune_carvings"],
+            "note": "정교한 금속 장식"
+          }
+        },
+        "beard": {
+          "available": [9, 10, 11],
+          "recommended": [9, 10],
+          "required": false,
+          "commonChance": 40,
+          "note": "회색 오크는 수염을 더 많이 기름"
+        },
+        "mustache": {
+          "available": [14],
+          "recommended": [],
+          "canCombineWithBeard": true
+        }
+      },
+      "female": {
+        "tusks": {
+          "available": [16, 17],
+          "recommended": [16, 17],
+          "required": true
+        },
+        "makeup": {
+          "available": [],
+          "note": "화장 대신 문신과 금속 장식"
+        }
+      },
+      "all": {
+        "accessories": {
+          "available": [0, 1, 2, 3],
+          "recommended": [2, 3],
+          "note": "전술적 의미의 문신, 계급 표시"
+        }
+      },
+      "colors": {
+        "available": ["black", "dark_gray", "white", "silver"],
+        "default": "black",
+        "values": {
+          "black": "#1C1C1C",
+          "dark_gray": "#2F4F4F",
+          "white": "#FFFFFF",
+          "silver": "#C0C0C0"
+        }
+      }
+    }
+  }
+}

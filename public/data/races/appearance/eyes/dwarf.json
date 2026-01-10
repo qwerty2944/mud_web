@@ -1,0 +1,48 @@
+{
+  "race": "dwarf",
+  "variants": {
+    "mountain": {
+      "nameKo": "산악 드워프",
+      "availableStyles": [0, 2, 3, 8, 9, 10, 12, 13, 14],
+      "recommendedStyles": [8, 13, 3],
+      "colors": {
+        "common": {
+          "brown": { "hex": "#8B4513", "nameKo": "갈색", "weight": 40 },
+          "gray": { "hex": "#708090", "nameKo": "회색", "weight": 25 },
+          "black": { "hex": "#1C1C1C", "nameKo": "검은색", "weight": 20 }
+        },
+        "uncommon": {
+          "blue": { "hex": "#4682B4", "nameKo": "강철빛 파랑", "weight": 10 },
+          "amber": { "hex": "#FFBF00", "nameKo": "호박색", "weight": 5 }
+        },
+        "rare": {
+          "gold": { "hex": "#FFD700", "nameKo": "금색", "weight": 0.5, "note": "왕족 혈통" }
+        }
+      },
+      "defaultColor": "brown",
+      "heterochromia": {
+        "allowed": false
+      }
+    },
+    "hill": {
+      "nameKo": "언덕 드워프",
+      "availableStyles": [0, 2, 7, 8, 10, 11, 12, 14],
+      "recommendedStyles": [10, 7, 14],
+      "colors": {
+        "common": {
+          "brown": { "hex": "#8B4513", "nameKo": "갈색", "weight": 35 },
+          "green": { "hex": "#228B22", "nameKo": "녹색", "weight": 25 },
+          "hazel": { "hex": "#8E7618", "nameKo": "헤이즐", "weight": 20 }
+        },
+        "uncommon": {
+          "amber": { "hex": "#FFBF00", "nameKo": "호박색", "weight": 12 },
+          "blue": { "hex": "#4682B4", "nameKo": "파란색", "weight": 8 }
+        }
+      },
+      "defaultColor": "hazel",
+      "heterochromia": {
+        "allowed": false
+      }
+    }
+  }
+}

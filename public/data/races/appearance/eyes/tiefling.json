@@ -1,0 +1,45 @@
+{
+  "race": "tiefling",
+  "variants": {
+    "tiefling": {
+      "nameKo": "티플링",
+      "availableStyles": [0, 2, 3, 6, 8, 9, 13],
+      "recommendedStyles": [3, 6, 13],
+      "colors": {
+        "common": {
+          "gold": { "hex": "#FFD700", "nameKo": "금색", "weight": 35 },
+          "red": { "hex": "#DC143C", "nameKo": "붉은색", "weight": 30 },
+          "silver": { "hex": "#C0C0C0", "nameKo": "은색", "weight": 15 }
+        },
+        "uncommon": {
+          "black": { "hex": "#1C1C1C", "nameKo": "검은색", "weight": 12 },
+          "orange": { "hex": "#FF4500", "nameKo": "주황색", "weight": 8 }
+        },
+        "rare": {
+          "hellfire": { "hex": "#FF0000", "nameKo": "지옥불", "weight": 1, "glow": true }
+        }
+      },
+      "defaultColor": "gold",
+      "heterochromia": {
+        "allowed": true,
+        "chance": 5
+      },
+      "glow": {
+        "enabled": true,
+        "intensity": "medium",
+        "trigger": "emotion",
+        "color": "same_as_eye"
+      },
+      "special": {
+        "noIris": {
+          "available": true,
+          "note": "일부 티플링은 홍채 없이 단색 눈을 가짐"
+        },
+        "slitPupil": {
+          "available": true,
+          "note": "세로로 찢어진 동공"
+        }
+      }
+    }
+  }
+}

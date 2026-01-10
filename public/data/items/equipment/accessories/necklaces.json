@@ -1,0 +1,181 @@
+{
+  "category": "equipment",
+  "subcategory": "accessory",
+  "slot": "necklace",
+  "items": [
+    {
+      "id": "simple_necklace",
+      "nameKo": "단순한 목걸이",
+      "nameEn": "Simple Necklace",
+      "description": "평범한 목걸이.",
+      "rarity": "crude",
+      "value": 25,
+      "weight": 0.1,
+      "stats": {}
+    },
+    {
+      "id": "silver_necklace",
+      "nameKo": "은 목걸이",
+      "nameEn": "Silver Necklace",
+      "description": "은으로 만든 목걸이.",
+      "rarity": "common",
+      "value": 80,
+      "weight": 0.1,
+      "stats": {
+        "cha": 1
+      },
+      "requirements": {
+        "level": 1
+      }
+    },
+    {
+      "id": "gold_necklace",
+      "nameKo": "금 목걸이",
+      "nameEn": "Gold Necklace",
+      "description": "금으로 만든 목걸이.",
+      "rarity": "grand",
+      "value": 400,
+      "weight": 0.1,
+      "stats": {
+        "cha": 3
+      },
+      "requirements": {
+        "level": 5
+      }
+    },
+    {
+      "id": "amulet_of_health",
+      "nameKo": "건강의 부적",
+      "nameEn": "Amulet of Health",
+      "description": "착용자의 건강을 지켜주는 부적.",
+      "rarity": "rare",
+      "value": 700,
+      "weight": 0.1,
+      "stats": {
+        "con": 3,
+        "hp": 50,
+        "diseaseResist": 20
+      },
+      "requirements": {
+        "level": 12
+      }
+    },
+    {
+      "id": "amulet_of_mana",
+      "nameKo": "마나의 부적",
+      "nameEn": "Amulet of Mana",
+      "description": "마력을 증폭시키는 부적.",
+      "rarity": "rare",
+      "value": 700,
+      "weight": 0.1,
+      "stats": {
+        "wis": 2,
+        "mp": 60,
+        "mpRegen": 5
+      },
+      "requirements": {
+        "level": 12
+      }
+    },
+    {
+      "id": "holy_symbol",
+      "nameKo": "성스러운 상징",
+      "nameEn": "Holy Symbol",
+      "description": "신성한 힘이 깃든 상징.",
+      "rarity": "arcane",
+      "value": 2000,
+      "weight": 0.1,
+      "stats": {
+        "wis": 3,
+        "healBonus": 15,
+        "elementBonus": {
+          "element": "holy",
+          "value": 12
+        }
+      },
+      "requirements": {
+        "level": 20,
+        "karma": 10
+      }
+    },
+    {
+      "id": "unholy_symbol",
+      "nameKo": "사악한 상징",
+      "nameEn": "Unholy Symbol",
+      "description": "암흑의 힘이 깃든 상징.",
+      "rarity": "arcane",
+      "value": 1800,
+      "weight": 0.1,
+      "stats": {
+        "int": 3,
+        "lifesteal": 5,
+        "elementBonus": {
+          "element": "dark",
+          "value": 15
+        }
+      },
+      "requirements": {
+        "level": 20,
+        "karma": -10
+      }
+    },
+    {
+      "id": "amulet_of_the_elements",
+      "nameKo": "원소의 부적",
+      "nameEn": "Amulet of the Elements",
+      "description": "4원소의 힘이 깃든 부적.",
+      "rarity": "heroic",
+      "value": 5500,
+      "weight": 0.1,
+      "stats": {
+        "allElementBonus": 8,
+        "allElementResist": 12
+      },
+      "requirements": {
+        "level": 28
+      }
+    },
+    {
+      "id": "dragon_pendant",
+      "nameKo": "드래곤 펜던트",
+      "nameEn": "Dragon Pendant",
+      "description": "드래곤의 힘이 깃든 펜던트.",
+      "rarity": "unique",
+      "value": 15000,
+      "weight": 0.15,
+      "stats": {
+        "str": 4,
+        "con": 4,
+        "elementResist": {
+          "element": "fire",
+          "value": 30
+        },
+        "bonusDamage": {
+          "type": "dragon",
+          "value": 20
+        }
+      },
+      "requirements": {
+        "level": 38
+      }
+    },
+    {
+      "id": "legendary_necklace",
+      "nameKo": "전설의 목걸이",
+      "nameEn": "Legendary Necklace",
+      "description": "모든 것을 초월하는 전설의 목걸이.",
+      "rarity": "legendary",
+      "value": 55000,
+      "weight": 0.1,
+      "stats": {
+        "allStats": 4,
+        "hp": 100,
+        "mp": 80,
+        "allElementResist": 10
+      },
+      "requirements": {
+        "level": 50
+      }
+    }
+  ]
+}

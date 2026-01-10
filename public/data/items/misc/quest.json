@@ -1,0 +1,66 @@
+{
+  "category": "misc",
+  "subcategory": "quest",
+  "items": [
+    {
+      "id": "old_letter",
+      "nameKo": "오래된 편지",
+      "nameEn": "Old Letter",
+      "description": "누렇게 바랜 오래된 편지. 읽을 수 있을지도 모른다.",
+      "icon": "quest_letter",
+      "rarity": "common",
+      "stackSize": 1,
+      "value": 0,
+      "weight": 0.01,
+      "questId": "village_mystery"
+    },
+    {
+      "id": "ancient_key",
+      "nameKo": "고대의 열쇠",
+      "nameEn": "Ancient Key",
+      "description": "고대 유적의 어딘가를 열 수 있을 것 같다.",
+      "icon": "quest_key",
+      "rarity": "rare",
+      "stackSize": 1,
+      "value": 0,
+      "weight": 0.1,
+      "questId": "ancient_ruins"
+    },
+    {
+      "id": "village_chief_seal",
+      "nameKo": "촌장의 인장",
+      "nameEn": "Village Chief's Seal",
+      "description": "시작 마을 촌장의 인장. 신분을 증명할 수 있다.",
+      "icon": "quest_seal",
+      "rarity": "grand",
+      "stackSize": 1,
+      "value": 0,
+      "weight": 0.05,
+      "questId": "main_quest_1"
+    },
+    {
+      "id": "mysterious_orb",
+      "nameKo": "수상한 구슬",
+      "nameEn": "Mysterious Orb",
+      "description": "이상한 빛을 내는 구슬. 누군가에게 보여줘야 할 것 같다.",
+      "icon": "quest_orb",
+      "rarity": "arcane",
+      "stackSize": 1,
+      "value": 0,
+      "weight": 0.2,
+      "questId": "magic_academy"
+    },
+    {
+      "id": "dragon_tooth",
+      "nameKo": "드래곤의 이빨",
+      "nameEn": "Dragon's Tooth",
+      "description": "드래곤을 처치한 증거. 왕에게 가져가야 한다.",
+      "icon": "quest_dragon",
+      "rarity": "unique",
+      "stackSize": 1,
+      "value": 0,
+      "weight": 0.5,
+      "questId": "dragon_slayer"
+    }
+  ]
+}

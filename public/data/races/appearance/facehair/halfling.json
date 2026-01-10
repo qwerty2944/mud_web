@@ -1,0 +1,60 @@
+{
+  "race": "halfling",
+  "note": "하플링은 수염이 자라지 않음, 발에 털이 많은 것이 특징",
+  "variants": {
+    "halfling": {
+      "nameKo": "하플링",
+      "male": {
+        "beard": {
+          "available": [],
+          "note": "하플링 남성은 수염이 자라지 않음"
+        },
+        "mustache": {
+          "available": [],
+          "note": "하플링은 콧수염이 자라지 않음"
+        },
+        "sideburns": {
+          "available": true,
+          "note": "일부 하플링은 구레나룻을 기름",
+          "styles": ["light", "medium"]
+        }
+      },
+      "female": {
+        "makeup": {
+          "available": [6, 7, 8],
+          "recommended": [6],
+          "colors": {
+            "lipstick": ["natural", "pink", "peach"],
+            "blush": ["rosy", "peach"]
+          },
+          "note": "자연스럽고 귀여운 화장 선호"
+        }
+      },
+      "all": {
+        "accessories": {
+          "available": [4],
+          "recommended": [4],
+          "note": "점이나 주근깨 정도, 흉터는 드묾"
+        },
+        "freckles": {
+          "available": true,
+          "commonChance": 40,
+          "note": "주근깨가 있는 하플링이 많음"
+        }
+      },
+      "colors": {
+        "note": "머리카락과 동일 (구레나룻용)",
+        "available": ["brown", "dark_brown", "auburn", "blonde", "black", "gray"],
+        "default": "brown",
+        "values": {
+          "brown": "#8B4513",
+          "dark_brown": "#3D2314",
+          "auburn": "#A52A2A",
+          "blonde": "#DAA520",
+          "black": "#1C1C1C",
+          "gray": "#808080"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,149 @@
+{
+  "race": "undead",
+  "note": "언데드는 생전 외모가 변형되거나 부패함",
+  "variants": {
+    "skeleton": {
+      "nameKo": "스켈레톤",
+      "male": {
+        "beard": {
+          "available": [],
+          "note": "스켈레톤은 수염이 없음"
+        },
+        "mustache": {
+          "available": [],
+          "note": "스켈레톤은 콧수염이 없음"
+        }
+      },
+      "female": {
+        "makeup": {
+          "available": [],
+          "note": "스켈레톤은 화장이 불가능"
+        }
+      },
+      "all": {
+        "accessories": {
+          "available": [],
+          "note": "뼈에 각인된 룬 정도만 가능",
+          "runeCarving": {
+            "available": true,
+            "locations": ["skull", "jawbone"],
+            "note": "네크로맨서가 새긴 지배 룬"
+          }
+        },
+        "damage": {
+          "cracked_skull": { "available": true },
+          "missing_jaw": { "available": true },
+          "broken_teeth": { "available": true }
+        }
+      },
+      "colors": null
+    },
+    "zombie": {
+      "nameKo": "좀비",
+      "male": {
+        "beard": {
+          "available": [9, 10],
+          "recommended": [],
+          "note": "생전 수염이 부분적으로 남아있을 수 있음",
+          "condition": "patchy"
+        },
+        "mustache": {
+          "available": [14],
+          "recommended": [],
+          "condition": "patchy"
+        }
+      },
+      "female": {
+        "makeup": {
+          "available": [],
+          "note": "부패로 인해 화장이 의미없음"
+        }
+      },
+      "all": {
+        "accessories": {
+          "available": [0, 1, 5],
+          "recommended": [0, 1, 5],
+          "note": "상처와 부패 흔적"
+        },
+        "decay": {
+          "exposed_bone": { "available": true, "locations": ["cheek", "jaw", "forehead"] },
+          "missing_flesh": { "available": true },
+          "rotting_skin": { "available": true },
+          "stitches": { "available": true, "note": "프랑켄슈타인 타입" }
+        }
+      },
+      "colors": {
+        "note": "부패로 인해 변색",
+        "available": ["gray", "greenish", "none"],
+        "values": {
+          "gray": "#696969",
+          "greenish": "#556B2F",
+          "none": null
+        }
+      }
+    },
+    "vampire": {
+      "nameKo": "뱀파이어",
+      "male": {
+        "beard": {
+          "available": [9, 10, 11, 12, 13],
+          "recommended": [9, 13],
+          "required": false,
+          "commonChance": 40,
+          "note": "뱀파이어는 생전 외모를 유지하거나 선택적으로 변경 가능"
+        },
+        "mustache": {
+          "available": [14, 15],
+          "recommended": [15],
+          "canCombineWithBeard": true,
+          "note": "고전적인 뱀파이어 스타일"
+        }
+      },
+      "female": {
+        "makeup": {
+          "available": [6, 7, 8],
+          "recommended": [7, 8],
+          "colors": {
+            "lipstick": ["blood_red", "crimson", "black", "pale_pink"],
+            "blush": ["none"],
+            "eyeshadow": ["smoky", "dark_red", "silver"]
+          },
+          "note": "창백한 피부에 대비되는 강렬한 화장"
+        }
+      },
+      "all": {
+        "accessories": {
+          "available": [0, 1, 2, 3],
+          "recommended": [],
+          "note": "생전 흉터/문신 유지, 새로운 상처는 잘 생기지 않음"
+        },
+        "vampiricFeatures": {
+          "fangs": {
+            "required": true,
+            "visibility": ["retracted", "visible", "extended"]
+          },
+          "pale_veins": {
+            "available": true,
+            "visibility": "when_hungry",
+            "note": "배고플 때 얼굴에 검푸른 핏줄이 드러남"
+          },
+          "blood_tears": {
+            "available": true,
+            "trigger": "strong_emotion",
+            "note": "강한 감정시 피눈물"
+          }
+        }
+      },
+      "colors": {
+        "available": ["black", "white", "silver", "dark_red", "original"],
+        "default": "black",
+        "values": {
+          "black": "#1C1C1C",
+          "white": "#FFFFFF",
+          "silver": "#C0C0C0",
+          "dark_red": "#8B0000"
+        }
+      }
+    }
+  }
+}

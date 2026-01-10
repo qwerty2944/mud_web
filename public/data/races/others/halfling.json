@@ -1,0 +1,83 @@
+{
+  "id": "halfling",
+  "category": "halfling",
+  "nameKo": "하플링",
+  "nameEn": "Halfling",
+  "description": "작지만 용감하고 행운이 따르는 종족. 곱슬머리와 털이 많은 발이 특징이다.",
+  "lore": "편안한 언덕 마을에서 평화롭게 살아가는 작은 종족이다. 모험보다 좋은 음식과 따뜻한 난롯가를 좋아하지만, 일단 모험을 떠나면 놀라운 용기와 행운을 보여준다. 뛰어난 은밀함과 손재주를 가졌으며, 어디에서든 쉽게 친구를 사귄다.",
+  "traits": {
+    "innate": ["lucky", "brave_heart"],
+    "optional": ["nimble_fingers", "natural_cook"]
+  },
+  "statModifiers": {
+    "dex": 2,
+    "lck": 2,
+    "str": -2
+  },
+  "appearance": {
+    "body": {
+      "availableIndices": [3, 4, 5, 6, 7],
+      "spriteNames": ["Human_1", "Human_2", "Human_3", "Human_4", "Human_5"],
+      "note": "하플링 전용 바디 스프라이트 추가 예정 (작은 체형)"
+    },
+    "skinTones": {
+      "available": ["fair", "tan", "ruddy", "olive"],
+      "default": "tan",
+      "colors": {
+        "fair": "#FFDAB9",
+        "tan": "#D2B48C",
+        "ruddy": "#DEB887",
+        "olive": "#C4A35A"
+      }
+    },
+    "eye": {
+      "availableIndices": [0, 2, 3, 7, 8, 9, 10, 11, 12, 13, 14],
+      "colors": {
+        "available": ["brown", "hazel", "green", "blue"],
+        "default": "brown",
+        "values": {
+          "brown": "#8B4513",
+          "hazel": "#8E7618",
+          "green": "#228B22",
+          "blue": "#4682B4"
+        }
+      }
+    },
+    "hair": {
+      "availableIndices": "all",
+      "style": "curly",
+      "colors": {
+        "available": ["brown", "dark_brown", "auburn", "blonde", "black", "gray"],
+        "default": "brown",
+        "values": {
+          "brown": "#8B4513",
+          "dark_brown": "#3D2314",
+          "auburn": "#A52A2A",
+          "blonde": "#DAA520",
+          "black": "#1C1C1C",
+          "gray": "#808080"
+        }
+      }
+    },
+    "facehair": {
+      "availableIndices": [],
+      "note": "하플링은 수염이 자라지 않음 (발에 털이 많음)"
+    }
+  },
+  "resistances": {
+    "fear": 25
+  },
+  "abilities": {
+    "stealthBonus": 10,
+    "rerollOnes": true
+  },
+  "size": "small",
+  "startingLocation": "halfling_shire",
+  "languages": ["common", "halfling"],
+  "lifespan": {
+    "adult": 33,
+    "middle": 80,
+    "old": 120,
+    "max": 150
+  }
+}

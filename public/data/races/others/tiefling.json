@@ -1,0 +1,87 @@
+{
+  "id": "tiefling",
+  "category": "demon",
+  "nameKo": "티플링",
+  "nameEn": "Tiefling",
+  "description": "악마의 피가 섞인 종족. 뿔과 꼬리, 붉은 피부가 특징이다.",
+  "lore": "먼 조상이 악마와 계약을 맺어 그 피가 흐르는 인간의 후손들이다. 외모 때문에 대부분의 사회에서 차별받지만, 이로 인해 강인한 정신력과 독립심을 키웠다. 선천적으로 화염과 암흑 마법에 친화력을 가진다.",
+  "traits": {
+    "innate": ["hellish_resistance", "infernal_legacy"],
+    "optional": ["dark_charm", "fiendish_knowledge"]
+  },
+  "statModifiers": {
+    "cha": 2,
+    "int": 1,
+    "wis": -1
+  },
+  "appearance": {
+    "body": {
+      "availableIndices": [0],
+      "spriteNames": ["Devil_1"]
+    },
+    "skinTones": {
+      "available": ["red", "dark_red", "purple", "maroon", "copper"],
+      "default": "red",
+      "colors": {
+        "red": "#CD5C5C",
+        "dark_red": "#8B0000",
+        "purple": "#800080",
+        "maroon": "#800000",
+        "copper": "#B87333"
+      }
+    },
+    "eye": {
+      "availableIndices": [0, 2, 3, 7, 8, 9, 10, 11, 12, 13, 14],
+      "colors": {
+        "available": ["red", "gold", "silver", "black", "orange"],
+        "default": "gold",
+        "values": {
+          "red": "#DC143C",
+          "gold": "#FFD700",
+          "silver": "#C0C0C0",
+          "black": "#1C1C1C",
+          "orange": "#FF4500"
+        }
+      }
+    },
+    "hair": {
+      "availableIndices": "all",
+      "colors": {
+        "available": ["black", "dark_red", "purple", "white", "crimson"],
+        "default": "black",
+        "values": {
+          "black": "#1C1C1C",
+          "dark_red": "#8B0000",
+          "purple": "#4B0082",
+          "white": "#FFFFFF",
+          "crimson": "#DC143C"
+        }
+      }
+    },
+    "facehair": {
+      "availableIndices": "all",
+      "colors": "same_as_hair"
+    },
+    "special": {
+      "horns": true,
+      "tail": true
+    }
+  },
+  "resistances": {
+    "fire": 25,
+    "dark": 15,
+    "holy": -20
+  },
+  "abilities": {
+    "darkvision": 60,
+    "innateSpells": ["thaumaturgy"]
+  },
+  "startingLocation": "outcasts_haven",
+  "languages": ["common", "infernal"],
+  "lifespan": {
+    "adult": 18,
+    "middle": 45,
+    "old": 70,
+    "max": 100
+  }
+}

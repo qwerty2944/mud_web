@@ -1,0 +1,191 @@
+{
+  "category": "consumable",
+  "subcategory": "potion",
+  "items": [
+    {
+      "id": "health_potion_small",
+      "nameKo": "소형 체력 포션",
+      "nameEn": "Small Health Potion",
+      "description": "붉은 액체가 담긴 작은 유리병. 체력을 30 회복한다.",
+      "icon": "potion_red_small",
+      "rarity": "common",
+      "stackSize": 20,
+      "value": 25,
+      "weight": 0.3,
+      "effect": {
+        "type": "heal_hp",
+        "value": 30
+      }
+    },
+    {
+      "id": "health_potion_medium",
+      "nameKo": "중형 체력 포션",
+      "nameEn": "Medium Health Potion",
+      "description": "진한 붉은 액체가 담긴 유리병. 체력을 70 회복한다.",
+      "icon": "potion_red_medium",
+      "rarity": "grand",
+      "stackSize": 20,
+      "value": 75,
+      "weight": 0.5,
+      "effect": {
+        "type": "heal_hp",
+        "value": 70
+      }
+    },
+    {
+      "id": "health_potion_large",
+      "nameKo": "대형 체력 포션",
+      "nameEn": "Large Health Potion",
+      "description": "순수한 붉은빛이 맥동하는 대형 유리병. 체력을 150 회복한다.",
+      "icon": "potion_red_large",
+      "rarity": "rare",
+      "stackSize": 15,
+      "value": 200,
+      "weight": 0.8,
+      "effect": {
+        "type": "heal_hp",
+        "value": 150
+      }
+    },
+    {
+      "id": "mana_potion_small",
+      "nameKo": "소형 마나 포션",
+      "nameEn": "Small Mana Potion",
+      "description": "파란 액체가 담긴 작은 유리병. 마나를 20 회복한다.",
+      "icon": "potion_blue_small",
+      "rarity": "common",
+      "stackSize": 20,
+      "value": 30,
+      "weight": 0.3,
+      "effect": {
+        "type": "heal_mp",
+        "value": 20
+      }
+    },
+    {
+      "id": "mana_potion_medium",
+      "nameKo": "중형 마나 포션",
+      "nameEn": "Medium Mana Potion",
+      "description": "진한 푸른 액체가 담긴 유리병. 마나를 50 회복한다.",
+      "icon": "potion_blue_medium",
+      "rarity": "grand",
+      "stackSize": 20,
+      "value": 90,
+      "weight": 0.5,
+      "effect": {
+        "type": "heal_mp",
+        "value": 50
+      }
+    },
+    {
+      "id": "mana_potion_large",
+      "nameKo": "대형 마나 포션",
+      "nameEn": "Large Mana Potion",
+      "description": "심해처럼 깊은 푸른빛의 대형 유리병. 마나를 100 회복한다.",
+      "icon": "potion_blue_large",
+      "rarity": "rare",
+      "stackSize": 15,
+      "value": 250,
+      "weight": 0.8,
+      "effect": {
+        "type": "heal_mp",
+        "value": 100
+      }
+    },
+    {
+      "id": "stamina_potion",
+      "nameKo": "피로 회복제",
+      "nameEn": "Stamina Potion",
+      "description": "노란 액체가 담긴 유리병. 피로도를 30 회복한다.",
+      "icon": "potion_yellow",
+      "rarity": "grand",
+      "stackSize": 10,
+      "value": 100,
+      "weight": 0.4,
+      "effect": {
+        "type": "heal_stamina",
+        "value": 30
+      }
+    },
+    {
+      "id": "antidote",
+      "nameKo": "해독제",
+      "nameEn": "Antidote",
+      "description": "연두색 액체가 담긴 유리병. 독 상태를 해제한다.",
+      "icon": "potion_green",
+      "rarity": "common",
+      "stackSize": 20,
+      "value": 40,
+      "weight": 0.3,
+      "effect": {
+        "type": "cure_status",
+        "status": "poison"
+      }
+    },
+    {
+      "id": "elixir",
+      "nameKo": "엘릭서",
+      "nameEn": "Elixir",
+      "description": "황금빛이 도는 신비로운 약. HP와 MP를 모두 완전 회복한다.",
+      "icon": "potion_gold",
+      "rarity": "heroic",
+      "stackSize": 5,
+      "value": 1000,
+      "weight": 0.5,
+      "effect": {
+        "type": "full_restore"
+      }
+    },
+    {
+      "id": "strength_potion",
+      "nameKo": "힘의 물약",
+      "nameEn": "Strength Potion",
+      "description": "붉은 기운이 감도는 물약. 5턴간 STR +5.",
+      "icon": "potion_str",
+      "rarity": "rare",
+      "stackSize": 10,
+      "value": 150,
+      "weight": 0.4,
+      "effect": {
+        "type": "buff",
+        "stat": "str",
+        "value": 5,
+        "duration": 5
+      }
+    },
+    {
+      "id": "agility_potion",
+      "nameKo": "민첩의 물약",
+      "nameEn": "Agility Potion",
+      "description": "녹색 기운이 감도는 물약. 5턴간 DEX +5.",
+      "icon": "potion_dex",
+      "rarity": "rare",
+      "stackSize": 10,
+      "value": 150,
+      "weight": 0.4,
+      "effect": {
+        "type": "buff",
+        "stat": "dex",
+        "value": 5,
+        "duration": 5
+      }
+    },
+    {
+      "id": "intelligence_potion",
+      "nameKo": "지능의 물약",
+      "nameEn": "Intelligence Potion",
+      "description": "보라색 기운이 감도는 물약. 5턴간 INT +5.",
+      "icon": "potion_int",
+      "rarity": "rare",
+      "stackSize": 10,
+      "value": 150,
+      "weight": 0.4,
+      "effect": {
+        "type": "buff",
+        "stat": "int",
+        "value": 5,
+        "duration": 5
+      }
+    }
+  ]
+}

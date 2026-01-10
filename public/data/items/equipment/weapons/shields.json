@@ -1,0 +1,202 @@
+{
+  "category": "equipment",
+  "subcategory": "weapon",
+  "weaponType": "shield",
+  "spriteMapping": "/data/sprites/equipment/weapon/shield.json",
+  "items": [
+    {
+      "id": "wooden_shield",
+      "nameKo": "나무 방패",
+      "nameEn": "Wooden Shield",
+      "description": "나무로 만든 기본적인 방패.",
+      "rarity": "crude",
+      "value": 30,
+      "weight": 3.0,
+      "spriteIndex": 0,
+      "color": "#8B4513",
+      "stats": {
+        "defense": 5,
+        "blockChance": 10
+      },
+      "requirements": {
+        "level": 1
+      }
+    },
+    {
+      "id": "iron_shield",
+      "nameKo": "철 방패",
+      "nameEn": "Iron Shield",
+      "description": "튼튼한 철제 방패.",
+      "rarity": "common",
+      "value": 120,
+      "weight": 4.0,
+      "spriteIndex": 6,
+      "color": null,
+      "stats": {
+        "defense": 10,
+        "blockChance": 15
+      },
+      "requirements": {
+        "level": 1,
+        "str": 5,
+        "con": 5
+      }
+    },
+    {
+      "id": "steel_shield",
+      "nameKo": "강철 방패",
+      "nameEn": "Steel Shield",
+      "description": "단단한 강철로 만든 방패.",
+      "rarity": "grand",
+      "value": 400,
+      "weight": 4.5,
+      "spriteIndex": 7,
+      "color": null,
+      "stats": {
+        "defense": 18,
+        "blockChance": 18
+      },
+      "requirements": {
+        "level": 5,
+        "str": 8,
+        "con": 8
+      }
+    },
+    {
+      "id": "knight_shield",
+      "nameKo": "기사의 방패",
+      "nameEn": "Knight's Shield",
+      "description": "왕국 기사단의 문장이 새겨진 방패.",
+      "rarity": "rare",
+      "value": 900,
+      "weight": 5.0,
+      "spriteIndex": 8,
+      "color": null,
+      "stats": {
+        "defense": 25,
+        "blockChance": 20,
+        "str": 1
+      },
+      "requirements": {
+        "level": 12,
+        "str": 10,
+        "con": 10
+      }
+    },
+    {
+      "id": "tower_shield",
+      "nameKo": "타워 실드",
+      "nameEn": "Tower Shield",
+      "description": "몸 전체를 가리는 거대한 방패.",
+      "rarity": "rare",
+      "value": 1200,
+      "weight": 8.0,
+      "spriteIndex": 6,
+      "color": "#696969",
+      "stats": {
+        "defense": 35,
+        "blockChance": 25,
+        "moveSpeed": -10
+      },
+      "requirements": {
+        "level": 15,
+        "str": 15,
+        "con": 12
+      }
+    },
+    {
+      "id": "elven_shield",
+      "nameKo": "엘프 방패",
+      "nameEn": "Elven Shield",
+      "description": "가볍고 우아한 엘프제 방패.",
+      "rarity": "arcane",
+      "value": 2000,
+      "weight": 2.5,
+      "spriteIndex": 0,
+      "color": "#90EE90",
+      "stats": {
+        "defense": 22,
+        "blockChance": 22,
+        "magicDefense": 15,
+        "dex": 2
+      },
+      "requirements": {
+        "level": 18,
+        "dex": 12
+      }
+    },
+    {
+      "id": "holy_shield",
+      "nameKo": "성스러운 방패",
+      "nameEn": "Holy Shield",
+      "description": "신성한 힘이 깃든 축복받은 방패.",
+      "rarity": "heroic",
+      "value": 5500,
+      "weight": 4.0,
+      "spriteIndex": 9,
+      "color": "#FFFACD",
+      "stats": {
+        "defense": 30,
+        "blockChance": 22,
+        "magicDefense": 20,
+        "elementResist": {
+          "element": "dark",
+          "value": 25
+        }
+      },
+      "requirements": {
+        "level": 25,
+        "con": 15,
+        "karma": 15
+      }
+    },
+    {
+      "id": "dragon_shield",
+      "nameKo": "드래곤 방패",
+      "nameEn": "Dragon Shield",
+      "description": "드래곤의 비늘로 만든 방패.",
+      "rarity": "unique",
+      "value": 15000,
+      "weight": 5.0,
+      "spriteIndex": 11,
+      "color": "#DC143C",
+      "stats": {
+        "defense": 45,
+        "blockChance": 25,
+        "elementResist": {
+          "element": "fire",
+          "value": 40
+        },
+        "con": 3
+      },
+      "requirements": {
+        "level": 35,
+        "str": 18,
+        "con": 18
+      }
+    },
+    {
+      "id": "legendary_shield",
+      "nameKo": "전설의 방패",
+      "nameEn": "Legendary Shield",
+      "description": "어떤 공격도 막아낸다는 전설의 방패.",
+      "rarity": "legendary",
+      "value": 75000,
+      "weight": 4.5,
+      "spriteIndex": 8,
+      "color": "#FFD700",
+      "stats": {
+        "defense": 60,
+        "blockChance": 30,
+        "magicDefense": 40,
+        "allElementResist": 20,
+        "allStats": 3
+      },
+      "requirements": {
+        "level": 50,
+        "str": 20,
+        "con": 25
+      }
+    }
+  ]
+}

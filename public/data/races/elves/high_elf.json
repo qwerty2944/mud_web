@@ -1,0 +1,82 @@
+{
+  "id": "high_elf",
+  "category": "elf",
+  "nameKo": "하이엘프",
+  "nameEn": "High Elf",
+  "description": "고대 마법 문명의 계승자. 창백한 피부와 푸른 또는 보라색 눈이 특징이다.",
+  "lore": "고대에 마법의 비밀을 처음 발견한 엘프들의 후예이다. 거대한 수정 탑과 마법 도서관을 건설했으며, 모든 종족 중 가장 강력한 마법사들을 배출한다. 다소 오만하다는 평을 듣지만, 지식과 예술에 대한 열정은 비할 데가 없다.",
+  "traits": {
+    "innate": ["arcane_legacy", "keen_senses"],
+    "optional": ["archmage_blood", "ancient_knowledge"]
+  },
+  "statModifiers": {
+    "int": 2,
+    "cha": 1,
+    "con": -2
+  },
+  "appearance": {
+    "body": {
+      "availableIndices": [1, 2, 8, 9],
+      "spriteNames": ["Elf_1", "Elf_2", "New_Elf_1", "New_Elf_2"]
+    },
+    "skinTones": {
+      "available": ["pale", "fair", "ivory", "silver"],
+      "default": "pale",
+      "colors": {
+        "pale": "#FFF5EE",
+        "fair": "#FFEFD5",
+        "ivory": "#FFFFF0",
+        "silver": "#E8E8E8"
+      }
+    },
+    "eye": {
+      "availableIndices": [0, 2, 3, 7, 8, 9, 10, 11, 12, 13, 14],
+      "colors": {
+        "available": ["blue", "violet", "silver", "gold", "amber"],
+        "default": "blue",
+        "values": {
+          "blue": "#4169E1",
+          "violet": "#8B008B",
+          "silver": "#C0C0C0",
+          "gold": "#FFD700",
+          "amber": "#FFBF00"
+        }
+      }
+    },
+    "hair": {
+      "availableIndices": "all",
+      "colors": {
+        "available": ["platinum", "silver", "gold", "white", "pale_blue", "pale_violet"],
+        "default": "platinum",
+        "values": {
+          "platinum": "#E5E4E2",
+          "silver": "#C0C0C0",
+          "gold": "#FFD700",
+          "white": "#FFFFFF",
+          "pale_blue": "#ADD8E6",
+          "pale_violet": "#DDA0DD"
+        }
+      }
+    },
+    "facehair": {
+      "availableIndices": [],
+      "note": "엘프는 수염이 자라지 않음"
+    }
+  },
+  "resistances": {
+    "holy": 10,
+    "dark": -10
+  },
+  "abilities": {
+    "darkvision": 60,
+    "bonusCantrip": 1
+  },
+  "startingLocation": "mage_tower",
+  "languages": ["common", "elvish", "arcane"],
+  "lifespan": {
+    "adult": 100,
+    "middle": 400,
+    "old": 650,
+    "max": 900
+  }
+}

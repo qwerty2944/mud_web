@@ -1,0 +1,135 @@
+{
+  "category": "consumable",
+  "subcategory": "scroll",
+  "items": [
+    {
+      "id": "scroll_teleport_village",
+      "nameKo": "마을 귀환 주문서",
+      "nameEn": "Village Teleport Scroll",
+      "description": "시작 마을로 즉시 이동한다.",
+      "icon": "scroll_blue",
+      "rarity": "common",
+      "stackSize": 10,
+      "value": 50,
+      "weight": 0.1,
+      "effect": {
+        "type": "teleport",
+        "destination": "starting_village"
+      }
+    },
+    {
+      "id": "scroll_identify",
+      "nameKo": "감정 주문서",
+      "nameEn": "Identification Scroll",
+      "description": "미확인 아이템의 정체를 밝힌다.",
+      "icon": "scroll_yellow",
+      "rarity": "grand",
+      "stackSize": 10,
+      "value": 100,
+      "weight": 0.1,
+      "effect": {
+        "type": "identify"
+      }
+    },
+    {
+      "id": "scroll_fireball",
+      "nameKo": "화염구 주문서",
+      "nameEn": "Fireball Scroll",
+      "description": "강력한 화염구를 발사한다. 80 화염 피해.",
+      "icon": "scroll_red",
+      "rarity": "rare",
+      "stackSize": 5,
+      "value": 200,
+      "weight": 0.1,
+      "effect": {
+        "type": "spell",
+        "spellId": "fireball",
+        "damage": 80,
+        "element": "fire"
+      }
+    },
+    {
+      "id": "scroll_lightning",
+      "nameKo": "번개 주문서",
+      "nameEn": "Lightning Scroll",
+      "description": "번개를 내리쳐 60 번개 피해를 입힌다.",
+      "icon": "scroll_purple",
+      "rarity": "rare",
+      "stackSize": 5,
+      "value": 180,
+      "weight": 0.1,
+      "effect": {
+        "type": "spell",
+        "spellId": "lightning_bolt",
+        "damage": 60,
+        "element": "lightning"
+      }
+    },
+    {
+      "id": "scroll_protection",
+      "nameKo": "보호 주문서",
+      "nameEn": "Protection Scroll",
+      "description": "5턴간 받는 피해 20% 감소.",
+      "icon": "scroll_white",
+      "rarity": "rare",
+      "stackSize": 5,
+      "value": 250,
+      "weight": 0.1,
+      "effect": {
+        "type": "buff",
+        "buffType": "damage_reduction",
+        "value": 20,
+        "duration": 5
+      }
+    },
+    {
+      "id": "scroll_enchant_weapon",
+      "nameKo": "무기 강화 주문서",
+      "nameEn": "Weapon Enchant Scroll",
+      "description": "무기의 공격력을 영구적으로 +1 강화한다.",
+      "icon": "scroll_gold",
+      "rarity": "heroic",
+      "stackSize": 3,
+      "value": 1000,
+      "weight": 0.1,
+      "effect": {
+        "type": "enchant",
+        "target": "weapon",
+        "stat": "damage",
+        "value": 1
+      }
+    },
+    {
+      "id": "scroll_enchant_armor",
+      "nameKo": "방어구 강화 주문서",
+      "nameEn": "Armor Enchant Scroll",
+      "description": "방어구의 방어력을 영구적으로 +1 강화한다.",
+      "icon": "scroll_silver",
+      "rarity": "heroic",
+      "stackSize": 3,
+      "value": 1000,
+      "weight": 0.1,
+      "effect": {
+        "type": "enchant",
+        "target": "armor",
+        "stat": "defense",
+        "value": 1
+      }
+    },
+    {
+      "id": "scroll_resurrection",
+      "nameKo": "부활 주문서",
+      "nameEn": "Resurrection Scroll",
+      "description": "사망 시 자동으로 HP 50%로 부활한다. 전투 중 소지시 효과 발동.",
+      "icon": "scroll_divine",
+      "rarity": "unique",
+      "stackSize": 1,
+      "value": 5000,
+      "weight": 0.1,
+      "effect": {
+        "type": "auto_resurrect",
+        "hpPercent": 50
+      }
+    }
+  ]
+}

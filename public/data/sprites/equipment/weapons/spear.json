@@ -1,0 +1,11 @@
+{
+  "category": "spear",
+  "count": 2,
+  "spears": [
+    { "id": "soon_spear", "index": 0, "sprite": "Soon_Spear", "ko": "순 창", "en": "Soon Spear", "style": "common" },
+    { "id": "spear_1", "index": 1, "sprite": "Spear_1", "ko": "일반 창", "en": "Spear", "style": "common" }
+  ],
+  "idToIndex": {
+    "soon_spear": 0, "spear_1": 1
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "id": "wood_elf",
+  "category": "elf",
+  "nameKo": "우드엘프",
+  "nameEn": "Wood Elf",
+  "description": "깊은 숲에서 자연과 하나가 되어 살아가는 엘프. 구릿빛 피부와 녹색 또는 갈색 눈이 특징이다.",
+  "lore": "고대 숲의 수호자들로, 자연과 동물들과 깊은 유대를 맺고 살아간다. 활과 창을 사용한 사냥에 능하며, 은밀한 이동과 정찰에 탁월하다. 외부인을 경계하지만 자연을 해치지 않는 자에게는 호의적이다.",
+  "traits": {
+    "innate": ["nature_bond", "fleet_footed"],
+    "optional": ["beast_friend", "forest_stalker"]
+  },
+  "statModifiers": {
+    "dex": 2,
+    "wis": 1,
+    "str": -1,
+    "con": -1
+  },
+  "appearance": {
+    "body": {
+      "availableIndices": [1, 2, 8, 9],
+      "spriteNames": ["Elf_1", "Elf_2", "New_Elf_1", "New_Elf_2"]
+    },
+    "skinTones": {
+      "available": ["tan", "olive", "copper", "brown"],
+      "default": "copper",
+      "colors": {
+        "tan": "#D2B48C",
+        "olive": "#C4A35A",
+        "copper": "#B87333",
+        "brown": "#8B7355"
+      }
+    },
+    "eye": {
+      "availableIndices": [0, 2, 3, 7, 8, 9, 10, 11, 12, 13, 14],
+      "colors": {
+        "available": ["green", "amber", "brown", "hazel", "gold"],
+        "default": "green",
+        "values": {
+          "green": "#228B22",
+          "amber": "#FFBF00",
+          "brown": "#8B4513",
+          "hazel": "#8E7618",
+          "gold": "#DAA520"
+        }
+      }
+    },
+    "hair": {
+      "availableIndices": "all",
+      "colors": {
+        "available": ["brown", "dark_brown", "auburn", "black", "dark_green", "copper"],
+        "default": "brown",
+        "values": {
+          "brown": "#8B4513",
+          "dark_brown": "#3D2314",
+          "auburn": "#A52A2A",
+          "black": "#1C1C1C",
+          "dark_green": "#006400",
+          "copper": "#B87333"
+        }
+      }
+    },
+    "facehair": {
+      "availableIndices": [],
+      "note": "엘프는 수염이 자라지 않음"
+    }
+  },
+  "resistances": {
+    "earth": 15
+  },
+  "abilities": {
+    "darkvision": 60,
+    "trackingBonus": 10
+  },
+  "startingLocation": "forest_entrance",
+  "languages": ["common", "elvish", "sylvan"],
+  "lifespan": {
+    "adult": 100,
+    "middle": 350,
+    "old": 550,
+    "max": 750
+  }
+}

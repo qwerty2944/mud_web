@@ -1,0 +1,193 @@
+{
+  "category": "equipment",
+  "subcategory": "armor",
+  "slot": "armor",
+  "spriteMapping": "/data/sprites/equipment/armor/armor.json",
+  "items": [
+    {
+      "id": "cloth_shirt",
+      "nameKo": "천 셔츠",
+      "nameEn": "Cloth Shirt",
+      "description": "기본적인 천 셔츠.",
+      "rarity": "crude",
+      "value": 15,
+      "weight": 0.5,
+      "spriteIndex": 0,
+      "color": "#D2B48C",
+      "stats": {
+        "defense": 1
+      },
+      "requirements": {
+        "level": 1
+      }
+    },
+    {
+      "id": "leather_armor",
+      "nameKo": "가죽 갑옷",
+      "nameEn": "Leather Armor",
+      "description": "가죽으로 만든 가벼운 갑옷.",
+      "rarity": "common",
+      "value": 100,
+      "weight": 3.0,
+      "spriteIndex": 5,
+      "color": null,
+      "stats": {
+        "defense": 8
+      },
+      "requirements": {
+        "level": 1,
+        "con": 5
+      }
+    },
+    {
+      "id": "chainmail",
+      "nameKo": "쇄자갑",
+      "nameEn": "Chainmail",
+      "description": "쇠사슬을 엮어 만든 갑옷.",
+      "rarity": "grand",
+      "value": 350,
+      "weight": 8.0,
+      "spriteIndex": 10,
+      "color": null,
+      "stats": {
+        "defense": 18
+      },
+      "requirements": {
+        "level": 5,
+        "str": 6,
+        "con": 8
+      }
+    },
+    {
+      "id": "plate_armor",
+      "nameKo": "판금 갑옷",
+      "nameEn": "Plate Armor",
+      "description": "철판으로 만든 무거운 갑옷.",
+      "rarity": "rare",
+      "value": 800,
+      "weight": 15.0,
+      "spriteIndex": 15,
+      "color": null,
+      "stats": {
+        "defense": 30,
+        "moveSpeed": -5
+      },
+      "requirements": {
+        "level": 12,
+        "str": 12,
+        "con": 12
+      }
+    },
+    {
+      "id": "mage_robe",
+      "nameKo": "마법사의 로브",
+      "nameEn": "Mage Robe",
+      "description": "마법사가 입는 로브.",
+      "rarity": "rare",
+      "value": 700,
+      "weight": 1.5,
+      "spriteIndex": 20,
+      "color": "#4B0082",
+      "stats": {
+        "defense": 5,
+        "magicDefense": 20,
+        "int": 3,
+        "mp": 25
+      },
+      "requirements": {
+        "level": 12,
+        "int": 12
+      }
+    },
+    {
+      "id": "knight_armor",
+      "nameKo": "기사의 갑옷",
+      "nameEn": "Knight's Armor",
+      "description": "왕국 기사단의 갑옷.",
+      "rarity": "arcane",
+      "value": 2000,
+      "weight": 12.0,
+      "spriteIndex": 25,
+      "color": null,
+      "stats": {
+        "defense": 40,
+        "str": 2,
+        "con": 2
+      },
+      "requirements": {
+        "level": 20,
+        "str": 15,
+        "con": 15
+      }
+    },
+    {
+      "id": "dragon_armor",
+      "nameKo": "드래곤 갑옷",
+      "nameEn": "Dragon Armor",
+      "description": "드래곤 비늘로 만든 갑옷.",
+      "rarity": "heroic",
+      "value": 8000,
+      "weight": 10.0,
+      "spriteIndex": 30,
+      "color": "#DC143C",
+      "stats": {
+        "defense": 55,
+        "str": 4,
+        "elementResist": {
+          "element": "fire",
+          "value": 30
+        }
+      },
+      "requirements": {
+        "level": 28,
+        "str": 20,
+        "con": 18
+      }
+    },
+    {
+      "id": "archmage_robe",
+      "nameKo": "대마법사의 로브",
+      "nameEn": "Archmage Robe",
+      "description": "대마법사가 입었던 전설적인 로브.",
+      "rarity": "unique",
+      "value": 15000,
+      "weight": 1.0,
+      "spriteIndex": 35,
+      "color": "#9370DB",
+      "stats": {
+        "defense": 15,
+        "magicDefense": 50,
+        "int": 6,
+        "wis": 4,
+        "mp": 80,
+        "cooldownReduction": 10
+      },
+      "requirements": {
+        "level": 38,
+        "int": 28
+      }
+    },
+    {
+      "id": "legendary_armor",
+      "nameKo": "전설의 갑옷",
+      "nameEn": "Legendary Armor",
+      "description": "신이 내렸다는 전설의 갑옷.",
+      "rarity": "legendary",
+      "value": 100000,
+      "weight": 8.0,
+      "spriteIndex": 45,
+      "color": "#FFD700",
+      "stats": {
+        "defense": 80,
+        "magicDefense": 50,
+        "allStats": 5,
+        "allElementResist": 15
+      },
+      "requirements": {
+        "level": 50,
+        "str": 25,
+        "con": 30
+      }
+    }
+  ]
+}

@@ -1,0 +1,171 @@
+{
+  "category": "equipment",
+  "subcategory": "weapon",
+  "weaponType": "axe",
+  "spriteMapping": "/data/sprites/equipment/weapon/axe.json",
+  "items": [
+    {
+      "id": "rusty_axe",
+      "nameKo": "녹슨 도끼",
+      "nameEn": "Rusty Axe",
+      "description": "녹이 슨 오래된 도끼.",
+      "rarity": "crude",
+      "value": 25,
+      "weight": 4.0,
+      "spriteIndex": 0,
+      "color": "#8B4513",
+      "stats": {
+        "damage": 8,
+        "attackSpeed": 0.8
+      },
+      "requirements": {
+        "level": 1
+      }
+    },
+    {
+      "id": "iron_axe",
+      "nameKo": "철 도끼",
+      "nameEn": "Iron Axe",
+      "description": "무거운 철제 도끼.",
+      "rarity": "common",
+      "value": 120,
+      "weight": 4.5,
+      "spriteIndex": 0,
+      "color": null,
+      "stats": {
+        "damage": 14,
+        "attackSpeed": 0.8
+      },
+      "requirements": {
+        "level": 1,
+        "str": 7
+      }
+    },
+    {
+      "id": "steel_axe",
+      "nameKo": "강철 도끼",
+      "nameEn": "Steel Axe",
+      "description": "날카로운 강철 도끼.",
+      "rarity": "grand",
+      "value": 400,
+      "weight": 4.5,
+      "spriteIndex": 1,
+      "color": null,
+      "stats": {
+        "damage": 24,
+        "attackSpeed": 0.85
+      },
+      "requirements": {
+        "level": 5,
+        "str": 10
+      }
+    },
+    {
+      "id": "battle_axe",
+      "nameKo": "전투 도끼",
+      "nameEn": "Battle Axe",
+      "description": "전장에서 사용되는 대형 전투 도끼.",
+      "rarity": "rare",
+      "value": 900,
+      "weight": 5.5,
+      "spriteIndex": 2,
+      "color": null,
+      "stats": {
+        "damage": 35,
+        "attackSpeed": 0.75,
+        "armorPenetration": 10
+      },
+      "requirements": {
+        "level": 12,
+        "str": 14
+      }
+    },
+    {
+      "id": "berserker_axe",
+      "nameKo": "광전사의 도끼",
+      "nameEn": "Berserker's Axe",
+      "description": "피에 굶주린 광전사의 도끼.",
+      "rarity": "arcane",
+      "value": 2500,
+      "weight": 5.0,
+      "spriteIndex": 2,
+      "color": "#8B0000",
+      "stats": {
+        "damage": 45,
+        "attackSpeed": 0.9,
+        "critChance": 5,
+        "lifesteal": 3
+      },
+      "requirements": {
+        "level": 20,
+        "str": 18
+      }
+    },
+    {
+      "id": "orc_war_axe",
+      "nameKo": "오크 전쟁 도끼",
+      "nameEn": "Orc War Axe",
+      "description": "오크 족장이 사용하던 거대한 도끼.",
+      "rarity": "heroic",
+      "value": 5500,
+      "weight": 7.0,
+      "spriteIndex": 3,
+      "color": "#556B2F",
+      "stats": {
+        "damage": 55,
+        "attackSpeed": 0.7,
+        "armorPenetration": 20,
+        "str": 3
+      },
+      "requirements": {
+        "level": 28,
+        "str": 22
+      }
+    },
+    {
+      "id": "executioner_axe",
+      "nameKo": "처형자의 도끼",
+      "nameEn": "Executioner's Axe",
+      "description": "수백 명을 처형한 저주받은 도끼.",
+      "rarity": "unique",
+      "value": 15000,
+      "weight": 8.0,
+      "spriteIndex": 3,
+      "color": "#4B0082",
+      "stats": {
+        "damage": 70,
+        "attackSpeed": 0.65,
+        "critChance": 10,
+        "critDamage": 50,
+        "executeThreshold": 20
+      },
+      "requirements": {
+        "level": 38,
+        "str": 28
+      }
+    },
+    {
+      "id": "legendary_axe",
+      "nameKo": "전설의 도끼",
+      "nameEn": "Legendary Axe",
+      "description": "거인도 두려워하는 전설의 대도끼.",
+      "rarity": "legendary",
+      "value": 90000,
+      "weight": 6.0,
+      "spriteIndex": 4,
+      "color": "#FFD700",
+      "stats": {
+        "damage": 95,
+        "attackSpeed": 0.8,
+        "critChance": 12,
+        "critDamage": 35,
+        "armorPenetration": 25,
+        "allStats": 4
+      },
+      "requirements": {
+        "level": 50,
+        "str": 35
+      }
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "id": "skeleton",
+  "category": "undead",
+  "nameKo": "스켈레톤",
+  "nameEn": "Skeleton",
+  "description": "뼈만 남은 언데드. 어둠의 마법으로 되살아났다.",
+  "lore": "강력한 네크로맨서에 의해 소환된 언데드 전사들이다. 생전의 기억은 대부분 잃었지만, 전투 본능은 남아있다. 고통을 느끼지 않으며 피로도 모른다. 일부는 주인의 지배에서 벗어나 자유의지를 가지기도 한다.",
+  "traits": {
+    "innate": ["undead_fortitude", "boneless"],
+    "optional": ["eternal_soldier", "death_touched"]
+  },
+  "statModifiers": {
+    "dex": 2,
+    "con": -2,
+    "cha": -3
+  },
+  "playable": false,
+  "appearance": {
+    "body": {
+      "availableIndices": [14],
+      "spriteNames": ["Skelton_1"]
+    },
+    "skinTones": {
+      "available": ["bone", "aged_bone", "dark_bone"],
+      "default": "bone",
+      "colors": {
+        "bone": "#F5F5DC",
+        "aged_bone": "#D2B48C",
+        "dark_bone": "#8B7355"
+      }
+    },
+    "eye": {
+      "availableIndices": [0],
+      "colors": {
+        "available": ["empty", "red_flame", "blue_flame", "green_flame"],
+        "default": "empty",
+        "values": {
+          "empty": "#000000",
+          "red_flame": "#FF0000",
+          "blue_flame": "#00BFFF",
+          "green_flame": "#00FF00"
+        }
+      }
+    },
+    "hair": {
+      "availableIndices": [],
+      "note": "스켈레톤은 머리카락이 없음"
+    },
+    "facehair": {
+      "availableIndices": [],
+      "note": "스켈레톤은 수염이 없음"
+    }
+  },
+  "resistances": {
+    "dark": 30,
+    "poison": 100,
+    "holy": -50
+  },
+  "immunities": ["poison", "disease", "exhaustion"],
+  "vulnerabilities": ["holy", "bludgeoning"],
+  "abilities": {
+    "darkvision": 60,
+    "noBreathing": true,
+    "noSleeping": true,
+    "noEating": true
+  },
+  "startingLocation": null,
+  "languages": ["understands_previous"],
+  "lifespan": {
+    "note": "언데드는 소멸하기 전까지 무한히 존재"
+  }
+}

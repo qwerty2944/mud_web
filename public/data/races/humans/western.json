@@ -1,0 +1,81 @@
+{
+  "id": "western_human",
+  "category": "human",
+  "nameKo": "서부인",
+  "nameEn": "Westerner",
+  "description": "비옥한 평원과 해안 지대에서 번영한 민족. 다양한 외모를 가지며 적응력이 뛰어나다.",
+  "lore": "대륙 서쪽의 온화한 기후에서 살아가는 인간들이다. 다양한 문화가 교차하는 지역에서 살아왔기에 적응력이 뛰어나고 개방적이다. 상업과 기사도 문화가 발달했으며, 현재 대륙의 주요 왕국들을 이루고 있다.",
+  "traits": {
+    "innate": ["adaptable", "versatile"],
+    "optional": ["knight", "trader"]
+  },
+  "statModifiers": {
+    "str": 1,
+    "dex": 1,
+    "int": 1,
+    "wis": -1
+  },
+  "appearance": {
+    "body": {
+      "availableIndices": [3, 4, 5, 6, 7],
+      "spriteNames": ["Human_1", "Human_2", "Human_3", "Human_4", "Human_5"]
+    },
+    "skinTones": {
+      "available": ["pale", "fair", "light", "medium", "tan", "olive"],
+      "default": "fair",
+      "colors": {
+        "pale": "#FFE4E1",
+        "fair": "#FFDAB9",
+        "light": "#F5DEB3",
+        "medium": "#DEB887",
+        "tan": "#D2A679",
+        "olive": "#C4A35A"
+      }
+    },
+    "eye": {
+      "availableIndices": [0, 2, 3, 7, 8, 9, 10, 11, 12, 13, 14],
+      "colors": {
+        "available": ["brown", "blue", "green", "gray", "hazel"],
+        "default": "brown",
+        "values": {
+          "brown": "#8B4513",
+          "blue": "#4169E1",
+          "green": "#228B22",
+          "gray": "#708090",
+          "hazel": "#8E7618"
+        }
+      }
+    },
+    "hair": {
+      "availableIndices": "all",
+      "colors": {
+        "available": ["black", "dark_brown", "brown", "auburn", "red", "blonde", "gray", "white"],
+        "default": "brown",
+        "values": {
+          "black": "#1C1C1C",
+          "dark_brown": "#3D2314",
+          "brown": "#8B4513",
+          "auburn": "#A52A2A",
+          "red": "#B22222",
+          "blonde": "#F0E68C",
+          "gray": "#808080",
+          "white": "#FFFFFF"
+        }
+      }
+    },
+    "facehair": {
+      "availableIndices": "all",
+      "colors": "same_as_hair"
+    }
+  },
+  "resistances": {},
+  "bonusSkillPoints": 1,
+  "startingLocation": "starting_village",
+  "languages": ["common"],
+  "lifespan": {
+    "adult": 18,
+    "middle": 40,
+    "old": 60,
+    "max": 80
+  }
+}

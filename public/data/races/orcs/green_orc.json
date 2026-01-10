@@ -1,0 +1,80 @@
+{
+  "id": "green_orc",
+  "category": "orc",
+  "nameKo": "녹색 오크",
+  "nameEn": "Green Orc",
+  "description": "황무지에서 살아가는 전사 종족. 녹색 피부와 강인한 체격이 특징이다.",
+  "lore": "대륙의 황무지와 평원에서 부족 단위로 살아가는 전사 종족이다. 힘과 용맹을 최고의 가치로 여기며, 전투에서 명예롭게 싸우는 것을 중시한다. 과거에는 약탈자로 악명이 높았지만, 현재는 일부 부족이 다른 종족들과 평화롭게 교류하고 있다.",
+  "traits": {
+    "innate": ["relentless_endurance", "savage_attacks"],
+    "optional": ["berserker", "war_chief"]
+  },
+  "statModifiers": {
+    "str": 3,
+    "con": 1,
+    "int": -2,
+    "cha": -1
+  },
+  "appearance": {
+    "body": {
+      "availableIndices": [10, 11, 12, 13],
+      "spriteNames": ["Orc_1", "Orc_2", "Orc_3", "Orc_4"]
+    },
+    "skinTones": {
+      "available": ["light_green", "green", "dark_green", "olive_green"],
+      "default": "green",
+      "colors": {
+        "light_green": "#90EE90",
+        "green": "#556B2F",
+        "dark_green": "#2F4F2F",
+        "olive_green": "#6B8E23"
+      }
+    },
+    "eye": {
+      "availableIndices": [0, 2, 3, 7, 8, 9, 10, 11, 12, 13, 14],
+      "colors": {
+        "available": ["red", "yellow", "orange", "amber", "brown"],
+        "default": "red",
+        "values": {
+          "red": "#DC143C",
+          "yellow": "#FFD700",
+          "orange": "#FF8C00",
+          "amber": "#FFBF00",
+          "brown": "#8B4513"
+        }
+      }
+    },
+    "hair": {
+      "availableIndices": "all",
+      "colors": {
+        "available": ["black", "dark_brown", "dark_red", "gray"],
+        "default": "black",
+        "values": {
+          "black": "#1C1C1C",
+          "dark_brown": "#3D2314",
+          "dark_red": "#8B0000",
+          "gray": "#696969"
+        }
+      }
+    },
+    "facehair": {
+      "availableIndices": "all",
+      "colors": "same_as_hair"
+    }
+  },
+  "resistances": {
+    "fire": 10
+  },
+  "abilities": {
+    "darkvision": 60,
+    "intimidationBonus": 15
+  },
+  "startingLocation": "orc_camp",
+  "languages": ["common", "orcish"],
+  "lifespan": {
+    "adult": 14,
+    "middle": 30,
+    "old": 50,
+    "max": 70
+  }
+}

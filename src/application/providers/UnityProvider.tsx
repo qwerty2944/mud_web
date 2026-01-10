@@ -85,7 +85,7 @@ export function UnityProvider({ children }: { children: ReactNode }) {
 
       // Unity에서 일부 이름만 보내므로 all-sprites.json에서 나머지 로드
       try {
-        const res = await fetch("/data/character/all-sprites.json");
+        const res = await fetch("/data/sprites/all-sprites.json");
         const jsonData = await res.json();
 
         // Unity 데이터 우선, 없으면 JSON 폴백
@@ -103,7 +103,9 @@ export function UnityProvider({ children }: { children: ReactNode }) {
           shieldNames: unityData.shieldNames?.length ? unityData.shieldNames : (jsonData.shieldNames || []),
           axeNames: unityData.axeNames?.length ? unityData.axeNames : (jsonData.axeNames || []),
           bowNames: unityData.bowNames?.length ? unityData.bowNames : (jsonData.bowNames || []),
+          spearNames: unityData.spearNames?.length ? unityData.spearNames : (jsonData.spearNames || []),
           wandNames: unityData.wandNames?.length ? unityData.wandNames : (jsonData.wandNames || []),
+          daggerNames: unityData.daggerNames?.length ? unityData.daggerNames : (jsonData.daggerNames || []),
         };
         setSpriteNames(names);
       } catch (err) {

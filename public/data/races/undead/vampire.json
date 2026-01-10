@@ -1,0 +1,108 @@
+{
+  "id": "vampire",
+  "category": "undead",
+  "nameKo": "뱀파이어",
+  "nameEn": "Vampire",
+  "description": "영원한 밤의 존재. 피를 마시며 살아가는 우아하고 위험한 언데드.",
+  "lore": "다른 뱀파이어에게 물려 변이된 존재들이다. 인간의 외모를 유지하지만 햇빛에 약하고 피를 마셔야만 존재할 수 있다. 매우 강력하고 지능적이며, 수백 년을 살아가며 막대한 지식과 힘을 축적한다. 사회에서는 숨어 살거나 밤의 귀족으로 군림한다.",
+  "traits": {
+    "innate": ["blood_hunger", "immortal_charm"],
+    "optional": ["night_lord", "blood_magic"]
+  },
+  "statModifiers": {
+    "str": 2,
+    "dex": 2,
+    "cha": 2,
+    "wis": -1
+  },
+  "playable": false,
+  "unlockCondition": "특수 이벤트로 뱀파이어화 가능",
+  "appearance": {
+    "body": {
+      "availableIndices": [3, 4, 5, 6, 7, 1, 2],
+      "spriteNames": ["Human_1", "Human_2", "Human_3", "Human_4", "Human_5", "Elf_1", "Elf_2"],
+      "note": "생전 종족의 외형 유지"
+    },
+    "skinTones": {
+      "available": ["pale", "deathly_pale", "ashen", "marble"],
+      "default": "pale",
+      "colors": {
+        "pale": "#F5F5F5",
+        "deathly_pale": "#FAEBD7",
+        "ashen": "#D3D3D3",
+        "marble": "#FFFAFA"
+      }
+    },
+    "eye": {
+      "availableIndices": [0, 2, 3, 7, 8, 9, 10, 11, 12, 13, 14],
+      "colors": {
+        "available": ["red", "crimson", "gold", "silver", "black"],
+        "default": "red",
+        "values": {
+          "red": "#DC143C",
+          "crimson": "#B22222",
+          "gold": "#FFD700",
+          "silver": "#C0C0C0",
+          "black": "#1C1C1C"
+        }
+      },
+      "note": "배고플 때 눈이 빨갛게 빛남"
+    },
+    "hair": {
+      "availableIndices": "all",
+      "colors": {
+        "available": ["black", "white", "silver", "dark_red", "original"],
+        "default": "black",
+        "values": {
+          "black": "#1C1C1C",
+          "white": "#FFFFFF",
+          "silver": "#C0C0C0",
+          "dark_red": "#8B0000"
+        }
+      }
+    },
+    "facehair": {
+      "availableIndices": "all",
+      "colors": "same_as_hair"
+    },
+    "special": {
+      "fangs": true,
+      "claws": "optional"
+    }
+  },
+  "resistances": {
+    "dark": 40,
+    "ice": 20,
+    "holy": -50
+  },
+  "immunities": ["poison", "disease", "charm"],
+  "vulnerabilities": {
+    "sunlight": {
+      "note": "햇빛 아래서 매 턴 20 피해",
+      "avoidable": ["shadow", "cloud", "umbrella", "special_item"]
+    },
+    "holy": true,
+    "fire": true,
+    "running_water": true
+  },
+  "abilities": {
+    "darkvision": 120,
+    "lifesteal": 25,
+    "shapeshift": ["bat", "mist", "wolf"],
+    "spiderClimb": true,
+    "charm": {
+      "note": "매력 판정으로 NPC 조종"
+    }
+  },
+  "needs": {
+    "blood": {
+      "interval": "3일마다",
+      "penalty": "STR/DEX -1씩 감소, 최대 -5"
+    }
+  },
+  "startingLocation": "vampire_castle",
+  "languages": ["common", "all_previous"],
+  "lifespan": {
+    "note": "햇빛이나 특수한 방법으로 파괴되기 전까지 영원히 생존"
+  }
+}

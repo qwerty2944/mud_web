@@ -1,0 +1,87 @@
+{
+  "id": "mountain_dwarf",
+  "category": "dwarf",
+  "nameKo": "산악 드워프",
+  "nameEn": "Mountain Dwarf",
+  "description": "깊은 산맥의 지하 요새에서 살아가는 드워프. 단단한 체격과 긴 수염이 특징이다.",
+  "lore": "태초부터 산의 심장부에서 살아온 드워프들이다. 뛰어난 대장장이이자 광부로, 세계에서 가장 정교한 무기와 갑옷을 제작한다. 명예와 맹세를 목숨보다 중시하며, 한 번 품은 원한은 천 년이 지나도 잊지 않는다.",
+  "traits": {
+    "innate": ["dwarven_resilience", "stonecunning"],
+    "optional": ["master_smith", "grudge_keeper"]
+  },
+  "statModifiers": {
+    "con": 2,
+    "str": 2,
+    "dex": -2,
+    "cha": -1
+  },
+  "appearance": {
+    "body": {
+      "availableIndices": [3, 4, 5, 6, 7],
+      "spriteNames": ["Human_1", "Human_2", "Human_3", "Human_4", "Human_5"],
+      "note": "드워프 전용 바디 스프라이트 추가 예정"
+    },
+    "skinTones": {
+      "available": ["fair", "tan", "ruddy", "pale"],
+      "default": "ruddy",
+      "colors": {
+        "fair": "#FFDAB9",
+        "tan": "#D2A679",
+        "ruddy": "#CD853F",
+        "pale": "#FFE4C4"
+      }
+    },
+    "eye": {
+      "availableIndices": [0, 2, 3, 7, 8, 9, 10, 11, 12, 13, 14],
+      "colors": {
+        "available": ["brown", "gray", "blue", "black", "amber"],
+        "default": "brown",
+        "values": {
+          "brown": "#8B4513",
+          "gray": "#708090",
+          "blue": "#4682B4",
+          "black": "#1C1C1C",
+          "amber": "#FFBF00"
+        }
+      }
+    },
+    "hair": {
+      "availableIndices": "all",
+      "colors": {
+        "available": ["black", "dark_brown", "brown", "auburn", "red", "gray", "white"],
+        "default": "dark_brown",
+        "values": {
+          "black": "#1C1C1C",
+          "dark_brown": "#3D2314",
+          "brown": "#8B4513",
+          "auburn": "#A52A2A",
+          "red": "#B22222",
+          "gray": "#808080",
+          "white": "#FFFFFF"
+        }
+      }
+    },
+    "facehair": {
+      "availableIndices": "all",
+      "required": true,
+      "note": "드워프 남성은 반드시 수염을 가짐",
+      "colors": "same_as_hair"
+    }
+  },
+  "resistances": {
+    "earth": 15,
+    "poison": 20
+  },
+  "abilities": {
+    "darkvision": 60,
+    "craftingBonus": 15
+  },
+  "startingLocation": "dwarven_stronghold",
+  "languages": ["common", "dwarvish"],
+  "lifespan": {
+    "adult": 50,
+    "middle": 150,
+    "old": 300,
+    "max": 400
+  }
+}

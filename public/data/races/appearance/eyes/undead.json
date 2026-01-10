@@ -1,0 +1,92 @@
+{
+  "race": "undead",
+  "variants": {
+    "skeleton": {
+      "nameKo": "스켈레톤",
+      "availableStyles": [1, 6],
+      "recommendedStyles": [6],
+      "colors": {
+        "common": {
+          "empty": { "hex": "#000000", "nameKo": "빈 눈구멍", "weight": 60 }
+        },
+        "uncommon": {
+          "red_flame": { "hex": "#FF0000", "nameKo": "붉은 불꽃", "weight": 20, "glow": true },
+          "blue_flame": { "hex": "#00BFFF", "nameKo": "푸른 불꽃", "weight": 15, "glow": true }
+        },
+        "rare": {
+          "green_flame": { "hex": "#00FF00", "nameKo": "녹색 불꽃", "weight": 5, "glow": true }
+        }
+      },
+      "defaultColor": "empty",
+      "glow": {
+        "enabled": true,
+        "intensity": "strong",
+        "trigger": "always"
+      },
+      "special": {
+        "soulFire": {
+          "note": "영혼 불꽃 - 더 강한 스켈레톤일수록 밝은 불꽃"
+        }
+      }
+    },
+    "zombie": {
+      "nameKo": "좀비",
+      "availableStyles": [0, 1, 6, 12],
+      "recommendedStyles": [6, 1, 12],
+      "colors": {
+        "common": {
+          "white": { "hex": "#F5F5F5", "nameKo": "탁한 흰색", "weight": 40 },
+          "yellow": { "hex": "#FFFF00", "nameKo": "노란색", "weight": 30 },
+          "empty": { "hex": "#000000", "nameKo": "빈 눈", "weight": 20 }
+        },
+        "uncommon": {
+          "red": { "hex": "#FF0000", "nameKo": "핏빛", "weight": 10 }
+        }
+      },
+      "defaultColor": "white",
+      "special": {
+        "missingEye": {
+          "available": true,
+          "note": "한쪽 또는 양쪽 눈이 없을 수 있음"
+        }
+      }
+    },
+    "vampire": {
+      "nameKo": "뱀파이어",
+      "availableStyles": [0, 2, 3, 7, 8, 9, 13, 14],
+      "recommendedStyles": [3, 9, 13],
+      "colors": {
+        "common": {
+          "red": { "hex": "#DC143C", "nameKo": "붉은색", "weight": 40 },
+          "crimson": { "hex": "#B22222", "nameKo": "진홍색", "weight": 25 },
+          "gold": { "hex": "#FFD700", "nameKo": "금색", "weight": 15 }
+        },
+        "uncommon": {
+          "silver": { "hex": "#C0C0C0", "nameKo": "은색", "weight": 12 },
+          "black": { "hex": "#1C1C1C", "nameKo": "검은색", "weight": 8 }
+        },
+        "rare": {
+          "blood_moon": { "hex": "#8B0000", "nameKo": "핏빛 달", "weight": 1, "glow": true }
+        }
+      },
+      "defaultColor": "red",
+      "heterochromia": {
+        "allowed": true,
+        "chance": 2
+      },
+      "glow": {
+        "enabled": true,
+        "intensity": "strong",
+        "trigger": "hunger",
+        "note": "배고플 때 눈이 빨갛게 빛남"
+      },
+      "special": {
+        "colorChange": {
+          "normal": "original_or_gold",
+          "hungry": "red_glow",
+          "feeding": "crimson_intense"
+        }
+      }
+    }
+  }
+}

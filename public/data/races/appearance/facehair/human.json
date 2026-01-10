@@ -1,0 +1,177 @@
+{
+  "race": "human",
+  "variants": {
+    "northern": {
+      "nameKo": "북부인",
+      "male": {
+        "beard": {
+          "available": [9, 10, 11, 12, 13],
+          "recommended": [11, 12],
+          "required": false,
+          "commonChance": 70,
+          "note": "북부인 남성은 추위로부터 보호하기 위해 수염을 기르는 경우가 많음"
+        },
+        "mustache": {
+          "available": [14, 15],
+          "recommended": [14],
+          "canCombineWithBeard": true
+        }
+      },
+      "female": {
+        "makeup": {
+          "available": [6, 7, 8],
+          "recommended": [],
+          "note": "북부 여성은 화장을 잘 하지 않음"
+        }
+      },
+      "all": {
+        "accessories": {
+          "available": [0, 1, 5],
+          "recommended": [0, 1],
+          "note": "전투 흉터가 흔함"
+        }
+      },
+      "colors": {
+        "available": ["blonde", "platinum", "red", "ginger", "light_brown", "white", "gray"],
+        "default": "blonde",
+        "values": {
+          "blonde": "#F0E68C",
+          "platinum": "#E5E4E2",
+          "red": "#B22222",
+          "ginger": "#FF6347",
+          "light_brown": "#A0522D",
+          "white": "#FFFFFF",
+          "gray": "#808080"
+        }
+      }
+    },
+    "southern": {
+      "nameKo": "남부인",
+      "male": {
+        "beard": {
+          "available": [9, 10, 11, 12, 13],
+          "recommended": [9, 13],
+          "required": false,
+          "commonChance": 50
+        },
+        "mustache": {
+          "available": [14, 15],
+          "recommended": [15],
+          "canCombineWithBeard": true,
+          "note": "정교하게 다듬은 콧수염 선호"
+        }
+      },
+      "female": {
+        "makeup": {
+          "available": [6, 7, 8],
+          "recommended": [6, 8],
+          "note": "화려한 화장 문화"
+        }
+      },
+      "all": {
+        "accessories": {
+          "available": [2, 3, 4],
+          "recommended": [2, 3],
+          "note": "문신 문화가 발달"
+        }
+      },
+      "colors": {
+        "available": ["black", "dark_brown", "brown", "white", "gray"],
+        "default": "black",
+        "values": {
+          "black": "#1C1C1C",
+          "dark_brown": "#3D2314",
+          "brown": "#6B4423",
+          "white": "#FFFFFF",
+          "gray": "#808080"
+        }
+      }
+    },
+    "eastern": {
+      "nameKo": "동부인",
+      "male": {
+        "beard": {
+          "available": [9, 13],
+          "recommended": [13],
+          "required": false,
+          "commonChance": 30,
+          "note": "턱수염이나 짧은 수염 선호, 긴 수염은 현자/노인"
+        },
+        "mustache": {
+          "available": [14, 15],
+          "recommended": [14],
+          "canCombineWithBeard": false
+        }
+      },
+      "female": {
+        "makeup": {
+          "available": [6, 7, 8],
+          "recommended": [6, 8],
+          "note": "섬세한 화장 문화"
+        }
+      },
+      "all": {
+        "accessories": {
+          "available": [2, 3],
+          "recommended": [],
+          "note": "문신은 특별한 의미를 가짐"
+        }
+      },
+      "colors": {
+        "available": ["black", "dark_brown", "brown", "white", "gray"],
+        "default": "black",
+        "values": {
+          "black": "#1C1C1C",
+          "dark_brown": "#3D2314",
+          "brown": "#5D4037",
+          "white": "#FFFFFF",
+          "gray": "#808080"
+        }
+      }
+    },
+    "western": {
+      "nameKo": "서부인",
+      "male": {
+        "beard": {
+          "available": [9, 10, 11, 12, 13],
+          "recommended": [9, 10, 13],
+          "required": false,
+          "commonChance": 50
+        },
+        "mustache": {
+          "available": [14, 15],
+          "recommended": [14, 15],
+          "canCombineWithBeard": true
+        }
+      },
+      "female": {
+        "makeup": {
+          "available": [6, 7, 8],
+          "recommended": [7],
+          "note": "단정한 화장 선호"
+        }
+      },
+      "all": {
+        "accessories": {
+          "available": [0, 1, 2, 3, 4, 5],
+          "recommended": [],
+          "note": "다양한 스타일 가능"
+        }
+      },
+      "colors": {
+        "available": ["black", "dark_brown", "brown", "auburn", "red", "blonde", "gray", "white"],
+        "default": "brown",
+        "values": {
+          "black": "#1C1C1C",
+          "dark_brown": "#3D2314",
+          "brown": "#8B4513",
+          "auburn": "#A52A2A",
+          "red": "#B22222",
+          "blonde": "#F0E68C",
+          "gray": "#808080",
+          "white": "#FFFFFF"
+        }
+      }
+    }
+  }
+}

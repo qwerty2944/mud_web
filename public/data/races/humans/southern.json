@@ -1,0 +1,78 @@
+{
+  "id": "southern_human",
+  "category": "human",
+  "nameKo": "남부인",
+  "nameEn": "Southerner",
+  "description": "뜨거운 사막과 열대 지방에서 살아가는 민족. 검게 그을린 피부와 검은 머리카락이 특징이다.",
+  "lore": "광활한 사막과 열대 우림 사이에서 번영한 고대 문명의 후예들이다. 뛰어난 상업 감각과 마법에 대한 깊은 이해로 유명하다. 화려한 문화와 예술을 발전시켰으며, 대륙 전역과 활발히 교역한다.",
+  "traits": {
+    "innate": ["heat_resistant", "desert_wisdom"],
+    "optional": ["merchant", "sun_blessed"]
+  },
+  "statModifiers": {
+    "int": 1,
+    "cha": 2,
+    "con": -1
+  },
+  "appearance": {
+    "body": {
+      "availableIndices": [3, 4, 5, 6, 7],
+      "spriteNames": ["Human_1", "Human_2", "Human_3", "Human_4", "Human_5"]
+    },
+    "skinTones": {
+      "available": ["tan", "olive", "brown", "dark", "ebony"],
+      "default": "brown",
+      "colors": {
+        "tan": "#D2A679",
+        "olive": "#C4A35A",
+        "brown": "#8B7355",
+        "dark": "#5D4037",
+        "ebony": "#3E2723"
+      }
+    },
+    "eye": {
+      "availableIndices": [0, 2, 3, 7, 8, 9, 10, 11, 12, 13, 14],
+      "colors": {
+        "available": ["brown", "amber", "hazel", "gold", "black"],
+        "default": "brown",
+        "values": {
+          "brown": "#8B4513",
+          "amber": "#FFBF00",
+          "hazel": "#8E7618",
+          "gold": "#FFD700",
+          "black": "#1C1C1C"
+        }
+      }
+    },
+    "hair": {
+      "availableIndices": "all",
+      "colors": {
+        "available": ["black", "dark_brown", "brown", "white", "gray"],
+        "default": "black",
+        "values": {
+          "black": "#1C1C1C",
+          "dark_brown": "#3D2314",
+          "brown": "#6B4423",
+          "white": "#FFFFFF",
+          "gray": "#808080"
+        }
+      }
+    },
+    "facehair": {
+      "availableIndices": "all",
+      "colors": "same_as_hair"
+    }
+  },
+  "resistances": {
+    "fire": 15,
+    "ice": -10
+  },
+  "startingLocation": "desert_oasis",
+  "languages": ["common", "southern"],
+  "lifespan": {
+    "adult": 18,
+    "middle": 40,
+    "old": 60,
+    "max": 80
+  }
+}

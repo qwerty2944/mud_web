@@ -1,0 +1,82 @@
+{
+  "id": "hill_dwarf",
+  "category": "dwarf",
+  "nameKo": "언덕 드워프",
+  "nameEn": "Hill Dwarf",
+  "description": "지상 세계와 더 가까이 살아가는 드워프. 친근하고 건강한 체질이 특징이다.",
+  "lore": "산악 드워프와 달리 지상에 가까운 언덕과 얕은 광산에서 살아간다. 다른 종족들과 더 활발히 교류하며, 훌륭한 양조사와 농부들이 많다. 건강하고 튼튼한 체질로 유명하며, 치유 마법에도 소질이 있다.",
+  "traits": {
+    "innate": ["dwarven_toughness", "social_dwarf"],
+    "optional": ["brewmaster", "healer_touch"]
+  },
+  "statModifiers": {
+    "con": 2,
+    "wis": 1,
+    "dex": -1
+  },
+  "appearance": {
+    "body": {
+      "availableIndices": [3, 4, 5, 6, 7],
+      "spriteNames": ["Human_1", "Human_2", "Human_3", "Human_4", "Human_5"]
+    },
+    "skinTones": {
+      "available": ["fair", "tan", "ruddy", "olive"],
+      "default": "tan",
+      "colors": {
+        "fair": "#FFDAB9",
+        "tan": "#D2A679",
+        "ruddy": "#CD853F",
+        "olive": "#C4A35A"
+      }
+    },
+    "eye": {
+      "availableIndices": [0, 2, 3, 7, 8, 9, 10, 11, 12, 13, 14],
+      "colors": {
+        "available": ["brown", "green", "hazel", "amber", "blue"],
+        "default": "hazel",
+        "values": {
+          "brown": "#8B4513",
+          "green": "#228B22",
+          "hazel": "#8E7618",
+          "amber": "#FFBF00",
+          "blue": "#4682B4"
+        }
+      }
+    },
+    "hair": {
+      "availableIndices": "all",
+      "colors": {
+        "available": ["brown", "auburn", "red", "blonde", "gray", "white"],
+        "default": "brown",
+        "values": {
+          "brown": "#8B4513",
+          "auburn": "#A52A2A",
+          "red": "#B22222",
+          "blonde": "#DAA520",
+          "gray": "#808080",
+          "white": "#FFFFFF"
+        }
+      }
+    },
+    "facehair": {
+      "availableIndices": "all",
+      "required": true,
+      "colors": "same_as_hair"
+    }
+  },
+  "resistances": {
+    "poison": 15
+  },
+  "abilities": {
+    "darkvision": 60,
+    "bonusHp": 1
+  },
+  "startingLocation": "hillside_village",
+  "languages": ["common", "dwarvish"],
+  "lifespan": {
+    "adult": 50,
+    "middle": 150,
+    "old": 280,
+    "max": 350
+  }
+}

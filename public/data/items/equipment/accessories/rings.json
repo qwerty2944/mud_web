@@ -1,0 +1,221 @@
+{
+  "category": "equipment",
+  "subcategory": "accessory",
+  "slot": "ring",
+  "items": [
+    {
+      "id": "copper_ring",
+      "nameKo": "구리 반지",
+      "nameEn": "Copper Ring",
+      "description": "단순한 구리 반지.",
+      "rarity": "crude",
+      "value": 20,
+      "weight": 0.05,
+      "stats": {}
+    },
+    {
+      "id": "iron_ring",
+      "nameKo": "철 반지",
+      "nameEn": "Iron Ring",
+      "description": "튼튼한 철 반지.",
+      "rarity": "common",
+      "value": 50,
+      "weight": 0.05,
+      "stats": {
+        "str": 1
+      },
+      "requirements": {
+        "level": 1
+      }
+    },
+    {
+      "id": "ring_of_strength",
+      "nameKo": "힘의 반지",
+      "nameEn": "Ring of Strength",
+      "description": "착용자의 힘을 증가시키는 반지.",
+      "rarity": "grand",
+      "value": 300,
+      "weight": 0.05,
+      "stats": {
+        "str": 3
+      },
+      "requirements": {
+        "level": 5
+      }
+    },
+    {
+      "id": "ring_of_agility",
+      "nameKo": "민첩의 반지",
+      "nameEn": "Ring of Agility",
+      "description": "착용자의 민첩을 증가시키는 반지.",
+      "rarity": "grand",
+      "value": 300,
+      "weight": 0.05,
+      "stats": {
+        "dex": 3
+      },
+      "requirements": {
+        "level": 5
+      }
+    },
+    {
+      "id": "ring_of_intelligence",
+      "nameKo": "지능의 반지",
+      "nameEn": "Ring of Intelligence",
+      "description": "착용자의 지능을 증가시키는 반지.",
+      "rarity": "grand",
+      "value": 300,
+      "weight": 0.05,
+      "stats": {
+        "int": 3
+      },
+      "requirements": {
+        "level": 5
+      }
+    },
+    {
+      "id": "ring_of_vitality",
+      "nameKo": "활력의 반지",
+      "nameEn": "Ring of Vitality",
+      "description": "착용자의 체력을 증가시키는 반지.",
+      "rarity": "rare",
+      "value": 600,
+      "weight": 0.05,
+      "stats": {
+        "con": 4,
+        "hp": 30
+      },
+      "requirements": {
+        "level": 12
+      }
+    },
+    {
+      "id": "ring_of_wisdom",
+      "nameKo": "지혜의 반지",
+      "nameEn": "Ring of Wisdom",
+      "description": "착용자의 지혜를 증가시키는 반지.",
+      "rarity": "rare",
+      "value": 600,
+      "weight": 0.05,
+      "stats": {
+        "wis": 4,
+        "mp": 25
+      },
+      "requirements": {
+        "level": 12
+      }
+    },
+    {
+      "id": "ring_of_luck",
+      "nameKo": "행운의 반지",
+      "nameEn": "Ring of Luck",
+      "description": "행운을 가져다주는 반지.",
+      "rarity": "rare",
+      "value": 700,
+      "weight": 0.05,
+      "stats": {
+        "lck": 5,
+        "critChance": 3
+      },
+      "requirements": {
+        "level": 12
+      }
+    },
+    {
+      "id": "ring_of_fire",
+      "nameKo": "화염의 반지",
+      "nameEn": "Ring of Fire",
+      "description": "화염의 힘이 깃든 반지.",
+      "rarity": "arcane",
+      "value": 1500,
+      "weight": 0.05,
+      "stats": {
+        "elementDamage": {
+          "element": "fire",
+          "value": 10
+        },
+        "elementResist": {
+          "element": "fire",
+          "value": 15
+        }
+      },
+      "requirements": {
+        "level": 20
+      }
+    },
+    {
+      "id": "ring_of_ice",
+      "nameKo": "냉기의 반지",
+      "nameEn": "Ring of Ice",
+      "description": "냉기의 힘이 깃든 반지.",
+      "rarity": "arcane",
+      "value": 1500,
+      "weight": 0.05,
+      "stats": {
+        "elementDamage": {
+          "element": "ice",
+          "value": 10
+        },
+        "elementResist": {
+          "element": "ice",
+          "value": 15
+        }
+      },
+      "requirements": {
+        "level": 20
+      }
+    },
+    {
+      "id": "ring_of_protection",
+      "nameKo": "보호의 반지",
+      "nameEn": "Ring of Protection",
+      "description": "착용자를 보호하는 마법 반지.",
+      "rarity": "heroic",
+      "value": 4000,
+      "weight": 0.05,
+      "stats": {
+        "defense": 10,
+        "magicDefense": 10,
+        "allElementResist": 5
+      },
+      "requirements": {
+        "level": 28
+      }
+    },
+    {
+      "id": "ring_of_the_vampire",
+      "nameKo": "흡혈의 반지",
+      "nameEn": "Ring of the Vampire",
+      "description": "생명력을 흡수하는 저주받은 반지.",
+      "rarity": "unique",
+      "value": 10000,
+      "weight": 0.05,
+      "stats": {
+        "lifesteal": 10,
+        "damage": 5,
+        "lck": -3
+      },
+      "requirements": {
+        "level": 35,
+        "karma": -15
+      }
+    },
+    {
+      "id": "legendary_ring",
+      "nameKo": "전설의 반지",
+      "nameEn": "Legendary Ring",
+      "description": "모든 능력을 끌어올리는 전설의 반지.",
+      "rarity": "legendary",
+      "value": 50000,
+      "weight": 0.05,
+      "stats": {
+        "allStats": 5,
+        "critChance": 5,
+        "critDamage": 15
+      },
+      "requirements": {
+        "level": 50
+      }
+    }
+  ]
+}

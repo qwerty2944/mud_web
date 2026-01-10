@@ -1,0 +1,76 @@
+{
+  "id": "northern_human",
+  "category": "human",
+  "nameKo": "북부인",
+  "nameEn": "Northerner",
+  "description": "혹독한 북방의 추위 속에서 살아남은 강인한 민족. 창백한 피부와 금발 또는 붉은 머리카락이 특징이다.",
+  "lore": "북부의 눈 덮인 산맥과 얼어붙은 툰드라에서 수천 년을 살아온 인간들이다. 혹독한 환경이 그들을 강하고 인내심 있게 만들었다. 전통적으로 수렵과 약탈로 생계를 유지했으나, 최근에는 교역에도 참여하고 있다.",
+  "traits": {
+    "innate": ["cold_resistant", "hardy"],
+    "optional": ["berserker", "winter_hunter"]
+  },
+  "statModifiers": {
+    "str": 2,
+    "con": 1,
+    "cha": -1
+  },
+  "appearance": {
+    "body": {
+      "availableIndices": [3, 4, 5, 6, 7],
+      "spriteNames": ["Human_1", "Human_2", "Human_3", "Human_4", "Human_5"]
+    },
+    "skinTones": {
+      "available": ["pale", "fair", "light"],
+      "default": "pale",
+      "colors": {
+        "pale": "#FFE4E1",
+        "fair": "#FFF0F5",
+        "light": "#FAEBD7"
+      }
+    },
+    "eye": {
+      "availableIndices": [0, 2, 3, 7, 8, 9, 10, 11, 12, 13, 14],
+      "colors": {
+        "available": ["blue", "gray", "green", "hazel"],
+        "default": "blue",
+        "values": {
+          "blue": "#4169E1",
+          "gray": "#708090",
+          "green": "#2E8B57",
+          "hazel": "#8E7618"
+        }
+      }
+    },
+    "hair": {
+      "availableIndices": "all",
+      "colors": {
+        "available": ["blonde", "platinum", "red", "ginger", "light_brown", "white"],
+        "default": "blonde",
+        "values": {
+          "blonde": "#F0E68C",
+          "platinum": "#E5E4E2",
+          "red": "#B22222",
+          "ginger": "#FF6347",
+          "light_brown": "#A0522D",
+          "white": "#FFFFFF"
+        }
+      }
+    },
+    "facehair": {
+      "availableIndices": "all",
+      "colors": "same_as_hair"
+    }
+  },
+  "resistances": {
+    "ice": 15,
+    "fire": -10
+  },
+  "startingLocation": "northern_village",
+  "languages": ["common", "northern"],
+  "lifespan": {
+    "adult": 18,
+    "middle": 40,
+    "old": 60,
+    "max": 85
+  }
+}

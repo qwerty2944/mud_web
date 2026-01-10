@@ -1,0 +1,298 @@
+{
+  "category": "equipment",
+  "subcategory": "weapon",
+  "weaponType": "sword",
+  "spriteMapping": "/data/sprites/equipment/weapon/sword.json",
+  "items": [
+    {
+      "id": "rusty_sword",
+      "nameKo": "녹슨 검",
+      "nameEn": "Rusty Sword",
+      "description": "녹이 슬어 무뎌진 오래된 검.",
+      "rarity": "crude",
+      "value": 20,
+      "weight": 2.5,
+      "spriteIndex": 0,
+      "color": "#8B4513",
+      "stats": {
+        "damage": 5,
+        "attackSpeed": 1.0
+      },
+      "requirements": {
+        "level": 1
+      }
+    },
+    {
+      "id": "iron_sword",
+      "nameKo": "철검",
+      "nameEn": "Iron Sword",
+      "description": "기본적인 철제 검.",
+      "rarity": "common",
+      "value": 100,
+      "weight": 3.0,
+      "spriteIndex": 0,
+      "color": null,
+      "stats": {
+        "damage": 10,
+        "attackSpeed": 1.0
+      },
+      "requirements": {
+        "level": 1,
+        "str": 5
+      }
+    },
+    {
+      "id": "steel_sword",
+      "nameKo": "강철검",
+      "nameEn": "Steel Sword",
+      "description": "잘 단련된 강철로 만든 검.",
+      "rarity": "grand",
+      "value": 350,
+      "weight": 3.2,
+      "spriteIndex": 1,
+      "color": null,
+      "stats": {
+        "damage": 18,
+        "attackSpeed": 1.0
+      },
+      "requirements": {
+        "level": 5,
+        "str": 8
+      }
+    },
+    {
+      "id": "silver_sword",
+      "nameKo": "은검",
+      "nameEn": "Silver Sword",
+      "description": "은으로 제작된 검. 언데드에게 추가 피해.",
+      "rarity": "rare",
+      "value": 800,
+      "weight": 2.8,
+      "spriteIndex": 2,
+      "color": "#C0C0C0",
+      "stats": {
+        "damage": 22,
+        "attackSpeed": 1.05,
+        "bonusDamage": {
+          "type": "undead",
+          "value": 10
+        }
+      },
+      "requirements": {
+        "level": 10,
+        "str": 10
+      }
+    },
+    {
+      "id": "knight_sword",
+      "nameKo": "기사의 검",
+      "nameEn": "Knight's Sword",
+      "description": "왕국 기사단의 상징적인 검.",
+      "rarity": "rare",
+      "value": 1200,
+      "weight": 3.5,
+      "spriteIndex": 3,
+      "color": null,
+      "stats": {
+        "damage": 28,
+        "attackSpeed": 0.95,
+        "defense": 2
+      },
+      "requirements": {
+        "level": 15,
+        "str": 12
+      }
+    },
+    {
+      "id": "mithril_sword",
+      "nameKo": "미스릴 검",
+      "nameEn": "Mithril Sword",
+      "description": "가볍고 날카로운 미스릴제 검.",
+      "rarity": "arcane",
+      "value": 3000,
+      "weight": 2.0,
+      "spriteIndex": 4,
+      "color": "#87CEEB",
+      "stats": {
+        "damage": 35,
+        "attackSpeed": 1.15,
+        "critChance": 5
+      },
+      "requirements": {
+        "level": 20,
+        "str": 12,
+        "dex": 10
+      }
+    },
+    {
+      "id": "flame_sword",
+      "nameKo": "화염검",
+      "nameEn": "Flame Sword",
+      "description": "불꽃이 감도는 마법 검.",
+      "rarity": "heroic",
+      "value": 5000,
+      "weight": 3.0,
+      "spriteIndex": 5,
+      "color": "#FF4500",
+      "stats": {
+        "damage": 32,
+        "attackSpeed": 1.0,
+        "elementDamage": {
+          "element": "fire",
+          "value": 15
+        }
+      },
+      "requirements": {
+        "level": 25,
+        "str": 14
+      }
+    },
+    {
+      "id": "frost_sword",
+      "nameKo": "냉기검",
+      "nameEn": "Frost Sword",
+      "description": "서리가 맺힌 얼음 검.",
+      "rarity": "heroic",
+      "value": 5000,
+      "weight": 3.0,
+      "spriteIndex": 5,
+      "color": "#00CED1",
+      "stats": {
+        "damage": 32,
+        "attackSpeed": 1.0,
+        "elementDamage": {
+          "element": "ice",
+          "value": 15
+        }
+      },
+      "requirements": {
+        "level": 25,
+        "str": 14
+      }
+    },
+    {
+      "id": "thunder_sword",
+      "nameKo": "번개검",
+      "nameEn": "Thunder Sword",
+      "description": "번개가 서린 전격의 검.",
+      "rarity": "heroic",
+      "value": 5200,
+      "weight": 3.0,
+      "spriteIndex": 5,
+      "color": "#FFD700",
+      "stats": {
+        "damage": 30,
+        "attackSpeed": 1.1,
+        "elementDamage": {
+          "element": "lightning",
+          "value": 18
+        }
+      },
+      "requirements": {
+        "level": 25,
+        "str": 13,
+        "dex": 8
+      }
+    },
+    {
+      "id": "holy_sword",
+      "nameKo": "성검",
+      "nameEn": "Holy Sword",
+      "description": "신성한 힘이 깃든 축복받은 검.",
+      "rarity": "unique",
+      "value": 12000,
+      "weight": 3.0,
+      "spriteIndex": 6,
+      "color": "#FFFACD",
+      "stats": {
+        "damage": 45,
+        "attackSpeed": 1.0,
+        "elementDamage": {
+          "element": "holy",
+          "value": 20
+        },
+        "bonusDamage": {
+          "type": "demon",
+          "value": 25
+        }
+      },
+      "requirements": {
+        "level": 35,
+        "str": 18,
+        "karma": 20
+      }
+    },
+    {
+      "id": "cursed_sword",
+      "nameKo": "저주받은 검",
+      "nameEn": "Cursed Sword",
+      "description": "어둠의 힘이 감도는 저주받은 검.",
+      "rarity": "unique",
+      "value": 10000,
+      "weight": 3.5,
+      "spriteIndex": 6,
+      "color": "#4B0082",
+      "stats": {
+        "damage": 50,
+        "attackSpeed": 1.0,
+        "elementDamage": {
+          "element": "dark",
+          "value": 22
+        },
+        "lifesteal": 5
+      },
+      "requirements": {
+        "level": 35,
+        "str": 18,
+        "karma": -20
+      }
+    },
+    {
+      "id": "dragon_slayer",
+      "nameKo": "용살검",
+      "nameEn": "Dragon Slayer",
+      "description": "용을 사냥하기 위해 제작된 거대한 검.",
+      "rarity": "celestial",
+      "value": 25000,
+      "weight": 6.0,
+      "spriteIndex": 7,
+      "color": "#DC143C",
+      "stats": {
+        "damage": 65,
+        "attackSpeed": 0.85,
+        "critDamage": 25,
+        "bonusDamage": {
+          "type": "dragon",
+          "value": 50
+        }
+      },
+      "requirements": {
+        "level": 45,
+        "str": 25
+      }
+    },
+    {
+      "id": "legendary_sword",
+      "nameKo": "전설의 검",
+      "nameEn": "Legendary Sword",
+      "description": "신화 속에서만 전해지던 전설의 명검.",
+      "rarity": "legendary",
+      "value": 100000,
+      "weight": 3.0,
+      "spriteIndex": 8,
+      "color": "#FFD700",
+      "stats": {
+        "damage": 80,
+        "attackSpeed": 1.1,
+        "critChance": 10,
+        "critDamage": 30,
+        "allStats": 5
+      },
+      "requirements": {
+        "level": 50,
+        "str": 25,
+        "dex": 15
+      }
+    }
+  ]
+}
