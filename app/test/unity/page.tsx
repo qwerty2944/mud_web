@@ -12,8 +12,8 @@ export default function UnityTestPage() {
   // 페이지 진입 시 Unity 상태 초기화 (장비 + 외형)
   useEffect(() => {
     clearAll();
-    // 외형도 기본값으로 초기화
-    callUnity("JS_SetBody", "0");
+    // 외형도 기본값으로 초기화 (12 = Human_1)
+    callUnity("JS_SetBody", "12");
     callUnity("JS_SetHair", "-1");
     callUnity("JS_SetFacehair", "-1");
   }, [clearAll, callUnity]);

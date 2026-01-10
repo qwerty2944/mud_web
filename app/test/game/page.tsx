@@ -123,7 +123,7 @@ export default function GameTestPage() {
   // 데이터 로딩 상태
   const [loading, setLoading] = useState(true);
   const [races, setRaces] = useState<Race[]>([]);
-  const [selectedRaceId, setSelectedRaceId] = useState<string>("");
+  const [selectedRaceId, setSelectedRaceId] = useState<string>("eastern_human");
 
   // 장비 데이터
   const [equipmentData, setEquipmentData] = useState<Record<string, EquipmentCategory>>({});
@@ -153,14 +153,14 @@ export default function GameTestPage() {
   const [leftHandCategory, setLeftHandCategory] = useState("shield");
 
   const [appearance, setAppearance] = useState<AppearanceState>({
-    raceId: null,
+    raceId: "eastern_human",
     hairId: null,
     eyeId: null,
     facehairId: null,
-    hairColor: "#E5E4E2",
-    leftEyeColor: "#4169E1",
-    rightEyeColor: "#4169E1",
-    faceHairColor: "#8B4513",
+    hairColor: "#6B4226",
+    leftEyeColor: "#6B4226",
+    rightEyeColor: "#6B4226",
+    faceHairColor: "#6B4226",
   });
 
   // Unity 상태 (스프라이트 인덱스 기반)
@@ -175,22 +175,25 @@ export default function GameTestPage() {
   });
 
   const [unityAppearance, setUnityAppearance] = useState<UnityAppearanceState>({
-    bodyIndex: 0,
+    bodyIndex: 12,
     eyeIndex: -1,
     hairIndex: -1,
     facehairIndex: -1,
-    hairColor: "#E5E4E2",
-    leftEyeColor: "#4169E1",
-    rightEyeColor: "#4169E1",
-    faceHairColor: "#8B4513",
+    hairColor: "#6B4226",
+    leftEyeColor: "#6B4226",
+    rightEyeColor: "#6B4226",
+    faceHairColor: "#6B4226",
   });
 
-  // 페이지 진입 시 Unity 상태 초기화
+  // 페이지 진입 시 Unity 상태 초기화 (12 = Human_1)
   useEffect(() => {
     clearAll();
-    callUnity("JS_SetBody", "0");
+    callUnity("JS_SetBody", "12");
     callUnity("JS_SetHair", "-1");
     callUnity("JS_SetFacehair", "-1");
+    callUnity("JS_SetHairColor", "#6B4226");
+    callUnity("JS_SetEyeColor", "#6B4226");
+    callUnity("JS_SetFacehairColor", "#6B4226");
   }, [clearAll, callUnity]);
 
   // 데이터 로드
@@ -201,9 +204,6 @@ export default function GameTestPage() {
         const racesRes = await fetch("/data/appearance/races/races.json");
         const racesData = await racesRes.json();
         setRaces(racesData.races || []);
-        if (racesData.races?.length > 0) {
-          setSelectedRaceId(racesData.races[0].id);
-        }
 
         // 외형 스프라이트 데이터 로드
         const [bodyRes, eyeRes, hairRes, facehairRes] = await Promise.all([
