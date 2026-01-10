@@ -108,7 +108,7 @@ export default function GamePage() {
     }
   }, [session, profile, profileLoading, router, setMyCharacterName]);
 
-  // 프로필에서 마지막 위치 로드
+  // 프로필에서 마지막 위치 로드 (초기 로드 시)
   useEffect(() => {
     if (profile && maps.length > 0 && mapId === null) {
       const savedMapId = profile.currentMapId || "town_square";
@@ -134,6 +134,22 @@ export default function GamePage() {
       }
     }
   }, [profile, maps, mapId, setCurrentMap]);
+
+  // 서버에서 맵 변경 시 동기화 (패배 후 귀환 등)
+  useEffect(() => {
+    if (profile && maps.length > 0 && mapId !== null && profile.currentMapId && profile.currentMapId !== mapId) {
+      const serverMapId = profile.currentMapId;
+      const serverMap = getMapById(maps, serverMapId);
+      if (serverMap) {
+        setMapId(serverMapId);
+        setCurrentMap({
+          id: serverMap.id,
+          name: getMapDisplayName(serverMap),
+          description: serverMap.descriptionKo || "",
+        });
+      }
+    }
+  }, [profile?.currentMapId, maps, mapId, setCurrentMap]);
 
   const { sendMessage } = useRealtimeChat({
     mapId: mapId || "town_square",
