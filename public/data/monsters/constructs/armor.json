@@ -1,0 +1,50 @@
+{
+  "type": "construct",
+  "category": "armor",
+  "monsters": [
+    {
+      "id": "animated_armor",
+      "nameKo": "움직이는 갑옷",
+      "nameEn": "Animated Armor",
+      "rank": "normal",
+      "alignment": "neutral",
+      "mapId": "ancient_ruins",
+      "level": 13,
+      "element": null,
+      "icon": "🛡️",
+      "stats": {
+        "hp": 120,
+        "attack": 22,
+        "defense": 20,
+        "speed": 5,
+        "resistance": {
+          "slashResist": 0.6,
+          "pierceResist": 0.7,
+          "crushResist": 0.5
+        },
+        "magicResist": {
+          "fire": 0.9,
+          "ice": 1.0,
+          "lightning": 1.4,
+          "earth": 0.8,
+          "holy": 1.2,
+          "dark": 0.8
+        }
+      },
+      "rewards": {
+        "exp": 80,
+        "gold": 15
+      },
+      "drops": [
+        { "itemId": "ancient_armor_piece", "chance": 0.3, "quantity": [1, 2] },
+        { "itemId": "enchanted_metal", "chance": 0.15, "quantity": [1, 1] },
+        { "itemId": "magic_essence", "chance": 0.1, "quantity": [1, 1] }
+      ],
+      "behavior": "aggressive",
+      "description": {
+        "ko": "마법으로 움직이는 빈 갑옷. 번개에 약하고 신성/암흑에 저항력이 있다.",
+        "en": "An empty armor animated by magic. Weak to lightning, resistant to holy/dark."
+      }
+    }
+  ]
+}

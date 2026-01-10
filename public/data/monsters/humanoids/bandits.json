@@ -1,0 +1,227 @@
+{
+  "type": "humanoid",
+  "category": "bandits",
+  "monsters": [
+    {
+      "id": "forest_bandit",
+      "nameKo": "숲속 도적",
+      "nameEn": "Forest Bandit",
+      "rank": "normal",
+      "alignment": "evil",
+      "mapId": "forest_entrance",
+      "level": 4,
+      "element": null,
+      "icon": "🗡️",
+      "stats": {
+        "hp": 45,
+        "attack": 12,
+        "defense": 6,
+        "speed": 9,
+        "resistance": {
+          "slashResist": 1.0,
+          "pierceResist": 1.0,
+          "crushResist": 1.0
+        },
+        "magicResist": {
+          "fire": 1.0,
+          "ice": 1.0,
+          "lightning": 1.0,
+          "earth": 1.0,
+          "holy": 1.0,
+          "dark": 1.0
+        }
+      },
+      "rewards": {
+        "exp": 25,
+        "gold": 15
+      },
+      "drops": [
+        { "itemId": "stolen_coin", "chance": 0.5, "quantity": [5, 15] },
+        { "itemId": "rusty_dagger", "chance": 0.08, "quantity": [1, 1] },
+        { "itemId": "bandit_mask", "chance": 0.05, "quantity": [1, 1] }
+      ],
+      "behavior": "aggressive",
+      "description": {
+        "ko": "숲에 숨어 여행자를 습격하는 도적.",
+        "en": "A bandit who hides in the forest and ambushes travelers."
+      }
+    },
+    {
+      "id": "bandit_archer",
+      "nameKo": "도적 궁수",
+      "nameEn": "Bandit Archer",
+      "rank": "normal",
+      "alignment": "evil",
+      "mapId": "forest_entrance",
+      "level": 5,
+      "element": null,
+      "icon": "🏹",
+      "stats": {
+        "hp": 40,
+        "attack": 15,
+        "defense": 4,
+        "speed": 10,
+        "resistance": {
+          "slashResist": 1.0,
+          "pierceResist": 0.9,
+          "crushResist": 1.1
+        },
+        "magicResist": {
+          "fire": 1.0,
+          "ice": 1.0,
+          "lightning": 1.0,
+          "earth": 1.0,
+          "holy": 1.0,
+          "dark": 1.0
+        }
+      },
+      "rewards": {
+        "exp": 28,
+        "gold": 12
+      },
+      "drops": [
+        { "itemId": "stolen_coin", "chance": 0.4, "quantity": [3, 10] },
+        { "itemId": "crude_arrow", "chance": 0.6, "quantity": [5, 15] },
+        { "itemId": "hunting_bow", "chance": 0.05, "quantity": [1, 1] }
+      ],
+      "behavior": "aggressive",
+      "description": {
+        "ko": "원거리에서 화살을 쏘는 도적 궁수.",
+        "en": "A bandit archer who shoots arrows from a distance."
+      }
+    },
+    {
+      "id": "bandit_brute",
+      "nameKo": "도적 깡패",
+      "nameEn": "Bandit Brute",
+      "rank": "elite",
+      "alignment": "evil",
+      "mapId": "forest_entrance",
+      "level": 6,
+      "element": null,
+      "icon": "💪",
+      "stats": {
+        "hp": 80,
+        "attack": 18,
+        "defense": 10,
+        "speed": 5,
+        "resistance": {
+          "slashResist": 0.9,
+          "pierceResist": 1.0,
+          "crushResist": 0.8
+        },
+        "magicResist": {
+          "fire": 1.0,
+          "ice": 1.0,
+          "lightning": 1.0,
+          "earth": 1.0,
+          "holy": 1.0,
+          "dark": 1.0
+        }
+      },
+      "rewards": {
+        "exp": 40,
+        "gold": 25
+      },
+      "drops": [
+        { "itemId": "stolen_coin", "chance": 0.6, "quantity": [10, 25] },
+        { "itemId": "spiked_club", "chance": 0.1, "quantity": [1, 1] },
+        { "itemId": "bandit_insignia", "chance": 0.08, "quantity": [1, 1] }
+      ],
+      "behavior": "aggressive",
+      "description": {
+        "ko": "덩치 큰 도적 깡패. 무식하지만 힘이 세다.",
+        "en": "A big bandit brute. Dumb but strong."
+      }
+    },
+    {
+      "id": "bandit_mage",
+      "nameKo": "도적 마법사",
+      "nameEn": "Bandit Mage",
+      "rank": "elite",
+      "alignment": "evil",
+      "mapId": "deep_forest",
+      "level": 8,
+      "element": "fire",
+      "icon": "🔥",
+      "stats": {
+        "hp": 55,
+        "attack": 22,
+        "defense": 5,
+        "speed": 8,
+        "resistance": {
+          "slashResist": 1.1,
+          "pierceResist": 1.1,
+          "crushResist": 1.2
+        },
+        "magicResist": {
+          "fire": 0.5,
+          "ice": 1.3,
+          "lightning": 1.0,
+          "earth": 1.0,
+          "holy": 1.0,
+          "dark": 0.9
+        }
+      },
+      "rewards": {
+        "exp": 55,
+        "gold": 30
+      },
+      "drops": [
+        { "itemId": "stolen_coin", "chance": 0.5, "quantity": [15, 30] },
+        { "itemId": "fire_scroll", "chance": 0.15, "quantity": [1, 1] },
+        { "itemId": "mage_robe_torn", "chance": 0.1, "quantity": [1, 1] },
+        { "itemId": "fire_essence", "chance": 0.08, "quantity": [1, 1] }
+      ],
+      "behavior": "aggressive",
+      "description": {
+        "ko": "도적단에 합류한 타락한 마법사. 화염에 강하고 냉기에 약하다.",
+        "en": "A corrupted mage who joined the bandits. Strong against fire, weak to ice."
+      }
+    },
+    {
+      "id": "highway_robber",
+      "nameKo": "노상강도",
+      "nameEn": "Highway Robber",
+      "rank": "normal",
+      "alignment": "evil",
+      "mapId": "deep_forest",
+      "level": 7,
+      "element": null,
+      "icon": "🥷",
+      "stats": {
+        "hp": 60,
+        "attack": 16,
+        "defense": 7,
+        "speed": 11,
+        "resistance": {
+          "slashResist": 1.0,
+          "pierceResist": 1.0,
+          "crushResist": 1.0
+        },
+        "magicResist": {
+          "fire": 1.0,
+          "ice": 1.0,
+          "lightning": 1.0,
+          "earth": 1.0,
+          "holy": 1.0,
+          "dark": 1.0
+        }
+      },
+      "rewards": {
+        "exp": 45,
+        "gold": 35
+      },
+      "drops": [
+        { "itemId": "stolen_goods", "chance": 0.4, "quantity": [1, 2] },
+        { "itemId": "stolen_coin", "chance": 0.7, "quantity": [20, 50] },
+        { "itemId": "smoke_bomb", "chance": 0.1, "quantity": [1, 2] }
+      ],
+      "behavior": "aggressive",
+      "description": {
+        "ko": "길을 지나는 여행자를 노리는 노상강도.",
+        "en": "A highway robber who targets passing travelers."
+      }
+    }
+  ]
+}

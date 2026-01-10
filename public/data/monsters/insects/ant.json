@@ -1,0 +1,93 @@
+{
+  "type": "insect",
+  "category": "ant",
+  "monsters": [
+    {
+      "id": "giant_ant",
+      "nameKo": "거대 개미",
+      "nameEn": "Giant Ant",
+      "rank": "normal",
+      "alignment": "neutral",
+      "mapId": "deep_forest",
+      "level": 5,
+      "element": "earth",
+      "icon": "🐜",
+      "stats": {
+        "hp": 45,
+        "attack": 10,
+        "defense": 7,
+        "speed": 8,
+        "resistance": {
+          "slashResist": 0.8,
+          "pierceResist": 0.9,
+          "crushResist": 1.0
+        },
+        "magicResist": {
+          "fire": 1.2,
+          "ice": 1.0,
+          "lightning": 1.1,
+          "earth": 0.6,
+          "holy": 1.0,
+          "dark": 1.0
+        }
+      },
+      "rewards": {
+        "exp": 25,
+        "gold": 0
+      },
+      "drops": [
+        { "itemId": "ant_mandible", "chance": 0.3, "quantity": [1, 2] },
+        { "itemId": "ant_carapace", "chance": 0.2, "quantity": [1, 1] }
+      ],
+      "behavior": "aggressive",
+      "description": {
+        "ko": "거대한 개미. 불에 약하고 대지 마법에 강하다.",
+        "en": "A giant ant. Weak to fire, strong against earth magic."
+      }
+    },
+    {
+      "id": "ant_soldier",
+      "nameKo": "병정개미",
+      "nameEn": "Soldier Ant",
+      "rank": "elite",
+      "alignment": "neutral",
+      "mapId": "deep_forest",
+      "level": 7,
+      "element": "earth",
+      "icon": "🐜",
+      "stats": {
+        "hp": 75,
+        "attack": 16,
+        "defense": 12,
+        "speed": 7,
+        "resistance": {
+          "slashResist": 0.7,
+          "pierceResist": 0.8,
+          "crushResist": 0.9
+        },
+        "magicResist": {
+          "fire": 1.3,
+          "ice": 1.0,
+          "lightning": 1.2,
+          "earth": 0.5,
+          "holy": 1.0,
+          "dark": 1.0
+        }
+      },
+      "rewards": {
+        "exp": 45,
+        "gold": 3
+      },
+      "drops": [
+        { "itemId": "ant_mandible", "chance": 0.5, "quantity": [2, 3] },
+        { "itemId": "ant_carapace", "chance": 0.35, "quantity": [1, 2] },
+        { "itemId": "earth_essence", "chance": 0.1, "quantity": [1, 1] }
+      ],
+      "behavior": "aggressive",
+      "description": {
+        "ko": "개미굴을 지키는 병정개미. 불에 약하고 대지에 매우 강하다.",
+        "en": "A soldier ant guarding the anthill. Weak to fire, very strong against earth."
+      }
+    }
+  ]
+}

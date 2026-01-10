@@ -1,0 +1,361 @@
+{
+  "type": "beast",
+  "category": "mammals",
+  "monsters": [
+    {
+      "id": "squirrel",
+      "nameKo": "다람쥐",
+      "nameEn": "Squirrel",
+      "rank": "normal",
+      "alignment": "neutral",
+      "mapId": "forest_entrance",
+      "level": 2,
+      "element": "earth",
+      "icon": "🐿️",
+      "stats": {
+        "hp": 30,
+        "attack": 5,
+        "defense": 2,
+        "speed": 8,
+        "resistance": {
+          "slashResist": 1.0,
+          "pierceResist": 1.0,
+          "crushResist": 1.0
+        },
+        "magicResist": {
+          "fire": 1.2,
+          "ice": 1.0,
+          "lightning": 1.1,
+          "earth": 0.8,
+          "holy": 1.0,
+          "dark": 1.0
+        }
+      },
+      "rewards": {
+        "exp": 10,
+        "gold": 0
+      },
+      "drops": [
+        { "itemId": "acorn", "chance": 0.5, "quantity": [1, 3] },
+        { "itemId": "squirrel_tail", "chance": 0.15, "quantity": [1, 1] }
+      ],
+      "behavior": "aggressive",
+      "description": {
+        "ko": "숲에 서식하는 다람쥐. 대지 속성을 가지고 있어 대지 마법에 강하다.",
+        "en": "A squirrel living in the forest. Has earth element, resistant to earth magic."
+      }
+    },
+    {
+      "id": "squirrel_elder",
+      "nameKo": "늙은 다람쥐",
+      "nameEn": "Elder Squirrel",
+      "rank": "elite",
+      "alignment": "neutral",
+      "mapId": "forest_entrance",
+      "level": 3,
+      "element": "earth",
+      "icon": "🐿️",
+      "stats": {
+        "hp": 45,
+        "attack": 8,
+        "defense": 4,
+        "speed": 6,
+        "resistance": {
+          "slashResist": 1.0,
+          "pierceResist": 1.0,
+          "crushResist": 1.0
+        },
+        "magicResist": {
+          "fire": 1.2,
+          "ice": 1.0,
+          "lightning": 1.2,
+          "earth": 0.6,
+          "holy": 1.0,
+          "dark": 1.0
+        }
+      },
+      "rewards": {
+        "exp": 18,
+        "gold": 0
+      },
+      "drops": [
+        { "itemId": "acorn", "chance": 0.5, "quantity": [2, 4] },
+        { "itemId": "squirrel_tail", "chance": 0.2, "quantity": [1, 1] },
+        { "itemId": "earth_essence", "chance": 0.05, "quantity": [1, 1] }
+      ],
+      "behavior": "defensive",
+      "description": {
+        "ko": "오래 살아 지혜로운 다람쥐. 더 강한 대지의 힘을 가지고 있다.",
+        "en": "A wise old squirrel. Has stronger earth powers."
+      }
+    },
+    {
+      "id": "wolf",
+      "nameKo": "늑대",
+      "nameEn": "Wolf",
+      "rank": "normal",
+      "alignment": "neutral",
+      "mapId": "deep_forest",
+      "level": 5,
+      "element": null,
+      "icon": "🐺",
+      "stats": {
+        "hp": 80,
+        "attack": 15,
+        "defense": 5,
+        "speed": 10,
+        "resistance": {
+          "slashResist": 1.0,
+          "pierceResist": 1.2,
+          "crushResist": 1.0
+        },
+        "magicResist": {
+          "fire": 1.1,
+          "ice": 0.9,
+          "lightning": 1.0,
+          "earth": 1.0,
+          "holy": 1.0,
+          "dark": 1.0
+        }
+      },
+      "rewards": {
+        "exp": 30,
+        "gold": 0
+      },
+      "drops": [
+        { "itemId": "wolf_fang", "chance": 0.3, "quantity": [1, 2] },
+        { "itemId": "wolf_pelt", "chance": 0.15, "quantity": [1, 1] }
+      ],
+      "behavior": "aggressive",
+      "spawnCondition": {
+        "period": ["night", "dusk"]
+      },
+      "description": {
+        "ko": "밤에만 나타나는 야행성 늑대. 날카로운 이빨로 공격한다. 냉기에 강하다.",
+        "en": "A nocturnal wolf that only appears at night. Attacks with sharp fangs. Resistant to ice."
+      }
+    },
+    {
+      "id": "dire_wolf",
+      "nameKo": "흉포한 늑대",
+      "nameEn": "Dire Wolf",
+      "rank": "elite",
+      "alignment": "neutral",
+      "mapId": "deep_forest",
+      "level": 7,
+      "element": null,
+      "icon": "🐺",
+      "stats": {
+        "hp": 120,
+        "attack": 22,
+        "defense": 8,
+        "speed": 12,
+        "resistance": {
+          "slashResist": 0.9,
+          "pierceResist": 1.0,
+          "crushResist": 0.9
+        },
+        "magicResist": {
+          "fire": 1.1,
+          "ice": 0.8,
+          "lightning": 1.0,
+          "earth": 1.0,
+          "holy": 1.0,
+          "dark": 0.9
+        }
+      },
+      "rewards": {
+        "exp": 50,
+        "gold": 5
+      },
+      "drops": [
+        { "itemId": "wolf_fang", "chance": 0.5, "quantity": [2, 3] },
+        { "itemId": "dire_wolf_pelt", "chance": 0.2, "quantity": [1, 1] },
+        { "itemId": "beast_essence", "chance": 0.1, "quantity": [1, 1] }
+      ],
+      "behavior": "aggressive",
+      "spawnCondition": {
+        "period": ["night"]
+      },
+      "description": {
+        "ko": "일반 늑대보다 훨씬 크고 사나운 늑대. 냉기에 매우 강하다.",
+        "en": "A much larger and fiercer wolf. Very resistant to ice."
+      }
+    },
+    {
+      "id": "wild_boar",
+      "nameKo": "멧돼지",
+      "nameEn": "Wild Boar",
+      "rank": "normal",
+      "alignment": "neutral",
+      "mapId": "forest_entrance",
+      "level": 4,
+      "element": "earth",
+      "icon": "🐗",
+      "stats": {
+        "hp": 70,
+        "attack": 12,
+        "defense": 8,
+        "speed": 5,
+        "resistance": {
+          "slashResist": 0.8,
+          "pierceResist": 1.0,
+          "crushResist": 0.7
+        },
+        "magicResist": {
+          "fire": 1.1,
+          "ice": 1.0,
+          "lightning": 1.0,
+          "earth": 0.7,
+          "holy": 1.0,
+          "dark": 1.0
+        }
+      },
+      "rewards": {
+        "exp": 25,
+        "gold": 0
+      },
+      "drops": [
+        { "itemId": "boar_tusk", "chance": 0.3, "quantity": [1, 2] },
+        { "itemId": "raw_meat", "chance": 0.4, "quantity": [1, 2] },
+        { "itemId": "thick_hide", "chance": 0.15, "quantity": [1, 1] }
+      ],
+      "behavior": "territorial",
+      "description": {
+        "ko": "숲에 사는 멧돼지. 영역을 침범하면 돌진해온다. 대지 마법에 강하다.",
+        "en": "A wild boar living in the forest. Charges when its territory is invaded. Resistant to earth."
+      }
+    },
+    {
+      "id": "forest_bear",
+      "nameKo": "숲 곰",
+      "nameEn": "Forest Bear",
+      "rank": "elite",
+      "alignment": "neutral",
+      "mapId": "deep_forest",
+      "level": 8,
+      "element": "earth",
+      "icon": "🐻",
+      "stats": {
+        "hp": 180,
+        "attack": 25,
+        "defense": 15,
+        "speed": 4,
+        "resistance": {
+          "slashResist": 0.8,
+          "pierceResist": 0.9,
+          "crushResist": 0.7
+        },
+        "magicResist": {
+          "fire": 1.2,
+          "ice": 0.8,
+          "lightning": 1.0,
+          "earth": 0.6,
+          "holy": 1.0,
+          "dark": 1.0
+        }
+      },
+      "rewards": {
+        "exp": 70,
+        "gold": 10
+      },
+      "drops": [
+        { "itemId": "bear_claw", "chance": 0.35, "quantity": [1, 2] },
+        { "itemId": "bear_pelt", "chance": 0.2, "quantity": [1, 1] },
+        { "itemId": "raw_meat", "chance": 0.5, "quantity": [2, 4] },
+        { "itemId": "beast_essence", "chance": 0.15, "quantity": [1, 1] }
+      ],
+      "behavior": "territorial",
+      "description": {
+        "ko": "깊은 숲의 주인. 거대한 몸집과 강력한 발톱을 가지고 있다. 대지와 냉기에 강하다.",
+        "en": "The lord of the deep forest. Has a massive body and powerful claws. Strong against earth and ice."
+      }
+    },
+    {
+      "id": "rabbit",
+      "nameKo": "토끼",
+      "nameEn": "Rabbit",
+      "rank": "normal",
+      "alignment": "good",
+      "mapId": "forest_entrance",
+      "level": 1,
+      "element": null,
+      "icon": "🐰",
+      "stats": {
+        "hp": 15,
+        "attack": 2,
+        "defense": 1,
+        "speed": 12,
+        "resistance": {
+          "slashResist": 1.2,
+          "pierceResist": 1.2,
+          "crushResist": 1.2
+        },
+        "magicResist": {
+          "fire": 1.1,
+          "ice": 1.0,
+          "lightning": 1.0,
+          "earth": 1.0,
+          "holy": 0.8,
+          "dark": 1.1
+        }
+      },
+      "rewards": {
+        "exp": 5,
+        "gold": 0
+      },
+      "drops": [
+        { "itemId": "rabbit_fur", "chance": 0.3, "quantity": [1, 1] },
+        { "itemId": "raw_meat", "chance": 0.2, "quantity": [1, 1] }
+      ],
+      "behavior": "passive",
+      "description": {
+        "ko": "숲에 사는 귀여운 토끼. 공격하면 카르마가 감소한다. 신성에 약하다.",
+        "en": "A cute rabbit in the forest. Attacking it decreases karma. Weak to holy."
+      }
+    },
+    {
+      "id": "fox",
+      "nameKo": "여우",
+      "nameEn": "Fox",
+      "rank": "normal",
+      "alignment": "neutral",
+      "mapId": "forest_entrance",
+      "level": 3,
+      "element": null,
+      "icon": "🦊",
+      "stats": {
+        "hp": 40,
+        "attack": 8,
+        "defense": 3,
+        "speed": 11,
+        "resistance": {
+          "slashResist": 1.0,
+          "pierceResist": 1.0,
+          "crushResist": 1.0
+        },
+        "magicResist": {
+          "fire": 1.0,
+          "ice": 1.0,
+          "lightning": 1.0,
+          "earth": 1.0,
+          "holy": 1.0,
+          "dark": 1.0
+        }
+      },
+      "rewards": {
+        "exp": 15,
+        "gold": 2
+      },
+      "drops": [
+        { "itemId": "fox_tail", "chance": 0.2, "quantity": [1, 1] },
+        { "itemId": "fox_fur", "chance": 0.25, "quantity": [1, 1] }
+      ],
+      "behavior": "defensive",
+      "description": {
+        "ko": "영리한 숲의 여우. 위험을 감지하면 빠르게 도망친다.",
+        "en": "A clever forest fox. Quickly escapes when sensing danger."
+      }
+    }
+  ]
+}

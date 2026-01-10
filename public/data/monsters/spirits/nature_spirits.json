@@ -1,0 +1,305 @@
+{
+  "type": "spirit",
+  "category": "nature_spirits",
+  "monsters": [
+    {
+      "id": "forest_wisp",
+      "nameKo": "숲의 도깨비불",
+      "nameEn": "Forest Wisp",
+      "rank": "normal",
+      "alignment": "neutral",
+      "mapId": "deep_forest",
+      "level": 6,
+      "element": "holy",
+      "icon": "✨",
+      "stats": {
+        "hp": 40,
+        "attack": 14,
+        "defense": 2,
+        "speed": 14,
+        "resistance": {
+          "slashResist": 1.5,
+          "pierceResist": 1.5,
+          "crushResist": 1.5
+        },
+        "magicResist": {
+          "fire": 1.3,
+          "ice": 0.7,
+          "lightning": 1.0,
+          "earth": 0.8,
+          "holy": 0.6,
+          "dark": 1.5
+        }
+      },
+      "rewards": {
+        "exp": 35,
+        "gold": 0
+      },
+      "drops": [
+        { "itemId": "wisp_essence", "chance": 0.25, "quantity": [1, 1] },
+        { "itemId": "holy_essence", "chance": 0.1, "quantity": [1, 1] }
+      ],
+      "behavior": "defensive",
+      "spawnCondition": {
+        "period": ["night", "dawn"]
+      },
+      "description": {
+        "ko": "숲 속을 떠도는 신비한 빛. 물리 공격에 강하고 불에 약하며 물/대지 마법에 강하다.",
+        "en": "A mysterious light wandering in the forest. Resistant to physical attacks, weak to fire, strong against water/earth."
+      }
+    },
+    {
+      "id": "water_spirit",
+      "nameKo": "물의 정령",
+      "nameEn": "Water Spirit",
+      "rank": "normal",
+      "alignment": "good",
+      "mapId": "deep_forest",
+      "level": 7,
+      "element": "ice",
+      "icon": "💧",
+      "stats": {
+        "hp": 55,
+        "attack": 16,
+        "defense": 4,
+        "speed": 10,
+        "resistance": {
+          "slashResist": 1.3,
+          "pierceResist": 1.3,
+          "crushResist": 1.0
+        },
+        "magicResist": {
+          "fire": 1.5,
+          "ice": 0.3,
+          "lightning": 1.3,
+          "earth": 0.7,
+          "holy": 0.8,
+          "dark": 1.2
+        }
+      },
+      "rewards": {
+        "exp": 42,
+        "gold": 0
+      },
+      "drops": [
+        { "itemId": "spirit_water", "chance": 0.3, "quantity": [1, 2] },
+        { "itemId": "ice_essence", "chance": 0.12, "quantity": [1, 1] }
+      ],
+      "behavior": "defensive",
+      "spawnCondition": {
+        "weather": ["rainy"]
+      },
+      "description": {
+        "ko": "맑은 물에서 태어난 정령. 불에 매우 약하고 물/대지에 강하다. 비 오는 날에만 나타난다.",
+        "en": "A spirit born from clear water. Very weak to fire, strong against ice/earth. Only appears on rainy days."
+      }
+    },
+    {
+      "id": "earth_spirit",
+      "nameKo": "대지의 정령",
+      "nameEn": "Earth Spirit",
+      "rank": "elite",
+      "alignment": "neutral",
+      "mapId": "deep_forest",
+      "level": 9,
+      "element": "earth",
+      "icon": "🪨",
+      "stats": {
+        "hp": 100,
+        "attack": 20,
+        "defense": 18,
+        "speed": 4,
+        "resistance": {
+          "slashResist": 0.6,
+          "pierceResist": 0.7,
+          "crushResist": 0.5
+        },
+        "magicResist": {
+          "fire": 0.9,
+          "ice": 0.8,
+          "lightning": 1.4,
+          "earth": 0.3,
+          "holy": 0.9,
+          "dark": 1.1
+        }
+      },
+      "rewards": {
+        "exp": 65,
+        "gold": 0
+      },
+      "drops": [
+        { "itemId": "spirit_stone", "chance": 0.35, "quantity": [1, 2] },
+        { "itemId": "earth_essence", "chance": 0.2, "quantity": [1, 1] },
+        { "itemId": "ancient_soil", "chance": 0.1, "quantity": [1, 1] }
+      ],
+      "behavior": "territorial",
+      "description": {
+        "ko": "대지의 힘을 담은 정령. 느리지만 매우 단단하다. 번개에 약하고 대지 마법에 매우 강하다.",
+        "en": "A spirit containing the power of earth. Slow but very sturdy. Weak to lightning, very strong against earth."
+      }
+    },
+    {
+      "id": "ancient_spirit",
+      "nameKo": "고대 정령",
+      "nameEn": "Ancient Spirit",
+      "rank": "elite",
+      "alignment": "neutral",
+      "mapId": "ancient_ruins",
+      "level": 12,
+      "element": "holy",
+      "icon": "👻",
+      "stats": {
+        "hp": 85,
+        "attack": 25,
+        "defense": 8,
+        "speed": 12,
+        "resistance": {
+          "slashResist": 1.8,
+          "pierceResist": 1.8,
+          "crushResist": 1.8
+        },
+        "magicResist": {
+          "fire": 1.0,
+          "ice": 0.8,
+          "lightning": 0.9,
+          "earth": 0.7,
+          "holy": 0.5,
+          "dark": 1.5
+        }
+      },
+      "rewards": {
+        "exp": 80,
+        "gold": 10
+      },
+      "drops": [
+        { "itemId": "ancient_essence", "chance": 0.25, "quantity": [1, 1] },
+        { "itemId": "holy_essence", "chance": 0.15, "quantity": [1, 1] },
+        { "itemId": "spirit_fragment", "chance": 0.3, "quantity": [1, 2] }
+      ],
+      "behavior": "territorial",
+      "spawnCondition": {
+        "period": ["night", "dawn"]
+      },
+      "description": {
+        "ko": "유적을 지키는 고대의 정령. 물리 공격이 거의 통하지 않으며 암흑 마법에 약하다.",
+        "en": "An ancient spirit guarding the ruins. Nearly immune to physical attacks, weak to dark magic."
+      }
+    },
+    {
+      "id": "wind_sprite",
+      "nameKo": "바람의 요정",
+      "nameEn": "Wind Sprite",
+      "rank": "normal",
+      "alignment": "good",
+      "mapId": "forest_entrance",
+      "level": 5,
+      "element": "lightning",
+      "icon": "🌬️",
+      "stats": {
+        "hp": 30,
+        "attack": 12,
+        "defense": 1,
+        "speed": 18,
+        "resistance": {
+          "slashResist": 1.4,
+          "pierceResist": 1.4,
+          "crushResist": 1.4
+        },
+        "magicResist": {
+          "fire": 1.1,
+          "ice": 0.8,
+          "lightning": 0.4,
+          "earth": 1.3,
+          "holy": 0.7,
+          "dark": 1.3
+        }
+      },
+      "rewards": {
+        "exp": 28,
+        "gold": 0
+      },
+      "drops": [
+        { "itemId": "wind_essence", "chance": 0.2, "quantity": [1, 1] },
+        { "itemId": "fairy_dust", "chance": 0.15, "quantity": [1, 2] }
+      ],
+      "behavior": "passive",
+      "spawnCondition": {
+        "weather": ["stormy"]
+      },
+      "description": {
+        "ko": "바람을 타고 다니는 작은 요정. 폭풍이 올 때 나타난다. 번개에 매우 강하고 대지에 약하다.",
+        "en": "A small fairy riding the wind. Appears when storms come. Very strong against lightning, weak to earth."
+      }
+    },
+    {
+      "id": "forest_guardian",
+      "nameKo": "숲의 대정령",
+      "nameEn": "Forest Guardian",
+      "rank": "boss",
+      "alignment": "good",
+      "mapId": "deep_forest",
+      "level": 15,
+      "element": "earth",
+      "icon": "🌳",
+      "stats": {
+        "hp": 500,
+        "attack": 35,
+        "defense": 25,
+        "speed": 8,
+        "resistance": {
+          "slashResist": 1.2,
+          "pierceResist": 1.2,
+          "crushResist": 0.8
+        },
+        "magicResist": {
+          "fire": 1.8,
+          "ice": 0.5,
+          "lightning": 1.0,
+          "earth": 0.3,
+          "holy": 0.6,
+          "dark": 1.4
+        }
+      },
+      "rewards": {
+        "exp": 300,
+        "gold": 100
+      },
+      "drops": [
+        { "itemId": "guardian_heart", "chance": 0.5, "quantity": [1, 1] },
+        { "itemId": "ancient_bark", "chance": 0.8, "quantity": [2, 4] },
+        { "itemId": "earth_essence", "chance": 0.6, "quantity": [2, 3] },
+        { "itemId": "nature_blessing", "chance": 0.2, "quantity": [1, 1] },
+        { "itemId": "forest_guardian_staff", "chance": 0.1, "quantity": [1, 1] }
+      ],
+      "behavior": "territorial",
+      "abilities": [
+        {
+          "id": "nature_wrath",
+          "nameKo": "자연의 분노",
+          "nameEn": "Nature's Wrath",
+          "description": "대지의 힘으로 광역 피해",
+          "cooldown": 4
+        },
+        {
+          "id": "regeneration",
+          "nameKo": "재생",
+          "nameEn": "Regeneration",
+          "description": "매 턴 HP 20 회복",
+          "passive": true
+        },
+        {
+          "id": "summon_treants",
+          "nameKo": "트렌트 소환",
+          "nameEn": "Summon Treants",
+          "description": "HP 50% 이하 시 어린 트렌트 2마리 소환",
+          "trigger": "hp_below_50"
+        }
+      ],
+      "bossSchedule": "daily_noon",
+      "description": {
+        "ko": "깊은 숲을 수호하는 고대의 대정령. 불에 매우 약하지만 대지/냉기에 극도로 강하다. 공격하면 카르마가 크게 감소한다.",
+        "en": "An ancient great spirit guarding the deep forest. Very weak to fire but extremely strong against earth/ice. Attacking greatly decreases karma."
+      }
+    }
+  ]
+}

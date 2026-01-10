@@ -1,0 +1,363 @@
+{
+  "type": "undead",
+  "category": "skeletons",
+  "monsters": [
+    {
+      "id": "skeleton_warrior",
+      "nameKo": "해골 전사",
+      "nameEn": "Skeleton Warrior",
+      "rank": "normal",
+      "alignment": "evil",
+      "mapId": "ancient_ruins",
+      "level": 10,
+      "element": "dark",
+      "icon": "💀",
+      "stats": {
+        "hp": 70,
+        "attack": 18,
+        "defense": 8,
+        "speed": 7,
+        "resistance": {
+          "slashResist": 1.3,
+          "pierceResist": 1.5,
+          "crushResist": 0.5
+        },
+        "magicResist": {
+          "fire": 0.9,
+          "ice": 1.0,
+          "lightning": 1.0,
+          "earth": 1.0,
+          "holy": 1.8,
+          "dark": 0.4
+        }
+      },
+      "rewards": {
+        "exp": 55,
+        "gold": 8
+      },
+      "drops": [
+        { "itemId": "bone_fragment", "chance": 0.5, "quantity": [2, 4] },
+        { "itemId": "old_sword", "chance": 0.1, "quantity": [1, 1] },
+        { "itemId": "dark_essence", "chance": 0.08, "quantity": [1, 1] }
+      ],
+      "behavior": "aggressive",
+      "description": {
+        "ko": "되살아난 전사의 해골. 타격에 약하고, 신성 마법에 매우 약하다.",
+        "en": "A resurrected warrior's skeleton. Weak to crushing attacks and very weak to holy magic."
+      }
+    },
+    {
+      "id": "skeleton_archer",
+      "nameKo": "해골 궁수",
+      "nameEn": "Skeleton Archer",
+      "rank": "normal",
+      "alignment": "evil",
+      "mapId": "ancient_ruins",
+      "level": 11,
+      "element": "dark",
+      "icon": "🏹",
+      "stats": {
+        "hp": 55,
+        "attack": 22,
+        "defense": 5,
+        "speed": 9,
+        "resistance": {
+          "slashResist": 1.3,
+          "pierceResist": 1.5,
+          "crushResist": 0.5
+        },
+        "magicResist": {
+          "fire": 0.9,
+          "ice": 1.0,
+          "lightning": 1.0,
+          "earth": 1.0,
+          "holy": 1.8,
+          "dark": 0.4
+        }
+      },
+      "rewards": {
+        "exp": 60,
+        "gold": 10
+      },
+      "drops": [
+        { "itemId": "bone_fragment", "chance": 0.4, "quantity": [1, 3] },
+        { "itemId": "bone_arrow", "chance": 0.5, "quantity": [5, 10] },
+        { "itemId": "cursed_bow", "chance": 0.05, "quantity": [1, 1] }
+      ],
+      "behavior": "aggressive",
+      "description": {
+        "ko": "원거리에서 저주받은 화살을 쏘는 해골 궁수. 신성 마법에 매우 약하다.",
+        "en": "A skeleton archer that shoots cursed arrows from a distance. Very weak to holy magic."
+      }
+    },
+    {
+      "id": "skeleton_mage",
+      "nameKo": "해골 마법사",
+      "nameEn": "Skeleton Mage",
+      "rank": "elite",
+      "alignment": "evil",
+      "mapId": "ancient_ruins",
+      "level": 13,
+      "element": "dark",
+      "icon": "🧙",
+      "stats": {
+        "hp": 65,
+        "attack": 28,
+        "defense": 4,
+        "speed": 8,
+        "resistance": {
+          "slashResist": 1.4,
+          "pierceResist": 1.5,
+          "crushResist": 0.6
+        },
+        "magicResist": {
+          "fire": 0.8,
+          "ice": 0.9,
+          "lightning": 0.9,
+          "earth": 1.0,
+          "holy": 2.0,
+          "dark": 0.3
+        }
+      },
+      "rewards": {
+        "exp": 85,
+        "gold": 20
+      },
+      "drops": [
+        { "itemId": "bone_fragment", "chance": 0.3, "quantity": [1, 2] },
+        { "itemId": "dark_scroll", "chance": 0.2, "quantity": [1, 1] },
+        { "itemId": "skull_staff_fragment", "chance": 0.08, "quantity": [1, 1] },
+        { "itemId": "dark_essence", "chance": 0.15, "quantity": [1, 1] }
+      ],
+      "behavior": "aggressive",
+      "description": {
+        "ko": "암흑 마법을 사용하는 해골 마법사. 신성 마법에 극도로 약하다.",
+        "en": "A skeleton mage using dark magic. Extremely weak to holy magic."
+      }
+    },
+    {
+      "id": "ghoul",
+      "nameKo": "구울",
+      "nameEn": "Ghoul",
+      "rank": "normal",
+      "alignment": "evil",
+      "mapId": "ancient_ruins",
+      "level": 11,
+      "element": "dark",
+      "icon": "🧟",
+      "stats": {
+        "hp": 90,
+        "attack": 20,
+        "defense": 6,
+        "speed": 6,
+        "resistance": {
+          "slashResist": 0.9,
+          "pierceResist": 1.0,
+          "crushResist": 0.8
+        },
+        "magicResist": {
+          "fire": 1.2,
+          "ice": 1.0,
+          "lightning": 1.0,
+          "earth": 1.0,
+          "holy": 1.6,
+          "dark": 0.5
+        }
+      },
+      "rewards": {
+        "exp": 62,
+        "gold": 5
+      },
+      "drops": [
+        { "itemId": "rotting_flesh", "chance": 0.4, "quantity": [1, 2] },
+        { "itemId": "ghoul_claw", "chance": 0.25, "quantity": [1, 2] },
+        { "itemId": "dark_essence", "chance": 0.1, "quantity": [1, 1] }
+      ],
+      "behavior": "aggressive",
+      "statusEffect": {
+        "type": "paralysis",
+        "chance": 0.15,
+        "duration": 1
+      },
+      "description": {
+        "ko": "시체를 먹는 언데드. 물리면 마비될 수 있다. 화염에 약하고 신성 마법에 취약하다.",
+        "en": "An undead that eats corpses. Being bitten can cause paralysis. Weak to fire and holy magic."
+      }
+    },
+    {
+      "id": "wraith",
+      "nameKo": "망령",
+      "nameEn": "Wraith",
+      "rank": "elite",
+      "alignment": "evil",
+      "mapId": "ancient_ruins",
+      "level": 14,
+      "element": "dark",
+      "icon": "👤",
+      "stats": {
+        "hp": 75,
+        "attack": 30,
+        "defense": 3,
+        "speed": 13,
+        "resistance": {
+          "slashResist": 2.0,
+          "pierceResist": 2.0,
+          "crushResist": 2.0
+        },
+        "magicResist": {
+          "fire": 0.8,
+          "ice": 1.0,
+          "lightning": 1.0,
+          "earth": 1.2,
+          "holy": 2.5,
+          "dark": 0.2
+        }
+      },
+      "rewards": {
+        "exp": 95,
+        "gold": 15
+      },
+      "drops": [
+        { "itemId": "wraith_essence", "chance": 0.3, "quantity": [1, 1] },
+        { "itemId": "dark_essence", "chance": 0.2, "quantity": [1, 2] },
+        { "itemId": "cursed_ring", "chance": 0.05, "quantity": [1, 1] }
+      ],
+      "behavior": "aggressive",
+      "spawnCondition": {
+        "period": ["night"]
+      },
+      "statusEffect": {
+        "type": "curse",
+        "chance": 0.2,
+        "duration": 3,
+        "effect": "attack_down"
+      },
+      "description": {
+        "ko": "원한을 품고 죽은 영혼. 물리 공격이 거의 통하지 않지만 신성 마법에 치명적으로 약하다.",
+        "en": "A soul that died with resentment. Nearly immune to physical attacks but critically weak to holy magic."
+      }
+    },
+    {
+      "id": "cursed_scholar",
+      "nameKo": "저주받은 학자",
+      "nameEn": "Cursed Scholar",
+      "rank": "elite",
+      "alignment": "evil",
+      "mapId": "ancient_ruins",
+      "level": 15,
+      "element": "dark",
+      "icon": "📚",
+      "stats": {
+        "hp": 80,
+        "attack": 32,
+        "defense": 6,
+        "speed": 9,
+        "resistance": {
+          "slashResist": 1.5,
+          "pierceResist": 1.5,
+          "crushResist": 1.0
+        },
+        "magicResist": {
+          "fire": 0.9,
+          "ice": 0.9,
+          "lightning": 0.9,
+          "earth": 1.0,
+          "holy": 1.8,
+          "dark": 0.4
+        }
+      },
+      "rewards": {
+        "exp": 110,
+        "gold": 30
+      },
+      "drops": [
+        { "itemId": "ancient_tome", "chance": 0.2, "quantity": [1, 1] },
+        { "itemId": "forbidden_knowledge", "chance": 0.1, "quantity": [1, 1] },
+        { "itemId": "dark_essence", "chance": 0.25, "quantity": [1, 2] },
+        { "itemId": "scholar_robe", "chance": 0.08, "quantity": [1, 1] }
+      ],
+      "behavior": "defensive",
+      "description": {
+        "ko": "금지된 지식을 탐구하다 저주받은 학자. 강력한 마법을 사용하지만 신성 마법에 취약하다.",
+        "en": "A scholar cursed while pursuing forbidden knowledge. Uses powerful magic but vulnerable to holy magic."
+      }
+    },
+    {
+      "id": "ancient_lich",
+      "nameKo": "고대 리치",
+      "nameEn": "Ancient Lich",
+      "rank": "boss",
+      "alignment": "evil",
+      "mapId": "ancient_ruins",
+      "level": 20,
+      "element": "dark",
+      "icon": "☠️",
+      "stats": {
+        "hp": 600,
+        "attack": 45,
+        "defense": 15,
+        "speed": 10,
+        "resistance": {
+          "slashResist": 1.8,
+          "pierceResist": 1.8,
+          "crushResist": 0.7
+        },
+        "magicResist": {
+          "fire": 0.7,
+          "ice": 0.8,
+          "lightning": 0.9,
+          "earth": 1.0,
+          "holy": 2.5,
+          "dark": 0.2
+        }
+      },
+      "rewards": {
+        "exp": 500,
+        "gold": 200
+      },
+      "drops": [
+        { "itemId": "lich_phylactery", "chance": 0.3, "quantity": [1, 1] },
+        { "itemId": "dark_essence", "chance": 1.0, "quantity": [3, 5] },
+        { "itemId": "forbidden_tome", "chance": 0.4, "quantity": [1, 1] },
+        { "itemId": "skull_staff", "chance": 0.15, "quantity": [1, 1] },
+        { "itemId": "lich_robe", "chance": 0.1, "quantity": [1, 1] }
+      ],
+      "behavior": "aggressive",
+      "abilities": [
+        {
+          "id": "dark_bolt",
+          "nameKo": "암흑 화살",
+          "nameEn": "Dark Bolt",
+          "description": "강력한 암흑 마법 공격",
+          "baseDamage": 40
+        },
+        {
+          "id": "life_drain",
+          "nameKo": "생명력 흡수",
+          "nameEn": "Life Drain",
+          "description": "적의 HP를 흡수하여 회복",
+          "cooldown": 3
+        },
+        {
+          "id": "summon_undead",
+          "nameKo": "언데드 소환",
+          "nameEn": "Summon Undead",
+          "description": "HP 70% 이하 시 해골 전사 2마리 소환",
+          "trigger": "hp_below_70"
+        },
+        {
+          "id": "phylactery_revival",
+          "nameKo": "필락테리 부활",
+          "nameEn": "Phylactery Revival",
+          "description": "첫 사망 시 HP 30%로 부활 (1회)",
+          "trigger": "on_death"
+        }
+      ],
+      "bossSchedule": "weekly_saturday",
+      "description": {
+        "ko": "고대 유적의 최종 지배자. 영생을 얻은 강력한 언데드 마법사. 신성 마법에 치명적으로 약하다.",
+        "en": "The final ruler of ancient ruins. A powerful undead mage who achieved immortality. Critically weak to holy magic."
+      }
+    }
+  ]
+}

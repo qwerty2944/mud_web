@@ -1,12 +1,58 @@
 {
-  "version": "1.2.0",
-  "generatedAt": "2026-01-07T00:00:00.000Z",
+  "version": "1.3.0",
+  "generatedAt": "2026-01-11T00:00:00.000Z",
+  "metadata": {
+    "naming": {
+      "rule": "type과 category는 이름이 겹치지 않아야 함",
+      "type": "생물학적/존재론적 대분류 (beast, humanoid, undead, demon, elemental, construct)",
+      "category": "구체적인 종류 (slime, spider, wolf 등). type 이름과 중복 금지"
+    },
+    "type": {
+      "description": "몬스터의 존재론적 대분류",
+      "values": {
+        "beast": "야생 동물 (늑대, 곰, 다람쥐 등)",
+        "humanoid": "인간형 (도적, 고블린, 오크 등)",
+        "undead": "언데드 (스켈레톤, 좀비, 유령 등)",
+        "demon": "악마/마족",
+        "elemental": "정령/원소 생물",
+        "construct": "인공 구조물 (허수아비, 골렘 등)",
+        "amorphous": "무정형 생물 (슬라임 등)",
+        "insect": "곤충/절지류 (거미, 전갈 등)"
+      }
+    },
+    "category": {
+      "description": "몬스터의 구체적 종류. type과 이름이 겹치면 안 됨",
+      "examples": {
+        "beast": ["wolf", "squirrel", "bear", "boar"],
+        "humanoid": ["bandit", "goblin", "orc"],
+        "construct": ["scarecrow", "golem"],
+        "amorphous": ["slime", "ooze"],
+        "insect": ["spider", "scorpion", "beetle"]
+      }
+    },
+    "resistance": {
+      "description": "저항 값. 1.0이 기본, 높을수록 강함(피해 감소), 낮을수록 약함(피해 증가)",
+      "examples": {
+        "1.5": "50% 피해 감소 (강함)",
+        "1.0": "기본 피해",
+        "0.5": "50% 피해 증가 (약함)"
+      }
+    },
+    "quantity": {
+      "description": "드랍 수량 범위 [최소, 최대]",
+      "examples": {
+        "[1, 1]": "항상 1개",
+        "[1, 3]": "1~3개 랜덤"
+      }
+    }
+  },
   "monsters": [
     {
       "id": "scarecrow",
       "nameKo": "허수아비",
       "nameEn": "Scarecrow",
       "type": "construct",
+      "category": "scarecrow",
       "alignment": "neutral",
       "mapId": "training_ground",
       "level": 1,
@@ -39,6 +85,7 @@
       "nameKo": "다람쥐",
       "nameEn": "Squirrel",
       "type": "beast",
+      "category": "squirrel",
       "alignment": "neutral",
       "mapId": "forest_entrance",
       "level": 2,
@@ -82,6 +129,7 @@
       "nameKo": "늙은 다람쥐",
       "nameEn": "Elder Squirrel",
       "type": "beast",
+      "category": "squirrel",
       "alignment": "neutral",
       "mapId": "forest_entrance",
       "level": 3,
@@ -125,6 +173,7 @@
       "nameKo": "숲속 도적",
       "nameEn": "Forest Bandit",
       "type": "humanoid",
+      "category": "bandit",
       "alignment": "evil",
       "mapId": "forest_entrance",
       "level": 4,
@@ -168,6 +217,7 @@
       "nameKo": "늑대",
       "nameEn": "Wolf",
       "type": "beast",
+      "category": "wolf",
       "alignment": "neutral",
       "mapId": "deep_forest",
       "level": 5,
@@ -213,7 +263,8 @@
       "id": "forest_spider",
       "nameKo": "숲거미",
       "nameEn": "Forest Spider",
-      "type": "beast",
+      "type": "insect",
+      "category": "spider",
       "alignment": "neutral",
       "mapId": "deep_forest",
       "level": 6,
@@ -270,8 +321,16 @@
     },
     "byType": {
       "construct": 1,
-      "beast": 4,
-      "humanoid": 1
+      "beast": 3,
+      "humanoid": 1,
+      "insect": 1
+    },
+    "byCategory": {
+      "scarecrow": 1,
+      "squirrel": 2,
+      "bandit": 1,
+      "wolf": 1,
+      "spider": 1
     },
     "byAlignment": {
       "neutral": 5,

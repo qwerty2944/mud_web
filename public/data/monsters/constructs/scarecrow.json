@@ -1,0 +1,86 @@
+{
+  "type": "construct",
+  "category": "scarecrow",
+  "monsters": [
+    {
+      "id": "scarecrow",
+      "nameKo": "허수아비",
+      "nameEn": "Scarecrow",
+      "rank": "normal",
+      "alignment": "neutral",
+      "mapId": "training_ground",
+      "level": 1,
+      "element": null,
+      "icon": "🎃",
+      "stats": {
+        "hp": 50,
+        "attack": 0,
+        "defense": 0,
+        "speed": 0,
+        "resistance": {
+          "slashResist": 1.5,
+          "pierceResist": 1.5,
+          "crushResist": 0.5
+        },
+        "magicResist": {
+          "fire": 1.5,
+          "ice": 1.0,
+          "lightning": 1.0,
+          "earth": 1.0,
+          "holy": 1.0,
+          "dark": 1.0
+        }
+      },
+      "rewards": {
+        "exp": 5,
+        "gold": 0
+      },
+      "drops": [],
+      "behavior": "passive",
+      "description": {
+        "ko": "훈련용 허수아비. 반격하지 않는다. 타격과 불에 약하다.",
+        "en": "Training dummy. Does not fight back. Weak to crushing attacks and fire."
+      }
+    },
+    {
+      "id": "training_dummy_advanced",
+      "nameKo": "고급 훈련 인형",
+      "nameEn": "Advanced Training Dummy",
+      "rank": "normal",
+      "alignment": "neutral",
+      "mapId": "training_ground",
+      "level": 5,
+      "element": null,
+      "icon": "🎯",
+      "stats": {
+        "hp": 150,
+        "attack": 5,
+        "defense": 5,
+        "speed": 3,
+        "resistance": {
+          "slashResist": 1.0,
+          "pierceResist": 1.0,
+          "crushResist": 1.0
+        },
+        "magicResist": {
+          "fire": 1.0,
+          "ice": 1.0,
+          "lightning": 1.0,
+          "earth": 1.0,
+          "holy": 1.0,
+          "dark": 1.0
+        }
+      },
+      "rewards": {
+        "exp": 15,
+        "gold": 0
+      },
+      "drops": [],
+      "behavior": "defensive",
+      "description": {
+        "ko": "반격하는 고급 훈련 인형. 다양한 공격을 연습할 수 있다.",
+        "en": "An advanced dummy that fights back. Good for practicing various attacks."
+      }
+    }
+  ]
+}

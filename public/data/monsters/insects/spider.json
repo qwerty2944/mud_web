@@ -1,0 +1,105 @@
+{
+  "type": "insect",
+  "category": "spider",
+  "monsters": [
+    {
+      "id": "forest_spider",
+      "nameKo": "숲거미",
+      "nameEn": "Forest Spider",
+      "rank": "normal",
+      "alignment": "neutral",
+      "mapId": "deep_forest",
+      "level": 6,
+      "element": "dark",
+      "icon": "🕷️",
+      "stats": {
+        "hp": 60,
+        "attack": 12,
+        "defense": 3,
+        "speed": 12,
+        "resistance": {
+          "slashResist": 1.5,
+          "pierceResist": 1.0,
+          "crushResist": 1.5
+        },
+        "magicResist": {
+          "fire": 1.4,
+          "ice": 1.0,
+          "lightning": 1.0,
+          "earth": 0.9,
+          "holy": 1.2,
+          "dark": 0.7
+        }
+      },
+      "rewards": {
+        "exp": 35,
+        "gold": 0
+      },
+      "drops": [
+        { "itemId": "spider_silk", "chance": 0.4, "quantity": [1, 3] },
+        { "itemId": "spider_venom", "chance": 0.1, "quantity": [1, 1] }
+      ],
+      "behavior": "aggressive",
+      "spawnCondition": {
+        "period": ["night", "dusk"]
+      },
+      "description": {
+        "ko": "어둠 속에 숨어 있는 거대한 거미. 불에 약하고 암흑에 강하다.",
+        "en": "A giant spider lurking in the darkness. Weak to fire, strong against dark."
+      }
+    },
+    {
+      "id": "venomous_spider",
+      "nameKo": "독거미",
+      "nameEn": "Venomous Spider",
+      "rank": "elite",
+      "alignment": "neutral",
+      "mapId": "deep_forest",
+      "level": 8,
+      "element": "dark",
+      "icon": "🕷️",
+      "stats": {
+        "hp": 80,
+        "attack": 18,
+        "defense": 5,
+        "speed": 14,
+        "resistance": {
+          "slashResist": 1.3,
+          "pierceResist": 0.9,
+          "crushResist": 1.3
+        },
+        "magicResist": {
+          "fire": 1.5,
+          "ice": 1.0,
+          "lightning": 1.0,
+          "earth": 0.9,
+          "holy": 1.3,
+          "dark": 0.5
+        }
+      },
+      "rewards": {
+        "exp": 55,
+        "gold": 5
+      },
+      "drops": [
+        { "itemId": "spider_silk", "chance": 0.5, "quantity": [2, 4] },
+        { "itemId": "potent_venom", "chance": 0.2, "quantity": [1, 1] },
+        { "itemId": "dark_essence", "chance": 0.08, "quantity": [1, 1] }
+      ],
+      "behavior": "aggressive",
+      "spawnCondition": {
+        "period": ["night"]
+      },
+      "statusEffect": {
+        "type": "poison",
+        "chance": 0.3,
+        "duration": 3,
+        "damage": 5
+      },
+      "description": {
+        "ko": "치명적인 독을 가진 거미. 불에 매우 약하고 암흑에 매우 강하다.",
+        "en": "A spider with deadly venom. Very weak to fire, very strong against dark."
+      }
+    }
+  ]
+}

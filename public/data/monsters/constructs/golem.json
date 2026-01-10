@@ -1,0 +1,95 @@
+{
+  "type": "construct",
+  "category": "golem",
+  "monsters": [
+    {
+      "id": "stone_golem",
+      "nameKo": "석재 골렘",
+      "nameEn": "Stone Golem",
+      "rank": "normal",
+      "alignment": "neutral",
+      "mapId": "ancient_ruins",
+      "level": 12,
+      "element": "earth",
+      "icon": "🗿",
+      "stats": {
+        "hp": 200,
+        "attack": 25,
+        "defense": 25,
+        "speed": 2,
+        "resistance": {
+          "slashResist": 0.5,
+          "pierceResist": 0.5,
+          "crushResist": 0.3
+        },
+        "magicResist": {
+          "fire": 0.8,
+          "ice": 1.0,
+          "lightning": 1.5,
+          "earth": 0.4,
+          "holy": 1.0,
+          "dark": 1.0
+        }
+      },
+      "rewards": {
+        "exp": 75,
+        "gold": 0
+      },
+      "drops": [
+        { "itemId": "stone_core", "chance": 0.25, "quantity": [1, 1] },
+        { "itemId": "ancient_stone", "chance": 0.4, "quantity": [2, 4] },
+        { "itemId": "earth_essence", "chance": 0.15, "quantity": [1, 1] }
+      ],
+      "behavior": "territorial",
+      "description": {
+        "ko": "유적을 지키는 돌로 만든 골렘. 번개에 약하고 대지에 매우 강하다.",
+        "en": "A stone golem guarding the ruins. Weak to lightning, very strong against earth."
+      }
+    },
+    {
+      "id": "iron_golem",
+      "nameKo": "철재 골렘",
+      "nameEn": "Iron Golem",
+      "rank": "elite",
+      "alignment": "neutral",
+      "mapId": "ancient_ruins",
+      "level": 15,
+      "element": "earth",
+      "icon": "🤖",
+      "stats": {
+        "hp": 300,
+        "attack": 35,
+        "defense": 35,
+        "speed": 3,
+        "resistance": {
+          "slashResist": 0.3,
+          "pierceResist": 0.4,
+          "crushResist": 0.3
+        },
+        "magicResist": {
+          "fire": 0.9,
+          "ice": 1.0,
+          "lightning": 1.6,
+          "earth": 0.3,
+          "holy": 1.0,
+          "dark": 1.0
+        }
+      },
+      "rewards": {
+        "exp": 120,
+        "gold": 20
+      },
+      "drops": [
+        { "itemId": "iron_core", "chance": 0.2, "quantity": [1, 1] },
+        { "itemId": "ancient_iron", "chance": 0.35, "quantity": [2, 3] },
+        { "itemId": "golem_heart", "chance": 0.1, "quantity": [1, 1] },
+        { "itemId": "earth_essence", "chance": 0.2, "quantity": [1, 2] }
+      ],
+      "behavior": "territorial",
+      "description": {
+        "ko": "철로 만들어진 강력한 골렘. 번개에 매우 약하고 대지에 극도로 강하다.",
+        "en": "A powerful golem made of iron. Very weak to lightning, extremely strong against earth."
+      }
+    }
+  ]
+}

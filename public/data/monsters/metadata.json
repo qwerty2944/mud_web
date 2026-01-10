@@ -1,0 +1,375 @@
+{
+  "version": "1.0.0",
+  "description": "몬스터 시스템 메타데이터",
+
+  "monsterTypes": {
+    "beast": {
+      "id": "beast",
+      "nameKo": "야수",
+      "nameEn": "Beast",
+      "icon": "🐾",
+      "description": "동물, 곤충 등 자연의 생명체"
+    },
+    "humanoid": {
+      "id": "humanoid",
+      "nameKo": "인간형",
+      "nameEn": "Humanoid",
+      "icon": "👤",
+      "description": "인간이나 인간과 비슷한 형태의 존재"
+    },
+    "undead": {
+      "id": "undead",
+      "nameKo": "언데드",
+      "nameEn": "Undead",
+      "icon": "💀",
+      "description": "죽음에서 되살아난 존재"
+    },
+    "demon": {
+      "id": "demon",
+      "nameKo": "악마",
+      "nameEn": "Demon",
+      "icon": "👿",
+      "description": "어둠의 차원에서 온 악마"
+    },
+    "dragon": {
+      "id": "dragon",
+      "nameKo": "용족",
+      "nameEn": "Dragon",
+      "icon": "🐉",
+      "description": "드래곤과 그 권속"
+    },
+    "spirit": {
+      "id": "spirit",
+      "nameKo": "정령",
+      "nameEn": "Spirit",
+      "icon": "👻",
+      "description": "자연의 정령이나 영혼"
+    },
+    "construct": {
+      "id": "construct",
+      "nameKo": "구조물",
+      "nameEn": "Construct",
+      "icon": "🤖",
+      "description": "마법이나 기술로 만들어진 존재"
+    },
+    "plant": {
+      "id": "plant",
+      "nameKo": "식물",
+      "nameEn": "Plant",
+      "icon": "🌿",
+      "description": "움직이는 식물형 몬스터"
+    },
+    "elemental": {
+      "id": "elemental",
+      "nameKo": "원소",
+      "nameEn": "Elemental",
+      "icon": "✨",
+      "description": "순수한 원소의 힘으로 이루어진 존재"
+    },
+    "aberration": {
+      "id": "aberration",
+      "nameKo": "이형",
+      "nameEn": "Aberration",
+      "icon": "👁️",
+      "description": "비정상적이고 기괴한 존재"
+    }
+  },
+
+  "categories": {
+    "mammals": {
+      "id": "mammals",
+      "nameKo": "포유류",
+      "nameEn": "Mammals",
+      "type": "beast",
+      "icon": "🐺"
+    },
+    "insects": {
+      "id": "insects",
+      "nameKo": "곤충류",
+      "nameEn": "Insects",
+      "type": "beast",
+      "icon": "🕷️"
+    },
+    "birds": {
+      "id": "birds",
+      "nameKo": "조류",
+      "nameEn": "Birds",
+      "type": "beast",
+      "icon": "🦅"
+    },
+    "reptiles": {
+      "id": "reptiles",
+      "nameKo": "파충류",
+      "nameEn": "Reptiles",
+      "type": "beast",
+      "icon": "🦎"
+    },
+    "bandits": {
+      "id": "bandits",
+      "nameKo": "도적",
+      "nameEn": "Bandits",
+      "type": "humanoid",
+      "icon": "🗡️"
+    },
+    "cultists": {
+      "id": "cultists",
+      "nameKo": "광신도",
+      "nameEn": "Cultists",
+      "type": "humanoid",
+      "icon": "🔮"
+    },
+    "soldiers": {
+      "id": "soldiers",
+      "nameKo": "병사",
+      "nameEn": "Soldiers",
+      "type": "humanoid",
+      "icon": "⚔️"
+    },
+    "nature_spirits": {
+      "id": "nature_spirits",
+      "nameKo": "자연 정령",
+      "nameEn": "Nature Spirits",
+      "type": "spirit",
+      "icon": "🍃"
+    },
+    "ghosts": {
+      "id": "ghosts",
+      "nameKo": "유령",
+      "nameEn": "Ghosts",
+      "type": "spirit",
+      "icon": "👻"
+    },
+    "zombies": {
+      "id": "zombies",
+      "nameKo": "좀비",
+      "nameEn": "Zombies",
+      "type": "undead",
+      "icon": "🧟"
+    },
+    "skeletons": {
+      "id": "skeletons",
+      "nameKo": "해골",
+      "nameEn": "Skeletons",
+      "type": "undead",
+      "icon": "💀"
+    },
+    "golems": {
+      "id": "golems",
+      "nameKo": "골렘",
+      "nameEn": "Golems",
+      "type": "construct",
+      "icon": "🗿"
+    },
+    "training": {
+      "id": "training",
+      "nameKo": "훈련용",
+      "nameEn": "Training",
+      "type": "construct",
+      "icon": "🎯"
+    },
+    "treants": {
+      "id": "treants",
+      "nameKo": "나무 정령",
+      "nameEn": "Treants",
+      "type": "plant",
+      "icon": "🌳"
+    },
+    "fire_elementals": {
+      "id": "fire_elementals",
+      "nameKo": "화염 원소",
+      "nameEn": "Fire Elementals",
+      "type": "elemental",
+      "icon": "🔥"
+    },
+    "ice_elementals": {
+      "id": "ice_elementals",
+      "nameKo": "냉기 원소",
+      "nameEn": "Ice Elementals",
+      "type": "elemental",
+      "icon": "❄️"
+    }
+  },
+
+  "alignments": {
+    "good": {
+      "id": "good",
+      "nameKo": "선",
+      "nameEn": "Good",
+      "karmaModifier": 5,
+      "description": "선한 존재를 공격하면 카르마 감소"
+    },
+    "neutral": {
+      "id": "neutral",
+      "nameKo": "중립",
+      "nameEn": "Neutral",
+      "karmaModifier": 0,
+      "description": "카르마 변화 없음"
+    },
+    "evil": {
+      "id": "evil",
+      "nameKo": "악",
+      "nameEn": "Evil",
+      "karmaModifier": -2,
+      "description": "악한 존재를 처치하면 카르마 상승"
+    }
+  },
+
+  "behaviors": {
+    "passive": {
+      "id": "passive",
+      "nameKo": "평화적",
+      "nameEn": "Passive",
+      "preemptive": false,
+      "description": "공격하지 않음"
+    },
+    "defensive": {
+      "id": "defensive",
+      "nameKo": "방어적",
+      "nameEn": "Defensive",
+      "preemptive": false,
+      "description": "공격받으면 반격"
+    },
+    "aggressive": {
+      "id": "aggressive",
+      "nameKo": "공격적",
+      "nameEn": "Aggressive",
+      "preemptive": true,
+      "description": "먼저 공격함"
+    },
+    "territorial": {
+      "id": "territorial",
+      "nameKo": "영역적",
+      "nameEn": "Territorial",
+      "preemptive": true,
+      "description": "영역에 들어오면 공격"
+    }
+  },
+
+  "ranks": {
+    "normal": {
+      "id": "normal",
+      "nameKo": "일반",
+      "nameEn": "Normal",
+      "statMultiplier": 1.0,
+      "rewardMultiplier": 1.0,
+      "icon": ""
+    },
+    "elite": {
+      "id": "elite",
+      "nameKo": "정예",
+      "nameEn": "Elite",
+      "statMultiplier": 1.5,
+      "rewardMultiplier": 2.0,
+      "icon": "⭐"
+    },
+    "boss": {
+      "id": "boss",
+      "nameKo": "보스",
+      "nameEn": "Boss",
+      "statMultiplier": 3.0,
+      "rewardMultiplier": 5.0,
+      "icon": "👑"
+    },
+    "raid": {
+      "id": "raid",
+      "nameKo": "레이드",
+      "nameEn": "Raid",
+      "statMultiplier": 10.0,
+      "rewardMultiplier": 20.0,
+      "icon": "🏆"
+    }
+  },
+
+  "resistanceTypes": {
+    "slashResist": {
+      "id": "slashResist",
+      "nameKo": "베기 저항",
+      "nameEn": "Slash Resistance",
+      "weaponTypes": ["sword", "axe", "dagger"]
+    },
+    "pierceResist": {
+      "id": "pierceResist",
+      "nameKo": "찌르기 저항",
+      "nameEn": "Pierce Resistance",
+      "weaponTypes": ["spear", "bow", "crossbow", "dagger"]
+    },
+    "crushResist": {
+      "id": "crushResist",
+      "nameKo": "타격 저항",
+      "nameEn": "Crush Resistance",
+      "weaponTypes": ["mace", "staff", "fist"]
+    }
+  },
+
+  "magicResistTypes": {
+    "fire": {
+      "id": "fire",
+      "nameKo": "화염 저항",
+      "nameEn": "Fire Resistance",
+      "icon": "🔥"
+    },
+    "ice": {
+      "id": "ice",
+      "nameKo": "냉기 저항",
+      "nameEn": "Ice Resistance",
+      "icon": "❄️"
+    },
+    "lightning": {
+      "id": "lightning",
+      "nameKo": "번개 저항",
+      "nameEn": "Lightning Resistance",
+      "icon": "⚡"
+    },
+    "earth": {
+      "id": "earth",
+      "nameKo": "대지 저항",
+      "nameEn": "Earth Resistance",
+      "icon": "🪨"
+    },
+    "holy": {
+      "id": "holy",
+      "nameKo": "신성 저항",
+      "nameEn": "Holy Resistance",
+      "icon": "✨"
+    },
+    "dark": {
+      "id": "dark",
+      "nameKo": "암흑 저항",
+      "nameEn": "Dark Resistance",
+      "icon": "🌑"
+    }
+  },
+
+  "typeDefaultMagicResist": {
+    "beast": {
+      "fire": 1.0, "ice": 1.0, "lightning": 1.0, "earth": 1.0, "holy": 1.0, "dark": 1.0
+    },
+    "humanoid": {
+      "fire": 1.0, "ice": 1.0, "lightning": 1.0, "earth": 1.0, "holy": 1.0, "dark": 1.0
+    },
+    "undead": {
+      "fire": 0.9, "ice": 1.0, "lightning": 1.0, "earth": 1.0, "holy": 1.8, "dark": 0.4
+    },
+    "spirit": {
+      "fire": 1.2, "ice": 0.7, "lightning": 1.0, "earth": 0.8, "holy": 0.8, "dark": 1.2
+    },
+    "plant": {
+      "fire": 1.5, "ice": 0.8, "lightning": 1.0, "earth": 0.6, "holy": 1.0, "dark": 1.0
+    },
+    "construct": {
+      "fire": 0.9, "ice": 1.0, "lightning": 1.3, "earth": 0.7, "holy": 1.0, "dark": 1.0
+    },
+    "slime": {
+      "fire": 1.2, "ice": 0.9, "lightning": 1.1, "earth": 0.7, "holy": 1.0, "dark": 1.0
+    },
+    "elemental": {
+      "fire": 1.0, "ice": 1.0, "lightning": 1.0, "earth": 1.0, "holy": 1.0, "dark": 1.0
+    },
+    "demon": {
+      "fire": 0.5, "ice": 1.2, "lightning": 1.0, "earth": 1.0, "holy": 1.8, "dark": 0.3
+    },
+    "dragon": {
+      "fire": 0.5, "ice": 0.8, "lightning": 0.8, "earth": 0.8, "holy": 1.0, "dark": 1.0
+    }
+  }
+}
