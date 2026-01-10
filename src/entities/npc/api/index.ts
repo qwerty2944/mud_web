@@ -1,16 +1,41 @@
-import type { Npc } from "../types";
+import type { Npc, NpcType } from "../types";
 
 // ============ NPC 조회 API ============
 
-let npcsCache: Npc[] | null = null;
+// NPC 타입별 파일 매핑
+const NPC_TYPE_FILES: Record<NpcType, string> = {
+  healer: "/data/npcs/healers.json",
+  merchant: "/data/npcs/merchants.json",
+  trainer: "/data/npcs/trainers.json",
+  quest: "/data/npcs/quests.json",
+};
+
+// 캐시: 타입별 NPC 목록
+const npcsCacheByType: Partial<Record<NpcType, Npc[]>> = {};
+let allNpcsCache: Npc[] | null = null;
+
+export async function fetchNpcsByType(type: NpcType): Promise<Npc[]> {
+  if (npcsCacheByType[type]) return npcsCacheByType[type]!;
+
+  try {
+    const response = await fetch(NPC_TYPE_FILES[type]);
+    if (!response.ok) return [];
+    const data = await response.json();
+    npcsCacheByType[type] = data.npcs.map((npc: Npc) => ({ ...npc, type }));
+    return npcsCacheByType[type]!;
+  } catch {
+    return [];
+  }
+}
 
 export async function fetchNpcs(): Promise<Npc[]> {
-  if (npcsCache) return npcsCache;
+  if (allNpcsCache) return allNpcsCache;
 
-  const response = await fetch("/data/npcs.json");
-  const data = await response.json();
-  npcsCache = data.npcs;
-  return npcsCache!;
+  // 모든 NPC 타입 파일에서 로드
+  const types: NpcType[] = ["healer", "merchant", "trainer", "quest"];
+  const results = await Promise.all(types.map(fetchNpcsByType));
+  allNpcsCache = results.flat();
+  return allNpcsCache;
 }
 
 export async function fetchNpcsByMap(mapId: string): Promise<Npc[]> {

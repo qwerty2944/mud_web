@@ -1,13 +1,12 @@
 {
-  "version": "1.0.0",
-  "generatedAt": "2026-01-10T00:00:00.000Z",
+  "type": "healer",
+  "description": "부상을 치료해주는 NPC",
   "npcs": [
     {
       "id": "village_healer",
       "nameKo": "마을 치료사 에린",
       "nameEn": "Village Healer Erin",
       "icon": "🏥",
-      "type": "healer",
       "mapId": "starting_village",
       "description": "상처와 부상을 치료해주는 마을의 치료사입니다.",
       "dialogues": {
@@ -30,7 +29,6 @@
       "nameKo": "시장 약사 마르코",
       "nameEn": "Market Apothecary Marco",
       "icon": "💊",
-      "type": "healer",
       "mapId": "market_square",
       "description": "시장에서 약초와 치료 서비스를 제공하는 약사입니다.",
       "dialogues": {
@@ -53,7 +51,6 @@
       "nameKo": "숲의 약초사 리나",
       "nameEn": "Forest Herbalist Lina",
       "icon": "🌿",
-      "type": "healer",
       "mapId": "deep_forest",
       "description": "숲 깊은 곳에 사는 약초 전문가입니다.",
       "dialogues": {
@@ -76,7 +73,6 @@
       "nameKo": "투기장 의무병 브루투스",
       "nameEn": "Arena Medic Brutus",
       "icon": "⚔️",
-      "type": "healer",
       "mapId": "arena",
       "description": "투기장에서 부상당한 전사들을 치료하는 의무병입니다.",
       "dialogues": {
@@ -99,7 +95,6 @@
       "nameKo": "유적의 주술사 카론",
       "nameEn": "Ruins Shaman Charon",
       "icon": "💀",
-      "type": "healer",
       "mapId": "ancient_ruins",
       "description": "고대 유적에서 어둠의 주술로 치료하는 신비한 존재입니다.",
       "dialogues": {
@@ -117,18 +112,5 @@
         }
       }
     }
-  ],
-  "summary": {
-    "total": 5,
-    "byType": {
-      "healer": 5
-    },
-    "byMap": {
-      "starting_village": 1,
-      "market_square": 1,
-      "deep_forest": 1,
-      "arena": 1,
-      "ancient_ruins": 1
-    }
-  }
+  ]
 }

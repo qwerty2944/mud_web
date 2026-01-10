@@ -6,5 +6,5 @@ export type {
   NpcHealingServices,
   HealingService,
 } from "./types";
-export { fetchNpcs, fetchNpcsByMap, fetchNpcById, fetchHealerNpcs } from "./api";
+export { fetchNpcs, fetchNpcsByType, fetchNpcsByMap, fetchNpcById, fetchHealerNpcs } from "./api";
 export { useNpcs, useNpcsByMap, useNpcById, useHealerNpcs, npcKeys } from "./queries";
