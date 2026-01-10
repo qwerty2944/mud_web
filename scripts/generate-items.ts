@@ -1,18 +1,15 @@
 /**
- * 아이템 JSON 파일들을 읽어서 items.json 생성
+ * 아이템 JSON 파일들을 읽어서 카테고리별 통합 JSON 생성
  *
  * 폴더 구조:
  *   public/data/items/
  *   ├── equipment/
- *   │   ├── weapons/*.json
+ *   │   ├── weapons/*.json    → equipment.json
  *   │   ├── armors/*.json
  *   │   └── accessories/*.json
- *   ├── consumables/*.json
- *   ├── materials/*.json
- *   └── misc/*.json
- *
- * 출력:
- *   public/data/items/items.json
+ *   ├── consumables/*.json    → consumables.json
+ *   ├── materials/*.json      → materials.json
+ *   └── misc/*.json           → misc.json
  *
  * 사용법: npx tsx scripts/generate-items.ts
  */
@@ -22,14 +19,29 @@ import path from "path";
 
 // 경로 설정
 const ITEMS_DIR = "public/data/items";
-const OUTPUT_FILE = "public/data/items/items.json";
 
-// 카테고리별 폴더
+// 카테고리별 설정
 const CATEGORIES = {
-  equipment: ["equipment/weapons", "equipment/armors", "equipment/accessories"],
-  consumable: ["consumables"],
-  material: ["materials"],
-  misc: ["misc"],
+  equipment: {
+    subdirs: ["equipment/weapons", "equipment/armors", "equipment/accessories"],
+    output: "equipment.json",
+    type: "equipment",
+  },
+  consumable: {
+    subdirs: ["consumables"],
+    output: "consumables.json",
+    type: "consumable",
+  },
+  material: {
+    subdirs: ["materials"],
+    output: "materials.json",
+    type: "material",
+  },
+  misc: {
+    subdirs: ["misc"],
+    output: "misc.json",
+    type: "misc",
+  },
 };
 
 interface BaseItem {
@@ -96,7 +108,6 @@ interface OutputItem {
   stackable: boolean;
   stackSize?: number;
   icon?: string;
-  // Equipment specific
   slot?: string;
   weaponType?: string;
   spriteId?: string;
@@ -104,35 +115,9 @@ interface OutputItem {
   color?: string | null;
   stats?: Record<string, unknown>;
   requirements?: Record<string, unknown>;
-  // Consumable specific
   effect?: Record<string, unknown>;
-  // Material specific
   dropFrom?: string[];
   craftingUse?: string[];
-}
-
-// JSON 파일 찾기
-function findJsonFiles(dir: string): string[] {
-  const files: string[] = [];
-  const fullPath = path.join(ITEMS_DIR, dir);
-
-  if (!fs.existsSync(fullPath)) {
-    return files;
-  }
-
-  const entries = fs.readdirSync(fullPath, { withFileTypes: true });
-  for (const entry of entries) {
-    const entryPath = path.join(fullPath, entry.name);
-    if (entry.isDirectory()) {
-      // 재귀적으로 하위 폴더 탐색
-      const subFiles = findJsonFiles(path.join(dir, entry.name));
-      files.push(...subFiles.map((f) => path.join(dir, entry.name, f)));
-    } else if (entry.name.endsWith(".json")) {
-      files.push(entry.name);
-    }
-  }
-
-  return files;
 }
 
 // 장비 아이템 변환
@@ -206,117 +191,16 @@ function convertMaterialItem(
   };
 }
 
-// 메인 함수
-async function main(): Promise<void> {
-  console.log("🔧 아이템 데이터 생성 시작...\n");
+// 카테고리별 아이템 처리
+function processCategory(
+  categoryKey: string,
+  config: (typeof CATEGORIES)[keyof typeof CATEGORIES]
+): { items: OutputItem[]; bySubtype: Record<string, number>; byRarity: Record<string, number> } {
+  const items: OutputItem[] = [];
+  const bySubtype: Record<string, number> = {};
+  const byRarity: Record<string, number> = {};
 
-  const allItems: OutputItem[] = [];
-  const summary = {
-    total: 0,
-    byType: {} as Record<string, number>,
-    bySubtype: {} as Record<string, number>,
-    byRarity: {} as Record<string, number>,
-  };
-
-  // 1. 장비 파일들 처리
-  console.log("📁 장비 파일 처리...");
-  for (const subdir of CATEGORIES.equipment) {
-    const fullDir = path.join(ITEMS_DIR, subdir);
-    if (!fs.existsSync(fullDir)) continue;
-
-    const files = fs.readdirSync(fullDir).filter((f) => f.endsWith(".json"));
-    for (const file of files) {
-      const filePath = path.join(fullDir, file);
-      try {
-        const content = fs.readFileSync(filePath, "utf8");
-        const source: EquipmentSource = JSON.parse(content);
-        if (!source.items) continue;
-
-        console.log(`  - ${subdir}/${file}: ${source.items.length}개`);
-
-        for (const item of source.items) {
-          const outputItem = convertEquipmentItem(item, source);
-          allItems.push(outputItem);
-
-          summary.byType["equipment"] = (summary.byType["equipment"] || 0) + 1;
-          summary.bySubtype[source.subcategory] =
-            (summary.bySubtype[source.subcategory] || 0) + 1;
-          summary.byRarity[item.rarity] =
-            (summary.byRarity[item.rarity] || 0) + 1;
-        }
-      } catch (err) {
-        console.error(`  ❌ ${file} 로드 실패:`, err);
-      }
-    }
-  }
-
-  // 2. 소비 아이템 처리
-  console.log("\n📁 소비 아이템 처리...");
-  for (const subdir of CATEGORIES.consumable) {
-    const fullDir = path.join(ITEMS_DIR, subdir);
-    if (!fs.existsSync(fullDir)) continue;
-
-    const files = fs.readdirSync(fullDir).filter((f) => f.endsWith(".json"));
-    for (const file of files) {
-      const filePath = path.join(fullDir, file);
-      try {
-        const content = fs.readFileSync(filePath, "utf8");
-        const source: ConsumableSource = JSON.parse(content);
-        if (!source.items) continue;
-
-        console.log(`  - ${subdir}/${file}: ${source.items.length}개`);
-
-        for (const item of source.items) {
-          const outputItem = convertConsumableItem(item, source);
-          allItems.push(outputItem);
-
-          summary.byType["consumable"] = (summary.byType["consumable"] || 0) + 1;
-          summary.bySubtype[source.subcategory] =
-            (summary.bySubtype[source.subcategory] || 0) + 1;
-          summary.byRarity[item.rarity] =
-            (summary.byRarity[item.rarity] || 0) + 1;
-        }
-      } catch (err) {
-        console.error(`  ❌ ${file} 로드 실패:`, err);
-      }
-    }
-  }
-
-  // 3. 재료 아이템 처리
-  console.log("\n📁 재료 아이템 처리...");
-  for (const subdir of CATEGORIES.material) {
-    const fullDir = path.join(ITEMS_DIR, subdir);
-    if (!fs.existsSync(fullDir)) continue;
-
-    const files = fs.readdirSync(fullDir).filter((f) => f.endsWith(".json"));
-    for (const file of files) {
-      const filePath = path.join(fullDir, file);
-      try {
-        const content = fs.readFileSync(filePath, "utf8");
-        const source: MaterialSource = JSON.parse(content);
-        if (!source.items) continue;
-
-        console.log(`  - ${subdir}/${file}: ${source.items.length}개`);
-
-        for (const item of source.items) {
-          const outputItem = convertMaterialItem(item, source);
-          allItems.push(outputItem);
-
-          summary.byType["material"] = (summary.byType["material"] || 0) + 1;
-          summary.bySubtype[source.subcategory] =
-            (summary.bySubtype[source.subcategory] || 0) + 1;
-          summary.byRarity[item.rarity] =
-            (summary.byRarity[item.rarity] || 0) + 1;
-        }
-      } catch (err) {
-        console.error(`  ❌ ${file} 로드 실패:`, err);
-      }
-    }
-  }
-
-  // 4. 기타 아이템 처리
-  console.log("\n📁 기타 아이템 처리...");
-  for (const subdir of CATEGORIES.misc) {
+  for (const subdir of config.subdirs) {
     const fullDir = path.join(ITEMS_DIR, subdir);
     if (!fs.existsSync(fullDir)) continue;
 
@@ -328,46 +212,91 @@ async function main(): Promise<void> {
         const source = JSON.parse(content);
         if (!source.items) continue;
 
-        console.log(`  - ${subdir}/${file}: ${source.items.length}개`);
+        console.log(`    ${subdir}/${file}: ${source.items.length}개`);
 
         for (const item of source.items) {
-          allItems.push({
-            ...item,
-            type: "misc",
-            subtype: source.subcategory || "other",
-            stackable: item.stackable ?? true,
-            stackSize: item.stackSize || 10,
-          });
+          let outputItem: OutputItem;
 
-          summary.byType["misc"] = (summary.byType["misc"] || 0) + 1;
-          summary.bySubtype[source.subcategory || "other"] =
-            (summary.bySubtype[source.subcategory || "other"] || 0) + 1;
-          summary.byRarity[item.rarity] =
-            (summary.byRarity[item.rarity] || 0) + 1;
+          if (config.type === "equipment") {
+            outputItem = convertEquipmentItem(item, source as EquipmentSource);
+          } else if (config.type === "consumable") {
+            outputItem = convertConsumableItem(item, source as ConsumableSource);
+          } else if (config.type === "material") {
+            outputItem = convertMaterialItem(item, source as MaterialSource);
+          } else {
+            outputItem = {
+              ...item,
+              type: "misc",
+              subtype: source.subcategory || "other",
+              stackable: item.stackable ?? true,
+              stackSize: item.stackSize || 10,
+            };
+          }
+
+          items.push(outputItem);
+          bySubtype[source.subcategory] = (bySubtype[source.subcategory] || 0) + 1;
+          byRarity[item.rarity] = (byRarity[item.rarity] || 0) + 1;
         }
       } catch (err) {
-        console.error(`  ❌ ${file} 로드 실패:`, err);
+        console.error(`    ❌ ${file} 로드 실패:`, err);
       }
     }
   }
 
-  // 5. 최종 items.json 생성
-  summary.total = allItems.length;
+  return { items, bySubtype, byRarity };
+}
 
-  const output = {
-    version: "2.0.0",
-    generatedAt: new Date().toISOString(),
-    items: allItems,
-    summary,
+// 메인 함수
+async function main(): Promise<void> {
+  console.log("🔧 아이템 데이터 생성 시작...\n");
+
+  const totalSummary = {
+    total: 0,
+    byType: {} as Record<string, number>,
+    byRarity: {} as Record<string, number>,
   };
 
-  fs.writeFileSync(OUTPUT_FILE, JSON.stringify(output, null, 2));
+  // 각 카테고리별로 처리
+  for (const [categoryKey, config] of Object.entries(CATEGORIES)) {
+    console.log(`📁 ${categoryKey} 처리 중...`);
 
-  console.log(`\n✅ 생성 완료: ${OUTPUT_FILE}`);
-  console.log(`   총 ${summary.total}개 아이템`);
-  console.log(`   타입별:`, summary.byType);
-  console.log(`   서브타입별:`, summary.bySubtype);
-  console.log(`   등급별:`, summary.byRarity);
+    const { items, bySubtype, byRarity } = processCategory(categoryKey, config);
+
+    if (items.length === 0) {
+      console.log(`    (파일 없음)\n`);
+      continue;
+    }
+
+    // 카테고리별 JSON 파일 생성
+    const output = {
+      version: "1.0.0",
+      generatedAt: new Date().toISOString(),
+      type: config.type,
+      items,
+      summary: {
+        total: items.length,
+        bySubtype,
+        byRarity,
+      },
+    };
+
+    const outputPath = path.join(ITEMS_DIR, config.output);
+    fs.writeFileSync(outputPath, JSON.stringify(output, null, 2));
+    console.log(`  ✅ ${config.output}: ${items.length}개 아이템\n`);
+
+    // 전체 통계 업데이트
+    totalSummary.total += items.length;
+    totalSummary.byType[config.type] = items.length;
+    for (const [rarity, count] of Object.entries(byRarity)) {
+      totalSummary.byRarity[rarity] = (totalSummary.byRarity[rarity] || 0) + count;
+    }
+  }
+
+  console.log("═".repeat(50));
+  console.log(`✅ 생성 완료!`);
+  console.log(`   총 ${totalSummary.total}개 아이템`);
+  console.log(`   타입별:`, totalSummary.byType);
+  console.log(`   등급별:`, totalSummary.byRarity);
 }
 
 main().catch(console.error);

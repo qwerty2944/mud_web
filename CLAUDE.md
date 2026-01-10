@@ -279,6 +279,131 @@ npm run capture-sprites  # Unity 스프라이트 캡처
 npm run upload-data      # Supabase Storage 업로드
 ```
 
+## 데이터 생성 시스템
+
+게임 데이터는 개별 JSON 파일로 관리하고, 스크립트로 통합 JSON을 생성합니다.
+
+### 아이템 데이터 (`/public/data/items/`)
+
+```
+items/
+├── equipment/              # 장비 (개별 파일)
+│   ├── weapons/
+│   │   ├── swords.json
+│   │   ├── axes.json
+│   │   └── ...
+│   ├── armors/
+│   │   ├── helmets.json
+│   │   ├── chests.json
+│   │   └── ...
+│   └── accessories/
+│       ├── rings.json
+│       └── necklaces.json
+├── consumables/            # 소비 아이템 (개별 파일)
+│   ├── potions.json
+│   ├── food.json
+│   └── scrolls.json
+├── materials/              # 재료 (개별 파일)
+│   ├── ores.json
+│   ├── herbs.json
+│   └── ...
+├── misc/                   # 기타 (개별 파일)
+│   ├── keys.json
+│   └── quest.json
+├── metadata.json           # 메타데이터 (등급, 색상 시스템 등)
+├── equipment.json          # ← 생성됨 (weapons + armors + accessories)
+├── consumables.json        # ← 생성됨
+├── materials.json          # ← 생성됨
+└── misc.json               # ← 생성됨
+```
+
+**생성 명령:**
+```bash
+npx tsx scripts/generate-items.ts
+```
+
+### 종족 데이터 (`/public/data/races/`)
+
+```
+races/
+├── humans/                 # 인간 변종 (개별 파일)
+│   ├── northern.json
+│   ├── southern.json
+│   └── ...
+├── elves/                  # 엘프 변종 (개별 파일)
+│   ├── high_elf.json
+│   ├── wood_elf.json
+│   └── ...
+├── dwarves/
+├── orcs/
+├── undead/
+├── others/
+├── appearance/             # 외형 데이터 (별도)
+├── metadata.json           # 메타데이터 (색상 프리셋 등)
+└── races.json              # ← 생성됨 (모든 종족 통합)
+```
+
+**생성 명령:**
+```bash
+npx tsx scripts/generate-races.ts
+```
+
+### NPC 데이터 (`/public/data/npcs/`)
+
+```
+npcs/
+├── healers.json            # 치료사 NPC
+├── merchants.json          # 상인 NPC (향후)
+├── trainers.json           # 훈련사 NPC (향후)
+└── quests.json             # 퀘스트 NPC (향후)
+```
+
+### 외형 데이터 (`/public/data/appearance/`)
+
+```
+appearance/
+├── eyes/                   # 눈 외형 (종족별 개별 파일)
+│   ├── human.json
+│   ├── elf.json
+│   ├── dwarf.json
+│   └── ...
+├── facehair/               # 수염 외형 (종족별 개별 파일)
+│   ├── human.json
+│   ├── dwarf.json
+│   └── ...
+├── eyes.json               # ← 생성됨 (모든 종족 눈 통합)
+└── facehair.json           # ← 생성됨 (모든 종족 수염 통합)
+```
+
+**생성 명령:**
+```bash
+npx tsx scripts/generate-appearance.ts
+```
+
+### 데이터 파일 규칙
+
+1. **개별 파일**: 편집용 원본 데이터 (weapons/swords.json 등)
+2. **통합 파일**: 런타임 로드용 (equipment.json 등) - 스크립트로 생성
+3. **metadata.json**: 시스템 메타데이터 (등급, 색상 프리셋 등)
+4. **spriteId 사용**: 스프라이트 참조는 인덱스가 아닌 ID 사용
+
+```json
+// 개별 파일 (swords.json)
+{
+  "category": "equipment",
+  "subcategory": "weapon",
+  "weaponType": "sword",
+  "spriteMapping": "/data/sprites/equipment/weapon/sword.json",
+  "items": [
+    {
+      "id": "iron_sword",
+      "spriteId": "elf_weapon_03",  // spriteIndex 대신 spriteId 사용
+      ...
+    }
+  ]
+}
+```
+
 ## 환경 변수
 
 ```env

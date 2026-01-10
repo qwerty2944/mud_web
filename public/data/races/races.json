@@ -1,0 +1,2280 @@
+{
+  "version": "1.0.0",
+  "generatedAt": "2026-01-10T11:49:40.217Z",
+  "races": [
+    {
+      "id": "eastern_human",
+      "category": "human",
+      "nameKo": "동부인",
+      "nameEn": "Easterner",
+      "description": "고대 제국의 후예로, 동방의 신비로운 문화를 간직한 민족. 검은 머리카락과 갈색 눈이 특징이다.",
+      "lore": "수천 년의 역사를 자랑하는 동방 제국의 후예들이다. 무술과 명상, 그리고 자연과의 조화를 중시한다. 섬세한 예술과 정교한 기술로 유명하며, 전통적인 검술과 마법이 결합된 독특한 전투 스타일을 발전시켰다.",
+      "traits": {
+        "innate": [
+          "disciplined",
+          "balanced_mind"
+        ],
+        "optional": [
+          "martial_artist",
+          "spirit_touched"
+        ]
+      },
+      "statModifiers": {
+        "dex": 2,
+        "wis": 1,
+        "str": -1
+      },
+      "appearance": {
+        "body": {
+          "availableIndices": [
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "spriteNames": [
+            "Human_1",
+            "Human_2",
+            "Human_3",
+            "Human_4",
+            "Human_5"
+          ]
+        },
+        "skinTones": {
+          "available": [
+            "fair",
+            "light",
+            "medium",
+            "tan"
+          ],
+          "default": "light",
+          "colors": {
+            "fair": "#FFE4C4",
+            "light": "#F5DEB3",
+            "medium": "#DEB887",
+            "tan": "#D2B48C"
+          }
+        },
+        "eye": {
+          "availableIndices": [
+            0,
+            2,
+            3,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "colors": {
+            "available": [
+              "brown",
+              "black",
+              "hazel",
+              "amber"
+            ],
+            "default": "brown",
+            "values": {
+              "brown": "#8B4513",
+              "black": "#1C1C1C",
+              "hazel": "#8E7618",
+              "amber": "#FFBF00"
+            }
+          }
+        },
+        "hair": {
+          "availableIndices": "all",
+          "colors": {
+            "available": [
+              "black",
+              "dark_brown",
+              "brown",
+              "white",
+              "gray"
+            ],
+            "default": "black",
+            "values": {
+              "black": "#1C1C1C",
+              "dark_brown": "#3D2314",
+              "brown": "#5D4037",
+              "white": "#FFFFFF",
+              "gray": "#808080"
+            }
+          }
+        },
+        "facehair": {
+          "availableIndices": "all",
+          "colors": "same_as_hair"
+        }
+      },
+      "resistances": {
+        "lightning": 10
+      },
+      "startingLocation": "eastern_temple",
+      "languages": [
+        "common",
+        "eastern"
+      ],
+      "lifespan": {
+        "adult": 18,
+        "middle": 45,
+        "old": 65,
+        "max": 90
+      },
+      "playable": true
+    },
+    {
+      "id": "northern_human",
+      "category": "human",
+      "nameKo": "북부인",
+      "nameEn": "Northerner",
+      "description": "혹독한 북방의 추위 속에서 살아남은 강인한 민족. 창백한 피부와 금발 또는 붉은 머리카락이 특징이다.",
+      "lore": "북부의 눈 덮인 산맥과 얼어붙은 툰드라에서 수천 년을 살아온 인간들이다. 혹독한 환경이 그들을 강하고 인내심 있게 만들었다. 전통적으로 수렵과 약탈로 생계를 유지했으나, 최근에는 교역에도 참여하고 있다.",
+      "traits": {
+        "innate": [
+          "cold_resistant",
+          "hardy"
+        ],
+        "optional": [
+          "berserker",
+          "winter_hunter"
+        ]
+      },
+      "statModifiers": {
+        "str": 2,
+        "con": 1,
+        "cha": -1
+      },
+      "appearance": {
+        "body": {
+          "availableIndices": [
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "spriteNames": [
+            "Human_1",
+            "Human_2",
+            "Human_3",
+            "Human_4",
+            "Human_5"
+          ]
+        },
+        "skinTones": {
+          "available": [
+            "pale",
+            "fair",
+            "light"
+          ],
+          "default": "pale",
+          "colors": {
+            "pale": "#FFE4E1",
+            "fair": "#FFF0F5",
+            "light": "#FAEBD7"
+          }
+        },
+        "eye": {
+          "availableIndices": [
+            0,
+            2,
+            3,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "colors": {
+            "available": [
+              "blue",
+              "gray",
+              "green",
+              "hazel"
+            ],
+            "default": "blue",
+            "values": {
+              "blue": "#4169E1",
+              "gray": "#708090",
+              "green": "#2E8B57",
+              "hazel": "#8E7618"
+            }
+          }
+        },
+        "hair": {
+          "availableIndices": "all",
+          "colors": {
+            "available": [
+              "blonde",
+              "platinum",
+              "red",
+              "ginger",
+              "light_brown",
+              "white"
+            ],
+            "default": "blonde",
+            "values": {
+              "blonde": "#F0E68C",
+              "platinum": "#E5E4E2",
+              "red": "#B22222",
+              "ginger": "#FF6347",
+              "light_brown": "#A0522D",
+              "white": "#FFFFFF"
+            }
+          }
+        },
+        "facehair": {
+          "availableIndices": "all",
+          "colors": "same_as_hair"
+        }
+      },
+      "resistances": {
+        "ice": 15,
+        "fire": -10
+      },
+      "startingLocation": "northern_village",
+      "languages": [
+        "common",
+        "northern"
+      ],
+      "lifespan": {
+        "adult": 18,
+        "middle": 40,
+        "old": 60,
+        "max": 85
+      },
+      "playable": true
+    },
+    {
+      "id": "southern_human",
+      "category": "human",
+      "nameKo": "남부인",
+      "nameEn": "Southerner",
+      "description": "뜨거운 사막과 열대 지방에서 살아가는 민족. 검게 그을린 피부와 검은 머리카락이 특징이다.",
+      "lore": "광활한 사막과 열대 우림 사이에서 번영한 고대 문명의 후예들이다. 뛰어난 상업 감각과 마법에 대한 깊은 이해로 유명하다. 화려한 문화와 예술을 발전시켰으며, 대륙 전역과 활발히 교역한다.",
+      "traits": {
+        "innate": [
+          "heat_resistant",
+          "desert_wisdom"
+        ],
+        "optional": [
+          "merchant",
+          "sun_blessed"
+        ]
+      },
+      "statModifiers": {
+        "int": 1,
+        "cha": 2,
+        "con": -1
+      },
+      "appearance": {
+        "body": {
+          "availableIndices": [
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "spriteNames": [
+            "Human_1",
+            "Human_2",
+            "Human_3",
+            "Human_4",
+            "Human_5"
+          ]
+        },
+        "skinTones": {
+          "available": [
+            "tan",
+            "olive",
+            "brown",
+            "dark",
+            "ebony"
+          ],
+          "default": "brown",
+          "colors": {
+            "tan": "#D2A679",
+            "olive": "#C4A35A",
+            "brown": "#8B7355",
+            "dark": "#5D4037",
+            "ebony": "#3E2723"
+          }
+        },
+        "eye": {
+          "availableIndices": [
+            0,
+            2,
+            3,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "colors": {
+            "available": [
+              "brown",
+              "amber",
+              "hazel",
+              "gold",
+              "black"
+            ],
+            "default": "brown",
+            "values": {
+              "brown": "#8B4513",
+              "amber": "#FFBF00",
+              "hazel": "#8E7618",
+              "gold": "#FFD700",
+              "black": "#1C1C1C"
+            }
+          }
+        },
+        "hair": {
+          "availableIndices": "all",
+          "colors": {
+            "available": [
+              "black",
+              "dark_brown",
+              "brown",
+              "white",
+              "gray"
+            ],
+            "default": "black",
+            "values": {
+              "black": "#1C1C1C",
+              "dark_brown": "#3D2314",
+              "brown": "#6B4423",
+              "white": "#FFFFFF",
+              "gray": "#808080"
+            }
+          }
+        },
+        "facehair": {
+          "availableIndices": "all",
+          "colors": "same_as_hair"
+        }
+      },
+      "resistances": {
+        "fire": 15,
+        "ice": -10
+      },
+      "startingLocation": "desert_oasis",
+      "languages": [
+        "common",
+        "southern"
+      ],
+      "lifespan": {
+        "adult": 18,
+        "middle": 40,
+        "old": 60,
+        "max": 80
+      },
+      "playable": true
+    },
+    {
+      "id": "western_human",
+      "category": "human",
+      "nameKo": "서부인",
+      "nameEn": "Westerner",
+      "description": "비옥한 평원과 해안 지대에서 번영한 민족. 다양한 외모를 가지며 적응력이 뛰어나다.",
+      "lore": "대륙 서쪽의 온화한 기후에서 살아가는 인간들이다. 다양한 문화가 교차하는 지역에서 살아왔기에 적응력이 뛰어나고 개방적이다. 상업과 기사도 문화가 발달했으며, 현재 대륙의 주요 왕국들을 이루고 있다.",
+      "traits": {
+        "innate": [
+          "adaptable",
+          "versatile"
+        ],
+        "optional": [
+          "knight",
+          "trader"
+        ]
+      },
+      "statModifiers": {
+        "str": 1,
+        "dex": 1,
+        "int": 1,
+        "wis": -1
+      },
+      "appearance": {
+        "body": {
+          "availableIndices": [
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "spriteNames": [
+            "Human_1",
+            "Human_2",
+            "Human_3",
+            "Human_4",
+            "Human_5"
+          ]
+        },
+        "skinTones": {
+          "available": [
+            "pale",
+            "fair",
+            "light",
+            "medium",
+            "tan",
+            "olive"
+          ],
+          "default": "fair",
+          "colors": {
+            "pale": "#FFE4E1",
+            "fair": "#FFDAB9",
+            "light": "#F5DEB3",
+            "medium": "#DEB887",
+            "tan": "#D2A679",
+            "olive": "#C4A35A"
+          }
+        },
+        "eye": {
+          "availableIndices": [
+            0,
+            2,
+            3,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "colors": {
+            "available": [
+              "brown",
+              "blue",
+              "green",
+              "gray",
+              "hazel"
+            ],
+            "default": "brown",
+            "values": {
+              "brown": "#8B4513",
+              "blue": "#4169E1",
+              "green": "#228B22",
+              "gray": "#708090",
+              "hazel": "#8E7618"
+            }
+          }
+        },
+        "hair": {
+          "availableIndices": "all",
+          "colors": {
+            "available": [
+              "black",
+              "dark_brown",
+              "brown",
+              "auburn",
+              "red",
+              "blonde",
+              "gray",
+              "white"
+            ],
+            "default": "brown",
+            "values": {
+              "black": "#1C1C1C",
+              "dark_brown": "#3D2314",
+              "brown": "#8B4513",
+              "auburn": "#A52A2A",
+              "red": "#B22222",
+              "blonde": "#F0E68C",
+              "gray": "#808080",
+              "white": "#FFFFFF"
+            }
+          }
+        },
+        "facehair": {
+          "availableIndices": "all",
+          "colors": "same_as_hair"
+        }
+      },
+      "resistances": {},
+      "bonusSkillPoints": 1,
+      "startingLocation": "starting_village",
+      "languages": [
+        "common"
+      ],
+      "lifespan": {
+        "adult": 18,
+        "middle": 40,
+        "old": 60,
+        "max": 80
+      },
+      "playable": true
+    },
+    {
+      "id": "dark_elf",
+      "category": "elf",
+      "nameKo": "다크엘프",
+      "nameEn": "Dark Elf",
+      "description": "지하 세계에서 살아가는 엘프. 검푸른 피부와 붉은 또는 하얀 눈이 특징이다.",
+      "lore": "고대에 다른 엘프들과 갈라져 지하 세계로 떠난 엘프들이다. 어둠 속에서 살아남기 위해 독과 암살술을 발전시켰다. 거미의 여신을 숭배하는 자들과 그로부터 벗어나려는 자들로 나뉘어 있다. 지상의 다른 종족들에게 두려움의 대상이다.",
+      "traits": {
+        "innate": [
+          "superior_darkvision",
+          "sunlight_sensitivity"
+        ],
+        "optional": [
+          "poison_master",
+          "shadow_magic"
+        ]
+      },
+      "statModifiers": {
+        "dex": 2,
+        "cha": 1,
+        "wis": -1,
+        "lck": -1
+      },
+      "appearance": {
+        "body": {
+          "availableIndices": [
+            1,
+            2,
+            8,
+            9
+          ],
+          "spriteNames": [
+            "Elf_1",
+            "Elf_2",
+            "New_Elf_1",
+            "New_Elf_2"
+          ]
+        },
+        "skinTones": {
+          "available": [
+            "obsidian",
+            "charcoal",
+            "purple",
+            "blue_gray"
+          ],
+          "default": "obsidian",
+          "colors": {
+            "obsidian": "#36454F",
+            "charcoal": "#2F4F4F",
+            "purple": "#483D8B",
+            "blue_gray": "#6A5ACD"
+          }
+        },
+        "eye": {
+          "availableIndices": [
+            0,
+            2,
+            3,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "colors": {
+            "available": [
+              "red",
+              "violet",
+              "white",
+              "amber",
+              "pale_yellow"
+            ],
+            "default": "red",
+            "values": {
+              "red": "#DC143C",
+              "violet": "#8B008B",
+              "white": "#F5F5F5",
+              "amber": "#FFBF00",
+              "pale_yellow": "#FFFFE0"
+            }
+          }
+        },
+        "hair": {
+          "availableIndices": "all",
+          "colors": {
+            "available": [
+              "white",
+              "silver",
+              "pale_violet",
+              "pale_blue",
+              "pale_gray"
+            ],
+            "default": "white",
+            "values": {
+              "white": "#FFFFFF",
+              "silver": "#C0C0C0",
+              "pale_violet": "#DDA0DD",
+              "pale_blue": "#B0E0E6",
+              "pale_gray": "#D3D3D3"
+            }
+          }
+        },
+        "facehair": {
+          "availableIndices": [],
+          "note": "엘프는 수염이 자라지 않음"
+        }
+      },
+      "resistances": {
+        "dark": 20,
+        "holy": -20
+      },
+      "vulnerabilities": {
+        "sunlight": true,
+        "note": "낮 시간대 전투 시 명중 -10%"
+      },
+      "abilities": {
+        "darkvision": 120,
+        "poisonResist": 25
+      },
+      "startingLocation": "underground_city",
+      "languages": [
+        "common",
+        "elvish",
+        "undercommon"
+      ],
+      "lifespan": {
+        "adult": 100,
+        "middle": 350,
+        "old": 550,
+        "max": 750
+      },
+      "playable": true
+    },
+    {
+      "id": "high_elf",
+      "category": "elf",
+      "nameKo": "하이엘프",
+      "nameEn": "High Elf",
+      "description": "고대 마법 문명의 계승자. 창백한 피부와 푸른 또는 보라색 눈이 특징이다.",
+      "lore": "고대에 마법의 비밀을 처음 발견한 엘프들의 후예이다. 거대한 수정 탑과 마법 도서관을 건설했으며, 모든 종족 중 가장 강력한 마법사들을 배출한다. 다소 오만하다는 평을 듣지만, 지식과 예술에 대한 열정은 비할 데가 없다.",
+      "traits": {
+        "innate": [
+          "arcane_legacy",
+          "keen_senses"
+        ],
+        "optional": [
+          "archmage_blood",
+          "ancient_knowledge"
+        ]
+      },
+      "statModifiers": {
+        "int": 2,
+        "cha": 1,
+        "con": -2
+      },
+      "appearance": {
+        "body": {
+          "availableIndices": [
+            1,
+            2,
+            8,
+            9
+          ],
+          "spriteNames": [
+            "Elf_1",
+            "Elf_2",
+            "New_Elf_1",
+            "New_Elf_2"
+          ]
+        },
+        "skinTones": {
+          "available": [
+            "pale",
+            "fair",
+            "ivory",
+            "silver"
+          ],
+          "default": "pale",
+          "colors": {
+            "pale": "#FFF5EE",
+            "fair": "#FFEFD5",
+            "ivory": "#FFFFF0",
+            "silver": "#E8E8E8"
+          }
+        },
+        "eye": {
+          "availableIndices": [
+            0,
+            2,
+            3,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "colors": {
+            "available": [
+              "blue",
+              "violet",
+              "silver",
+              "gold",
+              "amber"
+            ],
+            "default": "blue",
+            "values": {
+              "blue": "#4169E1",
+              "violet": "#8B008B",
+              "silver": "#C0C0C0",
+              "gold": "#FFD700",
+              "amber": "#FFBF00"
+            }
+          }
+        },
+        "hair": {
+          "availableIndices": "all",
+          "colors": {
+            "available": [
+              "platinum",
+              "silver",
+              "gold",
+              "white",
+              "pale_blue",
+              "pale_violet"
+            ],
+            "default": "platinum",
+            "values": {
+              "platinum": "#E5E4E2",
+              "silver": "#C0C0C0",
+              "gold": "#FFD700",
+              "white": "#FFFFFF",
+              "pale_blue": "#ADD8E6",
+              "pale_violet": "#DDA0DD"
+            }
+          }
+        },
+        "facehair": {
+          "availableIndices": [],
+          "note": "엘프는 수염이 자라지 않음"
+        }
+      },
+      "resistances": {
+        "holy": 10,
+        "dark": -10
+      },
+      "abilities": {
+        "darkvision": 60,
+        "bonusCantrip": 1
+      },
+      "startingLocation": "mage_tower",
+      "languages": [
+        "common",
+        "elvish",
+        "arcane"
+      ],
+      "lifespan": {
+        "adult": 100,
+        "middle": 400,
+        "old": 650,
+        "max": 900
+      },
+      "playable": true
+    },
+    {
+      "id": "moon_elf",
+      "category": "elf",
+      "nameKo": "문엘프",
+      "nameEn": "Moon Elf",
+      "description": "달의 축복을 받은 신비로운 엘프. 은빛 피부와 달빛 같은 눈이 특징이다.",
+      "lore": "달의 여신을 섬기는 엘프들로, 밤과 꿈의 마법에 정통하다. 달빛 아래서 힘이 강해지며, 예언과 환영 마법에 뛰어나다. 은둔적이고 신비로운 존재로, 다른 종족들과 거의 교류하지 않는다.",
+      "traits": {
+        "innate": [
+          "moonlight_blessing",
+          "dream_walker"
+        ],
+        "optional": [
+          "oracle",
+          "illusion_master"
+        ]
+      },
+      "statModifiers": {
+        "wis": 2,
+        "cha": 1,
+        "str": -2
+      },
+      "appearance": {
+        "body": {
+          "availableIndices": [
+            1,
+            2,
+            8,
+            9
+          ],
+          "spriteNames": [
+            "Elf_1",
+            "Elf_2",
+            "New_Elf_1",
+            "New_Elf_2"
+          ]
+        },
+        "skinTones": {
+          "available": [
+            "silver",
+            "pale_blue",
+            "pearl",
+            "moonlight"
+          ],
+          "default": "silver",
+          "colors": {
+            "silver": "#E8E8E8",
+            "pale_blue": "#B0C4DE",
+            "pearl": "#FDEEF4",
+            "moonlight": "#F0F8FF"
+          }
+        },
+        "eye": {
+          "availableIndices": [
+            0,
+            2,
+            3,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "colors": {
+            "available": [
+              "silver",
+              "pale_blue",
+              "violet",
+              "white",
+              "pale_gold"
+            ],
+            "default": "silver",
+            "values": {
+              "silver": "#C0C0C0",
+              "pale_blue": "#ADD8E6",
+              "violet": "#EE82EE",
+              "white": "#F5F5F5",
+              "pale_gold": "#EEE8AA"
+            }
+          }
+        },
+        "hair": {
+          "availableIndices": "all",
+          "colors": {
+            "available": [
+              "silver",
+              "white",
+              "pale_blue",
+              "pale_violet",
+              "moonlight"
+            ],
+            "default": "silver",
+            "values": {
+              "silver": "#C0C0C0",
+              "white": "#FFFFFF",
+              "pale_blue": "#B0E0E6",
+              "pale_violet": "#DDA0DD",
+              "moonlight": "#F0F8FF"
+            }
+          }
+        },
+        "facehair": {
+          "availableIndices": [],
+          "note": "엘프는 수염이 자라지 않음"
+        }
+      },
+      "resistances": {
+        "holy": 15,
+        "dark": 10
+      },
+      "abilities": {
+        "darkvision": 90,
+        "nightBonus": {
+          "note": "밤 시간대 모든 마법 +15%",
+          "value": 15
+        }
+      },
+      "startingLocation": "moon_temple",
+      "languages": [
+        "common",
+        "elvish",
+        "celestial"
+      ],
+      "lifespan": {
+        "adult": 100,
+        "middle": 400,
+        "old": 650,
+        "max": 850
+      },
+      "playable": true
+    },
+    {
+      "id": "wood_elf",
+      "category": "elf",
+      "nameKo": "우드엘프",
+      "nameEn": "Wood Elf",
+      "description": "깊은 숲에서 자연과 하나가 되어 살아가는 엘프. 구릿빛 피부와 녹색 또는 갈색 눈이 특징이다.",
+      "lore": "고대 숲의 수호자들로, 자연과 동물들과 깊은 유대를 맺고 살아간다. 활과 창을 사용한 사냥에 능하며, 은밀한 이동과 정찰에 탁월하다. 외부인을 경계하지만 자연을 해치지 않는 자에게는 호의적이다.",
+      "traits": {
+        "innate": [
+          "nature_bond",
+          "fleet_footed"
+        ],
+        "optional": [
+          "beast_friend",
+          "forest_stalker"
+        ]
+      },
+      "statModifiers": {
+        "dex": 2,
+        "wis": 1,
+        "str": -1,
+        "con": -1
+      },
+      "appearance": {
+        "body": {
+          "availableIndices": [
+            1,
+            2,
+            8,
+            9
+          ],
+          "spriteNames": [
+            "Elf_1",
+            "Elf_2",
+            "New_Elf_1",
+            "New_Elf_2"
+          ]
+        },
+        "skinTones": {
+          "available": [
+            "tan",
+            "olive",
+            "copper",
+            "brown"
+          ],
+          "default": "copper",
+          "colors": {
+            "tan": "#D2B48C",
+            "olive": "#C4A35A",
+            "copper": "#B87333",
+            "brown": "#8B7355"
+          }
+        },
+        "eye": {
+          "availableIndices": [
+            0,
+            2,
+            3,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "colors": {
+            "available": [
+              "green",
+              "amber",
+              "brown",
+              "hazel",
+              "gold"
+            ],
+            "default": "green",
+            "values": {
+              "green": "#228B22",
+              "amber": "#FFBF00",
+              "brown": "#8B4513",
+              "hazel": "#8E7618",
+              "gold": "#DAA520"
+            }
+          }
+        },
+        "hair": {
+          "availableIndices": "all",
+          "colors": {
+            "available": [
+              "brown",
+              "dark_brown",
+              "auburn",
+              "black",
+              "dark_green",
+              "copper"
+            ],
+            "default": "brown",
+            "values": {
+              "brown": "#8B4513",
+              "dark_brown": "#3D2314",
+              "auburn": "#A52A2A",
+              "black": "#1C1C1C",
+              "dark_green": "#006400",
+              "copper": "#B87333"
+            }
+          }
+        },
+        "facehair": {
+          "availableIndices": [],
+          "note": "엘프는 수염이 자라지 않음"
+        }
+      },
+      "resistances": {
+        "earth": 15
+      },
+      "abilities": {
+        "darkvision": 60,
+        "trackingBonus": 10
+      },
+      "startingLocation": "forest_entrance",
+      "languages": [
+        "common",
+        "elvish",
+        "sylvan"
+      ],
+      "lifespan": {
+        "adult": 100,
+        "middle": 350,
+        "old": 550,
+        "max": 750
+      },
+      "playable": true
+    },
+    {
+      "id": "hill_dwarf",
+      "category": "dwarf",
+      "nameKo": "언덕 드워프",
+      "nameEn": "Hill Dwarf",
+      "description": "지상 세계와 더 가까이 살아가는 드워프. 친근하고 건강한 체질이 특징이다.",
+      "lore": "산악 드워프와 달리 지상에 가까운 언덕과 얕은 광산에서 살아간다. 다른 종족들과 더 활발히 교류하며, 훌륭한 양조사와 농부들이 많다. 건강하고 튼튼한 체질로 유명하며, 치유 마법에도 소질이 있다.",
+      "traits": {
+        "innate": [
+          "dwarven_toughness",
+          "social_dwarf"
+        ],
+        "optional": [
+          "brewmaster",
+          "healer_touch"
+        ]
+      },
+      "statModifiers": {
+        "con": 2,
+        "wis": 1,
+        "dex": -1
+      },
+      "appearance": {
+        "body": {
+          "availableIndices": [
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "spriteNames": [
+            "Human_1",
+            "Human_2",
+            "Human_3",
+            "Human_4",
+            "Human_5"
+          ]
+        },
+        "skinTones": {
+          "available": [
+            "fair",
+            "tan",
+            "ruddy",
+            "olive"
+          ],
+          "default": "tan",
+          "colors": {
+            "fair": "#FFDAB9",
+            "tan": "#D2A679",
+            "ruddy": "#CD853F",
+            "olive": "#C4A35A"
+          }
+        },
+        "eye": {
+          "availableIndices": [
+            0,
+            2,
+            3,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "colors": {
+            "available": [
+              "brown",
+              "green",
+              "hazel",
+              "amber",
+              "blue"
+            ],
+            "default": "hazel",
+            "values": {
+              "brown": "#8B4513",
+              "green": "#228B22",
+              "hazel": "#8E7618",
+              "amber": "#FFBF00",
+              "blue": "#4682B4"
+            }
+          }
+        },
+        "hair": {
+          "availableIndices": "all",
+          "colors": {
+            "available": [
+              "brown",
+              "auburn",
+              "red",
+              "blonde",
+              "gray",
+              "white"
+            ],
+            "default": "brown",
+            "values": {
+              "brown": "#8B4513",
+              "auburn": "#A52A2A",
+              "red": "#B22222",
+              "blonde": "#DAA520",
+              "gray": "#808080",
+              "white": "#FFFFFF"
+            }
+          }
+        },
+        "facehair": {
+          "availableIndices": "all",
+          "required": true,
+          "colors": "same_as_hair"
+        }
+      },
+      "resistances": {
+        "poison": 15
+      },
+      "abilities": {
+        "darkvision": 60,
+        "bonusHp": 1
+      },
+      "startingLocation": "hillside_village",
+      "languages": [
+        "common",
+        "dwarvish"
+      ],
+      "lifespan": {
+        "adult": 50,
+        "middle": 150,
+        "old": 280,
+        "max": 350
+      },
+      "playable": true
+    },
+    {
+      "id": "mountain_dwarf",
+      "category": "dwarf",
+      "nameKo": "산악 드워프",
+      "nameEn": "Mountain Dwarf",
+      "description": "깊은 산맥의 지하 요새에서 살아가는 드워프. 단단한 체격과 긴 수염이 특징이다.",
+      "lore": "태초부터 산의 심장부에서 살아온 드워프들이다. 뛰어난 대장장이이자 광부로, 세계에서 가장 정교한 무기와 갑옷을 제작한다. 명예와 맹세를 목숨보다 중시하며, 한 번 품은 원한은 천 년이 지나도 잊지 않는다.",
+      "traits": {
+        "innate": [
+          "dwarven_resilience",
+          "stonecunning"
+        ],
+        "optional": [
+          "master_smith",
+          "grudge_keeper"
+        ]
+      },
+      "statModifiers": {
+        "con": 2,
+        "str": 2,
+        "dex": -2,
+        "cha": -1
+      },
+      "appearance": {
+        "body": {
+          "availableIndices": [
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "spriteNames": [
+            "Human_1",
+            "Human_2",
+            "Human_3",
+            "Human_4",
+            "Human_5"
+          ],
+          "note": "드워프 전용 바디 스프라이트 추가 예정"
+        },
+        "skinTones": {
+          "available": [
+            "fair",
+            "tan",
+            "ruddy",
+            "pale"
+          ],
+          "default": "ruddy",
+          "colors": {
+            "fair": "#FFDAB9",
+            "tan": "#D2A679",
+            "ruddy": "#CD853F",
+            "pale": "#FFE4C4"
+          }
+        },
+        "eye": {
+          "availableIndices": [
+            0,
+            2,
+            3,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "colors": {
+            "available": [
+              "brown",
+              "gray",
+              "blue",
+              "black",
+              "amber"
+            ],
+            "default": "brown",
+            "values": {
+              "brown": "#8B4513",
+              "gray": "#708090",
+              "blue": "#4682B4",
+              "black": "#1C1C1C",
+              "amber": "#FFBF00"
+            }
+          }
+        },
+        "hair": {
+          "availableIndices": "all",
+          "colors": {
+            "available": [
+              "black",
+              "dark_brown",
+              "brown",
+              "auburn",
+              "red",
+              "gray",
+              "white"
+            ],
+            "default": "dark_brown",
+            "values": {
+              "black": "#1C1C1C",
+              "dark_brown": "#3D2314",
+              "brown": "#8B4513",
+              "auburn": "#A52A2A",
+              "red": "#B22222",
+              "gray": "#808080",
+              "white": "#FFFFFF"
+            }
+          }
+        },
+        "facehair": {
+          "availableIndices": "all",
+          "required": true,
+          "note": "드워프 남성은 반드시 수염을 가짐",
+          "colors": "same_as_hair"
+        }
+      },
+      "resistances": {
+        "earth": 15,
+        "poison": 20
+      },
+      "abilities": {
+        "darkvision": 60,
+        "craftingBonus": 15
+      },
+      "startingLocation": "dwarven_stronghold",
+      "languages": [
+        "common",
+        "dwarvish"
+      ],
+      "lifespan": {
+        "adult": 50,
+        "middle": 150,
+        "old": 300,
+        "max": 400
+      },
+      "playable": true
+    },
+    {
+      "id": "gray_orc",
+      "category": "orc",
+      "nameKo": "회색 오크",
+      "nameEn": "Gray Orc",
+      "description": "산악 지대에서 살아가는 더 지능적인 오크. 회색 피부와 냉정한 성격이 특징이다.",
+      "lore": "높은 산맥의 동굴과 요새에서 살아가는 오크의 아종이다. 일반 오크보다 지능이 높고 전술적이며, 조직적인 군대를 운용한다. 차가운 환경에 적응하여 회색 피부를 가지게 되었으며, 철기 제작에도 능숙하다.",
+      "traits": {
+        "innate": [
+          "tactical_mind",
+          "mountain_adaptation"
+        ],
+        "optional": [
+          "war_strategist",
+          "ironworker"
+        ]
+      },
+      "statModifiers": {
+        "str": 2,
+        "con": 1,
+        "int": 1,
+        "cha": -2
+      },
+      "appearance": {
+        "body": {
+          "availableIndices": [
+            10,
+            11,
+            12,
+            13
+          ],
+          "spriteNames": [
+            "Orc_1",
+            "Orc_2",
+            "Orc_3",
+            "Orc_4"
+          ]
+        },
+        "skinTones": {
+          "available": [
+            "light_gray",
+            "gray",
+            "dark_gray",
+            "slate"
+          ],
+          "default": "gray",
+          "colors": {
+            "light_gray": "#A9A9A9",
+            "gray": "#808080",
+            "dark_gray": "#696969",
+            "slate": "#708090"
+          }
+        },
+        "eye": {
+          "availableIndices": [
+            0,
+            2,
+            3,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "colors": {
+            "available": [
+              "yellow",
+              "amber",
+              "gray",
+              "blue",
+              "white"
+            ],
+            "default": "yellow",
+            "values": {
+              "yellow": "#FFD700",
+              "amber": "#FFBF00",
+              "gray": "#708090",
+              "blue": "#4682B4",
+              "white": "#F5F5F5"
+            }
+          }
+        },
+        "hair": {
+          "availableIndices": "all",
+          "colors": {
+            "available": [
+              "black",
+              "dark_gray",
+              "white",
+              "silver"
+            ],
+            "default": "black",
+            "values": {
+              "black": "#1C1C1C",
+              "dark_gray": "#2F4F4F",
+              "white": "#FFFFFF",
+              "silver": "#C0C0C0"
+            }
+          }
+        },
+        "facehair": {
+          "availableIndices": "all",
+          "colors": "same_as_hair"
+        }
+      },
+      "resistances": {
+        "ice": 15
+      },
+      "abilities": {
+        "darkvision": 60
+      },
+      "startingLocation": "mountain_fortress",
+      "languages": [
+        "common",
+        "orcish",
+        "dwarvish"
+      ],
+      "lifespan": {
+        "adult": 14,
+        "middle": 35,
+        "old": 55,
+        "max": 80
+      },
+      "playable": true
+    },
+    {
+      "id": "green_orc",
+      "category": "orc",
+      "nameKo": "녹색 오크",
+      "nameEn": "Green Orc",
+      "description": "황무지에서 살아가는 전사 종족. 녹색 피부와 강인한 체격이 특징이다.",
+      "lore": "대륙의 황무지와 평원에서 부족 단위로 살아가는 전사 종족이다. 힘과 용맹을 최고의 가치로 여기며, 전투에서 명예롭게 싸우는 것을 중시한다. 과거에는 약탈자로 악명이 높았지만, 현재는 일부 부족이 다른 종족들과 평화롭게 교류하고 있다.",
+      "traits": {
+        "innate": [
+          "relentless_endurance",
+          "savage_attacks"
+        ],
+        "optional": [
+          "berserker",
+          "war_chief"
+        ]
+      },
+      "statModifiers": {
+        "str": 3,
+        "con": 1,
+        "int": -2,
+        "cha": -1
+      },
+      "appearance": {
+        "body": {
+          "availableIndices": [
+            10,
+            11,
+            12,
+            13
+          ],
+          "spriteNames": [
+            "Orc_1",
+            "Orc_2",
+            "Orc_3",
+            "Orc_4"
+          ]
+        },
+        "skinTones": {
+          "available": [
+            "light_green",
+            "green",
+            "dark_green",
+            "olive_green"
+          ],
+          "default": "green",
+          "colors": {
+            "light_green": "#90EE90",
+            "green": "#556B2F",
+            "dark_green": "#2F4F2F",
+            "olive_green": "#6B8E23"
+          }
+        },
+        "eye": {
+          "availableIndices": [
+            0,
+            2,
+            3,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "colors": {
+            "available": [
+              "red",
+              "yellow",
+              "orange",
+              "amber",
+              "brown"
+            ],
+            "default": "red",
+            "values": {
+              "red": "#DC143C",
+              "yellow": "#FFD700",
+              "orange": "#FF8C00",
+              "amber": "#FFBF00",
+              "brown": "#8B4513"
+            }
+          }
+        },
+        "hair": {
+          "availableIndices": "all",
+          "colors": {
+            "available": [
+              "black",
+              "dark_brown",
+              "dark_red",
+              "gray"
+            ],
+            "default": "black",
+            "values": {
+              "black": "#1C1C1C",
+              "dark_brown": "#3D2314",
+              "dark_red": "#8B0000",
+              "gray": "#696969"
+            }
+          }
+        },
+        "facehair": {
+          "availableIndices": "all",
+          "colors": "same_as_hair"
+        }
+      },
+      "resistances": {
+        "fire": 10
+      },
+      "abilities": {
+        "darkvision": 60,
+        "intimidationBonus": 15
+      },
+      "startingLocation": "orc_camp",
+      "languages": [
+        "common",
+        "orcish"
+      ],
+      "lifespan": {
+        "adult": 14,
+        "middle": 30,
+        "old": 50,
+        "max": 70
+      },
+      "playable": true
+    },
+    {
+      "id": "skeleton",
+      "category": "undead",
+      "nameKo": "스켈레톤",
+      "nameEn": "Skeleton",
+      "description": "뼈만 남은 언데드. 어둠의 마법으로 되살아났다.",
+      "lore": "강력한 네크로맨서에 의해 소환된 언데드 전사들이다. 생전의 기억은 대부분 잃었지만, 전투 본능은 남아있다. 고통을 느끼지 않으며 피로도 모른다. 일부는 주인의 지배에서 벗어나 자유의지를 가지기도 한다.",
+      "traits": {
+        "innate": [
+          "undead_fortitude",
+          "boneless"
+        ],
+        "optional": [
+          "eternal_soldier",
+          "death_touched"
+        ]
+      },
+      "statModifiers": {
+        "dex": 2,
+        "con": -2,
+        "cha": -3
+      },
+      "playable": false,
+      "appearance": {
+        "body": {
+          "availableIndices": [
+            14
+          ],
+          "spriteNames": [
+            "Skelton_1"
+          ]
+        },
+        "skinTones": {
+          "available": [
+            "bone",
+            "aged_bone",
+            "dark_bone"
+          ],
+          "default": "bone",
+          "colors": {
+            "bone": "#F5F5DC",
+            "aged_bone": "#D2B48C",
+            "dark_bone": "#8B7355"
+          }
+        },
+        "eye": {
+          "availableIndices": [
+            0
+          ],
+          "colors": {
+            "available": [
+              "empty",
+              "red_flame",
+              "blue_flame",
+              "green_flame"
+            ],
+            "default": "empty",
+            "values": {
+              "empty": "#000000",
+              "red_flame": "#FF0000",
+              "blue_flame": "#00BFFF",
+              "green_flame": "#00FF00"
+            }
+          }
+        },
+        "hair": {
+          "availableIndices": [],
+          "note": "스켈레톤은 머리카락이 없음"
+        },
+        "facehair": {
+          "availableIndices": [],
+          "note": "스켈레톤은 수염이 없음"
+        }
+      },
+      "resistances": {
+        "dark": 30,
+        "poison": 100,
+        "holy": -50
+      },
+      "immunities": [
+        "poison",
+        "disease",
+        "exhaustion"
+      ],
+      "vulnerabilities": [
+        "holy",
+        "bludgeoning"
+      ],
+      "abilities": {
+        "darkvision": 60,
+        "noBreathing": true,
+        "noSleeping": true,
+        "noEating": true
+      },
+      "startingLocation": null,
+      "languages": [
+        "understands_previous"
+      ],
+      "lifespan": {
+        "note": "언데드는 소멸하기 전까지 무한히 존재"
+      }
+    },
+    {
+      "id": "vampire",
+      "category": "undead",
+      "nameKo": "뱀파이어",
+      "nameEn": "Vampire",
+      "description": "영원한 밤의 존재. 피를 마시며 살아가는 우아하고 위험한 언데드.",
+      "lore": "다른 뱀파이어에게 물려 변이된 존재들이다. 인간의 외모를 유지하지만 햇빛에 약하고 피를 마셔야만 존재할 수 있다. 매우 강력하고 지능적이며, 수백 년을 살아가며 막대한 지식과 힘을 축적한다. 사회에서는 숨어 살거나 밤의 귀족으로 군림한다.",
+      "traits": {
+        "innate": [
+          "blood_hunger",
+          "immortal_charm"
+        ],
+        "optional": [
+          "night_lord",
+          "blood_magic"
+        ]
+      },
+      "statModifiers": {
+        "str": 2,
+        "dex": 2,
+        "cha": 2,
+        "wis": -1
+      },
+      "playable": false,
+      "unlockCondition": "특수 이벤트로 뱀파이어화 가능",
+      "appearance": {
+        "body": {
+          "availableIndices": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            1,
+            2
+          ],
+          "spriteNames": [
+            "Human_1",
+            "Human_2",
+            "Human_3",
+            "Human_4",
+            "Human_5",
+            "Elf_1",
+            "Elf_2"
+          ],
+          "note": "생전 종족의 외형 유지"
+        },
+        "skinTones": {
+          "available": [
+            "pale",
+            "deathly_pale",
+            "ashen",
+            "marble"
+          ],
+          "default": "pale",
+          "colors": {
+            "pale": "#F5F5F5",
+            "deathly_pale": "#FAEBD7",
+            "ashen": "#D3D3D3",
+            "marble": "#FFFAFA"
+          }
+        },
+        "eye": {
+          "availableIndices": [
+            0,
+            2,
+            3,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "colors": {
+            "available": [
+              "red",
+              "crimson",
+              "gold",
+              "silver",
+              "black"
+            ],
+            "default": "red",
+            "values": {
+              "red": "#DC143C",
+              "crimson": "#B22222",
+              "gold": "#FFD700",
+              "silver": "#C0C0C0",
+              "black": "#1C1C1C"
+            }
+          },
+          "note": "배고플 때 눈이 빨갛게 빛남"
+        },
+        "hair": {
+          "availableIndices": "all",
+          "colors": {
+            "available": [
+              "black",
+              "white",
+              "silver",
+              "dark_red",
+              "original"
+            ],
+            "default": "black",
+            "values": {
+              "black": "#1C1C1C",
+              "white": "#FFFFFF",
+              "silver": "#C0C0C0",
+              "dark_red": "#8B0000"
+            }
+          }
+        },
+        "facehair": {
+          "availableIndices": "all",
+          "colors": "same_as_hair"
+        },
+        "special": {
+          "fangs": true,
+          "claws": "optional"
+        }
+      },
+      "resistances": {
+        "dark": 40,
+        "ice": 20,
+        "holy": -50
+      },
+      "immunities": [
+        "poison",
+        "disease",
+        "charm"
+      ],
+      "vulnerabilities": {
+        "sunlight": {
+          "note": "햇빛 아래서 매 턴 20 피해",
+          "avoidable": [
+            "shadow",
+            "cloud",
+            "umbrella",
+            "special_item"
+          ]
+        },
+        "holy": true,
+        "fire": true,
+        "running_water": true
+      },
+      "abilities": {
+        "darkvision": 120,
+        "lifesteal": 25,
+        "shapeshift": [
+          "bat",
+          "mist",
+          "wolf"
+        ],
+        "spiderClimb": true,
+        "charm": {
+          "note": "매력 판정으로 NPC 조종"
+        }
+      },
+      "needs": {
+        "blood": {
+          "interval": "3일마다",
+          "penalty": "STR/DEX -1씩 감소, 최대 -5"
+        }
+      },
+      "startingLocation": "vampire_castle",
+      "languages": [
+        "common",
+        "all_previous"
+      ],
+      "lifespan": {
+        "note": "햇빛이나 특수한 방법으로 파괴되기 전까지 영원히 생존"
+      }
+    },
+    {
+      "id": "zombie",
+      "category": "undead",
+      "nameKo": "좀비",
+      "nameEn": "Zombie",
+      "description": "부패한 육체로 되살아난 언데드. 느리지만 강인하다.",
+      "lore": "시체가 어둠의 마법이나 저주로 되살아난 존재들이다. 스켈레톤보다 강하고 튼튼하지만 더 느리다. 대부분 생전의 기억이 없고 본능에 따라 움직이지만, 강력한 좀비는 지능을 유지하기도 한다.",
+      "traits": {
+        "innate": [
+          "undead_resilience",
+          "shambling"
+        ],
+        "optional": [
+          "relentless",
+          "plague_bearer"
+        ]
+      },
+      "statModifiers": {
+        "str": 2,
+        "con": 3,
+        "dex": -3,
+        "int": -2,
+        "cha": -4
+      },
+      "playable": false,
+      "appearance": {
+        "body": {
+          "availableIndices": [
+            15,
+            16,
+            17,
+            18,
+            19,
+            20
+          ],
+          "spriteNames": [
+            "Zombie_1",
+            "Zombie_2",
+            "Zombie_3",
+            "Zombie_4",
+            "Zombie_5",
+            "Zombie_6"
+          ]
+        },
+        "skinTones": {
+          "available": [
+            "pale_gray",
+            "greenish",
+            "purple",
+            "rotting"
+          ],
+          "default": "greenish",
+          "colors": {
+            "pale_gray": "#A9A9A9",
+            "greenish": "#6B8E6B",
+            "purple": "#8B668B",
+            "rotting": "#5F5F5F"
+          }
+        },
+        "eye": {
+          "availableIndices": [
+            0,
+            1
+          ],
+          "colors": {
+            "available": [
+              "white",
+              "yellow",
+              "red",
+              "empty"
+            ],
+            "default": "white",
+            "values": {
+              "white": "#F5F5F5",
+              "yellow": "#FFFF00",
+              "red": "#FF0000",
+              "empty": "#000000"
+            }
+          }
+        },
+        "hair": {
+          "availableIndices": "all",
+          "note": "일부 좀비는 머리카락이 남아있음",
+          "colors": {
+            "available": [
+              "black_gray",
+              "brown_gray",
+              "white",
+              "none"
+            ],
+            "default": "black_gray",
+            "values": {
+              "black_gray": "#2F2F2F",
+              "brown_gray": "#4A3728",
+              "white": "#D3D3D3",
+              "none": null
+            }
+          }
+        },
+        "facehair": {
+          "availableIndices": [],
+          "note": "좀비는 수염이 거의 없음"
+        }
+      },
+      "resistances": {
+        "dark": 25,
+        "poison": 100,
+        "holy": -40
+      },
+      "immunities": [
+        "poison",
+        "disease"
+      ],
+      "vulnerabilities": [
+        "holy",
+        "fire"
+      ],
+      "abilities": {
+        "darkvision": 60,
+        "noBreathing": true,
+        "noSleeping": true,
+        "undeadFortitude": {
+          "note": "HP가 0이 되어도 CON 판정 성공시 1HP로 생존"
+        }
+      },
+      "startingLocation": null,
+      "languages": [
+        "none"
+      ],
+      "lifespan": {
+        "note": "언데드는 완전히 파괴되기 전까지 존재"
+      }
+    },
+    {
+      "id": "halfling",
+      "category": "halfling",
+      "nameKo": "하플링",
+      "nameEn": "Halfling",
+      "description": "작지만 용감하고 행운이 따르는 종족. 곱슬머리와 털이 많은 발이 특징이다.",
+      "lore": "편안한 언덕 마을에서 평화롭게 살아가는 작은 종족이다. 모험보다 좋은 음식과 따뜻한 난롯가를 좋아하지만, 일단 모험을 떠나면 놀라운 용기와 행운을 보여준다. 뛰어난 은밀함과 손재주를 가졌으며, 어디에서든 쉽게 친구를 사귄다.",
+      "traits": {
+        "innate": [
+          "lucky",
+          "brave_heart"
+        ],
+        "optional": [
+          "nimble_fingers",
+          "natural_cook"
+        ]
+      },
+      "statModifiers": {
+        "dex": 2,
+        "lck": 2,
+        "str": -2
+      },
+      "appearance": {
+        "body": {
+          "availableIndices": [
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "spriteNames": [
+            "Human_1",
+            "Human_2",
+            "Human_3",
+            "Human_4",
+            "Human_5"
+          ],
+          "note": "하플링 전용 바디 스프라이트 추가 예정 (작은 체형)"
+        },
+        "skinTones": {
+          "available": [
+            "fair",
+            "tan",
+            "ruddy",
+            "olive"
+          ],
+          "default": "tan",
+          "colors": {
+            "fair": "#FFDAB9",
+            "tan": "#D2B48C",
+            "ruddy": "#DEB887",
+            "olive": "#C4A35A"
+          }
+        },
+        "eye": {
+          "availableIndices": [
+            0,
+            2,
+            3,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "colors": {
+            "available": [
+              "brown",
+              "hazel",
+              "green",
+              "blue"
+            ],
+            "default": "brown",
+            "values": {
+              "brown": "#8B4513",
+              "hazel": "#8E7618",
+              "green": "#228B22",
+              "blue": "#4682B4"
+            }
+          }
+        },
+        "hair": {
+          "availableIndices": "all",
+          "style": "curly",
+          "colors": {
+            "available": [
+              "brown",
+              "dark_brown",
+              "auburn",
+              "blonde",
+              "black",
+              "gray"
+            ],
+            "default": "brown",
+            "values": {
+              "brown": "#8B4513",
+              "dark_brown": "#3D2314",
+              "auburn": "#A52A2A",
+              "blonde": "#DAA520",
+              "black": "#1C1C1C",
+              "gray": "#808080"
+            }
+          }
+        },
+        "facehair": {
+          "availableIndices": [],
+          "note": "하플링은 수염이 자라지 않음 (발에 털이 많음)"
+        }
+      },
+      "resistances": {
+        "fear": 25
+      },
+      "abilities": {
+        "stealthBonus": 10,
+        "rerollOnes": true
+      },
+      "size": "small",
+      "startingLocation": "halfling_shire",
+      "languages": [
+        "common",
+        "halfling"
+      ],
+      "lifespan": {
+        "adult": 33,
+        "middle": 80,
+        "old": 120,
+        "max": 150
+      },
+      "playable": true
+    },
+    {
+      "id": "tiefling",
+      "category": "demon",
+      "nameKo": "티플링",
+      "nameEn": "Tiefling",
+      "description": "악마의 피가 섞인 종족. 뿔과 꼬리, 붉은 피부가 특징이다.",
+      "lore": "먼 조상이 악마와 계약을 맺어 그 피가 흐르는 인간의 후손들이다. 외모 때문에 대부분의 사회에서 차별받지만, 이로 인해 강인한 정신력과 독립심을 키웠다. 선천적으로 화염과 암흑 마법에 친화력을 가진다.",
+      "traits": {
+        "innate": [
+          "hellish_resistance",
+          "infernal_legacy"
+        ],
+        "optional": [
+          "dark_charm",
+          "fiendish_knowledge"
+        ]
+      },
+      "statModifiers": {
+        "cha": 2,
+        "int": 1,
+        "wis": -1
+      },
+      "appearance": {
+        "body": {
+          "availableIndices": [
+            0
+          ],
+          "spriteNames": [
+            "Devil_1"
+          ]
+        },
+        "skinTones": {
+          "available": [
+            "red",
+            "dark_red",
+            "purple",
+            "maroon",
+            "copper"
+          ],
+          "default": "red",
+          "colors": {
+            "red": "#CD5C5C",
+            "dark_red": "#8B0000",
+            "purple": "#800080",
+            "maroon": "#800000",
+            "copper": "#B87333"
+          }
+        },
+        "eye": {
+          "availableIndices": [
+            0,
+            2,
+            3,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "colors": {
+            "available": [
+              "red",
+              "gold",
+              "silver",
+              "black",
+              "orange"
+            ],
+            "default": "gold",
+            "values": {
+              "red": "#DC143C",
+              "gold": "#FFD700",
+              "silver": "#C0C0C0",
+              "black": "#1C1C1C",
+              "orange": "#FF4500"
+            }
+          }
+        },
+        "hair": {
+          "availableIndices": "all",
+          "colors": {
+            "available": [
+              "black",
+              "dark_red",
+              "purple",
+              "white",
+              "crimson"
+            ],
+            "default": "black",
+            "values": {
+              "black": "#1C1C1C",
+              "dark_red": "#8B0000",
+              "purple": "#4B0082",
+              "white": "#FFFFFF",
+              "crimson": "#DC143C"
+            }
+          }
+        },
+        "facehair": {
+          "availableIndices": "all",
+          "colors": "same_as_hair"
+        },
+        "special": {
+          "horns": true,
+          "tail": true
+        }
+      },
+      "resistances": {
+        "fire": 25,
+        "dark": 15,
+        "holy": -20
+      },
+      "abilities": {
+        "darkvision": 60,
+        "innateSpells": [
+          "thaumaturgy"
+        ]
+      },
+      "startingLocation": "outcasts_haven",
+      "languages": [
+        "common",
+        "infernal"
+      ],
+      "lifespan": {
+        "adult": 18,
+        "middle": 45,
+        "old": 70,
+        "max": 100
+      },
+      "playable": true
+    }
+  ],
+  "summary": {
+    "total": 17,
+    "byCategory": {
+      "human": 4,
+      "elf": 4,
+      "dwarf": 2,
+      "orc": 2,
+      "undead": 3,
+      "halfling": 1,
+      "demon": 1
+    },
+    "playable": 14,
+    "nonPlayable": 3
+  }
+}
