@@ -136,8 +136,9 @@ export default function GamePage() {
   }, [profile, maps, mapId, setCurrentMap]);
 
   // 서버에서 맵 변경 시 동기화 (패배 후 귀환 등)
+  // 주의: mapId를 의존성에서 제거하여 사용자 이동 시 경쟁 조건 방지
   useEffect(() => {
-    if (profile && maps.length > 0 && mapId !== null && profile.currentMapId && profile.currentMapId !== mapId) {
+    if (profile && maps.length > 0 && profile.currentMapId) {
       const serverMapId = profile.currentMapId;
       const serverMap = getMapById(maps, serverMapId);
       if (serverMap) {
@@ -149,7 +150,8 @@ export default function GamePage() {
         });
       }
     }
-  }, [profile?.currentMapId, maps, mapId, setCurrentMap]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [profile?.currentMapId, maps, setCurrentMap]);
 
   const { sendMessage } = useRealtimeChat({
     mapId: mapId || "town_square",
@@ -160,6 +162,14 @@ export default function GamePage() {
   const handleMapChange = async (newMapId: string) => {
     const newMap = getMapById(maps, newMapId);
     if (newMap && session?.user?.id && myCharacterName) {
+      // 먼저 로컬 상태 업데이트 (동기화 useEffect 경쟁 조건 방지)
+      setMapId(newMapId);
+      setCurrentMap({
+        id: newMap.id,
+        name: getMapDisplayName(newMap),
+        description: newMap.descriptionKo || "",
+      });
+
       try {
         // 피로도 소모 + 위치 업데이트
         await updateLocation.mutateAsync({
@@ -167,17 +177,19 @@ export default function GamePage() {
           characterName: myCharacterName,
           mapId: newMapId,
         });
-
-        // 로컬 상태 업데이트
-        setMapId(newMapId);
-        setCurrentMap({
-          id: newMap.id,
-          name: getMapDisplayName(newMap),
-          description: newMap.descriptionKo || "",
-        });
       } catch (error) {
         console.error("Failed to move:", error);
-        // 피로도 부족 등의 에러는 useUpdateLocation에서 toast 처리됨
+        // 피로도 부족 등의 에러 시 이전 위치로 롤백
+        const prevMapId = profile?.currentMapId || "town_square";
+        const prevMap = getMapById(maps, prevMapId);
+        if (prevMap) {
+          setMapId(prevMapId);
+          setCurrentMap({
+            id: prevMap.id,
+            name: getMapDisplayName(prevMap),
+            description: prevMap.descriptionKo || "",
+          });
+        }
       }
     }
   };
