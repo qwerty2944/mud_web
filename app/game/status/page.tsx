@@ -20,7 +20,6 @@ import { SLOT_CONFIG, type EquipmentSlot } from "@/entities/item";
 import { useCharacterTraitsWithDetails, TraitList, TRAIT_CATEGORIES, TRAIT_CATEGORY_ORDER, TRAIT_RARITIES, formatTraitEffects } from "@/entities/trait";
 import type { TraitCategory, Trait } from "@/entities/trait";
 import type { ProfileAppearance } from "@/entities/character";
-import { UnityProvider } from "@/application/providers";
 
 // 스프라이트 데이터 타입
 interface SpriteItem {
@@ -91,7 +90,7 @@ function useAppearanceIndexes(appearance: ProfileAppearance | null | undefined) 
   return { indexes, loaded };
 }
 
-function StatusContent() {
+export default function StatusPage() {
   const router = useRouter();
   const { theme } = useThemeStore();
   const { session } = useAuthStore();
@@ -811,13 +810,5 @@ function TraitCard({ trait, theme }: { trait: Trait; theme: any }) {
         </div>
       )}
     </div>
-  );
-}
-
-export default function StatusPage() {
-  return (
-    <UnityProvider>
-      <StatusContent />
-    </UnityProvider>
   );
 }
