@@ -12,14 +12,14 @@
       "rarity": "crude",
       "value": 15,
       "weight": 0.3,
-      "spriteIndex": 0,
       "color": "#8B4513",
       "stats": {
         "defense": 1
       },
       "requirements": {
         "level": 1
-      }
+      },
+      "spriteId": "elf_back_01"
     },
     {
       "id": "traveler_cloak",
@@ -29,7 +29,6 @@
       "rarity": "common",
       "value": 50,
       "weight": 0.5,
-      "spriteIndex": 3,
       "color": null,
       "stats": {
         "defense": 3,
@@ -37,7 +36,8 @@
       },
       "requirements": {
         "level": 1
-      }
+      },
+      "spriteId": "elf_back_04"
     },
     {
       "id": "adventurer_cloak",
@@ -47,7 +47,6 @@
       "rarity": "grand",
       "value": 180,
       "weight": 0.8,
-      "spriteIndex": 6,
       "color": null,
       "stats": {
         "defense": 6,
@@ -55,7 +54,8 @@
       },
       "requirements": {
         "level": 5
-      }
+      },
+      "spriteId": "elf_back_07"
     },
     {
       "id": "knight_cape",
@@ -64,8 +64,7 @@
       "description": "왕국 기사단의 망토.",
       "rarity": "rare",
       "value": 450,
-      "weight": 1.0,
-      "spriteIndex": 10,
+      "weight": 1,
       "color": "#1E3A5F",
       "stats": {
         "defense": 10,
@@ -75,7 +74,8 @@
       "requirements": {
         "level": 12,
         "str": 8
-      }
+      },
+      "spriteId": "elf_back_11"
     },
     {
       "id": "mage_cloak",
@@ -85,7 +85,6 @@
       "rarity": "rare",
       "value": 500,
       "weight": 0.5,
-      "spriteIndex": 12,
       "color": "#4B0082",
       "stats": {
         "defense": 4,
@@ -96,7 +95,8 @@
       "requirements": {
         "level": 12,
         "int": 10
-      }
+      },
+      "spriteId": "orc_back_01"
     },
     {
       "id": "shadow_cloak",
@@ -106,7 +106,6 @@
       "rarity": "arcane",
       "value": 1500,
       "weight": 0.4,
-      "spriteIndex": 15,
       "color": "#1C1C1C",
       "stats": {
         "defense": 8,
@@ -117,7 +116,8 @@
       "requirements": {
         "level": 20,
         "dex": 14
-      }
+      },
+      "spriteId": "undead_back_01"
     },
     {
       "id": "phoenix_wings",
@@ -127,7 +127,6 @@
       "rarity": "heroic",
       "value": 6000,
       "weight": 0.3,
-      "spriteIndex": 20,
       "color": "#FF4500",
       "stats": {
         "defense": 12,
@@ -144,7 +143,8 @@
       "requirements": {
         "level": 28,
         "int": 18
-      }
+      },
+      "spriteId": "back_healer_2"
     },
     {
       "id": "angel_wings",
@@ -154,7 +154,6 @@
       "rarity": "unique",
       "value": 20000,
       "weight": 0.2,
-      "spriteIndex": 25,
       "color": "#FFFACD",
       "stats": {
         "defense": 15,
@@ -170,7 +169,8 @@
         "level": 38,
         "wis": 25,
         "karma": 30
-      }
+      },
+      "spriteId": "back_sorcerer"
     },
     {
       "id": "demon_wings",
@@ -180,7 +180,6 @@
       "rarity": "unique",
       "value": 18000,
       "weight": 0.3,
-      "spriteIndex": 25,
       "color": "#2F0A3C",
       "stats": {
         "defense": 12,
@@ -196,7 +195,8 @@
         "level": 38,
         "int": 25,
         "karma": -30
-      }
+      },
+      "spriteId": "back_sorcerer"
     },
     {
       "id": "legendary_cloak",
@@ -206,7 +206,6 @@
       "rarity": "legendary",
       "value": 45000,
       "weight": 0.5,
-      "spriteIndex": 30,
       "color": "#FFD700",
       "stats": {
         "defense": 25,
@@ -217,7 +216,8 @@
       },
       "requirements": {
         "level": 50
-      }
+      },
+      "spriteId": "bowback_1"
     }
   ]
 }

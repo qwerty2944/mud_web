@@ -12,14 +12,14 @@
       "rarity": "crude",
       "value": 20,
       "weight": 0.5,
-      "spriteIndex": 0,
       "color": "#8B4513",
       "stats": {
         "defense": 2
       },
       "requirements": {
         "level": 1
-      }
+      },
+      "spriteId": "elf_helmet_01"
     },
     {
       "id": "iron_helmet",
@@ -28,8 +28,7 @@
       "description": "철로 만든 기본 투구.",
       "rarity": "common",
       "value": 80,
-      "weight": 2.0,
-      "spriteIndex": 5,
+      "weight": 2,
       "color": null,
       "stats": {
         "defense": 5
@@ -37,7 +36,8 @@
       "requirements": {
         "level": 1,
         "con": 5
-      }
+      },
+      "spriteId": "elf_helmet_06"
     },
     {
       "id": "steel_helmet",
@@ -47,7 +47,6 @@
       "rarity": "grand",
       "value": 250,
       "weight": 2.5,
-      "spriteIndex": 10,
       "color": null,
       "stats": {
         "defense": 10
@@ -55,7 +54,8 @@
       "requirements": {
         "level": 5,
         "con": 8
-      }
+      },
+      "spriteId": "elf_helmet_11"
     },
     {
       "id": "knight_helmet",
@@ -64,8 +64,7 @@
       "description": "왕국 기사단의 투구.",
       "rarity": "rare",
       "value": 600,
-      "weight": 3.0,
-      "spriteIndex": 15,
+      "weight": 3,
       "color": null,
       "stats": {
         "defense": 16,
@@ -75,7 +74,8 @@
         "level": 12,
         "str": 8,
         "con": 10
-      }
+      },
+      "spriteId": "elf_helmet_16"
     },
     {
       "id": "wizard_hat",
@@ -85,7 +85,6 @@
       "rarity": "rare",
       "value": 550,
       "weight": 0.3,
-      "spriteIndex": 20,
       "color": "#4B0082",
       "stats": {
         "defense": 3,
@@ -96,7 +95,8 @@
       "requirements": {
         "level": 12,
         "int": 10
-      }
+      },
+      "spriteId": "orc_helmet_02"
     },
     {
       "id": "elven_circlet",
@@ -106,7 +106,6 @@
       "rarity": "arcane",
       "value": 1500,
       "weight": 0.2,
-      "spriteIndex": 25,
       "color": "#90EE90",
       "stats": {
         "defense": 5,
@@ -117,7 +116,8 @@
       "requirements": {
         "level": 18,
         "int": 14
-      }
+      },
+      "spriteId": "undead_helmet_01"
     },
     {
       "id": "dragon_helm",
@@ -127,7 +127,6 @@
       "rarity": "heroic",
       "value": 4000,
       "weight": 3.5,
-      "spriteIndex": 30,
       "color": "#DC143C",
       "stats": {
         "defense": 25,
@@ -141,7 +140,8 @@
         "level": 25,
         "str": 15,
         "con": 15
-      }
+      },
+      "spriteId": "undead_helmet_06"
     },
     {
       "id": "crown_of_wisdom",
@@ -151,7 +151,6 @@
       "rarity": "unique",
       "value": 12000,
       "weight": 0.5,
-      "spriteIndex": 35,
       "color": "#FFD700",
       "stats": {
         "defense": 10,
@@ -163,7 +162,8 @@
       "requirements": {
         "level": 35,
         "int": 25
-      }
+      },
+      "spriteId": "helmet_m01_brown"
     },
     {
       "id": "legendary_helmet",
@@ -173,7 +173,6 @@
       "rarity": "legendary",
       "value": 60000,
       "weight": 2.5,
-      "spriteIndex": 40,
       "color": "#FFD700",
       "stats": {
         "defense": 40,
@@ -184,7 +183,8 @@
       "requirements": {
         "level": 50,
         "con": 25
-      }
+      },
+      "spriteId": "helmet_m02_brown"
     }
   ]
 }

@@ -12,7 +12,6 @@
       "rarity": "crude",
       "value": 15,
       "weight": 0.8,
-      "spriteIndex": 0,
       "color": "#8B4513",
       "stats": {
         "damage": 4,
@@ -20,7 +19,8 @@
       },
       "requirements": {
         "level": 1
-      }
+      },
+      "spriteId": "weapon_rogue_1"
     },
     {
       "id": "iron_dagger",
@@ -29,8 +29,7 @@
       "description": "기본적인 철제 단검.",
       "rarity": "common",
       "value": 60,
-      "weight": 1.0,
-      "spriteIndex": 0,
+      "weight": 1,
       "color": null,
       "stats": {
         "damage": 7,
@@ -39,7 +38,8 @@
       "requirements": {
         "level": 1,
         "dex": 5
-      }
+      },
+      "spriteId": "weapon_rogue_1"
     },
     {
       "id": "steel_dagger",
@@ -48,8 +48,7 @@
       "description": "날카롭게 벼려진 강철 단검.",
       "rarity": "grand",
       "value": 200,
-      "weight": 1.0,
-      "spriteIndex": 0,
+      "weight": 1,
       "color": "#A9A9A9",
       "stats": {
         "damage": 12,
@@ -59,7 +58,8 @@
       "requirements": {
         "level": 5,
         "dex": 8
-      }
+      },
+      "spriteId": "weapon_rogue_1"
     },
     {
       "id": "assassin_dagger",
@@ -69,7 +69,6 @@
       "rarity": "rare",
       "value": 600,
       "weight": 0.8,
-      "spriteIndex": 1,
       "color": "#2F4F4F",
       "stats": {
         "damage": 15,
@@ -80,7 +79,8 @@
       "requirements": {
         "level": 12,
         "dex": 12
-      }
+      },
+      "spriteId": "weapon_rogue_2"
     },
     {
       "id": "poison_dagger",
@@ -89,8 +89,7 @@
       "description": "독이 발린 위험한 단검.",
       "rarity": "rare",
       "value": 750,
-      "weight": 1.0,
-      "spriteIndex": 1,
+      "weight": 1,
       "color": "#32CD32",
       "stats": {
         "damage": 12,
@@ -105,7 +104,8 @@
       "requirements": {
         "level": 12,
         "dex": 10
-      }
+      },
+      "spriteId": "weapon_rogue_2"
     },
     {
       "id": "mithril_dagger",
@@ -115,7 +115,6 @@
       "rarity": "arcane",
       "value": 2000,
       "weight": 0.6,
-      "spriteIndex": 1,
       "color": "#87CEEB",
       "stats": {
         "damage": 20,
@@ -125,7 +124,8 @@
       "requirements": {
         "level": 20,
         "dex": 15
-      }
+      },
+      "spriteId": "weapon_rogue_2"
     },
     {
       "id": "shadow_dagger",
@@ -135,7 +135,6 @@
       "rarity": "heroic",
       "value": 4500,
       "weight": 0.5,
-      "spriteIndex": 1,
       "color": "#1C1C1C",
       "stats": {
         "damage": 25,
@@ -150,7 +149,8 @@
       "requirements": {
         "level": 25,
         "dex": 18
-      }
+      },
+      "spriteId": "weapon_rogue_2"
     },
     {
       "id": "legendary_dagger",
@@ -160,7 +160,6 @@
       "rarity": "legendary",
       "value": 80000,
       "weight": 0.7,
-      "spriteIndex": 1,
       "color": "#FFD700",
       "stats": {
         "damage": 45,
@@ -172,7 +171,8 @@
       "requirements": {
         "level": 50,
         "dex": 30
-      }
+      },
+      "spriteId": "weapon_rogue_2"
     }
   ]
 }

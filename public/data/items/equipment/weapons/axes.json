@@ -11,8 +11,7 @@
       "description": "녹이 슨 오래된 도끼.",
       "rarity": "crude",
       "value": 25,
-      "weight": 4.0,
-      "spriteIndex": 0,
+      "weight": 4,
       "color": "#8B4513",
       "stats": {
         "damage": 8,
@@ -20,7 +19,8 @@
       },
       "requirements": {
         "level": 1
-      }
+      },
+      "spriteId": "orc_weapon_02"
     },
     {
       "id": "iron_axe",
@@ -30,7 +30,6 @@
       "rarity": "common",
       "value": 120,
       "weight": 4.5,
-      "spriteIndex": 0,
       "color": null,
       "stats": {
         "damage": 14,
@@ -39,7 +38,8 @@
       "requirements": {
         "level": 1,
         "str": 7
-      }
+      },
+      "spriteId": "orc_weapon_02"
     },
     {
       "id": "steel_axe",
@@ -49,7 +49,6 @@
       "rarity": "grand",
       "value": 400,
       "weight": 4.5,
-      "spriteIndex": 1,
       "color": null,
       "stats": {
         "damage": 24,
@@ -58,7 +57,8 @@
       "requirements": {
         "level": 5,
         "str": 10
-      }
+      },
+      "spriteId": "orc_weapon_06"
     },
     {
       "id": "battle_axe",
@@ -68,7 +68,6 @@
       "rarity": "rare",
       "value": 900,
       "weight": 5.5,
-      "spriteIndex": 2,
       "color": null,
       "stats": {
         "damage": 35,
@@ -78,7 +77,8 @@
       "requirements": {
         "level": 12,
         "str": 14
-      }
+      },
+      "spriteId": "orc_weapon_07"
     },
     {
       "id": "berserker_axe",
@@ -87,8 +87,7 @@
       "description": "피에 굶주린 광전사의 도끼.",
       "rarity": "arcane",
       "value": 2500,
-      "weight": 5.0,
-      "spriteIndex": 2,
+      "weight": 5,
       "color": "#8B0000",
       "stats": {
         "damage": 45,
@@ -99,7 +98,8 @@
       "requirements": {
         "level": 20,
         "str": 18
-      }
+      },
+      "spriteId": "orc_weapon_07"
     },
     {
       "id": "orc_war_axe",
@@ -108,8 +108,7 @@
       "description": "오크 족장이 사용하던 거대한 도끼.",
       "rarity": "heroic",
       "value": 5500,
-      "weight": 7.0,
-      "spriteIndex": 3,
+      "weight": 7,
       "color": "#556B2F",
       "stats": {
         "damage": 55,
@@ -120,7 +119,8 @@
       "requirements": {
         "level": 28,
         "str": 22
-      }
+      },
+      "spriteId": "undead_weapon_06"
     },
     {
       "id": "executioner_axe",
@@ -129,8 +129,7 @@
       "description": "수백 명을 처형한 저주받은 도끼.",
       "rarity": "unique",
       "value": 15000,
-      "weight": 8.0,
-      "spriteIndex": 3,
+      "weight": 8,
       "color": "#4B0082",
       "stats": {
         "damage": 70,
@@ -142,7 +141,8 @@
       "requirements": {
         "level": 38,
         "str": 28
-      }
+      },
+      "spriteId": "undead_weapon_06"
     },
     {
       "id": "legendary_axe",
@@ -151,8 +151,7 @@
       "description": "거인도 두려워하는 전설의 대도끼.",
       "rarity": "legendary",
       "value": 90000,
-      "weight": 6.0,
-      "spriteIndex": 4,
+      "weight": 6,
       "color": "#FFD700",
       "stats": {
         "damage": 95,
@@ -165,7 +164,8 @@
       "requirements": {
         "level": 50,
         "str": 35
-      }
+      },
+      "spriteId": "axe_1"
     }
   ]
 }

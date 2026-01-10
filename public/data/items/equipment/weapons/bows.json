@@ -12,7 +12,6 @@
       "rarity": "crude",
       "value": 30,
       "weight": 1.5,
-      "spriteIndex": 0,
       "color": "#8B4513",
       "stats": {
         "damage": 6,
@@ -21,7 +20,8 @@
       },
       "requirements": {
         "level": 1
-      }
+      },
+      "spriteId": "elf_weapon_02"
     },
     {
       "id": "short_bow",
@@ -31,7 +31,6 @@
       "rarity": "common",
       "value": 80,
       "weight": 1.2,
-      "spriteIndex": 0,
       "color": null,
       "stats": {
         "damage": 9,
@@ -41,7 +40,8 @@
       "requirements": {
         "level": 1,
         "dex": 5
-      }
+      },
+      "spriteId": "elf_weapon_02"
     },
     {
       "id": "long_bow",
@@ -50,19 +50,19 @@
       "description": "긴 사거리의 대형 활.",
       "rarity": "grand",
       "value": 300,
-      "weight": 2.0,
-      "spriteIndex": 1,
+      "weight": 2,
       "color": null,
       "stats": {
         "damage": 16,
-        "attackSpeed": 1.0,
+        "attackSpeed": 1,
         "range": 5
       },
       "requirements": {
         "level": 5,
         "dex": 8,
         "str": 5
-      }
+      },
+      "spriteId": "elf_weapon_06"
     },
     {
       "id": "composite_bow",
@@ -72,7 +72,6 @@
       "rarity": "rare",
       "value": 700,
       "weight": 1.8,
-      "spriteIndex": 2,
       "color": null,
       "stats": {
         "damage": 22,
@@ -83,7 +82,8 @@
       "requirements": {
         "level": 12,
         "dex": 12
-      }
+      },
+      "spriteId": "elf_weapon_14"
     },
     {
       "id": "elven_bow",
@@ -92,8 +92,7 @@
       "description": "엘프 장인이 만든 우아한 활.",
       "rarity": "arcane",
       "value": 2200,
-      "weight": 1.0,
-      "spriteIndex": 3,
+      "weight": 1,
       "color": "#90EE90",
       "stats": {
         "damage": 28,
@@ -105,7 +104,8 @@
       "requirements": {
         "level": 20,
         "dex": 16
-      }
+      },
+      "spriteId": "elf_weapon_18"
     },
     {
       "id": "wind_bow",
@@ -115,7 +115,6 @@
       "rarity": "heroic",
       "value": 5000,
       "weight": 0.8,
-      "spriteIndex": 4,
       "color": "#87CEEB",
       "stats": {
         "damage": 30,
@@ -127,7 +126,8 @@
       "requirements": {
         "level": 25,
         "dex": 20
-      }
+      },
+      "spriteId": "orc_weapon_03"
     },
     {
       "id": "phoenix_bow",
@@ -137,7 +137,6 @@
       "rarity": "unique",
       "value": 12000,
       "weight": 1.2,
-      "spriteIndex": 5,
       "color": "#FF4500",
       "stats": {
         "damage": 38,
@@ -152,7 +151,8 @@
       "requirements": {
         "level": 35,
         "dex": 24
-      }
+      },
+      "spriteId": "undead_weapon_04"
     },
     {
       "id": "legendary_bow",
@@ -162,7 +162,6 @@
       "rarity": "legendary",
       "value": 85000,
       "weight": 1.5,
-      "spriteIndex": 8,
       "color": "#FFD700",
       "stats": {
         "damage": 55,
@@ -175,7 +174,8 @@
       "requirements": {
         "level": 50,
         "dex": 32
-      }
+      },
+      "spriteId": "weapon_archer_2"
     }
   ]
 }

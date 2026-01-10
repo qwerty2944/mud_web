@@ -12,7 +12,6 @@
       "rarity": "crude",
       "value": 25,
       "weight": 2.5,
-      "spriteIndex": 0,
       "color": "#8B4513",
       "stats": {
         "damage": 7,
@@ -21,7 +20,8 @@
       },
       "requirements": {
         "level": 1
-      }
+      },
+      "spriteId": "soon_spear"
     },
     {
       "id": "iron_spear",
@@ -30,8 +30,7 @@
       "description": "철 촉이 달린 기본 창.",
       "rarity": "common",
       "value": 100,
-      "weight": 3.0,
-      "spriteIndex": 1,
+      "weight": 3,
       "color": null,
       "stats": {
         "damage": 12,
@@ -42,7 +41,8 @@
         "level": 1,
         "str": 5,
         "dex": 5
-      }
+      },
+      "spriteId": "spear_1"
     },
     {
       "id": "steel_spear",
@@ -52,11 +52,10 @@
       "rarity": "grand",
       "value": 350,
       "weight": 3.2,
-      "spriteIndex": 1,
       "color": "#A9A9A9",
       "stats": {
         "damage": 20,
-        "attackSpeed": 1.0,
+        "attackSpeed": 1,
         "range": 2,
         "armorPenetration": 5
       },
@@ -64,7 +63,8 @@
         "level": 5,
         "str": 8,
         "dex": 8
-      }
+      },
+      "spriteId": "spear_1"
     },
     {
       "id": "war_spear",
@@ -74,11 +74,10 @@
       "rarity": "rare",
       "value": 750,
       "weight": 3.5,
-      "spriteIndex": 1,
       "color": "#696969",
       "stats": {
         "damage": 28,
-        "attackSpeed": 1.0,
+        "attackSpeed": 1,
         "range": 2,
         "armorPenetration": 10,
         "firstStrike": true
@@ -87,7 +86,8 @@
         "level": 12,
         "str": 12,
         "dex": 10
-      }
+      },
+      "spriteId": "spear_1"
     },
     {
       "id": "halberd",
@@ -96,8 +96,7 @@
       "description": "도끼와 창이 결합된 양손 무기.",
       "rarity": "arcane",
       "value": 2200,
-      "weight": 5.0,
-      "spriteIndex": 0,
+      "weight": 5,
       "color": "#4682B4",
       "stats": {
         "damage": 40,
@@ -110,7 +109,8 @@
         "level": 20,
         "str": 16,
         "dex": 12
-      }
+      },
+      "spriteId": "soon_spear"
     },
     {
       "id": "dragon_lance",
@@ -119,8 +119,7 @@
       "description": "용을 사냥하기 위한 특수 창.",
       "rarity": "heroic",
       "value": 6000,
-      "weight": 4.0,
-      "spriteIndex": 0,
+      "weight": 4,
       "color": "#DC143C",
       "stats": {
         "damage": 48,
@@ -136,7 +135,8 @@
         "level": 28,
         "str": 18,
         "dex": 15
-      }
+      },
+      "spriteId": "soon_spear"
     },
     {
       "id": "legendary_spear",
@@ -146,7 +146,6 @@
       "rarity": "legendary",
       "value": 88000,
       "weight": 3.5,
-      "spriteIndex": 1,
       "color": "#FFD700",
       "stats": {
         "damage": 72,
@@ -161,7 +160,8 @@
         "level": 50,
         "str": 25,
         "dex": 25
-      }
+      },
+      "spriteId": "spear_1"
     }
   ]
 }

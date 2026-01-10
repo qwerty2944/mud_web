@@ -12,15 +12,15 @@
       "rarity": "crude",
       "value": 20,
       "weight": 2.5,
-      "spriteIndex": 0,
       "color": "#8B4513",
       "stats": {
         "damage": 5,
-        "attackSpeed": 1.0
+        "attackSpeed": 1
       },
       "requirements": {
         "level": 1
-      }
+      },
+      "spriteId": "elf_weapon_03"
     },
     {
       "id": "iron_sword",
@@ -29,17 +29,17 @@
       "description": "기본적인 철제 검.",
       "rarity": "common",
       "value": 100,
-      "weight": 3.0,
-      "spriteIndex": 0,
+      "weight": 3,
       "color": null,
       "stats": {
         "damage": 10,
-        "attackSpeed": 1.0
+        "attackSpeed": 1
       },
       "requirements": {
         "level": 1,
         "str": 5
-      }
+      },
+      "spriteId": "elf_weapon_03"
     },
     {
       "id": "steel_sword",
@@ -49,16 +49,16 @@
       "rarity": "grand",
       "value": 350,
       "weight": 3.2,
-      "spriteIndex": 1,
       "color": null,
       "stats": {
         "damage": 18,
-        "attackSpeed": 1.0
+        "attackSpeed": 1
       },
       "requirements": {
         "level": 5,
         "str": 8
-      }
+      },
+      "spriteId": "elf_weapon_05"
     },
     {
       "id": "silver_sword",
@@ -68,7 +68,6 @@
       "rarity": "rare",
       "value": 800,
       "weight": 2.8,
-      "spriteIndex": 2,
       "color": "#C0C0C0",
       "stats": {
         "damage": 22,
@@ -81,7 +80,8 @@
       "requirements": {
         "level": 10,
         "str": 10
-      }
+      },
+      "spriteId": "elf_weapon_07"
     },
     {
       "id": "knight_sword",
@@ -91,7 +91,6 @@
       "rarity": "rare",
       "value": 1200,
       "weight": 3.5,
-      "spriteIndex": 3,
       "color": null,
       "stats": {
         "damage": 28,
@@ -101,7 +100,8 @@
       "requirements": {
         "level": 15,
         "str": 12
-      }
+      },
+      "spriteId": "elf_weapon_08"
     },
     {
       "id": "mithril_sword",
@@ -110,8 +110,7 @@
       "description": "가볍고 날카로운 미스릴제 검.",
       "rarity": "arcane",
       "value": 3000,
-      "weight": 2.0,
-      "spriteIndex": 4,
+      "weight": 2,
       "color": "#87CEEB",
       "stats": {
         "damage": 35,
@@ -122,7 +121,8 @@
         "level": 20,
         "str": 12,
         "dex": 10
-      }
+      },
+      "spriteId": "elf_weapon_11"
     },
     {
       "id": "flame_sword",
@@ -131,12 +131,11 @@
       "description": "불꽃이 감도는 마법 검.",
       "rarity": "heroic",
       "value": 5000,
-      "weight": 3.0,
-      "spriteIndex": 5,
+      "weight": 3,
       "color": "#FF4500",
       "stats": {
         "damage": 32,
-        "attackSpeed": 1.0,
+        "attackSpeed": 1,
         "elementDamage": {
           "element": "fire",
           "value": 15
@@ -145,7 +144,8 @@
       "requirements": {
         "level": 25,
         "str": 14
-      }
+      },
+      "spriteId": "elf_weapon_13"
     },
     {
       "id": "frost_sword",
@@ -154,12 +154,11 @@
       "description": "서리가 맺힌 얼음 검.",
       "rarity": "heroic",
       "value": 5000,
-      "weight": 3.0,
-      "spriteIndex": 5,
+      "weight": 3,
       "color": "#00CED1",
       "stats": {
         "damage": 32,
-        "attackSpeed": 1.0,
+        "attackSpeed": 1,
         "elementDamage": {
           "element": "ice",
           "value": 15
@@ -168,7 +167,8 @@
       "requirements": {
         "level": 25,
         "str": 14
-      }
+      },
+      "spriteId": "elf_weapon_13"
     },
     {
       "id": "thunder_sword",
@@ -177,8 +177,7 @@
       "description": "번개가 서린 전격의 검.",
       "rarity": "heroic",
       "value": 5200,
-      "weight": 3.0,
-      "spriteIndex": 5,
+      "weight": 3,
       "color": "#FFD700",
       "stats": {
         "damage": 30,
@@ -192,7 +191,8 @@
         "level": 25,
         "str": 13,
         "dex": 8
-      }
+      },
+      "spriteId": "elf_weapon_13"
     },
     {
       "id": "holy_sword",
@@ -201,12 +201,11 @@
       "description": "신성한 힘이 깃든 축복받은 검.",
       "rarity": "unique",
       "value": 12000,
-      "weight": 3.0,
-      "spriteIndex": 6,
+      "weight": 3,
       "color": "#FFFACD",
       "stats": {
         "damage": 45,
-        "attackSpeed": 1.0,
+        "attackSpeed": 1,
         "elementDamage": {
           "element": "holy",
           "value": 20
@@ -220,7 +219,8 @@
         "level": 35,
         "str": 18,
         "karma": 20
-      }
+      },
+      "spriteId": "elf_weapon_17"
     },
     {
       "id": "cursed_sword",
@@ -230,11 +230,10 @@
       "rarity": "unique",
       "value": 10000,
       "weight": 3.5,
-      "spriteIndex": 6,
       "color": "#4B0082",
       "stats": {
         "damage": 50,
-        "attackSpeed": 1.0,
+        "attackSpeed": 1,
         "elementDamage": {
           "element": "dark",
           "value": 22
@@ -245,7 +244,8 @@
         "level": 35,
         "str": 18,
         "karma": -20
-      }
+      },
+      "spriteId": "elf_weapon_17"
     },
     {
       "id": "dragon_slayer",
@@ -254,8 +254,7 @@
       "description": "용을 사냥하기 위해 제작된 거대한 검.",
       "rarity": "celestial",
       "value": 25000,
-      "weight": 6.0,
-      "spriteIndex": 7,
+      "weight": 6,
       "color": "#DC143C",
       "stats": {
         "damage": 65,
@@ -269,7 +268,8 @@
       "requirements": {
         "level": 45,
         "str": 25
-      }
+      },
+      "spriteId": "elf_weapon_19"
     },
     {
       "id": "legendary_sword",
@@ -278,8 +278,7 @@
       "description": "신화 속에서만 전해지던 전설의 명검.",
       "rarity": "legendary",
       "value": 100000,
-      "weight": 3.0,
-      "spriteIndex": 8,
+      "weight": 3,
       "color": "#FFD700",
       "stats": {
         "damage": 80,
@@ -292,7 +291,8 @@
         "level": 50,
         "str": 25,
         "dex": 15
-      }
+      },
+      "spriteId": "orc_weapon_05"
     }
   ]
 }

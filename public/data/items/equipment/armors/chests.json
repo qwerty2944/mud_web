@@ -12,14 +12,14 @@
       "rarity": "crude",
       "value": 15,
       "weight": 0.5,
-      "spriteIndex": 0,
       "color": "#D2B48C",
       "stats": {
         "defense": 1
       },
       "requirements": {
         "level": 1
-      }
+      },
+      "spriteId": "elf_armor_01"
     },
     {
       "id": "leather_armor",
@@ -28,8 +28,7 @@
       "description": "가죽으로 만든 가벼운 갑옷.",
       "rarity": "common",
       "value": 100,
-      "weight": 3.0,
-      "spriteIndex": 5,
+      "weight": 3,
       "color": null,
       "stats": {
         "defense": 8
@@ -37,7 +36,8 @@
       "requirements": {
         "level": 1,
         "con": 5
-      }
+      },
+      "spriteId": "elf_armor_06"
     },
     {
       "id": "chainmail",
@@ -46,8 +46,7 @@
       "description": "쇠사슬을 엮어 만든 갑옷.",
       "rarity": "grand",
       "value": 350,
-      "weight": 8.0,
-      "spriteIndex": 10,
+      "weight": 8,
       "color": null,
       "stats": {
         "defense": 18
@@ -56,7 +55,8 @@
         "level": 5,
         "str": 6,
         "con": 8
-      }
+      },
+      "spriteId": "elf_armor_11"
     },
     {
       "id": "plate_armor",
@@ -65,8 +65,7 @@
       "description": "철판으로 만든 무거운 갑옷.",
       "rarity": "rare",
       "value": 800,
-      "weight": 15.0,
-      "spriteIndex": 15,
+      "weight": 15,
       "color": null,
       "stats": {
         "defense": 30,
@@ -76,7 +75,8 @@
         "level": 12,
         "str": 12,
         "con": 12
-      }
+      },
+      "spriteId": "elf_armor_16"
     },
     {
       "id": "mage_robe",
@@ -86,7 +86,6 @@
       "rarity": "rare",
       "value": 700,
       "weight": 1.5,
-      "spriteIndex": 20,
       "color": "#4B0082",
       "stats": {
         "defense": 5,
@@ -97,7 +96,8 @@
       "requirements": {
         "level": 12,
         "int": 12
-      }
+      },
+      "spriteId": "orc_armor_02"
     },
     {
       "id": "knight_armor",
@@ -106,8 +106,7 @@
       "description": "왕국 기사단의 갑옷.",
       "rarity": "arcane",
       "value": 2000,
-      "weight": 12.0,
-      "spriteIndex": 25,
+      "weight": 12,
       "color": null,
       "stats": {
         "defense": 40,
@@ -118,7 +117,8 @@
         "level": 20,
         "str": 15,
         "con": 15
-      }
+      },
+      "spriteId": "undead_armor_03"
     },
     {
       "id": "dragon_armor",
@@ -127,8 +127,7 @@
       "description": "드래곤 비늘로 만든 갑옷.",
       "rarity": "heroic",
       "value": 8000,
-      "weight": 10.0,
-      "spriteIndex": 30,
+      "weight": 10,
       "color": "#DC143C",
       "stats": {
         "defense": 55,
@@ -142,7 +141,8 @@
         "level": 28,
         "str": 20,
         "con": 18
-      }
+      },
+      "spriteId": "armor_archer_1"
     },
     {
       "id": "archmage_robe",
@@ -151,8 +151,7 @@
       "description": "대마법사가 입었던 전설적인 로브.",
       "rarity": "unique",
       "value": 15000,
-      "weight": 1.0,
-      "spriteIndex": 35,
+      "weight": 1,
       "color": "#9370DB",
       "stats": {
         "defense": 15,
@@ -165,7 +164,8 @@
       "requirements": {
         "level": 38,
         "int": 28
-      }
+      },
+      "spriteId": "armor_knight_2"
     },
     {
       "id": "legendary_armor",
@@ -174,8 +174,7 @@
       "description": "신이 내렸다는 전설의 갑옷.",
       "rarity": "legendary",
       "value": 100000,
-      "weight": 8.0,
-      "spriteIndex": 45,
+      "weight": 8,
       "color": "#FFD700",
       "stats": {
         "defense": 80,
@@ -187,7 +186,8 @@
         "level": 50,
         "str": 25,
         "con": 30
-      }
+      },
+      "spriteId": "armor_7"
     }
   ]
 }

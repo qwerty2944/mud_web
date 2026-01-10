@@ -12,14 +12,14 @@
       "rarity": "crude",
       "value": 10,
       "weight": 0.3,
-      "spriteIndex": 0,
       "color": "#D2B48C",
       "stats": {
         "defense": 1
       },
       "requirements": {
         "level": 1
-      }
+      },
+      "spriteId": "elf_pant_01"
     },
     {
       "id": "leather_pants",
@@ -29,7 +29,6 @@
       "rarity": "common",
       "value": 60,
       "weight": 1.5,
-      "spriteIndex": 5,
       "color": null,
       "stats": {
         "defense": 4
@@ -37,7 +36,8 @@
       "requirements": {
         "level": 1,
         "con": 3
-      }
+      },
+      "spriteId": "elf_pant_06"
     },
     {
       "id": "chain_leggings",
@@ -46,8 +46,7 @@
       "description": "쇠사슬을 엮어 만든 바지.",
       "rarity": "grand",
       "value": 200,
-      "weight": 4.0,
-      "spriteIndex": 10,
+      "weight": 4,
       "color": null,
       "stats": {
         "defense": 10
@@ -55,7 +54,8 @@
       "requirements": {
         "level": 5,
         "con": 6
-      }
+      },
+      "spriteId": "elf_pant_11"
     },
     {
       "id": "plate_leggings",
@@ -64,8 +64,7 @@
       "description": "철판으로 만든 다리보호구.",
       "rarity": "rare",
       "value": 500,
-      "weight": 7.0,
-      "spriteIndex": 15,
+      "weight": 7,
       "color": null,
       "stats": {
         "defense": 18,
@@ -75,7 +74,8 @@
         "level": 12,
         "str": 10,
         "con": 10
-      }
+      },
+      "spriteId": "elf_pant_16"
     },
     {
       "id": "mage_pants",
@@ -85,7 +85,6 @@
       "rarity": "rare",
       "value": 400,
       "weight": 0.8,
-      "spriteIndex": 20,
       "color": "#4B0082",
       "stats": {
         "defense": 3,
@@ -96,7 +95,8 @@
       "requirements": {
         "level": 12,
         "int": 10
-      }
+      },
+      "spriteId": "orc_pant_01"
     },
     {
       "id": "knight_leggings",
@@ -105,8 +105,7 @@
       "description": "왕국 기사단의 각반.",
       "rarity": "arcane",
       "value": 1200,
-      "weight": 6.0,
-      "spriteIndex": 25,
+      "weight": 6,
       "color": null,
       "stats": {
         "defense": 25,
@@ -117,7 +116,8 @@
         "level": 20,
         "str": 12,
         "con": 12
-      }
+      },
+      "spriteId": "undead_pant_02"
     },
     {
       "id": "dragon_leggings",
@@ -126,8 +126,7 @@
       "description": "드래곤 비늘로 만든 각반.",
       "rarity": "heroic",
       "value": 5000,
-      "weight": 5.0,
-      "spriteIndex": 30,
+      "weight": 5,
       "color": "#DC143C",
       "stats": {
         "defense": 35,
@@ -142,7 +141,8 @@
         "level": 28,
         "str": 16,
         "con": 16
-      }
+      },
+      "spriteId": "foot_m02"
     },
     {
       "id": "legendary_pants",
@@ -151,8 +151,7 @@
       "description": "어떤 공격도 막아내는 전설의 각반.",
       "rarity": "legendary",
       "value": 50000,
-      "weight": 4.0,
-      "spriteIndex": 40,
+      "weight": 4,
       "color": "#FFD700",
       "stats": {
         "defense": 50,
@@ -163,7 +162,8 @@
       "requirements": {
         "level": 50,
         "con": 25
-      }
+      },
+      "spriteId": "pant_rogue_2"
     }
   ]
 }

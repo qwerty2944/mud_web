@@ -12,14 +12,14 @@
       "rarity": "crude",
       "value": 10,
       "weight": 0.3,
-      "spriteIndex": 0,
       "color": "#D2B48C",
       "stats": {
         "defense": 1
       },
       "requirements": {
         "level": 1
-      }
+      },
+      "spriteId": "elf_cloth_01"
     },
     {
       "id": "traveler_clothes",
@@ -29,7 +29,6 @@
       "rarity": "common",
       "value": 50,
       "weight": 0.8,
-      "spriteIndex": 10,
       "color": null,
       "stats": {
         "defense": 3,
@@ -37,7 +36,8 @@
       },
       "requirements": {
         "level": 1
-      }
+      },
+      "spriteId": "elf_cloth_11"
     },
     {
       "id": "reinforced_clothes",
@@ -47,7 +47,6 @@
       "rarity": "grand",
       "value": 180,
       "weight": 1.2,
-      "spriteIndex": 20,
       "color": null,
       "stats": {
         "defense": 8,
@@ -55,7 +54,8 @@
       },
       "requirements": {
         "level": 5
-      }
+      },
+      "spriteId": "orc_cloth_01"
     },
     {
       "id": "rogue_outfit",
@@ -64,8 +64,7 @@
       "description": "도적들이 애용하는 검은 옷.",
       "rarity": "rare",
       "value": 450,
-      "weight": 1.0,
-      "spriteIndex": 30,
+      "weight": 1,
       "color": "#2F4F4F",
       "stats": {
         "defense": 10,
@@ -75,7 +74,8 @@
       "requirements": {
         "level": 12,
         "dex": 10
-      }
+      },
+      "spriteId": "undead_cloth_06"
     },
     {
       "id": "hunter_garb",
@@ -85,7 +85,6 @@
       "rarity": "rare",
       "value": 500,
       "weight": 1.2,
-      "spriteIndex": 40,
       "color": "#556B2F",
       "stats": {
         "defense": 12,
@@ -95,7 +94,8 @@
       "requirements": {
         "level": 12,
         "dex": 10
-      }
+      },
+      "spriteId": "dress_3"
     },
     {
       "id": "shadow_garb",
@@ -105,7 +105,6 @@
       "rarity": "arcane",
       "value": 1500,
       "weight": 0.8,
-      "spriteIndex": 50,
       "color": "#1C1C1C",
       "stats": {
         "defense": 15,
@@ -116,7 +115,8 @@
       "requirements": {
         "level": 20,
         "dex": 15
-      }
+      },
+      "spriteId": "dress_5_c2"
     },
     {
       "id": "assassin_attire",
@@ -126,7 +126,6 @@
       "rarity": "heroic",
       "value": 4000,
       "weight": 0.6,
-      "spriteIndex": 60,
       "color": "#2F0A3C",
       "stats": {
         "defense": 18,
@@ -138,7 +137,8 @@
       "requirements": {
         "level": 28,
         "dex": 22
-      }
+      },
+      "spriteId": "suit_1_c1"
     },
     {
       "id": "legendary_clothes",
@@ -148,7 +148,6 @@
       "rarity": "legendary",
       "value": 55000,
       "weight": 0.5,
-      "spriteIndex": 80,
       "color": "#FFD700",
       "stats": {
         "defense": 30,
@@ -161,7 +160,8 @@
       "requirements": {
         "level": 50,
         "dex": 30
-      }
+      },
+      "spriteId": "tee_3_c1"
     }
   ]
 }

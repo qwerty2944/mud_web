@@ -12,16 +12,16 @@
       "rarity": "crude",
       "value": 40,
       "weight": 0.8,
-      "spriteIndex": 0,
       "color": "#8B4513",
       "stats": {
         "magicDamage": 5,
-        "attackSpeed": 1.0,
+        "attackSpeed": 1,
         "mp": 5
       },
       "requirements": {
         "level": 1
-      }
+      },
+      "spriteId": "elf_weapon_01"
     },
     {
       "id": "oak_wand",
@@ -30,18 +30,18 @@
       "description": "참나무로 만든 기본 지팡이.",
       "rarity": "common",
       "value": 100,
-      "weight": 1.0,
-      "spriteIndex": 0,
+      "weight": 1,
       "color": null,
       "stats": {
         "magicDamage": 8,
-        "attackSpeed": 1.0,
+        "attackSpeed": 1,
         "mp": 10
       },
       "requirements": {
         "level": 1,
         "int": 5
-      }
+      },
+      "spriteId": "elf_weapon_01"
     },
     {
       "id": "crystal_wand",
@@ -51,7 +51,6 @@
       "rarity": "grand",
       "value": 350,
       "weight": 1.2,
-      "spriteIndex": 1,
       "color": "#E0FFFF",
       "stats": {
         "magicDamage": 15,
@@ -62,7 +61,8 @@
       "requirements": {
         "level": 5,
         "int": 8
-      }
+      },
+      "spriteId": "elf_weapon_04"
     },
     {
       "id": "fire_wand",
@@ -71,12 +71,11 @@
       "description": "화염 마법이 깃든 지팡이.",
       "rarity": "rare",
       "value": 800,
-      "weight": 1.0,
-      "spriteIndex": 2,
+      "weight": 1,
       "color": "#FF4500",
       "stats": {
         "magicDamage": 18,
-        "attackSpeed": 1.0,
+        "attackSpeed": 1,
         "mp": 25,
         "elementBonus": {
           "element": "fire",
@@ -86,7 +85,8 @@
       "requirements": {
         "level": 12,
         "int": 12
-      }
+      },
+      "spriteId": "elf_weapon_09"
     },
     {
       "id": "ice_wand",
@@ -95,12 +95,11 @@
       "description": "냉기 마법이 깃든 지팡이.",
       "rarity": "rare",
       "value": 800,
-      "weight": 1.0,
-      "spriteIndex": 2,
+      "weight": 1,
       "color": "#00CED1",
       "stats": {
         "magicDamage": 18,
-        "attackSpeed": 1.0,
+        "attackSpeed": 1,
         "mp": 25,
         "elementBonus": {
           "element": "ice",
@@ -110,7 +109,8 @@
       "requirements": {
         "level": 12,
         "int": 12
-      }
+      },
+      "spriteId": "elf_weapon_09"
     },
     {
       "id": "lightning_wand",
@@ -119,8 +119,7 @@
       "description": "번개 마법이 깃든 지팡이.",
       "rarity": "rare",
       "value": 850,
-      "weight": 1.0,
-      "spriteIndex": 2,
+      "weight": 1,
       "color": "#FFD700",
       "stats": {
         "magicDamage": 16,
@@ -134,7 +133,8 @@
       "requirements": {
         "level": 12,
         "int": 12
-      }
+      },
+      "spriteId": "elf_weapon_09"
     },
     {
       "id": "archmage_staff",
@@ -144,11 +144,10 @@
       "rarity": "arcane",
       "value": 2500,
       "weight": 1.5,
-      "spriteIndex": 5,
       "color": "#9370DB",
       "stats": {
         "magicDamage": 30,
-        "attackSpeed": 1.0,
+        "attackSpeed": 1,
         "mp": 50,
         "int": 3,
         "wis": 2
@@ -156,7 +155,8 @@
       "requirements": {
         "level": 22,
         "int": 18
-      }
+      },
+      "spriteId": "elf_weapon_15"
     },
     {
       "id": "divine_staff",
@@ -166,11 +166,10 @@
       "rarity": "heroic",
       "value": 6000,
       "weight": 1.3,
-      "spriteIndex": 16,
       "color": "#FFFACD",
       "stats": {
         "magicDamage": 35,
-        "attackSpeed": 1.0,
+        "attackSpeed": 1,
         "mp": 60,
         "healBonus": 20,
         "elementBonus": {
@@ -183,7 +182,8 @@
         "int": 15,
         "wis": 18,
         "karma": 10
-      }
+      },
+      "spriteId": "weapon_sorcerer"
     },
     {
       "id": "shadow_staff",
@@ -193,11 +193,10 @@
       "rarity": "heroic",
       "value": 5500,
       "weight": 1.3,
-      "spriteIndex": 10,
       "color": "#2F0A3C",
       "stats": {
         "magicDamage": 40,
-        "attackSpeed": 1.0,
+        "attackSpeed": 1,
         "mp": 50,
         "lifesteal": 5,
         "elementBonus": {
@@ -209,7 +208,8 @@
         "level": 28,
         "int": 20,
         "karma": -10
-      }
+      },
+      "spriteId": "undead_weapon_01"
     },
     {
       "id": "legendary_staff",
@@ -219,7 +219,6 @@
       "rarity": "legendary",
       "value": 95000,
       "weight": 1.5,
-      "spriteIndex": 18,
       "color": "#FFD700",
       "stats": {
         "magicDamage": 70,
@@ -233,7 +232,8 @@
       "requirements": {
         "level": 50,
         "int": 35
-      }
+      },
+      "spriteId": "ward_1"
     }
   ]
 }

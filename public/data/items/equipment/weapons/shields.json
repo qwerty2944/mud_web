@@ -11,8 +11,7 @@
       "description": "나무로 만든 기본적인 방패.",
       "rarity": "crude",
       "value": 30,
-      "weight": 3.0,
-      "spriteIndex": 0,
+      "weight": 3,
       "color": "#8B4513",
       "stats": {
         "defense": 5,
@@ -20,7 +19,8 @@
       },
       "requirements": {
         "level": 1
-      }
+      },
+      "spriteId": "elf_shield_01"
     },
     {
       "id": "iron_shield",
@@ -29,8 +29,7 @@
       "description": "튼튼한 철제 방패.",
       "rarity": "common",
       "value": 120,
-      "weight": 4.0,
-      "spriteIndex": 6,
+      "weight": 4,
       "color": null,
       "stats": {
         "defense": 10,
@@ -40,7 +39,8 @@
         "level": 1,
         "str": 5,
         "con": 5
-      }
+      },
+      "spriteId": "undead_shield_01"
     },
     {
       "id": "steel_shield",
@@ -50,7 +50,6 @@
       "rarity": "grand",
       "value": 400,
       "weight": 4.5,
-      "spriteIndex": 7,
       "color": null,
       "stats": {
         "defense": 18,
@@ -60,7 +59,8 @@
         "level": 5,
         "str": 8,
         "con": 8
-      }
+      },
+      "spriteId": "undead_shield_02"
     },
     {
       "id": "knight_shield",
@@ -69,8 +69,7 @@
       "description": "왕국 기사단의 문장이 새겨진 방패.",
       "rarity": "rare",
       "value": 900,
-      "weight": 5.0,
-      "spriteIndex": 8,
+      "weight": 5,
       "color": null,
       "stats": {
         "defense": 25,
@@ -81,7 +80,8 @@
         "level": 12,
         "str": 10,
         "con": 10
-      }
+      },
+      "spriteId": "undead_shield_03"
     },
     {
       "id": "tower_shield",
@@ -90,8 +90,7 @@
       "description": "몸 전체를 가리는 거대한 방패.",
       "rarity": "rare",
       "value": 1200,
-      "weight": 8.0,
-      "spriteIndex": 6,
+      "weight": 8,
       "color": "#696969",
       "stats": {
         "defense": 35,
@@ -102,7 +101,8 @@
         "level": 15,
         "str": 15,
         "con": 12
-      }
+      },
+      "spriteId": "undead_shield_01"
     },
     {
       "id": "elven_shield",
@@ -112,7 +112,6 @@
       "rarity": "arcane",
       "value": 2000,
       "weight": 2.5,
-      "spriteIndex": 0,
       "color": "#90EE90",
       "stats": {
         "defense": 22,
@@ -123,7 +122,8 @@
       "requirements": {
         "level": 18,
         "dex": 12
-      }
+      },
+      "spriteId": "elf_shield_01"
     },
     {
       "id": "holy_shield",
@@ -132,8 +132,7 @@
       "description": "신성한 힘이 깃든 축복받은 방패.",
       "rarity": "heroic",
       "value": 5500,
-      "weight": 4.0,
-      "spriteIndex": 9,
+      "weight": 4,
       "color": "#FFFACD",
       "stats": {
         "defense": 30,
@@ -148,7 +147,8 @@
         "level": 25,
         "con": 15,
         "karma": 15
-      }
+      },
+      "spriteId": "shield_knight_1"
     },
     {
       "id": "dragon_shield",
@@ -157,8 +157,7 @@
       "description": "드래곤의 비늘로 만든 방패.",
       "rarity": "unique",
       "value": 15000,
-      "weight": 5.0,
-      "spriteIndex": 11,
+      "weight": 5,
       "color": "#DC143C",
       "stats": {
         "defense": 45,
@@ -173,7 +172,8 @@
         "level": 35,
         "str": 18,
         "con": 18
-      }
+      },
+      "spriteId": "shield_sorcerer"
     },
     {
       "id": "legendary_shield",
@@ -183,7 +183,6 @@
       "rarity": "legendary",
       "value": 75000,
       "weight": 4.5,
-      "spriteIndex": 8,
       "color": "#FFD700",
       "stats": {
         "defense": 60,
@@ -196,7 +195,8 @@
         "level": 50,
         "str": 20,
         "con": 25
-      }
+      },
+      "spriteId": "undead_shield_03"
     }
   ]
 }
