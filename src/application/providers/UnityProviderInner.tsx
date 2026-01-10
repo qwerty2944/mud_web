@@ -165,6 +165,15 @@ export function UnityProviderInner({ children }: { children: ReactNode }) {
   // 현재 활성 viewport 엘리먼트
   const activeViewport = activeViewportId ? viewports.get(activeViewportId) : null;
 
+  // Unity canvas 렌더링 (항상 DOM에 유지)
+  const unityElement = unityProvider ? (
+    <Unity
+      unityProvider={unityProvider}
+      devicePixelRatio={typeof window !== "undefined" ? window.devicePixelRatio : 1}
+      style={{ width: "100%", height: "100%", background: "transparent" }}
+    />
+  ) : null;
+
   return (
     <UnityCtx.Provider
       value={{
@@ -178,17 +187,28 @@ export function UnityProviderInner({ children }: { children: ReactNode }) {
     >
       {children}
 
-      {/* Unity canvas - Portal로 활성 viewport에 렌더링 */}
-      {unityProvider && activeViewport
-        ? createPortal(
-            <Unity
-              unityProvider={unityProvider}
-              devicePixelRatio={typeof window !== "undefined" ? window.devicePixelRatio : 1}
-              style={{ width: "100%", height: "100%", background: "transparent" }}
-            />,
-            activeViewport
-          )
-        : null}
+      {/* Unity canvas - 항상 DOM에 유지 */}
+      {unityElement && (
+        activeViewport
+          ? // viewport가 있으면 Portal로 이동
+            createPortal(unityElement, activeViewport)
+          : // viewport가 없으면 숨김 처리 (but still mounted)
+            <div
+              style={{
+                position: "fixed",
+                top: 0,
+                left: 0,
+                width: 1,
+                height: 1,
+                overflow: "hidden",
+                opacity: 0,
+                pointerEvents: "none",
+                zIndex: -9999,
+              }}
+            >
+              {unityElement}
+            </div>
+      )}
     </UnityCtx.Provider>
   );
 }
