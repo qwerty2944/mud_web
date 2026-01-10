@@ -42,6 +42,7 @@ export async function fetchProfile(userId: string): Promise<UserProfile> {
     isPremium: data.is_premium || false,
     premiumUntil: data.premium_until,
     character: data.character || null,
+    appearance: data.appearance || null,
     buffs: data.buffs || [],
     currentMapId: data.current_map_id || "town_square",
     whisperCharges: data.whisper_charges || 0,

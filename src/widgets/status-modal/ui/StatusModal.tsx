@@ -25,6 +25,79 @@ import { useEquipmentStore } from "@/application/stores";
 import { useThemeStore } from "@/shared/config";
 import { SLOT_CONFIG, type EquipmentSlot } from "@/entities/item";
 import { calculateDerivedStats } from "@/entities/character";
+import type { ProfileAppearance } from "@/entities/character";
+
+// 스프라이트 데이터 타입
+interface SpriteItem {
+  id: string;
+  index: number;
+  sprite: string;
+}
+
+interface SpriteData {
+  eyes?: SpriteItem[];
+  hairs?: SpriteItem[];
+  facehairs?: SpriteItem[];
+  bodies?: SpriteItem[];
+}
+
+// ID를 인덱스로 변환하는 훅
+function useAppearanceIndexes(appearance: ProfileAppearance | null | undefined) {
+  const [spriteData, setSpriteData] = useState<SpriteData>({});
+  const [loaded, setLoaded] = useState(false);
+
+  // 스프라이트 데이터 로드
+  useEffect(() => {
+    async function loadSpriteData() {
+      try {
+        const [eyeRes, hairRes, facehairRes, bodyRes] = await Promise.all([
+          fetch("/data/sprites/appearance/eye.json"),
+          fetch("/data/sprites/appearance/hair.json"),
+          fetch("/data/sprites/appearance/facehair.json"),
+          fetch("/data/sprites/appearance/body.json"),
+        ]);
+        const [eyeData, hairData, facehairData, bodyData] = await Promise.all([
+          eyeRes.json(),
+          hairRes.json(),
+          facehairRes.json(),
+          bodyRes.json(),
+        ]);
+        setSpriteData({
+          eyes: eyeData.eyes || [],
+          hairs: hairData.hairs || [],
+          facehairs: facehairData.facehairs || [],
+          bodies: bodyData.bodies || [],
+        });
+        setLoaded(true);
+      } catch (err) {
+        console.error("Failed to load sprite data:", err);
+      }
+    }
+    loadSpriteData();
+  }, []);
+
+  // ID → 인덱스 변환
+  const indexes = useMemo(() => {
+    if (!loaded || !appearance) {
+      return { eyeIndex: -1, hairIndex: -1, facehairIndex: -1, bodyIndex: 12 };
+    }
+
+    const eyeItem = spriteData.eyes?.find(e => e.id === appearance.eyeId);
+    const hairItem = spriteData.hairs?.find(h => h.id === appearance.hairId);
+    const facehairItem = spriteData.facehairs?.find(f => f.id === appearance.facehairId);
+    // 기본 body는 Human_1 (index 12)
+    const bodyIndex = 12;
+
+    return {
+      eyeIndex: eyeItem?.index ?? -1,
+      hairIndex: hairItem?.index ?? -1,
+      facehairIndex: facehairItem?.index ?? -1,
+      bodyIndex,
+    };
+  }, [loaded, appearance, spriteData]);
+
+  return { indexes, loaded };
+}
 
 type TabType = "status" | "proficiency" | "skills" | "equipment" | "inventory";
 
@@ -52,6 +125,9 @@ export function StatusModal({ open, onClose }: StatusModalProps) {
 
   const mainCharacter = getMainCharacter(profile);
 
+  // ID → 인덱스 변환 훅
+  const { indexes: appearanceIndexes, loaded: spriteDataLoaded } = useAppearanceIndexes(profile?.appearance);
+
   // 파생 스탯 계산 (부상 포함)
   const derivedStats = useMemo(() => {
     if (!mainCharacter?.stats) return null;
@@ -65,10 +141,32 @@ export function StatusModal({ open, onClose }: StatusModalProps) {
 
   // Unity 스프라이트 로드 완료 후 캐릭터 외형 적용
   useEffect(() => {
-    if (open && isUnityLoaded && spriteCounts && mainCharacter?.appearance && mainCharacter?.colors) {
-      loadAppearance(mainCharacter.appearance, mainCharacter.colors);
+    if (open && isUnityLoaded && spriteCounts && profile?.appearance && spriteDataLoaded) {
+      // ID 기반 appearance를 인덱스 기반으로 변환
+      const appearance = {
+        bodyIndex: appearanceIndexes.bodyIndex,
+        eyeIndex: appearanceIndexes.eyeIndex,
+        hairIndex: appearanceIndexes.hairIndex,
+        facehairIndex: appearanceIndexes.facehairIndex,
+        clothIndex: -1,
+        armorIndex: -1,
+        pantIndex: -1,
+        helmetIndex: -1,
+        backIndex: -1,
+      };
+      // 색상 정보 변환 (ProfileAppearance → CharacterColors)
+      const colors = {
+        body: "#FFFFFF",
+        eye: profile.appearance.leftEyeColor || "#4A3728",
+        hair: profile.appearance.hairColor || "#8B4513",
+        facehair: profile.appearance.faceHairColor || "#8B4513",
+        cloth: "#FFFFFF",
+        armor: "#FFFFFF",
+        pant: "#FFFFFF",
+      };
+      loadAppearance(appearance, colors);
     }
-  }, [open, isUnityLoaded, spriteCounts, mainCharacter, loadAppearance]);
+  }, [open, isUnityLoaded, spriteCounts, profile?.appearance, spriteDataLoaded, appearanceIndexes, loadAppearance]);
 
   // 모달 외부 클릭 시 닫기
   const handleBackdropClick = (e: React.MouseEvent) => {

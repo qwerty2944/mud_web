@@ -280,27 +280,41 @@ function MyComponent() {
 
 **저장 형식 (profiles 테이블)**:
 ```typescript
-// equipment (JSONB)
+// character (JSONB) - 캐릭터 기본 정보 (외형 데이터 제외)
 {
-  "rightHandId": "iron_sword",      // 아이템 ID (items/*.json의 id)
+  "id": "char_xxx",
+  "name": "캐릭터명",
+  "gender": "male",
+  "isMain": true,
+  "preset": "warrior",
+  "stats": {                          // 능력치
+    "str": 15, "dex": 10, "con": 12,
+    "int": 10, "wis": 10, "cha": 10, "lck": 10
+  },
+  "createdAt": "2026-01-01T00:00:00Z"
+}
+
+// appearance (JSONB) - 외형 데이터 (ID 기반)
+{
+  "raceId": "eastern_human",          // 종족 ID (races.json의 id)
+  "eyeId": "eye_01",                  // 눈 ID (eye.json의 id)
+  "hairId": "elf_hair_01",            // 머리 ID (hair.json의 id)
+  "facehairId": null,                 // 수염 ID (facehair.json의 id)
+  "hairColor": "#8B4513",             // 색상 hex
+  "leftEyeColor": "#4A3728",
+  "rightEyeColor": "#4A3728",
+  "faceHairColor": "#8B4513"
+}
+
+// equipment (JSONB) - 장비 정보
+{
+  "rightHandId": "iron_sword",        // 아이템 ID (items/*.json의 id)
   "leftHandId": "wooden_shield",
   "helmetId": null,
   "armorId": "leather_armor",
   "clothId": null,
   "pantsId": "cloth_pants",
   "backId": null
-}
-
-// appearance (JSONB)
-{
-  "raceId": "eastern_human",        // 종족 ID (races.json의 id)
-  "eyeId": "eye1",                  // 눈 ID (eye.json의 id)
-  "hairId": "elf_hair_01",          // 머리 ID (hair.json의 id)
-  "facehairId": null,               // 수염 ID (facehair.json의 id)
-  "hairColor": "#8B4513",           // 색상 hex
-  "leftEyeColor": "#4A3728",
-  "rightEyeColor": "#4A3728",
-  "faceHairColor": "#8B4513"
 }
 ```
 
@@ -342,13 +356,18 @@ function MyComponent() {
 ### 두 형식의 관계
 
 ```
-[게임 DB]                    [변환]                      [Unity]
-equipment.rightHandId  →  items.json에서 spriteId 조회  →  JS_SetRightWeapon("Sword,3")
-  "iron_sword"              "elf_weapon_03"                 인덱스 3
+[게임 DB]                         [변환]                      [Unity]
+equipment.rightHandId        →  items.json에서 spriteId 조회  →  JS_SetRightWeapon("Sword,3")
+  "iron_sword"                    "elf_weapon_03"                 인덱스 3
 
-appearance.eyeId       →  eye.json에서 index 조회       →  JS_SetEye("2")
-  "eye1"                    index: 2                        인덱스 2
+appearance.eyeId             →  eye.json에서 index 조회       →  JS_SetEye("2")
+  "eye_01"                        index: 2                        인덱스 2
+
+appearance.hairId            →  hair.json에서 index 조회      →  JS_SetHair("5")
+  "elf_hair_01"                   index: 5                        인덱스 5
 ```
+
+**참고**: `appearance` 컬럼은 ID 기반으로 저장되므로, 스프라이트 JSON 파일에서 인덱스를 조회해 Unity에 전달해야 합니다.
 
 **핵심 차이**:
 | 항목 | 게임 테스트 (DB) | 유니티 테스트 |

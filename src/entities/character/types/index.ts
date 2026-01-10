@@ -22,6 +22,19 @@ export interface CharacterColors {
   pant: string;
 }
 
+// ============ 프로필 외형 타입 (profile.appearance 컬럼 - ID 기반) ============
+
+export interface ProfileAppearance {
+  raceId: string | null;
+  hairId: string | null;
+  eyeId: string | null;
+  facehairId: string | null;
+  hairColor: string;
+  leftEyeColor: string;
+  rightEyeColor: string;
+  faceHairColor: string;
+}
+
 // ============ 저장된 캐릭터 타입 ============
 
 export interface SavedCharacter {
@@ -29,11 +42,7 @@ export interface SavedCharacter {
   name: string;
   isMain: boolean;
   gender?: "male" | "female";
-  race?: string;
-  bodyType?: number;
   preset?: string;
-  appearance: CharacterAppearance;
-  colors: CharacterColors;
   stats?: CharacterStats;
   createdAt?: string;
 }

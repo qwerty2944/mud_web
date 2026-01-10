@@ -1,4 +1,4 @@
-import type { SavedCharacter } from "@/entities/character";
+import type { SavedCharacter, ProfileAppearance } from "@/entities/character";
 import type { CharacterInjury } from "@/entities/injury";
 
 // ============ 종교 타입 ============
@@ -26,6 +26,8 @@ export interface UserProfile {
   isPremium: boolean;
   premiumUntil: string | null;
   character: SavedCharacter | null;
+  // 외형 데이터 (별도 컬럼)
+  appearance: ProfileAppearance | null;
   buffs: any[];
   currentMapId: string;
   // 귓속말 크리스탈 시스템
