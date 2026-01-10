@@ -23,6 +23,7 @@ import {
   getMainCharacter,
   getStaminaPercent,
   getMaxStaminaFromProfile,
+  getCurrentStamina,
 } from "@/entities/user";
 import {
   useMaps,
@@ -320,7 +321,7 @@ export default function GamePage() {
               className="font-medium"
               style={{ color: staminaPercent <= 20 ? theme.colors.error : theme.colors.textDim }}
             >
-              {profile.stamina}/{getMaxStaminaFromProfile(profile)}
+              {getCurrentStamina(profile)}/{getMaxStaminaFromProfile(profile)}
             </span>
           </div>
 

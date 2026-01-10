@@ -73,13 +73,15 @@ export function getExpToNextLevel(profile: UserProfile | undefined): number {
 /**
  * 현재 스태미나 계산 (Lazy Calculation)
  * DB에 저장된 값 + 경과 시간 기반 회복량
+ * CON 기반 최대 피로도를 사용하여 정확한 상한 적용
  */
 export function getCurrentStamina(profile: UserProfile | undefined): number {
   if (!profile) return 100;
+  const maxStamina = getMaxStaminaFromProfile(profile);
   return calculateCurrentStamina(
     profile.stamina,
     profile.staminaUpdatedAt,
-    profile.maxStamina
+    maxStamina
   );
 }
 
