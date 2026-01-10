@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-01-10T11:49:40.217Z",
+  "generatedAt": "2026-01-10T14:46:43.649Z",
   "races": [
     {
       "id": "eastern_human",
@@ -26,14 +26,7 @@
       },
       "appearance": {
         "body": {
-          "availableIndices": [
-            3,
-            4,
-            5,
-            6,
-            7
-          ],
-          "spriteNames": [
+          "availableSpriteIds": [
             "Human_1",
             "Human_2",
             "Human_3",
@@ -48,67 +41,7 @@
             "medium",
             "tan"
           ],
-          "default": "light",
-          "colors": {
-            "fair": "#FFE4C4",
-            "light": "#F5DEB3",
-            "medium": "#DEB887",
-            "tan": "#D2B48C"
-          }
-        },
-        "eye": {
-          "availableIndices": [
-            0,
-            2,
-            3,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14
-          ],
-          "colors": {
-            "available": [
-              "brown",
-              "black",
-              "hazel",
-              "amber"
-            ],
-            "default": "brown",
-            "values": {
-              "brown": "#8B4513",
-              "black": "#1C1C1C",
-              "hazel": "#8E7618",
-              "amber": "#FFBF00"
-            }
-          }
-        },
-        "hair": {
-          "availableIndices": "all",
-          "colors": {
-            "available": [
-              "black",
-              "dark_brown",
-              "brown",
-              "white",
-              "gray"
-            ],
-            "default": "black",
-            "values": {
-              "black": "#1C1C1C",
-              "dark_brown": "#3D2314",
-              "brown": "#5D4037",
-              "white": "#FFFFFF",
-              "gray": "#808080"
-            }
-          }
-        },
-        "facehair": {
-          "availableIndices": "all",
-          "colors": "same_as_hair"
+          "default": "light"
         }
       },
       "resistances": {
@@ -151,14 +84,7 @@
       },
       "appearance": {
         "body": {
-          "availableIndices": [
-            3,
-            4,
-            5,
-            6,
-            7
-          ],
-          "spriteNames": [
+          "availableSpriteIds": [
             "Human_1",
             "Human_2",
             "Human_3",
@@ -172,68 +98,7 @@
             "fair",
             "light"
           ],
-          "default": "pale",
-          "colors": {
-            "pale": "#FFE4E1",
-            "fair": "#FFF0F5",
-            "light": "#FAEBD7"
-          }
-        },
-        "eye": {
-          "availableIndices": [
-            0,
-            2,
-            3,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14
-          ],
-          "colors": {
-            "available": [
-              "blue",
-              "gray",
-              "green",
-              "hazel"
-            ],
-            "default": "blue",
-            "values": {
-              "blue": "#4169E1",
-              "gray": "#708090",
-              "green": "#2E8B57",
-              "hazel": "#8E7618"
-            }
-          }
-        },
-        "hair": {
-          "availableIndices": "all",
-          "colors": {
-            "available": [
-              "blonde",
-              "platinum",
-              "red",
-              "ginger",
-              "light_brown",
-              "white"
-            ],
-            "default": "blonde",
-            "values": {
-              "blonde": "#F0E68C",
-              "platinum": "#E5E4E2",
-              "red": "#B22222",
-              "ginger": "#FF6347",
-              "light_brown": "#A0522D",
-              "white": "#FFFFFF"
-            }
-          }
-        },
-        "facehair": {
-          "availableIndices": "all",
-          "colors": "same_as_hair"
+          "default": "pale"
         }
       },
       "resistances": {
@@ -277,14 +142,7 @@
       },
       "appearance": {
         "body": {
-          "availableIndices": [
-            3,
-            4,
-            5,
-            6,
-            7
-          ],
-          "spriteNames": [
+          "availableSpriteIds": [
             "Human_1",
             "Human_2",
             "Human_3",
@@ -300,70 +158,7 @@
             "dark",
             "ebony"
           ],
-          "default": "brown",
-          "colors": {
-            "tan": "#D2A679",
-            "olive": "#C4A35A",
-            "brown": "#8B7355",
-            "dark": "#5D4037",
-            "ebony": "#3E2723"
-          }
-        },
-        "eye": {
-          "availableIndices": [
-            0,
-            2,
-            3,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14
-          ],
-          "colors": {
-            "available": [
-              "brown",
-              "amber",
-              "hazel",
-              "gold",
-              "black"
-            ],
-            "default": "brown",
-            "values": {
-              "brown": "#8B4513",
-              "amber": "#FFBF00",
-              "hazel": "#8E7618",
-              "gold": "#FFD700",
-              "black": "#1C1C1C"
-            }
-          }
-        },
-        "hair": {
-          "availableIndices": "all",
-          "colors": {
-            "available": [
-              "black",
-              "dark_brown",
-              "brown",
-              "white",
-              "gray"
-            ],
-            "default": "black",
-            "values": {
-              "black": "#1C1C1C",
-              "dark_brown": "#3D2314",
-              "brown": "#6B4423",
-              "white": "#FFFFFF",
-              "gray": "#808080"
-            }
-          }
-        },
-        "facehair": {
-          "availableIndices": "all",
-          "colors": "same_as_hair"
+          "default": "brown"
         }
       },
       "resistances": {
@@ -408,14 +203,7 @@
       },
       "appearance": {
         "body": {
-          "availableIndices": [
-            3,
-            4,
-            5,
-            6,
-            7
-          ],
-          "spriteNames": [
+          "availableSpriteIds": [
             "Human_1",
             "Human_2",
             "Human_3",
@@ -432,77 +220,7 @@
             "tan",
             "olive"
           ],
-          "default": "fair",
-          "colors": {
-            "pale": "#FFE4E1",
-            "fair": "#FFDAB9",
-            "light": "#F5DEB3",
-            "medium": "#DEB887",
-            "tan": "#D2A679",
-            "olive": "#C4A35A"
-          }
-        },
-        "eye": {
-          "availableIndices": [
-            0,
-            2,
-            3,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14
-          ],
-          "colors": {
-            "available": [
-              "brown",
-              "blue",
-              "green",
-              "gray",
-              "hazel"
-            ],
-            "default": "brown",
-            "values": {
-              "brown": "#8B4513",
-              "blue": "#4169E1",
-              "green": "#228B22",
-              "gray": "#708090",
-              "hazel": "#8E7618"
-            }
-          }
-        },
-        "hair": {
-          "availableIndices": "all",
-          "colors": {
-            "available": [
-              "black",
-              "dark_brown",
-              "brown",
-              "auburn",
-              "red",
-              "blonde",
-              "gray",
-              "white"
-            ],
-            "default": "brown",
-            "values": {
-              "black": "#1C1C1C",
-              "dark_brown": "#3D2314",
-              "brown": "#8B4513",
-              "auburn": "#A52A2A",
-              "red": "#B22222",
-              "blonde": "#F0E68C",
-              "gray": "#808080",
-              "white": "#FFFFFF"
-            }
-          }
-        },
-        "facehair": {
-          "availableIndices": "all",
-          "colors": "same_as_hair"
+          "default": "fair"
         }
       },
       "resistances": {},
@@ -544,13 +262,7 @@
       },
       "appearance": {
         "body": {
-          "availableIndices": [
-            1,
-            2,
-            8,
-            9
-          ],
-          "spriteNames": [
+          "availableSpriteIds": [
             "Elf_1",
             "Elf_2",
             "New_Elf_1",
@@ -564,69 +276,7 @@
             "purple",
             "blue_gray"
           ],
-          "default": "obsidian",
-          "colors": {
-            "obsidian": "#36454F",
-            "charcoal": "#2F4F4F",
-            "purple": "#483D8B",
-            "blue_gray": "#6A5ACD"
-          }
-        },
-        "eye": {
-          "availableIndices": [
-            0,
-            2,
-            3,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14
-          ],
-          "colors": {
-            "available": [
-              "red",
-              "violet",
-              "white",
-              "amber",
-              "pale_yellow"
-            ],
-            "default": "red",
-            "values": {
-              "red": "#DC143C",
-              "violet": "#8B008B",
-              "white": "#F5F5F5",
-              "amber": "#FFBF00",
-              "pale_yellow": "#FFFFE0"
-            }
-          }
-        },
-        "hair": {
-          "availableIndices": "all",
-          "colors": {
-            "available": [
-              "white",
-              "silver",
-              "pale_violet",
-              "pale_blue",
-              "pale_gray"
-            ],
-            "default": "white",
-            "values": {
-              "white": "#FFFFFF",
-              "silver": "#C0C0C0",
-              "pale_violet": "#DDA0DD",
-              "pale_blue": "#B0E0E6",
-              "pale_gray": "#D3D3D3"
-            }
-          }
-        },
-        "facehair": {
-          "availableIndices": [],
-          "note": "엘프는 수염이 자라지 않음"
+          "default": "obsidian"
         }
       },
       "resistances": {
@@ -679,13 +329,7 @@
       },
       "appearance": {
         "body": {
-          "availableIndices": [
-            1,
-            2,
-            8,
-            9
-          ],
-          "spriteNames": [
+          "availableSpriteIds": [
             "Elf_1",
             "Elf_2",
             "New_Elf_1",
@@ -699,71 +343,7 @@
             "ivory",
             "silver"
           ],
-          "default": "pale",
-          "colors": {
-            "pale": "#FFF5EE",
-            "fair": "#FFEFD5",
-            "ivory": "#FFFFF0",
-            "silver": "#E8E8E8"
-          }
-        },
-        "eye": {
-          "availableIndices": [
-            0,
-            2,
-            3,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14
-          ],
-          "colors": {
-            "available": [
-              "blue",
-              "violet",
-              "silver",
-              "gold",
-              "amber"
-            ],
-            "default": "blue",
-            "values": {
-              "blue": "#4169E1",
-              "violet": "#8B008B",
-              "silver": "#C0C0C0",
-              "gold": "#FFD700",
-              "amber": "#FFBF00"
-            }
-          }
-        },
-        "hair": {
-          "availableIndices": "all",
-          "colors": {
-            "available": [
-              "platinum",
-              "silver",
-              "gold",
-              "white",
-              "pale_blue",
-              "pale_violet"
-            ],
-            "default": "platinum",
-            "values": {
-              "platinum": "#E5E4E2",
-              "silver": "#C0C0C0",
-              "gold": "#FFD700",
-              "white": "#FFFFFF",
-              "pale_blue": "#ADD8E6",
-              "pale_violet": "#DDA0DD"
-            }
-          }
-        },
-        "facehair": {
-          "availableIndices": [],
-          "note": "엘프는 수염이 자라지 않음"
+          "default": "pale"
         }
       },
       "resistances": {
@@ -812,13 +392,7 @@
       },
       "appearance": {
         "body": {
-          "availableIndices": [
-            1,
-            2,
-            8,
-            9
-          ],
-          "spriteNames": [
+          "availableSpriteIds": [
             "Elf_1",
             "Elf_2",
             "New_Elf_1",
@@ -832,69 +406,7 @@
             "pearl",
             "moonlight"
           ],
-          "default": "silver",
-          "colors": {
-            "silver": "#E8E8E8",
-            "pale_blue": "#B0C4DE",
-            "pearl": "#FDEEF4",
-            "moonlight": "#F0F8FF"
-          }
-        },
-        "eye": {
-          "availableIndices": [
-            0,
-            2,
-            3,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14
-          ],
-          "colors": {
-            "available": [
-              "silver",
-              "pale_blue",
-              "violet",
-              "white",
-              "pale_gold"
-            ],
-            "default": "silver",
-            "values": {
-              "silver": "#C0C0C0",
-              "pale_blue": "#ADD8E6",
-              "violet": "#EE82EE",
-              "white": "#F5F5F5",
-              "pale_gold": "#EEE8AA"
-            }
-          }
-        },
-        "hair": {
-          "availableIndices": "all",
-          "colors": {
-            "available": [
-              "silver",
-              "white",
-              "pale_blue",
-              "pale_violet",
-              "moonlight"
-            ],
-            "default": "silver",
-            "values": {
-              "silver": "#C0C0C0",
-              "white": "#FFFFFF",
-              "pale_blue": "#B0E0E6",
-              "pale_violet": "#DDA0DD",
-              "moonlight": "#F0F8FF"
-            }
-          }
-        },
-        "facehair": {
-          "availableIndices": [],
-          "note": "엘프는 수염이 자라지 않음"
+          "default": "silver"
         }
       },
       "resistances": {
@@ -947,13 +459,7 @@
       },
       "appearance": {
         "body": {
-          "availableIndices": [
-            1,
-            2,
-            8,
-            9
-          ],
-          "spriteNames": [
+          "availableSpriteIds": [
             "Elf_1",
             "Elf_2",
             "New_Elf_1",
@@ -967,71 +473,7 @@
             "copper",
             "brown"
           ],
-          "default": "copper",
-          "colors": {
-            "tan": "#D2B48C",
-            "olive": "#C4A35A",
-            "copper": "#B87333",
-            "brown": "#8B7355"
-          }
-        },
-        "eye": {
-          "availableIndices": [
-            0,
-            2,
-            3,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14
-          ],
-          "colors": {
-            "available": [
-              "green",
-              "amber",
-              "brown",
-              "hazel",
-              "gold"
-            ],
-            "default": "green",
-            "values": {
-              "green": "#228B22",
-              "amber": "#FFBF00",
-              "brown": "#8B4513",
-              "hazel": "#8E7618",
-              "gold": "#DAA520"
-            }
-          }
-        },
-        "hair": {
-          "availableIndices": "all",
-          "colors": {
-            "available": [
-              "brown",
-              "dark_brown",
-              "auburn",
-              "black",
-              "dark_green",
-              "copper"
-            ],
-            "default": "brown",
-            "values": {
-              "brown": "#8B4513",
-              "dark_brown": "#3D2314",
-              "auburn": "#A52A2A",
-              "black": "#1C1C1C",
-              "dark_green": "#006400",
-              "copper": "#B87333"
-            }
-          }
-        },
-        "facehair": {
-          "availableIndices": [],
-          "note": "엘프는 수염이 자라지 않음"
+          "default": "copper"
         }
       },
       "resistances": {
@@ -1079,14 +521,7 @@
       },
       "appearance": {
         "body": {
-          "availableIndices": [
-            3,
-            4,
-            5,
-            6,
-            7
-          ],
-          "spriteNames": [
+          "availableSpriteIds": [
             "Human_1",
             "Human_2",
             "Human_3",
@@ -1101,72 +536,7 @@
             "ruddy",
             "olive"
           ],
-          "default": "tan",
-          "colors": {
-            "fair": "#FFDAB9",
-            "tan": "#D2A679",
-            "ruddy": "#CD853F",
-            "olive": "#C4A35A"
-          }
-        },
-        "eye": {
-          "availableIndices": [
-            0,
-            2,
-            3,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14
-          ],
-          "colors": {
-            "available": [
-              "brown",
-              "green",
-              "hazel",
-              "amber",
-              "blue"
-            ],
-            "default": "hazel",
-            "values": {
-              "brown": "#8B4513",
-              "green": "#228B22",
-              "hazel": "#8E7618",
-              "amber": "#FFBF00",
-              "blue": "#4682B4"
-            }
-          }
-        },
-        "hair": {
-          "availableIndices": "all",
-          "colors": {
-            "available": [
-              "brown",
-              "auburn",
-              "red",
-              "blonde",
-              "gray",
-              "white"
-            ],
-            "default": "brown",
-            "values": {
-              "brown": "#8B4513",
-              "auburn": "#A52A2A",
-              "red": "#B22222",
-              "blonde": "#DAA520",
-              "gray": "#808080",
-              "white": "#FFFFFF"
-            }
-          }
-        },
-        "facehair": {
-          "availableIndices": "all",
-          "required": true,
-          "colors": "same_as_hair"
+          "default": "tan"
         }
       },
       "resistances": {
@@ -1214,21 +584,13 @@
       },
       "appearance": {
         "body": {
-          "availableIndices": [
-            3,
-            4,
-            5,
-            6,
-            7
-          ],
-          "spriteNames": [
+          "availableSpriteIds": [
             "Human_1",
             "Human_2",
             "Human_3",
             "Human_4",
             "Human_5"
-          ],
-          "note": "드워프 전용 바디 스프라이트 추가 예정"
+          ]
         },
         "skinTones": {
           "available": [
@@ -1237,75 +599,7 @@
             "ruddy",
             "pale"
           ],
-          "default": "ruddy",
-          "colors": {
-            "fair": "#FFDAB9",
-            "tan": "#D2A679",
-            "ruddy": "#CD853F",
-            "pale": "#FFE4C4"
-          }
-        },
-        "eye": {
-          "availableIndices": [
-            0,
-            2,
-            3,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14
-          ],
-          "colors": {
-            "available": [
-              "brown",
-              "gray",
-              "blue",
-              "black",
-              "amber"
-            ],
-            "default": "brown",
-            "values": {
-              "brown": "#8B4513",
-              "gray": "#708090",
-              "blue": "#4682B4",
-              "black": "#1C1C1C",
-              "amber": "#FFBF00"
-            }
-          }
-        },
-        "hair": {
-          "availableIndices": "all",
-          "colors": {
-            "available": [
-              "black",
-              "dark_brown",
-              "brown",
-              "auburn",
-              "red",
-              "gray",
-              "white"
-            ],
-            "default": "dark_brown",
-            "values": {
-              "black": "#1C1C1C",
-              "dark_brown": "#3D2314",
-              "brown": "#8B4513",
-              "auburn": "#A52A2A",
-              "red": "#B22222",
-              "gray": "#808080",
-              "white": "#FFFFFF"
-            }
-          }
-        },
-        "facehair": {
-          "availableIndices": "all",
-          "required": true,
-          "note": "드워프 남성은 반드시 수염을 가짐",
-          "colors": "same_as_hair"
+          "default": "ruddy"
         }
       },
       "resistances": {
@@ -1354,13 +648,7 @@
       },
       "appearance": {
         "body": {
-          "availableIndices": [
-            10,
-            11,
-            12,
-            13
-          ],
-          "spriteNames": [
+          "availableSpriteIds": [
             "Orc_1",
             "Orc_2",
             "Orc_3",
@@ -1374,67 +662,7 @@
             "dark_gray",
             "slate"
           ],
-          "default": "gray",
-          "colors": {
-            "light_gray": "#A9A9A9",
-            "gray": "#808080",
-            "dark_gray": "#696969",
-            "slate": "#708090"
-          }
-        },
-        "eye": {
-          "availableIndices": [
-            0,
-            2,
-            3,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14
-          ],
-          "colors": {
-            "available": [
-              "yellow",
-              "amber",
-              "gray",
-              "blue",
-              "white"
-            ],
-            "default": "yellow",
-            "values": {
-              "yellow": "#FFD700",
-              "amber": "#FFBF00",
-              "gray": "#708090",
-              "blue": "#4682B4",
-              "white": "#F5F5F5"
-            }
-          }
-        },
-        "hair": {
-          "availableIndices": "all",
-          "colors": {
-            "available": [
-              "black",
-              "dark_gray",
-              "white",
-              "silver"
-            ],
-            "default": "black",
-            "values": {
-              "black": "#1C1C1C",
-              "dark_gray": "#2F4F4F",
-              "white": "#FFFFFF",
-              "silver": "#C0C0C0"
-            }
-          }
-        },
-        "facehair": {
-          "availableIndices": "all",
-          "colors": "same_as_hair"
+          "default": "gray"
         }
       },
       "resistances": {
@@ -1482,13 +710,7 @@
       },
       "appearance": {
         "body": {
-          "availableIndices": [
-            10,
-            11,
-            12,
-            13
-          ],
-          "spriteNames": [
+          "availableSpriteIds": [
             "Orc_1",
             "Orc_2",
             "Orc_3",
@@ -1502,67 +724,7 @@
             "dark_green",
             "olive_green"
           ],
-          "default": "green",
-          "colors": {
-            "light_green": "#90EE90",
-            "green": "#556B2F",
-            "dark_green": "#2F4F2F",
-            "olive_green": "#6B8E23"
-          }
-        },
-        "eye": {
-          "availableIndices": [
-            0,
-            2,
-            3,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14
-          ],
-          "colors": {
-            "available": [
-              "red",
-              "yellow",
-              "orange",
-              "amber",
-              "brown"
-            ],
-            "default": "red",
-            "values": {
-              "red": "#DC143C",
-              "yellow": "#FFD700",
-              "orange": "#FF8C00",
-              "amber": "#FFBF00",
-              "brown": "#8B4513"
-            }
-          }
-        },
-        "hair": {
-          "availableIndices": "all",
-          "colors": {
-            "available": [
-              "black",
-              "dark_brown",
-              "dark_red",
-              "gray"
-            ],
-            "default": "black",
-            "values": {
-              "black": "#1C1C1C",
-              "dark_brown": "#3D2314",
-              "dark_red": "#8B0000",
-              "gray": "#696969"
-            }
-          }
-        },
-        "facehair": {
-          "availableIndices": "all",
-          "colors": "same_as_hair"
+          "default": "green"
         }
       },
       "resistances": {
@@ -1610,10 +772,7 @@
       "playable": false,
       "appearance": {
         "body": {
-          "availableIndices": [
-            14
-          ],
-          "spriteNames": [
+          "availableSpriteIds": [
             "Skelton_1"
           ]
         },
@@ -1623,40 +782,7 @@
             "aged_bone",
             "dark_bone"
           ],
-          "default": "bone",
-          "colors": {
-            "bone": "#F5F5DC",
-            "aged_bone": "#D2B48C",
-            "dark_bone": "#8B7355"
-          }
-        },
-        "eye": {
-          "availableIndices": [
-            0
-          ],
-          "colors": {
-            "available": [
-              "empty",
-              "red_flame",
-              "blue_flame",
-              "green_flame"
-            ],
-            "default": "empty",
-            "values": {
-              "empty": "#000000",
-              "red_flame": "#FF0000",
-              "blue_flame": "#00BFFF",
-              "green_flame": "#00FF00"
-            }
-          }
-        },
-        "hair": {
-          "availableIndices": [],
-          "note": "스켈레톤은 머리카락이 없음"
-        },
-        "facehair": {
-          "availableIndices": [],
-          "note": "스켈레톤은 수염이 없음"
+          "default": "bone"
         }
       },
       "resistances": {
@@ -1714,16 +840,7 @@
       "unlockCondition": "특수 이벤트로 뱀파이어화 가능",
       "appearance": {
         "body": {
-          "availableIndices": [
-            3,
-            4,
-            5,
-            6,
-            7,
-            1,
-            2
-          ],
-          "spriteNames": [
+          "availableSpriteIds": [
             "Human_1",
             "Human_2",
             "Human_3",
@@ -1731,8 +848,7 @@
             "Human_5",
             "Elf_1",
             "Elf_2"
-          ],
-          "note": "생전 종족의 외형 유지"
+          ]
         },
         "skinTones": {
           "available": [
@@ -1741,73 +857,7 @@
             "ashen",
             "marble"
           ],
-          "default": "pale",
-          "colors": {
-            "pale": "#F5F5F5",
-            "deathly_pale": "#FAEBD7",
-            "ashen": "#D3D3D3",
-            "marble": "#FFFAFA"
-          }
-        },
-        "eye": {
-          "availableIndices": [
-            0,
-            2,
-            3,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14
-          ],
-          "colors": {
-            "available": [
-              "red",
-              "crimson",
-              "gold",
-              "silver",
-              "black"
-            ],
-            "default": "red",
-            "values": {
-              "red": "#DC143C",
-              "crimson": "#B22222",
-              "gold": "#FFD700",
-              "silver": "#C0C0C0",
-              "black": "#1C1C1C"
-            }
-          },
-          "note": "배고플 때 눈이 빨갛게 빛남"
-        },
-        "hair": {
-          "availableIndices": "all",
-          "colors": {
-            "available": [
-              "black",
-              "white",
-              "silver",
-              "dark_red",
-              "original"
-            ],
-            "default": "black",
-            "values": {
-              "black": "#1C1C1C",
-              "white": "#FFFFFF",
-              "silver": "#C0C0C0",
-              "dark_red": "#8B0000"
-            }
-          }
-        },
-        "facehair": {
-          "availableIndices": "all",
-          "colors": "same_as_hair"
-        },
-        "special": {
-          "fangs": true,
-          "claws": "optional"
+          "default": "pale"
         }
       },
       "resistances": {
@@ -1889,15 +939,7 @@
       "playable": false,
       "appearance": {
         "body": {
-          "availableIndices": [
-            15,
-            16,
-            17,
-            18,
-            19,
-            20
-          ],
-          "spriteNames": [
+          "availableSpriteIds": [
             "Zombie_1",
             "Zombie_2",
             "Zombie_3",
@@ -1913,57 +955,7 @@
             "purple",
             "rotting"
           ],
-          "default": "greenish",
-          "colors": {
-            "pale_gray": "#A9A9A9",
-            "greenish": "#6B8E6B",
-            "purple": "#8B668B",
-            "rotting": "#5F5F5F"
-          }
-        },
-        "eye": {
-          "availableIndices": [
-            0,
-            1
-          ],
-          "colors": {
-            "available": [
-              "white",
-              "yellow",
-              "red",
-              "empty"
-            ],
-            "default": "white",
-            "values": {
-              "white": "#F5F5F5",
-              "yellow": "#FFFF00",
-              "red": "#FF0000",
-              "empty": "#000000"
-            }
-          }
-        },
-        "hair": {
-          "availableIndices": "all",
-          "note": "일부 좀비는 머리카락이 남아있음",
-          "colors": {
-            "available": [
-              "black_gray",
-              "brown_gray",
-              "white",
-              "none"
-            ],
-            "default": "black_gray",
-            "values": {
-              "black_gray": "#2F2F2F",
-              "brown_gray": "#4A3728",
-              "white": "#D3D3D3",
-              "none": null
-            }
-          }
-        },
-        "facehair": {
-          "availableIndices": [],
-          "note": "좀비는 수염이 거의 없음"
+          "default": "greenish"
         }
       },
       "resistances": {
@@ -2019,21 +1011,13 @@
       },
       "appearance": {
         "body": {
-          "availableIndices": [
-            3,
-            4,
-            5,
-            6,
-            7
-          ],
-          "spriteNames": [
+          "availableSpriteIds": [
             "Human_1",
             "Human_2",
             "Human_3",
             "Human_4",
             "Human_5"
-          ],
-          "note": "하플링 전용 바디 스프라이트 추가 예정 (작은 체형)"
+          ]
         },
         "skinTones": {
           "available": [
@@ -2042,70 +1026,7 @@
             "ruddy",
             "olive"
           ],
-          "default": "tan",
-          "colors": {
-            "fair": "#FFDAB9",
-            "tan": "#D2B48C",
-            "ruddy": "#DEB887",
-            "olive": "#C4A35A"
-          }
-        },
-        "eye": {
-          "availableIndices": [
-            0,
-            2,
-            3,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14
-          ],
-          "colors": {
-            "available": [
-              "brown",
-              "hazel",
-              "green",
-              "blue"
-            ],
-            "default": "brown",
-            "values": {
-              "brown": "#8B4513",
-              "hazel": "#8E7618",
-              "green": "#228B22",
-              "blue": "#4682B4"
-            }
-          }
-        },
-        "hair": {
-          "availableIndices": "all",
-          "style": "curly",
-          "colors": {
-            "available": [
-              "brown",
-              "dark_brown",
-              "auburn",
-              "blonde",
-              "black",
-              "gray"
-            ],
-            "default": "brown",
-            "values": {
-              "brown": "#8B4513",
-              "dark_brown": "#3D2314",
-              "auburn": "#A52A2A",
-              "blonde": "#DAA520",
-              "black": "#1C1C1C",
-              "gray": "#808080"
-            }
-          }
-        },
-        "facehair": {
-          "availableIndices": [],
-          "note": "하플링은 수염이 자라지 않음 (발에 털이 많음)"
+          "default": "tan"
         }
       },
       "resistances": {
@@ -2153,10 +1074,7 @@
       },
       "appearance": {
         "body": {
-          "availableIndices": [
-            0
-          ],
-          "spriteNames": [
+          "availableSpriteIds": [
             "Devil_1"
           ]
         },
@@ -2168,74 +1086,7 @@
             "maroon",
             "copper"
           ],
-          "default": "red",
-          "colors": {
-            "red": "#CD5C5C",
-            "dark_red": "#8B0000",
-            "purple": "#800080",
-            "maroon": "#800000",
-            "copper": "#B87333"
-          }
-        },
-        "eye": {
-          "availableIndices": [
-            0,
-            2,
-            3,
-            7,
-            8,
-            9,
-            10,
-            11,
-            12,
-            13,
-            14
-          ],
-          "colors": {
-            "available": [
-              "red",
-              "gold",
-              "silver",
-              "black",
-              "orange"
-            ],
-            "default": "gold",
-            "values": {
-              "red": "#DC143C",
-              "gold": "#FFD700",
-              "silver": "#C0C0C0",
-              "black": "#1C1C1C",
-              "orange": "#FF4500"
-            }
-          }
-        },
-        "hair": {
-          "availableIndices": "all",
-          "colors": {
-            "available": [
-              "black",
-              "dark_red",
-              "purple",
-              "white",
-              "crimson"
-            ],
-            "default": "black",
-            "values": {
-              "black": "#1C1C1C",
-              "dark_red": "#8B0000",
-              "purple": "#4B0082",
-              "white": "#FFFFFF",
-              "crimson": "#DC143C"
-            }
-          }
-        },
-        "facehair": {
-          "availableIndices": "all",
-          "colors": "same_as_hair"
-        },
-        "special": {
-          "horns": true,
-          "tail": true
+          "default": "red"
         }
       },
       "resistances": {

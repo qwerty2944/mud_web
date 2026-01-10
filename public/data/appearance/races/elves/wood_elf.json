@@ -17,51 +17,11 @@
   },
   "appearance": {
     "body": {
-      "availableIndices": [1, 2, 8, 9],
-      "spriteNames": ["Elf_1", "Elf_2", "New_Elf_1", "New_Elf_2"]
+      "availableSpriteIds": ["Elf_1", "Elf_2", "New_Elf_1", "New_Elf_2"]
     },
     "skinTones": {
       "available": ["tan", "olive", "copper", "brown"],
-      "default": "copper",
-      "colors": {
-        "tan": "#D2B48C",
-        "olive": "#C4A35A",
-        "copper": "#B87333",
-        "brown": "#8B7355"
-      }
-    },
-    "eye": {
-      "availableIndices": [0, 2, 3, 7, 8, 9, 10, 11, 12, 13, 14],
-      "colors": {
-        "available": ["green", "amber", "brown", "hazel", "gold"],
-        "default": "green",
-        "values": {
-          "green": "#228B22",
-          "amber": "#FFBF00",
-          "brown": "#8B4513",
-          "hazel": "#8E7618",
-          "gold": "#DAA520"
-        }
-      }
-    },
-    "hair": {
-      "availableIndices": "all",
-      "colors": {
-        "available": ["brown", "dark_brown", "auburn", "black", "dark_green", "copper"],
-        "default": "brown",
-        "values": {
-          "brown": "#8B4513",
-          "dark_brown": "#3D2314",
-          "auburn": "#A52A2A",
-          "black": "#1C1C1C",
-          "dark_green": "#006400",
-          "copper": "#B87333"
-        }
-      }
-    },
-    "facehair": {
-      "availableIndices": [],
-      "note": "엘프는 수염이 자라지 않음"
+      "default": "copper"
     }
   },
   "resistances": {

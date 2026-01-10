@@ -2,7 +2,7 @@
   "category": "equipment",
   "subcategory": "armor",
   "slot": "cloth",
-  "spriteMapping": "/data/sprites/equipment/armor/cloth.json",
+  "spriteMapping": "/data/sprites/equipment/wearables/cloth.json",
   "items": [
     {
       "id": "simple_tunic",

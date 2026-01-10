@@ -19,49 +19,11 @@
   "playable": false,
   "appearance": {
     "body": {
-      "availableIndices": [15, 16, 17, 18, 19, 20],
-      "spriteNames": ["Zombie_1", "Zombie_2", "Zombie_3", "Zombie_4", "Zombie_5", "Zombie_6"]
+      "availableSpriteIds": ["Zombie_1", "Zombie_2", "Zombie_3", "Zombie_4", "Zombie_5", "Zombie_6"]
     },
     "skinTones": {
       "available": ["pale_gray", "greenish", "purple", "rotting"],
-      "default": "greenish",
-      "colors": {
-        "pale_gray": "#A9A9A9",
-        "greenish": "#6B8E6B",
-        "purple": "#8B668B",
-        "rotting": "#5F5F5F"
-      }
-    },
-    "eye": {
-      "availableIndices": [0, 1],
-      "colors": {
-        "available": ["white", "yellow", "red", "empty"],
-        "default": "white",
-        "values": {
-          "white": "#F5F5F5",
-          "yellow": "#FFFF00",
-          "red": "#FF0000",
-          "empty": "#000000"
-        }
-      }
-    },
-    "hair": {
-      "availableIndices": "all",
-      "note": "일부 좀비는 머리카락이 남아있음",
-      "colors": {
-        "available": ["black_gray", "brown_gray", "white", "none"],
-        "default": "black_gray",
-        "values": {
-          "black_gray": "#2F2F2F",
-          "brown_gray": "#4A3728",
-          "white": "#D3D3D3",
-          "none": null
-        }
-      }
-    },
-    "facehair": {
-      "availableIndices": [],
-      "note": "좀비는 수염이 거의 없음"
+      "default": "greenish"
     }
   },
   "resistances": {

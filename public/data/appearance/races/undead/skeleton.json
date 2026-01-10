@@ -17,38 +17,11 @@
   "playable": false,
   "appearance": {
     "body": {
-      "availableIndices": [14],
-      "spriteNames": ["Skelton_1"]
+      "availableSpriteIds": ["Skelton_1"]
     },
     "skinTones": {
       "available": ["bone", "aged_bone", "dark_bone"],
-      "default": "bone",
-      "colors": {
-        "bone": "#F5F5DC",
-        "aged_bone": "#D2B48C",
-        "dark_bone": "#8B7355"
-      }
-    },
-    "eye": {
-      "availableIndices": [0],
-      "colors": {
-        "available": ["empty", "red_flame", "blue_flame", "green_flame"],
-        "default": "empty",
-        "values": {
-          "empty": "#000000",
-          "red_flame": "#FF0000",
-          "blue_flame": "#00BFFF",
-          "green_flame": "#00FF00"
-        }
-      }
-    },
-    "hair": {
-      "availableIndices": [],
-      "note": "스켈레톤은 머리카락이 없음"
-    },
-    "facehair": {
-      "availableIndices": [],
-      "note": "스켈레톤은 수염이 없음"
+      "default": "bone"
     }
   },
   "resistances": {

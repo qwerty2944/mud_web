@@ -2,7 +2,7 @@
   "category": "equipment",
   "subcategory": "armor",
   "slot": "helmet",
-  "spriteMapping": "/data/sprites/equipment/armor/helmet.json",
+  "spriteMapping": "/data/sprites/equipment/wearables/helmet.json",
   "items": [
     {
       "id": "leather_cap",

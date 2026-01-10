@@ -1,20 +1,34 @@
 {
   "version": "1.0.0",
-  "description": "외형 데이터 인덱스",
+  "description": "외형 데이터 인덱스 - 종족 무관 (body만 종족별 제한)",
   "categories": {
+    "body": {
+      "file": "/data/appearance/body.json",
+      "nameKo": "신체",
+      "nameEn": "Body",
+      "spriteMapping": "/data/sprites/appearance/body.json",
+      "raceRestricted": true
+    },
     "eyes": {
-      "path": "/data/appearance/eyes",
+      "file": "/data/appearance/eyes.json",
       "nameKo": "눈",
       "nameEn": "Eyes",
-      "files": ["human.json", "elf.json", "dwarf.json", "orc.json", "halfling.json", "tiefling.json", "undead.json"],
-      "spriteMapping": "/data/sprites/appearance/eye.json"
+      "spriteMapping": "/data/sprites/appearance/eye.json",
+      "raceRestricted": false
+    },
+    "hair": {
+      "file": "/data/appearance/hair.json",
+      "nameKo": "머리",
+      "nameEn": "Hair",
+      "spriteMapping": "/data/sprites/appearance/hair.json",
+      "raceRestricted": false
     },
     "facehair": {
-      "path": "/data/appearance/facehair",
-      "nameKo": "수염",
+      "file": "/data/appearance/facehair.json",
+      "nameKo": "수염/얼굴장식",
       "nameEn": "Facial Hair",
-      "files": ["human.json", "elf.json", "dwarf.json", "orc.json", "halfling.json", "tiefling.json", "undead.json"],
-      "spriteMapping": "/data/sprites/appearance/facehair.json"
+      "spriteMapping": "/data/sprites/appearance/facehair.json",
+      "raceRestricted": false
     }
   },
   "availableRaces": [

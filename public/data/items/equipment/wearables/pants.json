@@ -2,7 +2,7 @@
   "category": "equipment",
   "subcategory": "armor",
   "slot": "pant",
-  "spriteMapping": "/data/sprites/equipment/armor/pant.json",
+  "spriteMapping": "/data/sprites/equipment/wearables/pant.json",
   "items": [
     {
       "id": "cloth_pants",

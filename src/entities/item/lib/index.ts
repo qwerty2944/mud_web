@@ -204,10 +204,10 @@ const SPRITE_JSON_PATHS: Record<SpriteCategory, string> = {
   axe: "/data/sprites/equipment/weapons/axe.json",
   bow: "/data/sprites/equipment/weapons/bow.json",
   wand: "/data/sprites/equipment/weapons/wand.json",
-  armor: "/data/sprites/equipment/armor/armor.json",
-  cloth: "/data/sprites/equipment/armor/cloth.json",
-  helmet: "/data/sprites/equipment/armor/helmet.json",
-  pant: "/data/sprites/equipment/armor/pant.json",
+  armor: "/data/sprites/equipment/wearables/armor.json",
+  cloth: "/data/sprites/equipment/wearables/cloth.json",
+  helmet: "/data/sprites/equipment/wearables/helmet.json",
+  pant: "/data/sprites/equipment/wearables/pant.json",
 };
 
 /**

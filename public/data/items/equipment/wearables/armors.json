@@ -2,7 +2,7 @@
   "category": "equipment",
   "subcategory": "armor",
   "slot": "armor",
-  "spriteMapping": "/data/sprites/equipment/armor/armor.json",
+  "spriteMapping": "/data/sprites/equipment/wearables/armor.json",
   "items": [
     {
       "id": "cloth_shirt",

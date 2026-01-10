@@ -16,55 +16,11 @@
   },
   "appearance": {
     "body": {
-      "availableIndices": [0],
-      "spriteNames": ["Devil_1"]
+      "availableSpriteIds": ["Devil_1"]
     },
     "skinTones": {
       "available": ["red", "dark_red", "purple", "maroon", "copper"],
-      "default": "red",
-      "colors": {
-        "red": "#CD5C5C",
-        "dark_red": "#8B0000",
-        "purple": "#800080",
-        "maroon": "#800000",
-        "copper": "#B87333"
-      }
-    },
-    "eye": {
-      "availableIndices": [0, 2, 3, 7, 8, 9, 10, 11, 12, 13, 14],
-      "colors": {
-        "available": ["red", "gold", "silver", "black", "orange"],
-        "default": "gold",
-        "values": {
-          "red": "#DC143C",
-          "gold": "#FFD700",
-          "silver": "#C0C0C0",
-          "black": "#1C1C1C",
-          "orange": "#FF4500"
-        }
-      }
-    },
-    "hair": {
-      "availableIndices": "all",
-      "colors": {
-        "available": ["black", "dark_red", "purple", "white", "crimson"],
-        "default": "black",
-        "values": {
-          "black": "#1C1C1C",
-          "dark_red": "#8B0000",
-          "purple": "#4B0082",
-          "white": "#FFFFFF",
-          "crimson": "#DC143C"
-        }
-      }
-    },
-    "facehair": {
-      "availableIndices": "all",
-      "colors": "same_as_hair"
-    },
-    "special": {
-      "horns": true,
-      "tail": true
+      "default": "red"
     }
   },
   "resistances": {

@@ -295,11 +295,11 @@ export default function GameTestPage() {
           fetch("/data/sprites/equipment/weapons/wand.json"),
           fetch("/data/sprites/equipment/weapons/dagger.json"),
           fetch("/data/sprites/equipment/weapons/shield.json"),
-          fetch("/data/sprites/equipment/armor/helmet.json"),
-          fetch("/data/sprites/equipment/armor/armor.json"),
-          fetch("/data/sprites/equipment/armor/cloth.json"),
-          fetch("/data/sprites/equipment/armor/pant.json"),
-          fetch("/data/sprites/equipment/armor/back.json"),
+          fetch("/data/sprites/equipment/wearables/helmet.json"),
+          fetch("/data/sprites/equipment/wearables/armor.json"),
+          fetch("/data/sprites/equipment/wearables/cloth.json"),
+          fetch("/data/sprites/equipment/wearables/pant.json"),
+          fetch("/data/sprites/equipment/wearables/back.json"),
         ]);
         const [
           swordSprite, axeSprite, bowSprite, spearSprite, wandSprite, daggerSprite, shieldSprite,

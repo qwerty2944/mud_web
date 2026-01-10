@@ -16,50 +16,11 @@
   },
   "appearance": {
     "body": {
-      "availableIndices": [1, 2, 8, 9],
-      "spriteNames": ["Elf_1", "Elf_2", "New_Elf_1", "New_Elf_2"]
+      "availableSpriteIds": ["Elf_1", "Elf_2", "New_Elf_1", "New_Elf_2"]
     },
     "skinTones": {
       "available": ["silver", "pale_blue", "pearl", "moonlight"],
-      "default": "silver",
-      "colors": {
-        "silver": "#E8E8E8",
-        "pale_blue": "#B0C4DE",
-        "pearl": "#FDEEF4",
-        "moonlight": "#F0F8FF"
-      }
-    },
-    "eye": {
-      "availableIndices": [0, 2, 3, 7, 8, 9, 10, 11, 12, 13, 14],
-      "colors": {
-        "available": ["silver", "pale_blue", "violet", "white", "pale_gold"],
-        "default": "silver",
-        "values": {
-          "silver": "#C0C0C0",
-          "pale_blue": "#ADD8E6",
-          "violet": "#EE82EE",
-          "white": "#F5F5F5",
-          "pale_gold": "#EEE8AA"
-        }
-      }
-    },
-    "hair": {
-      "availableIndices": "all",
-      "colors": {
-        "available": ["silver", "white", "pale_blue", "pale_violet", "moonlight"],
-        "default": "silver",
-        "values": {
-          "silver": "#C0C0C0",
-          "white": "#FFFFFF",
-          "pale_blue": "#B0E0E6",
-          "pale_violet": "#DDA0DD",
-          "moonlight": "#F0F8FF"
-        }
-      }
-    },
-    "facehair": {
-      "availableIndices": [],
-      "note": "엘프는 수염이 자라지 않음"
+      "default": "silver"
     }
   },
   "resistances": {

@@ -17,49 +17,11 @@
   },
   "appearance": {
     "body": {
-      "availableIndices": [10, 11, 12, 13],
-      "spriteNames": ["Orc_1", "Orc_2", "Orc_3", "Orc_4"]
+      "availableSpriteIds": ["Orc_1", "Orc_2", "Orc_3", "Orc_4"]
     },
     "skinTones": {
       "available": ["light_green", "green", "dark_green", "olive_green"],
-      "default": "green",
-      "colors": {
-        "light_green": "#90EE90",
-        "green": "#556B2F",
-        "dark_green": "#2F4F2F",
-        "olive_green": "#6B8E23"
-      }
-    },
-    "eye": {
-      "availableIndices": [0, 2, 3, 7, 8, 9, 10, 11, 12, 13, 14],
-      "colors": {
-        "available": ["red", "yellow", "orange", "amber", "brown"],
-        "default": "red",
-        "values": {
-          "red": "#DC143C",
-          "yellow": "#FFD700",
-          "orange": "#FF8C00",
-          "amber": "#FFBF00",
-          "brown": "#8B4513"
-        }
-      }
-    },
-    "hair": {
-      "availableIndices": "all",
-      "colors": {
-        "available": ["black", "dark_brown", "dark_red", "gray"],
-        "default": "black",
-        "values": {
-          "black": "#1C1C1C",
-          "dark_brown": "#3D2314",
-          "dark_red": "#8B0000",
-          "gray": "#696969"
-        }
-      }
-    },
-    "facehair": {
-      "availableIndices": "all",
-      "colors": "same_as_hair"
+      "default": "green"
     }
   },
   "resistances": {

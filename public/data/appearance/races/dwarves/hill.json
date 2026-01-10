@@ -16,52 +16,11 @@
   },
   "appearance": {
     "body": {
-      "availableIndices": [3, 4, 5, 6, 7],
-      "spriteNames": ["Human_1", "Human_2", "Human_3", "Human_4", "Human_5"]
+      "availableSpriteIds": ["Human_1", "Human_2", "Human_3", "Human_4", "Human_5"]
     },
     "skinTones": {
       "available": ["fair", "tan", "ruddy", "olive"],
-      "default": "tan",
-      "colors": {
-        "fair": "#FFDAB9",
-        "tan": "#D2A679",
-        "ruddy": "#CD853F",
-        "olive": "#C4A35A"
-      }
-    },
-    "eye": {
-      "availableIndices": [0, 2, 3, 7, 8, 9, 10, 11, 12, 13, 14],
-      "colors": {
-        "available": ["brown", "green", "hazel", "amber", "blue"],
-        "default": "hazel",
-        "values": {
-          "brown": "#8B4513",
-          "green": "#228B22",
-          "hazel": "#8E7618",
-          "amber": "#FFBF00",
-          "blue": "#4682B4"
-        }
-      }
-    },
-    "hair": {
-      "availableIndices": "all",
-      "colors": {
-        "available": ["brown", "auburn", "red", "blonde", "gray", "white"],
-        "default": "brown",
-        "values": {
-          "brown": "#8B4513",
-          "auburn": "#A52A2A",
-          "red": "#B22222",
-          "blonde": "#DAA520",
-          "gray": "#808080",
-          "white": "#FFFFFF"
-        }
-      }
-    },
-    "facehair": {
-      "availableIndices": "all",
-      "required": true,
-      "colors": "same_as_hair"
+      "default": "tan"
     }
   },
   "resistances": {

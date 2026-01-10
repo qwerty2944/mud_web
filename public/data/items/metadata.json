@@ -23,7 +23,7 @@
         "path": "/data/items/equipment/armors",
         "files": ["helmets.json", "chests.json", "clothes.json", "pants.json", "backs.json"],
         "description": "방어구 장비",
-        "spriteMapping": "/data/sprites/equipment/armor"
+        "spriteMapping": "/data/sprites/equipment/wearables"
       },
       "accessories": {
         "path": "/data/items/equipment/accessories",

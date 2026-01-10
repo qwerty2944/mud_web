@@ -19,55 +19,11 @@
   "unlockCondition": "특수 이벤트로 뱀파이어화 가능",
   "appearance": {
     "body": {
-      "availableIndices": [3, 4, 5, 6, 7, 1, 2],
-      "spriteNames": ["Human_1", "Human_2", "Human_3", "Human_4", "Human_5", "Elf_1", "Elf_2"],
-      "note": "생전 종족의 외형 유지"
+      "availableSpriteIds": ["Human_1", "Human_2", "Human_3", "Human_4", "Human_5", "Elf_1", "Elf_2"]
     },
     "skinTones": {
       "available": ["pale", "deathly_pale", "ashen", "marble"],
-      "default": "pale",
-      "colors": {
-        "pale": "#F5F5F5",
-        "deathly_pale": "#FAEBD7",
-        "ashen": "#D3D3D3",
-        "marble": "#FFFAFA"
-      }
-    },
-    "eye": {
-      "availableIndices": [0, 2, 3, 7, 8, 9, 10, 11, 12, 13, 14],
-      "colors": {
-        "available": ["red", "crimson", "gold", "silver", "black"],
-        "default": "red",
-        "values": {
-          "red": "#DC143C",
-          "crimson": "#B22222",
-          "gold": "#FFD700",
-          "silver": "#C0C0C0",
-          "black": "#1C1C1C"
-        }
-      },
-      "note": "배고플 때 눈이 빨갛게 빛남"
-    },
-    "hair": {
-      "availableIndices": "all",
-      "colors": {
-        "available": ["black", "white", "silver", "dark_red", "original"],
-        "default": "black",
-        "values": {
-          "black": "#1C1C1C",
-          "white": "#FFFFFF",
-          "silver": "#C0C0C0",
-          "dark_red": "#8B0000"
-        }
-      }
-    },
-    "facehair": {
-      "availableIndices": "all",
-      "colors": "same_as_hair"
-    },
-    "special": {
-      "fangs": true,
-      "claws": "optional"
+      "default": "pale"
     }
   },
   "resistances": {

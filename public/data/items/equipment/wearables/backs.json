@@ -2,7 +2,7 @@
   "category": "equipment",
   "subcategory": "armor",
   "slot": "back",
-  "spriteMapping": "/data/sprites/equipment/armor/back.json",
+  "spriteMapping": "/data/sprites/equipment/wearables/back.json",
   "items": [
     {
       "id": "simple_cape",
