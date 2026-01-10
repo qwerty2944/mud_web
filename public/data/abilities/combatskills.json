@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-01-10T19:24:52.497Z",
+  "generatedAt": "2026-01-10T20:38:42.830Z",
   "skills": [
     {
       "id": "axe_mastery",
@@ -103,7 +103,8 @@
       "requirements": {
         "skills": {
           "axe_mastery": 1
-        }
+        },
+        "equipment": "axe"
       },
       "grantsExpTo": [
         "axe_mastery"
@@ -167,7 +168,8 @@
       "requirements": {
         "skills": {
           "axe_mastery": 10
-        }
+        },
+        "equipment": "axe"
       },
       "grantsExpTo": [
         "axe_mastery"
@@ -222,7 +224,8 @@
       "requirements": {
         "skills": {
           "axe_mastery": 15
-        }
+        },
+        "equipment": "axe"
       },
       "grantsExpTo": [
         "axe_mastery"
@@ -277,7 +280,8 @@
       "requirements": {
         "skills": {
           "axe_mastery": 22
-        }
+        },
+        "equipment": "axe"
       },
       "grantsExpTo": [
         "axe_mastery"
@@ -331,7 +335,8 @@
         "skills": {
           "axe_mastery": 35,
           "sunder_armor": 12
-        }
+        },
+        "equipment": "axe"
       },
       "grantsExpTo": [
         "axe_mastery"
@@ -389,7 +394,8 @@
         "skills": {
           "axe_mastery": 45,
           "rampage": 12
-        }
+        },
+        "equipment": "axe"
       },
       "grantsExpTo": [
         "axe_mastery"
@@ -507,7 +513,8 @@
       "requirements": {
         "skills": {
           "bow_mastery": 1
-        }
+        },
+        "equipment": "bow"
       },
       "grantsExpTo": [
         "bow_mastery"
@@ -567,7 +574,8 @@
       "requirements": {
         "skills": {
           "bow_mastery": 10
-        }
+        },
+        "equipment": "bow"
       },
       "grantsExpTo": [
         "bow_mastery"
@@ -618,7 +626,8 @@
       "requirements": {
         "skills": {
           "bow_mastery": 15
-        }
+        },
+        "equipment": "bow"
       },
       "grantsExpTo": [
         "bow_mastery"
@@ -673,7 +682,8 @@
       "requirements": {
         "skills": {
           "bow_mastery": 20
-        }
+        },
+        "equipment": "bow"
       },
       "grantsExpTo": [
         "bow_mastery"
@@ -726,7 +736,8 @@
         "skills": {
           "bow_mastery": 32,
           "power_shot": 15
-        }
+        },
+        "equipment": "bow"
       },
       "grantsExpTo": [
         "bow_mastery"
@@ -782,7 +793,8 @@
         "skills": {
           "bow_mastery": 45,
           "multi_shot": 15
-        }
+        },
+        "equipment": "bow"
       },
       "grantsExpTo": [
         "bow_mastery"
@@ -900,7 +912,8 @@
       "requirements": {
         "skills": {
           "crossbow_mastery": 1
-        }
+        },
+        "equipment": "crossbow"
       },
       "grantsExpTo": [
         "crossbow_mastery"
@@ -959,7 +972,8 @@
       "requirements": {
         "skills": {
           "crossbow_mastery": 10
-        }
+        },
+        "equipment": "crossbow"
       },
       "grantsExpTo": [
         "crossbow_mastery"
@@ -1014,7 +1028,8 @@
       "requirements": {
         "skills": {
           "crossbow_mastery": 18
-        }
+        },
+        "equipment": "crossbow"
       },
       "grantsExpTo": [
         "crossbow_mastery"
@@ -1068,7 +1083,8 @@
       "requirements": {
         "skills": {
           "crossbow_mastery": 15
-        }
+        },
+        "equipment": "crossbow"
       },
       "grantsExpTo": [
         "crossbow_mastery"
@@ -1122,7 +1138,8 @@
         "skills": {
           "crossbow_mastery": 35,
           "piercing_bolt": 15
-        }
+        },
+        "equipment": "crossbow"
       },
       "grantsExpTo": [
         "crossbow_mastery"
@@ -1177,7 +1194,8 @@
         "skills": {
           "crossbow_mastery": 45,
           "headshot": 10
-        }
+        },
+        "equipment": "crossbow"
       },
       "grantsExpTo": [
         "crossbow_mastery"
@@ -1295,7 +1313,8 @@
       "requirements": {
         "skills": {
           "dagger_mastery": 1
-        }
+        },
+        "equipment": "dagger"
       },
       "grantsExpTo": [
         "dagger_mastery"
@@ -1355,7 +1374,8 @@
       "requirements": {
         "skills": {
           "dagger_mastery": 10
-        }
+        },
+        "equipment": "dagger"
       },
       "grantsExpTo": [
         "dagger_mastery"
@@ -1409,7 +1429,8 @@
       "requirements": {
         "skills": {
           "dagger_mastery": 15
-        }
+        },
+        "equipment": "dagger"
       },
       "grantsExpTo": [
         "dagger_mastery"
@@ -1462,7 +1483,8 @@
         "skills": {
           "dagger_mastery": 22,
           "flurry": 10
-        }
+        },
+        "equipment": "dagger"
       },
       "grantsExpTo": [
         "dagger_mastery"
@@ -1518,7 +1540,8 @@
         "skills": {
           "dagger_mastery": 35,
           "backstab": 12
-        }
+        },
+        "equipment": "dagger"
       },
       "grantsExpTo": [
         "dagger_mastery"
@@ -1573,7 +1596,8 @@
         "skills": {
           "dagger_mastery": 45,
           "eviscerate": 10
-        }
+        },
+        "equipment": "dagger"
       },
       "grantsExpTo": [
         "dagger_mastery"
@@ -1691,7 +1715,8 @@
       "requirements": {
         "skills": {
           "dual_wield_mastery": 1
-        }
+        },
+        "equipment": "dual_wield"
       },
       "grantsExpTo": [
         "dual_wield_mastery"
@@ -1755,7 +1780,8 @@
       "requirements": {
         "skills": {
           "dual_wield_mastery": 10
-        }
+        },
+        "equipment": "dual_wield"
       },
       "grantsExpTo": [
         "dual_wield_mastery"
@@ -1809,7 +1835,8 @@
       "requirements": {
         "skills": {
           "dual_wield_mastery": 15
-        }
+        },
+        "equipment": "dual_wield"
       },
       "grantsExpTo": [
         "dual_wield_mastery"
@@ -1862,7 +1889,8 @@
         "skills": {
           "dual_wield_mastery": 22,
           "whirling_blades": 12
-        }
+        },
+        "equipment": "dual_wield"
       },
       "grantsExpTo": [
         "dual_wield_mastery"
@@ -1919,7 +1947,8 @@
         "skills": {
           "dual_wield_mastery": 35,
           "parry_riposte": 12
-        }
+        },
+        "equipment": "dual_wield"
       },
       "grantsExpTo": [
         "dual_wield_mastery"
@@ -1974,7 +2003,8 @@
         "skills": {
           "dual_wield_mastery": 45,
           "flurry_of_blades": 15
-        }
+        },
+        "equipment": "dual_wield"
       },
       "grantsExpTo": [
         "dual_wield_mastery"
@@ -2211,7 +2241,8 @@
       "requirements": {
         "skills": {
           "mace_mastery": 1
-        }
+        },
+        "equipment": "mace"
       },
       "grantsExpTo": [
         "mace_mastery"
@@ -2274,7 +2305,8 @@
       "requirements": {
         "skills": {
           "mace_mastery": 10
-        }
+        },
+        "equipment": "mace"
       },
       "grantsExpTo": [
         "mace_mastery"
@@ -2326,7 +2358,8 @@
       "requirements": {
         "skills": {
           "mace_mastery": 18
-        }
+        },
+        "equipment": "mace"
       },
       "grantsExpTo": [
         "mace_mastery"
@@ -2382,7 +2415,8 @@
         "skills": {
           "mace_mastery": 25,
           "concussion": 10
-        }
+        },
+        "equipment": "mace"
       },
       "grantsExpTo": [
         "mace_mastery"
@@ -2438,7 +2472,8 @@
         "skills": {
           "mace_mastery": 35,
           "crushing_blow": 12
-        }
+        },
+        "equipment": "mace"
       },
       "grantsExpTo": [
         "mace_mastery"
@@ -2496,7 +2531,8 @@
         "skills": {
           "mace_mastery": 45,
           "shockwave": 10
-        }
+        },
+        "equipment": "mace"
       },
       "grantsExpTo": [
         "mace_mastery"
@@ -2614,7 +2650,8 @@
       "requirements": {
         "skills": {
           "shield_mastery": 1
-        }
+        },
+        "equipment": "shield"
       },
       "grantsExpTo": [
         "shield_mastery"
@@ -2674,7 +2711,8 @@
       "requirements": {
         "skills": {
           "shield_mastery": 10
-        }
+        },
+        "equipment": "shield"
       },
       "grantsExpTo": [
         "shield_mastery"
@@ -2729,7 +2767,8 @@
       "requirements": {
         "skills": {
           "shield_mastery": 15
-        }
+        },
+        "equipment": "shield"
       },
       "grantsExpTo": [
         "shield_mastery"
@@ -2785,7 +2824,8 @@
         "skills": {
           "shield_mastery": 20,
           "shield_wall": 10
-        }
+        },
+        "equipment": "shield"
       },
       "grantsExpTo": [
         "shield_mastery"
@@ -2838,7 +2878,8 @@
         "skills": {
           "shield_mastery": 30,
           "shield_bash": 15
-        }
+        },
+        "equipment": "shield"
       },
       "grantsExpTo": [
         "shield_mastery"
@@ -2893,7 +2934,8 @@
         "skills": {
           "shield_mastery": 45,
           "cover": 12
-        }
+        },
+        "equipment": "shield"
       },
       "grantsExpTo": [
         "shield_mastery"
@@ -3010,7 +3052,8 @@
       "requirements": {
         "skills": {
           "spear_mastery": 1
-        }
+        },
+        "equipment": "spear"
       },
       "grantsExpTo": [
         "spear_mastery"
@@ -3070,7 +3113,8 @@
       "requirements": {
         "skills": {
           "spear_mastery": 10
-        }
+        },
+        "equipment": "spear"
       },
       "grantsExpTo": [
         "spear_mastery"
@@ -3122,7 +3166,8 @@
       "requirements": {
         "skills": {
           "spear_mastery": 15
-        }
+        },
+        "equipment": "spear"
       },
       "grantsExpTo": [
         "spear_mastery"
@@ -3177,7 +3222,8 @@
       "requirements": {
         "skills": {
           "spear_mastery": 22
-        }
+        },
+        "equipment": "spear"
       },
       "grantsExpTo": [
         "spear_mastery"
@@ -3232,7 +3278,8 @@
         "skills": {
           "spear_mastery": 35,
           "impale": 15
-        }
+        },
+        "equipment": "spear"
       },
       "grantsExpTo": [
         "spear_mastery"
@@ -3288,7 +3335,8 @@
         "skills": {
           "spear_mastery": 45,
           "skewer": 10
-        }
+        },
+        "equipment": "spear"
       },
       "grantsExpTo": [
         "spear_mastery"
@@ -3406,7 +3454,8 @@
       "requirements": {
         "skills": {
           "staff_mastery": 1
-        }
+        },
+        "equipment": "staff"
       },
       "grantsExpTo": [
         "staff_mastery"
@@ -3470,7 +3519,8 @@
       "requirements": {
         "skills": {
           "staff_mastery": 10
-        }
+        },
+        "equipment": "staff"
       },
       "grantsExpTo": [
         "staff_mastery"
@@ -3520,7 +3570,8 @@
       "requirements": {
         "skills": {
           "staff_mastery": 15
-        }
+        },
+        "equipment": "staff"
       },
       "grantsExpTo": [
         "staff_mastery"
@@ -3575,7 +3626,8 @@
       "requirements": {
         "skills": {
           "staff_mastery": 20
-        }
+        },
+        "equipment": "staff"
       },
       "grantsExpTo": [
         "staff_mastery"
@@ -3628,7 +3680,8 @@
         "skills": {
           "staff_mastery": 32,
           "arcane_burst": 15
-        }
+        },
+        "equipment": "staff"
       },
       "grantsExpTo": [
         "staff_mastery"
@@ -3687,7 +3740,8 @@
         "skills": {
           "staff_mastery": 45,
           "spell_amplify": 10
-        }
+        },
+        "equipment": "staff"
       },
       "grantsExpTo": [
         "staff_mastery"
@@ -5098,12 +5152,12 @@
       "id": "block",
       "nameKo": "막기",
       "nameEn": "Block",
-      "type": "defensive",
+      "type": "defense",
       "usageContext": "combat_only",
       "icon": "🛡️",
       "description": {
-        "ko": "적의 공격을 막아 피해를 50% 감소시킵니다.",
-        "en": "적의 공격을 막아 피해를 50% 감소시킵니다."
+        "ko": "적의 공격을 막아 피해를 감소시킵니다.",
+        "en": "Block enemy attack to reduce damage."
       },
       "maxLevel": 20,
       "expPerLevel": 70,
@@ -5111,19 +5165,22 @@
         {
           "level": 1,
           "effects": {
-            "apCost": 5
+            "damageReduction": 25,
+            "apCost": 4
           }
         },
         {
           "level": 10,
           "effects": {
-            "apCost": 5
+            "damageReduction": 35,
+            "apCost": 4
           }
         },
         {
           "level": 20,
           "effects": {
-            "apCost": 4
+            "damageReduction": 45,
+            "apCost": 3
           }
         }
       ],
@@ -5139,12 +5196,12 @@
       "id": "dodge",
       "nameKo": "회피",
       "nameEn": "Dodge",
-      "type": "defensive",
+      "type": "defense",
       "usageContext": "combat_only",
       "icon": "💨",
       "description": {
-        "ko": "적의 공격을 완전히 회피합니다. 1턴 쿨다운.",
-        "en": "적의 공격을 완전히 회피합니다. 1턴 쿨다운."
+        "ko": "적의 다음 공격을 회피합니다.",
+        "en": "Dodge the enemy's next attack."
       },
       "maxLevel": 20,
       "expPerLevel": 70,
@@ -5152,31 +5209,30 @@
         {
           "level": 1,
           "effects": {
-            "apCost": 3
+            "evasionChance": 70,
+            "apCost": 4
           }
         },
         {
           "level": 10,
           "effects": {
-            "apCost": 3
+            "evasionChance": 85,
+            "apCost": 4
           }
         },
         {
           "level": 20,
           "effects": {
-            "apCost": 2
+            "evasionChance": 100,
+            "apCost": 3
           }
         }
       ],
-      "requirements": {
-        "skills": {
-          "defense_mastery": 1
-        }
-      },
+      "requirements": {},
       "grantsExpTo": [
         "defense_mastery"
       ],
-      "cooldown": 1,
+      "cooldown": 2,
       "category": "defense",
       "skillGroup": "defense"
     },
@@ -5998,7 +6054,8 @@
       "attack": 60,
       "debuff": 1,
       "buff": 21,
-      "defensive": 4,
+      "defensive": 2,
+      "defense": 2,
       "utility": 2,
       "heal": 1
     }
