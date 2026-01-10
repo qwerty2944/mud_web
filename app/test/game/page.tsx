@@ -98,18 +98,17 @@ interface UnityAppearanceState {
 }
 
 // ===== 슬롯 설정 =====
-const WEAPON_CATEGORIES = [
+const HAND_WEAPON_CATEGORIES = [
   { key: "sword", label: "검", weaponType: "Sword" },
   { key: "axe", label: "도끼", weaponType: "Axe" },
   { key: "bow", label: "활", weaponType: "Bow" },
   { key: "spear", label: "창", weaponType: "Spear" },
   { key: "wand", label: "지팡이", weaponType: "Wand" },
   { key: "dagger", label: "단검", weaponType: "Dagger" },
+  { key: "shield", label: "방패", weaponType: "Shield" },
 ];
 
-const EQUIPMENT_SLOTS: { slot: keyof EquipmentState; label: string; category: string; weaponType?: string; hand?: "left" | "right" }[] = [
-  { slot: "rightHandId", label: "오른손 (무기)", category: "sword", weaponType: "Sword", hand: "right" },
-  { slot: "leftHandId", label: "왼손 (방패)", category: "shield", weaponType: "Shield", hand: "left" },
+const ARMOR_SLOTS: { slot: keyof EquipmentState; label: string; category: string }[] = [
   { slot: "helmetId", label: "머리", category: "helmet" },
   { slot: "armorId", label: "갑옷", category: "armor" },
   { slot: "clothId", label: "옷", category: "cloth" },
@@ -149,8 +148,9 @@ export default function GameTestPage() {
     backId: null,
   });
 
-  // 무기 카테고리 선택
-  const [selectedWeaponCategory, setSelectedWeaponCategory] = useState("sword");
+  // 양손 무기 카테고리 선택
+  const [rightHandCategory, setRightHandCategory] = useState("sword");
+  const [leftHandCategory, setLeftHandCategory] = useState("shield");
 
   const [appearance, setAppearance] = useState<AppearanceState>({
     raceId: null,
@@ -375,9 +375,9 @@ export default function GameTestPage() {
   const handleEquipmentSelect = useCallback((slot: keyof EquipmentState, itemId: string | null, category: string) => {
     setEquipment(prev => ({ ...prev, [slot]: itemId }));
 
-    // Unity 호출
-    const slotConfig = EQUIPMENT_SLOTS.find(s => s.slot === slot);
-    if (!slotConfig) return;
+    // 손 장비인지 확인
+    const isHandSlot = slot === "rightHandId" || slot === "leftHandId";
+    const isRightHand = slot === "rightHandId";
 
     const methodMap: Record<string, string> = {
       helmetId: "JS_SetHelmet",
@@ -401,9 +401,9 @@ export default function GameTestPage() {
     if (itemId === null) {
       // 장비 해제
       setUnityEquipment(prev => ({ ...prev, [unitySlotMap[slot]]: null }));
-      if (slotConfig.weaponType) {
-        const weaponType = equipmentData[category]?.weaponType || slotConfig.weaponType;
-        callUnity(slotConfig.hand === "left" ? "JS_SetLeftWeapon" : "JS_SetRightWeapon", `${weaponType},-1`);
+      if (isHandSlot) {
+        const weaponType = equipmentData[category]?.weaponType || "Sword";
+        callUnity(isRightHand ? "JS_SetRightWeapon" : "JS_SetLeftWeapon", `${weaponType},-1`);
       } else {
         callUnity(methodMap[slot] || "", "-1");
       }
@@ -419,13 +419,13 @@ export default function GameTestPage() {
       }
 
       // Unity 상태 업데이트
-      if (slotConfig.weaponType) {
-        const weaponType = equipmentData[category]?.weaponType || slotConfig.weaponType;
+      if (isHandSlot) {
+        const weaponType = equipmentData[category]?.weaponType || "Sword";
         setUnityEquipment(prev => ({
           ...prev,
           [unitySlotMap[slot]]: { weaponType, spriteIndex: spriteInfo.index, spriteName: spriteInfo.name }
         }));
-        callUnity(slotConfig.hand === "left" ? "JS_SetLeftWeapon" : "JS_SetRightWeapon", `${weaponType},${spriteInfo.index}`);
+        callUnity(isRightHand ? "JS_SetRightWeapon" : "JS_SetLeftWeapon", `${weaponType},${spriteInfo.index}`);
       } else {
         setUnityEquipment(prev => ({
           ...prev,
@@ -436,13 +436,19 @@ export default function GameTestPage() {
     }
   }, [callUnity, equipmentData, getSpriteInfo]);
 
-  // 무기 카테고리 변경 핸들러
-  const handleWeaponCategoryChange = useCallback((category: string) => {
-    setSelectedWeaponCategory(category);
-    // 무기 해제
-    setEquipment(prev => ({ ...prev, rightHandId: null }));
-    const weaponType = equipmentData[category]?.weaponType || "Sword";
-    callUnity("JS_SetRightWeapon", `${weaponType},-1`);
+  // 손 카테고리 변경 핸들러
+  const handleHandCategoryChange = useCallback((hand: "right" | "left", category: string) => {
+    if (hand === "right") {
+      setRightHandCategory(category);
+      setEquipment(prev => ({ ...prev, rightHandId: null }));
+      const weaponType = equipmentData[category]?.weaponType || "Sword";
+      callUnity("JS_SetRightWeapon", `${weaponType},-1`);
+    } else {
+      setLeftHandCategory(category);
+      setEquipment(prev => ({ ...prev, leftHandId: null }));
+      const weaponType = equipmentData[category]?.weaponType || "Shield";
+      callUnity("JS_SetLeftWeapon", `${weaponType},-1`);
+    }
   }, [callUnity, equipmentData]);
 
   // 외형 선택 핸들러 (ID 기반)
@@ -686,22 +692,22 @@ export default function GameTestPage() {
             </div>
           </section>
 
-          {/* 무기 섹션 */}
+          {/* 양손 장비 섹션 */}
           <section className="mb-6">
             <h2 className="text-sm font-semibold text-gray-400 mb-2 border-b border-gray-700 pb-1">
-              무기 (Weapons)
+              양손 장비 (Hands)
             </h2>
-            <div className="space-y-3">
-              {/* 무기 종류 선택 탭 */}
-              <div>
-                <label className="block text-xs text-gray-400 mb-1">무기 종류</label>
-                <div className="flex flex-wrap gap-1">
-                  {WEAPON_CATEGORIES.map((cat) => (
+            <div className="space-y-4">
+              {/* 오른손 */}
+              <div className="p-3 bg-gray-700/50 rounded-lg">
+                <label className="block text-xs text-yellow-400 font-semibold mb-2">🖐️ 오른손</label>
+                <div className="flex flex-wrap gap-1 mb-2">
+                  {HAND_WEAPON_CATEGORIES.map((cat) => (
                     <button
                       key={cat.key}
-                      onClick={() => handleWeaponCategoryChange(cat.key)}
+                      onClick={() => handleHandCategoryChange("right", cat.key)}
                       className={`px-2 py-1 rounded text-xs ${
-                        selectedWeaponCategory === cat.key
+                        rightHandCategory === cat.key
                           ? "bg-yellow-500 text-gray-900"
                           : "bg-gray-600 text-gray-300 hover:bg-gray-500"
                       }`}
@@ -710,55 +716,61 @@ export default function GameTestPage() {
                     </button>
                   ))}
                 </div>
-              </div>
-
-              {/* 오른손 무기 */}
-              {equipmentData[selectedWeaponCategory] && (
-                <div>
-                  <label className="block text-xs text-gray-400 mb-1">
-                    오른손 - {WEAPON_CATEGORIES.find(c => c.key === selectedWeaponCategory)?.label} ({equipmentData[selectedWeaponCategory].items.length}개)
-                  </label>
+                {equipmentData[rightHandCategory] && (
                   <select
                     className="w-full bg-gray-700 text-white rounded px-3 py-2 text-sm"
                     value={equipment.rightHandId || ""}
-                    onChange={(e) => handleEquipmentSelect("rightHandId", e.target.value || null, selectedWeaponCategory)}
+                    onChange={(e) => handleEquipmentSelect("rightHandId", e.target.value || null, rightHandCategory)}
                   >
                     <option value="">없음</option>
-                    {equipmentData[selectedWeaponCategory].items.map((item) => {
-                      const spriteInfo = getSpriteInfo(selectedWeaponCategory, item.spriteId);
+                    {equipmentData[rightHandCategory].items.map((item) => {
+                      const spriteInfo = getSpriteInfo(rightHandCategory, item.spriteId);
                       return (
                         <option key={item.id} value={item.id}>
-                          {item.nameKo} [{item.id}] (Unity: {spriteInfo.name || item.spriteId}, idx:{spriteInfo.index})
+                          {item.nameKo} [{item.id}] (idx:{spriteInfo.index})
                         </option>
                       );
                     })}
                   </select>
-                </div>
-              )}
+                )}
+              </div>
 
-              {/* 왼손 방패 */}
-              {equipmentData.shield && equipmentData.shield.items.length > 0 && (
-                <div>
-                  <label className="block text-xs text-gray-400 mb-1">
-                    왼손 - 방패 ({equipmentData.shield.items.length}개)
-                  </label>
+              {/* 왼손 */}
+              <div className="p-3 bg-gray-700/50 rounded-lg">
+                <label className="block text-xs text-yellow-400 font-semibold mb-2">🤚 왼손</label>
+                <div className="flex flex-wrap gap-1 mb-2">
+                  {HAND_WEAPON_CATEGORIES.map((cat) => (
+                    <button
+                      key={cat.key}
+                      onClick={() => handleHandCategoryChange("left", cat.key)}
+                      className={`px-2 py-1 rounded text-xs ${
+                        leftHandCategory === cat.key
+                          ? "bg-yellow-500 text-gray-900"
+                          : "bg-gray-600 text-gray-300 hover:bg-gray-500"
+                      }`}
+                    >
+                      {cat.label}
+                    </button>
+                  ))}
+                </div>
+                {equipmentData[leftHandCategory] && (
                   <select
                     className="w-full bg-gray-700 text-white rounded px-3 py-2 text-sm"
                     value={equipment.leftHandId || ""}
-                    onChange={(e) => handleEquipmentSelect("leftHandId", e.target.value || null, "shield")}
+                    onChange={(e) => handleEquipmentSelect("leftHandId", e.target.value || null, leftHandCategory)}
                   >
                     <option value="">없음</option>
-                    {equipmentData.shield.items.map((item) => {
-                      const spriteInfo = getSpriteInfo("shield", item.spriteId);
+                    {equipmentData[leftHandCategory].items.map((item) => {
+                      const spriteInfo = getSpriteInfo(leftHandCategory, item.spriteId);
                       return (
                         <option key={item.id} value={item.id}>
-                          {item.nameKo} [{item.id}] (Unity: {spriteInfo.name || item.spriteId}, idx:{spriteInfo.index})
+                          {item.nameKo} [{item.id}] (idx:{spriteInfo.index})
                         </option>
                       );
                     })}
                   </select>
-                </div>
-              )}
+                )}
+              </div>
             </div>
           </section>
 
@@ -768,7 +780,7 @@ export default function GameTestPage() {
               방어구 (Armor)
             </h2>
             <div className="space-y-3">
-              {EQUIPMENT_SLOTS.filter(s => !s.weaponType).map((slotConfig) => {
+              {ARMOR_SLOTS.map((slotConfig) => {
                 const categoryData = equipmentData[slotConfig.category];
                 if (!categoryData || categoryData.items.length === 0) return null;
 
@@ -791,7 +803,7 @@ export default function GameTestPage() {
                         const spriteInfo = getSpriteInfo(slotConfig.category, item.spriteId);
                         return (
                           <option key={item.id} value={item.id}>
-                            {item.nameKo} [{item.id}] (Unity: {spriteInfo.name || item.spriteId}, idx:{spriteInfo.index})
+                            {item.nameKo} [{item.id}] (idx:{spriteInfo.index})
                           </option>
                         );
                       })}

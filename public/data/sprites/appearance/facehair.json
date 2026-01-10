@@ -1,6 +1,6 @@
 {
   "sprites": [
-    "Orc_Mouse_01 ",
+    "Orc_Mouse_01",
     "Orc_Mouse_02",
     "Orc_Mouse_03",
     "Orc_Mouse_04",
@@ -23,7 +23,7 @@
   ],
   "count": 20,
   "nameToIndex": {
-    "Orc_Mouse_01 ": 0,
+    "Orc_Mouse_01": 0,
     "Orc_Mouse_02": 1,
     "Orc_Mouse_03": 2,
     "Orc_Mouse_04": 3,
@@ -46,11 +46,11 @@
   },
   "facehairs": [
     {
-      "id": "orc_mouse_01_",
+      "id": "orc_mouse_01",
       "index": 0,
-      "sprite": "Orc_Mouse_01 ",
+      "sprite": "Orc_Mouse_01",
       "ko": "오크 Mouse 01",
-      "en": "Orc Mouse 01 "
+      "en": "Orc Mouse 01"
     },
     {
       "id": "orc_mouse_02",
@@ -187,7 +187,7 @@
     }
   ],
   "idToIndex": {
-    "orc_mouse_01_": 0,
+    "orc_mouse_01": 0,
     "orc_mouse_02": 1,
     "orc_mouse_03": 2,
     "orc_mouse_04": 3,
