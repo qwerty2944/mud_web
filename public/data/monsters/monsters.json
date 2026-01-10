@@ -78,7 +78,9 @@
       "description": {
         "ko": "훈련용 허수아비. 반격하지 않는다. 타격에 약하다.",
         "en": "Training dummy. Does not fight back. Weak to crushing attacks."
-      }
+      },
+      "maxAp": 0,
+      "abilities": []
     },
     {
       "id": "squirrel",
@@ -122,7 +124,12 @@
       "description": {
         "ko": "숲에 서식하는 다람쥐. 대지 속성을 가지고 있다.",
         "en": "A squirrel living in the forest. Has earth element."
-      }
+      },
+      "maxAp": 8,
+      "abilities": [
+        { "abilityId": "bite", "level": 1, "weight": 100 },
+        { "abilityId": "scratch", "level": 1, "weight": 80 }
+      ]
     },
     {
       "id": "squirrel_elder",
@@ -166,7 +173,13 @@
       "description": {
         "ko": "오래 살아 지혜로운 다람쥐. 더 강한 대지의 힘을 가지고 있다.",
         "en": "A wise old squirrel. Has stronger earth powers."
-      }
+      },
+      "maxAp": 10,
+      "abilities": [
+        { "abilityId": "bite", "level": 3, "weight": 80 },
+        { "abilityId": "scratch", "level": 2, "weight": 60 },
+        { "abilityId": "rock_throw", "level": 1, "weight": 40, "condition": { "hpBelow": 50 } }
+      ]
     },
     {
       "id": "forest_bandit",
@@ -210,7 +223,13 @@
       "description": {
         "ko": "숲에 숨어 여행자를 습격하는 도적.",
         "en": "A bandit who hides in the forest and ambushes travelers."
-      }
+      },
+      "maxAp": 12,
+      "abilities": [
+        { "abilityId": "stab", "level": 3, "weight": 100 },
+        { "abilityId": "slash", "level": 2, "weight": 80 },
+        { "abilityId": "backstab", "level": 1, "weight": 40, "condition": { "turnAfter": 2 } }
+      ]
     },
     {
       "id": "wolf",
@@ -257,7 +276,13 @@
       },
       "spawnCondition": {
         "period": ["night", "dusk"]
-      }
+      },
+      "maxAp": 14,
+      "abilities": [
+        { "abilityId": "bite", "level": 5, "weight": 100 },
+        { "abilityId": "claw", "level": 3, "weight": 70 },
+        { "abilityId": "howl", "level": 1, "weight": 30, "condition": { "hpBelow": 40 } }
+      ]
     },
     {
       "id": "forest_spider",
@@ -304,7 +329,14 @@
       },
       "spawnCondition": {
         "period": ["night", "dusk"]
-      }
+      },
+      "maxAp": 16,
+      "abilities": [
+        { "abilityId": "bite", "level": 5, "weight": 90 },
+        { "abilityId": "poison_bite", "level": 3, "weight": 60 },
+        { "abilityId": "web", "level": 2, "weight": 40 },
+        { "abilityId": "shadow_bolt", "level": 1, "weight": 30 }
+      ]
     }
   ],
   "summary": {

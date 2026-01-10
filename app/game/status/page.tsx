@@ -22,6 +22,7 @@ import { SLOT_CONFIG, type EquipmentSlot } from "@/entities/item";
 import { useCharacterTraitsWithDetails, TraitList, TRAIT_CATEGORIES, TRAIT_CATEGORY_ORDER, TRAIT_RARITIES, formatTraitEffects } from "@/entities/trait";
 import type { TraitCategory, Trait } from "@/entities/trait";
 import type { ProfileAppearance } from "@/entities/character";
+import { useUserAbilities, type AbilityProgress, type UserAbilities } from "@/entities/ability";
 
 // 스프라이트 데이터 타입
 interface SpriteItem {
@@ -104,6 +105,7 @@ export default function StatusPage() {
   const inventoryItems = inventoryData?.items?.filter((item): item is InventorySlotItem => item !== null) ?? [];
   const { data: proficiencies } = useProficiencies(session?.user?.id);
   const { data: characterTraits = [] } = useCharacterTraitsWithDetails(session?.user?.id);
+  const { data: userAbilities } = useUserAbilities(session?.user?.id);
 
   // 장비 스토어
   const equipmentStore = useEquipmentStore();
@@ -498,35 +500,7 @@ export default function StatusPage() {
 
             {/* 스킬 탭 */}
             <div className={`col-start-1 row-start-1 ${activeTab === "skills" ? "" : "invisible"}`}>
-              {equipmentStore.learnedSkills.length === 0 ? (
-                <div
-                  className="flex flex-col items-center justify-center h-64 font-mono"
-                  style={{ color: theme.colors.textMuted }}
-                >
-                  <p className="text-4xl mb-4">📖</p>
-                  <p>배운 스킬이 없습니다</p>
-                </div>
-              ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {equipmentStore.learnedSkills.map((skillId) => (
-                    <div
-                      key={skillId}
-                      className="p-4 flex items-start gap-3"
-                      style={{ background: theme.colors.bgDark }}
-                    >
-                      <span className="text-3xl">📖</span>
-                      <div className="flex-1">
-                        <div className="font-mono font-medium" style={{ color: theme.colors.text }}>
-                          {skillId}
-                        </div>
-                        <div className="text-sm font-mono mt-1" style={{ color: theme.colors.textMuted }}>
-                          습득한 스킬
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
+              <SkillsTabContent userAbilities={userAbilities} theme={theme} />
             </div>
 
             {/* 장비 탭 - 12슬롯 3카테고리 */}
@@ -809,6 +783,274 @@ function TraitCard({ trait, theme }: { trait: Trait; theme: any }) {
               );
             })}
           </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// 스킬 탭 컴포넌트
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function SkillsTabContent({ userAbilities, theme }: { userAbilities: UserAbilities | undefined; theme: any }) {
+  const [mainTab, setMainTab] = useState<"combat" | "magic" | "life">("combat");
+  const [combatSubTab, setCombatSubTab] = useState<string>("common");
+  const [magicSubTab, setMagicSubTab] = useState<string>("fire");
+
+  // 전투 스킬 서브탭 정의
+  const COMBAT_SUBTABS = [
+    { id: "common", nameKo: "기본", icon: "👊" },
+    { id: "defense", nameKo: "방어", icon: "🛡️" },
+    { id: "weapon", nameKo: "무기", icon: "⚔️" },
+    { id: "martial", nameKo: "무술", icon: "🥋" },
+    { id: "utility", nameKo: "전술", icon: "🎯" },
+    { id: "warcry", nameKo: "함성", icon: "📢" },
+  ];
+
+  // 마법 서브탭 정의
+  const MAGIC_SUBTABS = [
+    { id: "fire", nameKo: "화염", icon: "🔥" },
+    { id: "ice", nameKo: "냉기", icon: "❄️" },
+    { id: "lightning", nameKo: "번개", icon: "⚡" },
+    { id: "earth", nameKo: "대지", icon: "🪨" },
+    { id: "holy", nameKo: "신성", icon: "✨" },
+    { id: "dark", nameKo: "암흑", icon: "🌑" },
+  ];
+
+  // 메인 탭 정의
+  const MAIN_TABS = [
+    { id: "combat", nameKo: "전투기술", icon: "⚔️" },
+    { id: "magic", nameKo: "마법", icon: "🔮" },
+    { id: "life", nameKo: "생활", icon: "🌿" },
+  ];
+
+  // 스킬 ID 매핑 (JSON 데이터의 category/element → 스킬 ID 프리픽스)
+  const SKILL_CATEGORY_MAP: Record<string, string[]> = {
+    // 전투 스킬
+    common: ["basic_attack"],
+    defense: ["block", "dodge", "parry", "defensive_stance", "shield_wall", "evasive_maneuver", "last_stand", "impenetrable_defense", "defense_mastery", "toughness", "endurance", "iron_will", "combat_reflexes"],
+    weapon: ["axe", "bow", "crossbow", "dagger", "mace", "shield", "spear", "staff", "sword", "dual_wield", "chop", "cleave", "slash", "thrust", "quick_shot", "power_shot"],
+    martial: ["fist", "kick", "stance", "punch", "palm_strike", "roundhouse", "spinning_kick"],
+    utility: ["analyze", "provoke", "feint", "battle_cry", "intimidate"],
+    warcry: ["war_cry", "rallying_cry", "battle_shout", "intimidating_shout"],
+    // 마법
+    fire: ["fire_mastery", "fireball", "flame_wave", "ignite", "fire_shield", "meteor", "inferno"],
+    ice: ["ice_mastery", "ice_spike", "frost_nova", "blizzard", "ice_armor", "glacial_spike", "absolute_zero"],
+    lightning: ["lightning_mastery", "lightning_bolt", "chain_lightning", "thunder_strike", "shock_wave"],
+    earth: ["earth_mastery", "rock_throw", "earthquake", "stone_skin", "earth_spike"],
+    holy: ["holy_mastery", "divine_light", "smite", "purify", "sacred_shield", "exorcism", "divine_intervention", "minor_heal", "heal", "healing_prayer", "regeneration", "mass_heal", "divine_heal"],
+    dark: ["dark_mastery", "shadow_bolt", "life_drain", "curse", "fear", "soul_rend", "death_coil"],
+  };
+
+  // 스킬 정보 (하드코딩된 스킬 데이터 - 나중에 JSON에서 로드하도록 변경 가능)
+  const SKILL_INFO: Record<string, { nameKo: string; icon: string; description: string }> = {
+    basic_attack: { nameKo: "기본 공격", icon: "👊", description: "무기나 맨손으로 적을 공격합니다." },
+    block: { nameKo: "막기", icon: "🛡️", description: "적의 공격을 막아 피해를 감소시킵니다." },
+    dodge: { nameKo: "회피", icon: "💨", description: "적의 다음 공격을 회피합니다." },
+    parry: { nameKo: "받아치기", icon: "⚔️", description: "적의 공격을 받아쳐 피해를 무효화하고 반격합니다." },
+    defensive_stance: { nameKo: "방어 자세", icon: "🏰", description: "받는 피해를 감소시키는 자세를 취합니다." },
+    defense_mastery: { nameKo: "방어술 숙련", icon: "📖", description: "방어술의 기본기를 익혀 위력과 효과를 높입니다." },
+    // 무기 스킬
+    chop: { nameKo: "찍기", icon: "🪓", description: "도끼로 내려찍습니다." },
+    slash: { nameKo: "베기", icon: "⚔️", description: "검으로 베어냅니다." },
+    thrust: { nameKo: "찌르기", icon: "🗡️", description: "검으로 찌릅니다." },
+    // 마법 스킬
+    fireball: { nameKo: "파이어볼", icon: "🔥", description: "불덩이를 발사합니다." },
+    ice_spike: { nameKo: "얼음창", icon: "❄️", description: "얼음 창을 발사합니다." },
+    lightning_bolt: { nameKo: "번개", icon: "⚡", description: "번개를 내리칩니다." },
+    divine_light: { nameKo: "신성한 빛", icon: "✨", description: "신성한 빛으로 적을 공격합니다." },
+    shadow_bolt: { nameKo: "그림자 화살", icon: "🌑", description: "그림자 화살을 발사합니다." },
+    minor_heal: { nameKo: "경미한 치유", icon: "💚", description: "HP를 소량 회복합니다." },
+    heal: { nameKo: "치유", icon: "💖", description: "HP를 회복합니다." },
+  };
+
+  // 유저가 배운 스킬 필터링 (레벨 1 이상)
+  const getLearnedSkillsForCategory = (category: string): Array<{ id: string; progress: AbilityProgress }> => {
+    if (!userAbilities) return [];
+
+    const categorySkillIds = SKILL_CATEGORY_MAP[category] || [];
+    const result: Array<{ id: string; progress: AbilityProgress }> = [];
+
+    // combat 카테고리의 스킬 체크
+    for (const [skillId, progress] of Object.entries(userAbilities.combat)) {
+      if (progress.level >= 1 && categorySkillIds.some(prefix => skillId.startsWith(prefix) || skillId === prefix)) {
+        result.push({ id: skillId, progress });
+      }
+    }
+
+    // magic 카테고리의 스킬 체크
+    for (const [skillId, progress] of Object.entries(userAbilities.magic)) {
+      if (progress.level >= 1 && categorySkillIds.some(prefix => skillId.startsWith(prefix) || skillId === prefix)) {
+        result.push({ id: skillId, progress });
+      }
+    }
+
+    // life 카테고리의 스킬 체크
+    for (const [skillId, progress] of Object.entries(userAbilities.life)) {
+      if (progress.level >= 1 && categorySkillIds.some(prefix => skillId.startsWith(prefix) || skillId === prefix)) {
+        result.push({ id: skillId, progress });
+      }
+    }
+
+    return result;
+  };
+
+  // 전체 배운 스킬 수 계산
+  const getTotalLearnedSkills = (): number => {
+    if (!userAbilities) return 0;
+    let count = 0;
+    for (const progress of Object.values(userAbilities.combat)) {
+      if (progress.level >= 1) count++;
+    }
+    for (const progress of Object.values(userAbilities.magic)) {
+      if (progress.level >= 1) count++;
+    }
+    for (const progress of Object.values(userAbilities.life)) {
+      if (progress.level >= 1) count++;
+    }
+    return count;
+  };
+
+  const totalSkills = getTotalLearnedSkills();
+
+  if (totalSkills === 0) {
+    return (
+      <div
+        className="flex flex-col items-center justify-center h-64 font-mono"
+        style={{ color: theme.colors.textMuted }}
+      >
+        <p className="text-4xl mb-4">📖</p>
+        <p>배운 스킬이 없습니다</p>
+      </div>
+    );
+  }
+
+  // 현재 서브탭의 스킬 목록
+  const currentSubTab = mainTab === "combat" ? combatSubTab : mainTab === "magic" ? magicSubTab : "medical";
+  const currentSkills = getLearnedSkillsForCategory(currentSubTab);
+
+  return (
+    <div className="space-y-4">
+      {/* 메인 탭 */}
+      <div className="flex gap-1 flex-wrap">
+        {MAIN_TABS.map((tab) => (
+          <button
+            key={tab.id}
+            onClick={() => setMainTab(tab.id as "combat" | "magic" | "life")}
+            className="px-4 py-2 text-sm font-mono font-medium transition-colors flex items-center gap-2"
+            style={{
+              background: mainTab === tab.id ? theme.colors.primary : theme.colors.bgDark,
+              color: mainTab === tab.id ? theme.colors.bg : theme.colors.textMuted,
+              border: `1px solid ${theme.colors.border}`,
+            }}
+          >
+            <span>{tab.icon}</span>
+            <span>{tab.nameKo}</span>
+          </button>
+        ))}
+      </div>
+
+      {/* 서브 탭 */}
+      {mainTab === "combat" && (
+        <div className="flex gap-1 flex-wrap">
+          {COMBAT_SUBTABS.map((sub) => (
+            <button
+              key={sub.id}
+              onClick={() => setCombatSubTab(sub.id)}
+              className="px-3 py-1.5 text-xs font-mono transition-colors flex items-center gap-1"
+              style={{
+                background: combatSubTab === sub.id ? `${theme.colors.primary}40` : theme.colors.bgLight,
+                color: combatSubTab === sub.id ? theme.colors.primary : theme.colors.textMuted,
+                border: `1px solid ${combatSubTab === sub.id ? theme.colors.primary : theme.colors.border}`,
+              }}
+            >
+              <span>{sub.icon}</span>
+              <span>{sub.nameKo}</span>
+            </button>
+          ))}
+        </div>
+      )}
+
+      {mainTab === "magic" && (
+        <div className="flex gap-1 flex-wrap">
+          {MAGIC_SUBTABS.map((sub) => (
+            <button
+              key={sub.id}
+              onClick={() => setMagicSubTab(sub.id)}
+              className="px-3 py-1.5 text-xs font-mono transition-colors flex items-center gap-1"
+              style={{
+                background: magicSubTab === sub.id ? `${theme.colors.primary}40` : theme.colors.bgLight,
+                color: magicSubTab === sub.id ? theme.colors.primary : theme.colors.textMuted,
+                border: `1px solid ${magicSubTab === sub.id ? theme.colors.primary : theme.colors.border}`,
+              }}
+            >
+              <span>{sub.icon}</span>
+              <span>{sub.nameKo}</span>
+            </button>
+          ))}
+        </div>
+      )}
+
+      {mainTab === "life" && (
+        <div className="p-4 text-center" style={{ background: theme.colors.bgDark, color: theme.colors.textMuted }}>
+          <span className="text-2xl">🚧</span>
+          <p className="font-mono mt-2">생활 스킬은 준비 중입니다</p>
+        </div>
+      )}
+
+      {/* 스킬 목록 */}
+      {mainTab !== "life" && (
+        <div>
+          {currentSkills.length === 0 ? (
+            <div
+              className="p-8 text-center font-mono"
+              style={{ background: theme.colors.bgDark, color: theme.colors.textMuted }}
+            >
+              <p>이 카테고리에 배운 스킬이 없습니다</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {currentSkills.map(({ id, progress }) => {
+                const skillInfo = SKILL_INFO[id] || { nameKo: id, icon: "📖", description: "스킬 설명" };
+                return (
+                  <div
+                    key={id}
+                    className="p-4 flex items-start gap-3"
+                    style={{ background: theme.colors.bgDark }}
+                  >
+                    <span className="text-3xl">{skillInfo.icon}</span>
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between">
+                        <div className="font-mono font-medium" style={{ color: theme.colors.text }}>
+                          {skillInfo.nameKo}
+                        </div>
+                        <div className="text-sm font-mono" style={{ color: theme.colors.primary }}>
+                          Lv.{progress.level}
+                        </div>
+                      </div>
+                      <div className="text-xs font-mono mt-1" style={{ color: theme.colors.textMuted }}>
+                        {skillInfo.description}
+                      </div>
+                      {/* 경험치 바 */}
+                      <div className="mt-2">
+                        <div className="h-1.5" style={{ background: theme.colors.bgLight }}>
+                          <div
+                            className="h-full transition-all"
+                            style={{
+                              width: `${Math.min(100, (progress.exp % 100))}%`,
+                              background: theme.colors.primary,
+                            }}
+                          />
+                        </div>
+                        <div className="text-[10px] font-mono mt-0.5" style={{ color: theme.colors.textMuted }}>
+                          EXP: {progress.exp}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </div>
       )}
     </div>

@@ -1,17 +1,23 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { useBattleStore } from "@/application/stores";
 import { useThemeStore } from "@/shared/config";
 import type { CharacterStats } from "@/entities/character";
-import type { ProficiencyType, CombatProficiencyType, Proficiencies } from "@/entities/proficiency";
+import type { Proficiencies, CombatProficiencyType } from "@/entities/proficiency";
 import { getProficiencyValue } from "@/entities/proficiency";
-import type { Skill } from "@/entities/skill";
-import { useAttack, useCastSpell, calculateMonsterDamage, usePassiveSkills } from "@/features/combat";
+import type { Ability } from "@/entities/ability";
+import {
+  useAbilities,
+  useAttackAbilities,
+  fetchMonsterAbilities,
+  type RawMonsterAbility,
+} from "@/entities/ability";
+import { useAbility, useExecuteQueue } from "@/features/combat";
 import { BattleHeader } from "./battle/BattleHeader";
 import { BattleLog } from "./battle/BattleLog";
-import { ActionTabs, type BattleActionTab } from "./battle/ActionTabs";
-import { ActionPanel, type DefenseAction } from "./battle/ActionPanel";
+import { ActionQueue } from "./battle/ActionQueue";
+import { AbilitySelector } from "./battle/AbilitySelector";
 
 interface BattlePanelProps {
   characterStats: CharacterStats;
@@ -33,326 +39,89 @@ export function BattlePanel({
     battle,
     playerFlee,
     resetBattle,
-    monsterAttack,
-    monsterPreemptiveAttack,
-    processStatusEffects,
-    tickAllStatuses,
-    getPlayerDefModifier,
-    getMonsterAtkModifier,
-    isPlayerIncapacitated,
-    setDefensiveStance,
-    clearDefensiveStance,
-    addLog,
+    dealDamageToPlayer,
   } = useBattleStore();
 
-  const [activeTab, setActiveTab] = useState<BattleActionTab>("weapon");
-  const [isProcessing, setIsProcessing] = useState(false); // 공격 처리 중 연타 방지
+  const [activeTab, setActiveTab] = useState<"attack" | "skill" | "defense">("attack");
+  const [monsterAbilitiesData, setMonsterAbilitiesData] = useState<Map<string, RawMonsterAbility>>(new Map());
 
-  // 패시브 스킬 훅
-  const { processOnHit, hasPassiveSkills } = usePassiveSkills({
+  // 어빌리티 데이터 로드
+  const { data: allAbilities = [] } = useAbilities();
+  const { data: attackAbilities = [] } = useAttackAbilities();
+
+  // useAbility 훅
+  const {
+    queueAbility,
+    unqueueAbility,
+    clearQueue,
+    playerQueue,
+  } = useAbility();
+
+  // 큐 실행 훅
+  const { executeQueue, isExecuting } = useExecuteQueue({
     characterStats,
+    proficiencies,
+    monsterAbilitiesData,
   });
 
-  // 몬스터 턴 처리 (마법/버프 사용 후)
-  const handleMonsterTurn = useCallback(() => {
-    if (!battle.monster || battle.result !== "ongoing") return;
-    if (battle.monster.behavior === "passive") return;
+  // 몬스터 어빌리티 데이터 로드
+  useEffect(() => {
+    fetchMonsterAbilities().then(setMonsterAbilitiesData);
+  }, []);
 
-    // 플레이어 방어력 수정치
-    const defModifier = getPlayerDefModifier();
-    const baseDefense = Math.floor((characterStats.con || 10) * 0.5);
-    const finalDefense = Math.max(0, baseDefense + defModifier);
+  // 어빌리티 레벨 (숙련도 기반) - 0이면 배우지 않은 것
+  const abilityLevels = useMemo(() => {
+    const levels: Record<string, number> = {};
+    allAbilities.forEach((ability) => {
+      if (ability.category && proficiencies) {
+        // 숙련도 값이 그대로 레벨 (0이면 아직 배우지 않음)
+        levels[ability.id] = getProficiencyValue(
+          proficiencies,
+          ability.category as CombatProficiencyType
+        ) || 0;
+      } else {
+        // 카테고리가 없는 기본 스킬은 레벨 1
+        levels[ability.id] = 1;
+      }
+    });
+    return levels;
+  }, [allAbilities, proficiencies]);
 
-    // 몬스터 공격력 수정치
-    const atkModifier = getMonsterAtkModifier();
-    const monsterAtk = Math.max(
-      1,
-      battle.monster.stats.attack * (1 + atkModifier / 100)
-    );
-
-    const damage = calculateMonsterDamage(monsterAtk, finalDefense);
-    const message = `${battle.monster.icon} ${battle.monster.nameKo}의 공격! ${damage} 데미지!`;
-
-    monsterAttack(damage, message);
-
-    // 피격 시 패시브 스킬 발동
-    if (damage > 0 && hasPassiveSkills) {
-      setTimeout(() => {
-        processOnHit(damage);
-      }, 100);
+  // 탭별 어빌리티 필터
+  const filteredAbilities = useMemo(() => {
+    switch (activeTab) {
+      case "attack":
+        return attackAbilities;
+      case "skill":
+        return allAbilities.filter(
+          (a) => a.type === "buff" || a.type === "debuff" || a.type === "heal"
+        );
+      case "defense":
+        return allAbilities.filter((a) => a.type === "defense");
+      default:
+        return [];
     }
-  }, [
-    battle,
-    characterStats,
-    getPlayerDefModifier,
-    getMonsterAtkModifier,
-    monsterAttack,
-    hasPassiveSkills,
-    processOnHit,
-  ]);
+  }, [activeTab, attackAbilities, allAbilities]);
 
-  // 무기 공격 (useAttack이 내부적으로 몬스터 반격 처리)
-  const { attack: performWeaponAttack } = useAttack();
-
-  // 마법 시전
-  const { castSpell } = useCastSpell({
-    onMonsterTurn: handleMonsterTurn,
-  });
-
-  // 무기 공격 핸들러
-  const handleWeaponAttack = useCallback(
-    (weaponType: CombatProficiencyType) => {
-      if (isPlayerIncapacitated() || isProcessing) {
-        return;
-      }
-
-      // 연타 방지: 공격 시작 시 처리 중 상태로 전환
-      setIsProcessing(true);
-
-      const stats = characterStats;
-      const profLevel = getProficiencyValue(proficiencies, weaponType);
-
-      // 상태이상 처리 (턴 시작)
-      processStatusEffects();
-
-      performWeaponAttack({
-        attackType: weaponType,
-        proficiencyLevel: profLevel,
-        attackerStats: stats,
-        baseDamage: 10 + (battle.turn || 1),
-        playerDefense: Math.floor((stats.con || 10) * 0.5),
-      });
-
-      // 상태이상 지속시간 감소
-      tickAllStatuses();
-
-      // 몬스터 반격 딜레이(500ms) + 여유시간 후 버튼 다시 활성화
-      setTimeout(() => {
-        setIsProcessing(false);
-      }, 700);
+  // 어빌리티 선택 핸들러
+  const handleSelectAbility = useCallback(
+    (ability: Ability, level: number) => {
+      if (isExecuting) return;
+      queueAbility({ ability, abilityLevel: level });
     },
-    [
-      characterStats,
-      proficiencies,
-      performWeaponAttack,
-      processStatusEffects,
-      tickAllStatuses,
-      isPlayerIncapacitated,
-      isProcessing,
-      battle.turn,
-    ]
-  );
-
-  // 스킬 시전 핸들러
-  const handleCastSkill = useCallback(
-    (skill: Skill) => {
-      if (isPlayerIncapacitated() || isProcessing) {
-        return;
-      }
-
-      // 연타 방지
-      setIsProcessing(true);
-
-      // 상태이상 처리 (턴 시작)
-      processStatusEffects();
-
-      const profLevel = skill.proficiencyType
-        ? getProficiencyValue(proficiencies, skill.proficiencyType as ProficiencyType)
-        : 0;
-
-      castSpell({
-        skill,
-        casterStats: characterStats,
-        proficiencyLevel: profLevel,
-      });
-
-      // 상태이상 지속시간 감소
-      tickAllStatuses();
-
-      // 몬스터 반격 딜레이 후 버튼 다시 활성화
-      setTimeout(() => {
-        setIsProcessing(false);
-      }, 700);
-    },
-    [
-      characterStats,
-      proficiencies,
-      castSpell,
-      processStatusEffects,
-      tickAllStatuses,
-      isPlayerIncapacitated,
-      isProcessing,
-    ]
-  );
-
-  // 방어 행동 핸들러
-  const handleDefenseAction = useCallback(
-    (action: DefenseAction) => {
-      if (isPlayerIncapacitated() || isProcessing) {
-        return;
-      }
-
-      setIsProcessing(true);
-
-      // 상태이상 처리 (턴 시작)
-      processStatusEffects();
-
-      // 방어 자세 설정 및 로그
-      let stanceMessage = "";
-      let stanceValue = 0;
-      switch (action) {
-        case "guard":
-          stanceValue = 50; // 50% 피해 감소
-          stanceMessage = "🛡️ 방어 자세를 취했다! (피해 50% 감소)";
-          break;
-        case "dodge":
-          stanceValue = 40; // 40% 회피 확률 증가
-          stanceMessage = "💨 회피에 집중한다! (회피 +40%)";
-          break;
-        case "counter":
-          stanceValue = 100; // 100% 반격 확률
-          stanceMessage = "⚡ 반격을 준비한다! (막기 성공 시 반격)";
-          break;
-      }
-
-      setDefensiveStance(action, stanceValue);
-      addLog({
-        turn: battle.turn,
-        actor: "player",
-        action: "defense",
-        message: stanceMessage,
-      });
-
-      // 상태이상 지속시간 감소
-      tickAllStatuses();
-
-      // 몬스터 턴
-      setTimeout(() => {
-        // 방어 자세 효과 적용 후 몬스터 공격
-        handleMonsterTurnWithDefense(action, stanceValue);
-        // 방어 자세 초기화 (1턴만 유지)
-        clearDefensiveStance();
-        setIsProcessing(false);
-      }, 500);
-    },
-    [
-      isPlayerIncapacitated,
-      isProcessing,
-      processStatusEffects,
-      tickAllStatuses,
-      setDefensiveStance,
-      clearDefensiveStance,
-      addLog,
-      battle.turn,
-    ]
-  );
-
-  // 방어 자세 적용된 몬스터 턴
-  const handleMonsterTurnWithDefense = useCallback(
-    (stance: DefenseAction, stanceValue: number) => {
-      if (!battle.monster || battle.result !== "ongoing") return;
-      if (battle.monster.behavior === "passive") return;
-
-      const defModifier = getPlayerDefModifier();
-      const baseDefense = Math.floor((characterStats.con || 10) * 0.5);
-      const finalDefense = Math.max(0, baseDefense + defModifier);
-
-      const atkModifier = getMonsterAtkModifier();
-      const monsterAtk = Math.max(
-        1,
-        battle.monster.stats.attack * (1 + atkModifier / 100)
-      );
-
-      let damage = calculateMonsterDamage(monsterAtk, finalDefense);
-
-      // 방어 자세에 따른 효과 적용
-      if (stance === "guard") {
-        // 피해 50% 감소
-        damage = Math.floor(damage * 0.5);
-        addLog({
-          turn: battle.turn,
-          actor: "system",
-          action: "guard_success",
-          message: "🛡️ 방어 자세로 피해를 줄였다!",
-        });
-      } else if (stance === "dodge") {
-        // 회피 판정 (기본 DEX 회피 + 40%)
-        const baseDodge = Math.min(30, (characterStats.dex || 10) * 0.5);
-        const totalDodgeChance = baseDodge + stanceValue;
-        if (Math.random() * 100 < totalDodgeChance) {
-          addLog({
-            turn: battle.turn,
-            actor: "player",
-            action: "dodge_success",
-            message: "💨 공격을 회피했다!",
-          });
-          return; // 공격 회피
-        }
-      } else if (stance === "counter") {
-        // 막기 판정 후 반격
-        const blockChance = Math.min(40, (characterStats.con || 10) * 0.8);
-        if (Math.random() * 100 < blockChance) {
-          damage = Math.floor(damage * 0.5); // 막기 성공 시 피해 반감
-          addLog({
-            turn: battle.turn,
-            actor: "player",
-            action: "block_counter",
-            message: "⚡ 공격을 막고 반격을 가한다!",
-          });
-          // 반격 데미지 (플레이어 공격력의 50%)
-          const counterDamage = Math.floor((characterStats.str || 10) * 1.5);
-          setTimeout(() => {
-            const { battle: currentBattle, playerAttack } = useBattleStore.getState();
-            if (currentBattle.monster && currentBattle.result === "ongoing") {
-              playerAttack(
-                counterDamage,
-                `⚡ 반격! ${counterDamage} 데미지!`
-              );
-            }
-          }, 300);
-        }
-      }
-
-      const message = `${battle.monster.icon} ${battle.monster.nameKo}의 공격! ${damage} 데미지!`;
-      monsterAttack(damage, message);
-
-      // 피격 시 패시브 스킬 발동
-      if (damage > 0 && hasPassiveSkills) {
-        setTimeout(() => {
-          processOnHit(damage);
-        }, 100);
-      }
-    },
-    [
-      battle,
-      characterStats,
-      getPlayerDefModifier,
-      getMonsterAtkModifier,
-      monsterAttack,
-      addLog,
-      hasPassiveSkills,
-      processOnHit,
-    ]
+    [queueAbility, isExecuting]
   );
 
   // 도주 핸들러
   const handleFlee = useCallback(() => {
-    if (isProcessing) return;
-
-    setIsProcessing(true);
+    if (isExecuting) return;
     const success = playerFlee();
     if (success) {
       onFlee();
-    } else {
-      // 도주 실패 시 몬스터 턴
-      setTimeout(() => {
-        handleMonsterTurn();
-        setIsProcessing(false);
-      }, 500);
     }
-  }, [playerFlee, onFlee, handleMonsterTurn, isProcessing]);
+  }, [playerFlee, onFlee, isExecuting]);
 
-  // 전투 종료 처리 (수동 닫기)
+  // 전투 종료 처리
   const handleCloseBattle = useCallback(() => {
     const currentResult = useBattleStore.getState().battle.result;
     if (currentResult === "victory") {
@@ -364,7 +133,7 @@ export function BattlePanel({
     }
   }, [onVictory, onDefeat, resetBattle]);
 
-  // 선제공격 처리 (aggressive 몬스터)
+  // 선제공격 처리
   useEffect(() => {
     if (
       battle.isInBattle &&
@@ -374,42 +143,26 @@ export function BattlePanel({
       battle.result === "ongoing"
     ) {
       const timer = setTimeout(() => {
-        // 플레이어 방어력 계산
-        const defModifier = getPlayerDefModifier();
-        const baseDefense = Math.floor((characterStats.con || 10) * 0.5);
-        const finalDefense = Math.max(0, baseDefense + defModifier);
-
-        // 몬스터 공격력 계산
-        const atkModifier = getMonsterAtkModifier();
-        const monsterAtk = Math.max(
-          1,
-          battle.monster!.stats.attack * (1 + atkModifier / 100)
+        const damage = Math.floor(battle.monster!.stats.attack * 0.8);
+        dealDamageToPlayer(
+          damage,
+          `${battle.monster!.icon} ${battle.monster!.nameKo}의 선제 공격! ${damage} 데미지!`
         );
-
-        const damage = calculateMonsterDamage(monsterAtk, finalDefense);
-        const message = `${battle.monster!.icon} ${battle.monster!.nameKo}의 선제 공격! ${damage} 데미지!`;
-
-        monsterPreemptiveAttack(damage, message);
+        // 선제공격 페이즈 종료
+        useBattleStore.setState((state) => ({
+          battle: {
+            ...state.battle,
+            isPreemptivePhase: false,
+          },
+        }));
       }, 1000);
-
       return () => clearTimeout(timer);
     }
-  }, [
-    battle.isInBattle,
-    battle.isPreemptivePhase,
-    battle.monsterGoesFirst,
-    battle.monster,
-    battle.result,
-    characterStats,
-    getPlayerDefModifier,
-    getMonsterAtkModifier,
-    monsterPreemptiveAttack,
-  ]);
+  }, [battle.isInBattle, battle.isPreemptivePhase, battle.monsterGoesFirst, battle.monster, battle.result, dealDamageToPlayer]);
 
   if (!battle.isInBattle || !battle.monster) return null;
 
   const isOngoing = battle.result === "ongoing";
-  const isIncapacitated = isPlayerIncapacitated();
 
   return (
     <div
@@ -423,7 +176,7 @@ export function BattlePanel({
           border: `2px solid ${theme.colors.border}`,
         }}
       >
-        {/* 헤더 (몬스터/플레이어 HP/MP, 상태이상) */}
+        {/* 헤더 (HP/MP/AP 바) */}
         <BattleHeader />
 
         {/* 전투 로그 */}
@@ -432,36 +185,70 @@ export function BattlePanel({
         {/* 액션 영역 */}
         {isOngoing ? (
           <>
-            {/* 행동 불가 상태 표시 */}
-            {isIncapacitated && (
-              <div
-                className="px-4 py-2 text-center font-mono text-sm"
+            {/* 액션 큐 */}
+            <ActionQueue
+              onRemoveAction={unqueueAbility}
+              onClearQueue={clearQueue}
+              onExecute={executeQueue}
+              disabled={isExecuting}
+            />
+
+            {/* 탭 버튼 */}
+            <div
+              className="flex border-t"
+              style={{ borderColor: theme.colors.border }}
+            >
+              {(["attack", "skill", "defense"] as const).map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  disabled={isExecuting}
+                  className="flex-1 px-4 py-2 font-mono text-sm transition-colors"
+                  style={{
+                    background:
+                      activeTab === tab ? theme.colors.bgLight : "transparent",
+                    color:
+                      activeTab === tab
+                        ? theme.colors.primary
+                        : theme.colors.textMuted,
+                    borderBottom:
+                      activeTab === tab
+                        ? `2px solid ${theme.colors.primary}`
+                        : "2px solid transparent",
+                  }}
+                >
+                  {tab === "attack" ? "⚔️ 공격" : tab === "skill" ? "✨ 스킬" : "🛡️ 방어"}
+                </button>
+              ))}
+            </div>
+
+            {/* 어빌리티 선택 */}
+            <AbilitySelector
+              abilities={filteredAbilities}
+              abilityLevels={abilityLevels}
+              onSelectAbility={handleSelectAbility}
+              disabled={isExecuting}
+            />
+
+            {/* 도주 버튼 */}
+            <div
+              className="px-4 py-3 border-t flex justify-end"
+              style={{ borderColor: theme.colors.border }}
+            >
+              <button
+                onClick={handleFlee}
+                disabled={isExecuting}
+                className="px-4 py-2 font-mono text-sm transition-colors"
                 style={{
-                  background: `${theme.colors.error}20`,
-                  color: theme.colors.error,
+                  background: "transparent",
+                  border: `1px solid ${theme.colors.border}`,
+                  color: theme.colors.textMuted,
+                  opacity: isExecuting ? 0.5 : 1,
                 }}
               >
-                🧊 행동 불가 상태!
-              </div>
-            )}
-
-            {/* 액션 탭 */}
-            <ActionTabs
-              activeTab={activeTab}
-              onTabChange={setActiveTab}
-              disabled={isIncapacitated || isProcessing}
-            />
-
-            {/* 액션 패널 */}
-            <ActionPanel
-              activeTab={activeTab}
-              proficiencies={proficiencies}
-              onWeaponAttack={handleWeaponAttack}
-              onDefenseAction={handleDefenseAction}
-              onCastSkill={handleCastSkill}
-              onFlee={handleFlee}
-              disabled={isIncapacitated || isProcessing}
-            />
+                🏃 도주
+              </button>
+            </div>
           </>
         ) : (
           <BattleResult
@@ -526,7 +313,6 @@ function BattleResult({ result, monster, onClose }: BattleResultProps) {
         )}
       </div>
 
-      {/* 닫기 버튼 */}
       <button
         onClick={onClose}
         className="mt-4 px-6 py-2 font-mono text-sm transition-colors"

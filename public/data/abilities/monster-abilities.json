@@ -1,0 +1,120 @@
+{
+  "version": "1.0.0",
+  "description": "몬스터 전용 어빌리티 (플레이어 사용 불가)",
+  "abilities": [
+    {
+      "id": "bite",
+      "nameKo": "물기",
+      "nameEn": "Bite",
+      "type": "attack",
+      "attackType": "melee_physical",
+      "icon": "🦷",
+      "description": { "ko": "날카로운 이빨로 물어뜯는다.", "en": "Bite with sharp teeth." },
+      "baseDamage": 8,
+      "apCost": 4,
+      "damagePerLevel": 2
+    },
+    {
+      "id": "scratch",
+      "nameKo": "할퀴기",
+      "nameEn": "Scratch",
+      "type": "attack",
+      "attackType": "melee_physical",
+      "icon": "🐾",
+      "description": { "ko": "발톱으로 할퀸다.", "en": "Scratch with claws." },
+      "baseDamage": 6,
+      "apCost": 3,
+      "damagePerLevel": 1.5
+    },
+    {
+      "id": "claw",
+      "nameKo": "발톱 찍기",
+      "nameEn": "Claw",
+      "type": "attack",
+      "attackType": "melee_physical",
+      "icon": "🐾",
+      "description": { "ko": "강력한 발톱으로 찍는다.", "en": "Strike with powerful claws." },
+      "baseDamage": 12,
+      "apCost": 6,
+      "damagePerLevel": 2.5
+    },
+    {
+      "id": "poison_bite",
+      "nameKo": "독 물기",
+      "nameEn": "Poison Bite",
+      "type": "attack",
+      "attackType": "melee_physical",
+      "icon": "☠️",
+      "description": { "ko": "독이 묻은 이빨로 물어뜯는다.", "en": "Bite with venomous fangs." },
+      "baseDamage": 6,
+      "apCost": 8,
+      "damagePerLevel": 1.5,
+      "statusEffect": "poison",
+      "statusValue": 4,
+      "statusDuration": 3,
+      "statusChance": 60
+    },
+    {
+      "id": "web",
+      "nameKo": "거미줄",
+      "nameEn": "Web",
+      "type": "debuff",
+      "icon": "🕸️",
+      "description": { "ko": "거미줄로 움직임을 봉쇄한다.", "en": "Trap with sticky web." },
+      "apCost": 10,
+      "statusEffect": "slow",
+      "statusValue": 50,
+      "statusDuration": 2,
+      "statusChance": 80
+    },
+    {
+      "id": "howl",
+      "nameKo": "울부짖기",
+      "nameEn": "Howl",
+      "type": "buff",
+      "icon": "🌙",
+      "description": { "ko": "울부짖어 공격력을 높인다.", "en": "Howl to increase attack power." },
+      "apCost": 6,
+      "selfBuff": "atk_up",
+      "buffValue": 25,
+      "buffDuration": 3
+    },
+    {
+      "id": "stab",
+      "nameKo": "찌르기",
+      "nameEn": "Stab",
+      "type": "attack",
+      "attackType": "melee_physical",
+      "icon": "🔪",
+      "description": { "ko": "날카롭게 찌른다.", "en": "Stab sharply." },
+      "baseDamage": 10,
+      "apCost": 5,
+      "damagePerLevel": 2
+    },
+    {
+      "id": "slash",
+      "nameKo": "베기",
+      "nameEn": "Slash",
+      "type": "attack",
+      "attackType": "melee_physical",
+      "icon": "⚔️",
+      "description": { "ko": "크게 베어낸다.", "en": "Slash widely." },
+      "baseDamage": 12,
+      "apCost": 6,
+      "damagePerLevel": 2.5
+    },
+    {
+      "id": "backstab",
+      "nameKo": "기습",
+      "nameEn": "Backstab",
+      "type": "attack",
+      "attackType": "melee_physical",
+      "icon": "🗡️",
+      "description": { "ko": "뒤에서 기습한다. 치명타 확률 상승.", "en": "Attack from behind. High critical chance." },
+      "baseDamage": 15,
+      "apCost": 10,
+      "damagePerLevel": 3,
+      "critBonus": 30
+    }
+  ]
+}

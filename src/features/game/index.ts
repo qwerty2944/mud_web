@@ -38,8 +38,4 @@ export {
 export { useRealtimeChat } from "./lib/useRealtimeChat";
 export { useRealtimeDuel } from "./lib/useRealtimeDuel";
 
-// Actions
-export { updateLocation } from "./update-location";
-
-// Queries (React Query Mutations)
-export { useUpdateLocation } from "./update-location";
+// Note: updateLocation, useUpdateLocation → @/features/player로 이동됨

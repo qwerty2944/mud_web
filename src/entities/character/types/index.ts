@@ -210,3 +210,65 @@ export function normalizeCharacterStats(
   };
 }
 
+// ============ 스킬 경험치 타입 ============
+// Note: 스킬/어빌리티 진행도는 entities/ability의 UserAbilities 타입 참조
+// abilities 테이블에서 관리됨 (combat, magic, life JSONB 컬럼)
+
+/**
+ * 스킬 경험치 → 레벨 변환
+ * 0~99 = Lv.1, 100~299 = Lv.2, ...
+ */
+export function getSkillLevelFromExp(exp: number): number {
+  if (exp < 100) return 1;
+  if (exp < 300) return 2;
+  if (exp < 600) return 3;
+  if (exp < 1000) return 4;
+  if (exp < 1500) return 5;
+  if (exp < 2100) return 6;
+  if (exp < 2800) return 7;
+  if (exp < 3600) return 8;
+  if (exp < 4500) return 9;
+  return 10; // 최대 레벨
+}
+
+/**
+ * 레벨별 필요 경험치
+ */
+export const SKILL_LEVEL_EXP_TABLE: Record<number, number> = {
+  1: 0,
+  2: 100,
+  3: 300,
+  4: 600,
+  5: 1000,
+  6: 1500,
+  7: 2100,
+  8: 2800,
+  9: 3600,
+  10: 4500,
+};
+
+/**
+ * 다음 레벨까지 필요한 경험치
+ */
+export function getExpToNextLevel(currentExp: number): number {
+  const currentLevel = getSkillLevelFromExp(currentExp);
+  if (currentLevel >= 10) return 0;
+  const nextLevelExp = SKILL_LEVEL_EXP_TABLE[currentLevel + 1];
+  return nextLevelExp - currentExp;
+}
+
+/**
+ * 현재 레벨 내 경험치 진행률 (0~100%)
+ */
+export function getSkillLevelProgress(exp: number): number {
+  const currentLevel = getSkillLevelFromExp(exp);
+  if (currentLevel >= 10) return 100;
+
+  const currentLevelExp = SKILL_LEVEL_EXP_TABLE[currentLevel];
+  const nextLevelExp = SKILL_LEVEL_EXP_TABLE[currentLevel + 1];
+  const range = nextLevelExp - currentLevelExp;
+  const progress = exp - currentLevelExp;
+
+  return Math.min(100, Math.floor((progress / range) * 100));
+}
+

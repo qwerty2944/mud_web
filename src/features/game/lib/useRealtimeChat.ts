@@ -5,7 +5,7 @@ import { supabase } from "@/shared/api";
 import { useGameStore, useChatStore, parseChatCommand, type OnlineUser } from "@/application/stores";
 import { fetchRecentMessages, saveMessage, type ChatMessage } from "@/entities/chat";
 import { useMaps, getMapById } from "@/entities/map";
-import { updateLocation as updateLocationApi } from "@/features/game/update-location";
+import { updateLocation as updateLocationApi } from "@/features/player";
 import type { RealtimeChannel } from "@supabase/supabase-js";
 
 interface UseRealtimeChatProps {

@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import type { Monster } from "@/entities/monster";
 import type { StatusEffect, StatusType } from "@/entities/status";
+import type { QueuedAbility, Ability } from "@/entities/ability";
 import {
   createStatusEffect,
   addStatusEffect,
@@ -22,6 +23,8 @@ import {
   getFleeFailMessage,
 } from "@/features/combat/lib/messages";
 
+// ============ 타입 정의 ============
+
 // 전투 로그 엔트리
 export interface BattleLogEntry {
   turn: number;
@@ -36,23 +39,57 @@ export interface BattleLogEntry {
 // 전투 결과
 export type BattleResult = "ongoing" | "victory" | "defeat" | "fled";
 
+// 전투 페이즈
+export type BattlePhase =
+  | "planning"   // 행동 선택 중
+  | "executing"  // 큐 실행 중
+  | "ended";     // 전투 종료
+
+// 큐에 들어가는 액션 (어빌리티 + 메타 정보)
+export interface QueuedAction {
+  ability: Ability;
+  level: number;
+  apCost: number;
+  mpCost: number;
+}
+
 // 전투 상태
 export interface BattleState {
   isInBattle: boolean;
   monster: Monster | null;
+  phase: BattlePhase;
+
+  // HP/MP
   monsterCurrentHp: number;
   playerCurrentHp: number;
   playerMaxHp: number;
   playerMp: number;
   playerMaxMp: number;
+
+  // AP 시스템
+  playerMaxAp: number;
+  playerCurrentAp: number;
+  monsterMaxAp: number;
+  monsterCurrentAp: number;
+
+  // 액션 큐 (턴 시작 시 행동 담아서 실행)
+  playerQueue: QueuedAction[];
+  monsterQueue: QueuedAction[];
+
+  // DEX 기반 선공 (speed 사용)
+  playerDex: number;
+  monsterDex: number;
+  playerGoesFirst: boolean;
+
+  // 레거시 호환
+  isPreemptivePhase: boolean;    // 선제공격 단계 (호환용)
+  monsterGoesFirst: boolean;     // playerGoesFirst의 반대값
+
+  // 턴
   turn: number;
   battleLog: BattleLogEntry[];
   result: BattleResult;
   usedWeaponType: string | null;
-
-  // 선공 시스템
-  isPreemptivePhase: boolean; // 선제공격 단계인지
-  monsterGoesFirst: boolean; // 몬스터가 선공인지
 
   // 상태이상
   playerBuffs: StatusEffect[];
@@ -61,25 +98,39 @@ export interface BattleState {
   monsterDebuffs: StatusEffect[];
 
   // 방어 행동
-  defensiveStance: "none" | "guard" | "dodge" | "counter"; // 방어 자세
-  defensiveValue: number; // 방어 보너스 수치
+  defensiveStance: "none" | "guard" | "dodge" | "counter";
+  defensiveValue: number;
 }
+
+// 기본 AP
+const DEFAULT_PLAYER_MAX_AP = 10;
+const DEFAULT_MONSTER_MAX_AP = 10;
 
 // 초기 상태
 const initialBattleState: BattleState = {
   isInBattle: false,
   monster: null,
+  phase: "planning",
   monsterCurrentHp: 0,
   playerCurrentHp: 0,
   playerMaxHp: 100,
   playerMp: 50,
   playerMaxMp: 50,
+  playerMaxAp: DEFAULT_PLAYER_MAX_AP,
+  playerCurrentAp: DEFAULT_PLAYER_MAX_AP,
+  monsterMaxAp: DEFAULT_MONSTER_MAX_AP,
+  monsterCurrentAp: DEFAULT_MONSTER_MAX_AP,
+  playerQueue: [],
+  monsterQueue: [],
+  playerDex: 10,
+  monsterDex: 5,
+  playerGoesFirst: true,
+  isPreemptivePhase: false,
+  monsterGoesFirst: false,
   turn: 0,
   battleLog: [],
   result: "ongoing",
   usedWeaponType: null,
-  isPreemptivePhase: false,
-  monsterGoesFirst: false,
   playerBuffs: [],
   playerDebuffs: [],
   monsterBuffs: [],
@@ -88,49 +139,75 @@ const initialBattleState: BattleState = {
   defensiveValue: 0,
 };
 
+// ============ 스토어 인터페이스 ============
+
 interface BattleStore {
-  // State
   battle: BattleState;
 
-  // Actions
+  // 전투 시작/종료
   startBattle: (
     monster: Monster,
     playerHp: number,
     playerMaxHp: number,
     playerMp: number,
-    playerMaxMp: number
+    playerMaxMp: number,
+    playerDex?: number,
+    playerMaxAp?: number
   ) => void;
-  playerAttack: (damage: number, message: string, weaponType?: string) => void;
-  monsterAttack: (damage: number, message: string) => void;
-  monsterPreemptiveAttack: (damage: number, message: string) => void;
-  playerFlee: () => boolean;
   endBattle: (result: BattleResult) => void;
-  addLog: (entry: Omit<BattleLogEntry, "timestamp">) => void;
   resetBattle: () => void;
 
-  // MP 관리
-  useMp: (amount: number) => boolean;
+  // AP/큐 시스템
+  addToPlayerQueue: (action: QueuedAction) => boolean;
+  removeFromPlayerQueue: (index: number) => void;
+  clearPlayerQueue: () => void;
+  setMonsterQueue: (actions: QueuedAction[]) => void;
+
+  // 턴 실행
+  executeQueues: () => void;
+  startNextTurn: () => void;
+
+  // 데미지/힐
+  dealDamageToMonster: (damage: number, message: string, weaponType?: string) => void;
+  dealDamageToPlayer: (damage: number, message: string) => void;
+  healPlayer: (amount: number) => void;
+
+  // 레거시 호환 (기존 코드용)
+  playerAttack: (damage: number, message: string, weaponType?: string) => void;
+  monsterAttack: (damage: number, message: string) => void;
   healHp: (amount: number) => void;
+  monsterPreemptiveAttack: (damage: number, message: string) => void;
 
-  // 방어 행동
-  setDefensiveStance: (stance: "none" | "guard" | "dodge" | "counter", value?: number) => void;
-  clearDefensiveStance: () => void;
-  getDefensiveStance: () => { stance: string; value: number };
+  // MP
+  useMp: (amount: number) => boolean;
 
-  // 상태이상 관리
+  // 도주
+  playerFlee: () => boolean;
+
+  // 로그
+  addLog: (entry: Omit<BattleLogEntry, "timestamp">) => void;
+
+  // 상태이상
   applyPlayerStatus: (type: StatusType, value: number, duration?: number) => void;
   applyMonsterStatus: (type: StatusType, value: number, duration?: number) => void;
   removePlayerStatus: (effectId: string) => void;
   removeMonsterStatus: (effectId: string) => void;
-  processStatusEffects: () => void; // 턴 시작 시 DoT/HoT 처리
-  tickAllStatuses: () => void; // 턴 종료 시 지속시간 감소
+  processStatusEffects: () => void;
+  tickAllStatuses: () => void;
+
+  // 방어 자세
+  setDefensiveStance: (stance: "none" | "guard" | "dodge" | "counter", value?: number) => void;
+  clearDefensiveStance: () => void;
+  getDefensiveStance: () => { stance: string; value: number };
 
   // Getters
   isPlayerTurn: () => boolean;
   getMonsterHpPercent: () => number;
   getPlayerHpPercent: () => number;
   getPlayerMpPercent: () => number;
+  getPlayerApPercent: () => number;
   canUseSkill: (mpCost: number) => boolean;
+  canAffordAp: (apCost: number) => boolean;
   isPlayerIncapacitated: () => boolean;
   isPlayerSilenced: () => boolean;
   getPlayerAtkModifier: () => number;
@@ -138,25 +215,46 @@ interface BattleStore {
   getPlayerMagicModifier: () => number;
   getMonsterAtkModifier: () => number;
   getPlayerShieldAmount: () => number;
+  getRemainingPlayerAp: () => number;
+  getQueuedApCost: () => number;
 }
+
+// ============ 스토어 구현 ============
 
 export const useBattleStore = create<BattleStore>((set, get) => ({
   battle: initialBattleState,
 
   // 전투 시작
-  startBattle: (monster, playerHp, playerMaxHp, playerMp, playerMaxMp) => {
-    // 몬스터 behavior에 따른 선공 결정
-    const monsterGoesFirst = monster.behavior === "aggressive";
+  startBattle: (monster, playerHp, playerMaxHp, playerMp, playerMaxMp, playerDex = 10, playerMaxAp) => {
+    const monsterDex = monster.stats.speed ?? 5;
+    const monsterAp = monster.maxAp ?? DEFAULT_MONSTER_MAX_AP;
+    const pMaxAp = playerMaxAp ?? DEFAULT_PLAYER_MAX_AP;
+    const playerGoesFirst = playerDex >= monsterDex;
+    const monsterGoesFirst = !playerGoesFirst;
+    // 레거시: aggressive 몬스터는 선제공격 페이즈 진입
+    const isPreemptivePhase = monsterGoesFirst && monster.behavior === "aggressive";
 
     set({
       battle: {
         isInBattle: true,
         monster,
+        phase: "planning",
         monsterCurrentHp: monster.stats.hp,
         playerCurrentHp: playerHp,
         playerMaxHp,
         playerMp,
         playerMaxMp,
+        playerMaxAp: pMaxAp,
+        playerCurrentAp: pMaxAp,
+        monsterMaxAp: monsterAp,
+        monsterCurrentAp: monsterAp,
+        playerQueue: [],
+        monsterQueue: [],
+        playerDex,
+        monsterDex,
+        playerGoesFirst,
+        isPreemptivePhase,
+        monsterGoesFirst,
         turn: 1,
         battleLog: [
           {
@@ -166,11 +264,18 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
             message: getBattleStartMessage(monster.nameKo, monster.icon),
             timestamp: Date.now(),
           },
+          {
+            turn: 0,
+            actor: "system",
+            action: "initiative",
+            message: playerGoesFirst
+              ? `DEX ${playerDex} vs ${monsterDex} - 플레이어 선공!`
+              : `DEX ${playerDex} vs ${monsterDex} - ${monster.nameKo} 선공!`,
+            timestamp: Date.now(),
+          },
         ],
         result: "ongoing",
         usedWeaponType: null,
-        isPreemptivePhase: monsterGoesFirst,
-        monsterGoesFirst,
         playerBuffs: [],
         playerDebuffs: [],
         monsterBuffs: [],
@@ -181,8 +286,129 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
     });
   },
 
-  // 플레이어 공격
-  playerAttack: (damage, message, weaponType) => {
+  // 전투 종료
+  endBattle: (result) => {
+    const { battle } = get();
+    set({
+      battle: {
+        ...battle,
+        result,
+        phase: "ended",
+        isInBattle: result === "ongoing",
+      },
+    });
+  },
+
+  // 전투 초기화
+  resetBattle: () => {
+    set({ battle: initialBattleState });
+  },
+
+  // 플레이어 큐에 행동 추가
+  addToPlayerQueue: (action) => {
+    const { battle } = get();
+    const totalQueuedAp = battle.playerQueue.reduce((sum, a) => sum + a.apCost, 0);
+    const newTotal = totalQueuedAp + action.apCost;
+
+    if (newTotal > battle.playerMaxAp) {
+      return false; // AP 초과
+    }
+
+    if (action.mpCost > 0 && action.mpCost > battle.playerMp) {
+      return false; // MP 부족
+    }
+
+    set({
+      battle: {
+        ...battle,
+        playerQueue: [...battle.playerQueue, action],
+      },
+    });
+    return true;
+  },
+
+  // 플레이어 큐에서 행동 제거
+  removeFromPlayerQueue: (index) => {
+    const { battle } = get();
+    const newQueue = [...battle.playerQueue];
+    newQueue.splice(index, 1);
+    set({
+      battle: {
+        ...battle,
+        playerQueue: newQueue,
+      },
+    });
+  },
+
+  // 플레이어 큐 클리어
+  clearPlayerQueue: () => {
+    const { battle } = get();
+    set({
+      battle: {
+        ...battle,
+        playerQueue: [],
+      },
+    });
+  },
+
+  // 몬스터 큐 설정 (AI가 결정)
+  setMonsterQueue: (actions) => {
+    const { battle } = get();
+    set({
+      battle: {
+        ...battle,
+        monsterQueue: actions,
+      },
+    });
+  },
+
+  // 큐 실행 (플레이어와 몬스터가 번갈아가며 실행)
+  executeQueues: () => {
+    const { battle } = get();
+    if (battle.phase !== "planning") return;
+
+    set({
+      battle: {
+        ...battle,
+        phase: "executing",
+      },
+    });
+
+    // 실제 실행은 BattlePanel UI에서 순차적으로 처리
+    // 여기서는 phase만 변경
+  },
+
+  // 다음 턴 시작
+  startNextTurn: () => {
+    const { battle, tickAllStatuses, processStatusEffects } = get();
+
+    // 상태이상 효과 처리
+    processStatusEffects();
+    tickAllStatuses();
+
+    // AP 회복 및 큐 초기화
+    set({
+      battle: {
+        ...battle,
+        turn: battle.turn + 1,
+        phase: "planning",
+        playerCurrentAp: battle.playerMaxAp,
+        monsterCurrentAp: battle.monsterMaxAp,
+        playerQueue: [],
+        monsterQueue: [],
+      },
+    });
+
+    get().addLog({
+      turn: battle.turn + 1,
+      actor: "system",
+      action: "new_turn",
+      message: `=== 턴 ${battle.turn + 1} ===`,
+    });
+  },
+
+  // 몬스터에게 데미지
+  dealDamageToMonster: (damage, message, weaponType) => {
     const { battle } = get();
     if (!battle.isInBattle || battle.result !== "ongoing") return;
 
@@ -192,10 +418,7 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
     const monsterShield = getShieldAmount(newMonsterBuffs);
 
     if (monsterShield > 0) {
-      const { effects, remainingDamage } = applyDamageToShield(
-        newMonsterBuffs,
-        damage
-      );
+      const { effects, remainingDamage } = applyDamageToShield(newMonsterBuffs, damage);
       newMonsterBuffs = effects;
       finalDamage = remainingDamage;
 
@@ -219,7 +442,6 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
       timestamp: Date.now(),
     };
 
-    // 몬스터 처치 확인
     if (newMonsterHp <= 0) {
       set({
         battle: {
@@ -238,6 +460,7 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
             },
           ],
           result: "victory",
+          phase: "ended",
           usedWeaponType: weaponType || battle.usedWeaponType,
         },
       });
@@ -254,8 +477,8 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
     }
   },
 
-  // 몬스터 공격
-  monsterAttack: (damage, message) => {
+  // 플레이어에게 데미지
+  dealDamageToPlayer: (damage, message) => {
     const { battle } = get();
     if (!battle.isInBattle || battle.result !== "ongoing") return;
 
@@ -265,10 +488,7 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
     const playerShield = getShieldAmount(newPlayerBuffs);
 
     if (playerShield > 0) {
-      const { effects, remainingDamage } = applyDamageToShield(
-        newPlayerBuffs,
-        damage
-      );
+      const { effects, remainingDamage } = applyDamageToShield(newPlayerBuffs, damage);
       newPlayerBuffs = effects;
       finalDamage = remainingDamage;
 
@@ -292,14 +512,12 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
       timestamp: Date.now(),
     };
 
-    // 플레이어 패배 확인
     if (newPlayerHp <= 0) {
       set({
         battle: {
           ...battle,
           playerCurrentHp: 0,
           playerBuffs: newPlayerBuffs,
-          turn: battle.turn + 1,
           battleLog: [
             ...battle.battleLog,
             newLog,
@@ -312,6 +530,7 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
             },
           ],
           result: "defeat",
+          phase: "ended",
         },
       });
     } else {
@@ -320,89 +539,76 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
           ...battle,
           playerCurrentHp: newPlayerHp,
           playerBuffs: newPlayerBuffs,
-          turn: battle.turn + 1,
           battleLog: [...battle.battleLog, newLog],
         },
       });
     }
   },
 
-  // 몬스터 선제공격 (aggressive 몬스터 전용)
-  monsterPreemptiveAttack: (damage, message) => {
+  // 플레이어 힐
+  healPlayer: (amount) => {
     const { battle } = get();
-    if (!battle.isInBattle || battle.result !== "ongoing") return;
-    if (!battle.isPreemptivePhase) return;
+    const newHp = Math.min(battle.playerMaxHp, battle.playerCurrentHp + amount);
+    const actualHeal = newHp - battle.playerCurrentHp;
 
-    // 플레이어 보호막 확인
-    let finalDamage = damage;
-    let newPlayerBuffs = [...battle.playerBuffs];
-    const playerShield = getShieldAmount(newPlayerBuffs);
-
-    if (playerShield > 0) {
-      const { effects, remainingDamage } = applyDamageToShield(
-        newPlayerBuffs,
-        damage
-      );
-      newPlayerBuffs = effects;
-      finalDamage = remainingDamage;
-
-      if (remainingDamage < damage) {
-        get().addLog({
-          turn: battle.turn,
-          actor: "system",
-          action: "shield_absorb",
-          message: `보호막이 ${damage - remainingDamage} 피해를 흡수했다!`,
-        });
-      }
-    }
-
-    const newPlayerHp = Math.max(0, battle.playerCurrentHp - finalDamage);
-    const newLog: BattleLogEntry = {
-      turn: 0, // 선제공격은 턴 0
-      actor: "monster",
-      action: "preemptive",
-      damage: finalDamage,
-      message,
-      timestamp: Date.now(),
-    };
-
-    // 플레이어 패배 확인
-    if (newPlayerHp <= 0) {
+    if (actualHeal > 0) {
       set({
         battle: {
           ...battle,
-          playerCurrentHp: 0,
-          playerBuffs: newPlayerBuffs,
-          isPreemptivePhase: false,
-          battleLog: [
-            ...battle.battleLog,
-            newLog,
-            {
-              turn: 0,
-              actor: "system",
-              action: "defeat",
-              message: getDefeatMessage(),
-              timestamp: Date.now(),
-            },
-          ],
-          result: "defeat",
+          playerCurrentHp: newHp,
         },
       });
-    } else {
-      // 선제공격 후 플레이어 턴으로
-      set({
-        battle: {
-          ...battle,
-          playerCurrentHp: newPlayerHp,
-          playerBuffs: newPlayerBuffs,
-          isPreemptivePhase: false,
-          battleLog: [...battle.battleLog, newLog],
-        },
+
+      get().addLog({
+        turn: battle.turn,
+        actor: "player",
+        action: "heal",
+        heal: actualHeal,
+        message: `HP를 ${actualHeal} 회복했다!`,
       });
     }
   },
 
-  // 도주 시도
+  // 레거시 호환 메서드들 (기존 코드용)
+  playerAttack: (damage, message, weaponType) => {
+    get().dealDamageToMonster(damage, message, weaponType);
+  },
+
+  monsterAttack: (damage, message) => {
+    get().dealDamageToPlayer(damage, message);
+  },
+
+  healHp: (amount) => {
+    get().healPlayer(amount);
+  },
+
+  monsterPreemptiveAttack: (damage, message) => {
+    // 선제공격 후 isPreemptivePhase를 false로 설정
+    const { battle } = get();
+    get().dealDamageToPlayer(damage, message);
+    set({
+      battle: {
+        ...get().battle,
+        isPreemptivePhase: false,
+      },
+    });
+  },
+
+  // MP 사용
+  useMp: (amount) => {
+    const { battle } = get();
+    if (battle.playerMp < amount) return false;
+
+    set({
+      battle: {
+        ...battle,
+        playerMp: battle.playerMp - amount,
+      },
+    });
+    return true;
+  },
+
+  // 도주
   playerFlee: () => {
     const { battle } = get();
     if (!battle.isInBattle || battle.result !== "ongoing") return false;
@@ -425,6 +631,7 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
             },
           ],
           result: "fled",
+          phase: "ended",
         },
       });
     } else {
@@ -448,18 +655,6 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
     return success;
   },
 
-  // 전투 종료
-  endBattle: (result) => {
-    const { battle } = get();
-    set({
-      battle: {
-        ...battle,
-        result,
-        isInBattle: result === "ongoing",
-      },
-    });
-  },
-
   // 로그 추가
   addLog: (entry) => {
     const { battle } = get();
@@ -469,49 +664,6 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
         battleLog: [...battle.battleLog, { ...entry, timestamp: Date.now() }],
       },
     });
-  },
-
-  // 전투 초기화
-  resetBattle: () => {
-    set({ battle: initialBattleState });
-  },
-
-  // MP 사용
-  useMp: (amount) => {
-    const { battle } = get();
-    if (battle.playerMp < amount) return false;
-
-    set({
-      battle: {
-        ...battle,
-        playerMp: battle.playerMp - amount,
-      },
-    });
-    return true;
-  },
-
-  // HP 회복
-  healHp: (amount) => {
-    const { battle } = get();
-    const newHp = Math.min(battle.playerMaxHp, battle.playerCurrentHp + amount);
-    const actualHeal = newHp - battle.playerCurrentHp;
-
-    if (actualHeal > 0) {
-      set({
-        battle: {
-          ...battle,
-          playerCurrentHp: newHp,
-        },
-      });
-
-      get().addLog({
-        turn: battle.turn,
-        actor: "player",
-        action: "heal",
-        heal: actualHeal,
-        message: `HP를 ${actualHeal} 회복했다!`,
-      });
-    }
   },
 
   // 방어 자세 설정
@@ -544,7 +696,7 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
     return { stance: battle.defensiveStance, value: battle.defensiveValue };
   },
 
-  // 플레이어에게 상태이상 적용
+  // 플레이어 상태이상 적용
   applyPlayerStatus: (type, value, duration) => {
     const { battle } = get();
     const effect = createStatusEffect(type, value, duration);
@@ -581,7 +733,7 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
     }
   },
 
-  // 몬스터에게 상태이상 적용
+  // 몬스터 상태이상 적용
   applyMonsterStatus: (type, value, duration) => {
     const { battle } = get();
     const effect = createStatusEffect(type, value, duration);
@@ -636,12 +788,12 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
     });
   },
 
-  // 턴 시작 시 DoT/HoT 처리
+  // DoT/HoT 처리
   processStatusEffects: () => {
     const { battle } = get();
     if (!battle.isInBattle) return;
 
-    // 플레이어 DoT 피해
+    // 플레이어 DoT
     const playerDot = calculateDotDamage(battle.playerDebuffs);
     if (playerDot > 0) {
       const newHp = Math.max(0, battle.playerCurrentHp - playerDot);
@@ -665,13 +817,10 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
       }
     }
 
-    // 플레이어 HoT 회복
+    // 플레이어 HoT
     const playerHot = calculateRegenHeal(battle.playerBuffs);
     if (playerHot > 0) {
-      const newHp = Math.min(
-        battle.playerMaxHp,
-        battle.playerCurrentHp + playerHot
-      );
+      const newHp = Math.min(battle.playerMaxHp, battle.playerCurrentHp + playerHot);
       const actualHeal = newHp - battle.playerCurrentHp;
       if (actualHeal > 0) {
         set({
@@ -690,7 +839,7 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
       }
     }
 
-    // 몬스터 DoT 피해
+    // 몬스터 DoT
     const monsterDot = calculateDotDamage(battle.monsterDebuffs);
     if (monsterDot > 0) {
       const newHp = Math.max(0, battle.monsterCurrentHp - monsterDot);
@@ -714,7 +863,7 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
     }
   },
 
-  // 턴 종료 시 모든 상태이상 지속시간 감소
+  // 상태이상 틱
   tickAllStatuses: () => {
     const { battle } = get();
 
@@ -763,11 +912,7 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
   // Getters
   isPlayerTurn: () => {
     const { battle } = get();
-    // 선제공격 단계에서는 몬스터가 선공이면 플레이어 턴 아님
-    if (battle.isPreemptivePhase && battle.monsterGoesFirst) {
-      return false;
-    }
-    return battle.turn % 2 === 1;
+    return battle.phase === "planning";
   },
 
   getMonsterHpPercent: () => {
@@ -788,9 +933,21 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
     return (battle.playerMp / battle.playerMaxMp) * 100;
   },
 
+  getPlayerApPercent: () => {
+    const { battle } = get();
+    if (battle.playerMaxAp === 0) return 0;
+    return (battle.playerCurrentAp / battle.playerMaxAp) * 100;
+  },
+
   canUseSkill: (mpCost) => {
     const { battle } = get();
     return battle.playerMp >= mpCost;
+  },
+
+  canAffordAp: (apCost) => {
+    const { battle } = get();
+    const queuedAp = battle.playerQueue.reduce((sum, a) => sum + a.apCost, 0);
+    return queuedAp + apCost <= battle.playerMaxAp;
   },
 
   isPlayerIncapacitated: () => {
@@ -834,5 +991,16 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
   getPlayerShieldAmount: () => {
     const { battle } = get();
     return getShieldAmount(battle.playerBuffs);
+  },
+
+  getRemainingPlayerAp: () => {
+    const { battle } = get();
+    const queuedAp = battle.playerQueue.reduce((sum, a) => sum + a.apCost, 0);
+    return battle.playerMaxAp - queuedAp;
+  },
+
+  getQueuedApCost: () => {
+    const { battle } = get();
+    return battle.playerQueue.reduce((sum, a) => sum + a.apCost, 0);
   },
 }));

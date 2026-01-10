@@ -1,7 +1,7 @@
 {
-  "version": "2.0.0",
-  "lastUpdated": "2026-01-10",
-  "description": "능력 데이터 메타데이터 - 스킬 타입, 카테고리, 숙련도 정의",
+  "version": "3.0.0",
+  "lastUpdated": "2026-01-11",
+  "description": "능력 데이터 메타데이터 - 스킬 타입, 카테고리, 레벨 시스템 정의",
 
   "skillTypes": {
     "description": "스킬의 주요 효과 분류",

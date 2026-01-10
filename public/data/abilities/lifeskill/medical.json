@@ -6,85 +6,182 @@
   "description": "부상 치료와 HP 회복을 위한 생활 스킬",
   "skills": [
     {
+      "id": "first_aid_mastery",
+      "nameKo": "의료 숙련",
+      "nameEn": "Medical Mastery",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "📖",
+      "description": {
+        "ko": "의료의 기본기를 익혀 관련 기술의 위력과 효과를 높인다.",
+        "en": "Master the fundamentals to increase power and effectiveness of related skills."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "damageBonus": 0,
+            "costReduction": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "damageBonus": 5,
+            "costReduction": 2
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "damageBonus": 12,
+            "costReduction": 5
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "damageBonus": 20,
+            "costReduction": 8
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "damageBonus": 30,
+            "costReduction": 12
+          }
+        }
+      ],
+      "requirements": {}
+    },
+    {
       "id": "first_aid",
       "nameKo": "응급처치",
       "nameEn": "First Aid",
-      "description": "붕대와 기본 도구로 응급 치료를 수행합니다.",
+      "type": "attack",
+      "usageContext": "combat_only",
       "icon": "🩹",
-      "relatedStats": ["dex", "wis"],
-      "treatsInjury": ["light"],
-      "requiredItems": ["bandage", "clean_water"],
-      "healAmount": {
-        "novice": { "base": 10, "perRank": 2 },
-        "apprentice": { "base": 15, "perRank": 3 },
-        "journeyman": { "base": 20, "perRank": 4 },
-        "expert": { "base": 30, "perRank": 5 },
-        "master": { "base": 40, "perRank": 6 },
-        "grandmaster": { "base": 50, "perRank": 8 }
+      "description": {
+        "ko": "붕대와 기본 도구로 응급 치료를 수행합니다.",
+        "en": "붕대와 기본 도구로 응급 치료를 수행합니다."
       },
-      "successRate": {
-        "novice": 0.8,
-        "apprentice": 0.85,
-        "journeyman": 0.9,
-        "expert": 0.93,
-        "master": 0.96,
-        "grandmaster": 0.99
-      }
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 20,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 26,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 32,
+            "apCost": 4
+          }
+        }
+      ],
+      "requirements": {},
+      "grantsExpTo": [
+        "first_aid_mastery"
+      ],
+      "cooldown": 0
     },
     {
       "id": "herbalism",
       "nameKo": "약초학",
       "nameEn": "Herbalism",
-      "description": "약초를 이용한 한방 치료를 수행합니다.",
+      "type": "attack",
+      "usageContext": "combat_only",
       "icon": "🌿",
-      "relatedStats": ["int", "wis"],
-      "treatsInjury": ["light", "medium"],
-      "requiredItems": ["herb_pouch", "mortar"],
-      "canGather": true,
-      "gatherableItems": ["healing_herb", "antidote_herb", "energy_herb"],
-      "healAmount": {
-        "novice": { "base": 15, "perRank": 3 },
-        "apprentice": { "base": 25, "perRank": 5 },
-        "journeyman": { "base": 35, "perRank": 7 },
-        "expert": { "base": 50, "perRank": 10 },
-        "master": { "base": 70, "perRank": 12 },
-        "grandmaster": { "base": 100, "perRank": 15 }
+      "description": {
+        "ko": "약초를 이용한 한방 치료를 수행합니다.",
+        "en": "약초를 이용한 한방 치료를 수행합니다."
       },
-      "successRate": {
-        "novice": 0.7,
-        "apprentice": 0.78,
-        "journeyman": 0.85,
-        "expert": 0.9,
-        "master": 0.95,
-        "grandmaster": 0.98
-      },
-      "synergyKnowledge": "botany"
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 20,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 26,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 32,
+            "apCost": 4
+          }
+        }
+      ],
+      "requirements": {},
+      "grantsExpTo": [
+        "first_aid_mastery"
+      ],
+      "cooldown": 0
     },
     {
       "id": "surgery",
       "nameKo": "수술",
       "nameEn": "Surgery",
-      "description": "외과 수술로 심각한 부상을 치료합니다.",
+      "type": "attack",
+      "usageContext": "combat_only",
       "icon": "🏥",
-      "relatedStats": ["dex", "int"],
-      "treatsInjury": ["light", "medium", "critical"],
-      "requiredItems": ["surgical_kit", "anesthetic", "clean_bandage"],
-      "minProficiency": 50,
-      "healAmount": {
-        "expert": { "base": 50, "perRank": 10 },
-        "master": { "base": 80, "perRank": 15 },
-        "grandmaster": { "base": 120, "perRank": 20 }
+      "description": {
+        "ko": "외과 수술로 심각한 부상을 치료합니다.",
+        "en": "외과 수술로 심각한 부상을 치료합니다."
       },
-      "successRate": {
-        "expert": 0.7,
-        "master": 0.85,
-        "grandmaster": 0.95
-      },
-      "criticalFailureChance": {
-        "expert": 0.1,
-        "master": 0.05,
-        "grandmaster": 0.01
-      }
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 20,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 26,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 32,
+            "apCost": 4
+          }
+        }
+      ],
+      "requirements": {},
+      "grantsExpTo": [
+        "first_aid_mastery"
+      ],
+      "cooldown": 0
     }
   ]
 }

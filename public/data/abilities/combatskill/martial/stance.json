@@ -4,125 +4,446 @@
   "nameEn": "Martial Arts",
   "icon": "🥋",
   "description": "자세와 내공을 사용하는 무술 기술",
-  "relatedStats": ["str", "dex", "wis"],
+  "relatedStats": [
+    "str",
+    "dex",
+    "wis"
+  ],
   "skills": [
+    {
+      "id": "martial_mastery",
+      "nameKo": "무술 숙련",
+      "nameEn": "Martial Mastery",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "📖",
+      "description": {
+        "ko": "무술의 기본기를 익혀 관련 기술의 위력과 효과를 높인다.",
+        "en": "Master the fundamentals to increase power and effectiveness of related skills."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "damageBonus": 0,
+            "costReduction": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "damageBonus": 5,
+            "costReduction": 2
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "damageBonus": 12,
+            "costReduction": 5
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "damageBonus": 20,
+            "costReduction": 8
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "damageBonus": 30,
+            "costReduction": 12
+          }
+        }
+      ],
+      "requirements": {}
+    },
     {
       "id": "fighting_stance",
       "nameKo": "전투 자세",
       "nameEn": "Fighting Stance",
-      "description": "전투 자세를 취해 5턴간 공격력이 10% 증가합니다.",
       "type": "buff",
       "usageContext": "combat_only",
       "icon": "🥋",
-      "apCost": 5,
-      "statusEffect": "atk_up",
-      "statusDuration": 5,
-      "statusValue": 10,
-      "target": "self",
-      "requirements": { "proficiency": 10 }
+      "description": {
+        "ko": "전투 자세를 취해 5턴간 공격력이 10% 증가합니다.",
+        "en": "전투 자세를 취해 5턴간 공격력이 10% 증가합니다."
+      },
+      "maxLevel": 20,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "effectValue": 10,
+            "duration": 5,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "effectValue": 13,
+            "duration": 6,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "effectValue": 16,
+            "duration": 7,
+            "apCost": 4
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "martial_mastery": 1
+        }
+      },
+      "grantsExpTo": [
+        "martial_mastery"
+      ],
+      "cooldown": 3
     },
     {
       "id": "iron_body",
       "nameKo": "철신공",
       "nameEn": "Iron Body",
-      "description": "몸을 강화하여 3턴간 받는 피해가 25% 감소합니다.",
       "type": "buff",
       "usageContext": "combat_only",
       "icon": "🛡️",
-      "apCost": 10,
-      "statusEffect": "damage_reduction",
-      "statusDuration": 3,
-      "statusValue": 25,
-      "damageReduction": 25,
-      "target": "self",
-      "requirements": { "proficiency": 25 }
+      "description": {
+        "ko": "몸을 강화하여 3턴간 받는 피해가 25% 감소합니다.",
+        "en": "몸을 강화하여 3턴간 받는 피해가 25% 감소합니다."
+      },
+      "maxLevel": 20,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "effectValue": 25,
+            "duration": 3,
+            "apCost": 10
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "effectValue": 32,
+            "duration": 4,
+            "apCost": 10
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "effectValue": 40,
+            "duration": 5,
+            "apCost": 9
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "martial_mastery": 3
+        }
+      },
+      "grantsExpTo": [
+        "martial_mastery"
+      ],
+      "cooldown": 3
     },
     {
       "id": "counter_stance",
       "nameKo": "반격 자세",
       "nameEn": "Counter Stance",
-      "description": "3턴간 50% 확률로 적의 공격을 반격합니다.",
       "type": "defensive",
       "usageContext": "combat_only",
       "icon": "↩️",
-      "apCost": 12,
-      "statusEffect": "counter",
-      "statusDuration": 3,
-      "statusValue": 50,
-      "target": "self",
-      "requirements": { "proficiency": 35 }
+      "description": {
+        "ko": "3턴간 50% 확률로 적의 공격을 반격합니다.",
+        "en": "3턴간 50% 확률로 적의 공격을 반격합니다."
+      },
+      "maxLevel": 20,
+      "expPerLevel": 70,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "apCost": 12
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "apCost": 12
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "apCost": 11
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "martial_mastery": 4
+        }
+      },
+      "grantsExpTo": [
+        "martial_mastery"
+      ],
+      "cooldown": 0
     },
     {
       "id": "meditation",
       "nameKo": "명상",
       "nameEn": "Meditation",
-      "description": "명상하여 HP를 15% 회복합니다. 1턴을 소모합니다.",
       "type": "buff",
       "usageContext": "combat_only",
       "icon": "🧘",
-      "apCost": 8,
-      "healPercent": 15,
-      "target": "self",
-      "requirements": { "proficiency": 20 }
+      "description": {
+        "ko": "명상하여 HP를 15% 회복합니다. 1턴을 소모합니다.",
+        "en": "명상하여 HP를 15% 회복합니다. 1턴을 소모합니다."
+      },
+      "maxLevel": 20,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "effectValue": 20,
+            "duration": 3,
+            "apCost": 8
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "effectValue": 26,
+            "duration": 4,
+            "apCost": 8
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "effectValue": 32,
+            "duration": 5,
+            "apCost": 7
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "martial_mastery": 2
+        }
+      },
+      "grantsExpTo": [
+        "martial_mastery"
+      ],
+      "cooldown": 3
     },
     {
       "id": "pressure_point",
       "nameKo": "경혈 타격",
       "nameEn": "Pressure Point",
-      "description": "급소를 공격하여 3턴간 적의 방어력을 30% 감소시킵니다.",
-      "type": "martial_attack",
+      "type": "attack",
       "usageContext": "combat_only",
       "icon": "📍",
-      "apCost": 15,
-      "baseDamage": 15,
-      "statusEffect": "def_down",
-      "statusDuration": 3,
-      "statusValue": 30,
-      "target": "enemy",
-      "requirements": { "proficiency": 45 }
+      "description": {
+        "ko": "급소를 공격하여 3턴간 적의 방어력을 30% 감소시킵니다.",
+        "en": "급소를 공격하여 3턴간 적의 방어력을 30% 감소시킵니다."
+      },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 15,
+            "apCost": 15
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 19,
+            "apCost": 15
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 24,
+            "apCost": 14,
+            "def_downChance": 20
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "martial_mastery": 5
+        }
+      },
+      "grantsExpTo": [
+        "martial_mastery"
+      ],
+      "cooldown": 0,
+      "attackType": "melee_physical"
     },
     {
       "id": "chi_focus",
       "nameKo": "기 집중",
       "nameEn": "Chi Focus",
-      "description": "기를 모아 다음 공격의 피해가 2배가 됩니다.",
       "type": "buff",
       "usageContext": "combat_only",
       "icon": "🔥",
-      "apCost": 15,
-      "statusEffect": "empower",
-      "statusDuration": 1,
-      "statusValue": 100,
-      "target": "self",
-      "requirements": { "proficiency": 55 }
+      "description": {
+        "ko": "기를 모아 다음 공격의 피해가 2배가 됩니다.",
+        "en": "기를 모아 다음 공격의 피해가 2배가 됩니다."
+      },
+      "maxLevel": 20,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "effectValue": 100,
+            "duration": 1,
+            "apCost": 15
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "effectValue": 130,
+            "duration": 2,
+            "apCost": 15
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "effectValue": 160,
+            "duration": 3,
+            "apCost": 14
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "martial_mastery": 6
+        }
+      },
+      "grantsExpTo": [
+        "martial_mastery"
+      ],
+      "cooldown": 3
     },
     {
       "id": "berserker_rage",
       "nameKo": "광전사",
       "nameEn": "Berserker Rage",
-      "description": "5턴간 공격력 +50%, 받는 피해 +30%.",
       "type": "buff",
       "usageContext": "combat_only",
       "icon": "😤",
-      "apCost": 20,
-      "statusEffect": "berserk",
-      "statusDuration": 5,
-      "statusValue": 50,
-      "target": "self",
-      "requirements": { "proficiency": 65 }
+      "description": {
+        "ko": "5턴간 공격력 +50%, 받는 피해 +30%.",
+        "en": "5턴간 공격력 +50%, 받는 피해 +30%."
+      },
+      "maxLevel": 20,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "effectValue": 50,
+            "duration": 5,
+            "apCost": 20
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "effectValue": 65,
+            "duration": 6,
+            "apCost": 20
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "effectValue": 80,
+            "duration": 7,
+            "apCost": 19
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "martial_mastery": 7
+        }
+      },
+      "grantsExpTo": [
+        "martial_mastery"
+      ],
+      "cooldown": 3
     },
     {
       "id": "chi_burst",
       "nameKo": "기폭",
       "nameEn": "Chi Burst",
-      "description": "내공을 폭발시켜 강력한 피해를 입힙니다.",
-      "type": "martial_attack",
+      "type": "attack",
       "usageContext": "combat_only",
       "icon": "💥",
-      "apCost": 25,
-      "baseDamage": 45,
-      "target": "enemy",
-      "requirements": { "proficiency": 75 }
+      "description": {
+        "ko": "내공을 폭발시켜 강력한 피해를 입힙니다.",
+        "en": "내공을 폭발시켜 강력한 피해를 입힙니다."
+      },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 45,
+            "apCost": 25
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 58,
+            "apCost": 25
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 72,
+            "apCost": 24
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "martial_mastery": 8
+        }
+      },
+      "grantsExpTo": [
+        "martial_mastery"
+      ],
+      "cooldown": 0,
+      "attackType": "melee_physical"
     }
   ]
 }

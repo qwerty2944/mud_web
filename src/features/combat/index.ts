@@ -1,12 +1,23 @@
 // Actions
 export { useStartBattle } from "./start-battle";
-export { useAttack } from "./attack";
 export { useEndBattle } from "./end-battle";
-export { useCastSpell } from "./cast-spell";
-export { useSpellCast } from "./spell-cast";
+
+// 통합 어빌리티 시스템 (기존 attack, cast-spell, spell-cast 대체)
+export { useAbility } from "./use-ability";
+export { useExecuteQueue } from "./execute-queue";
 
 // Passive Skills
 export { usePassiveSkills } from "./lib/usePassiveSkills";
+
+// Monster AI
+export {
+  getAvailableAbilities,
+  selectAbilityByWeight,
+  buildMonsterQueue,
+  calculateMonsterAbilityDamage,
+  checkMonsterStatusEffect,
+  getMonsterBuffEffect,
+} from "./lib/monsterAi";
 
 // Lib (Damage Calculation)
 export {

@@ -9,86 +9,169 @@
       "id": "anatomy",
       "nameKo": "해부학",
       "nameEn": "Anatomy",
-      "description": "생물의 구조를 이해하여 베기/찌르기 공격력을 높입니다.",
+      "type": "attack",
+      "usageContext": "combat_only",
       "icon": "🦴",
-      "relatedStats": ["int"],
-      "combatBonus": {
-        "slash": { "perRank": 0.5, "maxBonus": 3.0 },
-        "pierce": { "perRank": 0.5, "maxBonus": 3.0 }
+      "description": {
+        "ko": "생물의 구조를 이해하여 베기/찌르기 공격력을 높입니다.",
+        "en": "생물의 구조를 이해하여 베기/찌르기 공격력을 높입니다."
       },
-      "gainCondition": {
-        "attackTypes": ["slash", "pierce"],
-        "requiresHit": true
-      },
-      "synergyWith": [],
-      "passiveEffect": "베기/찌르기 무기로 공격 성공 시 확률적으로 숙련도 상승"
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 20,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 26,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 32,
+            "apCost": 4
+          }
+        }
+      ],
+      "requirements": {},
+      "grantsExpTo": [
+        "knowledge_mastery"
+      ],
+      "cooldown": 0
     },
     {
       "id": "metallurgy",
       "nameKo": "금속학",
       "nameEn": "Metallurgy",
-      "description": "금속의 특성을 이해하여 타격 공격력과 방어력을 높입니다.",
+      "type": "attack",
+      "usageContext": "combat_only",
       "icon": "⚙️",
-      "relatedStats": ["int", "str"],
-      "combatBonus": {
-        "crush": { "perRank": 0.5, "maxBonus": 3.0 },
-        "defense": { "perRank": 0.3, "maxBonus": 1.8 }
+      "description": {
+        "ko": "금속의 특성을 이해하여 타격 공격력과 방어력을 높입니다.",
+        "en": "금속의 특성을 이해하여 타격 공격력과 방어력을 높입니다."
       },
-      "gainCondition": {
-        "attackTypes": ["crush"],
-        "requiresHit": true
-      },
-      "synergyWith": ["blacksmithing"],
-      "craftingBonus": {
-        "blacksmithing": { "qualityBonus": 0.02 }
-      },
-      "passiveEffect": "타격 무기로 공격 성공 시 확률적으로 숙련도 상승"
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 20,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 26,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 32,
+            "apCost": 4
+          }
+        }
+      ],
+      "requirements": {},
+      "grantsExpTo": [
+        "knowledge_mastery"
+      ],
+      "cooldown": 0
     },
     {
       "id": "botany",
       "nameKo": "식물학",
       "nameEn": "Botany",
-      "description": "식물의 특성을 이해하여 독/치유 효과를 높입니다.",
+      "type": "attack",
+      "usageContext": "combat_only",
       "icon": "🌱",
-      "relatedStats": ["int", "wis"],
-      "combatBonus": {
-        "poison": { "perRank": 0.5, "maxBonus": 3.0 },
-        "healing": { "perRank": 1.0, "maxBonus": 6.0 }
+      "description": {
+        "ko": "식물의 특성을 이해하여 독/치유 효과를 높입니다.",
+        "en": "식물의 특성을 이해하여 독/치유 효과를 높입니다."
       },
-      "gainCondition": {
-        "magicTypes": ["poison"],
-        "healingSpells": true,
-        "requiresSuccess": true
-      },
-      "synergyWith": ["alchemy", "herbalism", "cooking"],
-      "craftingBonus": {
-        "alchemy": { "potencyBonus": 0.02 },
-        "cooking": { "durationBonus": 0.02 }
-      },
-      "gatheringBonus": {
-        "herbalism": { "yieldBonus": 0.1 }
-      },
-      "passiveEffect": "독/치유 마법 사용 시 확률적으로 숙련도 상승"
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 20,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 26,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 32,
+            "apCost": 4
+          }
+        }
+      ],
+      "requirements": {},
+      "grantsExpTo": [
+        "knowledge_mastery"
+      ],
+      "cooldown": 0
     },
     {
       "id": "gemology",
       "nameKo": "보석학",
       "nameEn": "Gemology",
-      "description": "보석의 마력을 이해하여 전체 마법 공격력을 높입니다.",
+      "type": "attack",
+      "usageContext": "combat_only",
       "icon": "🔮",
-      "relatedStats": ["int"],
-      "combatBonus": {
-        "magic": { "perRank": 0.3, "maxBonus": 1.8 }
+      "description": {
+        "ko": "보석의 마력을 이해하여 전체 마법 공격력을 높입니다.",
+        "en": "보석의 마력을 이해하여 전체 마법 공격력을 높입니다."
       },
-      "gainCondition": {
-        "magicTypes": ["fire", "ice", "lightning", "earth", "holy", "dark"],
-        "requiresHit": true
-      },
-      "synergyWith": ["jewelcrafting"],
-      "craftingBonus": {
-        "jewelcrafting": { "gemPowerBonus": 0.05 }
-      },
-      "passiveEffect": "마법 공격 성공 시 확률적으로 숙련도 상승"
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 20,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 26,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 32,
+            "apCost": 4
+          }
+        }
+      ],
+      "requirements": {},
+      "grantsExpTo": [
+        "knowledge_mastery"
+      ],
+      "cooldown": 0
     }
   ]
 }

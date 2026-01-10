@@ -4,123 +4,437 @@
   "nameEn": "Fist",
   "icon": "👊",
   "description": "맨손으로 싸우는 권술 기술",
-  "relatedStats": ["str", "dex"],
+  "relatedStats": [
+    "str",
+    "dex"
+  ],
   "skills": [
+    {
+      "id": "fist_mastery",
+      "nameKo": "권술 숙련",
+      "nameEn": "Fist Mastery",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "📖",
+      "description": {
+        "ko": "권술의 기본기를 익혀 관련 기술의 위력과 효과를 높인다.",
+        "en": "Master the fundamentals to increase power and effectiveness of related skills."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "damageBonus": 0,
+            "costReduction": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "damageBonus": 5,
+            "costReduction": 2
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "damageBonus": 12,
+            "costReduction": 5
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "damageBonus": 20,
+            "costReduction": 8
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "damageBonus": 30,
+            "costReduction": 12
+          }
+        }
+      ],
+      "requirements": {}
+    },
     {
       "id": "punch",
       "nameKo": "정권",
       "nameEn": "Punch",
-      "description": "주먹으로 적을 가격하는 기본 공격입니다.",
-      "type": "martial_attack",
+      "type": "attack",
       "usageContext": "combat_only",
       "icon": "👊",
-      "apCost": 0,
-      "baseDamage": 12,
-      "target": "enemy",
-      "requirements": { "proficiency": 0 }
+      "description": {
+        "ko": "주먹으로 적을 가격하는 기본 공격입니다.",
+        "en": "주먹으로 적을 가격하는 기본 공격입니다."
+      },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 12,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 15,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 19,
+            "apCost": 4
+          }
+        }
+      ],
+      "requirements": {},
+      "grantsExpTo": [
+        "fist_mastery"
+      ],
+      "cooldown": 0,
+      "attackType": "melee_physical"
     },
     {
       "id": "jab",
       "nameKo": "잽",
       "nameEn": "Jab",
-      "description": "빠른 잽으로 적을 견제합니다. 선공 확률 증가.",
-      "type": "martial_attack",
+      "type": "attack",
       "usageContext": "combat_only",
       "icon": "👊",
-      "apCost": 3,
-      "baseDamage": 10,
-      "statusEffect": "initiative_up",
-      "statusDuration": 1,
-      "statusValue": 30,
-      "target": "enemy",
-      "requirements": { "proficiency": 10 }
+      "description": {
+        "ko": "빠른 잽으로 적을 견제합니다. 선공 확률 증가.",
+        "en": "빠른 잽으로 적을 견제합니다. 선공 확률 증가."
+      },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 10,
+            "apCost": 3
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 13,
+            "apCost": 3
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 16,
+            "apCost": 2,
+            "initiative_upChance": 20
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "fist_mastery": 1
+        }
+      },
+      "grantsExpTo": [
+        "fist_mastery"
+      ],
+      "cooldown": 0,
+      "attackType": "melee_physical"
     },
     {
       "id": "uppercut",
       "nameKo": "올려치기",
       "nameEn": "Uppercut",
-      "description": "아래에서 위로 강하게 올려쳐 20% 확률로 기절시킵니다.",
-      "type": "martial_attack",
+      "type": "attack",
       "usageContext": "combat_only",
       "icon": "⬆️",
-      "apCost": 5,
-      "baseDamage": 18,
-      "statusEffect": "stun",
-      "statusChance": 20,
-      "statusDuration": 1,
-      "target": "enemy",
-      "requirements": { "proficiency": 15 }
+      "description": {
+        "ko": "아래에서 위로 강하게 올려쳐 20% 확률로 기절시킵니다.",
+        "en": "아래에서 위로 강하게 올려쳐 20% 확률로 기절시킵니다."
+      },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 18,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 23,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 28,
+            "apCost": 4,
+            "stunChance": 20
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "fist_mastery": 2
+        }
+      },
+      "grantsExpTo": [
+        "fist_mastery"
+      ],
+      "cooldown": 0,
+      "attackType": "melee_physical"
     },
     {
       "id": "hook",
       "nameKo": "훅",
       "nameEn": "Hook",
-      "description": "옆에서 강하게 후려치는 강력한 일격입니다.",
-      "type": "martial_attack",
+      "type": "attack",
       "usageContext": "combat_only",
       "icon": "🥊",
-      "apCost": 8,
-      "baseDamage": 22,
-      "target": "enemy",
-      "requirements": { "proficiency": 25 }
+      "description": {
+        "ko": "옆에서 강하게 후려치는 강력한 일격입니다.",
+        "en": "옆에서 강하게 후려치는 강력한 일격입니다."
+      },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 22,
+            "apCost": 8
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 28,
+            "apCost": 8
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 35,
+            "apCost": 7
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "fist_mastery": 3
+        }
+      },
+      "grantsExpTo": [
+        "fist_mastery"
+      ],
+      "cooldown": 0,
+      "attackType": "melee_physical"
     },
     {
       "id": "palm_strike",
       "nameKo": "장타",
       "nameEn": "Palm Strike",
-      "description": "기를 모아 장타를 날려 30% 확률로 기절시킵니다.",
-      "type": "martial_attack",
+      "type": "attack",
       "usageContext": "combat_only",
       "icon": "🖐️",
-      "apCost": 12,
-      "baseDamage": 25,
-      "statusEffect": "stun",
-      "statusChance": 30,
-      "statusDuration": 1,
-      "target": "enemy",
-      "requirements": { "proficiency": 40 }
+      "description": {
+        "ko": "기를 모아 장타를 날려 30% 확률로 기절시킵니다.",
+        "en": "기를 모아 장타를 날려 30% 확률로 기절시킵니다."
+      },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 25,
+            "apCost": 12
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 32,
+            "apCost": 12
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 40,
+            "apCost": 11,
+            "stunChance": 30
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "fist_mastery": 4
+        }
+      },
+      "grantsExpTo": [
+        "fist_mastery"
+      ],
+      "cooldown": 0,
+      "attackType": "melee_physical"
     },
     {
       "id": "combo_punch",
       "nameKo": "연타",
       "nameEn": "Combo Punch",
-      "description": "2~4회의 빠른 주먹 연타를 가합니다.",
-      "type": "martial_attack",
+      "type": "attack",
       "usageContext": "combat_only",
       "icon": "💥",
-      "apCost": 10,
-      "baseDamage": 8,
-      "hitCount": [2, 4],
-      "target": "enemy",
-      "requirements": { "proficiency": 30 }
+      "description": {
+        "ko": "2~4회의 빠른 주먹 연타를 가합니다.",
+        "en": "2~4회의 빠른 주먹 연타를 가합니다."
+      },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 8,
+            "apCost": 10
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 10,
+            "apCost": 10
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 12,
+            "apCost": 9
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "fist_mastery": 3
+        }
+      },
+      "grantsExpTo": [
+        "fist_mastery"
+      ],
+      "cooldown": 0,
+      "attackType": "melee_physical"
     },
     {
       "id": "iron_fist",
       "nameKo": "철권",
       "nameEn": "Iron Fist",
-      "description": "강화된 주먹으로 방어력을 30% 무시하는 일격입니다.",
-      "type": "martial_attack",
+      "type": "attack",
       "usageContext": "combat_only",
       "icon": "🤛",
-      "apCost": 15,
-      "baseDamage": 30,
-      "armorPenetration": 0.3,
-      "target": "enemy",
-      "requirements": { "proficiency": 55 }
+      "description": {
+        "ko": "강화된 주먹으로 방어력을 30% 무시하는 일격입니다.",
+        "en": "강화된 주먹으로 방어력을 30% 무시하는 일격입니다."
+      },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 30,
+            "apCost": 15
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 39,
+            "apCost": 15
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 48,
+            "apCost": 14
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "fist_mastery": 6
+        }
+      },
+      "grantsExpTo": [
+        "fist_mastery"
+      ],
+      "cooldown": 0,
+      "attackType": "melee_physical"
     },
     {
       "id": "one_inch_punch",
       "nameKo": "촌경",
       "nameEn": "One Inch Punch",
-      "description": "짧은 거리에서 내공을 폭발시키는 필살의 일격입니다.",
-      "type": "martial_attack",
+      "type": "attack",
       "usageContext": "combat_only",
       "icon": "💫",
-      "apCost": 25,
-      "baseDamage": 50,
-      "armorPenetration": 0.5,
-      "target": "enemy",
-      "requirements": { "proficiency": 75 }
+      "description": {
+        "ko": "짧은 거리에서 내공을 폭발시키는 필살의 일격입니다.",
+        "en": "짧은 거리에서 내공을 폭발시키는 필살의 일격입니다."
+      },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 50,
+            "apCost": 25
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 65,
+            "apCost": 25
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 80,
+            "apCost": 24
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "fist_mastery": 8
+        }
+      },
+      "grantsExpTo": [
+        "fist_mastery"
+      ],
+      "cooldown": 0,
+      "attackType": "melee_physical"
     }
   ]
 }

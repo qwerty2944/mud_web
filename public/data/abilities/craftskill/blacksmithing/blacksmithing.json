@@ -4,97 +4,412 @@
   "nameEn": "Blacksmithing",
   "icon": "🔨",
   "description": "금속을 다루어 무기와 갑옷을 제작합니다",
-  "relatedStats": ["str", "con"],
+  "relatedStats": [
+    "str",
+    "con"
+  ],
   "skills": [
+    {
+      "id": "smithing_mastery",
+      "nameKo": "대장장이 숙련",
+      "nameEn": "Blacksmithing Mastery",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "📖",
+      "description": {
+        "ko": "대장장이의 기본기를 익혀 관련 기술의 위력과 효과를 높인다.",
+        "en": "Master the fundamentals to increase power and effectiveness of related skills."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "damageBonus": 0,
+            "costReduction": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "damageBonus": 5,
+            "costReduction": 2
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "damageBonus": 12,
+            "costReduction": 5
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "damageBonus": 20,
+            "costReduction": 8
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "damageBonus": 30,
+            "costReduction": 12
+          }
+        }
+      ],
+      "requirements": {}
+    },
     {
       "id": "bs_basic_forge",
       "nameKo": "기초 단조",
       "nameEn": "Basic Forging",
-      "description": "기본적인 금속 가공 기술입니다.",
       "type": "passive",
       "usageContext": "passive",
       "icon": "🔨",
-      "effect": { "craftTier": "common", "successBonus": 0 },
-      "requirements": { "level": 1 }
+      "description": {
+        "ko": "기본적인 금속 가공 기술입니다.",
+        "en": "기본적인 금속 가공 기술입니다."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "bonus": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "bonus": 5
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "bonus": 12
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "bonus": 20
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "bonus": 30
+          }
+        }
+      ],
+      "requirements": {}
     },
     {
       "id": "bs_apprentice_forge",
       "nameKo": "견습 단조",
       "nameEn": "Apprentice Forging",
-      "description": "고급 등급까지 제작이 가능합니다.",
       "type": "passive",
       "usageContext": "passive",
       "icon": "🔨",
-      "effect": { "craftTier": "grand", "successBonus": 5 },
-      "requirements": { "level": 10, "prerequisite": "bs_basic_forge" }
+      "description": {
+        "ko": "고급 등급까지 제작이 가능합니다.",
+        "en": "고급 등급까지 제작이 가능합니다."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "bonus": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "bonus": 5
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "bonus": 12
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "bonus": 20
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "bonus": 30
+          }
+        }
+      ],
+      "requirements": {}
     },
     {
       "id": "bs_journeyman_forge",
       "nameKo": "숙련 단조",
       "nameEn": "Journeyman Forging",
-      "description": "희귀 등급까지 제작이 가능합니다.",
       "type": "passive",
       "usageContext": "passive",
       "icon": "🔨",
-      "effect": { "craftTier": "rare", "successBonus": 10 },
-      "requirements": { "level": 20, "prerequisite": "bs_apprentice_forge" }
+      "description": {
+        "ko": "희귀 등급까지 제작이 가능합니다.",
+        "en": "희귀 등급까지 제작이 가능합니다."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "bonus": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "bonus": 5
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "bonus": 12
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "bonus": 20
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "bonus": 30
+          }
+        }
+      ],
+      "requirements": {}
     },
     {
       "id": "bs_expert_forge",
       "nameKo": "전문 단조",
       "nameEn": "Expert Forging",
-      "description": "고대 등급까지 제작이 가능합니다.",
       "type": "passive",
       "usageContext": "passive",
       "icon": "🔨",
-      "effect": { "craftTier": "arcane", "successBonus": 15 },
-      "requirements": { "level": 30, "prerequisite": "bs_journeyman_forge" }
+      "description": {
+        "ko": "고대 등급까지 제작이 가능합니다.",
+        "en": "고대 등급까지 제작이 가능합니다."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "bonus": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "bonus": 5
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "bonus": 12
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "bonus": 20
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "bonus": 30
+          }
+        }
+      ],
+      "requirements": {}
     },
     {
       "id": "bs_master_forge",
       "nameKo": "달인 단조",
       "nameEn": "Master Forging",
-      "description": "영웅 등급까지 제작이 가능합니다.",
       "type": "passive",
       "usageContext": "passive",
       "icon": "🔨",
-      "effect": { "craftTier": "heroic", "successBonus": 20 },
-      "requirements": { "level": 40, "prerequisite": "bs_expert_forge" }
+      "description": {
+        "ko": "영웅 등급까지 제작이 가능합니다.",
+        "en": "영웅 등급까지 제작이 가능합니다."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "bonus": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "bonus": 5
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "bonus": 12
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "bonus": 20
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "bonus": 30
+          }
+        }
+      ],
+      "requirements": {}
     },
     {
       "id": "bs_craft_weapon",
       "nameKo": "무기 제작",
       "nameEn": "Craft Weapon",
-      "description": "금속 무기를 제작합니다.",
       "type": "craft",
       "usageContext": "field_only",
       "icon": "⚔️",
-      "craftType": "weapon",
-      "materials": ["metal_ingot", "leather_strip"],
-      "requirements": { "skill": "bs_basic_forge" }
+      "description": {
+        "ko": "금속 무기를 제작합니다.",
+        "en": "금속 무기를 제작합니다."
+      },
+      "maxLevel": 30,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "apCost": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "apCost": 5
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "apCost": 4
+          }
+        }
+      ],
+      "requirements": {},
+      "grantsExpTo": [
+        "smithing_mastery"
+      ]
     },
     {
       "id": "bs_craft_armor",
       "nameKo": "갑옷 제작",
       "nameEn": "Craft Armor",
-      "description": "금속 갑옷을 제작합니다.",
       "type": "craft",
       "usageContext": "field_only",
       "icon": "🛡️",
-      "craftType": "armor",
-      "materials": ["metal_ingot", "leather"],
-      "requirements": { "skill": "bs_apprentice_forge" }
+      "description": {
+        "ko": "금속 갑옷을 제작합니다.",
+        "en": "금속 갑옷을 제작합니다."
+      },
+      "maxLevel": 30,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "apCost": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "apCost": 5
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "apCost": 4
+          }
+        }
+      ],
+      "requirements": {},
+      "grantsExpTo": [
+        "smithing_mastery"
+      ]
     },
     {
       "id": "bs_repair",
       "nameKo": "장비 수리",
       "nameEn": "Repair Equipment",
-      "description": "손상된 금속 장비를 수리합니다.",
       "type": "utility",
       "usageContext": "field_only",
       "icon": "🔧",
-      "repairType": ["weapon", "armor"],
-      "requirements": { "skill": "bs_basic_forge" }
+      "description": {
+        "ko": "손상된 금속 장비를 수리합니다.",
+        "en": "손상된 금속 장비를 수리합니다."
+      },
+      "maxLevel": 20,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "apCost": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "apCost": 5
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "apCost": 4
+          }
+        }
+      ],
+      "requirements": {},
+      "grantsExpTo": [
+        "smithing_mastery"
+      ],
+      "cooldown": 3
     }
   ]
 }

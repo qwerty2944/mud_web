@@ -12,6 +12,9 @@ export type {
   PhysicalResistance,
 } from "./types";
 
+// Re-export MonsterAbility from ability entity
+export type { MonsterAbility } from "@/entities/ability";
+
 // Constants
 export { MONSTER_TYPE_INFO, DEFAULT_PHYSICAL_RESISTANCE } from "./types";
 

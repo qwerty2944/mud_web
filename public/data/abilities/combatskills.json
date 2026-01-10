@@ -1,865 +1,3797 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-01-10T12:12:57.123Z",
+  "generatedAt": "2026-01-10T19:24:52.497Z",
   "skills": [
     {
-      "id": "chop",
-      "nameKo": "내려찍기",
-      "nameEn": "Chop",
-      "description": "도끼를 내려쳐 적을 가격하는 기본 공격입니다.",
-      "type": "weapon_attack",
+      "id": "axe_mastery",
+      "nameKo": "도끼술 수련",
+      "nameEn": "Axe Mastery",
+      "type": "passive",
+      "usageContext": "passive",
       "icon": "🪓",
-      "apCost": 0,
-      "baseDamage": 18,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 0
+      "description": {
+        "ko": "도끼의 기본기를 익혀 강력한 타격을 가한다.",
+        "en": "Master the devastating power of axe combat."
       },
-      "category": "axe",
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "axeDamage": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "axeDamage": 6
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "axeDamage": 14,
+            "armorBreak": 5
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "axeDamage": 20,
+            "armorBreak": 10
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "axeDamage": 28,
+            "armorBreak": 15,
+            "bleedChance": 10
+          }
+        }
+      ],
+      "requirements": {},
+      "category": "weapon",
       "skillGroup": "weapon"
     },
     {
-      "id": "cleave",
-      "nameKo": "쪼개기",
-      "nameEn": "Cleave",
-      "description": "도끼를 크게 휘둘러 여러 적을 공격합니다.",
-      "type": "weapon_attack",
-      "icon": "💥",
-      "apCost": 8,
-      "baseDamage": 22,
-      "target": "all_enemies",
-      "requirements": {
-        "proficiency": 15
+      "id": "chop",
+      "nameKo": "찍기",
+      "nameEn": "Chop",
+      "type": "attack",
+      "attackType": "melee_physical",
+      "usageContext": "combat_only",
+      "icon": "🪓",
+      "description": {
+        "ko": "도끼로 내려찍는다.",
+        "en": "Chop down with the axe."
       },
-      "category": "axe",
+      "maxLevel": 30,
+      "expPerLevel": 50,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 30,
+            "apCost": 6
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 40,
+            "apCost": 6
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 52,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 30,
+          "effects": {
+            "baseDamage": 68,
+            "apCost": 5,
+            "armorBreak": 10
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "axe_mastery": 1
+        }
+      },
+      "grantsExpTo": [
+        "axe_mastery"
+      ],
+      "cooldown": 0,
+      "category": "weapon",
+      "skillGroup": "weapon"
+    },
+    {
+      "id": "rend",
+      "nameKo": "찢기",
+      "nameEn": "Rend",
+      "type": "attack",
+      "attackType": "melee_physical",
+      "usageContext": "combat_only",
+      "icon": "💢",
+      "description": {
+        "ko": "적을 찢어 출혈을 유발한다.",
+        "en": "Rend the enemy causing bleeding."
+      },
+      "maxLevel": 25,
+      "expPerLevel": 70,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 25,
+            "bleedDamage": 6,
+            "bleedDuration": 3,
+            "apCost": 10
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 35,
+            "bleedDamage": 9,
+            "bleedDuration": 3,
+            "apCost": 9
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 48,
+            "bleedDamage": 12,
+            "bleedDuration": 4,
+            "apCost": 8
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "baseDamage": 55,
+            "bleedDamage": 15,
+            "bleedDuration": 4,
+            "apCost": 8
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "axe_mastery": 10
+        }
+      },
+      "grantsExpTo": [
+        "axe_mastery"
+      ],
+      "cooldown": 2,
+      "category": "weapon",
       "skillGroup": "weapon"
     },
     {
       "id": "sunder_armor",
-      "nameKo": "갑옷 깨기",
+      "nameKo": "갑옷 부수기",
       "nameEn": "Sunder Armor",
-      "description": "적의 갑옷을 부숴 3턴간 방어력을 20% 감소시킵니다.",
       "type": "debuff",
+      "usageContext": "combat_only",
       "icon": "🛡️",
-      "apCost": 10,
-      "statusEffect": "def_down",
-      "statusDuration": 3,
-      "statusValue": 20,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 25
+      "description": {
+        "ko": "적의 갑옷을 부숴 방어력을 감소시킨다.",
+        "en": "Shatter enemy armor reducing defense."
       },
-      "category": "axe",
+      "maxLevel": 20,
+      "expPerLevel": 90,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 20,
+            "armorReduction": 20,
+            "duration": 4,
+            "apCost": 15
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 28,
+            "armorReduction": 30,
+            "duration": 4,
+            "apCost": 14
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 38,
+            "armorReduction": 40,
+            "duration": 5,
+            "apCost": 12,
+            "stackable": true
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "axe_mastery": 15
+        }
+      },
+      "grantsExpTo": [
+        "axe_mastery"
+      ],
+      "cooldown": 3,
+      "category": "weapon",
       "skillGroup": "weapon"
     },
     {
-      "id": "execute",
-      "nameKo": "처형",
-      "nameEn": "Execute",
-      "description": "HP 30% 이하인 적에게 2배 피해를 입힙니다.",
-      "type": "weapon_attack",
-      "icon": "⚰️",
-      "apCost": 15,
-      "baseDamage": 25,
-      "executeThreshold": 0.3,
-      "executeMultiplier": 2,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 40
+      "id": "rampage",
+      "nameKo": "광폭화",
+      "nameEn": "Rampage",
+      "type": "buff",
+      "usageContext": "combat_only",
+      "icon": "🔥",
+      "description": {
+        "ko": "분노하여 공격력 증가, 방어력 감소.",
+        "en": "Rage increasing attack, reducing defense."
       },
-      "category": "axe",
+      "maxLevel": 20,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "attackBonus": 25,
+            "defensePenalty": 15,
+            "duration": 4,
+            "apCost": 18
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "attackBonus": 35,
+            "defensePenalty": 12,
+            "duration": 5,
+            "apCost": 16
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "attackBonus": 50,
+            "defensePenalty": 10,
+            "duration": 6,
+            "apCost": 14,
+            "lifestealOnHit": 5
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "axe_mastery": 22
+        }
+      },
+      "grantsExpTo": [
+        "axe_mastery"
+      ],
+      "cooldown": 5,
+      "category": "weapon",
       "skillGroup": "weapon"
     },
     {
-      "id": "whirlwind",
-      "nameKo": "회오리",
-      "nameEn": "Whirlwind",
-      "description": "360도 회전하며 모든 적을 공격합니다.",
-      "type": "weapon_attack",
-      "icon": "🌀",
-      "apCost": 18,
-      "baseDamage": 28,
-      "target": "all_enemies",
-      "requirements": {
-        "proficiency": 55
+      "id": "decapitate",
+      "nameKo": "목 베기",
+      "nameEn": "Decapitate",
+      "type": "attack",
+      "attackType": "melee_physical",
+      "usageContext": "combat_only",
+      "icon": "💀",
+      "description": {
+        "ko": "적의 목을 노린다. 낮은 HP에 치명적.",
+        "en": "Aim for the neck. Deadly against low HP."
       },
-      "category": "axe",
+      "maxLevel": 15,
+      "expPerLevel": 150,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 60,
+            "executeDamageBonus": 40,
+            "apCost": 25
+          }
+        },
+        {
+          "level": 8,
+          "effects": {
+            "baseDamage": 80,
+            "executeDamageBonus": 60,
+            "apCost": 23
+          }
+        },
+        {
+          "level": 15,
+          "effects": {
+            "baseDamage": 105,
+            "executeDamageBonus": 80,
+            "instantKillThreshold": 8,
+            "apCost": 20
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "axe_mastery": 35,
+          "sunder_armor": 12
+        }
+      },
+      "grantsExpTo": [
+        "axe_mastery"
+      ],
+      "cooldown": 4,
+      "category": "weapon",
       "skillGroup": "weapon"
     },
     {
-      "id": "crushing_blow",
-      "nameKo": "부수는 일격",
-      "nameEn": "Crushing Blow",
-      "description": "방어력을 완전히 무시하는 강력한 일격입니다.",
-      "type": "weapon_attack",
-      "icon": "💢",
-      "apCost": 25,
-      "baseDamage": 45,
-      "armorPenetration": 1,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 75
+      "id": "bloodbath",
+      "nameKo": "피의 목욕",
+      "nameEn": "Bloodbath",
+      "type": "attack",
+      "attackType": "melee_physical",
+      "usageContext": "combat_only",
+      "icon": "🩸",
+      "description": {
+        "ko": "광란의 공격. 광역 피해와 흡혈.",
+        "en": "Frenzied attack. AoE damage with lifesteal."
       },
-      "category": "axe",
+      "maxLevel": 10,
+      "expPerLevel": 200,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 50,
+            "aoe": true,
+            "lifestealPercent": 20,
+            "apCost": 35
+          }
+        },
+        {
+          "level": 5,
+          "effects": {
+            "baseDamage": 68,
+            "aoe": true,
+            "lifestealPercent": 30,
+            "apCost": 32
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 90,
+            "aoe": true,
+            "lifestealPercent": 40,
+            "bleedDamage": 10,
+            "bleedDuration": 3,
+            "apCost": 28
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "axe_mastery": 45,
+          "rampage": 12
+        }
+      },
+      "grantsExpTo": [
+        "axe_mastery"
+      ],
+      "cooldown": 5,
+      "category": "weapon",
+      "skillGroup": "weapon"
+    },
+    {
+      "id": "bow_mastery",
+      "nameKo": "궁술 수련",
+      "nameEn": "Bow Mastery",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🏹",
+      "description": {
+        "ko": "활의 기본기를 익혀 명중률과 사거리를 높인다.",
+        "en": "Master the accuracy and range of bow combat."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "bowDamage": 0,
+            "accuracy": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "bowDamage": 5,
+            "accuracy": 5
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "bowDamage": 12,
+            "accuracy": 10,
+            "range": 5
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "bowDamage": 18,
+            "accuracy": 15,
+            "range": 10
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "bowDamage": 25,
+            "accuracy": 20,
+            "range": 15,
+            "critChance": 8
+          }
+        }
+      ],
+      "requirements": {},
+      "category": "weapon",
       "skillGroup": "weapon"
     },
     {
       "id": "quick_shot",
       "nameKo": "속사",
       "nameEn": "Quick Shot",
-      "description": "빠르게 화살을 발사하는 기본 공격입니다.",
-      "type": "weapon_attack",
+      "type": "attack",
+      "usageContext": "combat_only",
       "icon": "🏹",
-      "apCost": 0,
-      "baseDamage": 14,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 0
+      "description": {
+        "ko": "빠르게 화살을 쏜다.",
+        "en": "Quickly fire an arrow."
       },
-      "category": "bow",
+      "maxLevel": 30,
+      "expPerLevel": 50,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 22,
+            "apCost": 4,
+            "accuracy": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 30,
+            "apCost": 4,
+            "accuracy": 10
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 40,
+            "apCost": 3,
+            "accuracy": 15
+          }
+        },
+        {
+          "level": 30,
+          "effects": {
+            "baseDamage": 52,
+            "apCost": 3,
+            "accuracy": 20,
+            "attackSpeed": 15
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "bow_mastery": 1
+        }
+      },
+      "grantsExpTo": [
+        "bow_mastery"
+      ],
+      "cooldown": 0,
+      "category": "weapon",
       "skillGroup": "weapon"
     },
     {
-      "id": "aimed_shot",
-      "nameKo": "조준 사격",
-      "nameEn": "Aimed Shot",
-      "description": "조준하여 쏴 치명타 확률이 20% 증가합니다.",
-      "type": "weapon_attack",
-      "icon": "🎯",
-      "apCost": 5,
-      "baseDamage": 20,
-      "critBonus": 20,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 15
+      "id": "power_shot",
+      "nameKo": "강사",
+      "nameEn": "Power Shot",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "💨",
+      "description": {
+        "ko": "힘을 모아 강력한 화살을 쏜다.",
+        "en": "Charge up and fire a powerful arrow."
       },
-      "category": "bow",
+      "maxLevel": 25,
+      "expPerLevel": 70,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 40,
+            "armorPenetration": 15,
+            "apCost": 12
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 55,
+            "armorPenetration": 22,
+            "apCost": 11
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 72,
+            "armorPenetration": 30,
+            "apCost": 10
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "baseDamage": 85,
+            "armorPenetration": 35,
+            "apCost": 10,
+            "knockbackChance": 25
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "bow_mastery": 10
+        }
+      },
+      "grantsExpTo": [
+        "bow_mastery"
+      ],
+      "cooldown": 2,
+      "category": "weapon",
       "skillGroup": "weapon"
     },
     {
       "id": "multi_shot",
       "nameKo": "다중 사격",
       "nameEn": "Multi Shot",
-      "description": "2~3발의 화살을 동시에 발사합니다.",
-      "type": "weapon_attack",
+      "type": "attack",
+      "usageContext": "combat_only",
       "icon": "🎯",
-      "apCost": 10,
-      "baseDamage": 10,
-      "hitCount": [
-        2,
-        3
+      "description": {
+        "ko": "여러 발의 화살을 동시에 쏜다.",
+        "en": "Fire multiple arrows simultaneously."
+      },
+      "maxLevel": 20,
+      "expPerLevel": 90,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 18,
+            "hitCount": 3,
+            "apCost": 15
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 25,
+            "hitCount": 4,
+            "apCost": 14
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 32,
+            "hitCount": 5,
+            "apCost": 12
+          }
+        }
       ],
-      "target": "enemy",
       "requirements": {
-        "proficiency": 25
+        "skills": {
+          "bow_mastery": 15
+        }
       },
-      "category": "bow",
+      "grantsExpTo": [
+        "bow_mastery"
+      ],
+      "cooldown": 3,
+      "category": "weapon",
       "skillGroup": "weapon"
     },
     {
-      "id": "piercing_arrow",
-      "nameKo": "관통 화살",
-      "nameEn": "Piercing Arrow",
-      "description": "방어력의 50%를 무시하는 화살을 발사합니다.",
-      "type": "weapon_attack",
-      "icon": "➡️",
-      "apCost": 12,
-      "baseDamage": 25,
-      "armorPenetration": 0.5,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 35
+      "id": "poison_arrow",
+      "nameKo": "독화살",
+      "nameEn": "Poison Arrow",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "☠️",
+      "description": {
+        "ko": "독이 묻은 화살을 쏜다.",
+        "en": "Fire a poisoned arrow."
       },
-      "category": "bow",
-      "skillGroup": "weapon"
-    },
-    {
-      "id": "rain_of_arrows",
-      "nameKo": "화살 비",
-      "nameEn": "Rain of Arrows",
-      "description": "하늘에서 화살비를 내려 모든 적을 공격합니다.",
-      "type": "weapon_attack",
-      "icon": "🌧️",
-      "apCost": 20,
-      "baseDamage": 22,
-      "target": "all_enemies",
+      "maxLevel": 20,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 25,
+            "poisonDamage": 8,
+            "poisonDuration": 4,
+            "apCost": 16
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 35,
+            "poisonDamage": 12,
+            "poisonDuration": 5,
+            "apCost": 15
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 48,
+            "poisonDamage": 18,
+            "poisonDuration": 6,
+            "apCost": 13,
+            "slowPercent": 20
+          }
+        }
+      ],
       "requirements": {
-        "proficiency": 55
+        "skills": {
+          "bow_mastery": 20
+        }
       },
-      "category": "bow",
+      "grantsExpTo": [
+        "bow_mastery"
+      ],
+      "cooldown": 3,
+      "category": "weapon",
       "skillGroup": "weapon"
     },
     {
       "id": "snipe",
       "nameKo": "저격",
       "nameEn": "Snipe",
-      "description": "2턴 준비 후 3배 피해의 저격을 가합니다.",
-      "type": "weapon_attack",
-      "icon": "🔭",
-      "apCost": 25,
-      "baseDamage": 20,
-      "castTime": 2,
-      "damageMultiplier": 3,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 75
-      },
-      "category": "bow",
-      "skillGroup": "weapon"
-    },
-    {
-      "id": "bolt",
-      "nameKo": "볼트 사격",
-      "nameEn": "Bolt",
-      "description": "석궁으로 볼트를 발사하는 기본 공격입니다.",
-      "type": "weapon_attack",
+      "type": "attack",
+      "usageContext": "combat_only",
       "icon": "🎯",
-      "apCost": 0,
-      "baseDamage": 18,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 0
+      "description": {
+        "ko": "정밀 조준으로 치명타를 가한다.",
+        "en": "Precisely aimed shot for critical damage."
       },
-      "category": "crossbow",
+      "maxLevel": 15,
+      "expPerLevel": 150,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 60,
+            "critChance": 50,
+            "apCost": 22
+          }
+        },
+        {
+          "level": 8,
+          "effects": {
+            "baseDamage": 80,
+            "critChance": 65,
+            "apCost": 20
+          }
+        },
+        {
+          "level": 15,
+          "effects": {
+            "baseDamage": 105,
+            "critChance": 80,
+            "critMultiplier": 0.5,
+            "apCost": 18
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "bow_mastery": 32,
+          "power_shot": 15
+        }
+      },
+      "grantsExpTo": [
+        "bow_mastery"
+      ],
+      "cooldown": 4,
+      "category": "weapon",
       "skillGroup": "weapon"
     },
     {
-      "id": "heavy_bolt",
-      "nameKo": "중볼트",
-      "nameEn": "Heavy Bolt",
-      "description": "무거운 볼트로 높은 피해를 입히지만 느립니다.",
-      "type": "weapon_attack",
-      "icon": "🔩",
-      "apCost": 8,
-      "baseDamage": 30,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 20
+      "id": "arrow_rain",
+      "nameKo": "화살 비",
+      "nameEn": "Arrow Rain",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "🌧️",
+      "description": {
+        "ko": "하늘에서 화살 비를 내린다.",
+        "en": "Rain arrows down from the sky."
       },
-      "category": "crossbow",
+      "maxLevel": 10,
+      "expPerLevel": 200,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 25,
+            "hitCount": 6,
+            "aoe": true,
+            "apCost": 35
+          }
+        },
+        {
+          "level": 5,
+          "effects": {
+            "baseDamage": 32,
+            "hitCount": 8,
+            "aoe": true,
+            "apCost": 33
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 40,
+            "hitCount": 10,
+            "aoe": true,
+            "apCost": 30,
+            "bleedChance": 25
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "bow_mastery": 45,
+          "multi_shot": 15
+        }
+      },
+      "grantsExpTo": [
+        "bow_mastery"
+      ],
+      "cooldown": 5,
+      "category": "weapon",
+      "skillGroup": "weapon"
+    },
+    {
+      "id": "crossbow_mastery",
+      "nameKo": "석궁술 수련",
+      "nameEn": "Crossbow Mastery",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🎯",
+      "description": {
+        "ko": "석궁의 기본기를 익혀 관통력과 재장전 속도를 높인다.",
+        "en": "Master the piercing power and reload speed of crossbow combat."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "crossbowDamage": 0,
+            "armorPenetration": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "crossbowDamage": 6,
+            "armorPenetration": 5
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "crossbowDamage": 14,
+            "armorPenetration": 12,
+            "reloadSpeed": 10
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "crossbowDamage": 20,
+            "armorPenetration": 18,
+            "reloadSpeed": 15
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "crossbowDamage": 28,
+            "armorPenetration": 25,
+            "reloadSpeed": 20,
+            "critChance": 5
+          }
+        }
+      ],
+      "requirements": {},
+      "category": "weapon",
+      "skillGroup": "weapon"
+    },
+    {
+      "id": "bolt_shot",
+      "nameKo": "볼트 사격",
+      "nameEn": "Bolt Shot",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "🎯",
+      "description": {
+        "ko": "석궁 볼트를 발사한다.",
+        "en": "Fire a crossbow bolt."
+      },
+      "maxLevel": 30,
+      "expPerLevel": 50,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 30,
+            "apCost": 5,
+            "armorPenetration": 15
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 40,
+            "apCost": 5,
+            "armorPenetration": 20
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 52,
+            "apCost": 4,
+            "armorPenetration": 25
+          }
+        },
+        {
+          "level": 30,
+          "effects": {
+            "baseDamage": 68,
+            "apCost": 4,
+            "armorPenetration": 30,
+            "critChance": 10
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "crossbow_mastery": 1
+        }
+      },
+      "grantsExpTo": [
+        "crossbow_mastery"
+      ],
+      "cooldown": 0,
+      "category": "weapon",
+      "skillGroup": "weapon"
+    },
+    {
+      "id": "piercing_bolt",
+      "nameKo": "관통탄",
+      "nameEn": "Piercing Bolt",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "📌",
+      "description": {
+        "ko": "갑옷을 관통하는 강력한 볼트.",
+        "en": "A powerful bolt that pierces armor."
+      },
+      "maxLevel": 25,
+      "expPerLevel": 70,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 45,
+            "armorPenetration": 50,
+            "apCost": 14
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 60,
+            "armorPenetration": 65,
+            "apCost": 13
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 78,
+            "armorPenetration": 80,
+            "apCost": 11
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "baseDamage": 90,
+            "armorPenetration": 90,
+            "apCost": 10
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "crossbow_mastery": 10
+        }
+      },
+      "grantsExpTo": [
+        "crossbow_mastery"
+      ],
+      "cooldown": 2,
+      "category": "weapon",
       "skillGroup": "weapon"
     },
     {
       "id": "explosive_bolt",
-      "nameKo": "폭발 볼트",
+      "nameKo": "폭발탄",
       "nameEn": "Explosive Bolt",
-      "description": "폭발하는 볼트로 광역 피해를 입힙니다.",
-      "type": "weapon_attack",
+      "type": "attack",
+      "usageContext": "combat_only",
       "icon": "💥",
-      "apCost": 15,
-      "baseDamage": 20,
-      "target": "all_enemies",
-      "requirements": {
-        "proficiency": 35
+      "description": {
+        "ko": "착탄 시 폭발하는 볼트.",
+        "en": "A bolt that explodes on impact."
       },
-      "category": "crossbow",
-      "skillGroup": "weapon"
-    },
-    {
-      "id": "armor_piercing_bolt",
-      "nameKo": "철갑탄",
-      "nameEn": "Armor Piercing",
-      "description": "방어력의 70%를 무시하는 특수 볼트입니다.",
-      "type": "weapon_attack",
-      "icon": "🔫",
-      "apCost": 12,
-      "baseDamage": 25,
-      "armorPenetration": 0.7,
-      "target": "enemy",
+      "maxLevel": 20,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 35,
+            "splashDamage": 20,
+            "aoe": true,
+            "apCost": 18
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 48,
+            "splashDamage": 30,
+            "aoe": true,
+            "apCost": 17
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 65,
+            "splashDamage": 45,
+            "aoe": true,
+            "apCost": 15,
+            "knockbackChance": 30
+          }
+        }
+      ],
       "requirements": {
-        "proficiency": 40
+        "skills": {
+          "crossbow_mastery": 18
+        }
       },
-      "category": "crossbow",
+      "grantsExpTo": [
+        "crossbow_mastery"
+      ],
+      "cooldown": 3,
+      "category": "weapon",
       "skillGroup": "weapon"
     },
     {
       "id": "rapid_reload",
-      "nameKo": "급속 장전",
+      "nameKo": "빠른 재장전",
       "nameEn": "Rapid Reload",
-      "description": "3턴간 공격 속도가 2배가 됩니다.",
       "type": "buff",
+      "usageContext": "combat_only",
       "icon": "⚡",
-      "apCost": 10,
-      "statusEffect": "haste",
-      "statusDuration": 3,
-      "statusValue": 100,
-      "target": "self",
-      "requirements": {
-        "proficiency": 50
+      "description": {
+        "ko": "재장전 속도를 대폭 높인다.",
+        "en": "Greatly increase reload speed."
       },
-      "category": "crossbow",
+      "maxLevel": 20,
+      "expPerLevel": 90,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "attackSpeedBonus": 30,
+            "cooldownReduction": 1,
+            "duration": 4,
+            "apCost": 16
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "attackSpeedBonus": 45,
+            "cooldownReduction": 1,
+            "duration": 5,
+            "apCost": 14
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "attackSpeedBonus": 60,
+            "cooldownReduction": 2,
+            "duration": 6,
+            "apCost": 12
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "crossbow_mastery": 15
+        }
+      },
+      "grantsExpTo": [
+        "crossbow_mastery"
+      ],
+      "cooldown": 5,
+      "category": "weapon",
       "skillGroup": "weapon"
     },
     {
-      "id": "siege_bolt",
-      "nameKo": "공성 볼트",
-      "nameEn": "Siege Bolt",
-      "description": "대형 몬스터와 구조물에 50% 추가 피해를 입힙니다.",
-      "type": "weapon_attack",
-      "icon": "🏰",
-      "apCost": 20,
-      "baseDamage": 35,
-      "bonusVsType": {
-        "type": "large",
-        "multiplier": 1.5
+      "id": "headshot",
+      "nameKo": "헤드샷",
+      "nameEn": "Headshot",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "🎯",
+      "description": {
+        "ko": "머리를 정확히 노린다. 높은 치명타 확률.",
+        "en": "Aim precisely for the head. High critical chance."
       },
-      "target": "enemy",
+      "maxLevel": 15,
+      "expPerLevel": 150,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 70,
+            "critChance": 60,
+            "apCost": 25
+          }
+        },
+        {
+          "level": 8,
+          "effects": {
+            "baseDamage": 95,
+            "critChance": 75,
+            "apCost": 23
+          }
+        },
+        {
+          "level": 15,
+          "effects": {
+            "baseDamage": 130,
+            "critChance": 90,
+            "critMultiplier": 0.5,
+            "apCost": 20,
+            "stunChance": 30
+          }
+        }
+      ],
       "requirements": {
-        "proficiency": 70
+        "skills": {
+          "crossbow_mastery": 35,
+          "piercing_bolt": 15
+        }
       },
-      "category": "crossbow",
+      "grantsExpTo": [
+        "crossbow_mastery"
+      ],
+      "cooldown": 4,
+      "category": "weapon",
+      "skillGroup": "weapon"
+    },
+    {
+      "id": "siege_shot",
+      "nameKo": "공성탄",
+      "nameEn": "Siege Shot",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "🏰",
+      "description": {
+        "ko": "방어구를 완전 무시하는 궁극의 일격.",
+        "en": "The ultimate shot that completely ignores armor."
+      },
+      "maxLevel": 10,
+      "expPerLevel": 200,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 120,
+            "ignoreArmor": 100,
+            "apCost": 38
+          }
+        },
+        {
+          "level": 5,
+          "effects": {
+            "baseDamage": 160,
+            "ignoreArmor": 100,
+            "apCost": 35,
+            "shieldBreak": true
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 210,
+            "ignoreArmor": 100,
+            "apCost": 30,
+            "shieldBreak": true,
+            "armorBreak": 30
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "crossbow_mastery": 45,
+          "headshot": 10
+        }
+      },
+      "grantsExpTo": [
+        "crossbow_mastery"
+      ],
+      "cooldown": 5,
+      "category": "weapon",
+      "skillGroup": "weapon"
+    },
+    {
+      "id": "dagger_mastery",
+      "nameKo": "단검술 수련",
+      "nameEn": "Dagger Mastery",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🔪",
+      "description": {
+        "ko": "단검의 기본기를 익혀 공격 속도와 치명타율을 높인다.",
+        "en": "Master the quick art of dagger combat."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "daggerDamage": 0,
+            "attackSpeed": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "daggerDamage": 5,
+            "attackSpeed": 5
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "daggerDamage": 10,
+            "attackSpeed": 10,
+            "critChance": 5
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "daggerDamage": 15,
+            "attackSpeed": 15,
+            "critChance": 8
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "daggerDamage": 20,
+            "attackSpeed": 20,
+            "critChance": 12,
+            "poisonChance": 10
+          }
+        }
+      ],
+      "requirements": {},
+      "category": "weapon",
       "skillGroup": "weapon"
     },
     {
       "id": "stab",
-      "nameKo": "찌르기",
+      "nameKo": "찔러넣기",
       "nameEn": "Stab",
-      "description": "단검으로 빠르게 찌르는 기본 공격입니다.",
-      "type": "weapon_attack",
+      "type": "attack",
+      "usageContext": "combat_only",
       "icon": "🔪",
-      "apCost": 0,
-      "baseDamage": 12,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 0
+      "description": {
+        "ko": "빠르게 찌른다.",
+        "en": "Quick stabbing attack."
       },
-      "category": "dagger",
-      "skillGroup": "weapon"
-    },
-    {
-      "id": "backstab",
-      "nameKo": "기습",
-      "nameEn": "Backstab",
-      "description": "전투 첫 공격 시 2배 피해를 입힙니다.",
-      "type": "weapon_attack",
-      "icon": "🗡️",
-      "apCost": 10,
-      "baseDamage": 20,
-      "firstStrikeMultiplier": 2,
-      "target": "enemy",
+      "maxLevel": 30,
+      "expPerLevel": 50,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 18,
+            "apCost": 4,
+            "attackSpeed": 10
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 25,
+            "apCost": 4,
+            "attackSpeed": 15
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 33,
+            "apCost": 3,
+            "attackSpeed": 20
+          }
+        },
+        {
+          "level": 30,
+          "effects": {
+            "baseDamage": 42,
+            "apCost": 3,
+            "attackSpeed": 25,
+            "bleedChance": 15
+          }
+        }
+      ],
       "requirements": {
-        "proficiency": 20
+        "skills": {
+          "dagger_mastery": 1
+        }
       },
-      "category": "dagger",
-      "skillGroup": "weapon"
-    },
-    {
-      "id": "poison_blade",
-      "nameKo": "독날",
-      "nameEn": "Poison Blade",
-      "description": "5턴간 공격에 독 효과를 부여합니다.",
-      "type": "buff",
-      "icon": "☠️",
-      "apCost": 8,
-      "statusEffect": "poison_weapon",
-      "statusDuration": 5,
-      "statusValue": 5,
-      "target": "self",
-      "requirements": {
-        "proficiency": 25
-      },
-      "category": "dagger",
-      "skillGroup": "weapon"
-    },
-    {
-      "id": "evade",
-      "nameKo": "날렵한 몸놀림",
-      "nameEn": "Evade",
-      "description": "3턴간 회피율이 25% 증가합니다.",
-      "type": "buff",
-      "icon": "💨",
-      "apCost": 12,
-      "statusEffect": "dodge_up",
-      "statusDuration": 3,
-      "statusValue": 25,
-      "dodgeBonus": 25,
-      "target": "self",
-      "requirements": {
-        "proficiency": 35
-      },
-      "category": "dagger",
+      "grantsExpTo": [
+        "dagger_mastery"
+      ],
+      "cooldown": 0,
+      "category": "weapon",
       "skillGroup": "weapon"
     },
     {
       "id": "flurry",
       "nameKo": "난무",
       "nameEn": "Flurry",
-      "description": "3~5회의 빠른 연속 공격을 가합니다.",
-      "type": "weapon_attack",
-      "icon": "⚡",
-      "apCost": 15,
-      "baseDamage": 8,
-      "hitCount": [
-        3,
-        5
-      ],
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 50
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "💨",
+      "description": {
+        "ko": "빠른 연속 공격.",
+        "en": "Rapid successive attacks."
       },
-      "category": "dagger",
+      "maxLevel": 25,
+      "expPerLevel": 70,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 10,
+            "hitCount": 3,
+            "apCost": 10
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 13,
+            "hitCount": 4,
+            "apCost": 9
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 17,
+            "hitCount": 5,
+            "apCost": 8
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "baseDamage": 20,
+            "hitCount": 6,
+            "apCost": 8,
+            "critChancePerHit": 5
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "dagger_mastery": 10
+        }
+      },
+      "grantsExpTo": [
+        "dagger_mastery"
+      ],
+      "cooldown": 2,
+      "category": "weapon",
       "skillGroup": "weapon"
     },
     {
-      "id": "assassinate",
-      "nameKo": "암살",
-      "nameEn": "Assassinate",
-      "description": "급소를 노려 50% 확률로 즉사시킵니다. 보스에겐 무효.",
-      "type": "weapon_attack",
-      "icon": "💀",
-      "apCost": 30,
-      "baseDamage": 30,
-      "instantKillChance": 0.5,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 80
+      "id": "poison_blade",
+      "nameKo": "독날",
+      "nameEn": "Poison Blade",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "☠️",
+      "description": {
+        "ko": "독을 바른 칼날로 공격.",
+        "en": "Attack with a poisoned blade."
       },
-      "category": "dagger",
+      "maxLevel": 20,
+      "expPerLevel": 90,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 20,
+            "poisonDamage": 5,
+            "poisonDuration": 3,
+            "apCost": 12
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 28,
+            "poisonDamage": 8,
+            "poisonDuration": 4,
+            "apCost": 11
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 38,
+            "poisonDamage": 12,
+            "poisonDuration": 5,
+            "apCost": 10
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "dagger_mastery": 15
+        }
+      },
+      "grantsExpTo": [
+        "dagger_mastery"
+      ],
+      "cooldown": 2,
+      "category": "weapon",
+      "skillGroup": "weapon"
+    },
+    {
+      "id": "backstab",
+      "nameKo": "암습",
+      "nameEn": "Backstab",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "🗡️",
+      "description": {
+        "ko": "적의 뒤를 노린다. 높은 치명타 확률.",
+        "en": "Strike from behind. High critical chance."
+      },
+      "maxLevel": 20,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 40,
+            "critChance": 40,
+            "apCost": 18
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 55,
+            "critChance": 50,
+            "apCost": 16
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 75,
+            "critChance": 60,
+            "critMultiplier": 0.3,
+            "apCost": 14
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "dagger_mastery": 22,
+          "flurry": 10
+        }
+      },
+      "grantsExpTo": [
+        "dagger_mastery"
+      ],
+      "cooldown": 3,
+      "category": "weapon",
+      "skillGroup": "weapon"
+    },
+    {
+      "id": "eviscerate",
+      "nameKo": "내장 찢기",
+      "nameEn": "Eviscerate",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "💉",
+      "description": {
+        "ko": "심각한 출혈을 유발하는 치명적 공격.",
+        "en": "A deadly strike that causes severe bleeding."
+      },
+      "maxLevel": 15,
+      "expPerLevel": 150,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 50,
+            "bleedDamage": 10,
+            "bleedDuration": 4,
+            "apCost": 22
+          }
+        },
+        {
+          "level": 8,
+          "effects": {
+            "baseDamage": 68,
+            "bleedDamage": 15,
+            "bleedDuration": 5,
+            "apCost": 20
+          }
+        },
+        {
+          "level": 15,
+          "effects": {
+            "baseDamage": 90,
+            "bleedDamage": 20,
+            "bleedDuration": 6,
+            "apCost": 18,
+            "healBlock": true
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "dagger_mastery": 35,
+          "backstab": 12
+        }
+      },
+      "grantsExpTo": [
+        "dagger_mastery"
+      ],
+      "cooldown": 4,
+      "category": "weapon",
+      "skillGroup": "weapon"
+    },
+    {
+      "id": "shadow_strike",
+      "nameKo": "그림자 일격",
+      "nameEn": "Shadow Strike",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "🌑",
+      "description": {
+        "ko": "그림자처럼 빠르게 다가가 공격.",
+        "en": "Strike swiftly like a shadow."
+      },
+      "maxLevel": 10,
+      "expPerLevel": 200,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 80,
+            "ignoreEvasion": true,
+            "apCost": 30
+          }
+        },
+        {
+          "level": 5,
+          "effects": {
+            "baseDamage": 105,
+            "ignoreEvasion": true,
+            "apCost": 28,
+            "invisibleAfter": true
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 140,
+            "ignoreEvasion": true,
+            "apCost": 25,
+            "invisibleAfter": true,
+            "guaranteedCrit": true
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "dagger_mastery": 45,
+          "eviscerate": 10
+        }
+      },
+      "grantsExpTo": [
+        "dagger_mastery"
+      ],
+      "cooldown": 5,
+      "category": "weapon",
+      "skillGroup": "weapon"
+    },
+    {
+      "id": "dual_wield_mastery",
+      "nameKo": "쌍수 수련",
+      "nameEn": "Dual Wield Mastery",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "⚔️",
+      "description": {
+        "ko": "양손 무기의 기본기를 익혀 이중 공격 확률을 높인다.",
+        "en": "Master dual wielding to increase double attack chance."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "dualAttackChance": 10,
+            "offhandDamage": 50
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "dualAttackChance": 20,
+            "offhandDamage": 60
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "dualAttackChance": 35,
+            "offhandDamage": 70,
+            "attackSpeed": 5
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "dualAttackChance": 50,
+            "offhandDamage": 80,
+            "attackSpeed": 10
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "dualAttackChance": 65,
+            "offhandDamage": 90,
+            "attackSpeed": 15,
+            "doubleStrikeChance": 15
+          }
+        }
+      ],
+      "requirements": {},
+      "category": "weapon",
+      "skillGroup": "weapon"
+    },
+    {
+      "id": "twin_strike",
+      "nameKo": "쌍격",
+      "nameEn": "Twin Strike",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "⚔️",
+      "description": {
+        "ko": "양손으로 동시에 공격한다.",
+        "en": "Attack simultaneously with both weapons."
+      },
+      "maxLevel": 30,
+      "expPerLevel": 50,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 18,
+            "hitCount": 2,
+            "apCost": 6
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 24,
+            "hitCount": 2,
+            "apCost": 6
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 32,
+            "hitCount": 2,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 30,
+          "effects": {
+            "baseDamage": 42,
+            "hitCount": 2,
+            "apCost": 5,
+            "critChance": 10
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "dual_wield_mastery": 1
+        }
+      },
+      "grantsExpTo": [
+        "dual_wield_mastery"
+      ],
+      "cooldown": 0,
+      "category": "weapon",
+      "skillGroup": "weapon"
+    },
+    {
+      "id": "whirling_blades",
+      "nameKo": "회전 칼날",
+      "nameEn": "Whirling Blades",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "🌀",
+      "description": {
+        "ko": "회전하며 주변을 베어낸다.",
+        "en": "Spin and slash all around you."
+      },
+      "maxLevel": 25,
+      "expPerLevel": 70,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 22,
+            "hitCount": 3,
+            "aoe": true,
+            "apCost": 14
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 30,
+            "hitCount": 4,
+            "aoe": true,
+            "apCost": 13
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 40,
+            "hitCount": 5,
+            "aoe": true,
+            "apCost": 11
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "baseDamage": 48,
+            "hitCount": 6,
+            "aoe": true,
+            "apCost": 10,
+            "bleedChance": 20
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "dual_wield_mastery": 10
+        }
+      },
+      "grantsExpTo": [
+        "dual_wield_mastery"
+      ],
+      "cooldown": 3,
+      "category": "weapon",
+      "skillGroup": "weapon"
+    },
+    {
+      "id": "parry_riposte",
+      "nameKo": "패리 리포스트",
+      "nameEn": "Parry Riposte",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "↩️",
+      "description": {
+        "ko": "한 손으로 막고 다른 손으로 반격한다.",
+        "en": "Block with one hand and counter with the other."
+      },
+      "maxLevel": 20,
+      "expPerLevel": 90,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 35,
+            "parryChance": 40,
+            "counterDamage": 25,
+            "apCost": 12
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 48,
+            "parryChance": 50,
+            "counterDamage": 35,
+            "apCost": 11
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 65,
+            "parryChance": 60,
+            "counterDamage": 50,
+            "apCost": 9
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "dual_wield_mastery": 15
+        }
+      },
+      "grantsExpTo": [
+        "dual_wield_mastery"
+      ],
+      "cooldown": 2,
+      "category": "weapon",
+      "skillGroup": "weapon"
+    },
+    {
+      "id": "flurry_of_blades",
+      "nameKo": "칼날의 폭풍",
+      "nameEn": "Flurry of Blades",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "💨",
+      "description": {
+        "ko": "눈에 보이지 않는 속도로 연속 공격.",
+        "en": "Attack with blinding speed."
+      },
+      "maxLevel": 20,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 15,
+            "hitCount": 6,
+            "apCost": 20
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 20,
+            "hitCount": 8,
+            "apCost": 18
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 28,
+            "hitCount": 10,
+            "apCost": 15,
+            "critChancePerHit": 3
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "dual_wield_mastery": 22,
+          "whirling_blades": 12
+        }
+      },
+      "grantsExpTo": [
+        "dual_wield_mastery"
+      ],
+      "cooldown": 4,
+      "category": "weapon",
+      "skillGroup": "weapon"
+    },
+    {
+      "id": "cross_cut",
+      "nameKo": "십자 절단",
+      "nameEn": "Cross Cut",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "✖️",
+      "description": {
+        "ko": "양손으로 X자를 그리며 베어낸다.",
+        "en": "Slash an X pattern with both blades."
+      },
+      "maxLevel": 15,
+      "expPerLevel": 150,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 60,
+            "hitCount": 2,
+            "armorPenetration": 20,
+            "apCost": 22
+          }
+        },
+        {
+          "level": 8,
+          "effects": {
+            "baseDamage": 80,
+            "hitCount": 2,
+            "armorPenetration": 30,
+            "apCost": 20
+          }
+        },
+        {
+          "level": 15,
+          "effects": {
+            "baseDamage": 105,
+            "hitCount": 2,
+            "armorPenetration": 40,
+            "apCost": 17,
+            "bleedDamage": 15,
+            "bleedDuration": 3
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "dual_wield_mastery": 35,
+          "parry_riposte": 12
+        }
+      },
+      "grantsExpTo": [
+        "dual_wield_mastery"
+      ],
+      "cooldown": 3,
+      "category": "weapon",
+      "skillGroup": "weapon"
+    },
+    {
+      "id": "blade_storm",
+      "nameKo": "칼날 폭풍",
+      "nameEn": "Blade Storm",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "🌪️",
+      "description": {
+        "ko": "쌍수의 궁극기. 끝없는 연속 공격.",
+        "en": "The ultimate dual wield technique. Endless strikes."
+      },
+      "maxLevel": 10,
+      "expPerLevel": 200,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 20,
+            "hitCount": 10,
+            "apCost": 40
+          }
+        },
+        {
+          "level": 5,
+          "effects": {
+            "baseDamage": 28,
+            "hitCount": 12,
+            "apCost": 38,
+            "critChance": 20
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 38,
+            "hitCount": 15,
+            "apCost": 35,
+            "critChance": 30,
+            "evasionDuringAttack": 40
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "dual_wield_mastery": 45,
+          "flurry_of_blades": 15
+        }
+      },
+      "grantsExpTo": [
+        "dual_wield_mastery"
+      ],
+      "cooldown": 6,
+      "category": "weapon",
+      "skillGroup": "weapon"
+    },
+    {
+      "id": "mainhand_training",
+      "nameKo": "주손 수련",
+      "nameEn": "Mainhand Training",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🤚",
+      "description": {
+        "ko": "주손 무기의 숙련도를 높여 공격력과 명중률을 향상시킨다.",
+        "en": "Improve mainhand weapon proficiency for increased damage and accuracy."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "mainhandDamage": 5,
+            "accuracy": 3
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "mainhandDamage": 10,
+            "accuracy": 6
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "mainhandDamage": 18,
+            "accuracy": 10,
+            "attackSpeed": 3
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "mainhandDamage": 28,
+            "accuracy": 15,
+            "attackSpeed": 6
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "mainhandDamage": 40,
+            "accuracy": 20,
+            "attackSpeed": 10,
+            "critChance": 5
+          }
+        }
+      ],
+      "requirements": {},
+      "category": "weapon",
+      "skillGroup": "weapon"
+    },
+    {
+      "id": "offhand_training",
+      "nameKo": "보조손 수련",
+      "nameEn": "Offhand Training",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "✋",
+      "description": {
+        "ko": "보조손 무기의 숙련도를 높여 이중 공격과 방어를 강화한다.",
+        "en": "Improve offhand weapon proficiency for dual attacks and defense."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "offhandDamage": 55,
+            "offhandAccuracy": 60
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "offhandDamage": 65,
+            "offhandAccuracy": 70,
+            "blockChance": 5
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "offhandDamage": 75,
+            "offhandAccuracy": 80,
+            "blockChance": 10,
+            "parryChance": 5
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "offhandDamage": 85,
+            "offhandAccuracy": 90,
+            "blockChance": 15,
+            "parryChance": 10
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "offhandDamage": 95,
+            "offhandAccuracy": 100,
+            "blockChance": 20,
+            "parryChance": 15,
+            "dualAttackChance": 10
+          }
+        }
+      ],
+      "requirements": {},
+      "category": "weapon",
+      "skillGroup": "weapon"
+    },
+    {
+      "id": "mace_mastery",
+      "nameKo": "둔기술 수련",
+      "nameEn": "Mace Mastery",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🔨",
+      "description": {
+        "ko": "둔기의 기본기를 익혀 방어구 무시 타격을 가한다.",
+        "en": "Master the armor-crushing power of mace combat."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "maceDamage": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "maceDamage": 5,
+            "ignoreArmor": 3
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "maceDamage": 12,
+            "ignoreArmor": 8,
+            "stunChance": 3
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "maceDamage": 18,
+            "ignoreArmor": 12,
+            "stunChance": 5
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "maceDamage": 25,
+            "ignoreArmor": 18,
+            "stunChance": 8,
+            "bonusVsArmored": 15
+          }
+        }
+      ],
+      "requirements": {},
+      "category": "weapon",
       "skillGroup": "weapon"
     },
     {
       "id": "smash",
-      "nameKo": "강타",
+      "nameKo": "내려치기",
       "nameEn": "Smash",
-      "description": "둔기로 적을 강하게 내려치는 기본 공격입니다.",
-      "type": "weapon_attack",
+      "type": "attack",
+      "usageContext": "combat_only",
       "icon": "🔨",
-      "apCost": 0,
-      "baseDamage": 17,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 0
+      "description": {
+        "ko": "둔기로 강하게 내려친다.",
+        "en": "Smash down with the mace."
       },
-      "category": "mace",
-      "skillGroup": "weapon"
-    },
-    {
-      "id": "stun_strike",
-      "nameKo": "기절 타격",
-      "nameEn": "Stun Strike",
-      "description": "적의 머리를 가격하여 30% 확률로 1턴간 기절시킵니다.",
-      "type": "weapon_attack",
-      "icon": "💫",
-      "apCost": 8,
-      "baseDamage": 18,
-      "statusEffect": "stun",
-      "statusChance": 30,
-      "statusDuration": 1,
-      "target": "enemy",
+      "maxLevel": 30,
+      "expPerLevel": 50,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 28,
+            "apCost": 6,
+            "ignoreArmor": 10
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 38,
+            "apCost": 6,
+            "ignoreArmor": 15
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 50,
+            "apCost": 5,
+            "ignoreArmor": 20
+          }
+        },
+        {
+          "level": 30,
+          "effects": {
+            "baseDamage": 65,
+            "apCost": 5,
+            "ignoreArmor": 25,
+            "stunChance": 10
+          }
+        }
+      ],
       "requirements": {
-        "proficiency": 15
+        "skills": {
+          "mace_mastery": 1
+        }
       },
-      "category": "mace",
-      "skillGroup": "weapon"
-    },
-    {
-      "id": "armor_break",
-      "nameKo": "방패 부수기",
-      "nameEn": "Armor Break",
-      "description": "적의 방패를 부숴 3턴간 막기 확률을 50% 감소시킵니다.",
-      "type": "debuff",
-      "icon": "🛡️",
-      "apCost": 10,
-      "statusEffect": "block_down",
-      "statusDuration": 3,
-      "statusValue": 50,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 25
-      },
-      "category": "mace",
+      "grantsExpTo": [
+        "mace_mastery"
+      ],
+      "cooldown": 0,
+      "category": "weapon",
       "skillGroup": "weapon"
     },
     {
       "id": "concussion",
       "nameKo": "뇌진탕",
       "nameEn": "Concussion",
-      "description": "강력한 타격으로 3턴간 적의 명중률을 20% 감소시킵니다.",
-      "type": "debuff",
-      "icon": "🤕",
-      "apCost": 12,
-      "statusEffect": "accuracy_down",
-      "statusDuration": 3,
-      "statusValue": 20,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 35
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "💫",
+      "description": {
+        "ko": "머리를 강타하여 기절시킨다.",
+        "en": "Strike the head to cause stun."
       },
-      "category": "mace",
+      "maxLevel": 25,
+      "expPerLevel": 70,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 25,
+            "stunChance": 35,
+            "stunDuration": 1,
+            "apCost": 12
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 35,
+            "stunChance": 45,
+            "stunDuration": 1,
+            "apCost": 11
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 48,
+            "stunChance": 55,
+            "stunDuration": 2,
+            "apCost": 10
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "baseDamage": 55,
+            "stunChance": 65,
+            "stunDuration": 2,
+            "apCost": 9
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "mace_mastery": 10
+        }
+      },
+      "grantsExpTo": [
+        "mace_mastery"
+      ],
+      "cooldown": 3,
+      "category": "weapon",
       "skillGroup": "weapon"
     },
     {
-      "id": "earthquake",
-      "nameKo": "지진",
-      "nameEn": "Earthquake",
-      "description": "땅을 강타하여 모든 적을 넘어뜨려 1턴간 행동 불가.",
-      "type": "weapon_attack",
-      "icon": "🌍",
-      "apCost": 20,
-      "baseDamage": 20,
-      "statusEffect": "knockdown",
-      "statusDuration": 1,
-      "statusChance": 100,
-      "target": "all_enemies",
-      "requirements": {
-        "proficiency": 55
+      "id": "crushing_blow",
+      "nameKo": "분쇄의 일격",
+      "nameEn": "Crushing Blow",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "💥",
+      "description": {
+        "ko": "갑옷을 완전히 무시하는 강타.",
+        "en": "A blow that completely ignores armor."
       },
-      "category": "mace",
+      "maxLevel": 20,
+      "expPerLevel": 90,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 45,
+            "ignoreArmor": 100,
+            "apCost": 18
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 60,
+            "ignoreArmor": 100,
+            "apCost": 16
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 80,
+            "ignoreArmor": 100,
+            "apCost": 14,
+            "armorBreak": 20
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "mace_mastery": 18
+        }
+      },
+      "grantsExpTo": [
+        "mace_mastery"
+      ],
+      "cooldown": 3,
+      "category": "weapon",
+      "skillGroup": "weapon"
+    },
+    {
+      "id": "holy_hammer",
+      "nameKo": "성스러운 망치",
+      "nameEn": "Holy Hammer",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "✨",
+      "description": {
+        "ko": "신성한 힘을 담은 타격. 언데드에 강함.",
+        "en": "Strike with holy power. Strong vs undead."
+      },
+      "maxLevel": 20,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 40,
+            "holyDamage": 15,
+            "bonusVsUndead": 50,
+            "apCost": 20
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 55,
+            "holyDamage": 22,
+            "bonusVsUndead": 60,
+            "apCost": 18
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 75,
+            "holyDamage": 30,
+            "bonusVsUndead": 75,
+            "apCost": 16,
+            "stunChance": 20
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "mace_mastery": 25,
+          "concussion": 10
+        }
+      },
+      "grantsExpTo": [
+        "mace_mastery"
+      ],
+      "cooldown": 4,
+      "category": "weapon",
+      "skillGroup": "weapon"
+    },
+    {
+      "id": "shockwave",
+      "nameKo": "충격파",
+      "nameEn": "Shockwave",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "🌊",
+      "description": {
+        "ko": "바닥을 강타하여 충격파를 일으킨다.",
+        "en": "Slam the ground creating a shockwave."
+      },
+      "maxLevel": 15,
+      "expPerLevel": 150,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 35,
+            "aoe": true,
+            "knockdownChance": 30,
+            "apCost": 25
+          }
+        },
+        {
+          "level": 8,
+          "effects": {
+            "baseDamage": 50,
+            "aoe": true,
+            "knockdownChance": 40,
+            "apCost": 23
+          }
+        },
+        {
+          "level": 15,
+          "effects": {
+            "baseDamage": 70,
+            "aoe": true,
+            "knockdownChance": 55,
+            "stunDuration": 1,
+            "apCost": 20
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "mace_mastery": 35,
+          "crushing_blow": 12
+        }
+      },
+      "grantsExpTo": [
+        "mace_mastery"
+      ],
+      "cooldown": 4,
+      "category": "weapon",
       "skillGroup": "weapon"
     },
     {
       "id": "skull_crusher",
-      "nameKo": "두개골 파쇄",
+      "nameKo": "두개골 분쇄",
       "nameEn": "Skull Crusher",
-      "description": "머리를 노려 치명타 확률이 30% 증가한 공격입니다.",
-      "type": "weapon_attack",
+      "type": "attack",
+      "usageContext": "combat_only",
       "icon": "💀",
-      "apCost": 22,
-      "baseDamage": 35,
-      "critBonus": 30,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 70
+      "description": {
+        "ko": "머리를 노린 치명적 일격.",
+        "en": "A deadly blow aimed at the skull."
       },
-      "category": "mace",
+      "maxLevel": 10,
+      "expPerLevel": 200,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 100,
+            "ignoreArmor": 100,
+            "stunDuration": 2,
+            "apCost": 35
+          }
+        },
+        {
+          "level": 5,
+          "effects": {
+            "baseDamage": 130,
+            "ignoreArmor": 100,
+            "stunDuration": 2,
+            "apCost": 32,
+            "confuseChance": 30
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 170,
+            "ignoreArmor": 100,
+            "stunDuration": 3,
+            "apCost": 28,
+            "confuseChance": 50,
+            "critChance": 25
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "mace_mastery": 45,
+          "shockwave": 10
+        }
+      },
+      "grantsExpTo": [
+        "mace_mastery"
+      ],
+      "cooldown": 5,
+      "category": "weapon",
       "skillGroup": "weapon"
     },
     {
-      "id": "pierce",
-      "nameKo": "찌르기",
-      "nameEn": "Pierce",
-      "description": "창으로 적을 찌르는 기본 관통 공격입니다.",
-      "type": "weapon_attack",
+      "id": "shield_mastery",
+      "nameKo": "방패술 수련",
+      "nameEn": "Shield Mastery",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🛡️",
+      "description": {
+        "ko": "방패의 기본기를 익혀 방어력과 막기 확률을 높인다.",
+        "en": "Master the defensive arts of shield combat."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "defense": 0,
+            "blockChance": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "defense": 5,
+            "blockChance": 5
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "defense": 12,
+            "blockChance": 10,
+            "blockDamageReduction": 10
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "defense": 18,
+            "blockChance": 15,
+            "blockDamageReduction": 20
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "defense": 25,
+            "blockChance": 20,
+            "blockDamageReduction": 30,
+            "counterChance": 10
+          }
+        }
+      ],
+      "requirements": {},
+      "category": "weapon",
+      "skillGroup": "weapon"
+    },
+    {
+      "id": "shield_block",
+      "nameKo": "방패 막기",
+      "nameEn": "Shield Block",
+      "type": "buff",
+      "usageContext": "combat_only",
+      "icon": "🛡️",
+      "description": {
+        "ko": "방패를 들어 다음 공격을 막는다.",
+        "en": "Raise the shield to block the next attack."
+      },
+      "maxLevel": 30,
+      "expPerLevel": 50,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "blockChanceBonus": 50,
+            "duration": 1,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "blockChanceBonus": 65,
+            "duration": 1,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "blockChanceBonus": 80,
+            "duration": 2,
+            "apCost": 4
+          }
+        },
+        {
+          "level": 30,
+          "effects": {
+            "blockChanceBonus": 100,
+            "duration": 2,
+            "apCost": 4,
+            "counterOnBlock": 20
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "shield_mastery": 1
+        }
+      },
+      "grantsExpTo": [
+        "shield_mastery"
+      ],
+      "cooldown": 1,
+      "category": "weapon",
+      "skillGroup": "weapon"
+    },
+    {
+      "id": "shield_bash",
+      "nameKo": "방패 강타",
+      "nameEn": "Shield Bash",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "💥",
+      "description": {
+        "ko": "방패로 적을 강타한다.",
+        "en": "Bash the enemy with the shield."
+      },
+      "maxLevel": 25,
+      "expPerLevel": 70,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 25,
+            "stunChance": 25,
+            "apCost": 10
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 35,
+            "stunChance": 35,
+            "apCost": 9
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 48,
+            "stunChance": 45,
+            "apCost": 8
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "baseDamage": 55,
+            "stunChance": 55,
+            "stunDuration": 2,
+            "apCost": 8
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "shield_mastery": 10
+        }
+      },
+      "grantsExpTo": [
+        "shield_mastery"
+      ],
+      "cooldown": 2,
+      "category": "weapon",
+      "skillGroup": "weapon"
+    },
+    {
+      "id": "shield_wall",
+      "nameKo": "방패의 벽",
+      "nameEn": "Shield Wall",
+      "type": "buff",
+      "usageContext": "combat_only",
+      "icon": "🏰",
+      "description": {
+        "ko": "철벽 방어 자세. 피해 감소, 이동 불가.",
+        "en": "Iron defense stance. Reduce damage, cannot move."
+      },
+      "maxLevel": 20,
+      "expPerLevel": 90,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "damageReduction": 40,
+            "duration": 3,
+            "immobile": true,
+            "apCost": 15
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "damageReduction": 55,
+            "duration": 4,
+            "immobile": true,
+            "apCost": 14
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "damageReduction": 70,
+            "duration": 5,
+            "immobile": true,
+            "apCost": 12,
+            "reflectDamage": 15
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "shield_mastery": 15
+        }
+      },
+      "grantsExpTo": [
+        "shield_mastery"
+      ],
+      "cooldown": 5,
+      "category": "weapon",
+      "skillGroup": "weapon"
+    },
+    {
+      "id": "cover",
+      "nameKo": "엄호",
+      "nameEn": "Cover",
+      "type": "buff",
+      "usageContext": "combat_only",
+      "icon": "🫂",
+      "description": {
+        "ko": "아군을 보호하여 대신 피해를 받는다.",
+        "en": "Protect an ally and take damage for them."
+      },
+      "maxLevel": 20,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "taunt": true,
+            "duration": 3,
+            "damageReduction": 20,
+            "apCost": 18
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "taunt": true,
+            "duration": 4,
+            "damageReduction": 35,
+            "apCost": 16
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "taunt": true,
+            "duration": 5,
+            "damageReduction": 50,
+            "apCost": 14,
+            "healOnBlock": 5
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "shield_mastery": 20,
+          "shield_wall": 10
+        }
+      },
+      "grantsExpTo": [
+        "shield_mastery"
+      ],
+      "cooldown": 5,
+      "category": "weapon",
+      "skillGroup": "weapon"
+    },
+    {
+      "id": "retaliate",
+      "nameKo": "보복",
+      "nameEn": "Retaliate",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "↩️",
+      "description": {
+        "ko": "막은 후 강력하게 반격한다.",
+        "en": "Counter attack after blocking."
+      },
+      "maxLevel": 15,
+      "expPerLevel": 150,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 50,
+            "counterMultiplier": 1.5,
+            "apCost": 20
+          }
+        },
+        {
+          "level": 8,
+          "effects": {
+            "baseDamage": 70,
+            "counterMultiplier": 1.8,
+            "apCost": 18
+          }
+        },
+        {
+          "level": 15,
+          "effects": {
+            "baseDamage": 95,
+            "counterMultiplier": 2,
+            "apCost": 15,
+            "stunChance": 30
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "shield_mastery": 30,
+          "shield_bash": 15
+        }
+      },
+      "grantsExpTo": [
+        "shield_mastery"
+      ],
+      "cooldown": 3,
+      "category": "weapon",
+      "skillGroup": "weapon"
+    },
+    {
+      "id": "bulwark",
+      "nameKo": "불굴의 방벽",
+      "nameEn": "Bulwark",
+      "type": "buff",
+      "usageContext": "combat_only",
+      "icon": "⭐",
+      "description": {
+        "ko": "모든 피해를 일정 횟수 무효화.",
+        "en": "Negate a certain number of attacks."
+      },
+      "maxLevel": 10,
+      "expPerLevel": 200,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "immuneHits": 2,
+            "duration": 4,
+            "apCost": 30
+          }
+        },
+        {
+          "level": 5,
+          "effects": {
+            "immuneHits": 3,
+            "duration": 5,
+            "apCost": 28,
+            "healPerBlock": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "immuneHits": 4,
+            "duration": 6,
+            "apCost": 25,
+            "healPerBlock": 10,
+            "counterOnBlock": 40
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "shield_mastery": 45,
+          "cover": 12
+        }
+      },
+      "grantsExpTo": [
+        "shield_mastery"
+      ],
+      "cooldown": 6,
+      "category": "weapon",
+      "skillGroup": "weapon"
+    },
+    {
+      "id": "spear_mastery",
+      "nameKo": "창술 수련",
+      "nameEn": "Spear Mastery",
+      "type": "passive",
+      "usageContext": "passive",
       "icon": "🔱",
-      "apCost": 0,
-      "baseDamage": 16,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 0
+      "description": {
+        "ko": "창의 기본기를 익혀 사거리와 관통력을 높인다.",
+        "en": "Master the reach and piercing power of spear combat."
       },
-      "category": "spear",
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "spearDamage": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "spearDamage": 5,
+            "reach": 5
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "spearDamage": 12,
+            "reach": 10,
+            "armorPenetration": 5
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "spearDamage": 18,
+            "reach": 15,
+            "armorPenetration": 10
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "spearDamage": 25,
+            "reach": 20,
+            "armorPenetration": 15,
+            "firstStrikeBonus": 20
+          }
+        }
+      ],
+      "requirements": {},
+      "category": "weapon",
       "skillGroup": "weapon"
     },
     {
-      "id": "sweep",
-      "nameKo": "훑기",
-      "nameEn": "Sweep",
-      "description": "창을 휘둘러 적의 속도를 3턴간 30% 감소시킵니다.",
-      "type": "weapon_attack",
-      "icon": "🌊",
-      "apCost": 6,
-      "baseDamage": 14,
-      "statusEffect": "slow",
-      "statusDuration": 3,
-      "statusValue": 30,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 15
+      "id": "spear_thrust",
+      "nameKo": "창 찌르기",
+      "nameEn": "Spear Thrust",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "🔱",
+      "description": {
+        "ko": "창으로 적을 찌른다.",
+        "en": "Thrust the spear at the enemy."
       },
-      "category": "spear",
+      "maxLevel": 30,
+      "expPerLevel": 50,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 25,
+            "apCost": 5,
+            "armorPenetration": 10
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 33,
+            "apCost": 5,
+            "armorPenetration": 15
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 43,
+            "apCost": 4,
+            "armorPenetration": 20
+          }
+        },
+        {
+          "level": 30,
+          "effects": {
+            "baseDamage": 55,
+            "apCost": 4,
+            "armorPenetration": 25,
+            "reach": 10
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "spear_mastery": 1
+        }
+      },
+      "grantsExpTo": [
+        "spear_mastery"
+      ],
+      "cooldown": 0,
+      "category": "weapon",
       "skillGroup": "weapon"
     },
     {
       "id": "impale",
       "nameKo": "꿰뚫기",
       "nameEn": "Impale",
-      "description": "적을 꿰뚫어 3턴간 출혈 피해를 입힙니다.",
-      "type": "weapon_attack",
-      "icon": "🩸",
-      "apCost": 10,
-      "baseDamage": 18,
-      "statusEffect": "bleed",
-      "statusDuration": 3,
-      "statusValue": 5,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 25
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "📌",
+      "description": {
+        "ko": "적을 관통하여 꿰뚫는다.",
+        "en": "Pierce through the enemy."
       },
-      "category": "spear",
-      "skillGroup": "weapon"
-    },
-    {
-      "id": "reach",
-      "nameKo": "거리 우위",
-      "nameEn": "Reach",
-      "description": "창의 긴 사거리를 활용해 5턴간 선공 확률이 50% 증가합니다.",
-      "type": "buff",
-      "icon": "📏",
-      "apCost": 12,
-      "statusEffect": "initiative_up",
-      "statusDuration": 5,
-      "statusValue": 50,
-      "target": "self",
-      "requirements": {
-        "proficiency": 35
-      },
-      "category": "spear",
-      "skillGroup": "weapon"
-    },
-    {
-      "id": "spear_dance",
-      "nameKo": "창무",
-      "nameEn": "Spear Dance",
-      "description": "창을 휘두르며 4회 연속 찌르기를 가합니다.",
-      "type": "weapon_attack",
-      "icon": "💃",
-      "apCost": 18,
-      "baseDamage": 12,
-      "hitCount": [
-        4,
-        4
+      "maxLevel": 25,
+      "expPerLevel": 70,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 35,
+            "armorPenetration": 30,
+            "apCost": 12
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 48,
+            "armorPenetration": 40,
+            "apCost": 11
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 65,
+            "armorPenetration": 50,
+            "apCost": 10
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "baseDamage": 75,
+            "armorPenetration": 60,
+            "apCost": 10,
+            "bleedDamage": 8
+          }
+        }
       ],
-      "target": "enemy",
       "requirements": {
-        "proficiency": 55
+        "skills": {
+          "spear_mastery": 10
+        }
       },
-      "category": "spear",
+      "grantsExpTo": [
+        "spear_mastery"
+      ],
+      "cooldown": 2,
+      "category": "weapon",
       "skillGroup": "weapon"
     },
     {
-      "id": "dragon_pierce",
-      "nameKo": "용천",
-      "nameEn": "Dragon Pierce",
-      "description": "모든 방어력을 무시하는 필살의 일격입니다.",
-      "type": "weapon_attack",
-      "icon": "🐉",
-      "apCost": 25,
-      "baseDamage": 50,
-      "armorPenetration": 1,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 75
-      },
-      "category": "spear",
-      "skillGroup": "weapon"
-    },
-    {
-      "id": "swing",
-      "nameKo": "휘두르기",
-      "nameEn": "Swing",
-      "description": "장봉을 휘두르는 기본 공격입니다.",
-      "type": "weapon_attack",
-      "icon": "🏑",
-      "apCost": 0,
-      "baseDamage": 12,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 0
-      },
-      "category": "staff",
-      "skillGroup": "weapon"
-    },
-    {
-      "id": "knock_back",
-      "nameKo": "밀쳐내기",
-      "nameEn": "Knock Back",
-      "description": "적을 밀쳐내어 다음 턴 공격을 지연시킵니다.",
-      "type": "weapon_attack",
-      "icon": "👐",
-      "apCost": 5,
-      "baseDamage": 10,
-      "statusEffect": "knockback",
-      "statusDuration": 1,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 15
-      },
-      "category": "staff",
-      "skillGroup": "weapon"
-    },
-    {
-      "id": "trip",
-      "nameKo": "걸어 넘기기",
-      "nameEn": "Trip",
-      "description": "적을 넘어뜨려 1턴간 행동 불가 상태로 만듭니다.",
-      "type": "debuff",
-      "icon": "🦵",
-      "apCost": 8,
-      "statusEffect": "knockdown",
-      "statusDuration": 1,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 25
-      },
-      "category": "staff",
-      "skillGroup": "weapon"
-    },
-    {
-      "id": "staff_guard",
-      "nameKo": "봉방어",
-      "nameEn": "Staff Guard",
-      "description": "3턴간 막기 확률이 20% 증가합니다.",
-      "type": "defensive",
-      "icon": "🛡️",
-      "apCost": 10,
-      "statusEffect": "block_up",
-      "statusDuration": 3,
-      "statusValue": 20,
-      "blockBonus": 20,
-      "target": "self",
-      "requirements": {
-        "proficiency": 30
-      },
-      "category": "staff",
-      "skillGroup": "weapon"
-    },
-    {
-      "id": "whirling_staff",
-      "nameKo": "봉술 회전",
-      "nameEn": "Whirling Staff",
-      "description": "장봉을 회전하며 3회 연속 타격합니다.",
-      "type": "weapon_attack",
+      "id": "sweeping_strike",
+      "nameKo": "휩쓸기",
+      "nameEn": "Sweeping Strike",
+      "type": "attack",
+      "usageContext": "combat_only",
       "icon": "🌀",
-      "apCost": 15,
-      "baseDamage": 10,
-      "hitCount": [
-        3,
-        3
-      ],
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 50
+      "description": {
+        "ko": "창을 휘둘러 여러 적을 공격한다.",
+        "en": "Sweep the spear to hit multiple enemies."
       },
-      "category": "staff",
+      "maxLevel": 20,
+      "expPerLevel": 90,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 28,
+            "aoe": true,
+            "apCost": 15
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 38,
+            "aoe": true,
+            "apCost": 14
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 52,
+            "aoe": true,
+            "apCost": 12,
+            "knockbackChance": 25
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "spear_mastery": 15
+        }
+      },
+      "grantsExpTo": [
+        "spear_mastery"
+      ],
+      "cooldown": 3,
+      "category": "weapon",
+      "skillGroup": "weapon"
+    },
+    {
+      "id": "phalanx_stance",
+      "nameKo": "팔랑크스",
+      "nameEn": "Phalanx Stance",
+      "type": "buff",
+      "usageContext": "combat_only",
+      "icon": "🛡️",
+      "description": {
+        "ko": "방어적 자세로 방어력과 반격 기회 증가.",
+        "en": "Defensive stance increasing defense and counter chance."
+      },
+      "maxLevel": 20,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "defenseBonus": 20,
+            "counterChance": 20,
+            "duration": 4,
+            "apCost": 18
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "defenseBonus": 30,
+            "counterChance": 30,
+            "duration": 4,
+            "apCost": 16
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "defenseBonus": 40,
+            "counterChance": 40,
+            "duration": 5,
+            "apCost": 14,
+            "firstStrikeChance": 30
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "spear_mastery": 22
+        }
+      },
+      "grantsExpTo": [
+        "spear_mastery"
+      ],
+      "cooldown": 5,
+      "category": "weapon",
+      "skillGroup": "weapon"
+    },
+    {
+      "id": "skewer",
+      "nameKo": "꼬치",
+      "nameEn": "Skewer",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "🍢",
+      "description": {
+        "ko": "여러 적을 한 번에 꿰뚫는다.",
+        "en": "Pierce through multiple enemies at once."
+      },
+      "maxLevel": 15,
+      "expPerLevel": 150,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 45,
+            "pierceTargets": 2,
+            "armorPenetration": 50,
+            "apCost": 25
+          }
+        },
+        {
+          "level": 8,
+          "effects": {
+            "baseDamage": 60,
+            "pierceTargets": 3,
+            "armorPenetration": 60,
+            "apCost": 23
+          }
+        },
+        {
+          "level": 15,
+          "effects": {
+            "baseDamage": 80,
+            "pierceTargets": 4,
+            "armorPenetration": 75,
+            "apCost": 20
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "spear_mastery": 35,
+          "impale": 15
+        }
+      },
+      "grantsExpTo": [
+        "spear_mastery"
+      ],
+      "cooldown": 4,
+      "category": "weapon",
+      "skillGroup": "weapon"
+    },
+    {
+      "id": "dragon_lance",
+      "nameKo": "용의 창",
+      "nameEn": "Dragon Lance",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "🐉",
+      "description": {
+        "ko": "전력을 다한 돌진 공격.",
+        "en": "A charging attack with full power."
+      },
+      "maxLevel": 10,
+      "expPerLevel": 200,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 100,
+            "armorPenetration": 80,
+            "chargeBonus": 30,
+            "apCost": 35
+          }
+        },
+        {
+          "level": 5,
+          "effects": {
+            "baseDamage": 130,
+            "armorPenetration": 90,
+            "chargeBonus": 40,
+            "apCost": 32
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 170,
+            "armorPenetration": 100,
+            "chargeBonus": 50,
+            "knockdownChance": 60,
+            "apCost": 28
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "spear_mastery": 45,
+          "skewer": 10
+        }
+      },
+      "grantsExpTo": [
+        "spear_mastery"
+      ],
+      "cooldown": 5,
+      "category": "weapon",
       "skillGroup": "weapon"
     },
     {
       "id": "staff_mastery",
-      "nameKo": "봉술 달인",
+      "nameKo": "장봉술 수련",
       "nameEn": "Staff Mastery",
-      "description": "5턴간 물리와 마법 피해가 15% 증가합니다.",
-      "type": "buff",
-      "icon": "🥋",
-      "apCost": 20,
-      "statusEffect": "damage_up",
-      "statusDuration": 5,
-      "statusValue": 15,
-      "target": "self",
-      "requirements": {
-        "proficiency": 70
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🪄",
+      "description": {
+        "ko": "지팡이의 기본기를 익혀 마법 위력과 MP를 높인다.",
+        "en": "Master the magical amplification of staff combat."
       },
-      "category": "staff",
-      "skillGroup": "weapon"
-    },
-    {
-      "id": "slash",
-      "nameKo": "참격",
-      "nameEn": "Slash",
-      "description": "검을 휘둘러 적을 베는 기본 공격입니다.",
-      "type": "weapon_attack",
-      "icon": "⚔️",
-      "apCost": 0,
-      "baseDamage": 15,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 0
-      },
-      "category": "sword",
-      "skillGroup": "weapon"
-    },
-    {
-      "id": "thrust",
-      "nameKo": "찌르기",
-      "nameEn": "Thrust",
-      "description": "검으로 적을 찌르는 관통 공격. 방어력 10%를 무시합니다.",
-      "type": "weapon_attack",
-      "icon": "🗡️",
-      "apCost": 5,
-      "baseDamage": 20,
-      "armorPenetration": 0.1,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 10
-      },
-      "category": "sword",
-      "skillGroup": "weapon"
-    },
-    {
-      "id": "blade_dance",
-      "nameKo": "검무",
-      "nameEn": "Blade Dance",
-      "description": "우아한 검술로 2~3회 연속 공격합니다.",
-      "type": "weapon_attack",
-      "icon": "💃",
-      "apCost": 10,
-      "baseDamage": 12,
-      "hitCount": [
-        2,
-        3
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "magicDamage": 0,
+            "mpBonus": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "magicDamage": 5,
+            "mpBonus": 5
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "magicDamage": 12,
+            "mpBonus": 10,
+            "mpRegen": 2
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "magicDamage": 18,
+            "mpBonus": 15,
+            "mpRegen": 4
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "magicDamage": 25,
+            "mpBonus": 20,
+            "mpRegen": 6,
+            "castSpeed": 10
+          }
+        }
       ],
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 25
-      },
-      "category": "sword",
+      "requirements": {},
+      "category": "weapon",
       "skillGroup": "weapon"
     },
     {
-      "id": "riposte",
-      "nameKo": "역습",
-      "nameEn": "Riposte",
-      "description": "방어 성공 시 즉시 반격합니다. 3턴간 반격 확률 50%.",
-      "type": "defensive",
-      "icon": "↩️",
-      "apCost": 8,
-      "statusEffect": "counter",
-      "statusDuration": 3,
-      "statusValue": 50,
-      "target": "self",
-      "requirements": {
-        "proficiency": 30
+      "id": "staff_strike",
+      "nameKo": "지팡이 타격",
+      "nameEn": "Staff Strike",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "🪄",
+      "description": {
+        "ko": "지팡이로 적을 친다.",
+        "en": "Strike the enemy with the staff."
       },
-      "category": "sword",
+      "maxLevel": 30,
+      "expPerLevel": 50,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 20,
+            "apCost": 4,
+            "magicDamageBonus": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 28,
+            "apCost": 4,
+            "magicDamageBonus": 10
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 38,
+            "apCost": 3,
+            "magicDamageBonus": 15
+          }
+        },
+        {
+          "level": 30,
+          "effects": {
+            "baseDamage": 50,
+            "apCost": 3,
+            "magicDamageBonus": 20,
+            "mpOnHit": 3
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "staff_mastery": 1
+        }
+      },
+      "grantsExpTo": [
+        "staff_mastery"
+      ],
+      "cooldown": 0,
+      "category": "weapon",
       "skillGroup": "weapon"
     },
     {
-      "id": "cross_slash",
-      "nameKo": "십자 베기",
-      "nameEn": "Cross Slash",
-      "description": "X자로 강력하게 베어 큰 피해를 입힙니다.",
-      "type": "weapon_attack",
-      "icon": "✖️",
-      "apCost": 15,
-      "baseDamage": 40,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 50
+      "id": "arcane_burst",
+      "nameKo": "마력 폭발",
+      "nameEn": "Arcane Burst",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "✨",
+      "description": {
+        "ko": "지팡이에서 마력을 폭발시킨다.",
+        "en": "Release a burst of arcane energy from the staff."
       },
-      "category": "sword",
+      "maxLevel": 25,
+      "expPerLevel": 70,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 35,
+            "magicDamageBonus": 15,
+            "apCost": 10,
+            "mpCost": 8
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 48,
+            "magicDamageBonus": 20,
+            "apCost": 9,
+            "mpCost": 7
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 65,
+            "magicDamageBonus": 25,
+            "apCost": 8,
+            "mpCost": 6
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "baseDamage": 75,
+            "magicDamageBonus": 30,
+            "apCost": 8,
+            "mpCost": 5,
+            "aoe": true
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "staff_mastery": 10
+        }
+      },
+      "grantsExpTo": [
+        "staff_mastery"
+      ],
+      "cooldown": 2,
+      "category": "weapon",
       "skillGroup": "weapon"
     },
     {
-      "id": "mortal_strike",
-      "nameKo": "죽음의 검",
-      "nameEn": "Mortal Strike",
-      "description": "치명적인 일격. 적의 회복량을 3턴간 50% 감소시킵니다.",
-      "type": "weapon_attack",
-      "icon": "💀",
-      "apCost": 20,
-      "baseDamage": 35,
-      "statusEffect": "heal_reduction",
-      "statusDuration": 3,
-      "statusValue": 50,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 70
+      "id": "mana_channel",
+      "nameKo": "마나 흡수",
+      "nameEn": "Mana Channel",
+      "type": "buff",
+      "usageContext": "both",
+      "icon": "💧",
+      "description": {
+        "ko": "주변 마나를 흡수하여 MP를 회복한다.",
+        "en": "Channel ambient mana to restore MP."
       },
-      "category": "sword",
+      "maxLevel": 20,
+      "expPerLevel": 90,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "mpRestore": 15,
+            "apCost": 8
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "mpRestore": 25,
+            "apCost": 7
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "mpRestore": 40,
+            "apCost": 5,
+            "mpRegenBuff": 3,
+            "duration": 3
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "staff_mastery": 15
+        }
+      },
+      "grantsExpTo": [
+        "staff_mastery"
+      ],
+      "cooldown": 3,
+      "category": "weapon",
       "skillGroup": "weapon"
+    },
+    {
+      "id": "magic_barrier",
+      "nameKo": "마법 장벽",
+      "nameEn": "Magic Barrier",
+      "type": "buff",
+      "usageContext": "both",
+      "icon": "🛡️",
+      "description": {
+        "ko": "마법 장벽으로 피해를 흡수한다.",
+        "en": "Create a magic barrier that absorbs damage."
+      },
+      "maxLevel": 20,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "shieldAmount": 30,
+            "duration": 4,
+            "apCost": 12,
+            "mpCost": 15
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "shieldAmount": 50,
+            "duration": 5,
+            "apCost": 10,
+            "mpCost": 13
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "shieldAmount": 80,
+            "duration": 6,
+            "apCost": 8,
+            "mpCost": 10,
+            "reflectMagic": 20
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "staff_mastery": 20
+        }
+      },
+      "grantsExpTo": [
+        "staff_mastery"
+      ],
+      "cooldown": 5,
+      "category": "weapon",
+      "skillGroup": "weapon"
+    },
+    {
+      "id": "spell_amplify",
+      "nameKo": "주문 증폭",
+      "nameEn": "Spell Amplify",
+      "type": "buff",
+      "usageContext": "combat_only",
+      "icon": "⬆️",
+      "description": {
+        "ko": "다음 마법의 위력을 증폭한다.",
+        "en": "Amplify the power of the next spell."
+      },
+      "maxLevel": 15,
+      "expPerLevel": 150,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "nextSpellBonus": 40,
+            "apCost": 18,
+            "mpCost": 10
+          }
+        },
+        {
+          "level": 8,
+          "effects": {
+            "nextSpellBonus": 60,
+            "apCost": 16,
+            "mpCost": 8
+          }
+        },
+        {
+          "level": 15,
+          "effects": {
+            "nextSpellBonus": 80,
+            "apCost": 14,
+            "mpCost": 6,
+            "guaranteedCrit": true
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "staff_mastery": 32,
+          "arcane_burst": 15
+        }
+      },
+      "grantsExpTo": [
+        "staff_mastery"
+      ],
+      "cooldown": 4,
+      "category": "weapon",
+      "skillGroup": "weapon"
+    },
+    {
+      "id": "archmage_aura",
+      "nameKo": "대마법사의 오라",
+      "nameEn": "Archmage Aura",
+      "type": "buff",
+      "usageContext": "both",
+      "icon": "🌟",
+      "description": {
+        "ko": "대마법사의 오라로 모든 마법을 강화.",
+        "en": "Aura of the Archmage enhancing all magic."
+      },
+      "maxLevel": 10,
+      "expPerLevel": 200,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "allMagicBonus": 20,
+            "mpCostReduction": 10,
+            "duration": 5,
+            "apCost": 25,
+            "mpCost": 20
+          }
+        },
+        {
+          "level": 5,
+          "effects": {
+            "allMagicBonus": 30,
+            "mpCostReduction": 15,
+            "duration": 6,
+            "apCost": 22,
+            "mpCost": 18
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "allMagicBonus": 40,
+            "mpCostReduction": 20,
+            "duration": 8,
+            "apCost": 18,
+            "mpCost": 15,
+            "castSpeedBonus": 20
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "staff_mastery": 45,
+          "spell_amplify": 10
+        }
+      },
+      "grantsExpTo": [
+        "staff_mastery"
+      ],
+      "cooldown": 6,
+      "category": "weapon",
+      "skillGroup": "weapon"
+    },
+    {
+      "id": "fist_mastery",
+      "nameKo": "권술 숙련",
+      "nameEn": "Fist Mastery",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "📖",
+      "description": {
+        "ko": "권술의 기본기를 익혀 관련 기술의 위력과 효과를 높인다.",
+        "en": "Master the fundamentals to increase power and effectiveness of related skills."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "damageBonus": 0,
+            "costReduction": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "damageBonus": 5,
+            "costReduction": 2
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "damageBonus": 12,
+            "costReduction": 5
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "damageBonus": 20,
+            "costReduction": 8
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "damageBonus": 30,
+            "costReduction": 12
+          }
+        }
+      ],
+      "requirements": {},
+      "category": "fist",
+      "skillGroup": "martial"
     },
     {
       "id": "punch",
       "nameKo": "정권",
       "nameEn": "Punch",
-      "description": "주먹으로 적을 가격하는 기본 공격입니다.",
-      "type": "martial_attack",
+      "type": "attack",
+      "usageContext": "combat_only",
       "icon": "👊",
-      "apCost": 0,
-      "baseDamage": 12,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 0
+      "description": {
+        "ko": "주먹으로 적을 가격하는 기본 공격입니다.",
+        "en": "주먹으로 적을 가격하는 기본 공격입니다."
       },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 12,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 15,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 19,
+            "apCost": 4
+          }
+        }
+      ],
+      "requirements": {},
+      "grantsExpTo": [
+        "fist_mastery"
+      ],
+      "cooldown": 0,
+      "attackType": "melee_physical",
       "category": "fist",
       "skillGroup": "martial"
     },
@@ -867,18 +3799,49 @@
       "id": "jab",
       "nameKo": "잽",
       "nameEn": "Jab",
-      "description": "빠른 잽으로 적을 견제합니다. 선공 확률 증가.",
-      "type": "martial_attack",
+      "type": "attack",
+      "usageContext": "combat_only",
       "icon": "👊",
-      "apCost": 3,
-      "baseDamage": 10,
-      "statusEffect": "initiative_up",
-      "statusDuration": 1,
-      "statusValue": 30,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 10
+      "description": {
+        "ko": "빠른 잽으로 적을 견제합니다. 선공 확률 증가.",
+        "en": "빠른 잽으로 적을 견제합니다. 선공 확률 증가."
       },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 10,
+            "apCost": 3
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 13,
+            "apCost": 3
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 16,
+            "apCost": 2,
+            "initiative_upChance": 20
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "fist_mastery": 1
+        }
+      },
+      "grantsExpTo": [
+        "fist_mastery"
+      ],
+      "cooldown": 0,
+      "attackType": "melee_physical",
       "category": "fist",
       "skillGroup": "martial"
     },
@@ -886,18 +3849,49 @@
       "id": "uppercut",
       "nameKo": "올려치기",
       "nameEn": "Uppercut",
-      "description": "아래에서 위로 강하게 올려쳐 20% 확률로 기절시킵니다.",
-      "type": "martial_attack",
+      "type": "attack",
+      "usageContext": "combat_only",
       "icon": "⬆️",
-      "apCost": 5,
-      "baseDamage": 18,
-      "statusEffect": "stun",
-      "statusChance": 20,
-      "statusDuration": 1,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 15
+      "description": {
+        "ko": "아래에서 위로 강하게 올려쳐 20% 확률로 기절시킵니다.",
+        "en": "아래에서 위로 강하게 올려쳐 20% 확률로 기절시킵니다."
       },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 18,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 23,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 28,
+            "apCost": 4,
+            "stunChance": 20
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "fist_mastery": 2
+        }
+      },
+      "grantsExpTo": [
+        "fist_mastery"
+      ],
+      "cooldown": 0,
+      "attackType": "melee_physical",
       "category": "fist",
       "skillGroup": "martial"
     },
@@ -905,15 +3899,48 @@
       "id": "hook",
       "nameKo": "훅",
       "nameEn": "Hook",
-      "description": "옆에서 강하게 후려치는 강력한 일격입니다.",
-      "type": "martial_attack",
+      "type": "attack",
+      "usageContext": "combat_only",
       "icon": "🥊",
-      "apCost": 8,
-      "baseDamage": 22,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 25
+      "description": {
+        "ko": "옆에서 강하게 후려치는 강력한 일격입니다.",
+        "en": "옆에서 강하게 후려치는 강력한 일격입니다."
       },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 22,
+            "apCost": 8
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 28,
+            "apCost": 8
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 35,
+            "apCost": 7
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "fist_mastery": 3
+        }
+      },
+      "grantsExpTo": [
+        "fist_mastery"
+      ],
+      "cooldown": 0,
+      "attackType": "melee_physical",
       "category": "fist",
       "skillGroup": "martial"
     },
@@ -921,18 +3948,49 @@
       "id": "palm_strike",
       "nameKo": "장타",
       "nameEn": "Palm Strike",
-      "description": "기를 모아 장타를 날려 30% 확률로 기절시킵니다.",
-      "type": "martial_attack",
+      "type": "attack",
+      "usageContext": "combat_only",
       "icon": "🖐️",
-      "apCost": 12,
-      "baseDamage": 25,
-      "statusEffect": "stun",
-      "statusChance": 30,
-      "statusDuration": 1,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 40
+      "description": {
+        "ko": "기를 모아 장타를 날려 30% 확률로 기절시킵니다.",
+        "en": "기를 모아 장타를 날려 30% 확률로 기절시킵니다."
       },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 25,
+            "apCost": 12
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 32,
+            "apCost": 12
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 40,
+            "apCost": 11,
+            "stunChance": 30
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "fist_mastery": 4
+        }
+      },
+      "grantsExpTo": [
+        "fist_mastery"
+      ],
+      "cooldown": 0,
+      "attackType": "melee_physical",
       "category": "fist",
       "skillGroup": "martial"
     },
@@ -940,19 +3998,48 @@
       "id": "combo_punch",
       "nameKo": "연타",
       "nameEn": "Combo Punch",
-      "description": "2~4회의 빠른 주먹 연타를 가합니다.",
-      "type": "martial_attack",
+      "type": "attack",
+      "usageContext": "combat_only",
       "icon": "💥",
-      "apCost": 10,
-      "baseDamage": 8,
-      "hitCount": [
-        2,
-        4
-      ],
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 30
+      "description": {
+        "ko": "2~4회의 빠른 주먹 연타를 가합니다.",
+        "en": "2~4회의 빠른 주먹 연타를 가합니다."
       },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 8,
+            "apCost": 10
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 10,
+            "apCost": 10
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 12,
+            "apCost": 9
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "fist_mastery": 3
+        }
+      },
+      "grantsExpTo": [
+        "fist_mastery"
+      ],
+      "cooldown": 0,
+      "attackType": "melee_physical",
       "category": "fist",
       "skillGroup": "martial"
     },
@@ -960,16 +4047,48 @@
       "id": "iron_fist",
       "nameKo": "철권",
       "nameEn": "Iron Fist",
-      "description": "강화된 주먹으로 방어력을 30% 무시하는 일격입니다.",
-      "type": "martial_attack",
+      "type": "attack",
+      "usageContext": "combat_only",
       "icon": "🤛",
-      "apCost": 15,
-      "baseDamage": 30,
-      "armorPenetration": 0.3,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 55
+      "description": {
+        "ko": "강화된 주먹으로 방어력을 30% 무시하는 일격입니다.",
+        "en": "강화된 주먹으로 방어력을 30% 무시하는 일격입니다."
       },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 30,
+            "apCost": 15
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 39,
+            "apCost": 15
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 48,
+            "apCost": 14
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "fist_mastery": 6
+        }
+      },
+      "grantsExpTo": [
+        "fist_mastery"
+      ],
+      "cooldown": 0,
+      "attackType": "melee_physical",
       "category": "fist",
       "skillGroup": "martial"
     },
@@ -977,32 +4096,147 @@
       "id": "one_inch_punch",
       "nameKo": "촌경",
       "nameEn": "One Inch Punch",
-      "description": "짧은 거리에서 내공을 폭발시키는 필살의 일격입니다.",
-      "type": "martial_attack",
+      "type": "attack",
+      "usageContext": "combat_only",
       "icon": "💫",
-      "apCost": 25,
-      "baseDamage": 50,
-      "armorPenetration": 0.5,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 75
+      "description": {
+        "ko": "짧은 거리에서 내공을 폭발시키는 필살의 일격입니다.",
+        "en": "짧은 거리에서 내공을 폭발시키는 필살의 일격입니다."
       },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 50,
+            "apCost": 25
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 65,
+            "apCost": 25
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 80,
+            "apCost": 24
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "fist_mastery": 8
+        }
+      },
+      "grantsExpTo": [
+        "fist_mastery"
+      ],
+      "cooldown": 0,
+      "attackType": "melee_physical",
       "category": "fist",
+      "skillGroup": "martial"
+    },
+    {
+      "id": "kick_mastery",
+      "nameKo": "각술 숙련",
+      "nameEn": "Kick Mastery",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "📖",
+      "description": {
+        "ko": "각술의 기본기를 익혀 관련 기술의 위력과 효과를 높인다.",
+        "en": "Master the fundamentals to increase power and effectiveness of related skills."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "damageBonus": 0,
+            "costReduction": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "damageBonus": 5,
+            "costReduction": 2
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "damageBonus": 12,
+            "costReduction": 5
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "damageBonus": 20,
+            "costReduction": 8
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "damageBonus": 30,
+            "costReduction": 12
+          }
+        }
+      ],
+      "requirements": {},
+      "category": "kick",
       "skillGroup": "martial"
     },
     {
       "id": "kick",
       "nameKo": "발차기",
       "nameEn": "Kick",
-      "description": "발로 적을 차는 기본 공격입니다.",
-      "type": "martial_attack",
+      "type": "attack",
+      "usageContext": "combat_only",
       "icon": "🦶",
-      "apCost": 0,
-      "baseDamage": 14,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 0
+      "description": {
+        "ko": "발로 적을 차는 기본 공격입니다.",
+        "en": "발로 적을 차는 기본 공격입니다."
       },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 14,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 18,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 22,
+            "apCost": 4
+          }
+        }
+      ],
+      "requirements": {},
+      "grantsExpTo": [
+        "kick_mastery"
+      ],
+      "cooldown": 0,
+      "attackType": "melee_physical",
       "category": "kick",
       "skillGroup": "martial"
     },
@@ -1010,18 +4244,49 @@
       "id": "low_kick",
       "nameKo": "로우킥",
       "nameEn": "Low Kick",
-      "description": "다리를 노려 2턴간 적의 속도를 20% 감소시킵니다.",
-      "type": "martial_attack",
+      "type": "attack",
+      "usageContext": "combat_only",
       "icon": "🦵",
-      "apCost": 5,
-      "baseDamage": 12,
-      "statusEffect": "slow",
-      "statusDuration": 2,
-      "statusValue": 20,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 10
+      "description": {
+        "ko": "다리를 노려 2턴간 적의 속도를 20% 감소시킵니다.",
+        "en": "다리를 노려 2턴간 적의 속도를 20% 감소시킵니다."
       },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 12,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 15,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 19,
+            "apCost": 4,
+            "slowChance": 20
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "kick_mastery": 1
+        }
+      },
+      "grantsExpTo": [
+        "kick_mastery"
+      ],
+      "cooldown": 0,
+      "attackType": "melee_physical",
       "category": "kick",
       "skillGroup": "martial"
     },
@@ -1029,17 +4294,49 @@
       "id": "side_kick",
       "nameKo": "옆차기",
       "nameEn": "Side Kick",
-      "description": "옆으로 강하게 차서 적을 밀쳐냅니다.",
-      "type": "martial_attack",
+      "type": "attack",
+      "usageContext": "combat_only",
       "icon": "➡️",
-      "apCost": 6,
-      "baseDamage": 16,
-      "statusEffect": "knockback",
-      "statusDuration": 1,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 15
+      "description": {
+        "ko": "옆으로 강하게 차서 적을 밀쳐냅니다.",
+        "en": "옆으로 강하게 차서 적을 밀쳐냅니다."
       },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 16,
+            "apCost": 6
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 20,
+            "apCost": 6
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 25,
+            "apCost": 5,
+            "knockbackChance": 20
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "kick_mastery": 2
+        }
+      },
+      "grantsExpTo": [
+        "kick_mastery"
+      ],
+      "cooldown": 0,
+      "attackType": "melee_physical",
       "category": "kick",
       "skillGroup": "martial"
     },
@@ -1047,15 +4344,48 @@
       "id": "roundhouse",
       "nameKo": "돌려차기",
       "nameEn": "Roundhouse",
-      "description": "몸을 회전하며 강력한 발차기를 날립니다.",
-      "type": "martial_attack",
+      "type": "attack",
+      "usageContext": "combat_only",
       "icon": "🌀",
-      "apCost": 8,
-      "baseDamage": 22,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 25
+      "description": {
+        "ko": "몸을 회전하며 강력한 발차기를 날립니다.",
+        "en": "몸을 회전하며 강력한 발차기를 날립니다."
       },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 22,
+            "apCost": 8
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 28,
+            "apCost": 8
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 35,
+            "apCost": 7
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "kick_mastery": 3
+        }
+      },
+      "grantsExpTo": [
+        "kick_mastery"
+      ],
+      "cooldown": 0,
+      "attackType": "melee_physical",
       "category": "kick",
       "skillGroup": "martial"
     },
@@ -1063,18 +4393,49 @@
       "id": "axe_kick",
       "nameKo": "내려차기",
       "nameEn": "Axe Kick",
-      "description": "높이 들어 내려찍어 25% 확률로 기절시킵니다.",
-      "type": "martial_attack",
+      "type": "attack",
+      "usageContext": "combat_only",
       "icon": "⬇️",
-      "apCost": 10,
-      "baseDamage": 24,
-      "statusEffect": "stun",
-      "statusChance": 25,
-      "statusDuration": 1,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 35
+      "description": {
+        "ko": "높이 들어 내려찍어 25% 확률로 기절시킵니다.",
+        "en": "높이 들어 내려찍어 25% 확률로 기절시킵니다."
       },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 24,
+            "apCost": 10
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 31,
+            "apCost": 10
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 38,
+            "apCost": 9,
+            "stunChance": 25
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "kick_mastery": 4
+        }
+      },
+      "grantsExpTo": [
+        "kick_mastery"
+      ],
+      "cooldown": 0,
+      "attackType": "melee_physical",
       "category": "kick",
       "skillGroup": "martial"
     },
@@ -1082,19 +4443,48 @@
       "id": "spinning_kick",
       "nameKo": "회전차기",
       "nameEn": "Spinning Kick",
-      "description": "연속 회전하며 2~3회 발차기를 가합니다.",
-      "type": "martial_attack",
+      "type": "attack",
+      "usageContext": "combat_only",
       "icon": "💨",
-      "apCost": 12,
-      "baseDamage": 12,
-      "hitCount": [
-        2,
-        3
-      ],
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 45
+      "description": {
+        "ko": "연속 회전하며 2~3회 발차기를 가합니다.",
+        "en": "연속 회전하며 2~3회 발차기를 가합니다."
       },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 12,
+            "apCost": 12
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 15,
+            "apCost": 12
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 19,
+            "apCost": 11
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "kick_mastery": 5
+        }
+      },
+      "grantsExpTo": [
+        "kick_mastery"
+      ],
+      "cooldown": 0,
+      "attackType": "melee_physical",
       "category": "kick",
       "skillGroup": "martial"
     },
@@ -1102,18 +4492,49 @@
       "id": "flying_kick",
       "nameKo": "날아차기",
       "nameEn": "Flying Kick",
-      "description": "도약하여 강력한 발차기를 날립니다. 선공 효과.",
-      "type": "martial_attack",
+      "type": "attack",
+      "usageContext": "combat_only",
       "icon": "🦅",
-      "apCost": 15,
-      "baseDamage": 30,
-      "statusEffect": "initiative_up",
-      "statusDuration": 1,
-      "statusValue": 50,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 55
+      "description": {
+        "ko": "도약하여 강력한 발차기를 날립니다. 선공 효과.",
+        "en": "도약하여 강력한 발차기를 날립니다. 선공 효과."
       },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 30,
+            "apCost": 15
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 39,
+            "apCost": 15
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 48,
+            "apCost": 14,
+            "initiative_upChance": 20
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "kick_mastery": 6
+        }
+      },
+      "grantsExpTo": [
+        "kick_mastery"
+      ],
+      "cooldown": 0,
+      "attackType": "melee_physical",
       "category": "kick",
       "skillGroup": "martial"
     },
@@ -1121,34 +4542,153 @@
       "id": "dragon_kick",
       "nameKo": "용각",
       "nameEn": "Dragon Kick",
-      "description": "내공을 담은 필살의 발차기입니다. 방어력 50% 무시.",
-      "type": "martial_attack",
+      "type": "attack",
+      "usageContext": "combat_only",
       "icon": "🐉",
-      "apCost": 25,
-      "baseDamage": 48,
-      "armorPenetration": 0.5,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 75
+      "description": {
+        "ko": "내공을 담은 필살의 발차기입니다. 방어력 50% 무시.",
+        "en": "내공을 담은 필살의 발차기입니다. 방어력 50% 무시."
       },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 48,
+            "apCost": 25
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 62,
+            "apCost": 25
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 76,
+            "apCost": 24
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "kick_mastery": 8
+        }
+      },
+      "grantsExpTo": [
+        "kick_mastery"
+      ],
+      "cooldown": 0,
+      "attackType": "melee_physical",
       "category": "kick",
+      "skillGroup": "martial"
+    },
+    {
+      "id": "martial_mastery",
+      "nameKo": "무술 숙련",
+      "nameEn": "Martial Mastery",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "📖",
+      "description": {
+        "ko": "무술의 기본기를 익혀 관련 기술의 위력과 효과를 높인다.",
+        "en": "Master the fundamentals to increase power and effectiveness of related skills."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "damageBonus": 0,
+            "costReduction": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "damageBonus": 5,
+            "costReduction": 2
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "damageBonus": 12,
+            "costReduction": 5
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "damageBonus": 20,
+            "costReduction": 8
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "damageBonus": 30,
+            "costReduction": 12
+          }
+        }
+      ],
+      "requirements": {},
+      "category": "martial",
       "skillGroup": "martial"
     },
     {
       "id": "fighting_stance",
       "nameKo": "전투 자세",
       "nameEn": "Fighting Stance",
-      "description": "전투 자세를 취해 5턴간 공격력이 10% 증가합니다.",
       "type": "buff",
+      "usageContext": "combat_only",
       "icon": "🥋",
-      "apCost": 5,
-      "statusEffect": "atk_up",
-      "statusDuration": 5,
-      "statusValue": 10,
-      "target": "self",
-      "requirements": {
-        "proficiency": 10
+      "description": {
+        "ko": "전투 자세를 취해 5턴간 공격력이 10% 증가합니다.",
+        "en": "전투 자세를 취해 5턴간 공격력이 10% 증가합니다."
       },
+      "maxLevel": 20,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "effectValue": 10,
+            "duration": 5,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "effectValue": 13,
+            "duration": 6,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "effectValue": 16,
+            "duration": 7,
+            "apCost": 4
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "martial_mastery": 1
+        }
+      },
+      "grantsExpTo": [
+        "martial_mastery"
+      ],
+      "cooldown": 3,
       "category": "martial",
       "skillGroup": "martial"
     },
@@ -1156,18 +4696,50 @@
       "id": "iron_body",
       "nameKo": "철신공",
       "nameEn": "Iron Body",
-      "description": "몸을 강화하여 3턴간 받는 피해가 25% 감소합니다.",
       "type": "buff",
+      "usageContext": "combat_only",
       "icon": "🛡️",
-      "apCost": 10,
-      "statusEffect": "damage_reduction",
-      "statusDuration": 3,
-      "statusValue": 25,
-      "damageReduction": 25,
-      "target": "self",
-      "requirements": {
-        "proficiency": 25
+      "description": {
+        "ko": "몸을 강화하여 3턴간 받는 피해가 25% 감소합니다.",
+        "en": "몸을 강화하여 3턴간 받는 피해가 25% 감소합니다."
       },
+      "maxLevel": 20,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "effectValue": 25,
+            "duration": 3,
+            "apCost": 10
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "effectValue": 32,
+            "duration": 4,
+            "apCost": 10
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "effectValue": 40,
+            "duration": 5,
+            "apCost": 9
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "martial_mastery": 3
+        }
+      },
+      "grantsExpTo": [
+        "martial_mastery"
+      ],
+      "cooldown": 3,
       "category": "martial",
       "skillGroup": "martial"
     },
@@ -1175,17 +4747,44 @@
       "id": "counter_stance",
       "nameKo": "반격 자세",
       "nameEn": "Counter Stance",
-      "description": "3턴간 50% 확률로 적의 공격을 반격합니다.",
       "type": "defensive",
+      "usageContext": "combat_only",
       "icon": "↩️",
-      "apCost": 12,
-      "statusEffect": "counter",
-      "statusDuration": 3,
-      "statusValue": 50,
-      "target": "self",
-      "requirements": {
-        "proficiency": 35
+      "description": {
+        "ko": "3턴간 50% 확률로 적의 공격을 반격합니다.",
+        "en": "3턴간 50% 확률로 적의 공격을 반격합니다."
       },
+      "maxLevel": 20,
+      "expPerLevel": 70,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "apCost": 12
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "apCost": 12
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "apCost": 11
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "martial_mastery": 4
+        }
+      },
+      "grantsExpTo": [
+        "martial_mastery"
+      ],
+      "cooldown": 0,
       "category": "martial",
       "skillGroup": "martial"
     },
@@ -1193,15 +4792,50 @@
       "id": "meditation",
       "nameKo": "명상",
       "nameEn": "Meditation",
-      "description": "명상하여 HP를 15% 회복합니다. 1턴을 소모합니다.",
       "type": "buff",
+      "usageContext": "combat_only",
       "icon": "🧘",
-      "apCost": 8,
-      "healPercent": 15,
-      "target": "self",
-      "requirements": {
-        "proficiency": 20
+      "description": {
+        "ko": "명상하여 HP를 15% 회복합니다. 1턴을 소모합니다.",
+        "en": "명상하여 HP를 15% 회복합니다. 1턴을 소모합니다."
       },
+      "maxLevel": 20,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "effectValue": 20,
+            "duration": 3,
+            "apCost": 8
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "effectValue": 26,
+            "duration": 4,
+            "apCost": 8
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "effectValue": 32,
+            "duration": 5,
+            "apCost": 7
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "martial_mastery": 2
+        }
+      },
+      "grantsExpTo": [
+        "martial_mastery"
+      ],
+      "cooldown": 3,
       "category": "martial",
       "skillGroup": "martial"
     },
@@ -1209,18 +4843,49 @@
       "id": "pressure_point",
       "nameKo": "경혈 타격",
       "nameEn": "Pressure Point",
-      "description": "급소를 공격하여 3턴간 적의 방어력을 30% 감소시킵니다.",
-      "type": "martial_attack",
+      "type": "attack",
+      "usageContext": "combat_only",
       "icon": "📍",
-      "apCost": 15,
-      "baseDamage": 15,
-      "statusEffect": "def_down",
-      "statusDuration": 3,
-      "statusValue": 30,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 45
+      "description": {
+        "ko": "급소를 공격하여 3턴간 적의 방어력을 30% 감소시킵니다.",
+        "en": "급소를 공격하여 3턴간 적의 방어력을 30% 감소시킵니다."
       },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 15,
+            "apCost": 15
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 19,
+            "apCost": 15
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 24,
+            "apCost": 14,
+            "def_downChance": 20
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "martial_mastery": 5
+        }
+      },
+      "grantsExpTo": [
+        "martial_mastery"
+      ],
+      "cooldown": 0,
+      "attackType": "melee_physical",
       "category": "martial",
       "skillGroup": "martial"
     },
@@ -1228,17 +4893,50 @@
       "id": "chi_focus",
       "nameKo": "기 집중",
       "nameEn": "Chi Focus",
-      "description": "기를 모아 다음 공격의 피해가 2배가 됩니다.",
       "type": "buff",
+      "usageContext": "combat_only",
       "icon": "🔥",
-      "apCost": 15,
-      "statusEffect": "empower",
-      "statusDuration": 1,
-      "statusValue": 100,
-      "target": "self",
-      "requirements": {
-        "proficiency": 55
+      "description": {
+        "ko": "기를 모아 다음 공격의 피해가 2배가 됩니다.",
+        "en": "기를 모아 다음 공격의 피해가 2배가 됩니다."
       },
+      "maxLevel": 20,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "effectValue": 100,
+            "duration": 1,
+            "apCost": 15
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "effectValue": 130,
+            "duration": 2,
+            "apCost": 15
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "effectValue": 160,
+            "duration": 3,
+            "apCost": 14
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "martial_mastery": 6
+        }
+      },
+      "grantsExpTo": [
+        "martial_mastery"
+      ],
+      "cooldown": 3,
       "category": "martial",
       "skillGroup": "martial"
     },
@@ -1246,17 +4944,50 @@
       "id": "berserker_rage",
       "nameKo": "광전사",
       "nameEn": "Berserker Rage",
-      "description": "5턴간 공격력 +50%, 받는 피해 +30%.",
       "type": "buff",
+      "usageContext": "combat_only",
       "icon": "😤",
-      "apCost": 20,
-      "statusEffect": "berserk",
-      "statusDuration": 5,
-      "statusValue": 50,
-      "target": "self",
-      "requirements": {
-        "proficiency": 65
+      "description": {
+        "ko": "5턴간 공격력 +50%, 받는 피해 +30%.",
+        "en": "5턴간 공격력 +50%, 받는 피해 +30%."
       },
+      "maxLevel": 20,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "effectValue": 50,
+            "duration": 5,
+            "apCost": 20
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "effectValue": 65,
+            "duration": 6,
+            "apCost": 20
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "effectValue": 80,
+            "duration": 7,
+            "apCost": 19
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "martial_mastery": 7
+        }
+      },
+      "grantsExpTo": [
+        "martial_mastery"
+      ],
+      "cooldown": 3,
       "category": "martial",
       "skillGroup": "martial"
     },
@@ -1264,31 +4995,143 @@
       "id": "chi_burst",
       "nameKo": "기폭",
       "nameEn": "Chi Burst",
-      "description": "내공을 폭발시켜 강력한 피해를 입힙니다.",
-      "type": "martial_attack",
+      "type": "attack",
+      "usageContext": "combat_only",
       "icon": "💥",
-      "apCost": 25,
-      "baseDamage": 45,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 75
+      "description": {
+        "ko": "내공을 폭발시켜 강력한 피해를 입힙니다.",
+        "en": "내공을 폭발시켜 강력한 피해를 입힙니다."
       },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 45,
+            "apCost": 25
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 58,
+            "apCost": 25
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 72,
+            "apCost": 24
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "martial_mastery": 8
+        }
+      },
+      "grantsExpTo": [
+        "martial_mastery"
+      ],
+      "cooldown": 0,
+      "attackType": "melee_physical",
       "category": "martial",
       "skillGroup": "martial"
+    },
+    {
+      "id": "defense_mastery",
+      "nameKo": "방어술 숙련",
+      "nameEn": "Defense Mastery",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "📖",
+      "description": {
+        "ko": "방어술의 기본기를 익혀 관련 기술의 위력과 효과를 높인다.",
+        "en": "Master the fundamentals to increase power and effectiveness of related skills."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "damageBonus": 0,
+            "costReduction": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "damageBonus": 5,
+            "costReduction": 2
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "damageBonus": 12,
+            "costReduction": 5
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "damageBonus": 20,
+            "costReduction": 8
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "damageBonus": 30,
+            "costReduction": 12
+          }
+        }
+      ],
+      "requirements": {},
+      "category": "defense",
+      "skillGroup": "defense"
     },
     {
       "id": "block",
       "nameKo": "막기",
       "nameEn": "Block",
-      "description": "적의 공격을 막아 피해를 50% 감소시킵니다.",
       "type": "defensive",
+      "usageContext": "combat_only",
       "icon": "🛡️",
-      "apCost": 0,
-      "damageReduction": 50,
-      "target": "self",
-      "requirements": {
-        "proficiency": 0
+      "description": {
+        "ko": "적의 공격을 막아 피해를 50% 감소시킵니다.",
+        "en": "적의 공격을 막아 피해를 50% 감소시킵니다."
       },
+      "maxLevel": 20,
+      "expPerLevel": 70,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "apCost": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "apCost": 5
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "apCost": 4
+          }
+        }
+      ],
+      "requirements": {},
+      "grantsExpTo": [
+        "defense_mastery"
+      ],
+      "cooldown": 0,
       "category": "defense",
       "skillGroup": "defense"
     },
@@ -1296,16 +5139,44 @@
       "id": "dodge",
       "nameKo": "회피",
       "nameEn": "Dodge",
-      "description": "적의 공격을 완전히 회피합니다. 1턴 쿨다운.",
       "type": "defensive",
+      "usageContext": "combat_only",
       "icon": "💨",
-      "apCost": 3,
-      "evasion": 100,
-      "cooldown": 1,
-      "target": "self",
-      "requirements": {
-        "proficiency": 10
+      "description": {
+        "ko": "적의 공격을 완전히 회피합니다. 1턴 쿨다운.",
+        "en": "적의 공격을 완전히 회피합니다. 1턴 쿨다운."
       },
+      "maxLevel": 20,
+      "expPerLevel": 70,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "apCost": 3
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "apCost": 3
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "apCost": 2
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "defense_mastery": 1
+        }
+      },
+      "grantsExpTo": [
+        "defense_mastery"
+      ],
+      "cooldown": 1,
       "category": "defense",
       "skillGroup": "defense"
     },
@@ -1313,15 +5184,44 @@
       "id": "parry",
       "nameKo": "받아치기",
       "nameEn": "Parry",
-      "description": "적의 공격을 받아쳐 피해를 무효화하고 반격합니다.",
       "type": "defensive",
+      "usageContext": "combat_only",
       "icon": "⚔️",
-      "apCost": 5,
-      "counterDamage": 10,
-      "target": "self",
-      "requirements": {
-        "proficiency": 20
+      "description": {
+        "ko": "적의 공격을 받아쳐 피해를 무효화하고 반격합니다.",
+        "en": "적의 공격을 받아쳐 피해를 무효화하고 반격합니다."
       },
+      "maxLevel": 20,
+      "expPerLevel": 70,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "apCost": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "apCost": 5
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "apCost": 4
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "defense_mastery": 2
+        }
+      },
+      "grantsExpTo": [
+        "defense_mastery"
+      ],
+      "cooldown": 0,
       "category": "defense",
       "skillGroup": "defense"
     },
@@ -1329,17 +5229,50 @@
       "id": "defensive_stance",
       "nameKo": "방어 자세",
       "nameEn": "Defensive Stance",
-      "description": "3턴간 받는 피해가 30% 감소합니다.",
       "type": "buff",
+      "usageContext": "combat_only",
       "icon": "🏰",
-      "apCost": 8,
-      "statusEffect": "damage_reduction",
-      "statusDuration": 3,
-      "statusValue": 30,
-      "target": "self",
-      "requirements": {
-        "proficiency": 30
+      "description": {
+        "ko": "3턴간 받는 피해가 30% 감소합니다.",
+        "en": "3턴간 받는 피해가 30% 감소합니다."
       },
+      "maxLevel": 20,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "effectValue": 30,
+            "duration": 3,
+            "apCost": 8
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "effectValue": 39,
+            "duration": 4,
+            "apCost": 8
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "effectValue": 48,
+            "duration": 5,
+            "apCost": 7
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "defense_mastery": 3
+        }
+      },
+      "grantsExpTo": [
+        "defense_mastery"
+      ],
+      "cooldown": 3,
       "category": "defense",
       "skillGroup": "defense"
     },
@@ -1347,17 +5280,50 @@
       "id": "shield_wall",
       "nameKo": "방패 벽",
       "nameEn": "Shield Wall",
-      "description": "3턴간 물리 피해를 40% 감소시킵니다.",
       "type": "buff",
+      "usageContext": "combat_only",
       "icon": "🧱",
-      "apCost": 12,
-      "statusEffect": "physical_resist",
-      "statusDuration": 3,
-      "statusValue": 40,
-      "target": "self",
-      "requirements": {
-        "proficiency": 40
+      "description": {
+        "ko": "3턴간 물리 피해를 40% 감소시킵니다.",
+        "en": "3턴간 물리 피해를 40% 감소시킵니다."
       },
+      "maxLevel": 20,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "effectValue": 40,
+            "duration": 3,
+            "apCost": 12
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "effectValue": 52,
+            "duration": 4,
+            "apCost": 12
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "effectValue": 64,
+            "duration": 5,
+            "apCost": 11
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "defense_mastery": 4
+        }
+      },
+      "grantsExpTo": [
+        "defense_mastery"
+      ],
+      "cooldown": 3,
       "category": "defense",
       "skillGroup": "defense"
     },
@@ -1365,17 +5331,50 @@
       "id": "evasive_maneuver",
       "nameKo": "회피 기동",
       "nameEn": "Evasive Maneuver",
-      "description": "3턴간 회피율이 25% 증가합니다.",
       "type": "buff",
+      "usageContext": "combat_only",
       "icon": "🌪️",
-      "apCost": 10,
-      "statusEffect": "evasion_up",
-      "statusDuration": 3,
-      "statusValue": 25,
-      "target": "self",
-      "requirements": {
-        "proficiency": 35
+      "description": {
+        "ko": "3턴간 회피율이 25% 증가합니다.",
+        "en": "3턴간 회피율이 25% 증가합니다."
       },
+      "maxLevel": 20,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "effectValue": 25,
+            "duration": 3,
+            "apCost": 10
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "effectValue": 32,
+            "duration": 4,
+            "apCost": 10
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "effectValue": 40,
+            "duration": 5,
+            "apCost": 9
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "defense_mastery": 4
+        }
+      },
+      "grantsExpTo": [
+        "defense_mastery"
+      ],
+      "cooldown": 3,
       "category": "defense",
       "skillGroup": "defense"
     },
@@ -1383,18 +5382,50 @@
       "id": "last_stand",
       "nameKo": "최후의 저항",
       "nameEn": "Last Stand",
-      "description": "HP가 30% 이하일 때 3턴간 받는 피해가 50% 감소합니다.",
       "type": "buff",
+      "usageContext": "combat_only",
       "icon": "💪",
-      "apCost": 15,
-      "statusEffect": "damage_reduction",
-      "statusDuration": 3,
-      "statusValue": 50,
-      "hpThreshold": 30,
-      "target": "self",
-      "requirements": {
-        "proficiency": 55
+      "description": {
+        "ko": "HP가 30% 이하일 때 3턴간 받는 피해가 50% 감소합니다.",
+        "en": "HP가 30% 이하일 때 3턴간 받는 피해가 50% 감소합니다."
       },
+      "maxLevel": 20,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "effectValue": 50,
+            "duration": 3,
+            "apCost": 15
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "effectValue": 65,
+            "duration": 4,
+            "apCost": 15
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "effectValue": 80,
+            "duration": 5,
+            "apCost": 14
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "defense_mastery": 6
+        }
+      },
+      "grantsExpTo": [
+        "defense_mastery"
+      ],
+      "cooldown": 3,
       "category": "defense",
       "skillGroup": "defense"
     },
@@ -1402,17 +5433,298 @@
       "id": "impenetrable_defense",
       "nameKo": "철벽 방어",
       "nameEn": "Impenetrable Defense",
-      "description": "2턴간 모든 피해를 70% 감소시킵니다.",
       "type": "buff",
+      "usageContext": "combat_only",
       "icon": "🏯",
-      "apCost": 25,
-      "statusEffect": "damage_reduction",
-      "statusDuration": 2,
-      "statusValue": 70,
-      "target": "self",
-      "requirements": {
-        "proficiency": 75
+      "description": {
+        "ko": "2턴간 모든 피해를 70% 감소시킵니다.",
+        "en": "2턴간 모든 피해를 70% 감소시킵니다."
       },
+      "maxLevel": 20,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "effectValue": 70,
+            "duration": 2,
+            "apCost": 25
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "effectValue": 91,
+            "duration": 3,
+            "apCost": 25
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "effectValue": 112,
+            "duration": 4,
+            "apCost": 24
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "defense_mastery": 8
+        }
+      },
+      "grantsExpTo": [
+        "defense_mastery"
+      ],
+      "cooldown": 3,
+      "category": "defense",
+      "skillGroup": "defense"
+    },
+    {
+      "id": "toughness",
+      "nameKo": "맷집",
+      "nameEn": "Toughness",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🛡️",
+      "description": {
+        "ko": "신체를 단련하여 HP와 물리 방어력을 높인다.",
+        "en": "Train your body to increase HP and physical defense."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 120,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "maxHpPercent": 3,
+            "physicalDefense": 2
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "maxHpPercent": 6,
+            "physicalDefense": 5,
+            "damageReduction": 2
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "maxHpPercent": 10,
+            "physicalDefense": 10,
+            "damageReduction": 5,
+            "stunResist": 10
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "maxHpPercent": 15,
+            "physicalDefense": 16,
+            "damageReduction": 8,
+            "stunResist": 20
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "maxHpPercent": 20,
+            "physicalDefense": 25,
+            "damageReduction": 12,
+            "stunResist": 30,
+            "knockbackResist": 50
+          }
+        }
+      ],
+      "requirements": {},
+      "category": "defense",
+      "skillGroup": "defense"
+    },
+    {
+      "id": "endurance",
+      "nameKo": "지구력",
+      "nameEn": "Endurance",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "❤️",
+      "description": {
+        "ko": "체력과 스태미나를 효율적으로 관리하여 오래 싸운다.",
+        "en": "Manage HP and stamina efficiently for prolonged combat."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "maxStamina": 5,
+            "staminaRegen": 3
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "maxStamina": 12,
+            "staminaRegen": 6,
+            "hpRegen": 1
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "maxStamina": 22,
+            "staminaRegen": 10,
+            "hpRegen": 2,
+            "exhaustResist": 20
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "maxStamina": 35,
+            "staminaRegen": 15,
+            "hpRegen": 4,
+            "exhaustResist": 40
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "maxStamina": 50,
+            "staminaRegen": 22,
+            "hpRegen": 6,
+            "exhaustResist": 60,
+            "secondWind": true
+          }
+        }
+      ],
+      "requirements": {},
+      "category": "defense",
+      "skillGroup": "defense"
+    },
+    {
+      "id": "iron_will",
+      "nameKo": "강철 의지",
+      "nameEn": "Iron Will",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🧠",
+      "description": {
+        "ko": "정신력을 단련하여 상태이상과 공포에 저항한다.",
+        "en": "Train mental fortitude to resist status effects and fear."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 110,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "statusResist": 5,
+            "fearResist": 10
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "statusResist": 10,
+            "fearResist": 25,
+            "confuseResist": 15
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "statusResist": 18,
+            "fearResist": 50,
+            "confuseResist": 30,
+            "silenceResist": 20
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "statusResist": 28,
+            "fearResist": 75,
+            "confuseResist": 50,
+            "silenceResist": 40
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "statusResist": 40,
+            "fearResist": 100,
+            "confuseResist": 75,
+            "silenceResist": 60,
+            "deathResist": 10
+          }
+        }
+      ],
+      "requirements": {},
+      "category": "defense",
+      "skillGroup": "defense"
+    },
+    {
+      "id": "combat_reflexes",
+      "nameKo": "전투 본능",
+      "nameEn": "Combat Reflexes",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "⚡",
+      "description": {
+        "ko": "전장에서의 경험으로 반사 신경과 회피 능력을 기른다.",
+        "en": "Develop reflexes and evasion through combat experience."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 90,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "evasion": 3,
+            "initiativeBonus": 2
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "evasion": 6,
+            "initiativeBonus": 5,
+            "counterChance": 5
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "evasion": 10,
+            "initiativeBonus": 8,
+            "counterChance": 10,
+            "dodgeCooldownReduction": 1
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "evasion": 15,
+            "initiativeBonus": 12,
+            "counterChance": 18,
+            "dodgeCooldownReduction": 1
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "evasion": 22,
+            "initiativeBonus": 18,
+            "counterChance": 25,
+            "dodgeCooldownReduction": 2,
+            "perfectDodgeChance": 5
+          }
+        }
+      ],
+      "requirements": {},
       "category": "defense",
       "skillGroup": "defense"
     },
@@ -1420,68 +5732,40 @@
       "id": "assess",
       "nameKo": "적 분석",
       "nameEn": "Assess",
-      "description": "적의 체력과 약점을 파악합니다.",
       "type": "utility",
+      "usageContext": "combat_only",
       "icon": "🔍",
-      "apCost": 0,
-      "revealInfo": true,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 0
+      "description": {
+        "ko": "적의 체력과 약점을 파악합니다.",
+        "en": "적의 체력과 약점을 파악합니다."
       },
-      "category": "utility",
-      "skillGroup": "utility"
-    },
-    {
-      "id": "taunt",
-      "nameKo": "도발",
-      "nameEn": "Taunt",
-      "description": "적을 도발하여 2턴간 자신만 공격하도록 합니다.",
-      "type": "debuff",
-      "icon": "😤",
-      "apCost": 5,
-      "statusEffect": "taunt",
-      "statusDuration": 2,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 15
-      },
-      "category": "utility",
-      "skillGroup": "utility"
-    },
-    {
-      "id": "battle_cry",
-      "nameKo": "함성",
-      "nameEn": "Battle Cry",
-      "description": "3턴간 아군 전체의 공격력이 15% 증가합니다.",
-      "type": "buff",
-      "icon": "📣",
-      "apCost": 12,
-      "statusEffect": "atk_up",
-      "statusDuration": 3,
-      "statusValue": 15,
-      "target": "all_allies",
-      "requirements": {
-        "proficiency": 25
-      },
-      "category": "utility",
-      "skillGroup": "utility"
-    },
-    {
-      "id": "intimidate",
-      "nameKo": "위협",
-      "nameEn": "Intimidate",
-      "description": "적을 위협하여 3턴간 공격력을 20% 감소시킵니다.",
-      "type": "debuff",
-      "icon": "👁️",
-      "apCost": 8,
-      "statusEffect": "atk_down",
-      "statusDuration": 3,
-      "statusValue": 20,
-      "target": "enemy",
-      "requirements": {
-        "proficiency": 20
-      },
+      "maxLevel": 20,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "apCost": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "apCost": 5
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "apCost": 4
+          }
+        }
+      ],
+      "requirements": {},
+      "grantsExpTo": [
+        "critical_mastery"
+      ],
+      "cooldown": 3,
       "category": "utility",
       "skillGroup": "utility"
     },
@@ -1489,31 +5773,47 @@
       "id": "first_aid",
       "nameKo": "응급 치료",
       "nameEn": "First Aid",
-      "description": "간단한 응급 치료로 HP를 10% 회복합니다.",
       "type": "heal",
+      "usageContext": "combat_only",
       "icon": "🩹",
-      "apCost": 5,
-      "healPercent": 10,
-      "target": "self",
-      "requirements": {
-        "proficiency": 10
+      "description": {
+        "ko": "간단한 응급 치료로 HP를 10% 회복합니다.",
+        "en": "간단한 응급 치료로 HP를 10% 회복합니다."
       },
-      "category": "utility",
-      "skillGroup": "utility"
-    },
-    {
-      "id": "rally",
-      "nameKo": "집결",
-      "nameEn": "Rally",
-      "description": "아군을 독려하여 상태이상을 해제합니다.",
-      "type": "utility",
-      "icon": "🚩",
-      "apCost": 10,
-      "cleanse": true,
-      "target": "all_allies",
+      "maxLevel": 25,
+      "expPerLevel": 70,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "healAmount": 30,
+            "mpCost": 10
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "healAmount": 42,
+            "mpCost": 10
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "healAmount": 54,
+            "mpCost": 8
+          }
+        }
+      ],
       "requirements": {
-        "proficiency": 35
+        "skills": {
+          "critical_mastery": 1
+        }
       },
+      "grantsExpTo": [
+        "critical_mastery"
+      ],
+      "cooldown": 0,
       "category": "utility",
       "skillGroup": "utility"
     },
@@ -1521,81 +5821,185 @@
       "id": "tactical_retreat",
       "nameKo": "전술적 후퇴",
       "nameEn": "Tactical Retreat",
-      "description": "후퇴하여 다음 턴 행동을 먼저 합니다.",
       "type": "utility",
+      "usageContext": "combat_only",
       "icon": "🏃",
-      "apCost": 8,
-      "statusEffect": "initiative_up",
-      "statusDuration": 1,
-      "statusValue": 100,
-      "target": "self",
-      "requirements": {
-        "proficiency": 30
+      "description": {
+        "ko": "후퇴하여 다음 턴 행동을 먼저 합니다.",
+        "en": "후퇴하여 다음 턴 행동을 먼저 합니다."
       },
+      "maxLevel": 20,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "apCost": 8
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "apCost": 8
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "apCost": 7
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "critical_mastery": 3
+        }
+      },
+      "grantsExpTo": [
+        "critical_mastery"
+      ],
+      "cooldown": 3,
       "category": "utility",
       "skillGroup": "utility"
     },
     {
-      "id": "coordinated_assault",
-      "nameKo": "협동 공격",
-      "nameEn": "Coordinated Assault",
-      "description": "3턴간 아군 전체의 치명타 확률이 20% 증가합니다.",
-      "type": "buff",
+      "id": "battle_focus",
+      "nameKo": "집중력",
+      "nameEn": "Battle Focus",
+      "type": "passive",
+      "usageContext": "passive",
       "icon": "🎯",
-      "apCost": 18,
-      "statusEffect": "crit_up",
-      "statusDuration": 3,
-      "statusValue": 20,
-      "target": "all_allies",
-      "requirements": {
-        "proficiency": 50
+      "description": {
+        "ko": "전투 중 집중력을 유지하여 명중률과 스킬 효율을 높인다.",
+        "en": "Maintain focus in combat for improved accuracy and skill efficiency."
       },
+      "maxLevel": 50,
+      "expPerLevel": 85,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "accuracy": 5,
+            "apCostReduction": 2
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "accuracy": 10,
+            "apCostReduction": 5,
+            "skillDamage": 3
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "accuracy": 16,
+            "apCostReduction": 8,
+            "skillDamage": 7,
+            "cooldownReduction": 5
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "accuracy": 24,
+            "apCostReduction": 12,
+            "skillDamage": 12,
+            "cooldownReduction": 10
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "accuracy": 35,
+            "apCostReduction": 18,
+            "skillDamage": 18,
+            "cooldownReduction": 15,
+            "focusStackLimit": 5
+          }
+        }
+      ],
+      "requirements": {},
       "category": "utility",
       "skillGroup": "utility"
     },
     {
-      "id": "inspiring_presence",
-      "nameKo": "고무",
-      "nameEn": "Inspiring Presence",
-      "description": "5턴간 아군 전체의 모든 능력치가 10% 증가합니다.",
-      "type": "buff",
-      "icon": "✨",
-      "apCost": 25,
-      "statusEffect": "all_stats_up",
-      "statusDuration": 5,
-      "statusValue": 10,
-      "target": "all_allies",
-      "requirements": {
-        "proficiency": 70
+      "id": "critical_mastery",
+      "nameKo": "급소 공략",
+      "nameEn": "Critical Mastery",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "💥",
+      "description": {
+        "ko": "적의 급소를 노리는 기술을 연마하여 치명타 확률과 피해를 높인다.",
+        "en": "Master the art of striking vital points for increased critical chance and damage."
       },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "critChance": 3,
+            "critDamage": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "critChance": 6,
+            "critDamage": 12
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "critChance": 10,
+            "critDamage": 22,
+            "armorPenetration": 5
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "critChance": 15,
+            "critDamage": 35,
+            "armorPenetration": 10
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "critChance": 20,
+            "critDamage": 50,
+            "armorPenetration": 15,
+            "criticalBleed": 10
+          }
+        }
+      ],
+      "requirements": {},
       "category": "utility",
       "skillGroup": "utility"
     }
   ],
   "summary": {
-    "total": 89,
+    "total": 110,
     "byCategory": {
-      "axe": 6,
-      "bow": 6,
-      "crossbow": 6,
-      "dagger": 6,
-      "mace": 6,
-      "spear": 6,
-      "staff": 6,
-      "sword": 6,
-      "fist": 8,
-      "kick": 8,
-      "martial": 8,
-      "defense": 8,
-      "utility": 9
+      "weapon": 65,
+      "fist": 9,
+      "kick": 9,
+      "martial": 9,
+      "defense": 13,
+      "utility": 5
     },
     "byType": {
-      "weapon_attack": 37,
-      "debuff": 6,
-      "buff": 18,
-      "defensive": 6,
-      "martial_attack": 18,
-      "utility": 3,
+      "passive": 21,
+      "attack": 60,
+      "debuff": 1,
+      "buff": 21,
+      "defensive": 4,
+      "utility": 2,
       "heal": 1
     }
   }

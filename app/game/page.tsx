@@ -37,7 +37,7 @@ import { GameTimeClock, AtmosphericText, useRealtimeGameTime, getPeriodOverlaySt
 import { WeatherDisplay } from "@/entities/weather";
 import { useBattleStore, usePvpStore } from "@/application/stores";
 import { useStartBattle, useEndBattle } from "@/features/combat";
-import { useUpdateLocation } from "@/features/game";
+import { useUpdateLocation } from "@/features/player";
 import { useThemeStore } from "@/shared/config";
 import { ThemeSettingsModal } from "@/shared/ui";
 import { StatusModal } from "@/widgets/status-modal";

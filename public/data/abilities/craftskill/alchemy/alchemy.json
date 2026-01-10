@@ -4,112 +4,449 @@
   "nameEn": "Alchemy",
   "icon": "⚗️",
   "description": "약재를 조합하여 포션과 물약을 만듭니다",
-  "relatedStats": ["int", "wis"],
+  "relatedStats": [
+    "int",
+    "wis"
+  ],
   "skills": [
+    {
+      "id": "alchemy_mastery",
+      "nameKo": "연금술 숙련",
+      "nameEn": "Alchemy Mastery",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "📖",
+      "description": {
+        "ko": "연금술의 기본기를 익혀 관련 기술의 위력과 효과를 높인다.",
+        "en": "Master the fundamentals to increase power and effectiveness of related skills."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "damageBonus": 0,
+            "costReduction": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "damageBonus": 5,
+            "costReduction": 2
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "damageBonus": 12,
+            "costReduction": 5
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "damageBonus": 20,
+            "costReduction": 8
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "damageBonus": 30,
+            "costReduction": 12
+          }
+        }
+      ],
+      "requirements": {}
+    },
     {
       "id": "al_basic_alchemy",
       "nameKo": "기초 연금술",
       "nameEn": "Basic Alchemy",
-      "description": "기본적인 포션 제조 기술입니다.",
       "type": "passive",
       "usageContext": "passive",
       "icon": "⚗️",
-      "effect": { "potionPotency": 1.0, "successBonus": 0 },
-      "requirements": { "level": 1 }
+      "description": {
+        "ko": "기본적인 포션 제조 기술입니다.",
+        "en": "기본적인 포션 제조 기술입니다."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "bonus": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "bonus": 5
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "bonus": 12
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "bonus": 20
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "bonus": 30
+          }
+        }
+      ],
+      "requirements": {}
     },
     {
       "id": "al_apprentice_alchemy",
       "nameKo": "견습 연금술",
       "nameEn": "Apprentice Alchemy",
-      "description": "포션 효과가 10% 증가합니다.",
       "type": "passive",
       "usageContext": "passive",
       "icon": "⚗️",
-      "effect": { "potionPotency": 1.1, "successBonus": 5 },
-      "requirements": { "level": 10, "prerequisite": "al_basic_alchemy" }
+      "description": {
+        "ko": "포션 효과가 10% 증가합니다.",
+        "en": "포션 효과가 10% 증가합니다."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "bonus": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "bonus": 5
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "bonus": 12
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "bonus": 20
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "bonus": 30
+          }
+        }
+      ],
+      "requirements": {}
     },
     {
       "id": "al_journeyman_alchemy",
       "nameKo": "숙련 연금술",
       "nameEn": "Journeyman Alchemy",
-      "description": "포션 효과가 20% 증가합니다.",
       "type": "passive",
       "usageContext": "passive",
       "icon": "⚗️",
-      "effect": { "potionPotency": 1.2, "successBonus": 10 },
-      "requirements": { "level": 20, "prerequisite": "al_apprentice_alchemy" }
+      "description": {
+        "ko": "포션 효과가 20% 증가합니다.",
+        "en": "포션 효과가 20% 증가합니다."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "bonus": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "bonus": 5
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "bonus": 12
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "bonus": 20
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "bonus": 30
+          }
+        }
+      ],
+      "requirements": {}
     },
     {
       "id": "al_expert_alchemy",
       "nameKo": "전문 연금술",
       "nameEn": "Expert Alchemy",
-      "description": "포션 효과가 30% 증가합니다.",
       "type": "passive",
       "usageContext": "passive",
       "icon": "⚗️",
-      "effect": { "potionPotency": 1.3, "successBonus": 15 },
-      "requirements": { "level": 30, "prerequisite": "al_journeyman_alchemy" }
+      "description": {
+        "ko": "포션 효과가 30% 증가합니다.",
+        "en": "포션 효과가 30% 증가합니다."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "bonus": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "bonus": 5
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "bonus": 12
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "bonus": 20
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "bonus": 30
+          }
+        }
+      ],
+      "requirements": {}
     },
     {
       "id": "al_master_alchemy",
       "nameKo": "달인 연금술",
       "nameEn": "Master Alchemy",
-      "description": "포션 효과가 50% 증가합니다.",
       "type": "passive",
       "usageContext": "passive",
       "icon": "⚗️",
-      "effect": { "potionPotency": 1.5, "successBonus": 20 },
-      "requirements": { "level": 40, "prerequisite": "al_expert_alchemy" }
+      "description": {
+        "ko": "포션 효과가 50% 증가합니다.",
+        "en": "포션 효과가 50% 증가합니다."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "bonus": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "bonus": 5
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "bonus": 12
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "bonus": 20
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "bonus": 30
+          }
+        }
+      ],
+      "requirements": {}
     },
     {
       "id": "al_craft_hp_potion",
       "nameKo": "HP 포션 제조",
       "nameEn": "Craft HP Potion",
-      "description": "HP를 회복하는 포션을 제조합니다.",
       "type": "craft",
       "usageContext": "field_only",
       "icon": "🧪",
-      "craftType": "potion",
-      "potionType": "hp",
-      "materials": ["herb", "vial"],
-      "requirements": { "skill": "al_basic_alchemy" }
+      "description": {
+        "ko": "HP를 회복하는 포션을 제조합니다.",
+        "en": "HP를 회복하는 포션을 제조합니다."
+      },
+      "maxLevel": 30,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "apCost": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "apCost": 5
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "apCost": 4
+          }
+        }
+      ],
+      "requirements": {},
+      "grantsExpTo": [
+        "alchemy_mastery"
+      ]
     },
     {
       "id": "al_craft_mp_potion",
       "nameKo": "MP 포션 제조",
       "nameEn": "Craft MP Potion",
-      "description": "MP를 회복하는 포션을 제조합니다.",
       "type": "craft",
       "usageContext": "field_only",
       "icon": "🧪",
-      "craftType": "potion",
-      "potionType": "mp",
-      "materials": ["mana_herb", "vial"],
-      "requirements": { "skill": "al_apprentice_alchemy" }
+      "description": {
+        "ko": "MP를 회복하는 포션을 제조합니다.",
+        "en": "MP를 회복하는 포션을 제조합니다."
+      },
+      "maxLevel": 30,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "apCost": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "apCost": 5
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "apCost": 4
+          }
+        }
+      ],
+      "requirements": {},
+      "grantsExpTo": [
+        "alchemy_mastery"
+      ]
     },
     {
       "id": "al_craft_buff_potion",
       "nameKo": "버프 포션 제조",
       "nameEn": "Craft Buff Potion",
-      "description": "능력치를 증가시키는 포션을 제조합니다.",
       "type": "craft",
       "usageContext": "field_only",
       "icon": "🧪",
-      "craftType": "elixir",
-      "materials": ["rare_herb", "essence", "vial"],
-      "requirements": { "skill": "al_journeyman_alchemy" }
+      "description": {
+        "ko": "능력치를 증가시키는 포션을 제조합니다.",
+        "en": "능력치를 증가시키는 포션을 제조합니다."
+      },
+      "maxLevel": 30,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "apCost": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "apCost": 5
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "apCost": 4
+          }
+        }
+      ],
+      "requirements": {},
+      "grantsExpTo": [
+        "alchemy_mastery"
+      ]
     },
     {
       "id": "al_craft_poison",
       "nameKo": "독약 제조",
       "nameEn": "Craft Poison",
-      "description": "무기에 바를 수 있는 독약을 제조합니다.",
       "type": "craft",
       "usageContext": "field_only",
       "icon": "☠️",
-      "craftType": "poison",
-      "materials": ["toxic_herb", "venom", "vial"],
-      "requirements": { "skill": "al_expert_alchemy" }
+      "description": {
+        "ko": "무기에 바를 수 있는 독약을 제조합니다.",
+        "en": "무기에 바를 수 있는 독약을 제조합니다."
+      },
+      "maxLevel": 30,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "apCost": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "apCost": 5
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "apCost": 4
+          }
+        }
+      ],
+      "requirements": {},
+      "grantsExpTo": [
+        "alchemy_mastery"
+      ]
     }
   ]
 }

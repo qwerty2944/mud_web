@@ -14,6 +14,41 @@ export type Database = {
   }
   public: {
     Tables: {
+      abilities: {
+        Row: {
+          combat: Json | null
+          created_at: string | null
+          life: Json | null
+          magic: Json | null
+          updated_at: string | null
+          user_id: string
+        }
+        Insert: {
+          combat?: Json | null
+          created_at?: string | null
+          life?: Json | null
+          magic?: Json | null
+          updated_at?: string | null
+          user_id: string
+        }
+        Update: {
+          combat?: Json | null
+          created_at?: string | null
+          life?: Json | null
+          magic?: Json | null
+          updated_at?: string | null
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "abilities_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: true
+            referencedRelation: "characters"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       character_locations: {
         Row: {
           character_id: string
@@ -81,7 +116,7 @@ export type Database = {
         }
         Insert: {
           appearance?: Json | null
-          avatar_url?: Json | null
+          avatar_url?: string | null
           buffs?: Json | null
           character?: Json | null
           created_at?: string | null
@@ -113,7 +148,7 @@ export type Database = {
         }
         Update: {
           appearance?: Json | null
-          avatar_url?: Json | null
+          avatar_url?: string | null
           buffs?: Json | null
           character?: Json | null
           created_at?: string | null
@@ -423,11 +458,11 @@ export type Database = {
         Args: { con_value: number }
         Returns: number
       }
-      calculate_fatigue: {
+      calculate_stamina: {
         Args: {
-          p_current_fatigue: number
+          p_current_stamina: number
           p_last_updated: string
-          p_max_fatigue: number
+          p_max_stamina: number
           p_recovery_rate?: number
         }
         Returns: number
@@ -482,6 +517,15 @@ export type Database = {
       get_user_max_fatigue: { Args: { p_user_id: string }; Returns: number }
       heal_injury_with_gold: {
         Args: { p_gold_cost: number; p_injury_index: number; p_user_id: string }
+        Returns: Json
+      }
+      increase_ability_exp: {
+        Args: {
+          p_ability_id: string
+          p_amount?: number
+          p_category: string
+          p_character_id: string
+        }
         Returns: Json
       }
       increase_proficiency: {
@@ -559,6 +603,15 @@ export type Database = {
         Args: { p_character: Json; p_user_id: string }
         Returns: Json
       }
+      update_abilities_progress: {
+        Args: {
+          p_character_id: string
+          p_combat?: Json
+          p_life?: Json
+          p_magic?: Json
+        }
+        Returns: Json
+      }
       update_karma: {
         Args: { p_change: number; p_reason?: string; p_user_id: string }
         Returns: {
@@ -573,8 +626,21 @@ export type Database = {
           piety_level: number
         }[]
       }
+      update_skill_progress: {
+        Args: {
+          p_combat?: Json
+          p_life?: Json
+          p_magic?: Json
+          p_user_id: string
+        }
+        Returns: Json
+      }
       upsert_character_location: {
-        Args: { p_character_id: string; p_character_name: string; p_map_id: string }
+        Args: {
+          p_character_id: string
+          p_character_name: string
+          p_map_id: string
+        }
         Returns: undefined
       }
       upsert_user_location: {

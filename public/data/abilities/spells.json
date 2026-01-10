@@ -1,24 +1,112 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-01-10T12:12:57.115Z",
+  "generatedAt": "2026-01-10T19:24:52.486Z",
   "spells": [
+    {
+      "id": "dark_mastery",
+      "nameKo": "암흑 마법 숙련",
+      "nameEn": "Dark Mastery",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🌑",
+      "description": {
+        "ko": "암흑 마법의 위력을 높이는 기본 숙련.",
+        "en": "Basic mastery that increases dark magic power."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "darkDamage": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "darkDamage": 5
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "darkDamage": 12,
+            "mpCostReduction": 5
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "darkDamage": 18,
+            "mpCostReduction": 10
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "darkDamage": 25,
+            "mpCostReduction": 15,
+            "lifestealBonus": 10
+          }
+        }
+      ],
+      "requirements": {},
+      "element": "dark"
+    },
     {
       "id": "shadow_bolt",
       "nameKo": "그림자 화살",
       "nameEn": "Shadow Bolt",
       "type": "attack",
       "usageContext": "combat_only",
-      "baseDamage": 30,
-      "mpCost": 12,
-      "cooldown": 0,
-      "requirements": {
-        "proficiency": 0
-      },
-      "icon": "shadow_bolt",
+      "icon": "🌑",
       "description": {
         "ko": "어둠의 화살을 발사한다.",
         "en": "Fire a bolt of shadow."
       },
+      "maxLevel": 30,
+      "expPerLevel": 50,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 30,
+            "mpCost": 12
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 38,
+            "mpCost": 11
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 48,
+            "mpCost": 10
+          }
+        },
+        {
+          "level": 30,
+          "effects": {
+            "baseDamage": 60,
+            "mpCost": 9,
+            "blindChance": 15
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "dark_mastery": 1
+        }
+      },
+      "grantsExpTo": [
+        "dark_mastery"
+      ],
+      "cooldown": 0,
       "element": "dark"
     },
     {
@@ -27,21 +115,56 @@
       "nameEn": "Life Drain",
       "type": "attack",
       "usageContext": "combat_only",
-      "baseDamage": 25,
-      "mpCost": 18,
-      "cooldown": 2,
-      "requirements": {
-        "proficiency": 20
-      },
-      "effect": {
-        "type": "lifesteal",
-        "amount": 0.5
-      },
-      "icon": "life_drain",
+      "icon": "💀",
       "description": {
-        "ko": "피해의 50%를 HP로 흡수한다.",
-        "en": "Absorb 50% of damage dealt as HP."
+        "ko": "피해의 일부를 HP로 흡수한다.",
+        "en": "Absorb a portion of damage dealt as HP."
       },
+      "maxLevel": 25,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 25,
+            "lifestealPercent": 40,
+            "mpCost": 18
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 32,
+            "lifestealPercent": 50,
+            "mpCost": 17
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 42,
+            "lifestealPercent": 60,
+            "mpCost": 15
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "baseDamage": 50,
+            "lifestealPercent": 70,
+            "mpCost": 14
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "dark_mastery": 12
+        }
+      },
+      "grantsExpTo": [
+        "dark_mastery"
+      ],
+      "cooldown": 2,
       "element": "dark"
     },
     {
@@ -50,22 +173,49 @@
       "nameEn": "Curse",
       "type": "debuff",
       "usageContext": "combat_only",
-      "baseDamage": 0,
-      "mpCost": 15,
-      "cooldown": 3,
-      "requirements": {
-        "proficiency": 30
-      },
-      "effect": {
-        "type": "curse",
-        "duration": 5,
-        "damageBonus": 0.2
-      },
-      "icon": "curse",
+      "icon": "☠️",
       "description": {
-        "ko": "저주를 걸어 5턴간 받는 피해 +20%.",
-        "en": "Curse the target. +20% damage taken for 5 turns."
+        "ko": "저주를 걸어 받는 피해를 증가시킨다.",
+        "en": "Curse the target, increasing damage taken."
       },
+      "maxLevel": 20,
+      "expPerLevel": 90,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "damageAmplify": 15,
+            "duration": 4,
+            "mpCost": 15
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "damageAmplify": 20,
+            "duration": 5,
+            "mpCost": 14
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "damageAmplify": 30,
+            "duration": 6,
+            "mpCost": 12,
+            "healReduction": 30
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "dark_mastery": 18
+        }
+      },
+      "grantsExpTo": [
+        "dark_mastery"
+      ],
+      "cooldown": 3,
       "element": "dark"
     },
     {
@@ -74,47 +224,53 @@
       "nameEn": "Fear",
       "type": "debuff",
       "usageContext": "combat_only",
-      "baseDamage": 0,
-      "mpCost": 20,
-      "cooldown": 4,
+      "icon": "😱",
+      "description": {
+        "ko": "공포에 빠뜨려 공격력 감소, 도주 불가.",
+        "en": "Instill fear. Reduce attack, cannot flee."
+      },
+      "maxLevel": 20,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "attackReduction": 25,
+            "duration": 2,
+            "noFlee": true,
+            "mpCost": 20
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "attackReduction": 30,
+            "duration": 3,
+            "noFlee": true,
+            "mpCost": 18
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "attackReduction": 40,
+            "duration": 4,
+            "noFlee": true,
+            "mpCost": 15,
+            "defenseReduction": 20
+          }
+        }
+      ],
       "requirements": {
-        "proficiency": 35,
+        "skills": {
+          "dark_mastery": 22
+        },
         "karma": -30
       },
-      "effect": {
-        "type": "fear",
-        "duration": 3,
-        "attackReduction": 0.3,
-        "noFlee": true
-      },
-      "icon": "fear",
-      "description": {
-        "ko": "공포에 빠뜨려 3턴간 공격력 -30%, 도주 불가.",
-        "en": "Instill fear. -30% attack, cannot flee for 3 turns."
-      },
-      "element": "dark"
-    },
-    {
-      "id": "soul_rend",
-      "nameKo": "영혼 파열",
-      "nameEn": "Soul Rend",
-      "type": "attack",
-      "usageContext": "combat_only",
-      "baseDamage": 50,
-      "mpCost": 25,
-      "cooldown": 3,
-      "requirements": {
-        "proficiency": 50,
-        "karma": -50
-      },
-      "effect": {
-        "ignoreWisdom": true
-      },
-      "icon": "soul_rend",
-      "description": {
-        "ko": "영혼을 찢는 공격. WIS 방어 무시.",
-        "en": "Tear at the soul. Ignores WIS defense."
-      },
+      "grantsExpTo": [
+        "dark_mastery"
+      ],
+      "cooldown": 4,
       "element": "dark"
     },
     {
@@ -123,22 +279,101 @@
       "nameEn": "Pestilence",
       "type": "dot",
       "usageContext": "combat_only",
-      "baseDamage": 10,
-      "mpCost": 22,
-      "cooldown": 4,
-      "requirements": {
-        "proficiency": 50
-      },
-      "effect": {
-        "type": "disease",
-        "duration": 6,
-        "damagePerTurn": 10
-      },
-      "icon": "pestilence",
+      "icon": "🦠",
       "description": {
-        "ko": "역병을 퍼뜨려 6턴간 매턴 10 피해.",
-        "en": "Spread pestilence. 10 damage per turn for 6 turns."
+        "ko": "역병을 퍼뜨려 지속 피해를 입힌다.",
+        "en": "Spread pestilence dealing damage over time."
       },
+      "maxLevel": 20,
+      "expPerLevel": 90,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "damagePerTurn": 10,
+            "duration": 5,
+            "mpCost": 22
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "damagePerTurn": 15,
+            "duration": 6,
+            "mpCost": 20
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "damagePerTurn": 22,
+            "duration": 7,
+            "mpCost": 17,
+            "spreadChance": 30
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "dark_mastery": 30
+        }
+      },
+      "grantsExpTo": [
+        "dark_mastery"
+      ],
+      "cooldown": 4,
+      "element": "dark"
+    },
+    {
+      "id": "soul_rend",
+      "nameKo": "영혼 파열",
+      "nameEn": "Soul Rend",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "👻",
+      "description": {
+        "ko": "영혼을 찢는 공격. WIS 방어 무시.",
+        "en": "Tear at the soul. Ignores WIS defense."
+      },
+      "maxLevel": 20,
+      "expPerLevel": 120,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 50,
+            "ignoreWisdom": true,
+            "mpCost": 25
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 65,
+            "ignoreWisdom": true,
+            "mpCost": 23
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 85,
+            "ignoreWisdom": true,
+            "mpCost": 20,
+            "mpDrain": 15
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "dark_mastery": 35
+        },
+        "karma": -50
+      },
+      "grantsExpTo": [
+        "dark_mastery"
+      ],
+      "cooldown": 3,
       "element": "dark"
     },
     {
@@ -147,23 +382,209 @@
       "nameEn": "Death Coil",
       "type": "attack",
       "usageContext": "combat_only",
-      "baseDamage": 40,
-      "mpCost": 30,
-      "cooldown": 4,
+      "icon": "💀",
+      "description": {
+        "ko": "죽음의 고리로 피해와 기절.",
+        "en": "Death coil deals damage and stuns."
+      },
+      "maxLevel": 15,
+      "expPerLevel": 150,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 40,
+            "stunDuration": 1,
+            "mpCost": 30
+          }
+        },
+        {
+          "level": 8,
+          "effects": {
+            "baseDamage": 55,
+            "stunDuration": 2,
+            "mpCost": 28
+          }
+        },
+        {
+          "level": 15,
+          "effects": {
+            "baseDamage": 75,
+            "stunDuration": 2,
+            "mpCost": 25,
+            "lifestealPercent": 30
+          }
+        }
+      ],
       "requirements": {
-        "proficiency": 60,
+        "skills": {
+          "dark_mastery": 40
+        },
         "karma": -70
       },
-      "effect": {
-        "type": "stun",
-        "duration": 2
-      },
-      "icon": "death_coil",
-      "description": {
-        "ko": "죽음의 고리로 40 피해와 2턴 기절.",
-        "en": "Death coil deals 40 damage and stuns for 2 turns."
-      },
+      "grantsExpTo": [
+        "dark_mastery"
+      ],
+      "cooldown": 4,
       "element": "dark"
+    },
+    {
+      "id": "summon_shadow",
+      "nameKo": "그림자 소환",
+      "nameEn": "Summon Shadow",
+      "type": "special",
+      "usageContext": "combat_only",
+      "icon": "👤",
+      "description": {
+        "ko": "그림자를 소환하여 함께 싸운다.",
+        "en": "Summon a shadow to fight alongside you."
+      },
+      "maxLevel": 10,
+      "expPerLevel": 200,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "summonDamage": 15,
+            "summonHp": 30,
+            "duration": 4,
+            "mpCost": 35
+          }
+        },
+        {
+          "level": 5,
+          "effects": {
+            "summonDamage": 22,
+            "summonHp": 45,
+            "duration": 5,
+            "mpCost": 32
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "summonDamage": 30,
+            "summonHp": 60,
+            "duration": 6,
+            "mpCost": 28,
+            "summonCount": 2
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "dark_mastery": 45
+        }
+      },
+      "grantsExpTo": [
+        "dark_mastery"
+      ],
+      "cooldown": 6,
+      "element": "dark"
+    },
+    {
+      "id": "doom",
+      "nameKo": "파멸",
+      "nameEn": "Doom",
+      "type": "special",
+      "usageContext": "combat_only",
+      "icon": "💀",
+      "description": {
+        "ko": "일정 턴 후 대상을 즉사시킨다.",
+        "en": "Instantly kill target after certain turns."
+      },
+      "maxLevel": 5,
+      "expPerLevel": 500,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "doomTurns": 5,
+            "mpCost": 50
+          }
+        },
+        {
+          "level": 3,
+          "effects": {
+            "doomTurns": 4,
+            "mpCost": 45,
+            "damageOnRemove": 30
+          }
+        },
+        {
+          "level": 5,
+          "effects": {
+            "doomTurns": 3,
+            "mpCost": 40,
+            "damageOnRemove": 50,
+            "ignoreResist": true
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "dark_mastery": 50,
+          "death_coil": 10
+        },
+        "karma": -80
+      },
+      "grantsExpTo": [
+        "dark_mastery"
+      ],
+      "cooldown": 10,
+      "element": "dark"
+    },
+    {
+      "id": "earth_mastery",
+      "nameKo": "대지 마법 숙련",
+      "nameEn": "Earth Mastery",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🪨",
+      "description": {
+        "ko": "대지 마법의 위력을 높이는 기본 숙련.",
+        "en": "Basic mastery that increases earth magic power."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "earthDamage": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "earthDamage": 5
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "earthDamage": 12,
+            "mpCostReduction": 5
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "earthDamage": 18,
+            "mpCostReduction": 10
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "earthDamage": 25,
+            "mpCostReduction": 15,
+            "knockdownChance": 10
+          }
+        }
+      ],
+      "requirements": {},
+      "element": "earth"
     },
     {
       "id": "rock_throw",
@@ -171,17 +592,53 @@
       "nameEn": "Rock Throw",
       "type": "attack",
       "usageContext": "combat_only",
-      "baseDamage": 25,
-      "mpCost": 10,
-      "cooldown": 0,
-      "requirements": {
-        "proficiency": 0
-      },
-      "icon": "rock_throw",
+      "icon": "🪨",
       "description": {
         "ko": "바위를 던져 적을 공격한다.",
         "en": "Throw a rock at the enemy."
       },
+      "maxLevel": 30,
+      "expPerLevel": 50,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 25,
+            "mpCost": 10
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 32,
+            "mpCost": 10
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 40,
+            "mpCost": 9
+          }
+        },
+        {
+          "level": 30,
+          "effects": {
+            "baseDamage": 50,
+            "mpCost": 8,
+            "armorBreak": 10
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "earth_mastery": 1
+        }
+      },
+      "grantsExpTo": [
+        "earth_mastery"
+      ],
+      "cooldown": 0,
       "element": "earth"
     },
     {
@@ -190,22 +647,57 @@
       "nameEn": "Earthquake",
       "type": "attack",
       "usageContext": "combat_only",
-      "baseDamage": 35,
-      "mpCost": 22,
-      "cooldown": 3,
-      "requirements": {
-        "proficiency": 30
-      },
-      "effect": {
-        "type": "knockdown",
-        "chance": 0.3,
-        "duration": 1
-      },
-      "icon": "earthquake",
+      "icon": "🌍",
       "description": {
-        "ko": "지진을 일으킨다. 30% 확률로 넘어뜨림.",
-        "en": "Create an earthquake. 30% chance to knock down."
+        "ko": "지진을 일으킨다. 넘어뜨릴 확률.",
+        "en": "Create an earthquake. Chance to knock down."
       },
+      "maxLevel": 25,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 35,
+            "knockdownChance": 25,
+            "mpCost": 22
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 45,
+            "knockdownChance": 30,
+            "mpCost": 20
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 55,
+            "knockdownChance": 40,
+            "mpCost": 18
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "baseDamage": 65,
+            "knockdownChance": 50,
+            "mpCost": 16,
+            "aoe": true
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "earth_mastery": 15
+        }
+      },
+      "grantsExpTo": [
+        "earth_mastery"
+      ],
+      "cooldown": 3,
       "element": "earth"
     },
     {
@@ -214,22 +706,57 @@
       "nameEn": "Stone Skin",
       "type": "buff",
       "usageContext": "both",
-      "baseDamage": 0,
-      "mpCost": 20,
-      "cooldown": 5,
-      "requirements": {
-        "proficiency": 25
-      },
-      "effect": {
-        "type": "stone_skin",
-        "duration": 5,
-        "physicalResist": 0.4
-      },
-      "icon": "stone_skin",
+      "icon": "🛡️",
       "description": {
-        "ko": "피부를 돌처럼 단단하게. 5턴간 물리 피해 -40%.",
-        "en": "Harden your skin like stone. -40% physical damage for 5 turns."
+        "ko": "피부를 돌처럼 단단하게. 물리 피해 감소.",
+        "en": "Harden your skin like stone. Reduce physical damage."
       },
+      "maxLevel": 25,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "physicalResist": 30,
+            "duration": 5,
+            "mpCost": 20
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "physicalResist": 40,
+            "duration": 6,
+            "mpCost": 18
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "physicalResist": 50,
+            "duration": 7,
+            "mpCost": 16
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "physicalResist": 60,
+            "duration": 8,
+            "mpCost": 14,
+            "thorns": 15
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "earth_mastery": 12
+        }
+      },
+      "grantsExpTo": [
+        "earth_mastery"
+      ],
+      "cooldown": 5,
       "element": "earth"
     },
     {
@@ -238,23 +765,52 @@
       "nameEn": "Mud Trap",
       "type": "debuff",
       "usageContext": "combat_only",
-      "baseDamage": 0,
-      "mpCost": 18,
-      "cooldown": 3,
-      "requirements": {
-        "proficiency": 20
-      },
-      "effect": {
-        "type": "rooted",
-        "duration": 3,
-        "speedReduction": 0.5,
-        "noDodge": true
-      },
-      "icon": "mud_trap",
+      "icon": "🕳️",
       "description": {
-        "ko": "진흙에 발을 묶어 3턴간 회피 불가, 속도 -50%.",
-        "en": "Trap in mud. Cannot dodge, -50% speed for 3 turns."
+        "ko": "진흙에 발을 묶어 회피 불가, 속도 감소.",
+        "en": "Trap in mud. Cannot dodge, reduce speed."
       },
+      "maxLevel": 20,
+      "expPerLevel": 90,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "slowPercent": 40,
+            "noDodge": true,
+            "duration": 3,
+            "mpCost": 18
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "slowPercent": 50,
+            "noDodge": true,
+            "duration": 4,
+            "mpCost": 16
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "slowPercent": 60,
+            "noDodge": true,
+            "duration": 5,
+            "mpCost": 14,
+            "damagePerTurn": 5
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "earth_mastery": 10
+        }
+      },
+      "grantsExpTo": [
+        "earth_mastery"
+      ],
+      "cooldown": 3,
       "element": "earth"
     },
     {
@@ -263,22 +819,61 @@
       "nameEn": "Earth Spike",
       "type": "attack",
       "usageContext": "combat_only",
-      "baseDamage": 40,
-      "mpCost": 20,
-      "cooldown": 2,
-      "requirements": {
-        "proficiency": 35
-      },
-      "effect": {
-        "type": "bleed",
-        "duration": 3,
-        "damagePerTurn": 5
-      },
-      "icon": "earth_spike",
+      "icon": "🗡️",
       "description": {
-        "ko": "땅에서 창이 솟아오른다. 출혈 피해 3턴간.",
-        "en": "Spikes emerge from the ground. Causes bleeding for 3 turns."
+        "ko": "땅에서 창이 솟아오른다. 출혈 피해.",
+        "en": "Spikes emerge from the ground. Causes bleeding."
       },
+      "maxLevel": 25,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 40,
+            "bleedDamage": 5,
+            "bleedDuration": 3,
+            "mpCost": 20
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 50,
+            "bleedDamage": 8,
+            "bleedDuration": 3,
+            "mpCost": 18
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 65,
+            "bleedDamage": 12,
+            "bleedDuration": 4,
+            "mpCost": 16
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "baseDamage": 75,
+            "bleedDamage": 15,
+            "bleedDuration": 4,
+            "mpCost": 14,
+            "piercing": 20
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "earth_mastery": 20
+        }
+      },
+      "grantsExpTo": [
+        "earth_mastery"
+      ],
+      "cooldown": 2,
       "element": "earth"
     },
     {
@@ -287,23 +882,103 @@
       "nameEn": "Petrify",
       "type": "special",
       "usageContext": "combat_only",
-      "baseDamage": 0,
-      "mpCost": 35,
-      "cooldown": 6,
-      "requirements": {
-        "proficiency": 55
-      },
-      "effect": {
-        "type": "petrify",
-        "duration": 3,
-        "damageReduction": 0.8
-      },
-      "icon": "petrify",
+      "icon": "🗿",
       "description": {
-        "ko": "대상을 돌로 만든다. 3턴간 행동 불가, 피해 -80%.",
-        "en": "Turn target to stone. Cannot act for 3 turns, -80% damage taken."
+        "ko": "대상을 돌로 만든다. 행동 불가, 피해 감소.",
+        "en": "Turn target to stone. Cannot act, reduced damage taken."
       },
+      "maxLevel": 15,
+      "expPerLevel": 150,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "petrifyDuration": 2,
+            "damageResist": 70,
+            "mpCost": 35
+          }
+        },
+        {
+          "level": 8,
+          "effects": {
+            "petrifyDuration": 3,
+            "damageResist": 75,
+            "mpCost": 32
+          }
+        },
+        {
+          "level": 15,
+          "effects": {
+            "petrifyDuration": 4,
+            "damageResist": 80,
+            "mpCost": 28,
+            "shatterDamage": 50
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "earth_mastery": 35,
+          "earthquake": 15
+        }
+      },
+      "grantsExpTo": [
+        "earth_mastery"
+      ],
+      "cooldown": 6,
       "element": "earth"
+    },
+    {
+      "id": "fire_mastery",
+      "nameKo": "화염 마법 숙련",
+      "nameEn": "Fire Mastery",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🔥",
+      "description": {
+        "ko": "화염 마법의 위력을 높이는 기본 숙련.",
+        "en": "Basic mastery that increases fire magic power."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "fireDamage": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "fireDamage": 5
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "fireDamage": 12,
+            "mpCostReduction": 5
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "fireDamage": 18,
+            "mpCostReduction": 10
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "fireDamage": 25,
+            "mpCostReduction": 15,
+            "burnChance": 10
+          }
+        }
+      ],
+      "requirements": {},
+      "element": "fire"
     },
     {
       "id": "fireball",
@@ -311,17 +986,53 @@
       "nameEn": "Fireball",
       "type": "attack",
       "usageContext": "combat_only",
-      "baseDamage": 25,
-      "mpCost": 10,
-      "cooldown": 0,
-      "requirements": {
-        "proficiency": 0
-      },
-      "icon": "fireball",
+      "icon": "🔥",
       "description": {
         "ko": "화염 구체를 발사하여 적에게 피해를 입힌다.",
         "en": "Launch a ball of fire at the enemy."
       },
+      "maxLevel": 30,
+      "expPerLevel": 50,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 25,
+            "mpCost": 10
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 32,
+            "mpCost": 10
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 40,
+            "mpCost": 9
+          }
+        },
+        {
+          "level": 30,
+          "effects": {
+            "baseDamage": 50,
+            "mpCost": 8,
+            "burnChance": 15
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "fire_mastery": 1
+        }
+      },
+      "grantsExpTo": [
+        "fire_mastery"
+      ],
+      "cooldown": 0,
       "element": "fire"
     },
     {
@@ -330,17 +1041,53 @@
       "nameEn": "Flame Wave",
       "type": "attack",
       "usageContext": "combat_only",
-      "baseDamage": 35,
-      "mpCost": 18,
-      "cooldown": 2,
-      "requirements": {
-        "proficiency": 20
-      },
-      "icon": "flame_wave",
+      "icon": "🔥",
       "description": {
         "ko": "화염의 파동을 일으켜 넓은 범위를 공격한다.",
         "en": "Create a wave of flames to attack a wide area."
       },
+      "maxLevel": 25,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 35,
+            "mpCost": 18
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 45,
+            "mpCost": 17
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 55,
+            "mpCost": 15
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "baseDamage": 65,
+            "mpCost": 14,
+            "aoeRadius": 1.5
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "fire_mastery": 10
+        }
+      },
+      "grantsExpTo": [
+        "fire_mastery"
+      ],
+      "cooldown": 2,
       "element": "fire"
     },
     {
@@ -349,22 +1096,57 @@
       "nameEn": "Ignite",
       "type": "dot",
       "usageContext": "combat_only",
-      "baseDamage": 8,
-      "mpCost": 12,
-      "cooldown": 0,
-      "requirements": {
-        "proficiency": 15
-      },
-      "effect": {
-        "type": "burn",
-        "duration": 4,
-        "damagePerTurn": 8
-      },
-      "icon": "ignite",
+      "icon": "🔥",
       "description": {
         "ko": "대상에게 불을 붙여 4턴간 지속 피해를 입힌다.",
         "en": "Set the target on fire, dealing damage over 4 turns."
       },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "damagePerTurn": 8,
+            "duration": 4,
+            "mpCost": 12
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "damagePerTurn": 12,
+            "duration": 4,
+            "mpCost": 11
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "damagePerTurn": 16,
+            "duration": 5,
+            "mpCost": 10
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "damagePerTurn": 20,
+            "duration": 5,
+            "mpCost": 9,
+            "spreadChance": 20
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "fire_mastery": 8
+        }
+      },
+      "grantsExpTo": [
+        "fire_mastery"
+      ],
+      "cooldown": 0,
       "element": "fire"
     },
     {
@@ -373,23 +1155,51 @@
       "nameEn": "Fire Shield",
       "type": "buff",
       "usageContext": "both",
-      "baseDamage": 0,
-      "mpCost": 20,
-      "cooldown": 5,
-      "requirements": {
-        "proficiency": 30
-      },
-      "effect": {
-        "type": "fire_shield",
-        "duration": 5,
-        "iceResist": 0.5,
-        "reflectDamage": 10
-      },
-      "icon": "fire_shield",
+      "icon": "🔥",
       "description": {
-        "ko": "화염 방패로 감싸 냉기 피해 -50%, 접촉자에게 10 피해.",
-        "en": "Surround yourself with fire. -50% ice damage, reflect 10 damage."
+        "ko": "화염 방패로 감싸 냉기 피해 감소, 접촉자에게 피해.",
+        "en": "Surround yourself with fire. Reduce ice damage, reflect damage."
       },
+      "maxLevel": 20,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "iceResist": 30,
+            "reflectDamage": 10,
+            "duration": 5,
+            "mpCost": 20
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "iceResist": 40,
+            "reflectDamage": 15,
+            "duration": 6,
+            "mpCost": 18
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "iceResist": 50,
+            "reflectDamage": 25,
+            "duration": 7,
+            "mpCost": 15
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "fire_mastery": 15
+        }
+      },
+      "grantsExpTo": [
+        "fire_mastery"
+      ],
+      "cooldown": 5,
       "element": "fire"
     },
     {
@@ -398,20 +1208,57 @@
       "nameEn": "Meteor",
       "type": "attack",
       "usageContext": "combat_only",
-      "baseDamage": 60,
-      "mpCost": 35,
-      "cooldown": 4,
-      "requirements": {
-        "proficiency": 50
-      },
-      "effect": {
-        "castTime": 2
-      },
-      "icon": "meteor",
+      "icon": "☄️",
       "description": {
-        "ko": "하늘에서 유성을 떨어뜨린다. 2턴 캐스팅 필요.",
-        "en": "Call down a meteor from the sky. Requires 2 turns to cast."
+        "ko": "하늘에서 유성을 떨어뜨린다. 캐스팅 필요.",
+        "en": "Call down a meteor from the sky. Requires casting."
       },
+      "maxLevel": 20,
+      "expPerLevel": 150,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 60,
+            "mpCost": 35,
+            "castTime": 2
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 80,
+            "mpCost": 32,
+            "castTime": 2
+          }
+        },
+        {
+          "level": 15,
+          "effects": {
+            "baseDamage": 100,
+            "mpCost": 30,
+            "castTime": 1
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 120,
+            "mpCost": 28,
+            "castTime": 1,
+            "stunChance": 30
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "fire_mastery": 30
+        }
+      },
+      "grantsExpTo": [
+        "fire_mastery"
+      ],
+      "cooldown": 4,
       "element": "fire"
     },
     {
@@ -420,21 +1267,111 @@
       "nameEn": "Inferno",
       "type": "attack",
       "usageContext": "combat_only",
-      "baseDamage": 80,
-      "mpCost": 45,
-      "cooldown": 5,
-      "requirements": {
-        "proficiency": 70
-      },
-      "effect": {
-        "selfDamage": 20
-      },
-      "icon": "inferno",
+      "icon": "🔥",
       "description": {
-        "ko": "지옥의 화염을 불러온다. 자신도 20 피해를 입는다.",
-        "en": "Summon hellfire. You also take 20 damage."
+        "ko": "지옥의 화염을 불러온다. 자신도 피해를 입는다.",
+        "en": "Summon hellfire. You also take damage."
       },
+      "maxLevel": 15,
+      "expPerLevel": 200,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 80,
+            "selfDamage": 20,
+            "mpCost": 45
+          }
+        },
+        {
+          "level": 5,
+          "effects": {
+            "baseDamage": 100,
+            "selfDamage": 18,
+            "mpCost": 42
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 120,
+            "selfDamage": 15,
+            "mpCost": 40
+          }
+        },
+        {
+          "level": 15,
+          "effects": {
+            "baseDamage": 150,
+            "selfDamage": 10,
+            "mpCost": 35,
+            "aoe": true
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "fire_mastery": 40,
+          "meteor": 10
+        }
+      },
+      "grantsExpTo": [
+        "fire_mastery"
+      ],
+      "cooldown": 5,
       "element": "fire"
+    },
+    {
+      "id": "holy_mastery",
+      "nameKo": "신성 마법 숙련",
+      "nameEn": "Holy Mastery",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "✨",
+      "description": {
+        "ko": "신성 마법의 위력을 높이는 기본 숙련.",
+        "en": "Basic mastery that increases holy magic power."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "holyDamage": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "holyDamage": 5
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "holyDamage": 12,
+            "mpCostReduction": 5
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "holyDamage": 18,
+            "mpCostReduction": 10
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "holyDamage": 25,
+            "mpCostReduction": 15,
+            "healBonus": 10
+          }
+        }
+      ],
+      "requirements": {},
+      "element": "holy"
     },
     {
       "id": "divine_light",
@@ -442,20 +1379,56 @@
       "nameEn": "Divine Light",
       "type": "attack",
       "usageContext": "combat_only",
-      "baseDamage": 30,
-      "mpCost": 12,
-      "cooldown": 0,
-      "requirements": {
-        "proficiency": 0
-      },
-      "effect": {
-        "bonusVsUndead": 0.5
-      },
-      "icon": "divine_light",
+      "icon": "✨",
       "description": {
         "ko": "신성한 빛으로 공격. 언데드에게 +50% 피해.",
         "en": "Attack with divine light. +50% damage vs undead."
       },
+      "maxLevel": 30,
+      "expPerLevel": 50,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 30,
+            "mpCost": 12,
+            "bonusVsUndead": 50
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 38,
+            "mpCost": 11,
+            "bonusVsUndead": 55
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 48,
+            "mpCost": 10,
+            "bonusVsUndead": 60
+          }
+        },
+        {
+          "level": 30,
+          "effects": {
+            "baseDamage": 60,
+            "mpCost": 9,
+            "bonusVsUndead": 70
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "holy_mastery": 1
+        }
+      },
+      "grantsExpTo": [
+        "holy_mastery"
+      ],
+      "cooldown": 0,
       "element": "holy"
     },
     {
@@ -464,21 +1437,52 @@
       "nameEn": "Minor Heal",
       "type": "heal",
       "usageContext": "both",
-      "baseDamage": 0,
-      "mpCost": 12,
-      "cooldown": 0,
-      "requirements": {
-        "proficiency": 0
-      },
-      "effect": {
-        "type": "heal",
-        "healPercent": 20
-      },
-      "icon": "minor_heal",
+      "icon": "💚",
       "description": {
-        "ko": "HP의 20%를 회복한다.",
-        "en": "Restore 20% of max HP."
+        "ko": "HP의 일부를 회복한다.",
+        "en": "Restore some HP."
       },
+      "maxLevel": 30,
+      "expPerLevel": 50,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "healPercent": 20,
+            "mpCost": 12
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "healPercent": 25,
+            "mpCost": 11
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "healPercent": 30,
+            "mpCost": 10
+          }
+        },
+        {
+          "level": 30,
+          "effects": {
+            "healPercent": 35,
+            "mpCost": 9
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "holy_mastery": 1
+        }
+      },
+      "grantsExpTo": [
+        "holy_mastery"
+      ],
+      "cooldown": 0,
       "element": "holy"
     },
     {
@@ -487,20 +1491,57 @@
       "nameEn": "Smite",
       "type": "attack",
       "usageContext": "combat_only",
-      "baseDamage": 45,
-      "mpCost": 18,
-      "cooldown": 2,
-      "requirements": {
-        "proficiency": 20
-      },
-      "effect": {
-        "bonusVsDemon": 0.5
-      },
-      "icon": "smite",
+      "icon": "⚡",
       "description": {
         "ko": "신의 심판을 내린다. 악마에게 +50% 피해.",
         "en": "Bring divine judgment. +50% damage vs demons."
       },
+      "maxLevel": 25,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 45,
+            "mpCost": 18,
+            "bonusVsDemon": 50
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 55,
+            "mpCost": 17,
+            "bonusVsDemon": 55
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 68,
+            "mpCost": 15,
+            "bonusVsDemon": 60
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "baseDamage": 80,
+            "mpCost": 14,
+            "bonusVsDemon": 70,
+            "stunChance": 15
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "holy_mastery": 15
+        }
+      },
+      "grantsExpTo": [
+        "holy_mastery"
+      ],
+      "cooldown": 2,
       "element": "holy"
     },
     {
@@ -509,21 +1550,53 @@
       "nameEn": "Heal",
       "type": "heal",
       "usageContext": "both",
-      "baseDamage": 0,
-      "mpCost": 18,
-      "cooldown": 1,
-      "requirements": {
-        "proficiency": 20
-      },
-      "effect": {
-        "type": "heal",
-        "healPercent": 35
-      },
-      "icon": "heal",
+      "icon": "💚",
       "description": {
-        "ko": "HP의 35%를 회복한다.",
-        "en": "Restore 35% of max HP."
+        "ko": "HP를 상당량 회복한다.",
+        "en": "Restore significant HP."
       },
+      "maxLevel": 25,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "healPercent": 35,
+            "mpCost": 18
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "healPercent": 42,
+            "mpCost": 17
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "healPercent": 50,
+            "mpCost": 15
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "healPercent": 55,
+            "mpCost": 14
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "holy_mastery": 12,
+          "minor_heal": 10
+        }
+      },
+      "grantsExpTo": [
+        "holy_mastery"
+      ],
+      "cooldown": 1,
       "element": "holy"
     },
     {
@@ -532,22 +1605,49 @@
       "nameEn": "Purify",
       "type": "buff",
       "usageContext": "both",
-      "baseDamage": 0,
-      "mpCost": 15,
-      "cooldown": 3,
-      "requirements": {
-        "proficiency": 25,
-        "piety": 2
-      },
-      "effect": {
-        "type": "cleanse",
-        "removeDebuffs": true
-      },
-      "icon": "purify",
+      "icon": "🌟",
       "description": {
         "ko": "모든 디버프를 제거한다.",
         "en": "Remove all debuffs."
       },
+      "maxLevel": 20,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "removeDebuffs": true,
+            "mpCost": 15
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "removeDebuffs": true,
+            "mpCost": 13,
+            "debuffImmunity": 1
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "removeDebuffs": true,
+            "mpCost": 11,
+            "debuffImmunity": 2,
+            "healPercent": 10
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "holy_mastery": 18
+        },
+        "piety": 2
+      },
+      "grantsExpTo": [
+        "holy_mastery"
+      ],
+      "cooldown": 3,
       "element": "holy"
     },
     {
@@ -556,22 +1656,49 @@
       "nameEn": "Regeneration",
       "type": "buff",
       "usageContext": "both",
-      "baseDamage": 0,
-      "mpCost": 20,
-      "cooldown": 4,
-      "requirements": {
-        "proficiency": 30
-      },
-      "effect": {
-        "type": "regen",
-        "duration": 5,
-        "healPercentPerTurn": 8
-      },
-      "icon": "regeneration",
+      "icon": "💫",
       "description": {
-        "ko": "5턴간 매턴 HP의 8%를 회복한다.",
-        "en": "Restore 8% of max HP per turn for 5 turns."
+        "ko": "매턴 HP를 회복한다.",
+        "en": "Restore HP each turn."
       },
+      "maxLevel": 20,
+      "expPerLevel": 90,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "healPercentPerTurn": 6,
+            "duration": 4,
+            "mpCost": 20
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "healPercentPerTurn": 8,
+            "duration": 5,
+            "mpCost": 18
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "healPercentPerTurn": 10,
+            "duration": 6,
+            "mpCost": 15
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "holy_mastery": 20,
+          "heal": 10
+        }
+      },
+      "grantsExpTo": [
+        "holy_mastery"
+      ],
+      "cooldown": 4,
       "element": "holy"
     },
     {
@@ -580,23 +1707,50 @@
       "nameEn": "Sacred Shield",
       "type": "buff",
       "usageContext": "both",
-      "baseDamage": 0,
-      "mpCost": 25,
-      "cooldown": 5,
+      "icon": "🛡️",
+      "description": {
+        "ko": "성스러운 방패로 암흑 피해 감소.",
+        "en": "Create a sacred shield. Reduce dark damage."
+      },
+      "maxLevel": 20,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "darkResist": 40,
+            "duration": 4,
+            "mpCost": 25
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "darkResist": 50,
+            "duration": 5,
+            "mpCost": 23
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "darkResist": 60,
+            "duration": 6,
+            "mpCost": 20,
+            "damageReflect": 10
+          }
+        }
+      ],
       "requirements": {
-        "proficiency": 35,
+        "skills": {
+          "holy_mastery": 25
+        },
         "piety": 2
       },
-      "effect": {
-        "type": "sacred_shield",
-        "duration": 5,
-        "darkResist": 0.5
-      },
-      "icon": "sacred_shield",
-      "description": {
-        "ko": "성스러운 방패로 5턴간 암흑 피해 -50%.",
-        "en": "Create a sacred shield. -50% dark damage for 5 turns."
-      },
+      "grantsExpTo": [
+        "holy_mastery"
+      ],
+      "cooldown": 5,
       "element": "holy"
     },
     {
@@ -605,45 +1759,47 @@
       "nameEn": "Healing Prayer",
       "type": "heal",
       "usageContext": "both",
-      "baseDamage": 0,
-      "mpCost": 25,
+      "icon": "🙏",
+      "description": {
+        "ko": "HP를 대량 회복한다.",
+        "en": "Restore a large amount of HP."
+      },
+      "maxLevel": 20,
+      "expPerLevel": 120,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "healPercent": 50,
+            "mpCost": 25
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "healPercent": 60,
+            "mpCost": 23
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "healPercent": 70,
+            "mpCost": 20,
+            "removeDebuffs": true
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "holy_mastery": 30,
+          "heal": 15
+        }
+      },
+      "grantsExpTo": [
+        "holy_mastery"
+      ],
       "cooldown": 2,
-      "requirements": {
-        "proficiency": 40
-      },
-      "effect": {
-        "type": "heal",
-        "healPercent": 50
-      },
-      "icon": "healing_prayer",
-      "description": {
-        "ko": "HP의 50%를 회복한다.",
-        "en": "Restore 50% of max HP."
-      },
-      "element": "holy"
-    },
-    {
-      "id": "exorcism",
-      "nameKo": "퇴마",
-      "nameEn": "Exorcism",
-      "type": "special",
-      "usageContext": "combat_only",
-      "baseDamage": 0,
-      "mpCost": 40,
-      "cooldown": 8,
-      "requirements": {
-        "proficiency": 60,
-        "piety": 4
-      },
-      "effect": {
-        "type": "instant_kill_evil",
-        "levelDiffRequired": 5
-      },
-      "icon": "exorcism",
-      "description": {
-        "ko": "언데드/악마 즉사. 레벨 5 이상 차이 필요.",
-        "en": "Instantly destroy undead/demons. Requires 5+ level difference."
-      },
       "element": "holy"
     },
     {
@@ -652,23 +1808,103 @@
       "nameEn": "Mass Heal",
       "type": "heal",
       "usageContext": "both",
-      "baseDamage": 0,
-      "mpCost": 40,
-      "cooldown": 5,
+      "icon": "💖",
+      "description": {
+        "ko": "파티 전체의 HP를 회복한다.",
+        "en": "Restore HP to all party members."
+      },
+      "maxLevel": 15,
+      "expPerLevel": 150,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "healPercent": 25,
+            "aoe": true,
+            "mpCost": 40
+          }
+        },
+        {
+          "level": 8,
+          "effects": {
+            "healPercent": 32,
+            "aoe": true,
+            "mpCost": 37
+          }
+        },
+        {
+          "level": 15,
+          "effects": {
+            "healPercent": 40,
+            "aoe": true,
+            "mpCost": 32
+          }
+        }
+      ],
       "requirements": {
-        "proficiency": 60,
+        "skills": {
+          "holy_mastery": 40,
+          "healing_prayer": 10
+        },
         "piety": 3
       },
-      "effect": {
-        "type": "heal",
-        "healPercent": 25,
-        "aoe": true
-      },
-      "icon": "mass_heal",
+      "grantsExpTo": [
+        "holy_mastery"
+      ],
+      "cooldown": 5,
+      "element": "holy"
+    },
+    {
+      "id": "exorcism",
+      "nameKo": "퇴마",
+      "nameEn": "Exorcism",
+      "type": "special",
+      "usageContext": "combat_only",
+      "icon": "✝️",
       "description": {
-        "ko": "파티 전체의 HP 25%를 회복한다.",
-        "en": "Restore 25% of max HP to all party members."
+        "ko": "언데드/악마 즉사. 레벨 차이 필요.",
+        "en": "Instantly destroy undead/demons. Level difference required."
       },
+      "maxLevel": 10,
+      "expPerLevel": 200,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "instantKillEvil": true,
+            "levelDiffRequired": 8,
+            "mpCost": 40
+          }
+        },
+        {
+          "level": 5,
+          "effects": {
+            "instantKillEvil": true,
+            "levelDiffRequired": 5,
+            "mpCost": 37
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "instantKillEvil": true,
+            "levelDiffRequired": 3,
+            "mpCost": 32,
+            "damageOnFail": 50
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "holy_mastery": 45,
+          "smite": 15
+        },
+        "piety": 4
+      },
+      "grantsExpTo": [
+        "holy_mastery"
+      ],
+      "cooldown": 8,
       "element": "holy"
     },
     {
@@ -677,22 +1913,51 @@
       "nameEn": "Divine Intervention",
       "type": "special",
       "usageContext": "both",
-      "baseDamage": 0,
-      "mpCost": 50,
-      "cooldown": 0,
+      "icon": "👼",
+      "description": {
+        "ko": "치명상을 1회 회피. 하루 제한.",
+        "en": "Avoid fatal damage once. Limited per day."
+      },
+      "maxLevel": 5,
+      "expPerLevel": 500,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "deathSave": true,
+            "dailyLimit": 1,
+            "mpCost": 50
+          }
+        },
+        {
+          "level": 3,
+          "effects": {
+            "deathSave": true,
+            "dailyLimit": 1,
+            "mpCost": 45,
+            "healOnSave": 10
+          }
+        },
+        {
+          "level": 5,
+          "effects": {
+            "deathSave": true,
+            "dailyLimit": 2,
+            "mpCost": 40,
+            "healOnSave": 25
+          }
+        }
+      ],
       "requirements": {
-        "proficiency": 80,
+        "skills": {
+          "holy_mastery": 50
+        },
         "piety": 5
       },
-      "effect": {
-        "type": "death_save",
-        "dailyLimit": 1
-      },
-      "icon": "divine_intervention",
-      "description": {
-        "ko": "치명상을 1회 회피. 하루 1회 제한.",
-        "en": "Avoid fatal damage once. Limited to once per day."
-      },
+      "grantsExpTo": [
+        "holy_mastery"
+      ],
+      "cooldown": 0,
       "element": "holy"
     },
     {
@@ -701,24 +1966,104 @@
       "nameEn": "Divine Heal",
       "type": "heal",
       "usageContext": "both",
-      "baseDamage": 0,
-      "mpCost": 60,
-      "cooldown": 8,
-      "requirements": {
-        "proficiency": 80,
-        "piety": 4,
-        "religion": "solara"
-      },
-      "effect": {
-        "type": "heal",
-        "healPercent": 100
-      },
-      "icon": "divine_heal",
+      "icon": "💛",
       "description": {
         "ko": "HP를 완전히 회복한다. 솔라라 신도 전용.",
         "en": "Fully restore HP. Solara followers only."
       },
+      "maxLevel": 5,
+      "expPerLevel": 500,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "healPercent": 100,
+            "mpCost": 60
+          }
+        },
+        {
+          "level": 3,
+          "effects": {
+            "healPercent": 100,
+            "mpCost": 55,
+            "removeDebuffs": true
+          }
+        },
+        {
+          "level": 5,
+          "effects": {
+            "healPercent": 100,
+            "mpCost": 50,
+            "removeDebuffs": true,
+            "buffDuration": 3
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "holy_mastery": 50,
+          "healing_prayer": 15
+        },
+        "piety": 4,
+        "religion": "solara"
+      },
+      "grantsExpTo": [
+        "holy_mastery"
+      ],
+      "cooldown": 8,
       "element": "holy"
+    },
+    {
+      "id": "ice_mastery",
+      "nameKo": "냉기 마법 숙련",
+      "nameEn": "Ice Mastery",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "❄️",
+      "description": {
+        "ko": "냉기 마법의 위력을 높이는 기본 숙련.",
+        "en": "Basic mastery that increases ice magic power."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "iceDamage": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "iceDamage": 5
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "iceDamage": 12,
+            "mpCostReduction": 5
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "iceDamage": 18,
+            "mpCostReduction": 10
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "iceDamage": 25,
+            "mpCostReduction": 15,
+            "freezeChance": 10
+          }
+        }
+      ],
+      "requirements": {},
+      "element": "ice"
     },
     {
       "id": "ice_spike",
@@ -726,17 +2071,53 @@
       "nameEn": "Ice Spike",
       "type": "attack",
       "usageContext": "combat_only",
-      "baseDamage": 25,
-      "mpCost": 10,
-      "cooldown": 0,
-      "requirements": {
-        "proficiency": 0
-      },
-      "icon": "ice_spike",
+      "icon": "❄️",
       "description": {
         "ko": "날카로운 얼음 창을 발사한다.",
         "en": "Launch a sharp ice spike at the enemy."
       },
+      "maxLevel": 30,
+      "expPerLevel": 50,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 25,
+            "mpCost": 10
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 32,
+            "mpCost": 10
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 40,
+            "mpCost": 9
+          }
+        },
+        {
+          "level": 30,
+          "effects": {
+            "baseDamage": 50,
+            "mpCost": 8,
+            "freezeChance": 10
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "ice_mastery": 1
+        }
+      },
+      "grantsExpTo": [
+        "ice_mastery"
+      ],
+      "cooldown": 0,
       "element": "ice"
     },
     {
@@ -745,22 +2126,61 @@
       "nameEn": "Frost Nova",
       "type": "attack",
       "usageContext": "combat_only",
-      "baseDamage": 20,
-      "mpCost": 15,
-      "cooldown": 2,
-      "requirements": {
-        "proficiency": 20
-      },
-      "effect": {
-        "type": "slow",
-        "duration": 2,
-        "speedReduction": 0.3
-      },
-      "icon": "frost_nova",
+      "icon": "❄️",
       "description": {
-        "ko": "서리 폭발로 적을 공격하고 2턴간 속도를 감소시킨다.",
-        "en": "Blast enemies with frost, slowing them for 2 turns."
+        "ko": "서리 폭발로 적을 공격하고 속도를 감소시킨다.",
+        "en": "Blast enemies with frost, slowing them."
       },
+      "maxLevel": 25,
+      "expPerLevel": 70,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 20,
+            "slowPercent": 20,
+            "duration": 2,
+            "mpCost": 15
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 28,
+            "slowPercent": 25,
+            "duration": 2,
+            "mpCost": 14
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 38,
+            "slowPercent": 30,
+            "duration": 3,
+            "mpCost": 13
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "baseDamage": 45,
+            "slowPercent": 35,
+            "duration": 3,
+            "mpCost": 12,
+            "aoe": true
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "ice_mastery": 10
+        }
+      },
+      "grantsExpTo": [
+        "ice_mastery"
+      ],
+      "cooldown": 2,
       "element": "ice"
     },
     {
@@ -769,23 +2189,52 @@
       "nameEn": "Blizzard",
       "type": "dot",
       "usageContext": "combat_only",
-      "baseDamage": 12,
-      "mpCost": 25,
-      "cooldown": 3,
-      "requirements": {
-        "proficiency": 35
-      },
-      "effect": {
-        "type": "blizzard",
-        "duration": 5,
-        "damagePerTurn": 12,
-        "speedReduction": 0.2
-      },
-      "icon": "blizzard",
+      "icon": "🌨️",
       "description": {
-        "ko": "눈보라를 일으켜 5턴간 피해와 속도 감소를 입힌다.",
-        "en": "Create a blizzard dealing damage and slowing for 5 turns."
+        "ko": "눈보라를 일으켜 지속 피해와 속도 감소를 입힌다.",
+        "en": "Create a blizzard dealing damage and slowing."
       },
+      "maxLevel": 20,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "damagePerTurn": 12,
+            "slowPercent": 20,
+            "duration": 5,
+            "mpCost": 25
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "damagePerTurn": 18,
+            "slowPercent": 25,
+            "duration": 5,
+            "mpCost": 23
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "damagePerTurn": 25,
+            "slowPercent": 35,
+            "duration": 6,
+            "mpCost": 20,
+            "freezeChance": 15
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "ice_mastery": 20
+        }
+      },
+      "grantsExpTo": [
+        "ice_mastery"
+      ],
+      "cooldown": 3,
       "element": "ice"
     },
     {
@@ -794,23 +2243,52 @@
       "nameEn": "Ice Armor",
       "type": "buff",
       "usageContext": "both",
-      "baseDamage": 0,
-      "mpCost": 18,
-      "cooldown": 5,
-      "requirements": {
-        "proficiency": 25
-      },
-      "effect": {
-        "type": "ice_armor",
-        "duration": 5,
-        "defenseBonus": 0.3,
-        "fireResist": 0.5
-      },
-      "icon": "ice_armor",
+      "icon": "🛡️",
       "description": {
-        "ko": "얼음 갑옷으로 방어력 +30%, 화염 피해 -50%.",
-        "en": "Create ice armor. +30% defense, -50% fire damage taken."
+        "ko": "얼음 갑옷으로 방어력 증가, 화염 피해 감소.",
+        "en": "Create ice armor. Increase defense, reduce fire damage."
       },
+      "maxLevel": 20,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "defenseBonus": 20,
+            "fireResist": 30,
+            "duration": 5,
+            "mpCost": 18
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "defenseBonus": 30,
+            "fireResist": 40,
+            "duration": 6,
+            "mpCost": 16
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "defenseBonus": 40,
+            "fireResist": 50,
+            "duration": 7,
+            "mpCost": 14,
+            "reflectDamage": 10
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "ice_mastery": 15
+        }
+      },
+      "grantsExpTo": [
+        "ice_mastery"
+      ],
+      "cooldown": 5,
       "element": "ice"
     },
     {
@@ -819,22 +2297,49 @@
       "nameEn": "Glacial Spike",
       "type": "attack",
       "usageContext": "combat_only",
-      "baseDamage": 45,
-      "mpCost": 22,
-      "cooldown": 2,
-      "requirements": {
-        "proficiency": 45
-      },
-      "effect": {
-        "type": "freeze",
-        "chance": 0.2,
-        "duration": 1
-      },
-      "icon": "glacial_spike",
+      "icon": "🏔️",
       "description": {
-        "ko": "거대한 빙하 창으로 공격. 20% 확률로 동결.",
-        "en": "Attack with a glacial spike. 20% chance to freeze."
+        "ko": "거대한 빙하 창으로 공격. 동결 확률.",
+        "en": "Attack with a glacial spike. Chance to freeze."
       },
+      "maxLevel": 20,
+      "expPerLevel": 120,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 45,
+            "freezeChance": 15,
+            "mpCost": 22
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 60,
+            "freezeChance": 20,
+            "mpCost": 20
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 80,
+            "freezeChance": 30,
+            "freezeDuration": 2,
+            "mpCost": 18
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "ice_mastery": 25
+        }
+      },
+      "grantsExpTo": [
+        "ice_mastery"
+      ],
+      "cooldown": 2,
       "element": "ice"
     },
     {
@@ -843,23 +2348,103 @@
       "nameEn": "Absolute Zero",
       "type": "special",
       "usageContext": "combat_only",
-      "baseDamage": 30,
-      "mpCost": 40,
-      "cooldown": 6,
-      "requirements": {
-        "proficiency": 70
-      },
-      "effect": {
-        "type": "instant_kill",
-        "chance": 0.5,
-        "failDamage": 30
-      },
-      "icon": "absolute_zero",
+      "icon": "💠",
       "description": {
-        "ko": "50% 확률로 즉사. 실패 시 30 피해.",
-        "en": "50% chance to instantly kill. Deal 30 damage on failure."
+        "ko": "즉사 확률. 실패 시 피해.",
+        "en": "Chance to instantly kill. Deal damage on failure."
       },
+      "maxLevel": 10,
+      "expPerLevel": 300,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "instantKillChance": 30,
+            "failDamage": 30,
+            "mpCost": 40
+          }
+        },
+        {
+          "level": 5,
+          "effects": {
+            "instantKillChance": 40,
+            "failDamage": 45,
+            "mpCost": 38
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "instantKillChance": 50,
+            "failDamage": 60,
+            "mpCost": 35,
+            "freezeOnFail": true
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "ice_mastery": 40,
+          "glacial_spike": 15
+        }
+      },
+      "grantsExpTo": [
+        "ice_mastery"
+      ],
+      "cooldown": 6,
       "element": "ice"
+    },
+    {
+      "id": "lightning_mastery",
+      "nameKo": "번개 마법 숙련",
+      "nameEn": "Lightning Mastery",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "⚡",
+      "description": {
+        "ko": "번개 마법의 위력을 높이는 기본 숙련.",
+        "en": "Basic mastery that increases lightning magic power."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "lightningDamage": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "lightningDamage": 5
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "lightningDamage": 12,
+            "mpCostReduction": 5
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "lightningDamage": 18,
+            "mpCostReduction": 10
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "lightningDamage": 25,
+            "mpCostReduction": 15,
+            "stunChance": 10
+          }
+        }
+      ],
+      "requirements": {},
+      "element": "lightning"
     },
     {
       "id": "lightning_bolt",
@@ -867,17 +2452,53 @@
       "nameEn": "Lightning Bolt",
       "type": "attack",
       "usageContext": "combat_only",
-      "baseDamage": 25,
-      "mpCost": 10,
-      "cooldown": 0,
-      "requirements": {
-        "proficiency": 0
-      },
-      "icon": "lightning_bolt",
+      "icon": "⚡",
       "description": {
         "ko": "번개를 내리쳐 적을 공격한다.",
         "en": "Strike the enemy with lightning."
       },
+      "maxLevel": 30,
+      "expPerLevel": 50,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 25,
+            "mpCost": 10
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 32,
+            "mpCost": 10
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 40,
+            "mpCost": 9
+          }
+        },
+        {
+          "level": 30,
+          "effects": {
+            "baseDamage": 50,
+            "mpCost": 8,
+            "stunChance": 15
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "lightning_mastery": 1
+        }
+      },
+      "grantsExpTo": [
+        "lightning_mastery"
+      ],
+      "cooldown": 0,
       "element": "lightning"
     },
     {
@@ -886,21 +2507,57 @@
       "nameEn": "Chain Lightning",
       "type": "attack",
       "usageContext": "combat_only",
-      "baseDamage": 20,
-      "mpCost": 20,
-      "cooldown": 2,
-      "requirements": {
-        "proficiency": 25
-      },
-      "effect": {
-        "type": "chain",
-        "targets": 3
-      },
-      "icon": "chain_lightning",
+      "icon": "⚡",
       "description": {
-        "ko": "연쇄 번개가 최대 3명의 적에게 튕긴다.",
-        "en": "Lightning that chains to up to 3 targets."
+        "ko": "연쇄 번개가 여러 적에게 튕긴다.",
+        "en": "Lightning that chains to multiple targets."
       },
+      "maxLevel": 25,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 20,
+            "chainTargets": 2,
+            "mpCost": 20
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 28,
+            "chainTargets": 3,
+            "mpCost": 19
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 35,
+            "chainTargets": 4,
+            "mpCost": 17
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "baseDamage": 40,
+            "chainTargets": 5,
+            "mpCost": 15,
+            "chainDamageRetain": 80
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "lightning_mastery": 12
+        }
+      },
+      "grantsExpTo": [
+        "lightning_mastery"
+      ],
+      "cooldown": 2,
       "element": "lightning"
     },
     {
@@ -909,22 +2566,60 @@
       "nameEn": "Thunder Shock",
       "type": "attack",
       "usageContext": "combat_only",
-      "baseDamage": 30,
-      "mpCost": 18,
-      "cooldown": 2,
-      "requirements": {
-        "proficiency": 30
-      },
-      "effect": {
-        "type": "stun",
-        "chance": 0.3,
-        "duration": 1
-      },
-      "icon": "thunder_shock",
+      "icon": "⚡",
       "description": {
-        "ko": "천둥으로 충격을 주어 30% 확률로 기절시킨다.",
-        "en": "Shock with thunder. 30% chance to stun for 1 turn."
+        "ko": "천둥으로 충격을 주어 기절시킨다.",
+        "en": "Shock with thunder. Chance to stun."
       },
+      "maxLevel": 25,
+      "expPerLevel": 70,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 30,
+            "stunChance": 25,
+            "stunDuration": 1,
+            "mpCost": 18
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 40,
+            "stunChance": 30,
+            "stunDuration": 1,
+            "mpCost": 17
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 50,
+            "stunChance": 40,
+            "stunDuration": 1,
+            "mpCost": 15
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "baseDamage": 55,
+            "stunChance": 50,
+            "stunDuration": 2,
+            "mpCost": 14
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "lightning_mastery": 15
+        }
+      },
+      "grantsExpTo": [
+        "lightning_mastery"
+      ],
+      "cooldown": 2,
       "element": "lightning"
     },
     {
@@ -933,22 +2628,49 @@
       "nameEn": "Static Field",
       "type": "debuff",
       "usageContext": "combat_only",
-      "baseDamage": 0,
-      "mpCost": 15,
-      "cooldown": 3,
-      "requirements": {
-        "proficiency": 20
-      },
-      "effect": {
-        "type": "static",
-        "duration": 5,
-        "damageBonus": 0.25
-      },
-      "icon": "static_field",
+      "icon": "⚡",
       "description": {
-        "ko": "정전기장을 펼쳐 5턴간 피해를 +25% 증가.",
-        "en": "Create a static field increasing damage taken by 25% for 5 turns."
+        "ko": "정전기장을 펼쳐 피해를 증가시킨다.",
+        "en": "Create a static field increasing damage taken."
       },
+      "maxLevel": 20,
+      "expPerLevel": 90,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "damageAmplify": 15,
+            "duration": 4,
+            "mpCost": 15
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "damageAmplify": 20,
+            "duration": 5,
+            "mpCost": 14
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "damageAmplify": 30,
+            "duration": 6,
+            "mpCost": 12,
+            "aoe": true
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "lightning_mastery": 10
+        }
+      },
+      "grantsExpTo": [
+        "lightning_mastery"
+      ],
+      "cooldown": 3,
       "element": "lightning"
     },
     {
@@ -957,22 +2679,49 @@
       "nameEn": "Storm Call",
       "type": "buff",
       "usageContext": "both",
-      "baseDamage": 0,
-      "mpCost": 25,
-      "cooldown": 5,
-      "requirements": {
-        "proficiency": 40
-      },
-      "effect": {
-        "type": "storm_power",
-        "duration": 5,
-        "lightningBonus": 0.4
-      },
-      "icon": "storm_call",
+      "icon": "🌩️",
       "description": {
-        "ko": "폭풍의 힘을 불러 5턴간 번개 데미지 +40%.",
-        "en": "Call the power of storms. +40% lightning damage for 5 turns."
+        "ko": "폭풍의 힘을 불러 번개 데미지 증가.",
+        "en": "Call the power of storms. Increase lightning damage."
       },
+      "maxLevel": 20,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "lightningBonus": 30,
+            "duration": 5,
+            "mpCost": 25
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "lightningBonus": 40,
+            "duration": 6,
+            "mpCost": 23
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "lightningBonus": 50,
+            "duration": 7,
+            "mpCost": 20,
+            "castSpeedBonus": 20
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "lightning_mastery": 20
+        }
+      },
+      "grantsExpTo": [
+        "lightning_mastery"
+      ],
+      "cooldown": 5,
       "element": "lightning"
     },
     {
@@ -981,43 +2730,75 @@
       "nameEn": "Thunderstrike",
       "type": "attack",
       "usageContext": "combat_only",
-      "baseDamage": 70,
-      "mpCost": 40,
-      "cooldown": 4,
-      "requirements": {
-        "proficiency": 60
-      },
-      "effect": {
-        "ignoreDefense": true
-      },
-      "icon": "thunderstrike",
+      "icon": "⚡",
       "description": {
         "ko": "하늘에서 낙뢰를 떨어뜨린다. 방어력 무시.",
         "en": "Call down a thunderstrike. Ignores defense."
       },
+      "maxLevel": 15,
+      "expPerLevel": 150,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 70,
+            "ignoreDefense": true,
+            "mpCost": 40
+          }
+        },
+        {
+          "level": 8,
+          "effects": {
+            "baseDamage": 90,
+            "ignoreDefense": true,
+            "mpCost": 37
+          }
+        },
+        {
+          "level": 15,
+          "effects": {
+            "baseDamage": 120,
+            "ignoreDefense": true,
+            "mpCost": 32,
+            "stunChance": 40
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "lightning_mastery": 35,
+          "thunder_shock": 15
+        }
+      },
+      "grantsExpTo": [
+        "lightning_mastery"
+      ],
+      "cooldown": 4,
       "element": "lightning"
     }
   ],
   "summary": {
-    "total": 43,
+    "total": 51,
     "byElement": {
-      "dark": 7,
-      "earth": 6,
-      "fire": 6,
-      "holy": 12,
-      "ice": 6,
-      "lightning": 6
+      "dark": 10,
+      "earth": 7,
+      "fire": 7,
+      "holy": 13,
+      "ice": 7,
+      "lightning": 7
     },
     "byType": {
+      "passive": 6,
       "attack": 20,
       "debuff": 4,
       "dot": 3,
+      "special": 6,
       "buff": 7,
-      "special": 4,
       "heal": 5
     },
     "byUsageContext": {
-      "combat_only": 30,
+      "passive": 6,
+      "combat_only": 32,
       "both": 13
     }
   }

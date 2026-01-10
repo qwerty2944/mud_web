@@ -1,0 +1,51 @@
+{
+  "category": "common",
+  "nameKo": "기본",
+  "nameEn": "Common",
+  "icon": "👊",
+  "description": "모든 모험가가 기본적으로 알고 있는 기술",
+  "relatedStats": ["str", "dex"],
+  "skills": [
+    {
+      "id": "basic_attack",
+      "nameKo": "기본 공격",
+      "nameEn": "Basic Attack",
+      "type": "attack",
+      "attackType": "melee_physical",
+      "usageContext": "combat_only",
+      "icon": "👊",
+      "description": {
+        "ko": "무기나 맨손으로 적을 공격합니다.",
+        "en": "Attack the enemy with your weapon or bare hands."
+      },
+      "maxLevel": 10,
+      "expPerLevel": 50,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 10,
+            "apCost": 3
+          }
+        },
+        {
+          "level": 5,
+          "effects": {
+            "baseDamage": 15,
+            "apCost": 3
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 20,
+            "apCost": 2
+          }
+        }
+      ],
+      "requirements": {},
+      "grantsExpTo": [],
+      "cooldown": 0
+    }
+  ]
+}

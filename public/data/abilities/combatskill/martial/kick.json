@@ -4,124 +4,438 @@
   "nameEn": "Kick",
   "icon": "🦶",
   "description": "발을 사용하는 각술 기술",
-  "relatedStats": ["str", "dex"],
+  "relatedStats": [
+    "str",
+    "dex"
+  ],
   "skills": [
+    {
+      "id": "kick_mastery",
+      "nameKo": "각술 숙련",
+      "nameEn": "Kick Mastery",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "📖",
+      "description": {
+        "ko": "각술의 기본기를 익혀 관련 기술의 위력과 효과를 높인다.",
+        "en": "Master the fundamentals to increase power and effectiveness of related skills."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "damageBonus": 0,
+            "costReduction": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "damageBonus": 5,
+            "costReduction": 2
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "damageBonus": 12,
+            "costReduction": 5
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "damageBonus": 20,
+            "costReduction": 8
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "damageBonus": 30,
+            "costReduction": 12
+          }
+        }
+      ],
+      "requirements": {}
+    },
     {
       "id": "kick",
       "nameKo": "발차기",
       "nameEn": "Kick",
-      "description": "발로 적을 차는 기본 공격입니다.",
-      "type": "martial_attack",
+      "type": "attack",
       "usageContext": "combat_only",
       "icon": "🦶",
-      "apCost": 0,
-      "baseDamage": 14,
-      "target": "enemy",
-      "requirements": { "proficiency": 0 }
+      "description": {
+        "ko": "발로 적을 차는 기본 공격입니다.",
+        "en": "발로 적을 차는 기본 공격입니다."
+      },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 14,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 18,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 22,
+            "apCost": 4
+          }
+        }
+      ],
+      "requirements": {},
+      "grantsExpTo": [
+        "kick_mastery"
+      ],
+      "cooldown": 0,
+      "attackType": "melee_physical"
     },
     {
       "id": "low_kick",
       "nameKo": "로우킥",
       "nameEn": "Low Kick",
-      "description": "다리를 노려 2턴간 적의 속도를 20% 감소시킵니다.",
-      "type": "martial_attack",
+      "type": "attack",
       "usageContext": "combat_only",
       "icon": "🦵",
-      "apCost": 5,
-      "baseDamage": 12,
-      "statusEffect": "slow",
-      "statusDuration": 2,
-      "statusValue": 20,
-      "target": "enemy",
-      "requirements": { "proficiency": 10 }
+      "description": {
+        "ko": "다리를 노려 2턴간 적의 속도를 20% 감소시킵니다.",
+        "en": "다리를 노려 2턴간 적의 속도를 20% 감소시킵니다."
+      },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 12,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 15,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 19,
+            "apCost": 4,
+            "slowChance": 20
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "kick_mastery": 1
+        }
+      },
+      "grantsExpTo": [
+        "kick_mastery"
+      ],
+      "cooldown": 0,
+      "attackType": "melee_physical"
     },
     {
       "id": "side_kick",
       "nameKo": "옆차기",
       "nameEn": "Side Kick",
-      "description": "옆으로 강하게 차서 적을 밀쳐냅니다.",
-      "type": "martial_attack",
+      "type": "attack",
       "usageContext": "combat_only",
       "icon": "➡️",
-      "apCost": 6,
-      "baseDamage": 16,
-      "statusEffect": "knockback",
-      "statusDuration": 1,
-      "target": "enemy",
-      "requirements": { "proficiency": 15 }
+      "description": {
+        "ko": "옆으로 강하게 차서 적을 밀쳐냅니다.",
+        "en": "옆으로 강하게 차서 적을 밀쳐냅니다."
+      },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 16,
+            "apCost": 6
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 20,
+            "apCost": 6
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 25,
+            "apCost": 5,
+            "knockbackChance": 20
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "kick_mastery": 2
+        }
+      },
+      "grantsExpTo": [
+        "kick_mastery"
+      ],
+      "cooldown": 0,
+      "attackType": "melee_physical"
     },
     {
       "id": "roundhouse",
       "nameKo": "돌려차기",
       "nameEn": "Roundhouse",
-      "description": "몸을 회전하며 강력한 발차기를 날립니다.",
-      "type": "martial_attack",
+      "type": "attack",
       "usageContext": "combat_only",
       "icon": "🌀",
-      "apCost": 8,
-      "baseDamage": 22,
-      "target": "enemy",
-      "requirements": { "proficiency": 25 }
+      "description": {
+        "ko": "몸을 회전하며 강력한 발차기를 날립니다.",
+        "en": "몸을 회전하며 강력한 발차기를 날립니다."
+      },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 22,
+            "apCost": 8
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 28,
+            "apCost": 8
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 35,
+            "apCost": 7
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "kick_mastery": 3
+        }
+      },
+      "grantsExpTo": [
+        "kick_mastery"
+      ],
+      "cooldown": 0,
+      "attackType": "melee_physical"
     },
     {
       "id": "axe_kick",
       "nameKo": "내려차기",
       "nameEn": "Axe Kick",
-      "description": "높이 들어 내려찍어 25% 확률로 기절시킵니다.",
-      "type": "martial_attack",
+      "type": "attack",
       "usageContext": "combat_only",
       "icon": "⬇️",
-      "apCost": 10,
-      "baseDamage": 24,
-      "statusEffect": "stun",
-      "statusChance": 25,
-      "statusDuration": 1,
-      "target": "enemy",
-      "requirements": { "proficiency": 35 }
+      "description": {
+        "ko": "높이 들어 내려찍어 25% 확률로 기절시킵니다.",
+        "en": "높이 들어 내려찍어 25% 확률로 기절시킵니다."
+      },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 24,
+            "apCost": 10
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 31,
+            "apCost": 10
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 38,
+            "apCost": 9,
+            "stunChance": 25
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "kick_mastery": 4
+        }
+      },
+      "grantsExpTo": [
+        "kick_mastery"
+      ],
+      "cooldown": 0,
+      "attackType": "melee_physical"
     },
     {
       "id": "spinning_kick",
       "nameKo": "회전차기",
       "nameEn": "Spinning Kick",
-      "description": "연속 회전하며 2~3회 발차기를 가합니다.",
-      "type": "martial_attack",
+      "type": "attack",
       "usageContext": "combat_only",
       "icon": "💨",
-      "apCost": 12,
-      "baseDamage": 12,
-      "hitCount": [2, 3],
-      "target": "enemy",
-      "requirements": { "proficiency": 45 }
+      "description": {
+        "ko": "연속 회전하며 2~3회 발차기를 가합니다.",
+        "en": "연속 회전하며 2~3회 발차기를 가합니다."
+      },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 12,
+            "apCost": 12
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 15,
+            "apCost": 12
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 19,
+            "apCost": 11
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "kick_mastery": 5
+        }
+      },
+      "grantsExpTo": [
+        "kick_mastery"
+      ],
+      "cooldown": 0,
+      "attackType": "melee_physical"
     },
     {
       "id": "flying_kick",
       "nameKo": "날아차기",
       "nameEn": "Flying Kick",
-      "description": "도약하여 강력한 발차기를 날립니다. 선공 효과.",
-      "type": "martial_attack",
+      "type": "attack",
       "usageContext": "combat_only",
       "icon": "🦅",
-      "apCost": 15,
-      "baseDamage": 30,
-      "statusEffect": "initiative_up",
-      "statusDuration": 1,
-      "statusValue": 50,
-      "target": "enemy",
-      "requirements": { "proficiency": 55 }
+      "description": {
+        "ko": "도약하여 강력한 발차기를 날립니다. 선공 효과.",
+        "en": "도약하여 강력한 발차기를 날립니다. 선공 효과."
+      },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 30,
+            "apCost": 15
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 39,
+            "apCost": 15
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 48,
+            "apCost": 14,
+            "initiative_upChance": 20
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "kick_mastery": 6
+        }
+      },
+      "grantsExpTo": [
+        "kick_mastery"
+      ],
+      "cooldown": 0,
+      "attackType": "melee_physical"
     },
     {
       "id": "dragon_kick",
       "nameKo": "용각",
       "nameEn": "Dragon Kick",
-      "description": "내공을 담은 필살의 발차기입니다. 방어력 50% 무시.",
-      "type": "martial_attack",
+      "type": "attack",
       "usageContext": "combat_only",
       "icon": "🐉",
-      "apCost": 25,
-      "baseDamage": 48,
-      "armorPenetration": 0.5,
-      "target": "enemy",
-      "requirements": { "proficiency": 75 }
+      "description": {
+        "ko": "내공을 담은 필살의 발차기입니다. 방어력 50% 무시.",
+        "en": "내공을 담은 필살의 발차기입니다. 방어력 50% 무시."
+      },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 48,
+            "apCost": 25
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 62,
+            "apCost": 25
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 76,
+            "apCost": 24
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "kick_mastery": 8
+        }
+      },
+      "grantsExpTo": [
+        "kick_mastery"
+      ],
+      "cooldown": 0,
+      "attackType": "melee_physical"
     }
   ]
 }

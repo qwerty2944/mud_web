@@ -12,7 +12,9 @@ export function BattleHeader() {
     getMonsterHpPercent,
     getPlayerHpPercent,
     getPlayerMpPercent,
+    getPlayerApPercent,
     getPlayerShieldAmount,
+    getRemainingPlayerAp,
   } = useBattleStore();
 
   // 데미지 피드백 애니메이션 상태
@@ -45,6 +47,8 @@ export function BattleHeader() {
   const monsterHpPercent = getMonsterHpPercent();
   const playerHpPercent = getPlayerHpPercent();
   const playerMpPercent = getPlayerMpPercent();
+  const playerApPercent = getPlayerApPercent();
+  const remainingAp = getRemainingPlayerAp();
   const shieldAmount = getPlayerShieldAmount();
 
   return (
@@ -218,6 +222,28 @@ export function BattleHeader() {
               style={{
                 width: `${playerMpPercent}%`,
                 background: theme.colors.primary,
+              }}
+            />
+          </div>
+        </div>
+
+        {/* 플레이어 AP (액션 포인트) */}
+        <div>
+          <div className="flex justify-between text-xs font-mono mb-1">
+            <span style={{ color: theme.colors.warning }}>AP</span>
+            <span style={{ color: theme.colors.textMuted }}>
+              {remainingAp} / {battle.playerMaxAp}
+            </span>
+          </div>
+          <div
+            className="h-2 overflow-hidden"
+            style={{ background: theme.colors.bgDark }}
+          >
+            <div
+              className="h-full transition-all duration-300"
+              style={{
+                width: `${playerApPercent}%`,
+                background: theme.colors.warning,
               }}
             />
           </div>

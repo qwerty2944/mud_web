@@ -4,98 +4,410 @@
   "nameEn": "Tailoring",
   "icon": "🧵",
   "description": "천과 가죽으로 의류와 장비를 제작합니다",
-  "relatedStats": ["dex"],
+  "relatedStats": [
+    "dex"
+  ],
   "skills": [
+    {
+      "id": "tailoring_mastery",
+      "nameKo": "재봉 숙련",
+      "nameEn": "Tailoring Mastery",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "📖",
+      "description": {
+        "ko": "재봉의 기본기를 익혀 관련 기술의 위력과 효과를 높인다.",
+        "en": "Master the fundamentals to increase power and effectiveness of related skills."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "damageBonus": 0,
+            "costReduction": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "damageBonus": 5,
+            "costReduction": 2
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "damageBonus": 12,
+            "costReduction": 5
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "damageBonus": 20,
+            "costReduction": 8
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "damageBonus": 30,
+            "costReduction": 12
+          }
+        }
+      ],
+      "requirements": {}
+    },
     {
       "id": "tl_basic_sewing",
       "nameKo": "기초 재봉",
       "nameEn": "Basic Sewing",
-      "description": "기본적인 천 가공 기술입니다.",
       "type": "passive",
       "usageContext": "passive",
       "icon": "🧵",
-      "effect": { "craftTier": "common", "successBonus": 0 },
-      "requirements": { "level": 1 }
+      "description": {
+        "ko": "기본적인 천 가공 기술입니다.",
+        "en": "기본적인 천 가공 기술입니다."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "bonus": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "bonus": 5
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "bonus": 12
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "bonus": 20
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "bonus": 30
+          }
+        }
+      ],
+      "requirements": {}
     },
     {
       "id": "tl_apprentice_sewing",
       "nameKo": "견습 재봉",
       "nameEn": "Apprentice Sewing",
-      "description": "고급 등급까지 제작이 가능합니다.",
       "type": "passive",
       "usageContext": "passive",
       "icon": "🧵",
-      "effect": { "craftTier": "grand", "successBonus": 5 },
-      "requirements": { "level": 10, "prerequisite": "tl_basic_sewing" }
+      "description": {
+        "ko": "고급 등급까지 제작이 가능합니다.",
+        "en": "고급 등급까지 제작이 가능합니다."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "bonus": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "bonus": 5
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "bonus": 12
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "bonus": 20
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "bonus": 30
+          }
+        }
+      ],
+      "requirements": {}
     },
     {
       "id": "tl_journeyman_sewing",
       "nameKo": "숙련 재봉",
       "nameEn": "Journeyman Sewing",
-      "description": "희귀 등급까지 제작이 가능합니다.",
       "type": "passive",
       "usageContext": "passive",
       "icon": "🧵",
-      "effect": { "craftTier": "rare", "successBonus": 10 },
-      "requirements": { "level": 20, "prerequisite": "tl_apprentice_sewing" }
+      "description": {
+        "ko": "희귀 등급까지 제작이 가능합니다.",
+        "en": "희귀 등급까지 제작이 가능합니다."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "bonus": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "bonus": 5
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "bonus": 12
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "bonus": 20
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "bonus": 30
+          }
+        }
+      ],
+      "requirements": {}
     },
     {
       "id": "tl_expert_sewing",
       "nameKo": "전문 재봉",
       "nameEn": "Expert Sewing",
-      "description": "고대 등급까지 제작이 가능합니다.",
       "type": "passive",
       "usageContext": "passive",
       "icon": "🧵",
-      "effect": { "craftTier": "arcane", "successBonus": 15 },
-      "requirements": { "level": 30, "prerequisite": "tl_journeyman_sewing" }
+      "description": {
+        "ko": "고대 등급까지 제작이 가능합니다.",
+        "en": "고대 등급까지 제작이 가능합니다."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "bonus": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "bonus": 5
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "bonus": 12
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "bonus": 20
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "bonus": 30
+          }
+        }
+      ],
+      "requirements": {}
     },
     {
       "id": "tl_master_sewing",
       "nameKo": "달인 재봉",
       "nameEn": "Master Sewing",
-      "description": "영웅 등급까지 제작이 가능합니다.",
       "type": "passive",
       "usageContext": "passive",
       "icon": "🧵",
-      "effect": { "craftTier": "heroic", "successBonus": 20 },
-      "requirements": { "level": 40, "prerequisite": "tl_expert_sewing" }
+      "description": {
+        "ko": "영웅 등급까지 제작이 가능합니다.",
+        "en": "영웅 등급까지 제작이 가능합니다."
+      },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "bonus": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "bonus": 5
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "bonus": 12
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "bonus": 20
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "bonus": 30
+          }
+        }
+      ],
+      "requirements": {}
     },
     {
       "id": "tl_craft_cloth_armor",
       "nameKo": "천 갑옷 제작",
       "nameEn": "Craft Cloth Armor",
-      "description": "천으로 된 방어구를 제작합니다.",
       "type": "craft",
       "usageContext": "field_only",
       "icon": "👘",
-      "craftType": "cloth_armor",
-      "materials": ["cloth", "thread"],
-      "requirements": { "skill": "tl_basic_sewing" }
+      "description": {
+        "ko": "천으로 된 방어구를 제작합니다.",
+        "en": "천으로 된 방어구를 제작합니다."
+      },
+      "maxLevel": 30,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "apCost": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "apCost": 5
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "apCost": 4
+          }
+        }
+      ],
+      "requirements": {},
+      "grantsExpTo": [
+        "tailoring_mastery"
+      ]
     },
     {
       "id": "tl_craft_leather_armor",
       "nameKo": "가죽 갑옷 제작",
       "nameEn": "Craft Leather Armor",
-      "description": "가죽으로 된 방어구를 제작합니다.",
       "type": "craft",
       "usageContext": "field_only",
       "icon": "🦺",
-      "craftType": "leather_armor",
-      "materials": ["leather", "thread"],
-      "requirements": { "skill": "tl_apprentice_sewing" }
+      "description": {
+        "ko": "가죽으로 된 방어구를 제작합니다.",
+        "en": "가죽으로 된 방어구를 제작합니다."
+      },
+      "maxLevel": 30,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "apCost": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "apCost": 5
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "apCost": 4
+          }
+        }
+      ],
+      "requirements": {},
+      "grantsExpTo": [
+        "tailoring_mastery"
+      ]
     },
     {
       "id": "tl_craft_bag",
       "nameKo": "가방 제작",
       "nameEn": "Craft Bag",
-      "description": "인벤토리를 확장하는 가방을 제작합니다.",
       "type": "craft",
       "usageContext": "field_only",
       "icon": "🎒",
-      "craftType": "bag",
-      "materials": ["cloth", "leather_strip"],
-      "requirements": { "skill": "tl_journeyman_sewing" }
+      "description": {
+        "ko": "인벤토리를 확장하는 가방을 제작합니다.",
+        "en": "인벤토리를 확장하는 가방을 제작합니다."
+      },
+      "maxLevel": 30,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "apCost": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "apCost": 5
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "apCost": 4
+          }
+        }
+      ],
+      "requirements": {},
+      "grantsExpTo": [
+        "tailoring_mastery"
+      ]
     }
   ]
 }

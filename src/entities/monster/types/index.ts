@@ -1,6 +1,7 @@
 import type { MagicElement } from "@/entities/proficiency";
 import type { Period } from "@/entities/game-time";
 import type { MonsterAlignment } from "@/entities/karma";
+import type { MonsterAbility } from "@/entities/ability";
 
 // ============ 몬스터 종족 타입 ============
 
@@ -108,7 +109,8 @@ export interface MonsterStats {
   hp: number;
   attack: number;
   defense: number;
-  speed: number;
+  speed: number;          // DEX 역할 (선공 결정, 회피 등)
+  magicAttack?: number;   // 마법 공격력 (없으면 attack 사용)
   resistance?: PhysicalResistance;  // 물리 저항 (없으면 모두 1.0)
 }
 
@@ -156,6 +158,9 @@ export interface Monster {
   icon: string;
   description?: MonsterDescription;
   spawnCondition?: SpawnCondition; // 출현 조건 (null이면 항상 출현)
+  // AP 기반 전투 시스템
+  maxAp?: number;                  // 턴당 최대 AP (기본 10)
+  abilities?: MonsterAbility[];    // 사용 가능한 어빌리티 목록
 }
 
 // JSON 파일 구조
