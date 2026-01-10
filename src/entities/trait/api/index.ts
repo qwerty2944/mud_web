@@ -44,13 +44,13 @@ export interface StoredTrait {
 // ============ JSONB 조작 ============
 
 /**
- * 캐릭터의 트레이트 목록 조회 (profiles.traits JSONB)
+ * 캐릭터의 트레이트 목록 조회 (characters.traits JSONB)
  */
 export async function fetchCharacterTraits(userId: string): Promise<StoredTrait[]> {
   const { data, error } = await supabase
-    .from("profiles")
+    .from("characters")
     .select("traits")
-    .eq("id", userId)
+    .eq("user_id", userId)
     .single();
 
   if (error) throw error;
@@ -91,9 +91,9 @@ export async function grantTrait(
 
   // DB 업데이트
   const { error } = await supabase
-    .from("profiles")
+    .from("characters")
     .update({ traits: updatedTraits })
-    .eq("id", userId);
+    .eq("user_id", userId);
 
   if (error) throw error;
 
@@ -108,9 +108,9 @@ export async function removeTrait(userId: string, traitId: string): Promise<Stor
   const updatedTraits = currentTraits.filter((t) => t.id !== traitId);
 
   const { error } = await supabase
-    .from("profiles")
+    .from("characters")
     .update({ traits: updatedTraits })
-    .eq("id", userId);
+    .eq("user_id", userId);
 
   if (error) throw error;
 
@@ -139,9 +139,9 @@ export async function grantMultipleTraits(
   const updatedTraits = [...currentTraits, ...newTraits];
 
   const { error } = await supabase
-    .from("profiles")
+    .from("characters")
     .update({ traits: updatedTraits })
-    .eq("id", userId);
+    .eq("user_id", userId);
 
   if (error) throw error;
 
@@ -153,9 +153,9 @@ export async function grantMultipleTraits(
  */
 export async function setTraits(userId: string, traits: StoredTrait[]): Promise<void> {
   const { error } = await supabase
-    .from("profiles")
+    .from("characters")
     .update({ traits })
-    .eq("id", userId);
+    .eq("user_id", userId);
 
   if (error) throw error;
 }

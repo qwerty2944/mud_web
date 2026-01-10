@@ -16,8 +16,8 @@ export type {
   Database,
   Json,
   Tables,
-  Insertable,
-  Updatable,
+  TablesInsert,
+  TablesUpdate,
 } from "./database";
 
 export type {

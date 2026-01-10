@@ -7,9 +7,9 @@ import { filterNaturallyHealedInjuries } from "@/entities/injury";
 
 export async function fetchProfile(userId: string): Promise<UserProfile> {
   const { data, error } = await supabase
-    .from("profiles")
+    .from("characters")
     .select("*")
-    .eq("id", userId)
+    .eq("user_id", userId)
     .single();
 
   if (error) throw error;
@@ -22,15 +22,16 @@ export async function fetchProfile(userId: string): Promise<UserProfile> {
     // 자연 치유된 부상이 있으면 DB 업데이트
     if (healed.length > 0) {
       await supabase
-        .from("profiles")
+        .from("characters")
         .update({ injuries: remaining })
-        .eq("id", userId);
+        .eq("user_id", userId);
       injuries = remaining;
     }
   }
 
   return {
     id: data.id,
+    userId: data.user_id,
     nickname: data.nickname,
     level: data.level || 1,
     experience: data.experience || 0,
@@ -41,7 +42,6 @@ export async function fetchProfile(userId: string): Promise<UserProfile> {
     staminaUpdatedAt: data.stamina_updated_at || new Date().toISOString(),
     isPremium: data.is_premium || false,
     premiumUntil: data.premium_until,
-    characterId: data.character_id || null,
     character: data.character || null,
     appearance: data.appearance || null,
     buffs: data.buffs || [],
@@ -59,9 +59,9 @@ export async function fetchProfile(userId: string): Promise<UserProfile> {
 
 export async function updateCurrentMap(userId: string, mapId: string): Promise<void> {
   const { error } = await supabase
-    .from("profiles")
+    .from("characters")
     .update({ current_map_id: mapId })
-    .eq("id", userId);
+    .eq("user_id", userId);
 
   if (error) throw error;
 }
@@ -95,9 +95,9 @@ export async function updateProfile(params: UpdateProfileParams): Promise<void> 
   if (Object.keys(dbUpdates).length === 0) return;
 
   const { error } = await supabase
-    .from("profiles")
+    .from("characters")
     .update(dbUpdates)
-    .eq("id", userId);
+    .eq("user_id", userId);
 
   if (error) throw error;
 }
@@ -291,13 +291,13 @@ export async function updateProfileAfterDefeat(params: DefeatUpdateParams): Prom
 
   // 나머지 필드 업데이트
   const { error } = await supabase
-    .from("profiles")
+    .from("characters")
     .update({
       current_hp: currentHp,
       current_mp: currentMp,
       current_map_id: currentMapId,
     })
-    .eq("id", userId);
+    .eq("user_id", userId);
 
   if (error) throw error;
 }

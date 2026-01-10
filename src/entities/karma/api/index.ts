@@ -10,9 +10,9 @@ export interface KarmaData {
 
 export async function fetchKarma(userId: string): Promise<KarmaData> {
   const { data, error } = await supabase
-    .from("profiles")
+    .from("characters")
     .select("karma")
-    .eq("id", userId)
+    .eq("user_id", userId)
     .single();
 
   if (error) throw error;

@@ -14,7 +14,8 @@ export interface ReligionData {
 export type CrystalTier = "basic" | "advanced" | "superior" | null;
 
 export interface UserProfile {
-  id: string;
+  id: string;           // 프로필(캐릭터) 고유 ID
+  userId: string;       // auth.users.id 참조
   nickname: string | null;
   level: number;
   experience: number;
@@ -25,7 +26,6 @@ export interface UserProfile {
   staminaUpdatedAt: string;
   isPremium: boolean;
   premiumUntil: string | null;
-  characterId: string | null;
   character: SavedCharacter | null;
   // 외형 데이터 (별도 컬럼)
   appearance: ProfileAppearance | null;
