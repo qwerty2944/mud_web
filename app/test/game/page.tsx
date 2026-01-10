@@ -30,6 +30,8 @@ interface Race {
   nameEn: string;
   appearance?: {
     body?: {
+      spriteId?: string;
+      defaultColor?: string;
       availableSpriteIds?: string[];
     };
     skinTones?: {
@@ -509,17 +511,24 @@ export default function GameTestPage() {
     // raceId 저장
     setAppearance(prev => ({ ...prev, raceId }));
 
-    // 해당 종족의 첫 번째 신체로 Unity 초기화
+    // 해당 종족의 spriteId와 defaultColor로 Unity 초기화
     const race = races.find(r => r.id === raceId);
-    const availableSpriteIds = race?.appearance?.body?.availableSpriteIds;
-    if (race && availableSpriteIds && availableSpriteIds.length > 0) {
-      // 스프라이트 ID로 body 데이터에서 인덱스 찾기
-      const firstSpriteId = availableSpriteIds[0];
-      const bodyItem = appearanceData.body.find(b => b.sprite === firstSpriteId);
-      const firstBodyIndex = bodyItem?.index ?? 0;
+    if (race?.appearance?.body) {
+      const { spriteId, defaultColor } = race.appearance.body;
 
-      setUnityAppearance(prev => ({ ...prev, bodyIndex: firstBodyIndex }));
-      callUnity("JS_SetBody", firstBodyIndex.toString());
+      // spriteId로 body 데이터에서 인덱스 찾기
+      if (spriteId) {
+        const bodyItem = appearanceData.body.find(b => b.sprite === spriteId);
+        const bodyIndex = bodyItem?.index ?? 0;
+
+        setUnityAppearance(prev => ({ ...prev, bodyIndex }));
+        callUnity("JS_SetBody", bodyIndex.toString());
+      }
+
+      // defaultColor 적용 (스킨톤)
+      if (defaultColor) {
+        callUnity("JS_SetBodyColor", defaultColor);
+      }
     }
   }, [races, callUnity, appearanceData.body]);
 
