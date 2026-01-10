@@ -35,7 +35,6 @@ const RACES: { id: RaceType; ko: string; en: string }[] = [
   { id: "tiefling", ko: "티플링", en: "Tiefling" },
 ];
 
-// 종족과 스타일 매핑 (종족 선택시 해당 스타일도 포함)
 const RACE_STYLE_MAP: Record<RaceType, string[]> = {
   all: [],
   elf: ["elf", "common"],
@@ -45,43 +44,51 @@ const RACE_STYLE_MAP: Record<RaceType, string[]> = {
   tiefling: ["tiefling", "common"],
 };
 
+// 스프라이트 배열을 아이템 배열로 변환
+function spritesToItems(sprites: string[]): SpriteItem[] {
+  return sprites.map((sprite, index) => {
+    // 스프라이트 이름에서 종족/스타일 추출
+    const lowerSprite = sprite.toLowerCase();
+    let style = "common";
+    if (lowerSprite.includes("elf")) style = "elf";
+    else if (lowerSprite.includes("human")) style = "human";
+    else if (lowerSprite.includes("orc")) style = "orc";
+    else if (lowerSprite.includes("undead") || lowerSprite.includes("zombie") || lowerSprite.includes("skelton")) style = "undead";
+    else if (lowerSprite.includes("devil") || lowerSprite.includes("tiefling")) style = "tiefling";
+    else if (lowerSprite.includes("knight")) style = "knight";
+    else if (lowerSprite.includes("archer")) style = "archer";
+    else if (lowerSprite.includes("healer")) style = "healer";
+    else if (lowerSprite.includes("rogue")) style = "rogue";
+    else if (lowerSprite.includes("mage")) style = "mage";
+
+    return {
+      id: lowerSprite,
+      index,
+      sprite,
+      ko: sprite.replace(/_/g, " "),
+      style,
+    };
+  });
+}
+
 export default function GameTestPage() {
   const { callUnity, characterState } = useAppearanceStore();
   const [categories, setCategories] = useState<Record<string, CategoryData>>({});
   const [loading, setLoading] = useState(true);
   const [selectedRace, setSelectedRace] = useState<RaceType>("elf");
 
-  // 매핑 데이터 로드
   useEffect(() => {
     async function loadMappings() {
       try {
         const [
-          // 외형
-          eyeRes,
-          hairRes,
-          facehairRes,
-          bodyRes,
-          // 무기
-          swordRes,
-          axeRes,
-          bowRes,
-          shieldRes,
-          spearRes,
-          wandRes,
-          daggerRes,
-          // 방어구
-          helmetRes,
-          armorRes,
-          clothRes,
-          pantRes,
-          backRes,
+          eyeRes, hairRes, facehairRes, bodyRes,
+          swordRes, axeRes, bowRes, shieldRes, spearRes, wandRes, daggerRes,
+          helmetRes, armorRes, clothRes, pantRes, backRes,
         ] = await Promise.all([
-          // 외형
           fetch("/data/sprites/appearance/eye.json"),
           fetch("/data/sprites/appearance/hair.json"),
           fetch("/data/sprites/appearance/facehair.json"),
           fetch("/data/sprites/appearance/body.json"),
-          // 무기
           fetch("/data/sprites/equipment/weapons/sword.json"),
           fetch("/data/sprites/equipment/weapons/axe.json"),
           fetch("/data/sprites/equipment/weapons/bow.json"),
@@ -89,7 +96,6 @@ export default function GameTestPage() {
           fetch("/data/sprites/equipment/weapons/spear.json"),
           fetch("/data/sprites/equipment/weapons/wand.json"),
           fetch("/data/sprites/equipment/weapons/dagger.json"),
-          // 방어구
           fetch("/data/sprites/equipment/armor/helmet.json"),
           fetch("/data/sprites/equipment/armor/armor.json"),
           fetch("/data/sprites/equipment/armor/cloth.json"),
@@ -98,61 +104,36 @@ export default function GameTestPage() {
         ]);
 
         const [
-          eyeData,
-          hairData,
-          facehairData,
-          bodyData,
-          swordData,
-          axeData,
-          bowData,
-          shieldData,
-          spearData,
-          wandData,
-          daggerData,
-          helmetData,
-          armorData,
-          clothData,
-          pantData,
-          backData,
+          eyeData, hairData, facehairData, bodyData,
+          swordData, axeData, bowData, shieldData, spearData, wandData, daggerData,
+          helmetData, armorData, clothData, pantData, backData,
         ] = await Promise.all([
-          eyeRes.json(),
-          hairRes.json(),
-          facehairRes.json(),
-          bodyRes.json(),
-          swordRes.json(),
-          axeRes.json(),
-          bowRes.json(),
-          shieldRes.json(),
-          spearRes.json(),
-          wandRes.json(),
-          daggerRes.json(),
-          helmetRes.json(),
-          armorRes.json(),
-          clothRes.json(),
-          pantRes.json(),
-          backRes.json(),
+          eyeRes.json(), hairRes.json(), facehairRes.json(), bodyRes.json(),
+          swordRes.json(), axeRes.json(), bowRes.json(), shieldRes.json(),
+          spearRes.json(), wandRes.json(), daggerRes.json(),
+          helmetRes.json(), armorRes.json(), clothRes.json(), pantRes.json(), backRes.json(),
         ]);
 
         setCategories({
-          // 외형
-          body: { label: "신체", items: bodyData.bodies || [], unityMethod: "JS_SetBody" },
-          eye: { label: "눈", items: eyeData.eyes || [], unityMethod: "JS_SetEye" },
-          hair: { label: "머리", items: hairData.hairs || [], unityMethod: "JS_SetHair", allowNone: true },
-          facehair: { label: "수염/장식", items: facehairData.facehairs || [], unityMethod: "JS_SetFacehair", allowNone: true },
-          // 무기
-          sword: { label: "검", items: swordData.swords || [], unityMethod: "JS_SetRightWeapon", allowNone: true, weaponType: "Sword", hand: "right" },
-          axe: { label: "도끼", items: axeData.axes || [], unityMethod: "JS_SetRightWeapon", allowNone: true, weaponType: "Axe", hand: "right" },
-          bow: { label: "활", items: bowData.bows || [], unityMethod: "JS_SetRightWeapon", allowNone: true, weaponType: "Bow", hand: "right" },
-          shield: { label: "방패", items: shieldData.shields || [], unityMethod: "JS_SetLeftWeapon", allowNone: true, weaponType: "Shield", hand: "left" },
-          spear: { label: "창", items: spearData.spears || [], unityMethod: "JS_SetRightWeapon", allowNone: true, weaponType: "Spear", hand: "right" },
-          wand: { label: "지팡이", items: wandData.wands || [], unityMethod: "JS_SetRightWeapon", allowNone: true, weaponType: "Wand", hand: "right" },
-          dagger: { label: "단검", items: daggerData.daggers || [], unityMethod: "JS_SetRightWeapon", allowNone: true, weaponType: "Dagger", hand: "right" },
-          // 방어구
-          helmet: { label: "투구", items: helmetData.helmets || [], unityMethod: "JS_SetHelmet", allowNone: true },
-          armor: { label: "갑옷", items: armorData.armors || [], unityMethod: "JS_SetArmor", allowNone: true },
-          cloth: { label: "옷", items: clothData.cloths || [], unityMethod: "JS_SetCloth", allowNone: true },
-          pant: { label: "바지", items: pantData.pants || [], unityMethod: "JS_SetPant", allowNone: true },
-          back: { label: "등", items: backData.backs || [], unityMethod: "JS_SetBack", allowNone: true },
+          // 외형 - items 배열 사용 (있으면), 없으면 sprites에서 변환
+          body: { label: "신체", items: bodyData.bodies || spritesToItems(bodyData.sprites || []), unityMethod: "JS_SetBody" },
+          eye: { label: "눈", items: eyeData.eyes || spritesToItems(eyeData.sprites || []), unityMethod: "JS_SetEye" },
+          hair: { label: "머리", items: hairData.hairs || spritesToItems(hairData.sprites || []), unityMethod: "JS_SetHair", allowNone: true },
+          facehair: { label: "수염/장식", items: facehairData.facehairs || spritesToItems(facehairData.sprites || []), unityMethod: "JS_SetFacehair", allowNone: true },
+          // 무기 - sprites 배열에서 변환
+          sword: { label: "검", items: spritesToItems(swordData.sprites || []), unityMethod: "JS_SetRightWeapon", allowNone: true, weaponType: "Sword", hand: "right" },
+          axe: { label: "도끼", items: spritesToItems(axeData.sprites || []), unityMethod: "JS_SetRightWeapon", allowNone: true, weaponType: "Axe", hand: "right" },
+          bow: { label: "활", items: spritesToItems(bowData.sprites || []), unityMethod: "JS_SetRightWeapon", allowNone: true, weaponType: "Bow", hand: "right" },
+          shield: { label: "방패", items: spritesToItems(shieldData.sprites || []), unityMethod: "JS_SetLeftWeapon", allowNone: true, weaponType: "Shield", hand: "left" },
+          spear: { label: "창", items: spritesToItems(spearData.sprites || []), unityMethod: "JS_SetRightWeapon", allowNone: true, weaponType: "Spear", hand: "right" },
+          wand: { label: "지팡이", items: spritesToItems(wandData.sprites || []), unityMethod: "JS_SetRightWeapon", allowNone: true, weaponType: "Wand", hand: "right" },
+          dagger: { label: "단검", items: spritesToItems(daggerData.sprites || []), unityMethod: "JS_SetRightWeapon", allowNone: true, weaponType: "Dagger", hand: "right" },
+          // 방어구 - sprites 배열에서 변환
+          helmet: { label: "투구", items: spritesToItems(helmetData.sprites || []), unityMethod: "JS_SetHelmet", allowNone: true },
+          armor: { label: "갑옷", items: spritesToItems(armorData.sprites || []), unityMethod: "JS_SetArmor", allowNone: true },
+          cloth: { label: "옷", items: spritesToItems(clothData.sprites || []), unityMethod: "JS_SetCloth", allowNone: true },
+          pant: { label: "바지", items: spritesToItems(pantData.sprites || []), unityMethod: "JS_SetPant", allowNone: true },
+          back: { label: "등", items: spritesToItems(backData.sprites || []), unityMethod: "JS_SetBack", allowNone: true },
         });
         setLoading(false);
       } catch (err) {
@@ -164,7 +145,6 @@ export default function GameTestPage() {
     loadMappings();
   }, []);
 
-  // 종족/스타일로 필터링된 아이템
   const filterByRace = (items: SpriteItem[], race: RaceType): SpriteItem[] => {
     if (race === "all") return items;
 
@@ -175,7 +155,6 @@ export default function GameTestPage() {
     });
   };
 
-  // 필터링된 카테고리
   const filteredCategories = useMemo(() => {
     const result: Record<string, CategoryData> = {};
     for (const [key, data] of Object.entries(categories)) {
@@ -191,12 +170,10 @@ export default function GameTestPage() {
     const data = categories[category];
     if (!data) return;
 
-    // 무기인 경우 "WeaponType,index" 형식으로 호출
     if (data.weaponType) {
       const param = index === -1 ? `${data.weaponType},-1` : `${data.weaponType},${index}`;
       callUnity(data.unityMethod, param);
     } else {
-      // 외형/방어구는 기존 방식
       callUnity(data.unityMethod, index.toString());
     }
   };
@@ -207,11 +184,9 @@ export default function GameTestPage() {
     return (characterState[indexKey] as number) ?? -1;
   };
 
-  // 종족 변경시 해당 종족의 첫 번째 body로 변경
   const handleRaceChange = (race: RaceType) => {
     setSelectedRace(race);
 
-    // 해당 종족의 첫 번째 body 찾기
     if (race !== "all" && categories.body) {
       const filteredBodies = filterByRace(categories.body.items, race);
       if (filteredBodies.length > 0) {
@@ -232,28 +207,22 @@ export default function GameTestPage() {
   const weaponCategories = ["sword", "axe", "bow", "shield", "spear", "wand", "dagger"];
   const armorCategories = ["helmet", "armor", "cloth", "pant", "back"];
 
-  // 통계 계산
   const totalFiltered = Object.values(filteredCategories).reduce((sum, cat) => sum + cat.items.length, 0);
   const totalAll = Object.values(categories).reduce((sum, cat) => sum + cat.items.length, 0);
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       <div className="flex h-screen">
-        {/* Unity 캔버스 */}
         <div className="flex-1 flex items-center justify-center p-4">
           <div className="w-full max-w-md aspect-square">
             <DynamicUnityCanvas />
           </div>
         </div>
 
-        {/* 드롭다운 패널 */}
         <div className="w-96 bg-gray-800 p-4 overflow-y-auto">
           <div className="flex items-center justify-between mb-4">
             <h1 className="text-xl font-bold">종족별 장비 테스트</h1>
-            <Link
-              href="/test"
-              className="text-sm text-gray-400 hover:text-white"
-            >
+            <Link href="/test" className="text-sm text-gray-400 hover:text-white">
               ← 목록
             </Link>
           </div>
@@ -286,9 +255,7 @@ export default function GameTestPage() {
 
           {/* 외형 섹션 */}
           <section className="mb-6">
-            <h2 className="text-sm font-semibold text-gray-400 mb-2 border-b border-gray-700 pb-1">
-              외형
-            </h2>
+            <h2 className="text-sm font-semibold text-gray-400 mb-2 border-b border-gray-700 pb-1">외형</h2>
             <div className="space-y-3">
               {appearanceCategories.map((cat) => {
                 const data = filteredCategories[cat];
@@ -308,7 +275,7 @@ export default function GameTestPage() {
                       {data.allowNone && <option value={-1}>없음</option>}
                       {data.items.map((item) => (
                         <option key={item.index} value={item.index}>
-                          {item.ko}
+                          {item.ko} [{item.index}]
                         </option>
                       ))}
                     </select>
@@ -320,9 +287,7 @@ export default function GameTestPage() {
 
           {/* 무기 섹션 */}
           <section className="mb-6">
-            <h2 className="text-sm font-semibold text-gray-400 mb-2 border-b border-gray-700 pb-1">
-              무기
-            </h2>
+            <h2 className="text-sm font-semibold text-gray-400 mb-2 border-b border-gray-700 pb-1">무기</h2>
             <div className="space-y-3">
               {weaponCategories.map((cat) => {
                 const data = filteredCategories[cat];
@@ -342,7 +307,7 @@ export default function GameTestPage() {
                       {data.allowNone && <option value={-1}>없음</option>}
                       {data.items.map((item) => (
                         <option key={item.index} value={item.index}>
-                          {item.ko}
+                          {item.ko} [{item.index}]
                         </option>
                       ))}
                     </select>
@@ -354,9 +319,7 @@ export default function GameTestPage() {
 
           {/* 방어구 섹션 */}
           <section className="mb-6">
-            <h2 className="text-sm font-semibold text-gray-400 mb-2 border-b border-gray-700 pb-1">
-              방어구
-            </h2>
+            <h2 className="text-sm font-semibold text-gray-400 mb-2 border-b border-gray-700 pb-1">방어구</h2>
             <div className="space-y-3">
               {armorCategories.map((cat) => {
                 const data = filteredCategories[cat];
@@ -376,7 +339,7 @@ export default function GameTestPage() {
                       {data.allowNone && <option value={-1}>없음</option>}
                       {data.items.map((item) => (
                         <option key={item.index} value={item.index}>
-                          {item.ko}
+                          {item.ko} [{item.index}]
                         </option>
                       ))}
                     </select>
