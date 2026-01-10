@@ -1,1506 +1,4641 @@
 {
-  "version": "1.0.0",
-  "generatedAt": "2026-01-06T00:00:00.000Z",
+  "version": "2.0.0",
+  "generatedAt": "2026-01-10T11:45:02.407Z",
   "items": [
     {
-      "id": "acorn",
-      "nameKo": "도토리",
-      "nameEn": "Acorn",
-      "description": {
-        "ko": "다람쥐가 좋아하는 도토리. 재료로 사용할 수 있다.",
-        "en": "An acorn loved by squirrels. Can be used as a material."
+      "id": "rusty_axe",
+      "nameKo": "녹슨 도끼",
+      "nameEn": "Rusty Axe",
+      "description": "녹이 슨 오래된 도끼.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "crude",
+      "value": 25,
+      "weight": 4,
+      "stackable": false,
+      "weaponType": "axe",
+      "spriteId": "orc_weapon_02",
+      "spriteMapping": "/data/sprites/equipment/weapon/axe.json",
+      "color": "#8B4513",
+      "stats": {
+        "damage": 8,
+        "attackSpeed": 0.8
       },
-      "type": "material",
+      "requirements": {
+        "level": 1
+      }
+    },
+    {
+      "id": "iron_axe",
+      "nameKo": "철 도끼",
+      "nameEn": "Iron Axe",
+      "description": "무거운 철제 도끼.",
+      "type": "equipment",
+      "subtype": "weapon",
       "rarity": "common",
-      "icon": "🌰",
-      "weight": 0.1,
-      "value": 5,
-      "sellPrice": 2,
-      "stackable": true,
-      "maxStack": 99,
-      "tags": [
-        "nature",
-        "squirrel",
-        "food"
-      ]
+      "value": 120,
+      "weight": 4.5,
+      "stackable": false,
+      "weaponType": "axe",
+      "spriteId": "orc_weapon_02",
+      "spriteMapping": "/data/sprites/equipment/weapon/axe.json",
+      "color": null,
+      "stats": {
+        "damage": 14,
+        "attackSpeed": 0.8
+      },
+      "requirements": {
+        "level": 1,
+        "str": 7
+      }
     },
     {
-      "id": "squirrel_tail",
-      "nameKo": "다람쥐 꼬리",
-      "nameEn": "Squirrel Tail",
-      "description": {
-        "ko": "다람쥐의 푹신한 꼬리. 희귀한 재료이다.",
-        "en": "A fluffy squirrel tail. A rare material."
-      },
-      "type": "material",
+      "id": "steel_axe",
+      "nameKo": "강철 도끼",
+      "nameEn": "Steel Axe",
+      "description": "날카로운 강철 도끼.",
+      "type": "equipment",
+      "subtype": "weapon",
       "rarity": "grand",
-      "icon": "🦊",
-      "weight": 0.2,
-      "value": 50,
-      "sellPrice": 25,
-      "stackable": true,
-      "maxStack": 99,
-      "tags": [
-        "nature",
-        "squirrel",
-        "fur"
-      ]
+      "value": 400,
+      "weight": 4.5,
+      "stackable": false,
+      "weaponType": "axe",
+      "spriteId": "orc_weapon_06",
+      "spriteMapping": "/data/sprites/equipment/weapon/axe.json",
+      "color": null,
+      "stats": {
+        "damage": 24,
+        "attackSpeed": 0.85
+      },
+      "requirements": {
+        "level": 5,
+        "str": 10
+      }
     },
     {
-      "id": "squirrel_fur",
-      "nameKo": "다람쥐 털",
-      "nameEn": "Squirrel Fur",
-      "description": {
-        "ko": "부드러운 다람쥐 털. 방한 용품 재료로 좋다.",
-        "en": "Soft squirrel fur. Good for making warm clothing."
+      "id": "battle_axe",
+      "nameKo": "전투 도끼",
+      "nameEn": "Battle Axe",
+      "description": "전장에서 사용되는 대형 전투 도끼.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "rare",
+      "value": 900,
+      "weight": 5.5,
+      "stackable": false,
+      "weaponType": "axe",
+      "spriteId": "orc_weapon_07",
+      "spriteMapping": "/data/sprites/equipment/weapon/axe.json",
+      "color": null,
+      "stats": {
+        "damage": 35,
+        "attackSpeed": 0.75,
+        "armorPenetration": 10
       },
-      "type": "material",
-      "rarity": "grand",
-      "icon": "🧶",
-      "weight": 0.15,
+      "requirements": {
+        "level": 12,
+        "str": 14
+      }
+    },
+    {
+      "id": "berserker_axe",
+      "nameKo": "광전사의 도끼",
+      "nameEn": "Berserker's Axe",
+      "description": "피에 굶주린 광전사의 도끼.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "arcane",
+      "value": 2500,
+      "weight": 5,
+      "stackable": false,
+      "weaponType": "axe",
+      "spriteId": "orc_weapon_07",
+      "spriteMapping": "/data/sprites/equipment/weapon/axe.json",
+      "color": "#8B0000",
+      "stats": {
+        "damage": 45,
+        "attackSpeed": 0.9,
+        "critChance": 5,
+        "lifesteal": 3
+      },
+      "requirements": {
+        "level": 20,
+        "str": 18
+      }
+    },
+    {
+      "id": "orc_war_axe",
+      "nameKo": "오크 전쟁 도끼",
+      "nameEn": "Orc War Axe",
+      "description": "오크 족장이 사용하던 거대한 도끼.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "heroic",
+      "value": 5500,
+      "weight": 7,
+      "stackable": false,
+      "weaponType": "axe",
+      "spriteId": "undead_weapon_06",
+      "spriteMapping": "/data/sprites/equipment/weapon/axe.json",
+      "color": "#556B2F",
+      "stats": {
+        "damage": 55,
+        "attackSpeed": 0.7,
+        "armorPenetration": 20,
+        "str": 3
+      },
+      "requirements": {
+        "level": 28,
+        "str": 22
+      }
+    },
+    {
+      "id": "executioner_axe",
+      "nameKo": "처형자의 도끼",
+      "nameEn": "Executioner's Axe",
+      "description": "수백 명을 처형한 저주받은 도끼.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "unique",
+      "value": 15000,
+      "weight": 8,
+      "stackable": false,
+      "weaponType": "axe",
+      "spriteId": "undead_weapon_06",
+      "spriteMapping": "/data/sprites/equipment/weapon/axe.json",
+      "color": "#4B0082",
+      "stats": {
+        "damage": 70,
+        "attackSpeed": 0.65,
+        "critChance": 10,
+        "critDamage": 50,
+        "executeThreshold": 20
+      },
+      "requirements": {
+        "level": 38,
+        "str": 28
+      }
+    },
+    {
+      "id": "legendary_axe",
+      "nameKo": "전설의 도끼",
+      "nameEn": "Legendary Axe",
+      "description": "거인도 두려워하는 전설의 대도끼.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "legendary",
+      "value": 90000,
+      "weight": 6,
+      "stackable": false,
+      "weaponType": "axe",
+      "spriteId": "axe_1",
+      "spriteMapping": "/data/sprites/equipment/weapon/axe.json",
+      "color": "#FFD700",
+      "stats": {
+        "damage": 95,
+        "attackSpeed": 0.8,
+        "critChance": 12,
+        "critDamage": 35,
+        "armorPenetration": 25,
+        "allStats": 4
+      },
+      "requirements": {
+        "level": 50,
+        "str": 35
+      }
+    },
+    {
+      "id": "wooden_bow",
+      "nameKo": "나무 활",
+      "nameEn": "Wooden Bow",
+      "description": "단순한 나무로 만든 활.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "crude",
       "value": 30,
-      "sellPrice": 15,
-      "stackable": true,
-      "maxStack": 99,
-      "tags": [
-        "nature",
-        "squirrel",
-        "fur"
-      ]
-    },
-    {
-      "id": "wolf_fang",
-      "nameKo": "늑대 이빨",
-      "nameEn": "Wolf Fang",
-      "description": {
-        "ko": "날카로운 늑대 이빨. 무기 제작에 사용된다.",
-        "en": "A sharp wolf fang. Used in weapon crafting."
-      },
-      "type": "material",
-      "rarity": "grand",
-      "icon": "🦷",
-      "weight": 0.3,
-      "value": 45,
-      "sellPrice": 22,
-      "stackable": true,
-      "maxStack": 99,
-      "tags": [
-        "wolf",
-        "bone",
-        "weapon_material"
-      ]
-    },
-    {
-      "id": "wolf_pelt",
-      "nameKo": "늑대 가죽",
-      "nameEn": "Wolf Pelt",
-      "description": {
-        "ko": "튼튼한 늑대 가죽. 고급 방어구 재료.",
-        "en": "Sturdy wolf pelt. Material for high-quality armor."
-      },
-      "type": "material",
-      "rarity": "rare",
-      "icon": "🐺",
       "weight": 1.5,
-      "value": 150,
-      "sellPrice": 75,
-      "stackable": true,
-      "maxStack": 20,
-      "tags": [
-        "wolf",
-        "leather",
-        "armor_material"
-      ]
+      "stackable": false,
+      "weaponType": "bow",
+      "spriteId": "elf_weapon_02",
+      "spriteMapping": "/data/sprites/equipment/weapon/bow.json",
+      "color": "#8B4513",
+      "stats": {
+        "damage": 6,
+        "attackSpeed": 1.1,
+        "range": 3
+      },
+      "requirements": {
+        "level": 1
+      }
     },
     {
-      "id": "spider_silk",
-      "nameKo": "거미줄",
-      "nameEn": "Spider Silk",
-      "description": {
-        "ko": "질긴 거미줄. 다양한 용도로 쓰인다.",
-        "en": "Tough spider silk. Has various uses."
-      },
-      "type": "material",
+      "id": "short_bow",
+      "nameKo": "단궁",
+      "nameEn": "Short Bow",
+      "description": "휴대하기 좋은 작은 활.",
+      "type": "equipment",
+      "subtype": "weapon",
       "rarity": "common",
-      "icon": "🕸️",
-      "weight": 0.05,
-      "value": 15,
-      "sellPrice": 7,
-      "stackable": true,
-      "maxStack": 99,
-      "tags": [
-        "spider",
-        "thread",
-        "craft"
-      ]
+      "value": 80,
+      "weight": 1.2,
+      "stackable": false,
+      "weaponType": "bow",
+      "spriteId": "elf_weapon_02",
+      "spriteMapping": "/data/sprites/equipment/weapon/bow.json",
+      "color": null,
+      "stats": {
+        "damage": 9,
+        "attackSpeed": 1.2,
+        "range": 3
+      },
+      "requirements": {
+        "level": 1,
+        "dex": 5
+      }
     },
     {
-      "id": "spider_venom",
-      "nameKo": "거미 독",
-      "nameEn": "Spider Venom",
-      "description": {
-        "ko": "위험한 거미 독. 연금술 재료로 귀하다.",
-        "en": "Dangerous spider venom. A valuable alchemy ingredient."
+      "id": "long_bow",
+      "nameKo": "장궁",
+      "nameEn": "Long Bow",
+      "description": "긴 사거리의 대형 활.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "grand",
+      "value": 300,
+      "weight": 2,
+      "stackable": false,
+      "weaponType": "bow",
+      "spriteId": "elf_weapon_06",
+      "spriteMapping": "/data/sprites/equipment/weapon/bow.json",
+      "color": null,
+      "stats": {
+        "damage": 16,
+        "attackSpeed": 1,
+        "range": 5
       },
-      "type": "material",
+      "requirements": {
+        "level": 5,
+        "dex": 8,
+        "str": 5
+      }
+    },
+    {
+      "id": "composite_bow",
+      "nameKo": "합성궁",
+      "nameEn": "Composite Bow",
+      "description": "여러 재료를 합성해 만든 강력한 활.",
+      "type": "equipment",
+      "subtype": "weapon",
       "rarity": "rare",
-      "icon": "☠️",
-      "weight": 0.1,
-      "value": 200,
-      "sellPrice": 100,
-      "stackable": true,
-      "maxStack": 10,
-      "tags": [
-        "spider",
-        "poison",
-        "alchemy"
-      ]
+      "value": 700,
+      "weight": 1.8,
+      "stackable": false,
+      "weaponType": "bow",
+      "spriteId": "elf_weapon_14",
+      "spriteMapping": "/data/sprites/equipment/weapon/bow.json",
+      "color": null,
+      "stats": {
+        "damage": 22,
+        "attackSpeed": 1.15,
+        "range": 4,
+        "critChance": 5
+      },
+      "requirements": {
+        "level": 12,
+        "dex": 12
+      }
     },
     {
-      "id": "stolen_coin",
-      "nameKo": "훔친 동전",
-      "nameEn": "Stolen Coin",
-      "description": {
-        "ko": "도적에게서 얻은 동전 더미. 누군가의 것이었을 것이다.",
-        "en": "A pile of coins from a bandit. Must have belonged to someone."
+      "id": "elven_bow",
+      "nameKo": "엘프의 활",
+      "nameEn": "Elven Bow",
+      "description": "엘프 장인이 만든 우아한 활.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "arcane",
+      "value": 2200,
+      "weight": 1,
+      "stackable": false,
+      "weaponType": "bow",
+      "spriteId": "elf_weapon_18",
+      "spriteMapping": "/data/sprites/equipment/weapon/bow.json",
+      "color": "#90EE90",
+      "stats": {
+        "damage": 28,
+        "attackSpeed": 1.25,
+        "range": 5,
+        "critChance": 8,
+        "dex": 2
       },
-      "type": "material",
-      "rarity": "common",
-      "icon": "🪙",
-      "weight": 0.05,
-      "value": 1,
-      "sellPrice": 1,
-      "stackable": true,
-      "maxStack": 999,
-      "tags": [
-        "coin",
-        "bandit",
-        "currency"
-      ]
+      "requirements": {
+        "level": 20,
+        "dex": 16
+      }
+    },
+    {
+      "id": "wind_bow",
+      "nameKo": "바람의 활",
+      "nameEn": "Wind Bow",
+      "description": "바람의 정령이 깃든 마법 활.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "heroic",
+      "value": 5000,
+      "weight": 0.8,
+      "stackable": false,
+      "weaponType": "bow",
+      "spriteId": "orc_weapon_03",
+      "spriteMapping": "/data/sprites/equipment/weapon/bow.json",
+      "color": "#87CEEB",
+      "stats": {
+        "damage": 30,
+        "attackSpeed": 1.4,
+        "range": 6,
+        "critChance": 10,
+        "dodgeBonus": 5
+      },
+      "requirements": {
+        "level": 25,
+        "dex": 20
+      }
+    },
+    {
+      "id": "phoenix_bow",
+      "nameKo": "불사조의 활",
+      "nameEn": "Phoenix Bow",
+      "description": "불사조의 깃털로 만든 화염의 활.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "unique",
+      "value": 12000,
+      "weight": 1.2,
+      "stackable": false,
+      "weaponType": "bow",
+      "spriteId": "undead_weapon_04",
+      "spriteMapping": "/data/sprites/equipment/weapon/bow.json",
+      "color": "#FF4500",
+      "stats": {
+        "damage": 38,
+        "attackSpeed": 1.2,
+        "range": 5,
+        "elementDamage": {
+          "element": "fire",
+          "value": 20
+        },
+        "critChance": 12
+      },
+      "requirements": {
+        "level": 35,
+        "dex": 24
+      }
+    },
+    {
+      "id": "legendary_bow",
+      "nameKo": "전설의 활",
+      "nameEn": "Legendary Bow",
+      "description": "백발백중이라 전해지는 전설의 활.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "legendary",
+      "value": 85000,
+      "weight": 1.5,
+      "stackable": false,
+      "weaponType": "bow",
+      "spriteId": "weapon_archer_2",
+      "spriteMapping": "/data/sprites/equipment/weapon/bow.json",
+      "color": "#FFD700",
+      "stats": {
+        "damage": 55,
+        "attackSpeed": 1.35,
+        "range": 7,
+        "critChance": 18,
+        "critDamage": 30,
+        "allStats": 3
+      },
+      "requirements": {
+        "level": 50,
+        "dex": 32
+      }
     },
     {
       "id": "rusty_dagger",
       "nameKo": "녹슨 단검",
       "nameEn": "Rusty Dagger",
-      "description": {
-        "ko": "녹이 슨 낡은 단검. 녹여서 재료로 사용할 수 있다.",
-        "en": "An old rusty dagger. Can be melted for materials."
-      },
-      "type": "material",
-      "rarity": "common",
-      "icon": "🗡️",
-      "weight": 0.8,
+      "description": "녹이 슨 오래된 단검.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "crude",
       "value": 15,
-      "sellPrice": 8,
-      "stackable": true,
-      "maxStack": 20,
-      "tags": [
-        "weapon",
-        "bandit",
-        "metal",
-        "scrap"
-      ]
-    },
-    {
-      "id": "health_potion_small",
-      "nameKo": "소형 체력 물약",
-      "nameEn": "Small Health Potion",
-      "description": {
-        "ko": "HP를 30 회복한다.",
-        "en": "Restores 30 HP."
-      },
-      "type": "consumable",
-      "rarity": "common",
-      "icon": "🧪",
-      "weight": 0.5,
-      "value": 25,
-      "sellPrice": 10,
-      "stackable": true,
-      "maxStack": 20,
-      "tags": [
-        "potion",
-        "healing"
-      ],
-      "consumableEffect": {
-        "type": "heal",
-        "value": 30,
-        "target": "self"
-      }
-    },
-    {
-      "id": "health_potion_medium",
-      "nameKo": "중형 체력 물약",
-      "nameEn": "Medium Health Potion",
-      "description": {
-        "ko": "HP를 60 회복한다.",
-        "en": "Restores 60 HP."
-      },
-      "type": "consumable",
-      "rarity": "grand",
-      "icon": "🧪",
-      "weight": 0.5,
-      "value": 60,
-      "sellPrice": 30,
-      "stackable": true,
-      "maxStack": 20,
-      "tags": [
-        "potion",
-        "healing"
-      ],
-      "consumableEffect": {
-        "type": "heal",
-        "value": 60,
-        "target": "self"
-      }
-    },
-    {
-      "id": "mana_potion_small",
-      "nameKo": "소형 마나 물약",
-      "nameEn": "Small Mana Potion",
-      "description": {
-        "ko": "MP를 20 회복한다.",
-        "en": "Restores 20 MP."
-      },
-      "type": "consumable",
-      "rarity": "common",
-      "icon": "💧",
-      "weight": 0.5,
-      "value": 30,
-      "sellPrice": 15,
-      "stackable": true,
-      "maxStack": 20,
-      "tags": [
-        "potion",
-        "mana"
-      ],
-      "consumableEffect": {
-        "type": "mana",
-        "value": 20,
-        "target": "self"
-      }
-    },
-    {
-      "id": "antidote",
-      "nameKo": "해독제",
-      "nameEn": "Antidote",
-      "description": {
-        "ko": "독 상태를 치료한다.",
-        "en": "Cures poison status."
-      },
-      "type": "consumable",
-      "rarity": "common",
-      "icon": "💊",
-      "weight": 0.3,
-      "value": 20,
-      "sellPrice": 10,
-      "stackable": true,
-      "maxStack": 10,
-      "tags": [
-        "medicine",
-        "cure"
-      ],
-      "consumableEffect": {
-        "type": "cure",
-        "value": 0,
-        "target": "self",
-        "statusEffect": "poison"
-      }
-    },
-    {
-      "id": "wooden_light_sword",
-      "nameKo": "나무 세검",
-      "nameEn": "Wooden Light Sword",
-      "description": {
-        "ko": "가볍고 빠른 나무 세검. 찌르기에 특화되어 있다.",
-        "en": "A light wooden sword. Specialized in thrusting attacks."
-      },
-      "type": "equipment",
-      "rarity": "common",
-      "icon": "🗡️",
-      "weight": 1.5,
-      "value": 45,
-      "sellPrice": 18,
+      "weight": 0.8,
       "stackable": false,
-      "tags": [
-        "weapon",
-        "light_sword",
-        "pierce"
-      ],
-      "equipmentData": {
-        "slot": "mainHand",
-        "weaponType": "light_sword",
-        "handType": "one_handed",
-        "sprite": {
-          "category": "sword",
-          "color": "#8B4513",
-          "spriteId": "elf_weapon_03"
-        },
-        "stats": {
-          "attack": 4
-        },
-        "requiredLevel": 1
-      }
-    },
-    {
-      "id": "wooden_medium_sword",
-      "nameKo": "나무 중검",
-      "nameEn": "Wooden Medium Sword",
-      "description": {
-        "ko": "초보자용 나무 중검. 균형 잡힌 베기가 가능하다.",
-        "en": "A wooden medium sword for beginners. Allows balanced slashing."
+      "weaponType": "dagger",
+      "spriteId": "weapon_rogue_1",
+      "spriteMapping": "/data/sprites/equipment/weapon/dagger.json",
+      "color": "#8B4513",
+      "stats": {
+        "damage": 4,
+        "attackSpeed": 1.3
       },
-      "type": "equipment",
-      "rarity": "common",
-      "icon": "⚔️",
-      "weight": 2,
-      "value": 50,
-      "sellPrice": 20,
-      "stackable": false,
-      "tags": [
-        "weapon",
-        "medium_sword",
-        "slash"
-      ],
-      "equipmentData": {
-        "slot": "mainHand",
-        "weaponType": "medium_sword",
-        "handType": "one_handed",
-        "sprite": {
-          "category": "sword",
-          "color": "#8B4513",
-          "spriteId": "elf_weapon_05"
-        },
-        "stats": {
-          "attack": 5
-        },
-        "requiredLevel": 1
-      }
-    },
-    {
-      "id": "wooden_great_sword",
-      "nameKo": "나무 대검",
-      "nameEn": "Wooden Great Sword",
-      "description": {
-        "ko": "크고 무거운 나무 대검. 패리가 가능하다.",
-        "en": "A large wooden great sword. Can parry attacks."
-      },
-      "type": "equipment",
-      "rarity": "common",
-      "icon": "🗡️",
-      "weight": 4,
-      "value": 55,
-      "sellPrice": 22,
-      "stackable": false,
-      "tags": [
-        "weapon",
-        "great_sword",
-        "slash",
-        "parry"
-      ],
-      "equipmentData": {
-        "slot": "mainHand",
-        "weaponType": "great_sword",
-        "handType": "two_handed",
-        "sprite": {
-          "category": "sword",
-          "color": "#8B4513",
-          "spriteId": "elf_weapon_07"
-        },
-        "stats": {
-          "attack": 7
-        },
-        "requiredLevel": 1
-      }
-    },
-    {
-      "id": "iron_light_sword",
-      "nameKo": "철 세검",
-      "nameEn": "Iron Light Sword",
-      "description": {
-        "ko": "날렵한 철제 세검. 빠른 찌르기에 적합하다.",
-        "en": "A nimble iron light sword. Suitable for quick thrusts."
-      },
-      "type": "equipment",
-      "rarity": "grand",
-      "icon": "🗡️",
-      "weight": 2.5,
-      "value": 180,
-      "sellPrice": 72,
-      "stackable": false,
-      "tags": [
-        "weapon",
-        "light_sword",
-        "pierce"
-      ],
-      "equipmentData": {
-        "slot": "mainHand",
-        "weaponType": "light_sword",
-        "handType": "one_handed",
-        "sprite": {
-          "category": "sword",
-          "color": "#808080",
-          "spriteId": "elf_weapon_03"
-        },
-        "stats": {
-          "attack": 10
-        },
-        "requiredLevel": 5
-      }
-    },
-    {
-      "id": "iron_medium_sword",
-      "nameKo": "철 중검",
-      "nameEn": "Iron Medium Sword",
-      "description": {
-        "ko": "단단한 철로 만든 중검. 믿을 만한 베기 무기.",
-        "en": "A medium sword made of solid iron. A reliable slashing weapon."
-      },
-      "type": "equipment",
-      "rarity": "grand",
-      "icon": "⚔️",
-      "weight": 3.5,
-      "value": 200,
-      "sellPrice": 80,
-      "stackable": false,
-      "tags": [
-        "weapon",
-        "medium_sword",
-        "slash"
-      ],
-      "equipmentData": {
-        "slot": "mainHand",
-        "weaponType": "medium_sword",
-        "handType": "one_handed",
-        "sprite": {
-          "category": "sword",
-          "color": "#808080",
-          "spriteId": "elf_weapon_05"
-        },
-        "stats": {
-          "attack": 12
-        },
-        "requiredLevel": 5
-      }
-    },
-    {
-      "id": "iron_great_sword",
-      "nameKo": "철 대검",
-      "nameEn": "Iron Great Sword",
-      "description": {
-        "ko": "묵직한 철제 대검. 강력한 베기와 패리가 가능하다.",
-        "en": "A heavy iron great sword. Capable of powerful slashes and parries."
-      },
-      "type": "equipment",
-      "rarity": "grand",
-      "icon": "🗡️",
-      "weight": 6,
-      "value": 250,
-      "sellPrice": 100,
-      "stackable": false,
-      "tags": [
-        "weapon",
-        "great_sword",
-        "slash",
-        "parry"
-      ],
-      "equipmentData": {
-        "slot": "mainHand",
-        "weaponType": "great_sword",
-        "handType": "two_handed",
-        "sprite": {
-          "category": "sword",
-          "color": "#808080",
-          "spriteId": "elf_weapon_07"
-        },
-        "stats": {
-          "attack": 15
-        },
-        "requiredLevel": 5
-      }
-    },
-    {
-      "id": "wooden_dagger",
-      "nameKo": "나무 단검",
-      "nameEn": "Wooden Dagger",
-      "description": {
-        "ko": "작고 가벼운 나무 단검. 암습에 사용할 수 있다.",
-        "en": "A small wooden dagger. Can be used for ambush attacks."
-      },
-      "type": "equipment",
-      "rarity": "common",
-      "icon": "🔪",
-      "weight": 0.5,
-      "value": 30,
-      "sellPrice": 12,
-      "stackable": false,
-      "tags": [
-        "weapon",
-        "dagger",
-        "pierce",
-        "ambush"
-      ],
-      "equipmentData": {
-        "slot": "mainHand",
-        "weaponType": "dagger",
-        "handType": "one_handed",
-        "sprite": {
-          "category": "sword",
-          "color": "#8B4513",
-          "spriteId": "elf_weapon_08"
-        },
-        "stats": {
-          "attack": 3,
-          "ambushChance": 10,
-          "ambushDamage": 30
-        },
-        "requiredLevel": 1
+      "requirements": {
+        "level": 1
       }
     },
     {
       "id": "iron_dagger",
       "nameKo": "철 단검",
       "nameEn": "Iron Dagger",
-      "description": {
-        "ko": "날카로운 철제 단검. 암습 시 치명적이다.",
-        "en": "A sharp iron dagger. Deadly in ambush attacks."
-      },
+      "description": "기본적인 철제 단검.",
       "type": "equipment",
-      "rarity": "grand",
-      "icon": "🔪",
-      "weight": 1,
-      "value": 150,
-      "sellPrice": 60,
-      "stackable": false,
-      "tags": [
-        "weapon",
-        "dagger",
-        "pierce",
-        "ambush"
-      ],
-      "equipmentData": {
-        "slot": "mainHand",
-        "weaponType": "dagger",
-        "handType": "one_handed",
-        "sprite": {
-          "category": "sword",
-          "color": "#808080",
-          "spriteId": "elf_weapon_08"
-        },
-        "stats": {
-          "attack": 8,
-          "ambushChance": 15,
-          "ambushDamage": 50
-        },
-        "requiredLevel": 5
-      }
-    },
-    {
-      "id": "leather_armor",
-      "nameKo": "가죽 갑옷",
-      "nameEn": "Leather Armor",
-      "description": {
-        "ko": "가벼운 가죽 갑옷. 기본적인 보호를 제공한다.",
-        "en": "Light leather armor. Provides basic protection."
-      },
-      "type": "equipment",
+      "subtype": "weapon",
       "rarity": "common",
-      "icon": "🧥",
-      "weight": 5,
-      "value": 100,
-      "sellPrice": 40,
-      "stackable": false,
-      "tags": [
-        "armor",
-        "leather"
-      ],
-      "equipmentData": {
-        "slot": "armor",
-        "stats": {
-          "defense": 3
-        },
-        "requiredLevel": 1
-      }
-    },
-    {
-      "id": "wooden_staff",
-      "nameKo": "나무 지팡이",
-      "nameEn": "Wooden Staff",
-      "description": {
-        "ko": "마법사용 나무 지팡이. 마력을 약간 증폭시킨다.",
-        "en": "A wooden staff for mages. Slightly amplifies magic power."
-      },
-      "type": "equipment",
-      "rarity": "common",
-      "icon": "🪄",
-      "weight": 1.5,
       "value": 60,
-      "sellPrice": 25,
+      "weight": 1,
       "stackable": false,
-      "tags": [
-        "weapon",
-        "staff",
-        "magic"
-      ],
-      "equipmentData": {
-        "slot": "mainHand",
-        "weaponType": "staff",
-        "handType": "two_handed",
-        "sprite": {
-          "category": "wand",
-          "color": "#8B4513",
-          "spriteId": "elf_weapon_01"
-        },
-        "stats": {
-          "magic": 8
-        },
-        "requiredLevel": 1
+      "weaponType": "dagger",
+      "spriteId": "weapon_rogue_1",
+      "spriteMapping": "/data/sprites/equipment/weapon/dagger.json",
+      "color": null,
+      "stats": {
+        "damage": 7,
+        "attackSpeed": 1.3
+      },
+      "requirements": {
+        "level": 1,
+        "dex": 5
       }
     },
     {
-      "id": "leather_cap",
-      "nameKo": "가죽 모자",
-      "nameEn": "Leather Cap",
-      "description": {
-        "ko": "간단한 가죽 모자. 머리를 보호한다.",
-        "en": "A simple leather cap. Protects the head."
-      },
+      "id": "steel_dagger",
+      "nameKo": "강철 단검",
+      "nameEn": "Steel Dagger",
+      "description": "날카롭게 벼려진 강철 단검.",
       "type": "equipment",
-      "rarity": "common",
-      "icon": "🎩",
-      "weight": 0.5,
-      "value": 40,
-      "sellPrice": 16,
-      "stackable": false,
-      "tags": [
-        "helmet",
-        "leather"
-      ],
-      "equipmentData": {
-        "slot": "helmet",
-        "stats": {
-          "defense": 1
-        },
-        "requiredLevel": 1
-      }
-    },
-    {
-      "id": "copper_ring",
-      "nameKo": "구리 반지",
-      "nameEn": "Copper Ring",
-      "description": {
-        "ko": "평범한 구리 반지. 약간의 행운을 가져다준다.",
-        "en": "An ordinary copper ring. Brings a little luck."
-      },
-      "type": "equipment",
-      "rarity": "common",
-      "icon": "💍",
-      "weight": 0.1,
-      "value": 30,
-      "sellPrice": 12,
-      "stackable": false,
-      "tags": [
-        "accessory",
-        "ring"
-      ],
-      "equipmentData": {
-        "slot": "ring1",
-        "accessoryType": "ring",
-        "stats": {
-          "critRate": 1
-        },
-        "requiredLevel": 1
-      }
-    },
-    {
-      "id": "old_key",
-      "nameKo": "낡은 열쇠",
-      "nameEn": "Old Key",
-      "description": {
-        "ko": "무엇을 여는 열쇠일까? 어딘가에 쓸 수 있을 것 같다.",
-        "en": "What does this key open? It might be useful somewhere."
-      },
-      "type": "misc",
-      "rarity": "common",
-      "icon": "🔑",
-      "weight": 0.1,
-      "value": 0,
-      "sellPrice": 1,
-      "stackable": true,
-      "maxStack": 10,
-      "tags": [
-        "key",
-        "quest"
-      ]
-    },
-    {
-      "id": "crystal_basic",
-      "nameKo": "기본 통신용 크리스탈",
-      "nameEn": "Basic Communication Crystal",
-      "description": {
-        "ko": "마력을 담은 크리스탈. 귓속말을 보낼 수 있다. (10회 충전)",
-        "en": "A crystal infused with magic. Allows sending whispers. (10 charges)"
-      },
-      "type": "consumable",
-      "rarity": "common",
-      "icon": "🔮",
-      "weight": 0.2,
-      "value": 50,
-      "sellPrice": 20,
-      "stackable": false,
-      "tags": [
-        "crystal",
-        "communication"
-      ],
-      "consumableEffect": {
-        "type": "buff",
-        "value": 10,
-        "target": "self",
-        "statusEffect": "whisper_enabled"
-      }
-    },
-    {
-      "id": "crystal_advanced",
-      "nameKo": "고급 통신용 크리스탈",
-      "nameEn": "Advanced Communication Crystal",
-      "description": {
-        "ko": "강화된 크리스탈. 귓속말과 빠른 답장(/r)이 가능하다. (30회 충전)",
-        "en": "An enhanced crystal. Allows whispers and quick reply (/r). (30 charges)"
-      },
-      "type": "consumable",
+      "subtype": "weapon",
       "rarity": "grand",
-      "icon": "💎",
-      "weight": 0.2,
-      "value": 150,
-      "sellPrice": 60,
+      "value": 200,
+      "weight": 1,
       "stackable": false,
-      "tags": [
-        "crystal",
-        "communication"
-      ],
-      "consumableEffect": {
-        "type": "buff",
-        "value": 30,
-        "target": "self",
-        "statusEffect": "whisper_reply_enabled"
+      "weaponType": "dagger",
+      "spriteId": "weapon_rogue_1",
+      "spriteMapping": "/data/sprites/equipment/weapon/dagger.json",
+      "color": "#A9A9A9",
+      "stats": {
+        "damage": 12,
+        "attackSpeed": 1.35,
+        "critChance": 3
+      },
+      "requirements": {
+        "level": 5,
+        "dex": 8
       }
     },
     {
-      "id": "crystal_superior",
-      "nameKo": "상급 통신용 크리스탈",
-      "nameEn": "Superior Communication Crystal",
-      "description": {
-        "ko": "최상급 크리스탈. 모든 통신 기능 사용 가능. (100회 충전)",
-        "en": "A superior crystal. All communication features available. (100 charges)"
-      },
-      "type": "consumable",
+      "id": "assassin_dagger",
+      "nameKo": "암살자의 단검",
+      "nameEn": "Assassin's Dagger",
+      "description": "암살 길드에서 사용하는 특수 단검.",
+      "type": "equipment",
+      "subtype": "weapon",
       "rarity": "rare",
-      "icon": "✨",
-      "weight": 0.2,
-      "value": 500,
-      "sellPrice": 200,
+      "value": 600,
+      "weight": 0.8,
       "stackable": false,
-      "tags": [
-        "crystal",
-        "communication"
-      ],
-      "consumableEffect": {
-        "type": "buff",
-        "value": 100,
-        "target": "self",
-        "statusEffect": "whisper_all_enabled"
+      "weaponType": "dagger",
+      "spriteId": "weapon_rogue_2",
+      "spriteMapping": "/data/sprites/equipment/weapon/dagger.json",
+      "color": "#2F4F4F",
+      "stats": {
+        "damage": 15,
+        "attackSpeed": 1.4,
+        "critChance": 8,
+        "critDamage": 10
+      },
+      "requirements": {
+        "level": 12,
+        "dex": 12
       }
     },
     {
-      "id": "linen_shirt",
-      "nameKo": "삼베 셔츠",
-      "nameEn": "Linen Shirt",
-      "description": {
-        "ko": "가볍고 편한 삼베 셔츠. 기본적인 보호를 제공한다.",
-        "en": "A light and comfortable linen shirt. Provides basic protection."
-      },
+      "id": "poison_dagger",
+      "nameKo": "맹독 단검",
+      "nameEn": "Poison Dagger",
+      "description": "독이 발린 위험한 단검.",
       "type": "equipment",
-      "rarity": "common",
-      "icon": "👕",
+      "subtype": "weapon",
+      "rarity": "rare",
+      "value": 750,
+      "weight": 1,
+      "stackable": false,
+      "weaponType": "dagger",
+      "spriteId": "weapon_rogue_2",
+      "spriteMapping": "/data/sprites/equipment/weapon/dagger.json",
+      "color": "#32CD32",
+      "stats": {
+        "damage": 12,
+        "attackSpeed": 1.35,
+        "statusEffect": {
+          "type": "poison",
+          "chance": 25,
+          "damage": 5,
+          "duration": 3
+        }
+      },
+      "requirements": {
+        "level": 12,
+        "dex": 10
+      }
+    },
+    {
+      "id": "mithril_dagger",
+      "nameKo": "미스릴 단검",
+      "nameEn": "Mithril Dagger",
+      "description": "번개처럼 빠른 미스릴 단검.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "arcane",
+      "value": 2000,
+      "weight": 0.6,
+      "stackable": false,
+      "weaponType": "dagger",
+      "spriteId": "weapon_rogue_2",
+      "spriteMapping": "/data/sprites/equipment/weapon/dagger.json",
+      "color": "#87CEEB",
+      "stats": {
+        "damage": 20,
+        "attackSpeed": 1.5,
+        "critChance": 10
+      },
+      "requirements": {
+        "level": 20,
+        "dex": 15
+      }
+    },
+    {
+      "id": "shadow_dagger",
+      "nameKo": "그림자 단검",
+      "nameEn": "Shadow Dagger",
+      "description": "그림자처럼 보이지 않는 암흑의 단검.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "heroic",
+      "value": 4500,
       "weight": 0.5,
-      "value": 25,
-      "sellPrice": 10,
       "stackable": false,
-      "tags": [
-        "armor",
-        "cloth",
-        "light"
-      ],
-      "equipmentData": {
-        "slot": "cloth",
-        "unityPartIndex": 1,
-        "stats": {
-          "defense": 1
-        },
-        "requiredLevel": 1
+      "weaponType": "dagger",
+      "spriteId": "weapon_rogue_2",
+      "spriteMapping": "/data/sprites/equipment/weapon/dagger.json",
+      "color": "#1C1C1C",
+      "stats": {
+        "damage": 25,
+        "attackSpeed": 1.45,
+        "critChance": 15,
+        "critDamage": 20,
+        "elementDamage": {
+          "element": "dark",
+          "value": 10
+        }
+      },
+      "requirements": {
+        "level": 25,
+        "dex": 18
       }
     },
     {
-      "id": "cotton_shirt",
-      "nameKo": "면 셔츠",
-      "nameEn": "Cotton Shirt",
-      "description": {
-        "ko": "부드러운 면 셔츠. 착용감이 좋다.",
-        "en": "A soft cotton shirt. Comfortable to wear."
-      },
+      "id": "legendary_dagger",
+      "nameKo": "전설의 단검",
+      "nameEn": "Legendary Dagger",
+      "description": "전설로 전해지는 황금빛 단검.",
       "type": "equipment",
-      "rarity": "grand",
-      "icon": "👕",
-      "weight": 0.5,
-      "value": 75,
-      "sellPrice": 30,
+      "subtype": "weapon",
+      "rarity": "legendary",
+      "value": 80000,
+      "weight": 0.7,
       "stackable": false,
-      "tags": [
-        "armor",
-        "cloth",
-        "light"
-      ],
-      "equipmentData": {
-        "slot": "cloth",
-        "unityPartIndex": 2,
-        "stats": {
-          "defense": 2,
-          "hp": 5
-        },
-        "requiredLevel": 3
-      }
-    },
-    {
-      "id": "leather_pants",
-      "nameKo": "가죽 바지",
-      "nameEn": "Leather Pants",
-      "description": {
-        "ko": "튼튼한 가죽 바지. 다리를 보호한다.",
-        "en": "Sturdy leather pants. Protects the legs."
+      "weaponType": "dagger",
+      "spriteId": "weapon_rogue_2",
+      "spriteMapping": "/data/sprites/equipment/weapon/dagger.json",
+      "color": "#FFD700",
+      "stats": {
+        "damage": 45,
+        "attackSpeed": 1.6,
+        "critChance": 20,
+        "critDamage": 40,
+        "allStats": 3
       },
-      "type": "equipment",
-      "rarity": "common",
-      "icon": "👖",
-      "weight": 1.5,
-      "value": 40,
-      "sellPrice": 16,
-      "stackable": false,
-      "tags": [
-        "armor",
-        "pants",
-        "leather"
-      ],
-      "equipmentData": {
-        "slot": "pants",
-        "unityPartIndex": 1,
-        "stats": {
-          "defense": 2
-        },
-        "requiredLevel": 1
-      }
-    },
-    {
-      "id": "chain_pants",
-      "nameKo": "사슬 바지",
-      "nameEn": "Chain Pants",
-      "description": {
-        "ko": "사슬로 엮은 바지. 좋은 방어력을 제공한다.",
-        "en": "Pants woven with chains. Provides good defense."
-      },
-      "type": "equipment",
-      "rarity": "grand",
-      "icon": "👖",
-      "weight": 3,
-      "value": 120,
-      "sellPrice": 48,
-      "stackable": false,
-      "tags": [
-        "armor",
-        "pants",
-        "chain"
-      ],
-      "equipmentData": {
-        "slot": "pants",
-        "unityPartIndex": 2,
-        "stats": {
-          "defense": 4
-        },
-        "requiredLevel": 5
+      "requirements": {
+        "level": 50,
+        "dex": 30
       }
     },
     {
       "id": "wooden_shield",
       "nameKo": "나무 방패",
       "nameEn": "Wooden Shield",
-      "description": {
-        "ko": "단단한 나무로 만든 방패. 적의 공격을 막을 수 있다.",
-        "en": "A shield made of solid wood. Can block enemy attacks."
-      },
+      "description": "나무로 만든 기본적인 방패.",
       "type": "equipment",
-      "rarity": "common",
-      "icon": "🛡️",
+      "subtype": "weapon",
+      "rarity": "crude",
+      "value": 30,
       "weight": 3,
-      "value": 50,
-      "sellPrice": 20,
       "stackable": false,
-      "tags": [
-        "offhand",
-        "shield",
-        "wood"
-      ],
-      "equipmentData": {
-        "slot": "offHand",
-        "offHandType": "shield",
-        "sprite": {
-          "category": "shield",
-          "color": "#8B4513",
-          "spriteId": "elf_shield_01"
-        },
-        "stats": {
-          "defense": 3,
-          "blockChance": 10
-        },
-        "requiredLevel": 1
+      "weaponType": "shield",
+      "spriteId": "elf_shield_01",
+      "spriteMapping": "/data/sprites/equipment/weapon/shield.json",
+      "color": "#8B4513",
+      "stats": {
+        "defense": 5,
+        "blockChance": 10
+      },
+      "requirements": {
+        "level": 1
       }
     },
     {
       "id": "iron_shield",
       "nameKo": "철 방패",
       "nameEn": "Iron Shield",
-      "description": {
-        "ko": "단단한 철제 방패. 뛰어난 방어력을 자랑한다.",
-        "en": "A sturdy iron shield. Boasts excellent defense."
-      },
+      "description": "튼튼한 철제 방패.",
       "type": "equipment",
-      "rarity": "grand",
-      "icon": "🛡️",
-      "weight": 5,
-      "value": 180,
-      "sellPrice": 72,
-      "stackable": false,
-      "tags": [
-        "offhand",
-        "shield",
-        "iron"
-      ],
-      "equipmentData": {
-        "slot": "offHand",
-        "offHandType": "shield",
-        "sprite": {
-          "category": "shield",
-          "color": "#808080",
-          "spriteId": "elf_shield_01"
-        },
-        "stats": {
-          "defense": 6,
-          "blockChance": 15
-        },
-        "requiredLevel": 5
-      }
-    },
-    {
-      "id": "torch",
-      "nameKo": "횃불",
-      "nameEn": "Torch",
-      "description": {
-        "ko": "어둠을 밝히는 횃불. 던전 탐험에 유용하다.",
-        "en": "A torch that illuminates the darkness. Useful for dungeon exploration."
-      },
-      "type": "equipment",
+      "subtype": "weapon",
       "rarity": "common",
-      "icon": "🔥",
-      "weight": 0.5,
-      "value": 10,
-      "sellPrice": 4,
-      "stackable": false,
-      "tags": [
-        "offhand",
-        "torch",
-        "light"
-      ],
-      "equipmentData": {
-        "slot": "offHand",
-        "offHandType": "torch",
-        "stats": {
-          "lightRadius": 3
-        },
-        "requiredLevel": 1
-      }
-    },
-    {
-      "id": "silver_necklace",
-      "nameKo": "은 목걸이",
-      "nameEn": "Silver Necklace",
-      "description": {
-        "ko": "섬세하게 만들어진 은 목걸이. 생명력을 높여준다.",
-        "en": "A delicately crafted silver necklace. Increases vitality."
-      },
-      "type": "equipment",
-      "rarity": "grand",
-      "icon": "📿",
-      "weight": 0.2,
-      "value": 100,
-      "sellPrice": 40,
-      "stackable": false,
-      "tags": [
-        "accessory",
-        "necklace",
-        "silver"
-      ],
-      "equipmentData": {
-        "slot": "necklace",
-        "accessoryType": "necklace",
-        "stats": {
-          "hp": 15
-        },
-        "requiredLevel": 3
-      }
-    },
-    {
-      "id": "pearl_earring",
-      "nameKo": "진주 귀걸이",
-      "nameEn": "Pearl Earring",
-      "description": {
-        "ko": "아름다운 진주 귀걸이. 지혜를 높여준다.",
-        "en": "A beautiful pearl earring. Increases wisdom."
-      },
-      "type": "equipment",
-      "rarity": "grand",
-      "icon": "✨",
-      "weight": 0.1,
-      "value": 80,
-      "sellPrice": 32,
-      "stackable": false,
-      "tags": [
-        "accessory",
-        "earring",
-        "pearl"
-      ],
-      "equipmentData": {
-        "slot": "earring1",
-        "accessoryType": "earring",
-        "stats": {
-          "wis": 2
-        },
-        "requiredLevel": 3
-      }
-    },
-    {
-      "id": "leather_bracelet",
-      "nameKo": "가죽 팔찌",
-      "nameEn": "Leather Bracelet",
-      "description": {
-        "ko": "질긴 가죽으로 만든 팔찌. 민첩성을 높여준다.",
-        "en": "A bracelet made of tough leather. Increases dexterity."
-      },
-      "type": "equipment",
-      "rarity": "common",
-      "icon": "⭕",
-      "weight": 0.1,
-      "value": 35,
-      "sellPrice": 14,
-      "stackable": false,
-      "tags": [
-        "accessory",
-        "bracelet",
-        "leather"
-      ],
-      "equipmentData": {
-        "slot": "bracelet",
-        "accessoryType": "bracelet",
-        "stats": {
-          "dex": 1
-        },
-        "requiredLevel": 1
-      }
-    },
-    {
-      "id": "silver_ring",
-      "nameKo": "은 반지",
-      "nameEn": "Silver Ring",
-      "description": {
-        "ko": "은빛으로 빛나는 반지. 마력을 높여준다.",
-        "en": "A ring that shines silver. Increases magic power."
-      },
-      "type": "equipment",
-      "rarity": "grand",
-      "icon": "💍",
-      "weight": 0.1,
-      "value": 90,
-      "sellPrice": 36,
-      "stackable": false,
-      "tags": [
-        "accessory",
-        "ring",
-        "silver"
-      ],
-      "equipmentData": {
-        "slot": "ring1",
-        "accessoryType": "ring",
-        "stats": {
-          "magic": 3,
-          "mp": 10
-        },
-        "requiredLevel": 3
-      }
-    },
-    {
-      "id": "gold_medium_sword",
-      "nameKo": "황금 중검",
-      "nameEn": "Gold Medium Sword",
-      "description": {
-        "ko": "순금으로 장식된 화려한 중검. 높은 가치를 지녔다.",
-        "en": "A gorgeous medium sword decorated with pure gold. Holds great value."
-      },
-      "type": "equipment",
-      "rarity": "rare",
-      "icon": "⚔️",
+      "value": 120,
       "weight": 4,
-      "value": 500,
-      "sellPrice": 200,
       "stackable": false,
-      "tags": [
-        "weapon",
-        "medium_sword",
-        "slash",
-        "gold"
-      ],
-      "equipmentData": {
-        "slot": "mainHand",
-        "weaponType": "medium_sword",
-        "handType": "one_handed",
-        "sprite": {
-          "category": "sword",
-          "color": "#FFD700",
-          "spriteId": "elf_weapon_05"
-        },
-        "stats": {
-          "attack": 14,
-          "critRate": 5
-        },
-        "requiredLevel": 8
+      "weaponType": "shield",
+      "spriteId": "undead_shield_01",
+      "spriteMapping": "/data/sprites/equipment/weapon/shield.json",
+      "color": null,
+      "stats": {
+        "defense": 10,
+        "blockChance": 15
+      },
+      "requirements": {
+        "level": 1,
+        "str": 5,
+        "con": 5
       }
     },
     {
-      "id": "fire_great_sword",
-      "nameKo": "화염 대검",
-      "nameEn": "Fire Great Sword",
-      "description": {
-        "ko": "화염의 마력이 깃든 대검. 적을 불태운다.",
-        "en": "A great sword imbued with fire magic. Burns enemies."
-      },
+      "id": "steel_shield",
+      "nameKo": "강철 방패",
+      "nameEn": "Steel Shield",
+      "description": "단단한 강철로 만든 방패.",
       "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "grand",
+      "value": 400,
+      "weight": 4.5,
+      "stackable": false,
+      "weaponType": "shield",
+      "spriteId": "undead_shield_02",
+      "spriteMapping": "/data/sprites/equipment/weapon/shield.json",
+      "color": null,
+      "stats": {
+        "defense": 18,
+        "blockChance": 18
+      },
+      "requirements": {
+        "level": 5,
+        "str": 8,
+        "con": 8
+      }
+    },
+    {
+      "id": "knight_shield",
+      "nameKo": "기사의 방패",
+      "nameEn": "Knight's Shield",
+      "description": "왕국 기사단의 문장이 새겨진 방패.",
+      "type": "equipment",
+      "subtype": "weapon",
       "rarity": "rare",
-      "icon": "🔥",
-      "weight": 6.5,
-      "value": 600,
-      "sellPrice": 240,
+      "value": 900,
+      "weight": 5,
       "stackable": false,
-      "tags": [
-        "weapon",
-        "great_sword",
-        "slash",
-        "fire",
-        "elemental"
-      ],
-      "equipmentData": {
-        "slot": "mainHand",
-        "weaponType": "great_sword",
-        "handType": "two_handed",
-        "sprite": {
-          "category": "sword",
-          "color": "#FF4500",
-          "spriteId": "elf_weapon_07"
-        },
-        "stats": {
-          "attack": 18,
-          "magic": 5
-        },
-        "requiredLevel": 10
+      "weaponType": "shield",
+      "spriteId": "undead_shield_03",
+      "spriteMapping": "/data/sprites/equipment/weapon/shield.json",
+      "color": null,
+      "stats": {
+        "defense": 25,
+        "blockChance": 20,
+        "str": 1
+      },
+      "requirements": {
+        "level": 12,
+        "str": 10,
+        "con": 10
       }
     },
     {
-      "id": "ice_light_sword",
-      "nameKo": "냉기 세검",
-      "nameEn": "Ice Light Sword",
-      "description": {
-        "ko": "얼음의 냉기가 서린 세검. 적을 얼어붙게 한다.",
-        "en": "A light sword chilled with ice magic. Freezes enemies."
-      },
+      "id": "tower_shield",
+      "nameKo": "타워 실드",
+      "nameEn": "Tower Shield",
+      "description": "몸 전체를 가리는 거대한 방패.",
       "type": "equipment",
+      "subtype": "weapon",
       "rarity": "rare",
-      "icon": "❄️",
-      "weight": 2.5,
-      "value": 550,
-      "sellPrice": 220,
-      "stackable": false,
-      "tags": [
-        "weapon",
-        "light_sword",
-        "pierce",
-        "ice",
-        "elemental"
-      ],
-      "equipmentData": {
-        "slot": "mainHand",
-        "weaponType": "light_sword",
-        "handType": "one_handed",
-        "sprite": {
-          "category": "sword",
-          "color": "#00BFFF",
-          "spriteId": "elf_weapon_03"
-        },
-        "stats": {
-          "attack": 12,
-          "magic": 4
-        },
-        "requiredLevel": 8
-      }
-    },
-    {
-      "id": "mithril_medium_sword",
-      "nameKo": "미스릴 중검",
-      "nameEn": "Mithril Medium Sword",
-      "description": {
-        "ko": "희귀한 미스릴로 제작된 중검. 가볍고 날카롭다.",
-        "en": "A medium sword crafted from rare mithril. Light and sharp."
-      },
-      "type": "equipment",
-      "rarity": "arcane",
-      "icon": "⚔️",
-      "weight": 2,
       "value": 1200,
-      "sellPrice": 480,
+      "weight": 8,
       "stackable": false,
-      "tags": [
-        "weapon",
-        "medium_sword",
-        "slash",
-        "mithril"
-      ],
-      "equipmentData": {
-        "slot": "mainHand",
-        "weaponType": "medium_sword",
-        "handType": "one_handed",
-        "sprite": {
-          "category": "sword",
-          "color": "#E0FFFF",
-          "spriteId": "elf_weapon_05"
-        },
-        "stats": {
-          "attack": 20,
-          "speed": 10,
-          "critRate": 3
-        },
-        "requiredLevel": 15
+      "weaponType": "shield",
+      "spriteId": "undead_shield_01",
+      "spriteMapping": "/data/sprites/equipment/weapon/shield.json",
+      "color": "#696969",
+      "stats": {
+        "defense": 35,
+        "blockChance": 25,
+        "moveSpeed": -10
+      },
+      "requirements": {
+        "level": 15,
+        "str": 15,
+        "con": 12
       }
     },
     {
-      "id": "dark_dagger",
-      "nameKo": "암흑 단검",
-      "nameEn": "Dark Dagger",
-      "description": {
-        "ko": "암흑의 기운이 서린 단검. 어둠 속에서 치명적이다.",
-        "en": "A dagger shrouded in darkness. Deadly in the shadows."
-      },
+      "id": "elven_shield",
+      "nameKo": "엘프 방패",
+      "nameEn": "Elven Shield",
+      "description": "가볍고 우아한 엘프제 방패.",
       "type": "equipment",
-      "rarity": "rare",
-      "icon": "🌑",
-      "weight": 1,
-      "value": 450,
-      "sellPrice": 180,
+      "subtype": "weapon",
+      "rarity": "arcane",
+      "value": 2000,
+      "weight": 2.5,
       "stackable": false,
-      "tags": [
-        "weapon",
-        "dagger",
-        "pierce",
-        "dark",
-        "elemental"
-      ],
-      "equipmentData": {
-        "slot": "mainHand",
-        "weaponType": "dagger",
-        "handType": "one_handed",
-        "sprite": {
-          "category": "sword",
-          "color": "#2F1F3F",
-          "spriteId": "elf_weapon_08"
-        },
-        "stats": {
-          "attack": 10,
-          "magic": 6,
-          "ambushChance": 25,
-          "ambushDamage": 80
-        },
-        "requiredLevel": 10
+      "weaponType": "shield",
+      "spriteId": "elf_shield_01",
+      "spriteMapping": "/data/sprites/equipment/weapon/shield.json",
+      "color": "#90EE90",
+      "stats": {
+        "defense": 22,
+        "blockChance": 22,
+        "magicDefense": 15,
+        "dex": 2
+      },
+      "requirements": {
+        "level": 18,
+        "dex": 12
       }
     },
     {
       "id": "holy_shield",
-      "nameKo": "신성 방패",
+      "nameKo": "성스러운 방패",
       "nameEn": "Holy Shield",
-      "description": {
-        "ko": "신성한 빛으로 축복받은 방패. 암흑에 저항한다.",
-        "en": "A shield blessed with holy light. Resists darkness."
-      },
+      "description": "신성한 힘이 깃든 축복받은 방패.",
       "type": "equipment",
-      "rarity": "rare",
-      "icon": "✨",
-      "weight": 5.5,
-      "value": 500,
-      "sellPrice": 200,
+      "subtype": "weapon",
+      "rarity": "heroic",
+      "value": 5500,
+      "weight": 4,
       "stackable": false,
-      "tags": [
-        "offhand",
-        "shield",
-        "holy"
-      ],
-      "equipmentData": {
-        "slot": "offHand",
-        "offHandType": "shield",
-        "sprite": {
-          "category": "shield",
-          "color": "#FFFACD",
-          "spriteId": "elf_shield_01"
+      "weaponType": "shield",
+      "spriteId": "shield_knight_1",
+      "spriteMapping": "/data/sprites/equipment/weapon/shield.json",
+      "color": "#FFFACD",
+      "stats": {
+        "defense": 30,
+        "blockChance": 22,
+        "magicDefense": 20,
+        "elementResist": {
+          "element": "dark",
+          "value": 25
+        }
+      },
+      "requirements": {
+        "level": 25,
+        "con": 15,
+        "karma": 15
+      }
+    },
+    {
+      "id": "dragon_shield",
+      "nameKo": "드래곤 방패",
+      "nameEn": "Dragon Shield",
+      "description": "드래곤의 비늘로 만든 방패.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "unique",
+      "value": 15000,
+      "weight": 5,
+      "stackable": false,
+      "weaponType": "shield",
+      "spriteId": "shield_sorcerer",
+      "spriteMapping": "/data/sprites/equipment/weapon/shield.json",
+      "color": "#DC143C",
+      "stats": {
+        "defense": 45,
+        "blockChance": 25,
+        "elementResist": {
+          "element": "fire",
+          "value": 40
         },
-        "stats": {
-          "defense": 8,
-          "blockChance": 20,
-          "magic": 3
+        "con": 3
+      },
+      "requirements": {
+        "level": 35,
+        "str": 18,
+        "con": 18
+      }
+    },
+    {
+      "id": "legendary_shield",
+      "nameKo": "전설의 방패",
+      "nameEn": "Legendary Shield",
+      "description": "어떤 공격도 막아낸다는 전설의 방패.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "legendary",
+      "value": 75000,
+      "weight": 4.5,
+      "stackable": false,
+      "weaponType": "shield",
+      "spriteId": "undead_shield_03",
+      "spriteMapping": "/data/sprites/equipment/weapon/shield.json",
+      "color": "#FFD700",
+      "stats": {
+        "defense": 60,
+        "blockChance": 30,
+        "magicDefense": 40,
+        "allElementResist": 20,
+        "allStats": 3
+      },
+      "requirements": {
+        "level": 50,
+        "str": 20,
+        "con": 25
+      }
+    },
+    {
+      "id": "wooden_spear",
+      "nameKo": "나무 창",
+      "nameEn": "Wooden Spear",
+      "description": "나무로 만든 기본 창.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "crude",
+      "value": 25,
+      "weight": 2.5,
+      "stackable": false,
+      "weaponType": "spear",
+      "spriteId": "soon_spear",
+      "spriteMapping": "/data/sprites/equipment/weapon/spear.json",
+      "color": "#8B4513",
+      "stats": {
+        "damage": 7,
+        "attackSpeed": 0.95,
+        "range": 2
+      },
+      "requirements": {
+        "level": 1
+      }
+    },
+    {
+      "id": "iron_spear",
+      "nameKo": "철 창",
+      "nameEn": "Iron Spear",
+      "description": "철 촉이 달린 기본 창.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "common",
+      "value": 100,
+      "weight": 3,
+      "stackable": false,
+      "weaponType": "spear",
+      "spriteId": "spear_1",
+      "spriteMapping": "/data/sprites/equipment/weapon/spear.json",
+      "color": null,
+      "stats": {
+        "damage": 12,
+        "attackSpeed": 0.95,
+        "range": 2
+      },
+      "requirements": {
+        "level": 1,
+        "str": 5,
+        "dex": 5
+      }
+    },
+    {
+      "id": "steel_spear",
+      "nameKo": "강철 창",
+      "nameEn": "Steel Spear",
+      "description": "날카로운 강철 창.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "grand",
+      "value": 350,
+      "weight": 3.2,
+      "stackable": false,
+      "weaponType": "spear",
+      "spriteId": "spear_1",
+      "spriteMapping": "/data/sprites/equipment/weapon/spear.json",
+      "color": "#A9A9A9",
+      "stats": {
+        "damage": 20,
+        "attackSpeed": 1,
+        "range": 2,
+        "armorPenetration": 5
+      },
+      "requirements": {
+        "level": 5,
+        "str": 8,
+        "dex": 8
+      }
+    },
+    {
+      "id": "war_spear",
+      "nameKo": "전투 창",
+      "nameEn": "War Spear",
+      "description": "전장에서 사용되는 전투용 창.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "rare",
+      "value": 750,
+      "weight": 3.5,
+      "stackable": false,
+      "weaponType": "spear",
+      "spriteId": "spear_1",
+      "spriteMapping": "/data/sprites/equipment/weapon/spear.json",
+      "color": "#696969",
+      "stats": {
+        "damage": 28,
+        "attackSpeed": 1,
+        "range": 2,
+        "armorPenetration": 10,
+        "firstStrike": true
+      },
+      "requirements": {
+        "level": 12,
+        "str": 12,
+        "dex": 10
+      }
+    },
+    {
+      "id": "halberd",
+      "nameKo": "할버드",
+      "nameEn": "Halberd",
+      "description": "도끼와 창이 결합된 양손 무기.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "arcane",
+      "value": 2200,
+      "weight": 5,
+      "stackable": false,
+      "weaponType": "spear",
+      "spriteId": "soon_spear",
+      "spriteMapping": "/data/sprites/equipment/weapon/spear.json",
+      "color": "#4682B4",
+      "stats": {
+        "damage": 40,
+        "attackSpeed": 0.85,
+        "range": 2,
+        "armorPenetration": 15,
+        "critChance": 5
+      },
+      "requirements": {
+        "level": 20,
+        "str": 16,
+        "dex": 12
+      }
+    },
+    {
+      "id": "dragon_lance",
+      "nameKo": "드래곤 랜스",
+      "nameEn": "Dragon Lance",
+      "description": "용을 사냥하기 위한 특수 창.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "heroic",
+      "value": 6000,
+      "weight": 4,
+      "stackable": false,
+      "weaponType": "spear",
+      "spriteId": "soon_spear",
+      "spriteMapping": "/data/sprites/equipment/weapon/spear.json",
+      "color": "#DC143C",
+      "stats": {
+        "damage": 48,
+        "attackSpeed": 0.95,
+        "range": 3,
+        "armorPenetration": 20,
+        "bonusDamage": {
+          "type": "dragon",
+          "value": 30
+        }
+      },
+      "requirements": {
+        "level": 28,
+        "str": 18,
+        "dex": 15
+      }
+    },
+    {
+      "id": "legendary_spear",
+      "nameKo": "전설의 창",
+      "nameEn": "Legendary Spear",
+      "description": "번개처럼 빠르다는 전설의 창.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "legendary",
+      "value": 88000,
+      "weight": 3.5,
+      "stackable": false,
+      "weaponType": "spear",
+      "spriteId": "spear_1",
+      "spriteMapping": "/data/sprites/equipment/weapon/spear.json",
+      "color": "#FFD700",
+      "stats": {
+        "damage": 72,
+        "attackSpeed": 1.15,
+        "range": 3,
+        "armorPenetration": 25,
+        "critChance": 12,
+        "firstStrike": true,
+        "allStats": 4
+      },
+      "requirements": {
+        "level": 50,
+        "str": 25,
+        "dex": 25
+      }
+    },
+    {
+      "id": "rusty_sword",
+      "nameKo": "녹슨 검",
+      "nameEn": "Rusty Sword",
+      "description": "녹이 슬어 무뎌진 오래된 검.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "crude",
+      "value": 20,
+      "weight": 2.5,
+      "stackable": false,
+      "weaponType": "sword",
+      "spriteId": "elf_weapon_03",
+      "spriteMapping": "/data/sprites/equipment/weapon/sword.json",
+      "color": "#8B4513",
+      "stats": {
+        "damage": 5,
+        "attackSpeed": 1
+      },
+      "requirements": {
+        "level": 1
+      }
+    },
+    {
+      "id": "iron_sword",
+      "nameKo": "철검",
+      "nameEn": "Iron Sword",
+      "description": "기본적인 철제 검.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "common",
+      "value": 100,
+      "weight": 3,
+      "stackable": false,
+      "weaponType": "sword",
+      "spriteId": "elf_weapon_03",
+      "spriteMapping": "/data/sprites/equipment/weapon/sword.json",
+      "color": null,
+      "stats": {
+        "damage": 10,
+        "attackSpeed": 1
+      },
+      "requirements": {
+        "level": 1,
+        "str": 5
+      }
+    },
+    {
+      "id": "steel_sword",
+      "nameKo": "강철검",
+      "nameEn": "Steel Sword",
+      "description": "잘 단련된 강철로 만든 검.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "grand",
+      "value": 350,
+      "weight": 3.2,
+      "stackable": false,
+      "weaponType": "sword",
+      "spriteId": "elf_weapon_05",
+      "spriteMapping": "/data/sprites/equipment/weapon/sword.json",
+      "color": null,
+      "stats": {
+        "damage": 18,
+        "attackSpeed": 1
+      },
+      "requirements": {
+        "level": 5,
+        "str": 8
+      }
+    },
+    {
+      "id": "silver_sword",
+      "nameKo": "은검",
+      "nameEn": "Silver Sword",
+      "description": "은으로 제작된 검. 언데드에게 추가 피해.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "rare",
+      "value": 800,
+      "weight": 2.8,
+      "stackable": false,
+      "weaponType": "sword",
+      "spriteId": "elf_weapon_07",
+      "spriteMapping": "/data/sprites/equipment/weapon/sword.json",
+      "color": "#C0C0C0",
+      "stats": {
+        "damage": 22,
+        "attackSpeed": 1.05,
+        "bonusDamage": {
+          "type": "undead",
+          "value": 10
+        }
+      },
+      "requirements": {
+        "level": 10,
+        "str": 10
+      }
+    },
+    {
+      "id": "knight_sword",
+      "nameKo": "기사의 검",
+      "nameEn": "Knight's Sword",
+      "description": "왕국 기사단의 상징적인 검.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "rare",
+      "value": 1200,
+      "weight": 3.5,
+      "stackable": false,
+      "weaponType": "sword",
+      "spriteId": "elf_weapon_08",
+      "spriteMapping": "/data/sprites/equipment/weapon/sword.json",
+      "color": null,
+      "stats": {
+        "damage": 28,
+        "attackSpeed": 0.95,
+        "defense": 2
+      },
+      "requirements": {
+        "level": 15,
+        "str": 12
+      }
+    },
+    {
+      "id": "mithril_sword",
+      "nameKo": "미스릴 검",
+      "nameEn": "Mithril Sword",
+      "description": "가볍고 날카로운 미스릴제 검.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "arcane",
+      "value": 3000,
+      "weight": 2,
+      "stackable": false,
+      "weaponType": "sword",
+      "spriteId": "elf_weapon_11",
+      "spriteMapping": "/data/sprites/equipment/weapon/sword.json",
+      "color": "#87CEEB",
+      "stats": {
+        "damage": 35,
+        "attackSpeed": 1.15,
+        "critChance": 5
+      },
+      "requirements": {
+        "level": 20,
+        "str": 12,
+        "dex": 10
+      }
+    },
+    {
+      "id": "flame_sword",
+      "nameKo": "화염검",
+      "nameEn": "Flame Sword",
+      "description": "불꽃이 감도는 마법 검.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "heroic",
+      "value": 5000,
+      "weight": 3,
+      "stackable": false,
+      "weaponType": "sword",
+      "spriteId": "elf_weapon_13",
+      "spriteMapping": "/data/sprites/equipment/weapon/sword.json",
+      "color": "#FF4500",
+      "stats": {
+        "damage": 32,
+        "attackSpeed": 1,
+        "elementDamage": {
+          "element": "fire",
+          "value": 15
+        }
+      },
+      "requirements": {
+        "level": 25,
+        "str": 14
+      }
+    },
+    {
+      "id": "frost_sword",
+      "nameKo": "냉기검",
+      "nameEn": "Frost Sword",
+      "description": "서리가 맺힌 얼음 검.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "heroic",
+      "value": 5000,
+      "weight": 3,
+      "stackable": false,
+      "weaponType": "sword",
+      "spriteId": "elf_weapon_13",
+      "spriteMapping": "/data/sprites/equipment/weapon/sword.json",
+      "color": "#00CED1",
+      "stats": {
+        "damage": 32,
+        "attackSpeed": 1,
+        "elementDamage": {
+          "element": "ice",
+          "value": 15
+        }
+      },
+      "requirements": {
+        "level": 25,
+        "str": 14
+      }
+    },
+    {
+      "id": "thunder_sword",
+      "nameKo": "번개검",
+      "nameEn": "Thunder Sword",
+      "description": "번개가 서린 전격의 검.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "heroic",
+      "value": 5200,
+      "weight": 3,
+      "stackable": false,
+      "weaponType": "sword",
+      "spriteId": "elf_weapon_13",
+      "spriteMapping": "/data/sprites/equipment/weapon/sword.json",
+      "color": "#FFD700",
+      "stats": {
+        "damage": 30,
+        "attackSpeed": 1.1,
+        "elementDamage": {
+          "element": "lightning",
+          "value": 18
+        }
+      },
+      "requirements": {
+        "level": 25,
+        "str": 13,
+        "dex": 8
+      }
+    },
+    {
+      "id": "holy_sword",
+      "nameKo": "성검",
+      "nameEn": "Holy Sword",
+      "description": "신성한 힘이 깃든 축복받은 검.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "unique",
+      "value": 12000,
+      "weight": 3,
+      "stackable": false,
+      "weaponType": "sword",
+      "spriteId": "elf_weapon_17",
+      "spriteMapping": "/data/sprites/equipment/weapon/sword.json",
+      "color": "#FFFACD",
+      "stats": {
+        "damage": 45,
+        "attackSpeed": 1,
+        "elementDamage": {
+          "element": "holy",
+          "value": 20
         },
-        "requiredLevel": 10
+        "bonusDamage": {
+          "type": "demon",
+          "value": 25
+        }
+      },
+      "requirements": {
+        "level": 35,
+        "str": 18,
+        "karma": 20
+      }
+    },
+    {
+      "id": "cursed_sword",
+      "nameKo": "저주받은 검",
+      "nameEn": "Cursed Sword",
+      "description": "어둠의 힘이 감도는 저주받은 검.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "unique",
+      "value": 10000,
+      "weight": 3.5,
+      "stackable": false,
+      "weaponType": "sword",
+      "spriteId": "elf_weapon_17",
+      "spriteMapping": "/data/sprites/equipment/weapon/sword.json",
+      "color": "#4B0082",
+      "stats": {
+        "damage": 50,
+        "attackSpeed": 1,
+        "elementDamage": {
+          "element": "dark",
+          "value": 22
+        },
+        "lifesteal": 5
+      },
+      "requirements": {
+        "level": 35,
+        "str": 18,
+        "karma": -20
+      }
+    },
+    {
+      "id": "dragon_slayer",
+      "nameKo": "용살검",
+      "nameEn": "Dragon Slayer",
+      "description": "용을 사냥하기 위해 제작된 거대한 검.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "celestial",
+      "value": 25000,
+      "weight": 6,
+      "stackable": false,
+      "weaponType": "sword",
+      "spriteId": "elf_weapon_19",
+      "spriteMapping": "/data/sprites/equipment/weapon/sword.json",
+      "color": "#DC143C",
+      "stats": {
+        "damage": 65,
+        "attackSpeed": 0.85,
+        "critDamage": 25,
+        "bonusDamage": {
+          "type": "dragon",
+          "value": 50
+        }
+      },
+      "requirements": {
+        "level": 45,
+        "str": 25
+      }
+    },
+    {
+      "id": "legendary_sword",
+      "nameKo": "전설의 검",
+      "nameEn": "Legendary Sword",
+      "description": "신화 속에서만 전해지던 전설의 명검.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "legendary",
+      "value": 100000,
+      "weight": 3,
+      "stackable": false,
+      "weaponType": "sword",
+      "spriteId": "orc_weapon_05",
+      "spriteMapping": "/data/sprites/equipment/weapon/sword.json",
+      "color": "#FFD700",
+      "stats": {
+        "damage": 80,
+        "attackSpeed": 1.1,
+        "critChance": 10,
+        "critDamage": 30,
+        "allStats": 5
+      },
+      "requirements": {
+        "level": 50,
+        "str": 25,
+        "dex": 15
+      }
+    },
+    {
+      "id": "apprentice_wand",
+      "nameKo": "견습 마법사의 지팡이",
+      "nameEn": "Apprentice Wand",
+      "description": "마법 입문자용 기본 지팡이.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "crude",
+      "value": 40,
+      "weight": 0.8,
+      "stackable": false,
+      "weaponType": "wand",
+      "spriteId": "elf_weapon_01",
+      "spriteMapping": "/data/sprites/equipment/weapon/wand.json",
+      "color": "#8B4513",
+      "stats": {
+        "magicDamage": 5,
+        "attackSpeed": 1,
+        "mp": 5
+      },
+      "requirements": {
+        "level": 1
+      }
+    },
+    {
+      "id": "oak_wand",
+      "nameKo": "참나무 지팡이",
+      "nameEn": "Oak Wand",
+      "description": "참나무로 만든 기본 지팡이.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "common",
+      "value": 100,
+      "weight": 1,
+      "stackable": false,
+      "weaponType": "wand",
+      "spriteId": "elf_weapon_01",
+      "spriteMapping": "/data/sprites/equipment/weapon/wand.json",
+      "color": null,
+      "stats": {
+        "magicDamage": 8,
+        "attackSpeed": 1,
+        "mp": 10
+      },
+      "requirements": {
+        "level": 1,
+        "int": 5
+      }
+    },
+    {
+      "id": "crystal_wand",
+      "nameKo": "수정 지팡이",
+      "nameEn": "Crystal Wand",
+      "description": "수정이 박힌 마법 지팡이.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "grand",
+      "value": 350,
+      "weight": 1.2,
+      "stackable": false,
+      "weaponType": "wand",
+      "spriteId": "elf_weapon_04",
+      "spriteMapping": "/data/sprites/equipment/weapon/wand.json",
+      "color": "#E0FFFF",
+      "stats": {
+        "magicDamage": 15,
+        "attackSpeed": 1.05,
+        "mp": 20,
+        "int": 1
+      },
+      "requirements": {
+        "level": 5,
+        "int": 8
       }
     },
     {
       "id": "fire_wand",
       "nameKo": "화염 지팡이",
       "nameEn": "Fire Wand",
-      "description": {
-        "ko": "화염 마법에 특화된 지팡이. 불꽃이 타오른다.",
-        "en": "A wand specialized in fire magic. Flames dance around it."
-      },
+      "description": "화염 마법이 깃든 지팡이.",
       "type": "equipment",
-      "rarity": "grand",
-      "icon": "🔥",
-      "weight": 1.5,
-      "value": 200,
-      "sellPrice": 80,
+      "subtype": "weapon",
+      "rarity": "rare",
+      "value": 800,
+      "weight": 1,
       "stackable": false,
-      "tags": [
-        "weapon",
-        "staff",
-        "magic",
-        "fire"
-      ],
-      "equipmentData": {
-        "slot": "mainHand",
-        "weaponType": "staff",
-        "handType": "two_handed",
-        "sprite": {
-          "category": "wand",
-          "color": "#FF4500",
-          "spriteId": "elf_weapon_04"
-        },
-        "stats": {
-          "magic": 12
-        },
-        "requiredLevel": 5
+      "weaponType": "wand",
+      "spriteId": "elf_weapon_09",
+      "spriteMapping": "/data/sprites/equipment/weapon/wand.json",
+      "color": "#FF4500",
+      "stats": {
+        "magicDamage": 18,
+        "attackSpeed": 1,
+        "mp": 25,
+        "elementBonus": {
+          "element": "fire",
+          "value": 15
+        }
+      },
+      "requirements": {
+        "level": 12,
+        "int": 12
       }
     },
     {
       "id": "ice_wand",
       "nameKo": "냉기 지팡이",
       "nameEn": "Ice Wand",
-      "description": {
-        "ko": "냉기 마법에 특화된 지팡이. 차가운 안개가 서린다.",
-        "en": "A wand specialized in ice magic. Cold mist surrounds it."
-      },
+      "description": "냉기 마법이 깃든 지팡이.",
       "type": "equipment",
-      "rarity": "grand",
-      "icon": "❄️",
-      "weight": 1.5,
-      "value": 200,
-      "sellPrice": 80,
+      "subtype": "weapon",
+      "rarity": "rare",
+      "value": 800,
+      "weight": 1,
       "stackable": false,
-      "tags": [
-        "weapon",
-        "staff",
-        "magic",
-        "ice"
-      ],
-      "equipmentData": {
-        "slot": "mainHand",
-        "weaponType": "staff",
-        "handType": "two_handed",
-        "sprite": {
-          "category": "wand",
-          "color": "#00BFFF",
-          "spriteId": "elf_weapon_09"
-        },
-        "stats": {
-          "magic": 12
-        },
-        "requiredLevel": 5
+      "weaponType": "wand",
+      "spriteId": "elf_weapon_09",
+      "spriteMapping": "/data/sprites/equipment/weapon/wand.json",
+      "color": "#00CED1",
+      "stats": {
+        "magicDamage": 18,
+        "attackSpeed": 1,
+        "mp": 25,
+        "elementBonus": {
+          "element": "ice",
+          "value": 15
+        }
+      },
+      "requirements": {
+        "level": 12,
+        "int": 12
       }
     },
     {
       "id": "lightning_wand",
       "nameKo": "번개 지팡이",
       "nameEn": "Lightning Wand",
-      "description": {
-        "ko": "번개 마법에 특화된 지팡이. 전류가 감돈다.",
-        "en": "A wand specialized in lightning magic. Electricity crackles around it."
-      },
+      "description": "번개 마법이 깃든 지팡이.",
       "type": "equipment",
-      "rarity": "grand",
-      "icon": "⚡",
-      "weight": 1.5,
-      "value": 200,
-      "sellPrice": 80,
+      "subtype": "weapon",
+      "rarity": "rare",
+      "value": 850,
+      "weight": 1,
       "stackable": false,
-      "tags": [
-        "weapon",
-        "staff",
-        "magic",
-        "lightning"
-      ],
-      "equipmentData": {
-        "slot": "mainHand",
-        "weaponType": "staff",
-        "handType": "two_handed",
-        "sprite": {
-          "category": "wand",
-          "color": "#FFFF00",
-          "spriteId": "elf_weapon_10"
-        },
-        "stats": {
-          "magic": 12
-        },
-        "requiredLevel": 5
+      "weaponType": "wand",
+      "spriteId": "elf_weapon_09",
+      "spriteMapping": "/data/sprites/equipment/weapon/wand.json",
+      "color": "#FFD700",
+      "stats": {
+        "magicDamage": 16,
+        "attackSpeed": 1.1,
+        "mp": 25,
+        "elementBonus": {
+          "element": "lightning",
+          "value": 18
+        }
+      },
+      "requirements": {
+        "level": 12,
+        "int": 12
       }
+    },
+    {
+      "id": "archmage_staff",
+      "nameKo": "대마법사의 지팡이",
+      "nameEn": "Archmage Staff",
+      "description": "대마법사가 사용하던 강력한 지팡이.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "arcane",
+      "value": 2500,
+      "weight": 1.5,
+      "stackable": false,
+      "weaponType": "wand",
+      "spriteId": "elf_weapon_15",
+      "spriteMapping": "/data/sprites/equipment/weapon/wand.json",
+      "color": "#9370DB",
+      "stats": {
+        "magicDamage": 30,
+        "attackSpeed": 1,
+        "mp": 50,
+        "int": 3,
+        "wis": 2
+      },
+      "requirements": {
+        "level": 22,
+        "int": 18
+      }
+    },
+    {
+      "id": "divine_staff",
+      "nameKo": "신성 지팡이",
+      "nameEn": "Divine Staff",
+      "description": "신의 축복이 깃든 성스러운 지팡이.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "heroic",
+      "value": 6000,
+      "weight": 1.3,
+      "stackable": false,
+      "weaponType": "wand",
+      "spriteId": "weapon_sorcerer",
+      "spriteMapping": "/data/sprites/equipment/weapon/wand.json",
+      "color": "#FFFACD",
+      "stats": {
+        "magicDamage": 35,
+        "attackSpeed": 1,
+        "mp": 60,
+        "healBonus": 20,
+        "elementBonus": {
+          "element": "holy",
+          "value": 20
+        }
+      },
+      "requirements": {
+        "level": 28,
+        "int": 15,
+        "wis": 18,
+        "karma": 10
+      }
+    },
+    {
+      "id": "shadow_staff",
+      "nameKo": "암흑 지팡이",
+      "nameEn": "Shadow Staff",
+      "description": "어둠의 힘이 깃든 금지된 지팡이.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "heroic",
+      "value": 5500,
+      "weight": 1.3,
+      "stackable": false,
+      "weaponType": "wand",
+      "spriteId": "undead_weapon_01",
+      "spriteMapping": "/data/sprites/equipment/weapon/wand.json",
+      "color": "#2F0A3C",
+      "stats": {
+        "magicDamage": 40,
+        "attackSpeed": 1,
+        "mp": 50,
+        "lifesteal": 5,
+        "elementBonus": {
+          "element": "dark",
+          "value": 22
+        }
+      },
+      "requirements": {
+        "level": 28,
+        "int": 20,
+        "karma": -10
+      }
+    },
+    {
+      "id": "legendary_staff",
+      "nameKo": "전설의 지팡이",
+      "nameEn": "Legendary Staff",
+      "description": "세계를 뒤흔들었다는 전설의 대지팡이.",
+      "type": "equipment",
+      "subtype": "weapon",
+      "rarity": "legendary",
+      "value": 95000,
+      "weight": 1.5,
+      "stackable": false,
+      "weaponType": "wand",
+      "spriteId": "ward_1",
+      "spriteMapping": "/data/sprites/equipment/weapon/wand.json",
+      "color": "#FFD700",
+      "stats": {
+        "magicDamage": 70,
+        "attackSpeed": 1.1,
+        "mp": 100,
+        "int": 5,
+        "wis": 5,
+        "allElementBonus": 15,
+        "cooldownReduction": 10
+      },
+      "requirements": {
+        "level": 50,
+        "int": 35
+      }
+    },
+    {
+      "id": "simple_cape",
+      "nameKo": "단순한 망토",
+      "nameEn": "Simple Cape",
+      "description": "평범한 천 망토.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "crude",
+      "value": 15,
+      "weight": 0.3,
+      "stackable": false,
+      "slot": "back",
+      "spriteId": "elf_back_01",
+      "spriteMapping": "/data/sprites/equipment/armor/back.json",
+      "color": "#8B4513",
+      "stats": {
+        "defense": 1
+      },
+      "requirements": {
+        "level": 1
+      }
+    },
+    {
+      "id": "traveler_cloak",
+      "nameKo": "여행자의 망토",
+      "nameEn": "Traveler's Cloak",
+      "description": "여행자가 두르는 망토.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "common",
+      "value": 50,
+      "weight": 0.5,
+      "stackable": false,
+      "slot": "back",
+      "spriteId": "elf_back_04",
+      "spriteMapping": "/data/sprites/equipment/armor/back.json",
+      "color": null,
+      "stats": {
+        "defense": 3,
+        "moveSpeed": 3
+      },
+      "requirements": {
+        "level": 1
+      }
+    },
+    {
+      "id": "adventurer_cloak",
+      "nameKo": "모험가의 망토",
+      "nameEn": "Adventurer's Cloak",
+      "description": "모험가가 착용하는 튼튼한 망토.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "grand",
+      "value": 180,
+      "weight": 0.8,
+      "stackable": false,
+      "slot": "back",
+      "spriteId": "elf_back_07",
+      "spriteMapping": "/data/sprites/equipment/armor/back.json",
+      "color": null,
+      "stats": {
+        "defense": 6,
+        "allElementResist": 3
+      },
+      "requirements": {
+        "level": 5
+      }
+    },
+    {
+      "id": "knight_cape",
+      "nameKo": "기사의 망토",
+      "nameEn": "Knight's Cape",
+      "description": "왕국 기사단의 망토.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "rare",
+      "value": 450,
+      "weight": 1,
+      "stackable": false,
+      "slot": "back",
+      "spriteId": "elf_back_11",
+      "spriteMapping": "/data/sprites/equipment/armor/back.json",
+      "color": "#1E3A5F",
+      "stats": {
+        "defense": 10,
+        "str": 1,
+        "con": 1
+      },
+      "requirements": {
+        "level": 12,
+        "str": 8
+      }
+    },
+    {
+      "id": "mage_cloak",
+      "nameKo": "마법사의 망토",
+      "nameEn": "Mage's Cloak",
+      "description": "마법사가 두르는 신비로운 망토.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "rare",
+      "value": 500,
+      "weight": 0.5,
+      "stackable": false,
+      "slot": "back",
+      "spriteId": "orc_back_01",
+      "spriteMapping": "/data/sprites/equipment/armor/back.json",
+      "color": "#4B0082",
+      "stats": {
+        "defense": 4,
+        "magicDefense": 12,
+        "int": 2,
+        "mp": 20
+      },
+      "requirements": {
+        "level": 12,
+        "int": 10
+      }
+    },
+    {
+      "id": "shadow_cloak",
+      "nameKo": "그림자 망토",
+      "nameEn": "Shadow Cloak",
+      "description": "어둠에 녹아드는 검은 망토.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "arcane",
+      "value": 1500,
+      "weight": 0.4,
+      "stackable": false,
+      "slot": "back",
+      "spriteId": "undead_back_01",
+      "spriteMapping": "/data/sprites/equipment/armor/back.json",
+      "color": "#1C1C1C",
+      "stats": {
+        "defense": 8,
+        "dex": 3,
+        "dodgeBonus": 5,
+        "critChance": 3
+      },
+      "requirements": {
+        "level": 20,
+        "dex": 14
+      }
+    },
+    {
+      "id": "phoenix_wings",
+      "nameKo": "불사조의 날개",
+      "nameEn": "Phoenix Wings",
+      "description": "불사조 깃털로 만든 망토.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "heroic",
+      "value": 6000,
+      "weight": 0.3,
+      "stackable": false,
+      "slot": "back",
+      "spriteId": "back_healer_2",
+      "spriteMapping": "/data/sprites/equipment/armor/back.json",
+      "color": "#FF4500",
+      "stats": {
+        "defense": 12,
+        "magicDefense": 15,
+        "elementBonus": {
+          "element": "fire",
+          "value": 15
+        },
+        "elementResist": {
+          "element": "fire",
+          "value": 25
+        }
+      },
+      "requirements": {
+        "level": 28,
+        "int": 18
+      }
+    },
+    {
+      "id": "angel_wings",
+      "nameKo": "천사의 날개",
+      "nameEn": "Angel Wings",
+      "description": "천상의 힘이 깃든 순백의 날개.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "unique",
+      "value": 20000,
+      "weight": 0.2,
+      "stackable": false,
+      "slot": "back",
+      "spriteId": "back_sorcerer",
+      "spriteMapping": "/data/sprites/equipment/armor/back.json",
+      "color": "#FFFACD",
+      "stats": {
+        "defense": 15,
+        "magicDefense": 25,
+        "healBonus": 20,
+        "elementBonus": {
+          "element": "holy",
+          "value": 20
+        },
+        "wis": 4
+      },
+      "requirements": {
+        "level": 38,
+        "wis": 25,
+        "karma": 30
+      }
+    },
+    {
+      "id": "demon_wings",
+      "nameKo": "악마의 날개",
+      "nameEn": "Demon Wings",
+      "description": "암흑의 힘이 깃든 검은 날개.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "unique",
+      "value": 18000,
+      "weight": 0.3,
+      "stackable": false,
+      "slot": "back",
+      "spriteId": "back_sorcerer",
+      "spriteMapping": "/data/sprites/equipment/armor/back.json",
+      "color": "#2F0A3C",
+      "stats": {
+        "defense": 12,
+        "magicDefense": 20,
+        "lifesteal": 8,
+        "elementBonus": {
+          "element": "dark",
+          "value": 25
+        },
+        "int": 4
+      },
+      "requirements": {
+        "level": 38,
+        "int": 25,
+        "karma": -30
+      }
+    },
+    {
+      "id": "legendary_cloak",
+      "nameKo": "전설의 망토",
+      "nameEn": "Legendary Cloak",
+      "description": "모든 것을 감싸는 전설의 망토.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "legendary",
+      "value": 45000,
+      "weight": 0.5,
+      "stackable": false,
+      "slot": "back",
+      "spriteId": "bowback_1",
+      "spriteMapping": "/data/sprites/equipment/armor/back.json",
+      "color": "#FFD700",
+      "stats": {
+        "defense": 25,
+        "magicDefense": 35,
+        "allStats": 4,
+        "allElementResist": 15,
+        "dodgeBonus": 8
+      },
+      "requirements": {
+        "level": 50
+      }
+    },
+    {
+      "id": "cloth_shirt",
+      "nameKo": "천 셔츠",
+      "nameEn": "Cloth Shirt",
+      "description": "기본적인 천 셔츠.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "crude",
+      "value": 15,
+      "weight": 0.5,
+      "stackable": false,
+      "slot": "armor",
+      "spriteId": "elf_armor_01",
+      "spriteMapping": "/data/sprites/equipment/armor/armor.json",
+      "color": "#D2B48C",
+      "stats": {
+        "defense": 1
+      },
+      "requirements": {
+        "level": 1
+      }
+    },
+    {
+      "id": "leather_armor",
+      "nameKo": "가죽 갑옷",
+      "nameEn": "Leather Armor",
+      "description": "가죽으로 만든 가벼운 갑옷.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "common",
+      "value": 100,
+      "weight": 3,
+      "stackable": false,
+      "slot": "armor",
+      "spriteId": "elf_armor_06",
+      "spriteMapping": "/data/sprites/equipment/armor/armor.json",
+      "color": null,
+      "stats": {
+        "defense": 8
+      },
+      "requirements": {
+        "level": 1,
+        "con": 5
+      }
+    },
+    {
+      "id": "chainmail",
+      "nameKo": "쇄자갑",
+      "nameEn": "Chainmail",
+      "description": "쇠사슬을 엮어 만든 갑옷.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "grand",
+      "value": 350,
+      "weight": 8,
+      "stackable": false,
+      "slot": "armor",
+      "spriteId": "elf_armor_11",
+      "spriteMapping": "/data/sprites/equipment/armor/armor.json",
+      "color": null,
+      "stats": {
+        "defense": 18
+      },
+      "requirements": {
+        "level": 5,
+        "str": 6,
+        "con": 8
+      }
+    },
+    {
+      "id": "plate_armor",
+      "nameKo": "판금 갑옷",
+      "nameEn": "Plate Armor",
+      "description": "철판으로 만든 무거운 갑옷.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "rare",
+      "value": 800,
+      "weight": 15,
+      "stackable": false,
+      "slot": "armor",
+      "spriteId": "elf_armor_16",
+      "spriteMapping": "/data/sprites/equipment/armor/armor.json",
+      "color": null,
+      "stats": {
+        "defense": 30,
+        "moveSpeed": -5
+      },
+      "requirements": {
+        "level": 12,
+        "str": 12,
+        "con": 12
+      }
+    },
+    {
+      "id": "mage_robe",
+      "nameKo": "마법사의 로브",
+      "nameEn": "Mage Robe",
+      "description": "마법사가 입는 로브.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "rare",
+      "value": 700,
+      "weight": 1.5,
+      "stackable": false,
+      "slot": "armor",
+      "spriteId": "orc_armor_02",
+      "spriteMapping": "/data/sprites/equipment/armor/armor.json",
+      "color": "#4B0082",
+      "stats": {
+        "defense": 5,
+        "magicDefense": 20,
+        "int": 3,
+        "mp": 25
+      },
+      "requirements": {
+        "level": 12,
+        "int": 12
+      }
+    },
+    {
+      "id": "knight_armor",
+      "nameKo": "기사의 갑옷",
+      "nameEn": "Knight's Armor",
+      "description": "왕국 기사단의 갑옷.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "arcane",
+      "value": 2000,
+      "weight": 12,
+      "stackable": false,
+      "slot": "armor",
+      "spriteId": "undead_armor_03",
+      "spriteMapping": "/data/sprites/equipment/armor/armor.json",
+      "color": null,
+      "stats": {
+        "defense": 40,
+        "str": 2,
+        "con": 2
+      },
+      "requirements": {
+        "level": 20,
+        "str": 15,
+        "con": 15
+      }
+    },
+    {
+      "id": "dragon_armor",
+      "nameKo": "드래곤 갑옷",
+      "nameEn": "Dragon Armor",
+      "description": "드래곤 비늘로 만든 갑옷.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "heroic",
+      "value": 8000,
+      "weight": 10,
+      "stackable": false,
+      "slot": "armor",
+      "spriteId": "armor_archer_1",
+      "spriteMapping": "/data/sprites/equipment/armor/armor.json",
+      "color": "#DC143C",
+      "stats": {
+        "defense": 55,
+        "str": 4,
+        "elementResist": {
+          "element": "fire",
+          "value": 30
+        }
+      },
+      "requirements": {
+        "level": 28,
+        "str": 20,
+        "con": 18
+      }
+    },
+    {
+      "id": "archmage_robe",
+      "nameKo": "대마법사의 로브",
+      "nameEn": "Archmage Robe",
+      "description": "대마법사가 입었던 전설적인 로브.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "unique",
+      "value": 15000,
+      "weight": 1,
+      "stackable": false,
+      "slot": "armor",
+      "spriteId": "armor_knight_2",
+      "spriteMapping": "/data/sprites/equipment/armor/armor.json",
+      "color": "#9370DB",
+      "stats": {
+        "defense": 15,
+        "magicDefense": 50,
+        "int": 6,
+        "wis": 4,
+        "mp": 80,
+        "cooldownReduction": 10
+      },
+      "requirements": {
+        "level": 38,
+        "int": 28
+      }
+    },
+    {
+      "id": "legendary_armor",
+      "nameKo": "전설의 갑옷",
+      "nameEn": "Legendary Armor",
+      "description": "신이 내렸다는 전설의 갑옷.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "legendary",
+      "value": 100000,
+      "weight": 8,
+      "stackable": false,
+      "slot": "armor",
+      "spriteId": "armor_7",
+      "spriteMapping": "/data/sprites/equipment/armor/armor.json",
+      "color": "#FFD700",
+      "stats": {
+        "defense": 80,
+        "magicDefense": 50,
+        "allStats": 5,
+        "allElementResist": 15
+      },
+      "requirements": {
+        "level": 50,
+        "str": 25,
+        "con": 30
+      }
+    },
+    {
+      "id": "simple_tunic",
+      "nameKo": "단순한 튜닉",
+      "nameEn": "Simple Tunic",
+      "description": "평범한 천으로 만든 튜닉.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "crude",
+      "value": 10,
+      "weight": 0.3,
+      "stackable": false,
+      "slot": "cloth",
+      "spriteId": "elf_cloth_01",
+      "spriteMapping": "/data/sprites/equipment/armor/cloth.json",
+      "color": "#D2B48C",
+      "stats": {
+        "defense": 1
+      },
+      "requirements": {
+        "level": 1
+      }
+    },
+    {
+      "id": "traveler_clothes",
+      "nameKo": "여행자의 옷",
+      "nameEn": "Traveler's Clothes",
+      "description": "여행자가 입는 편한 옷.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "common",
+      "value": 50,
+      "weight": 0.8,
+      "stackable": false,
+      "slot": "cloth",
+      "spriteId": "elf_cloth_11",
+      "spriteMapping": "/data/sprites/equipment/armor/cloth.json",
+      "color": null,
+      "stats": {
+        "defense": 3,
+        "moveSpeed": 5
+      },
+      "requirements": {
+        "level": 1
+      }
+    },
+    {
+      "id": "reinforced_clothes",
+      "nameKo": "강화된 옷",
+      "nameEn": "Reinforced Clothes",
+      "description": "가죽으로 보강된 옷.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "grand",
+      "value": 180,
+      "weight": 1.2,
+      "stackable": false,
+      "slot": "cloth",
+      "spriteId": "orc_cloth_01",
+      "spriteMapping": "/data/sprites/equipment/armor/cloth.json",
+      "color": null,
+      "stats": {
+        "defense": 8,
+        "dex": 1
+      },
+      "requirements": {
+        "level": 5
+      }
+    },
+    {
+      "id": "rogue_outfit",
+      "nameKo": "도적의 복장",
+      "nameEn": "Rogue's Outfit",
+      "description": "도적들이 애용하는 검은 옷.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "rare",
+      "value": 450,
+      "weight": 1,
+      "stackable": false,
+      "slot": "cloth",
+      "spriteId": "undead_cloth_06",
+      "spriteMapping": "/data/sprites/equipment/armor/cloth.json",
+      "color": "#2F4F4F",
+      "stats": {
+        "defense": 10,
+        "dex": 3,
+        "critChance": 3
+      },
+      "requirements": {
+        "level": 12,
+        "dex": 10
+      }
+    },
+    {
+      "id": "hunter_garb",
+      "nameKo": "사냥꾼의 의복",
+      "nameEn": "Hunter's Garb",
+      "description": "사냥꾼이 입는 기능적인 옷.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "rare",
+      "value": 500,
+      "weight": 1.2,
+      "stackable": false,
+      "slot": "cloth",
+      "spriteId": "dress_3",
+      "spriteMapping": "/data/sprites/equipment/armor/cloth.json",
+      "color": "#556B2F",
+      "stats": {
+        "defense": 12,
+        "dex": 2,
+        "range": 1
+      },
+      "requirements": {
+        "level": 12,
+        "dex": 10
+      }
+    },
+    {
+      "id": "shadow_garb",
+      "nameKo": "그림자의 의복",
+      "nameEn": "Shadow Garb",
+      "description": "어둠에 녹아드는 검은 옷.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "arcane",
+      "value": 1500,
+      "weight": 0.8,
+      "stackable": false,
+      "slot": "cloth",
+      "spriteId": "dress_5_c2",
+      "spriteMapping": "/data/sprites/equipment/armor/cloth.json",
+      "color": "#1C1C1C",
+      "stats": {
+        "defense": 15,
+        "dex": 4,
+        "critChance": 5,
+        "dodgeBonus": 5
+      },
+      "requirements": {
+        "level": 20,
+        "dex": 15
+      }
+    },
+    {
+      "id": "assassin_attire",
+      "nameKo": "암살자의 복장",
+      "nameEn": "Assassin's Attire",
+      "description": "암살 길드의 특수 복장.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "heroic",
+      "value": 4000,
+      "weight": 0.6,
+      "stackable": false,
+      "slot": "cloth",
+      "spriteId": "suit_1_c1",
+      "spriteMapping": "/data/sprites/equipment/armor/cloth.json",
+      "color": "#2F0A3C",
+      "stats": {
+        "defense": 18,
+        "dex": 5,
+        "critChance": 8,
+        "critDamage": 15,
+        "moveSpeed": 10
+      },
+      "requirements": {
+        "level": 28,
+        "dex": 22
+      }
+    },
+    {
+      "id": "legendary_clothes",
+      "nameKo": "전설의 의복",
+      "nameEn": "Legendary Clothes",
+      "description": "바람처럼 빠르다는 전설의 옷.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "legendary",
+      "value": 55000,
+      "weight": 0.5,
+      "stackable": false,
+      "slot": "cloth",
+      "spriteId": "tee_3_c1",
+      "spriteMapping": "/data/sprites/equipment/armor/cloth.json",
+      "color": "#FFD700",
+      "stats": {
+        "defense": 30,
+        "dex": 8,
+        "critChance": 12,
+        "critDamage": 25,
+        "dodgeBonus": 10,
+        "allStats": 2
+      },
+      "requirements": {
+        "level": 50,
+        "dex": 30
+      }
+    },
+    {
+      "id": "leather_cap",
+      "nameKo": "가죽 모자",
+      "nameEn": "Leather Cap",
+      "description": "가죽으로 만든 기본 모자.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "crude",
+      "value": 20,
+      "weight": 0.5,
+      "stackable": false,
+      "slot": "helmet",
+      "spriteId": "elf_helmet_01",
+      "spriteMapping": "/data/sprites/equipment/armor/helmet.json",
+      "color": "#8B4513",
+      "stats": {
+        "defense": 2
+      },
+      "requirements": {
+        "level": 1
+      }
+    },
+    {
+      "id": "iron_helmet",
+      "nameKo": "철 투구",
+      "nameEn": "Iron Helmet",
+      "description": "철로 만든 기본 투구.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "common",
+      "value": 80,
+      "weight": 2,
+      "stackable": false,
+      "slot": "helmet",
+      "spriteId": "elf_helmet_06",
+      "spriteMapping": "/data/sprites/equipment/armor/helmet.json",
+      "color": null,
+      "stats": {
+        "defense": 5
+      },
+      "requirements": {
+        "level": 1,
+        "con": 5
+      }
+    },
+    {
+      "id": "steel_helmet",
+      "nameKo": "강철 투구",
+      "nameEn": "Steel Helmet",
+      "description": "단단한 강철 투구.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "grand",
+      "value": 250,
+      "weight": 2.5,
+      "stackable": false,
+      "slot": "helmet",
+      "spriteId": "elf_helmet_11",
+      "spriteMapping": "/data/sprites/equipment/armor/helmet.json",
+      "color": null,
+      "stats": {
+        "defense": 10
+      },
+      "requirements": {
+        "level": 5,
+        "con": 8
+      }
+    },
+    {
+      "id": "knight_helmet",
+      "nameKo": "기사의 투구",
+      "nameEn": "Knight's Helmet",
+      "description": "왕국 기사단의 투구.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "rare",
+      "value": 600,
+      "weight": 3,
+      "stackable": false,
+      "slot": "helmet",
+      "spriteId": "elf_helmet_16",
+      "spriteMapping": "/data/sprites/equipment/armor/helmet.json",
+      "color": null,
+      "stats": {
+        "defense": 16,
+        "str": 1
+      },
+      "requirements": {
+        "level": 12,
+        "str": 8,
+        "con": 10
+      }
+    },
+    {
+      "id": "wizard_hat",
+      "nameKo": "마법사의 모자",
+      "nameEn": "Wizard Hat",
+      "description": "마법사가 쓰는 뾰족한 모자.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "rare",
+      "value": 550,
+      "weight": 0.3,
+      "stackable": false,
+      "slot": "helmet",
+      "spriteId": "orc_helmet_02",
+      "spriteMapping": "/data/sprites/equipment/armor/helmet.json",
+      "color": "#4B0082",
+      "stats": {
+        "defense": 3,
+        "magicDefense": 12,
+        "int": 2,
+        "mp": 15
+      },
+      "requirements": {
+        "level": 12,
+        "int": 10
+      }
+    },
+    {
+      "id": "elven_circlet",
+      "nameKo": "엘프의 관",
+      "nameEn": "Elven Circlet",
+      "description": "엘프 귀족이 쓰는 우아한 관.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "arcane",
+      "value": 1500,
+      "weight": 0.2,
+      "stackable": false,
+      "slot": "helmet",
+      "spriteId": "undead_helmet_01",
+      "spriteMapping": "/data/sprites/equipment/armor/helmet.json",
+      "color": "#90EE90",
+      "stats": {
+        "defense": 5,
+        "magicDefense": 18,
+        "int": 3,
+        "wis": 2
+      },
+      "requirements": {
+        "level": 18,
+        "int": 14
+      }
+    },
+    {
+      "id": "dragon_helm",
+      "nameKo": "드래곤 투구",
+      "nameEn": "Dragon Helm",
+      "description": "드래곤의 머리를 본뜬 투구.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "heroic",
+      "value": 4000,
+      "weight": 3.5,
+      "stackable": false,
+      "slot": "helmet",
+      "spriteId": "undead_helmet_06",
+      "spriteMapping": "/data/sprites/equipment/armor/helmet.json",
+      "color": "#DC143C",
+      "stats": {
+        "defense": 25,
+        "str": 3,
+        "elementResist": {
+          "element": "fire",
+          "value": 20
+        }
+      },
+      "requirements": {
+        "level": 25,
+        "str": 15,
+        "con": 15
+      }
+    },
+    {
+      "id": "crown_of_wisdom",
+      "nameKo": "지혜의 왕관",
+      "nameEn": "Crown of Wisdom",
+      "description": "고대 현자가 착용했던 왕관.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "unique",
+      "value": 12000,
+      "weight": 0.5,
+      "stackable": false,
+      "slot": "helmet",
+      "spriteId": "helmet_m01_brown",
+      "spriteMapping": "/data/sprites/equipment/armor/helmet.json",
+      "color": "#FFD700",
+      "stats": {
+        "defense": 10,
+        "magicDefense": 30,
+        "int": 5,
+        "wis": 5,
+        "mp": 50
+      },
+      "requirements": {
+        "level": 35,
+        "int": 25
+      }
+    },
+    {
+      "id": "legendary_helmet",
+      "nameKo": "전설의 투구",
+      "nameEn": "Legendary Helmet",
+      "description": "모든 공격을 막아낸다는 전설의 투구.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "legendary",
+      "value": 60000,
+      "weight": 2.5,
+      "stackable": false,
+      "slot": "helmet",
+      "spriteId": "helmet_m02_brown",
+      "spriteMapping": "/data/sprites/equipment/armor/helmet.json",
+      "color": "#FFD700",
+      "stats": {
+        "defense": 40,
+        "magicDefense": 30,
+        "allStats": 3,
+        "allElementResist": 10
+      },
+      "requirements": {
+        "level": 50,
+        "con": 25
+      }
+    },
+    {
+      "id": "cloth_pants",
+      "nameKo": "천 바지",
+      "nameEn": "Cloth Pants",
+      "description": "평범한 천 바지.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "crude",
+      "value": 10,
+      "weight": 0.3,
+      "stackable": false,
+      "slot": "pant",
+      "spriteId": "elf_pant_01",
+      "spriteMapping": "/data/sprites/equipment/armor/pant.json",
+      "color": "#D2B48C",
+      "stats": {
+        "defense": 1
+      },
+      "requirements": {
+        "level": 1
+      }
+    },
+    {
+      "id": "leather_pants",
+      "nameKo": "가죽 바지",
+      "nameEn": "Leather Pants",
+      "description": "가죽으로 만든 바지.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "common",
+      "value": 60,
+      "weight": 1.5,
+      "stackable": false,
+      "slot": "pant",
+      "spriteId": "elf_pant_06",
+      "spriteMapping": "/data/sprites/equipment/armor/pant.json",
+      "color": null,
+      "stats": {
+        "defense": 4
+      },
+      "requirements": {
+        "level": 1,
+        "con": 3
+      }
+    },
+    {
+      "id": "chain_leggings",
+      "nameKo": "쇠사슬 바지",
+      "nameEn": "Chain Leggings",
+      "description": "쇠사슬을 엮어 만든 바지.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "grand",
+      "value": 200,
+      "weight": 4,
+      "stackable": false,
+      "slot": "pant",
+      "spriteId": "elf_pant_11",
+      "spriteMapping": "/data/sprites/equipment/armor/pant.json",
+      "color": null,
+      "stats": {
+        "defense": 10
+      },
+      "requirements": {
+        "level": 5,
+        "con": 6
+      }
+    },
+    {
+      "id": "plate_leggings",
+      "nameKo": "판금 다리보호구",
+      "nameEn": "Plate Leggings",
+      "description": "철판으로 만든 다리보호구.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "rare",
+      "value": 500,
+      "weight": 7,
+      "stackable": false,
+      "slot": "pant",
+      "spriteId": "elf_pant_16",
+      "spriteMapping": "/data/sprites/equipment/armor/pant.json",
+      "color": null,
+      "stats": {
+        "defense": 18,
+        "moveSpeed": -3
+      },
+      "requirements": {
+        "level": 12,
+        "str": 10,
+        "con": 10
+      }
+    },
+    {
+      "id": "mage_pants",
+      "nameKo": "마법사의 바지",
+      "nameEn": "Mage Pants",
+      "description": "마법사가 입는 로브 바지.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "rare",
+      "value": 400,
+      "weight": 0.8,
+      "stackable": false,
+      "slot": "pant",
+      "spriteId": "orc_pant_01",
+      "spriteMapping": "/data/sprites/equipment/armor/pant.json",
+      "color": "#4B0082",
+      "stats": {
+        "defense": 3,
+        "magicDefense": 12,
+        "int": 2,
+        "mp": 15
+      },
+      "requirements": {
+        "level": 12,
+        "int": 10
+      }
+    },
+    {
+      "id": "knight_leggings",
+      "nameKo": "기사의 각반",
+      "nameEn": "Knight's Leggings",
+      "description": "왕국 기사단의 각반.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "arcane",
+      "value": 1200,
+      "weight": 6,
+      "stackable": false,
+      "slot": "pant",
+      "spriteId": "undead_pant_02",
+      "spriteMapping": "/data/sprites/equipment/armor/pant.json",
+      "color": null,
+      "stats": {
+        "defense": 25,
+        "str": 1,
+        "con": 2
+      },
+      "requirements": {
+        "level": 20,
+        "str": 12,
+        "con": 12
+      }
+    },
+    {
+      "id": "dragon_leggings",
+      "nameKo": "드래곤 각반",
+      "nameEn": "Dragon Leggings",
+      "description": "드래곤 비늘로 만든 각반.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "heroic",
+      "value": 5000,
+      "weight": 5,
+      "stackable": false,
+      "slot": "pant",
+      "spriteId": "foot_m02",
+      "spriteMapping": "/data/sprites/equipment/armor/pant.json",
+      "color": "#DC143C",
+      "stats": {
+        "defense": 35,
+        "str": 2,
+        "con": 3,
+        "elementResist": {
+          "element": "fire",
+          "value": 20
+        }
+      },
+      "requirements": {
+        "level": 28,
+        "str": 16,
+        "con": 16
+      }
+    },
+    {
+      "id": "legendary_pants",
+      "nameKo": "전설의 각반",
+      "nameEn": "Legendary Leggings",
+      "description": "어떤 공격도 막아내는 전설의 각반.",
+      "type": "equipment",
+      "subtype": "armor",
+      "rarity": "legendary",
+      "value": 50000,
+      "weight": 4,
+      "stackable": false,
+      "slot": "pant",
+      "spriteId": "pant_rogue_2",
+      "spriteMapping": "/data/sprites/equipment/armor/pant.json",
+      "color": "#FFD700",
+      "stats": {
+        "defense": 50,
+        "magicDefense": 30,
+        "allStats": 3,
+        "allElementResist": 10
+      },
+      "requirements": {
+        "level": 50,
+        "con": 25
+      }
+    },
+    {
+      "id": "simple_necklace",
+      "nameKo": "단순한 목걸이",
+      "nameEn": "Simple Necklace",
+      "description": "평범한 목걸이.",
+      "type": "equipment",
+      "subtype": "accessory",
+      "rarity": "crude",
+      "value": 25,
+      "weight": 0.1,
+      "stackable": false,
+      "slot": "necklace",
+      "stats": {}
+    },
+    {
+      "id": "silver_necklace",
+      "nameKo": "은 목걸이",
+      "nameEn": "Silver Necklace",
+      "description": "은으로 만든 목걸이.",
+      "type": "equipment",
+      "subtype": "accessory",
+      "rarity": "common",
+      "value": 80,
+      "weight": 0.1,
+      "stackable": false,
+      "slot": "necklace",
+      "stats": {
+        "cha": 1
+      },
+      "requirements": {
+        "level": 1
+      }
+    },
+    {
+      "id": "gold_necklace",
+      "nameKo": "금 목걸이",
+      "nameEn": "Gold Necklace",
+      "description": "금으로 만든 목걸이.",
+      "type": "equipment",
+      "subtype": "accessory",
+      "rarity": "grand",
+      "value": 400,
+      "weight": 0.1,
+      "stackable": false,
+      "slot": "necklace",
+      "stats": {
+        "cha": 3
+      },
+      "requirements": {
+        "level": 5
+      }
+    },
+    {
+      "id": "amulet_of_health",
+      "nameKo": "건강의 부적",
+      "nameEn": "Amulet of Health",
+      "description": "착용자의 건강을 지켜주는 부적.",
+      "type": "equipment",
+      "subtype": "accessory",
+      "rarity": "rare",
+      "value": 700,
+      "weight": 0.1,
+      "stackable": false,
+      "slot": "necklace",
+      "stats": {
+        "con": 3,
+        "hp": 50,
+        "diseaseResist": 20
+      },
+      "requirements": {
+        "level": 12
+      }
+    },
+    {
+      "id": "amulet_of_mana",
+      "nameKo": "마나의 부적",
+      "nameEn": "Amulet of Mana",
+      "description": "마력을 증폭시키는 부적.",
+      "type": "equipment",
+      "subtype": "accessory",
+      "rarity": "rare",
+      "value": 700,
+      "weight": 0.1,
+      "stackable": false,
+      "slot": "necklace",
+      "stats": {
+        "wis": 2,
+        "mp": 60,
+        "mpRegen": 5
+      },
+      "requirements": {
+        "level": 12
+      }
+    },
+    {
+      "id": "holy_symbol",
+      "nameKo": "성스러운 상징",
+      "nameEn": "Holy Symbol",
+      "description": "신성한 힘이 깃든 상징.",
+      "type": "equipment",
+      "subtype": "accessory",
+      "rarity": "arcane",
+      "value": 2000,
+      "weight": 0.1,
+      "stackable": false,
+      "slot": "necklace",
+      "stats": {
+        "wis": 3,
+        "healBonus": 15,
+        "elementBonus": {
+          "element": "holy",
+          "value": 12
+        }
+      },
+      "requirements": {
+        "level": 20,
+        "karma": 10
+      }
+    },
+    {
+      "id": "unholy_symbol",
+      "nameKo": "사악한 상징",
+      "nameEn": "Unholy Symbol",
+      "description": "암흑의 힘이 깃든 상징.",
+      "type": "equipment",
+      "subtype": "accessory",
+      "rarity": "arcane",
+      "value": 1800,
+      "weight": 0.1,
+      "stackable": false,
+      "slot": "necklace",
+      "stats": {
+        "int": 3,
+        "lifesteal": 5,
+        "elementBonus": {
+          "element": "dark",
+          "value": 15
+        }
+      },
+      "requirements": {
+        "level": 20,
+        "karma": -10
+      }
+    },
+    {
+      "id": "amulet_of_the_elements",
+      "nameKo": "원소의 부적",
+      "nameEn": "Amulet of the Elements",
+      "description": "4원소의 힘이 깃든 부적.",
+      "type": "equipment",
+      "subtype": "accessory",
+      "rarity": "heroic",
+      "value": 5500,
+      "weight": 0.1,
+      "stackable": false,
+      "slot": "necklace",
+      "stats": {
+        "allElementBonus": 8,
+        "allElementResist": 12
+      },
+      "requirements": {
+        "level": 28
+      }
+    },
+    {
+      "id": "dragon_pendant",
+      "nameKo": "드래곤 펜던트",
+      "nameEn": "Dragon Pendant",
+      "description": "드래곤의 힘이 깃든 펜던트.",
+      "type": "equipment",
+      "subtype": "accessory",
+      "rarity": "unique",
+      "value": 15000,
+      "weight": 0.15,
+      "stackable": false,
+      "slot": "necklace",
+      "stats": {
+        "str": 4,
+        "con": 4,
+        "elementResist": {
+          "element": "fire",
+          "value": 30
+        },
+        "bonusDamage": {
+          "type": "dragon",
+          "value": 20
+        }
+      },
+      "requirements": {
+        "level": 38
+      }
+    },
+    {
+      "id": "legendary_necklace",
+      "nameKo": "전설의 목걸이",
+      "nameEn": "Legendary Necklace",
+      "description": "모든 것을 초월하는 전설의 목걸이.",
+      "type": "equipment",
+      "subtype": "accessory",
+      "rarity": "legendary",
+      "value": 55000,
+      "weight": 0.1,
+      "stackable": false,
+      "slot": "necklace",
+      "stats": {
+        "allStats": 4,
+        "hp": 100,
+        "mp": 80,
+        "allElementResist": 10
+      },
+      "requirements": {
+        "level": 50
+      }
+    },
+    {
+      "id": "copper_ring",
+      "nameKo": "구리 반지",
+      "nameEn": "Copper Ring",
+      "description": "단순한 구리 반지.",
+      "type": "equipment",
+      "subtype": "accessory",
+      "rarity": "crude",
+      "value": 20,
+      "weight": 0.05,
+      "stackable": false,
+      "slot": "ring",
+      "stats": {}
+    },
+    {
+      "id": "iron_ring",
+      "nameKo": "철 반지",
+      "nameEn": "Iron Ring",
+      "description": "튼튼한 철 반지.",
+      "type": "equipment",
+      "subtype": "accessory",
+      "rarity": "common",
+      "value": 50,
+      "weight": 0.05,
+      "stackable": false,
+      "slot": "ring",
+      "stats": {
+        "str": 1
+      },
+      "requirements": {
+        "level": 1
+      }
+    },
+    {
+      "id": "ring_of_strength",
+      "nameKo": "힘의 반지",
+      "nameEn": "Ring of Strength",
+      "description": "착용자의 힘을 증가시키는 반지.",
+      "type": "equipment",
+      "subtype": "accessory",
+      "rarity": "grand",
+      "value": 300,
+      "weight": 0.05,
+      "stackable": false,
+      "slot": "ring",
+      "stats": {
+        "str": 3
+      },
+      "requirements": {
+        "level": 5
+      }
+    },
+    {
+      "id": "ring_of_agility",
+      "nameKo": "민첩의 반지",
+      "nameEn": "Ring of Agility",
+      "description": "착용자의 민첩을 증가시키는 반지.",
+      "type": "equipment",
+      "subtype": "accessory",
+      "rarity": "grand",
+      "value": 300,
+      "weight": 0.05,
+      "stackable": false,
+      "slot": "ring",
+      "stats": {
+        "dex": 3
+      },
+      "requirements": {
+        "level": 5
+      }
+    },
+    {
+      "id": "ring_of_intelligence",
+      "nameKo": "지능의 반지",
+      "nameEn": "Ring of Intelligence",
+      "description": "착용자의 지능을 증가시키는 반지.",
+      "type": "equipment",
+      "subtype": "accessory",
+      "rarity": "grand",
+      "value": 300,
+      "weight": 0.05,
+      "stackable": false,
+      "slot": "ring",
+      "stats": {
+        "int": 3
+      },
+      "requirements": {
+        "level": 5
+      }
+    },
+    {
+      "id": "ring_of_vitality",
+      "nameKo": "활력의 반지",
+      "nameEn": "Ring of Vitality",
+      "description": "착용자의 체력을 증가시키는 반지.",
+      "type": "equipment",
+      "subtype": "accessory",
+      "rarity": "rare",
+      "value": 600,
+      "weight": 0.05,
+      "stackable": false,
+      "slot": "ring",
+      "stats": {
+        "con": 4,
+        "hp": 30
+      },
+      "requirements": {
+        "level": 12
+      }
+    },
+    {
+      "id": "ring_of_wisdom",
+      "nameKo": "지혜의 반지",
+      "nameEn": "Ring of Wisdom",
+      "description": "착용자의 지혜를 증가시키는 반지.",
+      "type": "equipment",
+      "subtype": "accessory",
+      "rarity": "rare",
+      "value": 600,
+      "weight": 0.05,
+      "stackable": false,
+      "slot": "ring",
+      "stats": {
+        "wis": 4,
+        "mp": 25
+      },
+      "requirements": {
+        "level": 12
+      }
+    },
+    {
+      "id": "ring_of_luck",
+      "nameKo": "행운의 반지",
+      "nameEn": "Ring of Luck",
+      "description": "행운을 가져다주는 반지.",
+      "type": "equipment",
+      "subtype": "accessory",
+      "rarity": "rare",
+      "value": 700,
+      "weight": 0.05,
+      "stackable": false,
+      "slot": "ring",
+      "stats": {
+        "lck": 5,
+        "critChance": 3
+      },
+      "requirements": {
+        "level": 12
+      }
+    },
+    {
+      "id": "ring_of_fire",
+      "nameKo": "화염의 반지",
+      "nameEn": "Ring of Fire",
+      "description": "화염의 힘이 깃든 반지.",
+      "type": "equipment",
+      "subtype": "accessory",
+      "rarity": "arcane",
+      "value": 1500,
+      "weight": 0.05,
+      "stackable": false,
+      "slot": "ring",
+      "stats": {
+        "elementDamage": {
+          "element": "fire",
+          "value": 10
+        },
+        "elementResist": {
+          "element": "fire",
+          "value": 15
+        }
+      },
+      "requirements": {
+        "level": 20
+      }
+    },
+    {
+      "id": "ring_of_ice",
+      "nameKo": "냉기의 반지",
+      "nameEn": "Ring of Ice",
+      "description": "냉기의 힘이 깃든 반지.",
+      "type": "equipment",
+      "subtype": "accessory",
+      "rarity": "arcane",
+      "value": 1500,
+      "weight": 0.05,
+      "stackable": false,
+      "slot": "ring",
+      "stats": {
+        "elementDamage": {
+          "element": "ice",
+          "value": 10
+        },
+        "elementResist": {
+          "element": "ice",
+          "value": 15
+        }
+      },
+      "requirements": {
+        "level": 20
+      }
+    },
+    {
+      "id": "ring_of_protection",
+      "nameKo": "보호의 반지",
+      "nameEn": "Ring of Protection",
+      "description": "착용자를 보호하는 마법 반지.",
+      "type": "equipment",
+      "subtype": "accessory",
+      "rarity": "heroic",
+      "value": 4000,
+      "weight": 0.05,
+      "stackable": false,
+      "slot": "ring",
+      "stats": {
+        "defense": 10,
+        "magicDefense": 10,
+        "allElementResist": 5
+      },
+      "requirements": {
+        "level": 28
+      }
+    },
+    {
+      "id": "ring_of_the_vampire",
+      "nameKo": "흡혈의 반지",
+      "nameEn": "Ring of the Vampire",
+      "description": "생명력을 흡수하는 저주받은 반지.",
+      "type": "equipment",
+      "subtype": "accessory",
+      "rarity": "unique",
+      "value": 10000,
+      "weight": 0.05,
+      "stackable": false,
+      "slot": "ring",
+      "stats": {
+        "lifesteal": 10,
+        "damage": 5,
+        "lck": -3
+      },
+      "requirements": {
+        "level": 35,
+        "karma": -15
+      }
+    },
+    {
+      "id": "legendary_ring",
+      "nameKo": "전설의 반지",
+      "nameEn": "Legendary Ring",
+      "description": "모든 능력을 끌어올리는 전설의 반지.",
+      "type": "equipment",
+      "subtype": "accessory",
+      "rarity": "legendary",
+      "value": 50000,
+      "weight": 0.05,
+      "stackable": false,
+      "slot": "ring",
+      "stats": {
+        "allStats": 5,
+        "critChance": 5,
+        "critDamage": 15
+      },
+      "requirements": {
+        "level": 50
+      }
+    },
+    {
+      "id": "bread",
+      "nameKo": "빵",
+      "nameEn": "Bread",
+      "description": "평범한 밀빵. 체력을 10 회복한다.",
+      "type": "consumable",
+      "subtype": "food",
+      "rarity": "crude",
+      "value": 5,
+      "weight": 0.2,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "food_bread",
+      "effect": {
+        "type": "heal_hp",
+        "value": 10
+      }
+    },
+    {
+      "id": "cheese",
+      "nameKo": "치즈",
+      "nameEn": "Cheese",
+      "description": "숙성된 치즈 조각. 체력을 15 회복한다.",
+      "type": "consumable",
+      "subtype": "food",
+      "rarity": "common",
+      "value": 10,
+      "weight": 0.2,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "food_cheese",
+      "effect": {
+        "type": "heal_hp",
+        "value": 15
+      }
+    },
+    {
+      "id": "apple",
+      "nameKo": "사과",
+      "nameEn": "Apple",
+      "description": "싱싱한 사과. 체력을 12 회복한다.",
+      "type": "consumable",
+      "subtype": "food",
+      "rarity": "common",
+      "value": 8,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "food_apple",
+      "effect": {
+        "type": "heal_hp",
+        "value": 12
+      }
+    },
+    {
+      "id": "meat_raw",
+      "nameKo": "생고기",
+      "nameEn": "Raw Meat",
+      "description": "날것의 고기. 요리해서 먹어야 한다.",
+      "type": "consumable",
+      "subtype": "food",
+      "rarity": "common",
+      "value": 15,
+      "weight": 0.5,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "food_meat_raw",
+      "effect": {
+        "type": "heal_hp",
+        "value": 5,
+        "sideEffect": {
+          "type": "status",
+          "status": "food_poisoning",
+          "chance": 30
+        }
+      }
+    },
+    {
+      "id": "meat_cooked",
+      "nameKo": "구운 고기",
+      "nameEn": "Cooked Meat",
+      "description": "잘 구워진 고기. 체력을 40 회복한다.",
+      "type": "consumable",
+      "subtype": "food",
+      "rarity": "grand",
+      "value": 35,
+      "weight": 0.4,
+      "stackable": true,
+      "stackSize": 15,
+      "icon": "food_meat_cooked",
+      "effect": {
+        "type": "heal_hp",
+        "value": 40
+      }
+    },
+    {
+      "id": "fish_grilled",
+      "nameKo": "구운 생선",
+      "nameEn": "Grilled Fish",
+      "description": "바삭하게 구운 생선. 체력 25, 마나 10 회복.",
+      "type": "consumable",
+      "subtype": "food",
+      "rarity": "grand",
+      "value": 30,
+      "weight": 0.3,
+      "stackable": true,
+      "stackSize": 15,
+      "icon": "food_fish",
+      "effect": {
+        "type": "heal_both",
+        "hp": 25,
+        "mp": 10
+      }
+    },
+    {
+      "id": "stew",
+      "nameKo": "스튜",
+      "nameEn": "Stew",
+      "description": "따뜻한 고기 스튜. 체력을 60 회복하고 3턴간 회복력 증가.",
+      "type": "consumable",
+      "subtype": "food",
+      "rarity": "rare",
+      "value": 80,
+      "weight": 0.6,
+      "stackable": true,
+      "stackSize": 10,
+      "icon": "food_stew",
+      "effect": {
+        "type": "heal_hp",
+        "value": 60,
+        "buff": {
+          "type": "regen",
+          "value": 5,
+          "duration": 3
+        }
+      }
+    },
+    {
+      "id": "royal_feast",
+      "nameKo": "왕실 만찬",
+      "nameEn": "Royal Feast",
+      "description": "왕실 요리사가 만든 최고급 요리. 모든 스탯 +3, 5턴 지속.",
+      "type": "consumable",
+      "subtype": "food",
+      "rarity": "heroic",
+      "value": 500,
+      "weight": 1,
+      "stackable": true,
+      "stackSize": 5,
+      "icon": "food_feast",
+      "effect": {
+        "type": "buff_all",
+        "value": 3,
+        "duration": 5
+      }
+    },
+    {
+      "id": "ale",
+      "nameKo": "에일",
+      "nameEn": "Ale",
+      "description": "거품이 넘치는 맥주. STR +2, DEX -1, 3턴 지속.",
+      "type": "consumable",
+      "subtype": "food",
+      "rarity": "common",
+      "value": 12,
+      "weight": 0.3,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "drink_ale",
+      "effect": {
+        "type": "buff_debuff",
+        "buffs": [
+          {
+            "stat": "str",
+            "value": 2
+          }
+        ],
+        "debuffs": [
+          {
+            "stat": "dex",
+            "value": 1
+          }
+        ],
+        "duration": 3
+      }
+    },
+    {
+      "id": "wine",
+      "nameKo": "와인",
+      "nameEn": "Wine",
+      "description": "숙성된 포도주. CHA +3, 3턴 지속.",
+      "type": "consumable",
+      "subtype": "food",
+      "rarity": "grand",
+      "value": 50,
+      "weight": 0.4,
+      "stackable": true,
+      "stackSize": 15,
+      "icon": "drink_wine",
+      "effect": {
+        "type": "buff",
+        "stat": "cha",
+        "value": 3,
+        "duration": 3
+      }
+    },
+    {
+      "id": "health_potion_small",
+      "nameKo": "소형 체력 포션",
+      "nameEn": "Small Health Potion",
+      "description": "붉은 액체가 담긴 작은 유리병. 체력을 30 회복한다.",
+      "type": "consumable",
+      "subtype": "potion",
+      "rarity": "common",
+      "value": 25,
+      "weight": 0.3,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "potion_red_small",
+      "effect": {
+        "type": "heal_hp",
+        "value": 30
+      }
+    },
+    {
+      "id": "health_potion_medium",
+      "nameKo": "중형 체력 포션",
+      "nameEn": "Medium Health Potion",
+      "description": "진한 붉은 액체가 담긴 유리병. 체력을 70 회복한다.",
+      "type": "consumable",
+      "subtype": "potion",
+      "rarity": "grand",
+      "value": 75,
+      "weight": 0.5,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "potion_red_medium",
+      "effect": {
+        "type": "heal_hp",
+        "value": 70
+      }
+    },
+    {
+      "id": "health_potion_large",
+      "nameKo": "대형 체력 포션",
+      "nameEn": "Large Health Potion",
+      "description": "순수한 붉은빛이 맥동하는 대형 유리병. 체력을 150 회복한다.",
+      "type": "consumable",
+      "subtype": "potion",
+      "rarity": "rare",
+      "value": 200,
+      "weight": 0.8,
+      "stackable": true,
+      "stackSize": 15,
+      "icon": "potion_red_large",
+      "effect": {
+        "type": "heal_hp",
+        "value": 150
+      }
+    },
+    {
+      "id": "mana_potion_small",
+      "nameKo": "소형 마나 포션",
+      "nameEn": "Small Mana Potion",
+      "description": "파란 액체가 담긴 작은 유리병. 마나를 20 회복한다.",
+      "type": "consumable",
+      "subtype": "potion",
+      "rarity": "common",
+      "value": 30,
+      "weight": 0.3,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "potion_blue_small",
+      "effect": {
+        "type": "heal_mp",
+        "value": 20
+      }
+    },
+    {
+      "id": "mana_potion_medium",
+      "nameKo": "중형 마나 포션",
+      "nameEn": "Medium Mana Potion",
+      "description": "진한 푸른 액체가 담긴 유리병. 마나를 50 회복한다.",
+      "type": "consumable",
+      "subtype": "potion",
+      "rarity": "grand",
+      "value": 90,
+      "weight": 0.5,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "potion_blue_medium",
+      "effect": {
+        "type": "heal_mp",
+        "value": 50
+      }
+    },
+    {
+      "id": "mana_potion_large",
+      "nameKo": "대형 마나 포션",
+      "nameEn": "Large Mana Potion",
+      "description": "심해처럼 깊은 푸른빛의 대형 유리병. 마나를 100 회복한다.",
+      "type": "consumable",
+      "subtype": "potion",
+      "rarity": "rare",
+      "value": 250,
+      "weight": 0.8,
+      "stackable": true,
+      "stackSize": 15,
+      "icon": "potion_blue_large",
+      "effect": {
+        "type": "heal_mp",
+        "value": 100
+      }
+    },
+    {
+      "id": "stamina_potion",
+      "nameKo": "피로 회복제",
+      "nameEn": "Stamina Potion",
+      "description": "노란 액체가 담긴 유리병. 피로도를 30 회복한다.",
+      "type": "consumable",
+      "subtype": "potion",
+      "rarity": "grand",
+      "value": 100,
+      "weight": 0.4,
+      "stackable": true,
+      "stackSize": 10,
+      "icon": "potion_yellow",
+      "effect": {
+        "type": "heal_stamina",
+        "value": 30
+      }
+    },
+    {
+      "id": "antidote",
+      "nameKo": "해독제",
+      "nameEn": "Antidote",
+      "description": "연두색 액체가 담긴 유리병. 독 상태를 해제한다.",
+      "type": "consumable",
+      "subtype": "potion",
+      "rarity": "common",
+      "value": 40,
+      "weight": 0.3,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "potion_green",
+      "effect": {
+        "type": "cure_status",
+        "status": "poison"
+      }
+    },
+    {
+      "id": "elixir",
+      "nameKo": "엘릭서",
+      "nameEn": "Elixir",
+      "description": "황금빛이 도는 신비로운 약. HP와 MP를 모두 완전 회복한다.",
+      "type": "consumable",
+      "subtype": "potion",
+      "rarity": "heroic",
+      "value": 1000,
+      "weight": 0.5,
+      "stackable": true,
+      "stackSize": 5,
+      "icon": "potion_gold",
+      "effect": {
+        "type": "full_restore"
+      }
+    },
+    {
+      "id": "strength_potion",
+      "nameKo": "힘의 물약",
+      "nameEn": "Strength Potion",
+      "description": "붉은 기운이 감도는 물약. 5턴간 STR +5.",
+      "type": "consumable",
+      "subtype": "potion",
+      "rarity": "rare",
+      "value": 150,
+      "weight": 0.4,
+      "stackable": true,
+      "stackSize": 10,
+      "icon": "potion_str",
+      "effect": {
+        "type": "buff",
+        "stat": "str",
+        "value": 5,
+        "duration": 5
+      }
+    },
+    {
+      "id": "agility_potion",
+      "nameKo": "민첩의 물약",
+      "nameEn": "Agility Potion",
+      "description": "녹색 기운이 감도는 물약. 5턴간 DEX +5.",
+      "type": "consumable",
+      "subtype": "potion",
+      "rarity": "rare",
+      "value": 150,
+      "weight": 0.4,
+      "stackable": true,
+      "stackSize": 10,
+      "icon": "potion_dex",
+      "effect": {
+        "type": "buff",
+        "stat": "dex",
+        "value": 5,
+        "duration": 5
+      }
+    },
+    {
+      "id": "intelligence_potion",
+      "nameKo": "지능의 물약",
+      "nameEn": "Intelligence Potion",
+      "description": "보라색 기운이 감도는 물약. 5턴간 INT +5.",
+      "type": "consumable",
+      "subtype": "potion",
+      "rarity": "rare",
+      "value": 150,
+      "weight": 0.4,
+      "stackable": true,
+      "stackSize": 10,
+      "icon": "potion_int",
+      "effect": {
+        "type": "buff",
+        "stat": "int",
+        "value": 5,
+        "duration": 5
+      }
+    },
+    {
+      "id": "scroll_teleport_village",
+      "nameKo": "마을 귀환 주문서",
+      "nameEn": "Village Teleport Scroll",
+      "description": "시작 마을로 즉시 이동한다.",
+      "type": "consumable",
+      "subtype": "scroll",
+      "rarity": "common",
+      "value": 50,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 10,
+      "icon": "scroll_blue",
+      "effect": {
+        "type": "teleport",
+        "destination": "starting_village"
+      }
+    },
+    {
+      "id": "scroll_identify",
+      "nameKo": "감정 주문서",
+      "nameEn": "Identification Scroll",
+      "description": "미확인 아이템의 정체를 밝힌다.",
+      "type": "consumable",
+      "subtype": "scroll",
+      "rarity": "grand",
+      "value": 100,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 10,
+      "icon": "scroll_yellow",
+      "effect": {
+        "type": "identify"
+      }
+    },
+    {
+      "id": "scroll_fireball",
+      "nameKo": "화염구 주문서",
+      "nameEn": "Fireball Scroll",
+      "description": "강력한 화염구를 발사한다. 80 화염 피해.",
+      "type": "consumable",
+      "subtype": "scroll",
+      "rarity": "rare",
+      "value": 200,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 5,
+      "icon": "scroll_red",
+      "effect": {
+        "type": "spell",
+        "spellId": "fireball",
+        "damage": 80,
+        "element": "fire"
+      }
+    },
+    {
+      "id": "scroll_lightning",
+      "nameKo": "번개 주문서",
+      "nameEn": "Lightning Scroll",
+      "description": "번개를 내리쳐 60 번개 피해를 입힌다.",
+      "type": "consumable",
+      "subtype": "scroll",
+      "rarity": "rare",
+      "value": 180,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 5,
+      "icon": "scroll_purple",
+      "effect": {
+        "type": "spell",
+        "spellId": "lightning_bolt",
+        "damage": 60,
+        "element": "lightning"
+      }
+    },
+    {
+      "id": "scroll_protection",
+      "nameKo": "보호 주문서",
+      "nameEn": "Protection Scroll",
+      "description": "5턴간 받는 피해 20% 감소.",
+      "type": "consumable",
+      "subtype": "scroll",
+      "rarity": "rare",
+      "value": 250,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 5,
+      "icon": "scroll_white",
+      "effect": {
+        "type": "buff",
+        "buffType": "damage_reduction",
+        "value": 20,
+        "duration": 5
+      }
+    },
+    {
+      "id": "scroll_enchant_weapon",
+      "nameKo": "무기 강화 주문서",
+      "nameEn": "Weapon Enchant Scroll",
+      "description": "무기의 공격력을 영구적으로 +1 강화한다.",
+      "type": "consumable",
+      "subtype": "scroll",
+      "rarity": "heroic",
+      "value": 1000,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 3,
+      "icon": "scroll_gold",
+      "effect": {
+        "type": "enchant",
+        "target": "weapon",
+        "stat": "damage",
+        "value": 1
+      }
+    },
+    {
+      "id": "scroll_enchant_armor",
+      "nameKo": "방어구 강화 주문서",
+      "nameEn": "Armor Enchant Scroll",
+      "description": "방어구의 방어력을 영구적으로 +1 강화한다.",
+      "type": "consumable",
+      "subtype": "scroll",
+      "rarity": "heroic",
+      "value": 1000,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 3,
+      "icon": "scroll_silver",
+      "effect": {
+        "type": "enchant",
+        "target": "armor",
+        "stat": "defense",
+        "value": 1
+      }
+    },
+    {
+      "id": "scroll_resurrection",
+      "nameKo": "부활 주문서",
+      "nameEn": "Resurrection Scroll",
+      "description": "사망 시 자동으로 HP 50%로 부활한다. 전투 중 소지시 효과 발동.",
+      "type": "consumable",
+      "subtype": "scroll",
+      "rarity": "unique",
+      "value": 5000,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 1,
+      "icon": "scroll_divine",
+      "effect": {
+        "type": "auto_resurrect",
+        "hpPercent": 50
+      }
+    },
+    {
+      "id": "acorn",
+      "nameKo": "도토리",
+      "nameEn": "Acorn",
+      "description": "다람쥐가 모아둔 도토리.",
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "crude",
+      "value": 2,
+      "weight": 0.05,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "drop_acorn"
+    },
+    {
+      "id": "wolf_fang",
+      "nameKo": "늑대 송곳니",
+      "nameEn": "Wolf Fang",
+      "description": "날카로운 늑대의 송곳니.",
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "common",
+      "value": 15,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "drop_fang"
+    },
+    {
+      "id": "wolf_pelt",
+      "nameKo": "늑대 가죽",
+      "nameEn": "Wolf Pelt",
+      "description": "질긴 늑대의 가죽.",
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "common",
+      "value": 25,
+      "weight": 0.5,
+      "stackable": true,
+      "stackSize": 50,
+      "icon": "drop_pelt"
+    },
+    {
+      "id": "spider_silk",
+      "nameKo": "거미줄",
+      "nameEn": "Spider Silk",
+      "description": "질기고 끈적이는 거미줄.",
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "common",
+      "value": 18,
+      "weight": 0.05,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "drop_silk"
+    },
+    {
+      "id": "spider_venom",
+      "nameKo": "거미 독액",
+      "nameEn": "Spider Venom",
+      "description": "독 무기 제작에 사용되는 독액.",
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "grand",
+      "value": 40,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 50,
+      "icon": "drop_venom"
+    },
+    {
+      "id": "slime_core",
+      "nameKo": "슬라임 핵",
+      "nameEn": "Slime Core",
+      "description": "슬라임의 중심에서 발견되는 젤리 같은 구슬.",
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "common",
+      "value": 12,
+      "weight": 0.2,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "drop_slime"
+    },
+    {
+      "id": "goblin_ear",
+      "nameKo": "고블린 귀",
+      "nameEn": "Goblin Ear",
+      "description": "고블린의 뾰족한 귀. 현상금 증거용.",
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "common",
+      "value": 20,
+      "weight": 0.05,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "drop_ear"
+    },
+    {
+      "id": "skeleton_bone",
+      "nameKo": "해골 뼈",
+      "nameEn": "Skeleton Bone",
+      "description": "언데드에서 떨어진 뼈 조각.",
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "common",
+      "value": 15,
+      "weight": 0.2,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "drop_bone"
+    },
+    {
+      "id": "magic_essence",
+      "nameKo": "마력의 정수",
+      "nameEn": "Magic Essence",
+      "description": "응축된 마력 덩어리.",
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "rare",
+      "value": 100,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 50,
+      "icon": "drop_essence"
+    },
+    {
+      "id": "dragon_scale",
+      "nameKo": "용의 비늘",
+      "nameEn": "Dragon Scale",
+      "description": "드래곤의 단단한 비늘 조각.",
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "heroic",
+      "value": 800,
+      "weight": 0.5,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "drop_scale"
+    },
+    {
+      "id": "phoenix_feather",
+      "nameKo": "불사조의 깃털",
+      "nameEn": "Phoenix Feather",
+      "description": "불꽃처럼 타오르는 신비로운 깃털.",
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "unique",
+      "value": 2000,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 10,
+      "icon": "drop_feather"
+    },
+    {
+      "id": "demon_heart",
+      "nameKo": "악마의 심장",
+      "nameEn": "Demon Heart",
+      "description": "여전히 맥동하는 악마의 검은 심장.",
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "unique",
+      "value": 3000,
+      "weight": 1,
+      "stackable": true,
+      "stackSize": 5,
+      "icon": "drop_heart"
+    },
+    {
+      "id": "gem_ruby",
+      "nameKo": "루비",
+      "nameEn": "Ruby",
+      "description": "붉게 빛나는 보석. 화염 속성 강화에 사용.",
+      "type": "material",
+      "subtype": "gem",
+      "rarity": "rare",
+      "value": 150,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 30,
+      "icon": "gem_red"
+    },
+    {
+      "id": "gem_sapphire",
+      "nameKo": "사파이어",
+      "nameEn": "Sapphire",
+      "description": "차갑게 빛나는 푸른 보석. 냉기 속성 강화에 사용.",
+      "type": "material",
+      "subtype": "gem",
+      "rarity": "rare",
+      "value": 150,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 30,
+      "icon": "gem_blue"
+    },
+    {
+      "id": "gem_topaz",
+      "nameKo": "토파즈",
+      "nameEn": "Topaz",
+      "description": "번개처럼 빛나는 노란 보석. 번개 속성 강화에 사용.",
+      "type": "material",
+      "subtype": "gem",
+      "rarity": "rare",
+      "value": 150,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 30,
+      "icon": "gem_yellow"
+    },
+    {
+      "id": "gem_emerald",
+      "nameKo": "에메랄드",
+      "nameEn": "Emerald",
+      "description": "자연의 힘이 담긴 녹색 보석. 대지 속성 강화에 사용.",
+      "type": "material",
+      "subtype": "gem",
+      "rarity": "rare",
+      "value": 150,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 30,
+      "icon": "gem_green"
+    },
+    {
+      "id": "gem_diamond",
+      "nameKo": "다이아몬드",
+      "nameEn": "Diamond",
+      "description": "완벽하게 투명한 최고급 보석. 신성 속성 강화에 사용.",
+      "type": "material",
+      "subtype": "gem",
+      "rarity": "heroic",
+      "value": 500,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "gem_white"
+    },
+    {
+      "id": "gem_onyx",
+      "nameKo": "오닉스",
+      "nameEn": "Onyx",
+      "description": "칠흑같이 어두운 보석. 암흑 속성 강화에 사용.",
+      "type": "material",
+      "subtype": "gem",
+      "rarity": "heroic",
+      "value": 450,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "gem_black"
+    },
+    {
+      "id": "gem_amethyst",
+      "nameKo": "자수정",
+      "nameEn": "Amethyst",
+      "description": "보라색 빛의 아름다운 보석. MP 강화에 사용.",
+      "type": "material",
+      "subtype": "gem",
+      "rarity": "arcane",
+      "value": 200,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 25,
+      "icon": "gem_purple"
+    },
+    {
+      "id": "gem_garnet",
+      "nameKo": "가넷",
+      "nameEn": "Garnet",
+      "description": "진한 적색의 보석. HP 강화에 사용.",
+      "type": "material",
+      "subtype": "gem",
+      "rarity": "arcane",
+      "value": 200,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 25,
+      "icon": "gem_darkred"
+    },
+    {
+      "id": "gem_chaos",
+      "nameKo": "혼돈의 보석",
+      "nameEn": "Chaos Gem",
+      "description": "무지개빛으로 빛나는 기이한 보석. 모든 속성을 담고 있다.",
+      "type": "material",
+      "subtype": "gem",
+      "rarity": "legendary",
+      "value": 5000,
+      "weight": 0.2,
+      "stackable": true,
+      "stackSize": 5,
+      "icon": "gem_rainbow"
+    },
+    {
+      "id": "herb_healing",
+      "nameKo": "치유초",
+      "nameEn": "Healing Herb",
+      "description": "녹색 잎의 약초. 체력 포션 제조에 사용.",
+      "type": "material",
+      "subtype": "herb",
+      "rarity": "common",
+      "value": 8,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "herb_green"
+    },
+    {
+      "id": "herb_mana",
+      "nameKo": "마나초",
+      "nameEn": "Mana Herb",
+      "description": "푸른 잎의 약초. 마나 포션 제조에 사용.",
+      "type": "material",
+      "subtype": "herb",
+      "rarity": "common",
+      "value": 10,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "herb_blue"
+    },
+    {
+      "id": "herb_antidote",
+      "nameKo": "해독초",
+      "nameEn": "Antidote Herb",
+      "description": "연두색 잎의 약초. 해독제 제조에 사용.",
+      "type": "material",
+      "subtype": "herb",
+      "rarity": "common",
+      "value": 12,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "herb_lime"
+    },
+    {
+      "id": "herb_fire",
+      "nameKo": "화염초",
+      "nameEn": "Fire Herb",
+      "description": "붉은 잎을 가진 열기를 품은 약초.",
+      "type": "material",
+      "subtype": "herb",
+      "rarity": "grand",
+      "value": 25,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 50,
+      "icon": "herb_red"
+    },
+    {
+      "id": "herb_ice",
+      "nameKo": "냉기초",
+      "nameEn": "Ice Herb",
+      "description": "서리가 맺힌 차가운 약초.",
+      "type": "material",
+      "subtype": "herb",
+      "rarity": "grand",
+      "value": 25,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 50,
+      "icon": "herb_cyan"
+    },
+    {
+      "id": "herb_lightning",
+      "nameKo": "번개초",
+      "nameEn": "Lightning Herb",
+      "description": "전기가 흐르는 듯한 노란 약초.",
+      "type": "material",
+      "subtype": "herb",
+      "rarity": "grand",
+      "value": 25,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 50,
+      "icon": "herb_yellow"
+    },
+    {
+      "id": "herb_moonlight",
+      "nameKo": "달빛초",
+      "nameEn": "Moonlight Herb",
+      "description": "밤에만 피는 은빛 약초. 강화 물약 제조에 필수.",
+      "type": "material",
+      "subtype": "herb",
+      "rarity": "rare",
+      "value": 80,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 30,
+      "icon": "herb_silver"
+    },
+    {
+      "id": "herb_sunlight",
+      "nameKo": "햇빛초",
+      "nameEn": "Sunlight Herb",
+      "description": "한낮에만 피는 금빛 약초. 엘릭서 제조에 필수.",
+      "type": "material",
+      "subtype": "herb",
+      "rarity": "rare",
+      "value": 100,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 30,
+      "icon": "herb_gold"
+    },
+    {
+      "id": "herb_divine",
+      "nameKo": "신성초",
+      "nameEn": "Divine Herb",
+      "description": "성스러운 기운이 감도는 희귀 약초.",
+      "type": "material",
+      "subtype": "herb",
+      "rarity": "arcane",
+      "value": 250,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "herb_white"
+    },
+    {
+      "id": "herb_cursed",
+      "nameKo": "저주초",
+      "nameEn": "Cursed Herb",
+      "description": "어둠의 기운이 감도는 위험한 약초.",
+      "type": "material",
+      "subtype": "herb",
+      "rarity": "arcane",
+      "value": 200,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "herb_purple"
+    },
+    {
+      "id": "copper_ore",
+      "nameKo": "구리 광석",
+      "nameEn": "Copper Ore",
+      "description": "붉은빛이 도는 기본 광석.",
+      "type": "material",
+      "subtype": "ore",
+      "rarity": "crude",
+      "value": 5,
+      "weight": 1,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "ore_copper"
+    },
+    {
+      "id": "iron_ore",
+      "nameKo": "철 광석",
+      "nameEn": "Iron Ore",
+      "description": "대장간에서 가장 많이 사용되는 광석.",
+      "type": "material",
+      "subtype": "ore",
+      "rarity": "common",
+      "value": 10,
+      "weight": 1.2,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "ore_iron"
+    },
+    {
+      "id": "silver_ore",
+      "nameKo": "은 광석",
+      "nameEn": "Silver Ore",
+      "description": "은빛으로 빛나는 광석. 마법 무기 제작에 사용.",
+      "type": "material",
+      "subtype": "ore",
+      "rarity": "grand",
+      "value": 30,
+      "weight": 1,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "ore_silver"
+    },
+    {
+      "id": "gold_ore",
+      "nameKo": "금 광석",
+      "nameEn": "Gold Ore",
+      "description": "황금빛으로 빛나는 귀중한 광석.",
+      "type": "material",
+      "subtype": "ore",
+      "rarity": "rare",
+      "value": 80,
+      "weight": 1.5,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "ore_gold"
+    },
+    {
+      "id": "mithril_ore",
+      "nameKo": "미스릴 광석",
+      "nameEn": "Mithril Ore",
+      "description": "은빛 푸른 광채를 내는 희귀 광석.",
+      "type": "material",
+      "subtype": "ore",
+      "rarity": "arcane",
+      "value": 200,
+      "weight": 0.8,
+      "stackable": true,
+      "stackSize": 50,
+      "icon": "ore_mithril"
+    },
+    {
+      "id": "adamantite_ore",
+      "nameKo": "아다만타이트 광석",
+      "nameEn": "Adamantite Ore",
+      "description": "세상에서 가장 단단한 금속의 원석.",
+      "type": "material",
+      "subtype": "ore",
+      "rarity": "heroic",
+      "value": 500,
+      "weight": 2,
+      "stackable": true,
+      "stackSize": 30,
+      "icon": "ore_adamantite"
+    },
+    {
+      "id": "orichalcum_ore",
+      "nameKo": "오리하르콘 광석",
+      "nameEn": "Orichalcum Ore",
+      "description": "전설 속 금속의 원석. 붉은 금빛을 낸다.",
+      "type": "material",
+      "subtype": "ore",
+      "rarity": "unique",
+      "value": 1500,
+      "weight": 1.8,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "ore_orichalcum"
+    },
+    {
+      "id": "dark_ore",
+      "nameKo": "암흑 광석",
+      "nameEn": "Dark Ore",
+      "description": "빛을 흡수하는 기이한 광석.",
+      "type": "material",
+      "subtype": "ore",
+      "rarity": "unique",
+      "value": 1200,
+      "weight": 1.5,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "ore_dark"
+    },
+    {
+      "id": "iron_key",
+      "nameKo": "철 열쇠",
+      "nameEn": "Iron Key",
+      "description": "일반적인 철 열쇠.",
+      "icon": "key_iron",
+      "rarity": "common",
+      "stackSize": 10,
+      "value": 25,
+      "weight": 0.1,
+      "unlocks": [
+        "iron_chest"
+      ],
+      "type": "misc",
+      "subtype": "key",
+      "stackable": true
+    },
+    {
+      "id": "silver_key",
+      "nameKo": "은 열쇠",
+      "nameEn": "Silver Key",
+      "description": "은으로 만든 열쇠.",
+      "icon": "key_silver",
+      "rarity": "grand",
+      "stackSize": 5,
+      "value": 100,
+      "weight": 0.1,
+      "unlocks": [
+        "silver_chest"
+      ],
+      "type": "misc",
+      "subtype": "key",
+      "stackable": true
+    },
+    {
+      "id": "gold_key",
+      "nameKo": "금 열쇠",
+      "nameEn": "Gold Key",
+      "description": "금으로 만든 열쇠.",
+      "icon": "key_gold",
+      "rarity": "rare",
+      "stackSize": 3,
+      "value": 300,
+      "weight": 0.1,
+      "unlocks": [
+        "gold_chest"
+      ],
+      "type": "misc",
+      "subtype": "key",
+      "stackable": true
+    },
+    {
+      "id": "dungeon_key",
+      "nameKo": "던전 열쇠",
+      "nameEn": "Dungeon Key",
+      "description": "던전 문을 여는 열쇠.",
+      "icon": "key_dungeon",
+      "rarity": "arcane",
+      "stackSize": 1,
+      "value": 500,
+      "weight": 0.2,
+      "unlocks": [
+        "dungeon_door"
+      ],
+      "type": "misc",
+      "subtype": "key",
+      "stackable": true
+    },
+    {
+      "id": "boss_key",
+      "nameKo": "보스 열쇠",
+      "nameEn": "Boss Key",
+      "description": "보스 방 문을 여는 열쇠.",
+      "icon": "key_boss",
+      "rarity": "heroic",
+      "stackSize": 1,
+      "value": 1000,
+      "weight": 0.3,
+      "unlocks": [
+        "boss_room"
+      ],
+      "type": "misc",
+      "subtype": "key",
+      "stackable": true
+    },
+    {
+      "id": "master_key",
+      "nameKo": "마스터 키",
+      "nameEn": "Master Key",
+      "description": "대부분의 문을 열 수 있는 만능 열쇠.",
+      "icon": "key_master",
+      "rarity": "unique",
+      "stackSize": 1,
+      "value": 5000,
+      "weight": 0.15,
+      "unlocks": [
+        "all_chests",
+        "all_doors"
+      ],
+      "type": "misc",
+      "subtype": "key",
+      "stackable": true
+    },
+    {
+      "id": "old_letter",
+      "nameKo": "오래된 편지",
+      "nameEn": "Old Letter",
+      "description": "누렇게 바랜 오래된 편지. 읽을 수 있을지도 모른다.",
+      "icon": "quest_letter",
+      "rarity": "common",
+      "stackSize": 1,
+      "value": 0,
+      "weight": 0.01,
+      "questId": "village_mystery",
+      "type": "misc",
+      "subtype": "quest",
+      "stackable": true
+    },
+    {
+      "id": "ancient_key",
+      "nameKo": "고대의 열쇠",
+      "nameEn": "Ancient Key",
+      "description": "고대 유적의 어딘가를 열 수 있을 것 같다.",
+      "icon": "quest_key",
+      "rarity": "rare",
+      "stackSize": 1,
+      "value": 0,
+      "weight": 0.1,
+      "questId": "ancient_ruins",
+      "type": "misc",
+      "subtype": "quest",
+      "stackable": true
+    },
+    {
+      "id": "village_chief_seal",
+      "nameKo": "촌장의 인장",
+      "nameEn": "Village Chief's Seal",
+      "description": "시작 마을 촌장의 인장. 신분을 증명할 수 있다.",
+      "icon": "quest_seal",
+      "rarity": "grand",
+      "stackSize": 1,
+      "value": 0,
+      "weight": 0.05,
+      "questId": "main_quest_1",
+      "type": "misc",
+      "subtype": "quest",
+      "stackable": true
+    },
+    {
+      "id": "mysterious_orb",
+      "nameKo": "수상한 구슬",
+      "nameEn": "Mysterious Orb",
+      "description": "이상한 빛을 내는 구슬. 누군가에게 보여줘야 할 것 같다.",
+      "icon": "quest_orb",
+      "rarity": "arcane",
+      "stackSize": 1,
+      "value": 0,
+      "weight": 0.2,
+      "questId": "magic_academy",
+      "type": "misc",
+      "subtype": "quest",
+      "stackable": true
+    },
+    {
+      "id": "dragon_tooth",
+      "nameKo": "드래곤의 이빨",
+      "nameEn": "Dragon's Tooth",
+      "description": "드래곤을 처치한 증거. 왕에게 가져가야 한다.",
+      "icon": "quest_dragon",
+      "rarity": "unique",
+      "stackSize": 1,
+      "value": 0,
+      "weight": 0.5,
+      "questId": "dragon_slayer",
+      "type": "misc",
+      "subtype": "quest",
+      "stackable": true
     }
   ],
   "summary": {
-    "total": 40,
+    "total": 210,
     "byType": {
-      "equipment": 23,
-      "consumable": 7,
-      "material": 9,
-      "misc": 1
+      "equipment": 130,
+      "consumable": 30,
+      "material": 39,
+      "misc": 11
+    },
+    "bySubtype": {
+      "weapon": 63,
+      "armor": 44,
+      "accessory": 23,
+      "food": 10,
+      "potion": 12,
+      "scroll": 8,
+      "drop": 12,
+      "gem": 9,
+      "herb": 10,
+      "ore": 8,
+      "key": 6,
+      "quest": 5
     },
     "byRarity": {
-      "crude": 0,
-      "common": 20,
-      "grand": 11,
-      "rare": 7,
-      "arcane": 1,
-      "heroic": 0,
-      "unique": 0,
-      "celestial": 0,
-      "divine": 0,
-      "epic": 0,
-      "legendary": 0,
-      "mythic": 0,
-      "eternal": 0
+      "crude": 17,
+      "common": 34,
+      "grand": 30,
+      "rare": 46,
+      "arcane": 23,
+      "heroic": 26,
+      "unique": 18,
+      "legendary": 15,
+      "celestial": 1
     }
   }
 }
