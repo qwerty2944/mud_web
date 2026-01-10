@@ -27,6 +27,8 @@ type CategoryData = {
   items: SpriteItem[] | AppearanceItem[];
   unityMethod: string;
   allowNone?: boolean;
+  weaponType?: string;  // 무기 타입 (Sword, Axe 등)
+  hand?: "left" | "right";  // 무기 손 위치
 };
 
 export default function EquipmentTestPage() {
@@ -122,14 +124,14 @@ export default function EquipmentTestPage() {
           eye: { label: "눈", items: eyeData.eyes || [], unityMethod: "JS_SetEye" },
           hair: { label: "머리", items: hairData.hairs || [], unityMethod: "JS_SetHair", allowNone: true },
           facehair: { label: "수염/장식", items: facehairData.facehairs || [], unityMethod: "JS_SetFacehair", allowNone: true },
-          // 무기
-          sword: { label: "검", items: swordData.swords || [], unityMethod: "JS_SetSword", allowNone: true },
-          axe: { label: "도끼", items: axeData.axes || [], unityMethod: "JS_SetAxe", allowNone: true },
-          bow: { label: "활", items: bowData.bows || [], unityMethod: "JS_SetBow", allowNone: true },
-          shield: { label: "방패", items: shieldData.shields || [], unityMethod: "JS_SetShield", allowNone: true },
-          spear: { label: "창", items: spearData.spears || [], unityMethod: "JS_SetSpear", allowNone: true },
-          wand: { label: "지팡이", items: wandData.wands || [], unityMethod: "JS_SetWand", allowNone: true },
-          dagger: { label: "단검", items: daggerData.daggers || [], unityMethod: "JS_SetDagger", allowNone: true },
+          // 무기 (JS_SetRightWeapon/JS_SetLeftWeapon with "WeaponType,index" format)
+          sword: { label: "검", items: swordData.swords || [], unityMethod: "JS_SetRightWeapon", allowNone: true, weaponType: "Sword", hand: "right" },
+          axe: { label: "도끼", items: axeData.axes || [], unityMethod: "JS_SetRightWeapon", allowNone: true, weaponType: "Axe", hand: "right" },
+          bow: { label: "활", items: bowData.bows || [], unityMethod: "JS_SetRightWeapon", allowNone: true, weaponType: "Bow", hand: "right" },
+          shield: { label: "방패", items: shieldData.shields || [], unityMethod: "JS_SetLeftWeapon", allowNone: true, weaponType: "Shield", hand: "left" },
+          spear: { label: "창", items: spearData.spears || [], unityMethod: "JS_SetRightWeapon", allowNone: true, weaponType: "Spear", hand: "right" },
+          wand: { label: "지팡이", items: wandData.wands || [], unityMethod: "JS_SetRightWeapon", allowNone: true, weaponType: "Wand", hand: "right" },
+          dagger: { label: "단검", items: daggerData.daggers || [], unityMethod: "JS_SetRightWeapon", allowNone: true, weaponType: "Dagger", hand: "right" },
           // 방어구
           helmet: { label: "투구", items: helmetData.helmets || [], unityMethod: "JS_SetHelmet", allowNone: true },
           armor: { label: "갑옷", items: armorData.armors || [], unityMethod: "JS_SetArmor", allowNone: true },
@@ -147,8 +149,18 @@ export default function EquipmentTestPage() {
     loadMappings();
   }, []);
 
-  const handleSelect = (unityMethod: string, index: number) => {
-    callUnity(unityMethod, index.toString());
+  const handleSelect = (category: string, index: number) => {
+    const data = categories[category];
+    if (!data) return;
+
+    // 무기인 경우 "WeaponType,index" 형식으로 호출
+    if (data.weaponType) {
+      const param = index === -1 ? `${data.weaponType},-1` : `${data.weaponType},${index}`;
+      callUnity(data.unityMethod, param);
+    } else {
+      // 외형/방어구는 기존 방식
+      callUnity(data.unityMethod, index.toString());
+    }
   };
 
   const getCurrentIndex = (category: string): number => {
@@ -200,7 +212,7 @@ export default function EquipmentTestPage() {
                     <select
                       className="w-full bg-gray-700 text-white rounded px-3 py-2 text-sm"
                       value={currentIndex}
-                      onChange={(e) => handleSelect(data.unityMethod, parseInt(e.target.value))}
+                      onChange={(e) => handleSelect(cat, parseInt(e.target.value))}
                     >
                       {data.allowNone && <option value={-1}>없음</option>}
                       {data.items.map((item) => (
@@ -229,12 +241,12 @@ export default function EquipmentTestPage() {
                 return (
                   <div key={cat}>
                     <label className="block text-xs text-gray-400 mb-1">
-                      {data.label} ({data.items.length}개)
+                      {data.label} ({data.items.length}개) {data.hand === "left" ? "🛡️ 왼손" : "⚔️ 오른손"}
                     </label>
                     <select
                       className="w-full bg-gray-700 text-white rounded px-3 py-2 text-sm"
                       value={currentIndex}
-                      onChange={(e) => handleSelect(data.unityMethod, parseInt(e.target.value))}
+                      onChange={(e) => handleSelect(cat, parseInt(e.target.value))}
                     >
                       {data.allowNone && <option value={-1}>없음</option>}
                       {data.items.map((item) => (
@@ -269,7 +281,7 @@ export default function EquipmentTestPage() {
                     <select
                       className="w-full bg-gray-700 text-white rounded px-3 py-2 text-sm"
                       value={currentIndex}
-                      onChange={(e) => handleSelect(data.unityMethod, parseInt(e.target.value))}
+                      onChange={(e) => handleSelect(cat, parseInt(e.target.value))}
                     >
                       {data.allowNone && <option value={-1}>없음</option>}
                       {data.items.map((item) => (
