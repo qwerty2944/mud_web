@@ -13,15 +13,52 @@
       "type": "passive",
       "usageContext": "passive",
       "icon": "🛡️",
-      "description": { "ko": "방패의 기본기를 익혀 방어력과 막기 확률을 높인다.", "en": "Master the defensive arts of shield combat." },
+      "description": {
+        "ko": "방패의 기본기를 익혀 방어력과 막기 확률을 높인다.",
+        "en": "Master the defensive arts of shield combat."
+      },
       "maxLevel": 50,
       "expPerLevel": 100,
       "levelBonuses": [
-        { "level": 1, "effects": { "defense": 0, "blockChance": 0 } },
-        { "level": 10, "effects": { "defense": 5, "blockChance": 5 } },
-        { "level": 25, "effects": { "defense": 12, "blockChance": 10, "blockDamageReduction": 10 } },
-        { "level": 40, "effects": { "defense": 18, "blockChance": 15, "blockDamageReduction": 20 } },
-        { "level": 50, "effects": { "defense": 25, "blockChance": 20, "blockDamageReduction": 30, "counterChance": 10 } }
+        {
+          "level": 1,
+          "effects": {
+            "defense": 0,
+            "blockChance": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "defense": 5,
+            "blockChance": 5
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "defense": 12,
+            "blockChance": 10,
+            "blockDamageReduction": 10
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "defense": 18,
+            "blockChance": 15,
+            "blockDamageReduction": 20
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "defense": 25,
+            "blockChance": 20,
+            "blockDamageReduction": 30,
+            "counterChance": 10
+          }
+        }
       ],
       "requirements": {}
     },
@@ -32,17 +69,56 @@
       "type": "buff",
       "usageContext": "combat_only",
       "icon": "🛡️",
-      "description": { "ko": "방패를 들어 다음 공격을 막는다.", "en": "Raise the shield to block the next attack." },
+      "description": {
+        "ko": "방패를 들어 다음 공격을 막는다.",
+        "en": "Raise the shield to block the next attack."
+      },
       "maxLevel": 30,
       "expPerLevel": 50,
       "levelBonuses": [
-        { "level": 1, "effects": { "blockChanceBonus": 50, "duration": 1, "apCost": 5 } },
-        { "level": 10, "effects": { "blockChanceBonus": 65, "duration": 1, "apCost": 5 } },
-        { "level": 20, "effects": { "blockChanceBonus": 80, "duration": 2, "apCost": 4 } },
-        { "level": 30, "effects": { "blockChanceBonus": 100, "duration": 2, "apCost": 4, "counterOnBlock": 20 } }
+        {
+          "level": 1,
+          "effects": {
+            "blockChanceBonus": 50,
+            "duration": 1,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "blockChanceBonus": 65,
+            "duration": 1,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "blockChanceBonus": 80,
+            "duration": 2,
+            "apCost": 4
+          }
+        },
+        {
+          "level": 30,
+          "effects": {
+            "blockChanceBonus": 100,
+            "duration": 2,
+            "apCost": 4,
+            "counterOnBlock": 20
+          }
+        }
       ],
-      "requirements": { "skills": { "shield_mastery": 1 } },
-      "grantsExpTo": ["shield_mastery"],
+      "requirements": {
+        "skills": {
+          "shield_mastery": 1
+        },
+        "equipment": "shield"
+      },
+      "grantsExpTo": [
+        "shield_mastery"
+      ],
       "cooldown": 1
     },
     {
@@ -52,17 +128,56 @@
       "type": "attack",
       "usageContext": "combat_only",
       "icon": "💥",
-      "description": { "ko": "방패로 적을 강타한다.", "en": "Bash the enemy with the shield." },
+      "description": {
+        "ko": "방패로 적을 강타한다.",
+        "en": "Bash the enemy with the shield."
+      },
       "maxLevel": 25,
       "expPerLevel": 70,
       "levelBonuses": [
-        { "level": 1, "effects": { "baseDamage": 25, "stunChance": 25, "apCost": 10 } },
-        { "level": 10, "effects": { "baseDamage": 35, "stunChance": 35, "apCost": 9 } },
-        { "level": 20, "effects": { "baseDamage": 48, "stunChance": 45, "apCost": 8 } },
-        { "level": 25, "effects": { "baseDamage": 55, "stunChance": 55, "stunDuration": 2, "apCost": 8 } }
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 25,
+            "stunChance": 25,
+            "apCost": 10
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 35,
+            "stunChance": 35,
+            "apCost": 9
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 48,
+            "stunChance": 45,
+            "apCost": 8
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "baseDamage": 55,
+            "stunChance": 55,
+            "stunDuration": 2,
+            "apCost": 8
+          }
+        }
       ],
-      "requirements": { "skills": { "shield_mastery": 10 } },
-      "grantsExpTo": ["shield_mastery"],
+      "requirements": {
+        "skills": {
+          "shield_mastery": 10
+        },
+        "equipment": "shield"
+      },
+      "grantsExpTo": [
+        "shield_mastery"
+      ],
       "cooldown": 2
     },
     {
@@ -72,16 +187,51 @@
       "type": "buff",
       "usageContext": "combat_only",
       "icon": "🏰",
-      "description": { "ko": "철벽 방어 자세. 피해 감소, 이동 불가.", "en": "Iron defense stance. Reduce damage, cannot move." },
+      "description": {
+        "ko": "철벽 방어 자세. 피해 감소, 이동 불가.",
+        "en": "Iron defense stance. Reduce damage, cannot move."
+      },
       "maxLevel": 20,
       "expPerLevel": 90,
       "levelBonuses": [
-        { "level": 1, "effects": { "damageReduction": 40, "duration": 3, "immobile": true, "apCost": 15 } },
-        { "level": 10, "effects": { "damageReduction": 55, "duration": 4, "immobile": true, "apCost": 14 } },
-        { "level": 20, "effects": { "damageReduction": 70, "duration": 5, "immobile": true, "apCost": 12, "reflectDamage": 15 } }
+        {
+          "level": 1,
+          "effects": {
+            "damageReduction": 40,
+            "duration": 3,
+            "immobile": true,
+            "apCost": 15
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "damageReduction": 55,
+            "duration": 4,
+            "immobile": true,
+            "apCost": 14
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "damageReduction": 70,
+            "duration": 5,
+            "immobile": true,
+            "apCost": 12,
+            "reflectDamage": 15
+          }
+        }
       ],
-      "requirements": { "skills": { "shield_mastery": 15 } },
-      "grantsExpTo": ["shield_mastery"],
+      "requirements": {
+        "skills": {
+          "shield_mastery": 15
+        },
+        "equipment": "shield"
+      },
+      "grantsExpTo": [
+        "shield_mastery"
+      ],
       "cooldown": 5
     },
     {
@@ -91,16 +241,52 @@
       "type": "buff",
       "usageContext": "combat_only",
       "icon": "🫂",
-      "description": { "ko": "아군을 보호하여 대신 피해를 받는다.", "en": "Protect an ally and take damage for them." },
+      "description": {
+        "ko": "아군을 보호하여 대신 피해를 받는다.",
+        "en": "Protect an ally and take damage for them."
+      },
       "maxLevel": 20,
       "expPerLevel": 100,
       "levelBonuses": [
-        { "level": 1, "effects": { "taunt": true, "duration": 3, "damageReduction": 20, "apCost": 18 } },
-        { "level": 10, "effects": { "taunt": true, "duration": 4, "damageReduction": 35, "apCost": 16 } },
-        { "level": 20, "effects": { "taunt": true, "duration": 5, "damageReduction": 50, "apCost": 14, "healOnBlock": 5 } }
+        {
+          "level": 1,
+          "effects": {
+            "taunt": true,
+            "duration": 3,
+            "damageReduction": 20,
+            "apCost": 18
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "taunt": true,
+            "duration": 4,
+            "damageReduction": 35,
+            "apCost": 16
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "taunt": true,
+            "duration": 5,
+            "damageReduction": 50,
+            "apCost": 14,
+            "healOnBlock": 5
+          }
+        }
       ],
-      "requirements": { "skills": { "shield_mastery": 20, "shield_wall": 10 } },
-      "grantsExpTo": ["shield_mastery"],
+      "requirements": {
+        "skills": {
+          "shield_mastery": 20,
+          "shield_wall": 10
+        },
+        "equipment": "shield"
+      },
+      "grantsExpTo": [
+        "shield_mastery"
+      ],
       "cooldown": 5
     },
     {
@@ -110,16 +296,49 @@
       "type": "attack",
       "usageContext": "combat_only",
       "icon": "↩️",
-      "description": { "ko": "막은 후 강력하게 반격한다.", "en": "Counter attack after blocking." },
+      "description": {
+        "ko": "막은 후 강력하게 반격한다.",
+        "en": "Counter attack after blocking."
+      },
       "maxLevel": 15,
       "expPerLevel": 150,
       "levelBonuses": [
-        { "level": 1, "effects": { "baseDamage": 50, "counterMultiplier": 1.5, "apCost": 20 } },
-        { "level": 8, "effects": { "baseDamage": 70, "counterMultiplier": 1.8, "apCost": 18 } },
-        { "level": 15, "effects": { "baseDamage": 95, "counterMultiplier": 2.0, "apCost": 15, "stunChance": 30 } }
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 50,
+            "counterMultiplier": 1.5,
+            "apCost": 20
+          }
+        },
+        {
+          "level": 8,
+          "effects": {
+            "baseDamage": 70,
+            "counterMultiplier": 1.8,
+            "apCost": 18
+          }
+        },
+        {
+          "level": 15,
+          "effects": {
+            "baseDamage": 95,
+            "counterMultiplier": 2,
+            "apCost": 15,
+            "stunChance": 30
+          }
+        }
       ],
-      "requirements": { "skills": { "shield_mastery": 30, "shield_bash": 15 } },
-      "grantsExpTo": ["shield_mastery"],
+      "requirements": {
+        "skills": {
+          "shield_mastery": 30,
+          "shield_bash": 15
+        },
+        "equipment": "shield"
+      },
+      "grantsExpTo": [
+        "shield_mastery"
+      ],
       "cooldown": 3
     },
     {
@@ -129,16 +348,51 @@
       "type": "buff",
       "usageContext": "combat_only",
       "icon": "⭐",
-      "description": { "ko": "모든 피해를 일정 횟수 무효화.", "en": "Negate a certain number of attacks." },
+      "description": {
+        "ko": "모든 피해를 일정 횟수 무효화.",
+        "en": "Negate a certain number of attacks."
+      },
       "maxLevel": 10,
       "expPerLevel": 200,
       "levelBonuses": [
-        { "level": 1, "effects": { "immuneHits": 2, "duration": 4, "apCost": 30 } },
-        { "level": 5, "effects": { "immuneHits": 3, "duration": 5, "apCost": 28, "healPerBlock": 5 } },
-        { "level": 10, "effects": { "immuneHits": 4, "duration": 6, "apCost": 25, "healPerBlock": 10, "counterOnBlock": 40 } }
+        {
+          "level": 1,
+          "effects": {
+            "immuneHits": 2,
+            "duration": 4,
+            "apCost": 30
+          }
+        },
+        {
+          "level": 5,
+          "effects": {
+            "immuneHits": 3,
+            "duration": 5,
+            "apCost": 28,
+            "healPerBlock": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "immuneHits": 4,
+            "duration": 6,
+            "apCost": 25,
+            "healPerBlock": 10,
+            "counterOnBlock": 40
+          }
+        }
       ],
-      "requirements": { "skills": { "shield_mastery": 45, "cover": 12 } },
-      "grantsExpTo": ["shield_mastery"],
+      "requirements": {
+        "skills": {
+          "shield_mastery": 45,
+          "cover": 12
+        },
+        "equipment": "shield"
+      },
+      "grantsExpTo": [
+        "shield_mastery"
+      ],
       "cooldown": 6
     }
   ]

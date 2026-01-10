@@ -13,15 +13,52 @@
       "type": "passive",
       "usageContext": "passive",
       "icon": "🏹",
-      "description": { "ko": "활의 기본기를 익혀 명중률과 사거리를 높인다.", "en": "Master the accuracy and range of bow combat." },
+      "description": {
+        "ko": "활의 기본기를 익혀 명중률과 사거리를 높인다.",
+        "en": "Master the accuracy and range of bow combat."
+      },
       "maxLevel": 50,
       "expPerLevel": 100,
       "levelBonuses": [
-        { "level": 1, "effects": { "bowDamage": 0, "accuracy": 0 } },
-        { "level": 10, "effects": { "bowDamage": 5, "accuracy": 5 } },
-        { "level": 25, "effects": { "bowDamage": 12, "accuracy": 10, "range": 5 } },
-        { "level": 40, "effects": { "bowDamage": 18, "accuracy": 15, "range": 10 } },
-        { "level": 50, "effects": { "bowDamage": 25, "accuracy": 20, "range": 15, "critChance": 8 } }
+        {
+          "level": 1,
+          "effects": {
+            "bowDamage": 0,
+            "accuracy": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "bowDamage": 5,
+            "accuracy": 5
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "bowDamage": 12,
+            "accuracy": 10,
+            "range": 5
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "bowDamage": 18,
+            "accuracy": 15,
+            "range": 10
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "bowDamage": 25,
+            "accuracy": 20,
+            "range": 15,
+            "critChance": 8
+          }
+        }
       ],
       "requirements": {}
     },
@@ -32,17 +69,56 @@
       "type": "attack",
       "usageContext": "combat_only",
       "icon": "🏹",
-      "description": { "ko": "빠르게 화살을 쏜다.", "en": "Quickly fire an arrow." },
+      "description": {
+        "ko": "빠르게 화살을 쏜다.",
+        "en": "Quickly fire an arrow."
+      },
       "maxLevel": 30,
       "expPerLevel": 50,
       "levelBonuses": [
-        { "level": 1, "effects": { "baseDamage": 22, "apCost": 4, "accuracy": 5 } },
-        { "level": 10, "effects": { "baseDamage": 30, "apCost": 4, "accuracy": 10 } },
-        { "level": 20, "effects": { "baseDamage": 40, "apCost": 3, "accuracy": 15 } },
-        { "level": 30, "effects": { "baseDamage": 52, "apCost": 3, "accuracy": 20, "attackSpeed": 15 } }
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 22,
+            "apCost": 4,
+            "accuracy": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 30,
+            "apCost": 4,
+            "accuracy": 10
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 40,
+            "apCost": 3,
+            "accuracy": 15
+          }
+        },
+        {
+          "level": 30,
+          "effects": {
+            "baseDamage": 52,
+            "apCost": 3,
+            "accuracy": 20,
+            "attackSpeed": 15
+          }
+        }
       ],
-      "requirements": { "skills": { "bow_mastery": 1 } },
-      "grantsExpTo": ["bow_mastery"],
+      "requirements": {
+        "skills": {
+          "bow_mastery": 1
+        },
+        "equipment": "bow"
+      },
+      "grantsExpTo": [
+        "bow_mastery"
+      ],
       "cooldown": 0
     },
     {
@@ -52,17 +128,56 @@
       "type": "attack",
       "usageContext": "combat_only",
       "icon": "💨",
-      "description": { "ko": "힘을 모아 강력한 화살을 쏜다.", "en": "Charge up and fire a powerful arrow." },
+      "description": {
+        "ko": "힘을 모아 강력한 화살을 쏜다.",
+        "en": "Charge up and fire a powerful arrow."
+      },
       "maxLevel": 25,
       "expPerLevel": 70,
       "levelBonuses": [
-        { "level": 1, "effects": { "baseDamage": 40, "armorPenetration": 15, "apCost": 12 } },
-        { "level": 10, "effects": { "baseDamage": 55, "armorPenetration": 22, "apCost": 11 } },
-        { "level": 20, "effects": { "baseDamage": 72, "armorPenetration": 30, "apCost": 10 } },
-        { "level": 25, "effects": { "baseDamage": 85, "armorPenetration": 35, "apCost": 10, "knockbackChance": 25 } }
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 40,
+            "armorPenetration": 15,
+            "apCost": 12
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 55,
+            "armorPenetration": 22,
+            "apCost": 11
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 72,
+            "armorPenetration": 30,
+            "apCost": 10
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "baseDamage": 85,
+            "armorPenetration": 35,
+            "apCost": 10,
+            "knockbackChance": 25
+          }
+        }
       ],
-      "requirements": { "skills": { "bow_mastery": 10 } },
-      "grantsExpTo": ["bow_mastery"],
+      "requirements": {
+        "skills": {
+          "bow_mastery": 10
+        },
+        "equipment": "bow"
+      },
+      "grantsExpTo": [
+        "bow_mastery"
+      ],
       "cooldown": 2
     },
     {
@@ -72,16 +187,47 @@
       "type": "attack",
       "usageContext": "combat_only",
       "icon": "🎯",
-      "description": { "ko": "여러 발의 화살을 동시에 쏜다.", "en": "Fire multiple arrows simultaneously." },
+      "description": {
+        "ko": "여러 발의 화살을 동시에 쏜다.",
+        "en": "Fire multiple arrows simultaneously."
+      },
       "maxLevel": 20,
       "expPerLevel": 90,
       "levelBonuses": [
-        { "level": 1, "effects": { "baseDamage": 18, "hitCount": 3, "apCost": 15 } },
-        { "level": 10, "effects": { "baseDamage": 25, "hitCount": 4, "apCost": 14 } },
-        { "level": 20, "effects": { "baseDamage": 32, "hitCount": 5, "apCost": 12 } }
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 18,
+            "hitCount": 3,
+            "apCost": 15
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 25,
+            "hitCount": 4,
+            "apCost": 14
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 32,
+            "hitCount": 5,
+            "apCost": 12
+          }
+        }
       ],
-      "requirements": { "skills": { "bow_mastery": 15 } },
-      "grantsExpTo": ["bow_mastery"],
+      "requirements": {
+        "skills": {
+          "bow_mastery": 15
+        },
+        "equipment": "bow"
+      },
+      "grantsExpTo": [
+        "bow_mastery"
+      ],
       "cooldown": 3
     },
     {
@@ -91,16 +237,51 @@
       "type": "attack",
       "usageContext": "combat_only",
       "icon": "☠️",
-      "description": { "ko": "독이 묻은 화살을 쏜다.", "en": "Fire a poisoned arrow." },
+      "description": {
+        "ko": "독이 묻은 화살을 쏜다.",
+        "en": "Fire a poisoned arrow."
+      },
       "maxLevel": 20,
       "expPerLevel": 100,
       "levelBonuses": [
-        { "level": 1, "effects": { "baseDamage": 25, "poisonDamage": 8, "poisonDuration": 4, "apCost": 16 } },
-        { "level": 10, "effects": { "baseDamage": 35, "poisonDamage": 12, "poisonDuration": 5, "apCost": 15 } },
-        { "level": 20, "effects": { "baseDamage": 48, "poisonDamage": 18, "poisonDuration": 6, "apCost": 13, "slowPercent": 20 } }
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 25,
+            "poisonDamage": 8,
+            "poisonDuration": 4,
+            "apCost": 16
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 35,
+            "poisonDamage": 12,
+            "poisonDuration": 5,
+            "apCost": 15
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 48,
+            "poisonDamage": 18,
+            "poisonDuration": 6,
+            "apCost": 13,
+            "slowPercent": 20
+          }
+        }
       ],
-      "requirements": { "skills": { "bow_mastery": 20 } },
-      "grantsExpTo": ["bow_mastery"],
+      "requirements": {
+        "skills": {
+          "bow_mastery": 20
+        },
+        "equipment": "bow"
+      },
+      "grantsExpTo": [
+        "bow_mastery"
+      ],
       "cooldown": 3
     },
     {
@@ -110,16 +291,49 @@
       "type": "attack",
       "usageContext": "combat_only",
       "icon": "🎯",
-      "description": { "ko": "정밀 조준으로 치명타를 가한다.", "en": "Precisely aimed shot for critical damage." },
+      "description": {
+        "ko": "정밀 조준으로 치명타를 가한다.",
+        "en": "Precisely aimed shot for critical damage."
+      },
       "maxLevel": 15,
       "expPerLevel": 150,
       "levelBonuses": [
-        { "level": 1, "effects": { "baseDamage": 60, "critChance": 50, "apCost": 22 } },
-        { "level": 8, "effects": { "baseDamage": 80, "critChance": 65, "apCost": 20 } },
-        { "level": 15, "effects": { "baseDamage": 105, "critChance": 80, "critMultiplier": 0.5, "apCost": 18 } }
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 60,
+            "critChance": 50,
+            "apCost": 22
+          }
+        },
+        {
+          "level": 8,
+          "effects": {
+            "baseDamage": 80,
+            "critChance": 65,
+            "apCost": 20
+          }
+        },
+        {
+          "level": 15,
+          "effects": {
+            "baseDamage": 105,
+            "critChance": 80,
+            "critMultiplier": 0.5,
+            "apCost": 18
+          }
+        }
       ],
-      "requirements": { "skills": { "bow_mastery": 32, "power_shot": 15 } },
-      "grantsExpTo": ["bow_mastery"],
+      "requirements": {
+        "skills": {
+          "bow_mastery": 32,
+          "power_shot": 15
+        },
+        "equipment": "bow"
+      },
+      "grantsExpTo": [
+        "bow_mastery"
+      ],
       "cooldown": 4
     },
     {
@@ -129,16 +343,52 @@
       "type": "attack",
       "usageContext": "combat_only",
       "icon": "🌧️",
-      "description": { "ko": "하늘에서 화살 비를 내린다.", "en": "Rain arrows down from the sky." },
+      "description": {
+        "ko": "하늘에서 화살 비를 내린다.",
+        "en": "Rain arrows down from the sky."
+      },
       "maxLevel": 10,
       "expPerLevel": 200,
       "levelBonuses": [
-        { "level": 1, "effects": { "baseDamage": 25, "hitCount": 6, "aoe": true, "apCost": 35 } },
-        { "level": 5, "effects": { "baseDamage": 32, "hitCount": 8, "aoe": true, "apCost": 33 } },
-        { "level": 10, "effects": { "baseDamage": 40, "hitCount": 10, "aoe": true, "apCost": 30, "bleedChance": 25 } }
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 25,
+            "hitCount": 6,
+            "aoe": true,
+            "apCost": 35
+          }
+        },
+        {
+          "level": 5,
+          "effects": {
+            "baseDamage": 32,
+            "hitCount": 8,
+            "aoe": true,
+            "apCost": 33
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 40,
+            "hitCount": 10,
+            "aoe": true,
+            "apCost": 30,
+            "bleedChance": 25
+          }
+        }
       ],
-      "requirements": { "skills": { "bow_mastery": 45, "multi_shot": 15 } },
-      "grantsExpTo": ["bow_mastery"],
+      "requirements": {
+        "skills": {
+          "bow_mastery": 45,
+          "multi_shot": 15
+        },
+        "equipment": "bow"
+      },
+      "grantsExpTo": [
+        "bow_mastery"
+      ],
       "cooldown": 5
     }
   ]

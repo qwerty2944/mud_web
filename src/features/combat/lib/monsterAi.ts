@@ -1,10 +1,30 @@
 /**
  * 몬스터 AI - 어빌리티 선택 및 큐 생성
+ *
+ * 몬스터 행동 선택 확률:
+ * - actionWeights.basicAttack: 기본 공격 확률
+ * - actionWeights.specialSkill: 전용 스킬 확률 (abilities 배열)
+ * - actionWeights.borrowedAbility: 캐릭터 어빌리티 확률 (borrowedAbilities 배열)
  */
 
-import type { Monster, MonsterAbility } from "@/entities/monster";
+import type { Monster, MonsterAbility, BorrowedAbility } from "@/entities/monster";
 import type { RawMonsterAbility } from "@/entities/ability";
 import type { QueuedAction } from "@/application/stores/battleStore";
+
+// 캐릭터 어빌리티 타입 (combat skills)
+interface CharacterAbility {
+  id: string;
+  nameKo: string;
+  nameEn?: string;
+  description?: { ko: string; en: string };
+  icon?: string;
+  type: string;
+  attackType?: string;
+  levelBonuses?: Array<{
+    level: number;
+    effects: { baseDamage?: number; apCost?: number; [key: string]: unknown };
+  }>;
+}
 
 interface MonsterAiContext {
   monster: Monster;
@@ -13,6 +33,9 @@ interface MonsterAiContext {
   monsterMaxAp: number;
   monsterCurrentAp: number;
 }
+
+// 행동 유형
+type ActionType = "basicAttack" | "specialSkill" | "borrowedAbility";
 
 /**
  * 몬스터가 사용 가능한 어빌리티 필터링 (조건 체크)
@@ -94,6 +117,129 @@ export function createMonsterQueuedAction(
     ability: abilityForQueue,
     level: ability.level,
     apCost: monsterAbilityData.apCost,
+    mpCost: 0,
+  };
+}
+
+/**
+ * actionWeights 기반 행동 유형 선택
+ */
+export function selectActionType(
+  actionWeights: { basicAttack: number; specialSkill: number; borrowedAbility: number } | undefined,
+  hasSpecialSkills: boolean,
+  hasBorrowedAbilities: boolean
+): ActionType {
+  // 기본값: 전용 스킬 60%, 기본 공격 40%
+  const weights = actionWeights ?? { basicAttack: 40, specialSkill: 60, borrowedAbility: 0 };
+
+  // 사용 불가능한 옵션 필터링
+  const effectiveWeights = {
+    basicAttack: weights.basicAttack,
+    specialSkill: hasSpecialSkills ? weights.specialSkill : 0,
+    borrowedAbility: hasBorrowedAbilities ? weights.borrowedAbility : 0,
+  };
+
+  // 모든 가중치가 0이면 기본 공격
+  const total = effectiveWeights.basicAttack + effectiveWeights.specialSkill + effectiveWeights.borrowedAbility;
+  if (total === 0) return "basicAttack";
+
+  const roll = Math.random() * total;
+  let cumulative = 0;
+
+  if (effectiveWeights.basicAttack > 0) {
+    cumulative += effectiveWeights.basicAttack;
+    if (roll < cumulative) return "basicAttack";
+  }
+
+  if (effectiveWeights.specialSkill > 0) {
+    cumulative += effectiveWeights.specialSkill;
+    if (roll < cumulative) return "specialSkill";
+  }
+
+  return "borrowedAbility";
+}
+
+/**
+ * BorrowedAbility를 가중치 기반으로 선택
+ */
+export function selectBorrowedAbilityByWeight(
+  abilities: BorrowedAbility[]
+): BorrowedAbility | null {
+  if (abilities.length === 0) return null;
+
+  const totalWeight = abilities.reduce((sum, a) => sum + a.weight, 0);
+  let roll = Math.random() * totalWeight;
+
+  for (const ability of abilities) {
+    roll -= ability.weight;
+    if (roll <= 0) {
+      return ability;
+    }
+  }
+
+  return abilities[abilities.length - 1];
+}
+
+/**
+ * 캐릭터 어빌리티에서 레벨별 효과 계산
+ */
+function getAbilityEffectsAtLevel(ability: CharacterAbility, level: number): { baseDamage: number; apCost: number } {
+  if (!ability.levelBonuses || ability.levelBonuses.length === 0) {
+    return { baseDamage: 10, apCost: 5 };
+  }
+
+  // 해당 레벨 이하의 가장 높은 레벨 보너스 찾기
+  const applicableBonuses = ability.levelBonuses
+    .filter((b) => b.level <= level)
+    .sort((a, b) => b.level - a.level);
+
+  if (applicableBonuses.length === 0) {
+    // 최소 레벨 보너스 사용
+    const minBonus = ability.levelBonuses.reduce((min, b) => (b.level < min.level ? b : min));
+    return {
+      baseDamage: minBonus.effects.baseDamage ?? 10,
+      apCost: minBonus.effects.apCost ?? 5,
+    };
+  }
+
+  const bonus = applicableBonuses[0];
+  return {
+    baseDamage: bonus.effects.baseDamage ?? 10,
+    apCost: bonus.effects.apCost ?? 5,
+  };
+}
+
+/**
+ * BorrowedAbility를 QueuedAction으로 변환
+ */
+export function createBorrowedAbilityAction(
+  borrowed: BorrowedAbility,
+  abilityData: CharacterAbility
+): QueuedAction {
+  const effects = getAbilityEffectsAtLevel(abilityData, borrowed.level);
+
+  const abilityForQueue = {
+    id: abilityData.id,
+    nameKo: abilityData.nameKo,
+    nameEn: abilityData.nameEn || abilityData.nameKo,
+    description: abilityData.description || { ko: "", en: "" },
+    icon: abilityData.icon || "⚔️",
+    source: "monster" as const, // 몬스터가 사용
+    type: abilityData.type as "attack" | "buff" | "debuff",
+    attackType: abilityData.attackType as "melee_physical" | "ranged_physical" | "magic" | undefined,
+    baseCost: { ap: effects.apCost },
+    levelBonuses: [],
+    usageContext: "combat_only" as const,
+    maxLevel: 1,
+    expPerLevel: 0,
+    requirements: {},
+    target: abilityData.type === "buff" ? ("self" as const) : ("enemy" as const),
+  };
+
+  return {
+    ability: abilityForQueue,
+    level: borrowed.level,
+    apCost: effects.apCost,
     mpCost: 0,
   };
 }

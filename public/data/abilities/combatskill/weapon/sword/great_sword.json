@@ -13,15 +13,47 @@
       "type": "passive",
       "usageContext": "passive",
       "icon": "🗡️",
-      "description": { "ko": "대검의 기본기를 익혀 강력한 일격을 가한다.", "en": "Master the devastating power of great sword combat." },
+      "description": {
+        "ko": "대검의 기본기를 익혀 강력한 일격을 가한다.",
+        "en": "Master the devastating power of great sword combat."
+      },
       "maxLevel": 50,
       "expPerLevel": 100,
       "levelBonuses": [
-        { "level": 1, "effects": { "greatSwordDamage": 0 } },
-        { "level": 10, "effects": { "greatSwordDamage": 7 } },
-        { "level": 25, "effects": { "greatSwordDamage": 15, "armorBreak": 5 } },
-        { "level": 40, "effects": { "greatSwordDamage": 22, "armorBreak": 10 } },
-        { "level": 50, "effects": { "greatSwordDamage": 30, "armorBreak": 15, "knockbackChance": 15 } }
+        {
+          "level": 1,
+          "effects": {
+            "greatSwordDamage": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "greatSwordDamage": 7
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "greatSwordDamage": 15,
+            "armorBreak": 5
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "greatSwordDamage": 22,
+            "armorBreak": 10
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "greatSwordDamage": 30,
+            "armorBreak": 15,
+            "knockbackChance": 15
+          }
+        }
       ],
       "requirements": {}
     },
@@ -32,17 +64,52 @@
       "type": "attack",
       "usageContext": "combat_only",
       "icon": "🗡️",
-      "description": { "ko": "무거운 일격으로 적을 베어낸다.", "en": "Strike the enemy with a heavy blow." },
+      "description": {
+        "ko": "무거운 일격으로 적을 베어낸다.",
+        "en": "Strike the enemy with a heavy blow."
+      },
       "maxLevel": 30,
       "expPerLevel": 50,
       "levelBonuses": [
-        { "level": 1, "effects": { "baseDamage": 35, "apCost": 8 } },
-        { "level": 10, "effects": { "baseDamage": 45, "apCost": 8 } },
-        { "level": 20, "effects": { "baseDamage": 58, "apCost": 7 } },
-        { "level": 30, "effects": { "baseDamage": 75, "apCost": 7, "knockbackChance": 20 } }
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 35,
+            "apCost": 8
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 45,
+            "apCost": 8
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 58,
+            "apCost": 7
+          }
+        },
+        {
+          "level": 30,
+          "effects": {
+            "baseDamage": 75,
+            "apCost": 7,
+            "knockbackChance": 20
+          }
+        }
       ],
-      "requirements": { "skills": { "great_sword_mastery": 1 } },
-      "grantsExpTo": ["great_sword_mastery"],
+      "requirements": {
+        "skills": {
+          "great_sword_mastery": 1
+        },
+        "equipment": "sword"
+      },
+      "grantsExpTo": [
+        "great_sword_mastery"
+      ],
       "cooldown": 0
     },
     {
@@ -52,17 +119,55 @@
       "type": "attack",
       "usageContext": "combat_only",
       "icon": "↘️",
-      "description": { "ko": "대각선으로 크게 벤다. 방어력 일부 무시.", "en": "Slash diagonally. Partially ignores defense." },
+      "description": {
+        "ko": "대각선으로 크게 벤다. 방어력 일부 무시.",
+        "en": "Slash diagonally. Partially ignores defense."
+      },
       "maxLevel": 25,
       "expPerLevel": 70,
       "levelBonuses": [
-        { "level": 1, "effects": { "baseDamage": 40, "armorPenetration": 15, "apCost": 12 } },
-        { "level": 10, "effects": { "baseDamage": 52, "armorPenetration": 20, "apCost": 11 } },
-        { "level": 20, "effects": { "baseDamage": 68, "armorPenetration": 25, "apCost": 10 } },
-        { "level": 25, "effects": { "baseDamage": 80, "armorPenetration": 30, "apCost": 10 } }
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 40,
+            "armorPenetration": 15,
+            "apCost": 12
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 52,
+            "armorPenetration": 20,
+            "apCost": 11
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 68,
+            "armorPenetration": 25,
+            "apCost": 10
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "baseDamage": 80,
+            "armorPenetration": 30,
+            "apCost": 10
+          }
+        }
       ],
-      "requirements": { "skills": { "great_sword_mastery": 10 } },
-      "grantsExpTo": ["great_sword_mastery"],
+      "requirements": {
+        "skills": {
+          "great_sword_mastery": 10
+        },
+        "equipment": "sword"
+      },
+      "grantsExpTo": [
+        "great_sword_mastery"
+      ],
       "cooldown": 2
     },
     {
@@ -72,16 +177,48 @@
       "type": "attack",
       "usageContext": "combat_only",
       "icon": "🌀",
-      "description": { "ko": "회전하며 주변 모든 적을 벤다.", "en": "Spin and slash all surrounding enemies." },
+      "description": {
+        "ko": "회전하며 주변 모든 적을 벤다.",
+        "en": "Spin and slash all surrounding enemies."
+      },
       "maxLevel": 20,
       "expPerLevel": 100,
       "levelBonuses": [
-        { "level": 1, "effects": { "baseDamage": 35, "aoe": true, "apCost": 20 } },
-        { "level": 10, "effects": { "baseDamage": 48, "aoe": true, "apCost": 18 } },
-        { "level": 20, "effects": { "baseDamage": 65, "aoe": true, "apCost": 16, "bleedChance": 20 } }
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 35,
+            "aoe": true,
+            "apCost": 20
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 48,
+            "aoe": true,
+            "apCost": 18
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 65,
+            "aoe": true,
+            "apCost": 16,
+            "bleedChance": 20
+          }
+        }
       ],
-      "requirements": { "skills": { "great_sword_mastery": 18 } },
-      "grantsExpTo": ["great_sword_mastery"],
+      "requirements": {
+        "skills": {
+          "great_sword_mastery": 18
+        },
+        "equipment": "sword"
+      },
+      "grantsExpTo": [
+        "great_sword_mastery"
+      ],
       "cooldown": 3
     },
     {
@@ -91,16 +228,49 @@
       "type": "attack",
       "usageContext": "combat_only",
       "icon": "⬇️",
-      "description": { "ko": "검을 들어올려 강하게 내려친다.", "en": "Raise the sword high and smash down." },
+      "description": {
+        "ko": "검을 들어올려 강하게 내려친다.",
+        "en": "Raise the sword high and smash down."
+      },
       "maxLevel": 20,
       "expPerLevel": 100,
       "levelBonuses": [
-        { "level": 1, "effects": { "baseDamage": 60, "stunChance": 20, "apCost": 18 } },
-        { "level": 10, "effects": { "baseDamage": 78, "stunChance": 25, "apCost": 16 } },
-        { "level": 20, "effects": { "baseDamage": 100, "stunChance": 35, "apCost": 14, "armorBreak": 15 } }
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 60,
+            "stunChance": 20,
+            "apCost": 18
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 78,
+            "stunChance": 25,
+            "apCost": 16
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 100,
+            "stunChance": 35,
+            "apCost": 14,
+            "armorBreak": 15
+          }
+        }
       ],
-      "requirements": { "skills": { "great_sword_mastery": 22, "cleave": 10 } },
-      "grantsExpTo": ["great_sword_mastery"],
+      "requirements": {
+        "skills": {
+          "great_sword_mastery": 22,
+          "cleave": 10
+        },
+        "equipment": "sword"
+      },
+      "grantsExpTo": [
+        "great_sword_mastery"
+      ],
       "cooldown": 3
     },
     {
@@ -110,16 +280,49 @@
       "type": "attack",
       "usageContext": "combat_only",
       "icon": "⚰️",
-      "description": { "ko": "적 HP가 낮을수록 피해 증가.", "en": "Deal more damage the lower enemy HP is." },
+      "description": {
+        "ko": "적 HP가 낮을수록 피해 증가.",
+        "en": "Deal more damage the lower enemy HP is."
+      },
       "maxLevel": 15,
       "expPerLevel": 150,
       "levelBonuses": [
-        { "level": 1, "effects": { "baseDamage": 50, "executeDamageBonus": 50, "apCost": 25 } },
-        { "level": 8, "effects": { "baseDamage": 65, "executeDamageBonus": 75, "apCost": 23 } },
-        { "level": 15, "effects": { "baseDamage": 85, "executeDamageBonus": 100, "apCost": 20, "instantKillThreshold": 10 } }
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 50,
+            "executeDamageBonus": 50,
+            "apCost": 25
+          }
+        },
+        {
+          "level": 8,
+          "effects": {
+            "baseDamage": 65,
+            "executeDamageBonus": 75,
+            "apCost": 23
+          }
+        },
+        {
+          "level": 15,
+          "effects": {
+            "baseDamage": 85,
+            "executeDamageBonus": 100,
+            "apCost": 20,
+            "instantKillThreshold": 10
+          }
+        }
       ],
-      "requirements": { "skills": { "great_sword_mastery": 35, "overhead_smash": 12 } },
-      "grantsExpTo": ["great_sword_mastery"],
+      "requirements": {
+        "skills": {
+          "great_sword_mastery": 35,
+          "overhead_smash": 12
+        },
+        "equipment": "sword"
+      },
+      "grantsExpTo": [
+        "great_sword_mastery"
+      ],
       "cooldown": 4
     },
     {
@@ -129,16 +332,49 @@
       "type": "attack",
       "usageContext": "combat_only",
       "icon": "💫",
-      "description": { "ko": "모든 힘을 담은 궁극의 일격.", "en": "The ultimate strike with all your might." },
+      "description": {
+        "ko": "모든 힘을 담은 궁극의 일격.",
+        "en": "The ultimate strike with all your might."
+      },
       "maxLevel": 10,
       "expPerLevel": 200,
       "levelBonuses": [
-        { "level": 1, "effects": { "baseDamage": 120, "apCost": 40, "selfStun": 1 } },
-        { "level": 5, "effects": { "baseDamage": 160, "apCost": 37, "selfStun": 1 } },
-        { "level": 10, "effects": { "baseDamage": 200, "apCost": 35, "selfStun": 0, "critChance": 30 } }
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 120,
+            "apCost": 40,
+            "selfStun": 1
+          }
+        },
+        {
+          "level": 5,
+          "effects": {
+            "baseDamage": 160,
+            "apCost": 37,
+            "selfStun": 1
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 200,
+            "apCost": 35,
+            "selfStun": 0,
+            "critChance": 30
+          }
+        }
       ],
-      "requirements": { "skills": { "great_sword_mastery": 45, "execute": 10 } },
-      "grantsExpTo": ["great_sword_mastery"],
+      "requirements": {
+        "skills": {
+          "great_sword_mastery": 45,
+          "execute": 10
+        },
+        "equipment": "sword"
+      },
+      "grantsExpTo": [
+        "great_sword_mastery"
+      ],
       "cooldown": 6
     }
   ]

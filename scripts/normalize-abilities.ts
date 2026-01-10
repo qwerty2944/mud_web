@@ -206,7 +206,7 @@ function normalizeSkill(skill: any, category: string, masteryId: string): any {
   }
 
   // cooldown
-  if (defaults.cooldown !== undefined && type !== "passive") {
+  if ("cooldown" in defaults && type !== "passive") {
     normalized.cooldown = skill.cooldown ?? defaults.cooldown;
   }
 

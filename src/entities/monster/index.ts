@@ -10,6 +10,8 @@ export type {
   MonsterType,
   MonsterTypeInfo,
   PhysicalResistance,
+  ActionWeights,
+  BorrowedAbility,
 } from "./types";
 
 // Re-export MonsterAbility from ability entity

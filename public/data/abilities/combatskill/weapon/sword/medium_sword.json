@@ -13,15 +13,52 @@
       "type": "passive",
       "usageContext": "passive",
       "icon": "⚔️",
-      "description": { "ko": "중검의 기본기를 익혀 공격력과 방어력을 높인다.", "en": "Master the balanced art of medium sword combat." },
+      "description": {
+        "ko": "중검의 기본기를 익혀 공격력과 방어력을 높인다.",
+        "en": "Master the balanced art of medium sword combat."
+      },
       "maxLevel": 50,
       "expPerLevel": 100,
       "levelBonuses": [
-        { "level": 1, "effects": { "mediumSwordDamage": 0, "defense": 0 } },
-        { "level": 10, "effects": { "mediumSwordDamage": 5, "defense": 3 } },
-        { "level": 25, "effects": { "mediumSwordDamage": 12, "defense": 6, "blockChance": 3 } },
-        { "level": 40, "effects": { "mediumSwordDamage": 18, "defense": 9, "blockChance": 5 } },
-        { "level": 50, "effects": { "mediumSwordDamage": 25, "defense": 12, "blockChance": 8, "counterChance": 10 } }
+        {
+          "level": 1,
+          "effects": {
+            "mediumSwordDamage": 0,
+            "defense": 0
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "mediumSwordDamage": 5,
+            "defense": 3
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "mediumSwordDamage": 12,
+            "defense": 6,
+            "blockChance": 3
+          }
+        },
+        {
+          "level": 40,
+          "effects": {
+            "mediumSwordDamage": 18,
+            "defense": 9,
+            "blockChance": 5
+          }
+        },
+        {
+          "level": 50,
+          "effects": {
+            "mediumSwordDamage": 25,
+            "defense": 12,
+            "blockChance": 8,
+            "counterChance": 10
+          }
+        }
       ],
       "requirements": {}
     },
@@ -32,17 +69,52 @@
       "type": "attack",
       "usageContext": "combat_only",
       "icon": "⚔️",
-      "description": { "ko": "기본 베기 공격.", "en": "Basic slashing attack." },
+      "description": {
+        "ko": "기본 베기 공격.",
+        "en": "Basic slashing attack."
+      },
       "maxLevel": 30,
       "expPerLevel": 50,
       "levelBonuses": [
-        { "level": 1, "effects": { "baseDamage": 25, "apCost": 5 } },
-        { "level": 10, "effects": { "baseDamage": 33, "apCost": 5 } },
-        { "level": 20, "effects": { "baseDamage": 43, "apCost": 4 } },
-        { "level": 30, "effects": { "baseDamage": 55, "apCost": 4, "bleedChance": 15 } }
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 25,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 33,
+            "apCost": 5
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 43,
+            "apCost": 4
+          }
+        },
+        {
+          "level": 30,
+          "effects": {
+            "baseDamage": 55,
+            "apCost": 4,
+            "bleedChance": 15
+          }
+        }
       ],
-      "requirements": { "skills": { "medium_sword_mastery": 1 } },
-      "grantsExpTo": ["medium_sword_mastery"],
+      "requirements": {
+        "skills": {
+          "medium_sword_mastery": 1
+        },
+        "equipment": "sword"
+      },
+      "grantsExpTo": [
+        "medium_sword_mastery"
+      ],
       "cooldown": 0
     },
     {
@@ -52,17 +124,56 @@
       "type": "attack",
       "usageContext": "combat_only",
       "icon": "✖️",
-      "description": { "ko": "X자로 두 번 벤다.", "en": "Slash twice in an X pattern." },
+      "description": {
+        "ko": "X자로 두 번 벤다.",
+        "en": "Slash twice in an X pattern."
+      },
       "maxLevel": 25,
       "expPerLevel": 70,
       "levelBonuses": [
-        { "level": 1, "effects": { "baseDamage": 20, "hitCount": 2, "apCost": 10 } },
-        { "level": 10, "effects": { "baseDamage": 27, "hitCount": 2, "apCost": 9 } },
-        { "level": 20, "effects": { "baseDamage": 35, "hitCount": 2, "apCost": 8 } },
-        { "level": 25, "effects": { "baseDamage": 40, "hitCount": 2, "apCost": 8, "armorBreak": 10 } }
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 20,
+            "hitCount": 2,
+            "apCost": 10
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 27,
+            "hitCount": 2,
+            "apCost": 9
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 35,
+            "hitCount": 2,
+            "apCost": 8
+          }
+        },
+        {
+          "level": 25,
+          "effects": {
+            "baseDamage": 40,
+            "hitCount": 2,
+            "apCost": 8,
+            "armorBreak": 10
+          }
+        }
       ],
-      "requirements": { "skills": { "medium_sword_mastery": 10 } },
-      "grantsExpTo": ["medium_sword_mastery"],
+      "requirements": {
+        "skills": {
+          "medium_sword_mastery": 10
+        },
+        "equipment": "sword"
+      },
+      "grantsExpTo": [
+        "medium_sword_mastery"
+      ],
       "cooldown": 2
     },
     {
@@ -72,16 +183,48 @@
       "type": "buff",
       "usageContext": "combat_only",
       "icon": "🛡️",
-      "description": { "ko": "방어에 집중하여 막기 확률 증가.", "en": "Focus on defense to increase block chance." },
+      "description": {
+        "ko": "방어에 집중하여 막기 확률 증가.",
+        "en": "Focus on defense to increase block chance."
+      },
       "maxLevel": 20,
       "expPerLevel": 80,
       "levelBonuses": [
-        { "level": 1, "effects": { "blockChanceBonus": 30, "duration": 3, "apCost": 12 } },
-        { "level": 10, "effects": { "blockChanceBonus": 40, "duration": 3, "apCost": 11 } },
-        { "level": 20, "effects": { "blockChanceBonus": 50, "duration": 4, "apCost": 10, "counterAttackOnBlock": 15 } }
+        {
+          "level": 1,
+          "effects": {
+            "blockChanceBonus": 30,
+            "duration": 3,
+            "apCost": 12
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "blockChanceBonus": 40,
+            "duration": 3,
+            "apCost": 11
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "blockChanceBonus": 50,
+            "duration": 4,
+            "apCost": 10,
+            "counterAttackOnBlock": 15
+          }
+        }
       ],
-      "requirements": { "skills": { "medium_sword_mastery": 15 } },
-      "grantsExpTo": ["medium_sword_mastery"],
+      "requirements": {
+        "skills": {
+          "medium_sword_mastery": 15
+        },
+        "equipment": "sword"
+      },
+      "grantsExpTo": [
+        "medium_sword_mastery"
+      ],
       "cooldown": 4
     },
     {
@@ -91,16 +234,47 @@
       "type": "attack",
       "usageContext": "combat_only",
       "icon": "❌",
-      "description": { "ko": "강력한 십자 베기.", "en": "Powerful cross-shaped slash." },
+      "description": {
+        "ko": "강력한 십자 베기.",
+        "en": "Powerful cross-shaped slash."
+      },
       "maxLevel": 20,
       "expPerLevel": 100,
       "levelBonuses": [
-        { "level": 1, "effects": { "baseDamage": 55, "apCost": 18 } },
-        { "level": 10, "effects": { "baseDamage": 70, "apCost": 16 } },
-        { "level": 20, "effects": { "baseDamage": 90, "apCost": 14, "bleedDamage": 8, "bleedDuration": 3 } }
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 55,
+            "apCost": 18
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 70,
+            "apCost": 16
+          }
+        },
+        {
+          "level": 20,
+          "effects": {
+            "baseDamage": 90,
+            "apCost": 14,
+            "bleedDamage": 8,
+            "bleedDuration": 3
+          }
+        }
       ],
-      "requirements": { "skills": { "medium_sword_mastery": 25, "double_slash": 15 } },
-      "grantsExpTo": ["medium_sword_mastery"],
+      "requirements": {
+        "skills": {
+          "medium_sword_mastery": 25,
+          "double_slash": 15
+        },
+        "equipment": "sword"
+      },
+      "grantsExpTo": [
+        "medium_sword_mastery"
+      ],
       "cooldown": 3
     },
     {
@@ -110,16 +284,49 @@
       "type": "attack",
       "usageContext": "combat_only",
       "icon": "↩️",
-      "description": { "ko": "다음 공격을 막고 강력하게 반격.", "en": "Block the next attack and strike back hard." },
+      "description": {
+        "ko": "다음 공격을 막고 강력하게 반격.",
+        "en": "Block the next attack and strike back hard."
+      },
       "maxLevel": 15,
       "expPerLevel": 120,
       "levelBonuses": [
-        { "level": 1, "effects": { "baseDamage": 45, "counterOnBlock": true, "apCost": 20 } },
-        { "level": 8, "effects": { "baseDamage": 60, "counterOnBlock": true, "apCost": 18 } },
-        { "level": 15, "effects": { "baseDamage": 80, "counterOnBlock": true, "apCost": 15, "stunChance": 25 } }
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 45,
+            "counterOnBlock": true,
+            "apCost": 20
+          }
+        },
+        {
+          "level": 8,
+          "effects": {
+            "baseDamage": 60,
+            "counterOnBlock": true,
+            "apCost": 18
+          }
+        },
+        {
+          "level": 15,
+          "effects": {
+            "baseDamage": 80,
+            "counterOnBlock": true,
+            "apCost": 15,
+            "stunChance": 25
+          }
+        }
       ],
-      "requirements": { "skills": { "medium_sword_mastery": 30, "parry_stance": 10 } },
-      "grantsExpTo": ["medium_sword_mastery"],
+      "requirements": {
+        "skills": {
+          "medium_sword_mastery": 30,
+          "parry_stance": 10
+        },
+        "equipment": "sword"
+      },
+      "grantsExpTo": [
+        "medium_sword_mastery"
+      ],
       "cooldown": 4
     },
     {
@@ -129,16 +336,51 @@
       "type": "attack",
       "usageContext": "combat_only",
       "icon": "💀",
-      "description": { "ko": "적의 회복력을 감소시키는 치명적 공격.", "en": "A deadly strike that reduces enemy healing." },
+      "description": {
+        "ko": "적의 회복력을 감소시키는 치명적 공격.",
+        "en": "A deadly strike that reduces enemy healing."
+      },
       "maxLevel": 10,
       "expPerLevel": 200,
       "levelBonuses": [
-        { "level": 1, "effects": { "baseDamage": 70, "healReduction": 40, "duration": 4, "apCost": 30 } },
-        { "level": 5, "effects": { "baseDamage": 90, "healReduction": 50, "duration": 5, "apCost": 28 } },
-        { "level": 10, "effects": { "baseDamage": 120, "healReduction": 60, "duration": 6, "apCost": 25 } }
+        {
+          "level": 1,
+          "effects": {
+            "baseDamage": 70,
+            "healReduction": 40,
+            "duration": 4,
+            "apCost": 30
+          }
+        },
+        {
+          "level": 5,
+          "effects": {
+            "baseDamage": 90,
+            "healReduction": 50,
+            "duration": 5,
+            "apCost": 28
+          }
+        },
+        {
+          "level": 10,
+          "effects": {
+            "baseDamage": 120,
+            "healReduction": 60,
+            "duration": 6,
+            "apCost": 25
+          }
+        }
       ],
-      "requirements": { "skills": { "medium_sword_mastery": 45, "cross_slash": 15 } },
-      "grantsExpTo": ["medium_sword_mastery"],
+      "requirements": {
+        "skills": {
+          "medium_sword_mastery": 45,
+          "cross_slash": 15
+        },
+        "equipment": "sword"
+      },
+      "grantsExpTo": [
+        "medium_sword_mastery"
+      ],
       "cooldown": 5
     }
   ]

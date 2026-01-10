@@ -7,6 +7,23 @@
       "type": "생물학적/존재론적 대분류 (beast, humanoid, undead, demon, elemental, construct)",
       "category": "구체적인 종류 (slime, spider, wolf 등). type 이름과 중복 금지"
     },
+    "actionWeights": {
+      "description": "몬스터 행동 유형별 확률 (합계 100%)",
+      "fields": {
+        "basicAttack": "기본 공격 확률 (%)",
+        "specialSkill": "전용 스킬 사용 확률 (abilities 배열에서 선택)",
+        "borrowedAbility": "캐릭터 어빌리티 사용 확률 (borrowedAbilities 배열에서 선택)"
+      }
+    },
+    "borrowedAbilities": {
+      "description": "몬스터가 사용 가능한 캐릭터 어빌리티 목록",
+      "fields": {
+        "abilityId": "어빌리티 ID (combatskills.json 또는 spells.json의 id)",
+        "level": "어빌리티 레벨",
+        "weight": "해당 어빌리티 선택 확률 가중치",
+        "source": "(선택) 'spell'이면 마법, 기본값은 전투 스킬"
+      }
+    },
     "type": {
       "description": "몬스터의 존재론적 대분류",
       "values": {
@@ -80,7 +97,13 @@
         "en": "Training dummy. Does not fight back. Weak to crushing attacks."
       },
       "maxAp": 0,
-      "abilities": []
+      "abilities": [],
+      "actionWeights": {
+        "basicAttack": 100,
+        "specialSkill": 0,
+        "borrowedAbility": 0
+      },
+      "borrowedAbilities": []
     },
     {
       "id": "squirrel",
@@ -129,7 +152,13 @@
       "abilities": [
         { "abilityId": "bite", "level": 1, "weight": 100 },
         { "abilityId": "scratch", "level": 1, "weight": 80 }
-      ]
+      ],
+      "actionWeights": {
+        "basicAttack": 40,
+        "specialSkill": 60,
+        "borrowedAbility": 0
+      },
+      "borrowedAbilities": []
     },
     {
       "id": "squirrel_elder",
@@ -179,6 +208,14 @@
         { "abilityId": "bite", "level": 3, "weight": 80 },
         { "abilityId": "scratch", "level": 2, "weight": 60 },
         { "abilityId": "rock_throw", "level": 1, "weight": 40, "condition": { "hpBelow": 50 } }
+      ],
+      "actionWeights": {
+        "basicAttack": 30,
+        "specialSkill": 60,
+        "borrowedAbility": 10
+      },
+      "borrowedAbilities": [
+        { "abilityId": "block", "level": 1, "weight": 100 }
       ]
     },
     {
@@ -229,6 +266,16 @@
         { "abilityId": "stab", "level": 3, "weight": 100 },
         { "abilityId": "slash", "level": 2, "weight": 80 },
         { "abilityId": "backstab", "level": 1, "weight": 40, "condition": { "turnAfter": 2 } }
+      ],
+      "actionWeights": {
+        "basicAttack": 20,
+        "specialSkill": 55,
+        "borrowedAbility": 25
+      },
+      "borrowedAbilities": [
+        { "abilityId": "block", "level": 2, "weight": 80 },
+        { "abilityId": "dodge", "level": 2, "weight": 100 },
+        { "abilityId": "thrust", "level": 1, "weight": 60 }
       ]
     },
     {
@@ -282,6 +329,14 @@
         { "abilityId": "bite", "level": 5, "weight": 100 },
         { "abilityId": "claw", "level": 3, "weight": 70 },
         { "abilityId": "howl", "level": 1, "weight": 30, "condition": { "hpBelow": 40 } }
+      ],
+      "actionWeights": {
+        "basicAttack": 25,
+        "specialSkill": 65,
+        "borrowedAbility": 10
+      },
+      "borrowedAbilities": [
+        { "abilityId": "dodge", "level": 3, "weight": 100 }
       ]
     },
     {
@@ -336,6 +391,15 @@
         { "abilityId": "poison_bite", "level": 3, "weight": 60 },
         { "abilityId": "web", "level": 2, "weight": 40 },
         { "abilityId": "shadow_bolt", "level": 1, "weight": 30 }
+      ],
+      "actionWeights": {
+        "basicAttack": 15,
+        "specialSkill": 70,
+        "borrowedAbility": 15
+      },
+      "borrowedAbilities": [
+        { "abilityId": "dodge", "level": 2, "weight": 100 },
+        { "abilityId": "shadow_bolt", "level": 2, "weight": 80, "source": "spell" }
       ]
     }
   ],

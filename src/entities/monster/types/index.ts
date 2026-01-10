@@ -141,6 +141,21 @@ export interface SpawnCondition {
   period?: Period[]; // 출현 가능한 시간대 (null이면 항상 출현)
 }
 
+// 몬스터 행동 유형 가중치 (합계 100)
+export interface ActionWeights {
+  basicAttack: number;      // 기본 공격 확률 (%)
+  specialSkill: number;     // 전용 스킬 확률 (abilities 배열에서 선택)
+  borrowedAbility: number;  // 캐릭터 어빌리티 확률 (borrowedAbilities 배열에서 선택)
+}
+
+// 빌린 어빌리티 (캐릭터 스킬 사용)
+export interface BorrowedAbility {
+  abilityId: string;        // 어빌리티 ID (combatskills.json 또는 spells.json)
+  level: number;            // 어빌리티 레벨
+  weight: number;           // 선택 확률 가중치
+  source?: "skill" | "spell"; // 어빌리티 소스 (기본: skill)
+}
+
 // 몬스터 데이터
 export interface Monster {
   id: string;
@@ -161,6 +176,8 @@ export interface Monster {
   // AP 기반 전투 시스템
   maxAp?: number;                  // 턴당 최대 AP (기본 10)
   abilities?: MonsterAbility[];    // 사용 가능한 어빌리티 목록
+  actionWeights?: ActionWeights;   // 행동 유형별 확률
+  borrowedAbilities?: BorrowedAbility[]; // 사용 가능한 캐릭터 어빌리티
 }
 
 // JSON 파일 구조
