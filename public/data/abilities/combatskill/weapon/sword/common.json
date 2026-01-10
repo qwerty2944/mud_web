@@ -1,0 +1,240 @@
+{
+  "category": "weapon",
+  "weaponType": "sword_common",
+  "nameKo": "검술 공용",
+  "nameEn": "Sword Common",
+  "icon": "⚔️",
+  "description": "모든 종류의 검에 적용되는 공통 기술. 세검, 중검, 대검 상관없이 배울 수 있다.",
+  "applicableTo": ["light_sword", "medium_sword", "great_sword"],
+  "skills": [
+    {
+      "id": "sword_mastery",
+      "nameKo": "검술 기초",
+      "nameEn": "Sword Basics",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "⚔️",
+      "description": { "ko": "검을 다루는 기본기를 익힌다. 모든 검 계열 무기의 피해량이 증가한다.", "en": "Learn the fundamentals of swordsmanship. Increases damage with all sword-type weapons." },
+      "maxLevel": 50,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        { "level": 1, "effects": { "allSwordDamage": 2, "accuracy": 2 } },
+        { "level": 10, "effects": { "allSwordDamage": 5, "accuracy": 4 } },
+        { "level": 25, "effects": { "allSwordDamage": 10, "accuracy": 7, "parryChance": 3 } },
+        { "level": 40, "effects": { "allSwordDamage": 16, "accuracy": 10, "parryChance": 6 } },
+        { "level": 50, "effects": { "allSwordDamage": 22, "accuracy": 14, "parryChance": 10, "swordMasteryBonus": 5 } }
+      ],
+      "requirements": {}
+    },
+    {
+      "id": "basic_slash",
+      "nameKo": "기본 베기",
+      "nameEn": "Basic Slash",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "⚔️",
+      "description": { "ko": "검을 휘둘러 적을 베는 가장 기본적인 공격.", "en": "The most basic sword attack, slashing at the enemy." },
+      "maxLevel": 20,
+      "expPerLevel": 40,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 15, "spCost": 3 } },
+        { "level": 10, "effects": { "baseDamage": 22, "spCost": 3 } },
+        { "level": 20, "effects": { "baseDamage": 30, "spCost": 2, "bleedChance": 10 } }
+      ],
+      "requirements": {},
+      "grantsExpTo": ["sword_mastery"],
+      "cooldown": 0
+    },
+    {
+      "id": "guard",
+      "nameKo": "가드",
+      "nameEn": "Guard",
+      "type": "defensive",
+      "usageContext": "combat_only",
+      "icon": "🛡️",
+      "description": { "ko": "검으로 적의 공격을 막는다.", "en": "Block enemy attacks with your sword." },
+      "maxLevel": 20,
+      "expPerLevel": 50,
+      "levelBonuses": [
+        { "level": 1, "effects": { "blockChance": 40, "spCost": 4 } },
+        { "level": 10, "effects": { "blockChance": 55, "spCost": 4 } },
+        { "level": 20, "effects": { "blockChance": 70, "spCost": 3, "damageReduction": 20 } }
+      ],
+      "requirements": { "skills": { "sword_mastery": 5 } },
+      "grantsExpTo": ["sword_mastery"],
+      "cooldown": 0
+    },
+    {
+      "id": "stance_high",
+      "nameKo": "상단 자세",
+      "nameEn": "High Stance",
+      "type": "buff",
+      "usageContext": "combat_only",
+      "icon": "⬆️",
+      "description": { "ko": "검을 높이 들어 공격력을 높이지만 방어력이 감소한다.", "en": "Raise sword high for increased attack but reduced defense." },
+      "maxLevel": 15,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        { "level": 1, "effects": { "attackBonus": 15, "defenseReduction": 10, "duration": 3, "spCost": 8 } },
+        { "level": 8, "effects": { "attackBonus": 25, "defenseReduction": 8, "duration": 4, "spCost": 7 } },
+        { "level": 15, "effects": { "attackBonus": 35, "defenseReduction": 5, "duration": 5, "spCost": 6, "critChance": 10 } }
+      ],
+      "requirements": { "skills": { "sword_mastery": 10 } },
+      "grantsExpTo": ["sword_mastery"],
+      "cooldown": 5
+    },
+    {
+      "id": "stance_middle",
+      "nameKo": "중단 자세",
+      "nameEn": "Middle Stance",
+      "type": "buff",
+      "usageContext": "combat_only",
+      "icon": "➡️",
+      "description": { "ko": "균형 잡힌 자세로 공방 모두 소폭 상승.", "en": "Balanced stance for slight boost to both offense and defense." },
+      "maxLevel": 15,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        { "level": 1, "effects": { "attackBonus": 8, "defenseBonus": 8, "duration": 4, "spCost": 6 } },
+        { "level": 8, "effects": { "attackBonus": 12, "defenseBonus": 12, "duration": 5, "spCost": 5 } },
+        { "level": 15, "effects": { "attackBonus": 18, "defenseBonus": 18, "duration": 6, "spCost": 5, "counterChance": 15 } }
+      ],
+      "requirements": { "skills": { "sword_mastery": 10 } },
+      "grantsExpTo": ["sword_mastery"],
+      "cooldown": 5
+    },
+    {
+      "id": "stance_low",
+      "nameKo": "하단 자세",
+      "nameEn": "Low Stance",
+      "type": "buff",
+      "usageContext": "combat_only",
+      "icon": "⬇️",
+      "description": { "ko": "검을 낮게 들어 방어력을 높이지만 공격력이 감소한다.", "en": "Lower sword for increased defense but reduced attack." },
+      "maxLevel": 15,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        { "level": 1, "effects": { "defenseBonus": 20, "attackReduction": 10, "duration": 3, "spCost": 8 } },
+        { "level": 8, "effects": { "defenseBonus": 30, "attackReduction": 8, "duration": 4, "spCost": 7 } },
+        { "level": 15, "effects": { "defenseBonus": 40, "attackReduction": 5, "duration": 5, "spCost": 6, "evasion": 10 } }
+      ],
+      "requirements": { "skills": { "sword_mastery": 10 } },
+      "grantsExpTo": ["sword_mastery"],
+      "cooldown": 5
+    },
+    {
+      "id": "blade_maintenance",
+      "nameKo": "검 손질",
+      "nameEn": "Blade Maintenance",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🔧",
+      "description": { "ko": "검을 올바르게 관리하여 내구도 소모를 줄이고 피해량을 증가시킨다.", "en": "Proper sword care reduces durability loss and increases damage." },
+      "maxLevel": 30,
+      "expPerLevel": 70,
+      "levelBonuses": [
+        { "level": 1, "effects": { "durabilityLossReduction": 5, "swordDamage": 2 } },
+        { "level": 10, "effects": { "durabilityLossReduction": 12, "swordDamage": 5 } },
+        { "level": 20, "effects": { "durabilityLossReduction": 20, "swordDamage": 8, "sharpnessBonus": 5 } },
+        { "level": 30, "effects": { "durabilityLossReduction": 30, "swordDamage": 12, "sharpnessBonus": 10, "repairEfficiency": 20 } }
+      ],
+      "requirements": { "skills": { "sword_mastery": 15 } }
+    },
+    {
+      "id": "draw_slash",
+      "nameKo": "발도",
+      "nameEn": "Draw Slash",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "⚡",
+      "description": { "ko": "검을 뽑아 드는 동작과 동시에 베어낸다. 전투 시작 시 사용하면 추가 피해.", "en": "Unsheathe and slash in one motion. Deals bonus damage at combat start." },
+      "maxLevel": 25,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 35, "firstTurnBonus": 20, "spCost": 10 } },
+        { "level": 10, "effects": { "baseDamage": 48, "firstTurnBonus": 35, "spCost": 9 } },
+        { "level": 20, "effects": { "baseDamage": 62, "firstTurnBonus": 50, "spCost": 8 } },
+        { "level": 25, "effects": { "baseDamage": 75, "firstTurnBonus": 60, "spCost": 7, "initiativeBonus": 15 } }
+      ],
+      "requirements": { "skills": { "sword_mastery": 20 } },
+      "grantsExpTo": ["sword_mastery"],
+      "cooldown": 0,
+      "specialCondition": "first_turn_only_bonus"
+    },
+    {
+      "id": "whirlwind_slash",
+      "nameKo": "회전 베기",
+      "nameEn": "Whirlwind Slash",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "🌀",
+      "description": { "ko": "몸을 회전하며 주변의 모든 적을 벤다.", "en": "Spin and slash all nearby enemies." },
+      "maxLevel": 20,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 30, "aoe": true, "spCost": 18 } },
+        { "level": 10, "effects": { "baseDamage": 42, "aoe": true, "spCost": 16 } },
+        { "level": 20, "effects": { "baseDamage": 58, "aoe": true, "spCost": 14, "knockback": 30 } }
+      ],
+      "requirements": { "skills": { "sword_mastery": 30, "basic_slash": 15 } },
+      "grantsExpTo": ["sword_mastery"],
+      "cooldown": 4
+    },
+    {
+      "id": "sword_breaker",
+      "nameKo": "검 파쇄",
+      "nameEn": "Sword Breaker",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "💔",
+      "description": { "ko": "적의 무기를 강타하여 피해와 함께 공격력을 감소시킨다.", "en": "Strike the enemy's weapon to deal damage and reduce their attack." },
+      "maxLevel": 15,
+      "expPerLevel": 120,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 25, "attackReduction": 15, "duration": 3, "spCost": 15 } },
+        { "level": 8, "effects": { "baseDamage": 35, "attackReduction": 22, "duration": 4, "spCost": 14 } },
+        { "level": 15, "effects": { "baseDamage": 50, "attackReduction": 30, "duration": 5, "spCost": 12, "disarmChance": 10 } }
+      ],
+      "requirements": { "skills": { "sword_mastery": 35, "guard": 12 } },
+      "grantsExpTo": ["sword_mastery"],
+      "cooldown": 5
+    },
+    {
+      "id": "flash_step",
+      "nameKo": "축지",
+      "nameEn": "Flash Step",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "💨",
+      "description": { "ko": "순간 이동하듯 빠르게 이동하며 베어낸다.", "en": "Move with blinding speed and slash." },
+      "maxLevel": 15,
+      "expPerLevel": 150,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 55, "evasionAfter": 30, "spCost": 22 } },
+        { "level": 8, "effects": { "baseDamage": 72, "evasionAfter": 45, "spCost": 20 } },
+        { "level": 15, "effects": { "baseDamage": 95, "evasionAfter": 60, "spCost": 18, "ignoreBlock": true } }
+      ],
+      "requirements": { "skills": { "sword_mastery": 40, "draw_slash": 18 } },
+      "grantsExpTo": ["sword_mastery"],
+      "cooldown": 4
+    },
+    {
+      "id": "ultimate_slash",
+      "nameKo": "극의",
+      "nameEn": "Ultimate Slash",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "🌟",
+      "description": { "ko": "검술의 정수를 담은 궁극의 일격.", "en": "The ultimate strike, embodying the essence of swordsmanship." },
+      "maxLevel": 10,
+      "expPerLevel": 200,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 100, "armorPenetration": 30, "spCost": 40 } },
+        { "level": 5, "effects": { "baseDamage": 130, "armorPenetration": 40, "spCost": 38, "critChance": 25 } },
+        { "level": 10, "effects": { "baseDamage": 170, "armorPenetration": 50, "spCost": 35, "critChance": 35, "executeThreshold": 15 } }
+      ],
+      "requirements": { "skills": { "sword_mastery": 48, "flash_step": 10 } },
+      "grantsExpTo": ["sword_mastery"],
+      "cooldown": 6
+    }
+  ]
+}

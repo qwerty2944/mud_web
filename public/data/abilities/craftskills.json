@@ -1,0 +1,816 @@
+{
+  "version": "1.0.0",
+  "generatedAt": "2026-01-10T12:12:57.119Z",
+  "skills": [
+    {
+      "id": "bs_basic_forge",
+      "nameKo": "기초 단조",
+      "nameEn": "Basic Forging",
+      "description": "기본적인 금속 가공 기술입니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🔨",
+      "effect": {
+        "craftTier": "common",
+        "successBonus": 0
+      },
+      "requirements": {
+        "level": 1
+      },
+      "category": "blacksmithing",
+      "skillGroup": "blacksmithing"
+    },
+    {
+      "id": "bs_apprentice_forge",
+      "nameKo": "견습 단조",
+      "nameEn": "Apprentice Forging",
+      "description": "고급 등급까지 제작이 가능합니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🔨",
+      "effect": {
+        "craftTier": "grand",
+        "successBonus": 5
+      },
+      "requirements": {
+        "level": 10,
+        "prerequisite": "bs_basic_forge"
+      },
+      "category": "blacksmithing",
+      "skillGroup": "blacksmithing"
+    },
+    {
+      "id": "bs_journeyman_forge",
+      "nameKo": "숙련 단조",
+      "nameEn": "Journeyman Forging",
+      "description": "희귀 등급까지 제작이 가능합니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🔨",
+      "effect": {
+        "craftTier": "rare",
+        "successBonus": 10
+      },
+      "requirements": {
+        "level": 20,
+        "prerequisite": "bs_apprentice_forge"
+      },
+      "category": "blacksmithing",
+      "skillGroup": "blacksmithing"
+    },
+    {
+      "id": "bs_expert_forge",
+      "nameKo": "전문 단조",
+      "nameEn": "Expert Forging",
+      "description": "고대 등급까지 제작이 가능합니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🔨",
+      "effect": {
+        "craftTier": "arcane",
+        "successBonus": 15
+      },
+      "requirements": {
+        "level": 30,
+        "prerequisite": "bs_journeyman_forge"
+      },
+      "category": "blacksmithing",
+      "skillGroup": "blacksmithing"
+    },
+    {
+      "id": "bs_master_forge",
+      "nameKo": "달인 단조",
+      "nameEn": "Master Forging",
+      "description": "영웅 등급까지 제작이 가능합니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🔨",
+      "effect": {
+        "craftTier": "heroic",
+        "successBonus": 20
+      },
+      "requirements": {
+        "level": 40,
+        "prerequisite": "bs_expert_forge"
+      },
+      "category": "blacksmithing",
+      "skillGroup": "blacksmithing"
+    },
+    {
+      "id": "bs_craft_weapon",
+      "nameKo": "무기 제작",
+      "nameEn": "Craft Weapon",
+      "description": "금속 무기를 제작합니다.",
+      "type": "craft",
+      "usageContext": "field_only",
+      "icon": "⚔️",
+      "craftType": "weapon",
+      "materials": [
+        "metal_ingot",
+        "leather_strip"
+      ],
+      "requirements": {
+        "skill": "bs_basic_forge"
+      },
+      "category": "blacksmithing",
+      "skillGroup": "blacksmithing"
+    },
+    {
+      "id": "bs_craft_armor",
+      "nameKo": "갑옷 제작",
+      "nameEn": "Craft Armor",
+      "description": "금속 갑옷을 제작합니다.",
+      "type": "craft",
+      "usageContext": "field_only",
+      "icon": "🛡️",
+      "craftType": "armor",
+      "materials": [
+        "metal_ingot",
+        "leather"
+      ],
+      "requirements": {
+        "skill": "bs_apprentice_forge"
+      },
+      "category": "blacksmithing",
+      "skillGroup": "blacksmithing"
+    },
+    {
+      "id": "bs_repair",
+      "nameKo": "장비 수리",
+      "nameEn": "Repair Equipment",
+      "description": "손상된 금속 장비를 수리합니다.",
+      "type": "utility",
+      "usageContext": "field_only",
+      "icon": "🔧",
+      "repairType": [
+        "weapon",
+        "armor"
+      ],
+      "requirements": {
+        "skill": "bs_basic_forge"
+      },
+      "category": "blacksmithing",
+      "skillGroup": "blacksmithing"
+    },
+    {
+      "id": "tl_basic_sewing",
+      "nameKo": "기초 재봉",
+      "nameEn": "Basic Sewing",
+      "description": "기본적인 천 가공 기술입니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🧵",
+      "effect": {
+        "craftTier": "common",
+        "successBonus": 0
+      },
+      "requirements": {
+        "level": 1
+      },
+      "category": "tailoring",
+      "skillGroup": "tailoring"
+    },
+    {
+      "id": "tl_apprentice_sewing",
+      "nameKo": "견습 재봉",
+      "nameEn": "Apprentice Sewing",
+      "description": "고급 등급까지 제작이 가능합니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🧵",
+      "effect": {
+        "craftTier": "grand",
+        "successBonus": 5
+      },
+      "requirements": {
+        "level": 10,
+        "prerequisite": "tl_basic_sewing"
+      },
+      "category": "tailoring",
+      "skillGroup": "tailoring"
+    },
+    {
+      "id": "tl_journeyman_sewing",
+      "nameKo": "숙련 재봉",
+      "nameEn": "Journeyman Sewing",
+      "description": "희귀 등급까지 제작이 가능합니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🧵",
+      "effect": {
+        "craftTier": "rare",
+        "successBonus": 10
+      },
+      "requirements": {
+        "level": 20,
+        "prerequisite": "tl_apprentice_sewing"
+      },
+      "category": "tailoring",
+      "skillGroup": "tailoring"
+    },
+    {
+      "id": "tl_expert_sewing",
+      "nameKo": "전문 재봉",
+      "nameEn": "Expert Sewing",
+      "description": "고대 등급까지 제작이 가능합니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🧵",
+      "effect": {
+        "craftTier": "arcane",
+        "successBonus": 15
+      },
+      "requirements": {
+        "level": 30,
+        "prerequisite": "tl_journeyman_sewing"
+      },
+      "category": "tailoring",
+      "skillGroup": "tailoring"
+    },
+    {
+      "id": "tl_master_sewing",
+      "nameKo": "달인 재봉",
+      "nameEn": "Master Sewing",
+      "description": "영웅 등급까지 제작이 가능합니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🧵",
+      "effect": {
+        "craftTier": "heroic",
+        "successBonus": 20
+      },
+      "requirements": {
+        "level": 40,
+        "prerequisite": "tl_expert_sewing"
+      },
+      "category": "tailoring",
+      "skillGroup": "tailoring"
+    },
+    {
+      "id": "tl_craft_cloth_armor",
+      "nameKo": "천 갑옷 제작",
+      "nameEn": "Craft Cloth Armor",
+      "description": "천으로 된 방어구를 제작합니다.",
+      "type": "craft",
+      "usageContext": "field_only",
+      "icon": "👘",
+      "craftType": "cloth_armor",
+      "materials": [
+        "cloth",
+        "thread"
+      ],
+      "requirements": {
+        "skill": "tl_basic_sewing"
+      },
+      "category": "tailoring",
+      "skillGroup": "tailoring"
+    },
+    {
+      "id": "tl_craft_leather_armor",
+      "nameKo": "가죽 갑옷 제작",
+      "nameEn": "Craft Leather Armor",
+      "description": "가죽으로 된 방어구를 제작합니다.",
+      "type": "craft",
+      "usageContext": "field_only",
+      "icon": "🦺",
+      "craftType": "leather_armor",
+      "materials": [
+        "leather",
+        "thread"
+      ],
+      "requirements": {
+        "skill": "tl_apprentice_sewing"
+      },
+      "category": "tailoring",
+      "skillGroup": "tailoring"
+    },
+    {
+      "id": "tl_craft_bag",
+      "nameKo": "가방 제작",
+      "nameEn": "Craft Bag",
+      "description": "인벤토리를 확장하는 가방을 제작합니다.",
+      "type": "craft",
+      "usageContext": "field_only",
+      "icon": "🎒",
+      "craftType": "bag",
+      "materials": [
+        "cloth",
+        "leather_strip"
+      ],
+      "requirements": {
+        "skill": "tl_journeyman_sewing"
+      },
+      "category": "tailoring",
+      "skillGroup": "tailoring"
+    },
+    {
+      "id": "ck_basic_cooking",
+      "nameKo": "기초 요리",
+      "nameEn": "Basic Cooking",
+      "description": "기본적인 요리 기술입니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🍳",
+      "effect": {
+        "buffDuration": 300,
+        "successBonus": 0
+      },
+      "requirements": {
+        "level": 1
+      },
+      "category": "cooking",
+      "skillGroup": "cooking"
+    },
+    {
+      "id": "ck_apprentice_cooking",
+      "nameKo": "견습 요리",
+      "nameEn": "Apprentice Cooking",
+      "description": "버프 지속 시간이 증가합니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🍳",
+      "effect": {
+        "buffDuration": 600,
+        "successBonus": 5
+      },
+      "requirements": {
+        "level": 10,
+        "prerequisite": "ck_basic_cooking"
+      },
+      "category": "cooking",
+      "skillGroup": "cooking"
+    },
+    {
+      "id": "ck_journeyman_cooking",
+      "nameKo": "숙련 요리",
+      "nameEn": "Journeyman Cooking",
+      "description": "버프 효과가 향상됩니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🍳",
+      "effect": {
+        "buffDuration": 900,
+        "successBonus": 10,
+        "buffPotency": 1.1
+      },
+      "requirements": {
+        "level": 20,
+        "prerequisite": "ck_apprentice_cooking"
+      },
+      "category": "cooking",
+      "skillGroup": "cooking"
+    },
+    {
+      "id": "ck_expert_cooking",
+      "nameKo": "전문 요리",
+      "nameEn": "Expert Cooking",
+      "description": "고급 재료를 사용할 수 있습니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🍳",
+      "effect": {
+        "buffDuration": 1200,
+        "successBonus": 15,
+        "buffPotency": 1.2
+      },
+      "requirements": {
+        "level": 30,
+        "prerequisite": "ck_journeyman_cooking"
+      },
+      "category": "cooking",
+      "skillGroup": "cooking"
+    },
+    {
+      "id": "ck_master_cooking",
+      "nameKo": "달인 요리",
+      "nameEn": "Master Cooking",
+      "description": "최고급 요리를 만들 수 있습니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🍳",
+      "effect": {
+        "buffDuration": 1800,
+        "successBonus": 20,
+        "buffPotency": 1.5
+      },
+      "requirements": {
+        "level": 40,
+        "prerequisite": "ck_expert_cooking"
+      },
+      "category": "cooking",
+      "skillGroup": "cooking"
+    },
+    {
+      "id": "ck_cook_basic_meal",
+      "nameKo": "기본 식사 조리",
+      "nameEn": "Cook Basic Meal",
+      "description": "HP 회복량을 증가시키는 음식을 만듭니다.",
+      "type": "craft",
+      "usageContext": "field_only",
+      "icon": "🍖",
+      "craftType": "food",
+      "buffType": "hp_regen",
+      "materials": [
+        "meat",
+        "vegetable"
+      ],
+      "requirements": {
+        "skill": "ck_basic_cooking"
+      },
+      "category": "cooking",
+      "skillGroup": "cooking"
+    },
+    {
+      "id": "ck_cook_buff_meal",
+      "nameKo": "버프 음식 조리",
+      "nameEn": "Cook Buff Meal",
+      "description": "능력치를 증가시키는 음식을 만듭니다.",
+      "type": "craft",
+      "usageContext": "field_only",
+      "icon": "🍲",
+      "craftType": "buff_food",
+      "buffType": "stat_up",
+      "materials": [
+        "meat",
+        "spice",
+        "vegetable"
+      ],
+      "requirements": {
+        "skill": "ck_apprentice_cooking"
+      },
+      "category": "cooking",
+      "skillGroup": "cooking"
+    },
+    {
+      "id": "ck_preserve_food",
+      "nameKo": "음식 보존",
+      "nameEn": "Preserve Food",
+      "description": "음식의 유통기한을 연장합니다.",
+      "type": "utility",
+      "usageContext": "field_only",
+      "icon": "🧂",
+      "effect": {
+        "shelfLifeMultiplier": 2
+      },
+      "requirements": {
+        "skill": "ck_journeyman_cooking"
+      },
+      "category": "cooking",
+      "skillGroup": "cooking"
+    },
+    {
+      "id": "al_basic_alchemy",
+      "nameKo": "기초 연금술",
+      "nameEn": "Basic Alchemy",
+      "description": "기본적인 포션 제조 기술입니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "⚗️",
+      "effect": {
+        "potionPotency": 1,
+        "successBonus": 0
+      },
+      "requirements": {
+        "level": 1
+      },
+      "category": "alchemy",
+      "skillGroup": "alchemy"
+    },
+    {
+      "id": "al_apprentice_alchemy",
+      "nameKo": "견습 연금술",
+      "nameEn": "Apprentice Alchemy",
+      "description": "포션 효과가 10% 증가합니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "⚗️",
+      "effect": {
+        "potionPotency": 1.1,
+        "successBonus": 5
+      },
+      "requirements": {
+        "level": 10,
+        "prerequisite": "al_basic_alchemy"
+      },
+      "category": "alchemy",
+      "skillGroup": "alchemy"
+    },
+    {
+      "id": "al_journeyman_alchemy",
+      "nameKo": "숙련 연금술",
+      "nameEn": "Journeyman Alchemy",
+      "description": "포션 효과가 20% 증가합니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "⚗️",
+      "effect": {
+        "potionPotency": 1.2,
+        "successBonus": 10
+      },
+      "requirements": {
+        "level": 20,
+        "prerequisite": "al_apprentice_alchemy"
+      },
+      "category": "alchemy",
+      "skillGroup": "alchemy"
+    },
+    {
+      "id": "al_expert_alchemy",
+      "nameKo": "전문 연금술",
+      "nameEn": "Expert Alchemy",
+      "description": "포션 효과가 30% 증가합니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "⚗️",
+      "effect": {
+        "potionPotency": 1.3,
+        "successBonus": 15
+      },
+      "requirements": {
+        "level": 30,
+        "prerequisite": "al_journeyman_alchemy"
+      },
+      "category": "alchemy",
+      "skillGroup": "alchemy"
+    },
+    {
+      "id": "al_master_alchemy",
+      "nameKo": "달인 연금술",
+      "nameEn": "Master Alchemy",
+      "description": "포션 효과가 50% 증가합니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "⚗️",
+      "effect": {
+        "potionPotency": 1.5,
+        "successBonus": 20
+      },
+      "requirements": {
+        "level": 40,
+        "prerequisite": "al_expert_alchemy"
+      },
+      "category": "alchemy",
+      "skillGroup": "alchemy"
+    },
+    {
+      "id": "al_craft_hp_potion",
+      "nameKo": "HP 포션 제조",
+      "nameEn": "Craft HP Potion",
+      "description": "HP를 회복하는 포션을 제조합니다.",
+      "type": "craft",
+      "usageContext": "field_only",
+      "icon": "🧪",
+      "craftType": "potion",
+      "potionType": "hp",
+      "materials": [
+        "herb",
+        "vial"
+      ],
+      "requirements": {
+        "skill": "al_basic_alchemy"
+      },
+      "category": "alchemy",
+      "skillGroup": "alchemy"
+    },
+    {
+      "id": "al_craft_mp_potion",
+      "nameKo": "MP 포션 제조",
+      "nameEn": "Craft MP Potion",
+      "description": "MP를 회복하는 포션을 제조합니다.",
+      "type": "craft",
+      "usageContext": "field_only",
+      "icon": "🧪",
+      "craftType": "potion",
+      "potionType": "mp",
+      "materials": [
+        "mana_herb",
+        "vial"
+      ],
+      "requirements": {
+        "skill": "al_apprentice_alchemy"
+      },
+      "category": "alchemy",
+      "skillGroup": "alchemy"
+    },
+    {
+      "id": "al_craft_buff_potion",
+      "nameKo": "버프 포션 제조",
+      "nameEn": "Craft Buff Potion",
+      "description": "능력치를 증가시키는 포션을 제조합니다.",
+      "type": "craft",
+      "usageContext": "field_only",
+      "icon": "🧪",
+      "craftType": "elixir",
+      "materials": [
+        "rare_herb",
+        "essence",
+        "vial"
+      ],
+      "requirements": {
+        "skill": "al_journeyman_alchemy"
+      },
+      "category": "alchemy",
+      "skillGroup": "alchemy"
+    },
+    {
+      "id": "al_craft_poison",
+      "nameKo": "독약 제조",
+      "nameEn": "Craft Poison",
+      "description": "무기에 바를 수 있는 독약을 제조합니다.",
+      "type": "craft",
+      "usageContext": "field_only",
+      "icon": "☠️",
+      "craftType": "poison",
+      "materials": [
+        "toxic_herb",
+        "venom",
+        "vial"
+      ],
+      "requirements": {
+        "skill": "al_expert_alchemy"
+      },
+      "category": "alchemy",
+      "skillGroup": "alchemy"
+    },
+    {
+      "id": "jc_basic_crafting",
+      "nameKo": "기초 세공",
+      "nameEn": "Basic Jewelcrafting",
+      "description": "기본적인 보석 가공 기술입니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "💎",
+      "effect": {
+        "craftTier": "common",
+        "gemSlots": 0
+      },
+      "requirements": {
+        "level": 1
+      },
+      "category": "jewelcrafting",
+      "skillGroup": "jewelcrafting"
+    },
+    {
+      "id": "jc_apprentice_crafting",
+      "nameKo": "견습 세공",
+      "nameEn": "Apprentice Jewelcrafting",
+      "description": "고급 등급까지 제작하고 보석 1개를 박을 수 있습니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "💎",
+      "effect": {
+        "craftTier": "grand",
+        "gemSlots": 1
+      },
+      "requirements": {
+        "level": 10,
+        "prerequisite": "jc_basic_crafting"
+      },
+      "category": "jewelcrafting",
+      "skillGroup": "jewelcrafting"
+    },
+    {
+      "id": "jc_journeyman_crafting",
+      "nameKo": "숙련 세공",
+      "nameEn": "Journeyman Jewelcrafting",
+      "description": "희귀 등급까지 제작이 가능합니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "💎",
+      "effect": {
+        "craftTier": "rare",
+        "gemSlots": 1
+      },
+      "requirements": {
+        "level": 20,
+        "prerequisite": "jc_apprentice_crafting"
+      },
+      "category": "jewelcrafting",
+      "skillGroup": "jewelcrafting"
+    },
+    {
+      "id": "jc_expert_crafting",
+      "nameKo": "전문 세공",
+      "nameEn": "Expert Jewelcrafting",
+      "description": "고대 등급까지 제작하고 보석 2개를 박을 수 있습니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "💎",
+      "effect": {
+        "craftTier": "arcane",
+        "gemSlots": 2
+      },
+      "requirements": {
+        "level": 30,
+        "prerequisite": "jc_journeyman_crafting"
+      },
+      "category": "jewelcrafting",
+      "skillGroup": "jewelcrafting"
+    },
+    {
+      "id": "jc_master_crafting",
+      "nameKo": "달인 세공",
+      "nameEn": "Master Jewelcrafting",
+      "description": "영웅 등급까지 제작하고 보석 3개를 박을 수 있습니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "💎",
+      "effect": {
+        "craftTier": "heroic",
+        "gemSlots": 3
+      },
+      "requirements": {
+        "level": 40,
+        "prerequisite": "jc_expert_crafting"
+      },
+      "category": "jewelcrafting",
+      "skillGroup": "jewelcrafting"
+    },
+    {
+      "id": "jc_craft_ring",
+      "nameKo": "반지 제작",
+      "nameEn": "Craft Ring",
+      "description": "반지를 제작합니다.",
+      "type": "craft",
+      "usageContext": "field_only",
+      "icon": "💍",
+      "craftType": "ring",
+      "materials": [
+        "metal_ingot",
+        "gem"
+      ],
+      "requirements": {
+        "skill": "jc_basic_crafting"
+      },
+      "category": "jewelcrafting",
+      "skillGroup": "jewelcrafting"
+    },
+    {
+      "id": "jc_craft_necklace",
+      "nameKo": "목걸이 제작",
+      "nameEn": "Craft Necklace",
+      "description": "목걸이를 제작합니다.",
+      "type": "craft",
+      "usageContext": "field_only",
+      "icon": "📿",
+      "craftType": "necklace",
+      "materials": [
+        "metal_ingot",
+        "gem",
+        "chain"
+      ],
+      "requirements": {
+        "skill": "jc_apprentice_crafting"
+      },
+      "category": "jewelcrafting",
+      "skillGroup": "jewelcrafting"
+    },
+    {
+      "id": "jc_socket_gem",
+      "nameKo": "보석 장착",
+      "nameEn": "Socket Gem",
+      "description": "장비에 보석을 장착합니다.",
+      "type": "utility",
+      "usageContext": "field_only",
+      "icon": "✨",
+      "requirements": {
+        "skill": "jc_apprentice_crafting"
+      },
+      "category": "jewelcrafting",
+      "skillGroup": "jewelcrafting"
+    },
+    {
+      "id": "jc_cut_gem",
+      "nameKo": "보석 커팅",
+      "nameEn": "Cut Gem",
+      "description": "원석을 가공하여 보석으로 만듭니다.",
+      "type": "craft",
+      "usageContext": "field_only",
+      "icon": "💠",
+      "craftType": "gem",
+      "materials": [
+        "raw_gem"
+      ],
+      "requirements": {
+        "skill": "jc_basic_crafting"
+      },
+      "category": "jewelcrafting",
+      "skillGroup": "jewelcrafting"
+    }
+  ],
+  "summary": {
+    "total": 42,
+    "byCategory": {
+      "blacksmithing": 8,
+      "tailoring": 8,
+      "cooking": 8,
+      "alchemy": 9,
+      "jewelcrafting": 9
+    },
+    "byType": {
+      "passive": 25,
+      "craft": 14,
+      "utility": 3
+    }
+  }
+}

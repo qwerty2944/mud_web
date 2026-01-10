@@ -1,0 +1,145 @@
+{
+  "element": "lightning",
+  "nameKo": "번개",
+  "nameEn": "Lightning",
+  "icon": "⚡",
+  "description": "번개 속성 마법. 대지에 강함, 냉기에 약함.",
+  "spells": [
+    {
+      "id": "lightning_mastery",
+      "nameKo": "번개 마법 숙련",
+      "nameEn": "Lightning Mastery",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "⚡",
+      "description": { "ko": "번개 마법의 위력을 높이는 기본 숙련.", "en": "Basic mastery that increases lightning magic power." },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        { "level": 1, "effects": { "lightningDamage": 0 } },
+        { "level": 10, "effects": { "lightningDamage": 5 } },
+        { "level": 25, "effects": { "lightningDamage": 12, "mpCostReduction": 5 } },
+        { "level": 40, "effects": { "lightningDamage": 18, "mpCostReduction": 10 } },
+        { "level": 50, "effects": { "lightningDamage": 25, "mpCostReduction": 15, "stunChance": 10 } }
+      ],
+      "requirements": {}
+    },
+    {
+      "id": "lightning_bolt",
+      "nameKo": "번개",
+      "nameEn": "Lightning Bolt",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "⚡",
+      "description": { "ko": "번개를 내리쳐 적을 공격한다.", "en": "Strike the enemy with lightning." },
+      "maxLevel": 30,
+      "expPerLevel": 50,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 25, "mpCost": 10 } },
+        { "level": 10, "effects": { "baseDamage": 32, "mpCost": 10 } },
+        { "level": 20, "effects": { "baseDamage": 40, "mpCost": 9 } },
+        { "level": 30, "effects": { "baseDamage": 50, "mpCost": 8, "stunChance": 15 } }
+      ],
+      "requirements": { "skills": { "lightning_mastery": 1 } },
+      "grantsExpTo": ["lightning_mastery"],
+      "cooldown": 0
+    },
+    {
+      "id": "chain_lightning",
+      "nameKo": "연쇄 번개",
+      "nameEn": "Chain Lightning",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "⚡",
+      "description": { "ko": "연쇄 번개가 여러 적에게 튕긴다.", "en": "Lightning that chains to multiple targets." },
+      "maxLevel": 25,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 20, "chainTargets": 2, "mpCost": 20 } },
+        { "level": 10, "effects": { "baseDamage": 28, "chainTargets": 3, "mpCost": 19 } },
+        { "level": 20, "effects": { "baseDamage": 35, "chainTargets": 4, "mpCost": 17 } },
+        { "level": 25, "effects": { "baseDamage": 40, "chainTargets": 5, "mpCost": 15, "chainDamageRetain": 80 } }
+      ],
+      "requirements": { "skills": { "lightning_mastery": 12 } },
+      "grantsExpTo": ["lightning_mastery"],
+      "cooldown": 2
+    },
+    {
+      "id": "thunder_shock",
+      "nameKo": "천둥 충격",
+      "nameEn": "Thunder Shock",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "⚡",
+      "description": { "ko": "천둥으로 충격을 주어 기절시킨다.", "en": "Shock with thunder. Chance to stun." },
+      "maxLevel": 25,
+      "expPerLevel": 70,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 30, "stunChance": 25, "stunDuration": 1, "mpCost": 18 } },
+        { "level": 10, "effects": { "baseDamage": 40, "stunChance": 30, "stunDuration": 1, "mpCost": 17 } },
+        { "level": 20, "effects": { "baseDamage": 50, "stunChance": 40, "stunDuration": 1, "mpCost": 15 } },
+        { "level": 25, "effects": { "baseDamage": 55, "stunChance": 50, "stunDuration": 2, "mpCost": 14 } }
+      ],
+      "requirements": { "skills": { "lightning_mastery": 15 } },
+      "grantsExpTo": ["lightning_mastery"],
+      "cooldown": 2
+    },
+    {
+      "id": "static_field",
+      "nameKo": "정전기장",
+      "nameEn": "Static Field",
+      "type": "debuff",
+      "usageContext": "combat_only",
+      "icon": "⚡",
+      "description": { "ko": "정전기장을 펼쳐 피해를 증가시킨다.", "en": "Create a static field increasing damage taken." },
+      "maxLevel": 20,
+      "expPerLevel": 90,
+      "levelBonuses": [
+        { "level": 1, "effects": { "damageAmplify": 15, "duration": 4, "mpCost": 15 } },
+        { "level": 10, "effects": { "damageAmplify": 20, "duration": 5, "mpCost": 14 } },
+        { "level": 20, "effects": { "damageAmplify": 30, "duration": 6, "mpCost": 12, "aoe": true } }
+      ],
+      "requirements": { "skills": { "lightning_mastery": 10 } },
+      "grantsExpTo": ["lightning_mastery"],
+      "cooldown": 3
+    },
+    {
+      "id": "storm_call",
+      "nameKo": "폭풍 소환",
+      "nameEn": "Storm Call",
+      "type": "buff",
+      "usageContext": "both",
+      "icon": "🌩️",
+      "description": { "ko": "폭풍의 힘을 불러 번개 데미지 증가.", "en": "Call the power of storms. Increase lightning damage." },
+      "maxLevel": 20,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        { "level": 1, "effects": { "lightningBonus": 30, "duration": 5, "mpCost": 25 } },
+        { "level": 10, "effects": { "lightningBonus": 40, "duration": 6, "mpCost": 23 } },
+        { "level": 20, "effects": { "lightningBonus": 50, "duration": 7, "mpCost": 20, "castSpeedBonus": 20 } }
+      ],
+      "requirements": { "skills": { "lightning_mastery": 20 } },
+      "grantsExpTo": ["lightning_mastery"],
+      "cooldown": 5
+    },
+    {
+      "id": "thunderstrike",
+      "nameKo": "낙뢰",
+      "nameEn": "Thunderstrike",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "⚡",
+      "description": { "ko": "하늘에서 낙뢰를 떨어뜨린다. 방어력 무시.", "en": "Call down a thunderstrike. Ignores defense." },
+      "maxLevel": 15,
+      "expPerLevel": 150,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 70, "ignoreDefense": true, "mpCost": 40 } },
+        { "level": 8, "effects": { "baseDamage": 90, "ignoreDefense": true, "mpCost": 37 } },
+        { "level": 15, "effects": { "baseDamage": 120, "ignoreDefense": true, "mpCost": 32, "stunChance": 40 } }
+      ],
+      "requirements": { "skills": { "lightning_mastery": 35, "thunder_shock": 15 } },
+      "grantsExpTo": ["lightning_mastery"],
+      "cooldown": 4
+    }
+  ]
+}

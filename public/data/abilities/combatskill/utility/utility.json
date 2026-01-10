@@ -1,0 +1,86 @@
+{
+  "category": "utility",
+  "nameKo": "전술",
+  "nameEn": "Tactics",
+  "icon": "🎯",
+  "description": "전장에서 유용한 전술 기술",
+  "relatedStats": ["int", "wis"],
+  "skills": [
+    {
+      "id": "assess",
+      "nameKo": "적 분석",
+      "nameEn": "Assess",
+      "description": "적의 체력과 약점을 파악합니다.",
+      "type": "utility",
+      "icon": "🔍",
+      "spCost": 0,
+      "revealInfo": true,
+      "target": "enemy",
+      "requirements": { "proficiency": 0 }
+    },
+    {
+      "id": "first_aid",
+      "nameKo": "응급 치료",
+      "nameEn": "First Aid",
+      "description": "간단한 응급 치료로 HP를 10% 회복합니다.",
+      "type": "heal",
+      "icon": "🩹",
+      "spCost": 5,
+      "healPercent": 10,
+      "target": "self",
+      "requirements": { "proficiency": 10 }
+    },
+    {
+      "id": "tactical_retreat",
+      "nameKo": "전술적 후퇴",
+      "nameEn": "Tactical Retreat",
+      "description": "후퇴하여 다음 턴 행동을 먼저 합니다.",
+      "type": "utility",
+      "icon": "🏃",
+      "spCost": 8,
+      "statusEffect": "initiative_up",
+      "statusDuration": 1,
+      "statusValue": 100,
+      "target": "self",
+      "requirements": { "proficiency": 30 }
+    },
+    {
+      "id": "battle_focus",
+      "nameKo": "집중력",
+      "nameEn": "Battle Focus",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🎯",
+      "description": { "ko": "전투 중 집중력을 유지하여 명중률과 스킬 효율을 높인다.", "en": "Maintain focus in combat for improved accuracy and skill efficiency." },
+      "maxLevel": 50,
+      "expPerLevel": 85,
+      "levelBonuses": [
+        { "level": 1, "effects": { "accuracy": 5, "spCostReduction": 2 } },
+        { "level": 10, "effects": { "accuracy": 10, "spCostReduction": 5, "skillDamage": 3 } },
+        { "level": 25, "effects": { "accuracy": 16, "spCostReduction": 8, "skillDamage": 7, "cooldownReduction": 5 } },
+        { "level": 40, "effects": { "accuracy": 24, "spCostReduction": 12, "skillDamage": 12, "cooldownReduction": 10 } },
+        { "level": 50, "effects": { "accuracy": 35, "spCostReduction": 18, "skillDamage": 18, "cooldownReduction": 15, "focusStackLimit": 5 } }
+      ],
+      "requirements": {}
+    },
+    {
+      "id": "critical_mastery",
+      "nameKo": "급소 공략",
+      "nameEn": "Critical Mastery",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "💥",
+      "description": { "ko": "적의 급소를 노리는 기술을 연마하여 치명타 확률과 피해를 높인다.", "en": "Master the art of striking vital points for increased critical chance and damage." },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        { "level": 1, "effects": { "critChance": 3, "critDamage": 5 } },
+        { "level": 10, "effects": { "critChance": 6, "critDamage": 12 } },
+        { "level": 25, "effects": { "critChance": 10, "critDamage": 22, "armorPenetration": 5 } },
+        { "level": 40, "effects": { "critChance": 15, "critDamage": 35, "armorPenetration": 10 } },
+        { "level": 50, "effects": { "critChance": 20, "critDamage": 50, "armorPenetration": 15, "criticalBleed": 10 } }
+      ],
+      "requirements": {}
+    }
+  ]
+}

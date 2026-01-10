@@ -1,0 +1,100 @@
+{
+  "category": "blacksmithing",
+  "nameKo": "대장장이",
+  "nameEn": "Blacksmithing",
+  "icon": "🔨",
+  "description": "금속을 다루어 무기와 갑옷을 제작합니다",
+  "relatedStats": ["str", "con"],
+  "skills": [
+    {
+      "id": "bs_basic_forge",
+      "nameKo": "기초 단조",
+      "nameEn": "Basic Forging",
+      "description": "기본적인 금속 가공 기술입니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🔨",
+      "effect": { "craftTier": "common", "successBonus": 0 },
+      "requirements": { "level": 1 }
+    },
+    {
+      "id": "bs_apprentice_forge",
+      "nameKo": "견습 단조",
+      "nameEn": "Apprentice Forging",
+      "description": "고급 등급까지 제작이 가능합니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🔨",
+      "effect": { "craftTier": "grand", "successBonus": 5 },
+      "requirements": { "level": 10, "prerequisite": "bs_basic_forge" }
+    },
+    {
+      "id": "bs_journeyman_forge",
+      "nameKo": "숙련 단조",
+      "nameEn": "Journeyman Forging",
+      "description": "희귀 등급까지 제작이 가능합니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🔨",
+      "effect": { "craftTier": "rare", "successBonus": 10 },
+      "requirements": { "level": 20, "prerequisite": "bs_apprentice_forge" }
+    },
+    {
+      "id": "bs_expert_forge",
+      "nameKo": "전문 단조",
+      "nameEn": "Expert Forging",
+      "description": "고대 등급까지 제작이 가능합니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🔨",
+      "effect": { "craftTier": "arcane", "successBonus": 15 },
+      "requirements": { "level": 30, "prerequisite": "bs_journeyman_forge" }
+    },
+    {
+      "id": "bs_master_forge",
+      "nameKo": "달인 단조",
+      "nameEn": "Master Forging",
+      "description": "영웅 등급까지 제작이 가능합니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🔨",
+      "effect": { "craftTier": "heroic", "successBonus": 20 },
+      "requirements": { "level": 40, "prerequisite": "bs_expert_forge" }
+    },
+    {
+      "id": "bs_craft_weapon",
+      "nameKo": "무기 제작",
+      "nameEn": "Craft Weapon",
+      "description": "금속 무기를 제작합니다.",
+      "type": "craft",
+      "usageContext": "field_only",
+      "icon": "⚔️",
+      "craftType": "weapon",
+      "materials": ["metal_ingot", "leather_strip"],
+      "requirements": { "skill": "bs_basic_forge" }
+    },
+    {
+      "id": "bs_craft_armor",
+      "nameKo": "갑옷 제작",
+      "nameEn": "Craft Armor",
+      "description": "금속 갑옷을 제작합니다.",
+      "type": "craft",
+      "usageContext": "field_only",
+      "icon": "🛡️",
+      "craftType": "armor",
+      "materials": ["metal_ingot", "leather"],
+      "requirements": { "skill": "bs_apprentice_forge" }
+    },
+    {
+      "id": "bs_repair",
+      "nameKo": "장비 수리",
+      "nameEn": "Repair Equipment",
+      "description": "손상된 금속 장비를 수리합니다.",
+      "type": "utility",
+      "usageContext": "field_only",
+      "icon": "🔧",
+      "repairType": ["weapon", "armor"],
+      "requirements": { "skill": "bs_basic_forge" }
+    }
+  ]
+}

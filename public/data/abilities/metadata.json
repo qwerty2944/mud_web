@@ -1,0 +1,302 @@
+{
+  "version": "2.0.0",
+  "lastUpdated": "2026-01-10",
+  "description": "능력 데이터 메타데이터 - 스킬 타입, 카테고리, 숙련도 정의",
+
+  "skillTypes": {
+    "description": "스킬의 주요 효과 분류",
+    "types": [
+      {
+        "id": "passive",
+        "nameKo": "패시브",
+        "nameEn": "Passive",
+        "description": "항상 적용되는 지속 효과. 별도 사용 불필요.",
+        "color": "#9CA3AF",
+        "icon": "circle"
+      },
+      {
+        "id": "attack",
+        "nameKo": "공격",
+        "nameEn": "Attack",
+        "description": "적에게 피해를 주는 스킬.",
+        "color": "#EF4444",
+        "icon": "sword"
+      },
+      {
+        "id": "heal",
+        "nameKo": "치유",
+        "nameEn": "Heal",
+        "description": "HP를 회복하는 스킬.",
+        "color": "#22C55E",
+        "icon": "heart"
+      },
+      {
+        "id": "buff",
+        "nameKo": "버프",
+        "nameEn": "Buff",
+        "description": "자신 또는 아군의 능력치를 강화.",
+        "color": "#3B82F6",
+        "icon": "arrow-up"
+      },
+      {
+        "id": "debuff",
+        "nameKo": "디버프",
+        "nameEn": "Debuff",
+        "description": "적의 능력치를 약화.",
+        "color": "#A855F7",
+        "icon": "arrow-down"
+      },
+      {
+        "id": "utility",
+        "nameKo": "유틸리티",
+        "nameEn": "Utility",
+        "description": "전투 보조 (분석, 이동, 상태이상 해제 등).",
+        "color": "#F59E0B",
+        "icon": "tool"
+      },
+      {
+        "id": "craft",
+        "nameKo": "제작",
+        "nameEn": "Craft",
+        "description": "아이템 제작 스킬.",
+        "color": "#8B5CF6",
+        "icon": "hammer"
+      }
+    ]
+  },
+
+  "attackTypes": {
+    "description": "type=attack인 스킬의 세부 분류 (데미지 계산용)",
+    "types": [
+      {
+        "id": "melee_physical",
+        "nameKo": "근접 물리",
+        "nameEn": "Melee Physical",
+        "description": "근접 무기 공격 (검, 도끼, 둔기, 단검, 창, 주먹, 발차기 등)",
+        "damageScaling": ["str", "dex"],
+        "defenseType": "physical"
+      },
+      {
+        "id": "ranged_physical",
+        "nameKo": "원거리 물리",
+        "nameEn": "Ranged Physical",
+        "description": "원거리 물리 공격 (활, 석궁)",
+        "damageScaling": ["dex"],
+        "defenseType": "physical"
+      },
+      {
+        "id": "magic",
+        "nameKo": "마법",
+        "nameEn": "Magic",
+        "description": "마법 공격 (속성 마법, 지팡이 마력 폭발 등)",
+        "damageScaling": ["int", "wis"],
+        "defenseType": "magical"
+      },
+      {
+        "id": "dot",
+        "nameKo": "지속 피해",
+        "nameEn": "Damage over Time",
+        "description": "매 턴 피해를 주는 공격 (출혈, 화상, 독 등)",
+        "damageScaling": "varies",
+        "defenseType": "varies"
+      }
+    ]
+  },
+
+  "usageContexts": {
+    "description": "스킬 사용 가능 상황",
+    "contexts": [
+      {
+        "id": "passive",
+        "nameKo": "패시브",
+        "nameEn": "Passive",
+        "description": "항상 적용됨 (사용 불필요)"
+      },
+      {
+        "id": "combat_only",
+        "nameKo": "전투 전용",
+        "nameEn": "Combat Only",
+        "description": "전투 중에만 사용 가능"
+      },
+      {
+        "id": "field_only",
+        "nameKo": "필드 전용",
+        "nameEn": "Field Only",
+        "description": "전투 외 상황에서만 사용 가능 (마을, 필드)"
+      },
+      {
+        "id": "both",
+        "nameKo": "전투/필드",
+        "nameEn": "Both",
+        "description": "전투 중과 필드 모두 사용 가능"
+      }
+    ]
+  },
+
+  "categories": {
+    "spell": {
+      "path": "/data/abilities/spell",
+      "nameKo": "마법",
+      "nameEn": "Spells",
+      "icon": "sparkles",
+      "description": "마법 주문 (속성별 분류)",
+      "subcategories": [
+        { "id": "fire", "nameKo": "화염", "nameEn": "Fire", "icon": "flame", "file": "fire.json" },
+        { "id": "ice", "nameKo": "냉기", "nameEn": "Ice", "icon": "snowflake", "file": "ice.json" },
+        { "id": "lightning", "nameKo": "번개", "nameEn": "Lightning", "icon": "zap", "file": "lightning.json" },
+        { "id": "earth", "nameKo": "대지", "nameEn": "Earth", "icon": "mountain", "file": "earth.json" },
+        { "id": "holy", "nameKo": "신성", "nameEn": "Holy", "icon": "sun", "file": "holy.json" },
+        { "id": "dark", "nameKo": "암흑", "nameEn": "Dark", "icon": "moon", "file": "dark.json" }
+      ]
+    },
+    "combatskill": {
+      "path": "/data/abilities/combatskill",
+      "nameKo": "전투 스킬",
+      "nameEn": "Combat Skills",
+      "icon": "swords",
+      "description": "물리 전투 스킬",
+      "subcategories": [
+        {
+          "id": "weapon",
+          "nameKo": "무기",
+          "nameEn": "Weapon",
+          "path": "/weapon",
+          "items": [
+            { "id": "sword_common", "nameKo": "검술 공용", "file": "sword/common.json" },
+            { "id": "light_sword", "nameKo": "세검", "file": "sword/light_sword.json" },
+            { "id": "medium_sword", "nameKo": "중검", "file": "sword/medium_sword.json" },
+            { "id": "great_sword", "nameKo": "대검", "file": "sword/great_sword.json" },
+            { "id": "dual_wield", "nameKo": "쌍수", "file": "dual_wield.json" },
+            { "id": "axe", "nameKo": "도끼", "file": "axe.json" },
+            { "id": "mace", "nameKo": "둔기", "file": "mace.json" },
+            { "id": "dagger", "nameKo": "단검", "file": "dagger.json" },
+            { "id": "spear", "nameKo": "창", "file": "spear.json" },
+            { "id": "bow", "nameKo": "활", "file": "bow.json" },
+            { "id": "crossbow", "nameKo": "석궁", "file": "crossbow.json" },
+            { "id": "staff", "nameKo": "지팡이", "file": "staff.json" },
+            { "id": "shield", "nameKo": "방패", "file": "shield.json" }
+          ]
+        },
+        {
+          "id": "martial",
+          "nameKo": "무술",
+          "nameEn": "Martial Arts",
+          "path": "/martial",
+          "items": [
+            { "id": "fist", "nameKo": "권술", "file": "fist.json" },
+            { "id": "kick", "nameKo": "각술", "file": "kick.json" },
+            { "id": "stance", "nameKo": "자세/내공", "file": "stance.json" }
+          ]
+        },
+        {
+          "id": "defense",
+          "nameKo": "방어",
+          "nameEn": "Defense",
+          "path": "/defense",
+          "items": [
+            { "id": "defense", "nameKo": "방어술", "file": "defense.json" }
+          ]
+        },
+        {
+          "id": "utility",
+          "nameKo": "전술",
+          "nameEn": "Tactics",
+          "path": "/utility",
+          "items": [
+            { "id": "utility", "nameKo": "전술", "file": "utility.json" }
+          ]
+        },
+        {
+          "id": "warcry",
+          "nameKo": "함성",
+          "nameEn": "Warcry",
+          "path": "/warcry",
+          "items": [
+            { "id": "warcry", "nameKo": "함성", "file": "warcry.json" }
+          ]
+        }
+      ]
+    },
+    "song": {
+      "path": "/data/abilities/song",
+      "nameKo": "노래",
+      "nameEn": "Song",
+      "icon": "music",
+      "description": "음악의 힘으로 아군을 돕고 적을 약화",
+      "subcategories": [
+        { "id": "song", "nameKo": "노래", "nameEn": "Song", "file": "song.json" }
+      ],
+      "songTypes": {
+        "concentration": {
+          "nameKo": "유지형",
+          "nameEn": "Concentration",
+          "description": "부르는 동안 효과 지속, 매 턴 MP 소모"
+        },
+        "instant": {
+          "nameKo": "즉시형",
+          "nameEn": "Instant",
+          "description": "한 번 부르면 일정 턴 효과 지속"
+        }
+      }
+    },
+    "lifeskill": {
+      "path": "/data/abilities/lifeskill",
+      "nameKo": "생활 스킬",
+      "nameEn": "Life Skills",
+      "icon": "heart-pulse",
+      "description": "생활 스킬 (의료, 지식)",
+      "subcategories": [
+        { "id": "medical", "nameKo": "의료", "nameEn": "Medical", "file": "medical.json" },
+        { "id": "knowledge", "nameKo": "지식", "nameEn": "Knowledge", "file": "knowledge.json" }
+      ]
+    },
+    "craftskill": {
+      "path": "/data/abilities/craftskill",
+      "nameKo": "제작 스킬",
+      "nameEn": "Craft Skills",
+      "icon": "hammer",
+      "description": "아이템 제작 스킬",
+      "subcategories": [
+        { "id": "blacksmithing", "nameKo": "대장장이", "nameEn": "Blacksmithing", "file": "blacksmithing/blacksmithing.json" },
+        { "id": "tailoring", "nameKo": "재봉", "nameEn": "Tailoring", "file": "tailoring/tailoring.json" },
+        { "id": "cooking", "nameKo": "요리", "nameEn": "Cooking", "file": "cooking/cooking.json" },
+        { "id": "alchemy", "nameKo": "연금술", "nameEn": "Alchemy", "file": "alchemy/alchemy.json" },
+        { "id": "jewelcrafting", "nameKo": "보석세공", "nameEn": "Jewelcrafting", "file": "jewelcrafting/jewelcrafting.json" }
+      ]
+    }
+  },
+
+  "proficiencyRanks": [
+    { "id": "novice", "nameKo": "초보", "nameEn": "Novice", "minLevel": 0, "maxLevel": 19, "damageBonus": 0, "speedBonus": 0 },
+    { "id": "apprentice", "nameKo": "견습", "nameEn": "Apprentice", "minLevel": 20, "maxLevel": 39, "damageBonus": 5, "speedBonus": 0 },
+    { "id": "journeyman", "nameKo": "숙련", "nameEn": "Journeyman", "minLevel": 40, "maxLevel": 59, "damageBonus": 10, "speedBonus": 5 },
+    { "id": "expert", "nameKo": "전문가", "nameEn": "Expert", "minLevel": 60, "maxLevel": 79, "damageBonus": 15, "speedBonus": 10 },
+    { "id": "master", "nameKo": "달인", "nameEn": "Master", "minLevel": 80, "maxLevel": 99, "damageBonus": 20, "speedBonus": 15 },
+    { "id": "grandmaster", "nameKo": "대가", "nameEn": "Grandmaster", "minLevel": 100, "maxLevel": 100, "damageBonus": 25, "speedBonus": 20 }
+  ],
+
+  "elementalAffinities": {
+    "description": "속성 상성 (공격 속성 → 방어 속성 = 배율)",
+    "affinities": {
+      "fire": { "strong": "ice", "weak": "earth", "multiplierStrong": 1.5, "multiplierWeak": 0.75 },
+      "ice": { "strong": "lightning", "weak": "fire", "multiplierStrong": 1.5, "multiplierWeak": 0.75 },
+      "lightning": { "strong": "earth", "weak": "ice", "multiplierStrong": 1.5, "multiplierWeak": 0.75 },
+      "earth": { "strong": "fire", "weak": "lightning", "multiplierStrong": 1.5, "multiplierWeak": 0.75 },
+      "holy": { "strong": "dark", "weak": null, "multiplierStrong": 1.5, "multiplierWeak": 1.0 },
+      "dark": { "strong": "holy", "weak": null, "multiplierStrong": 1.5, "multiplierWeak": 1.0 }
+    }
+  },
+
+  "dayBoosts": {
+    "description": "요일별 속성 강화 (한국어 요일 한자 기반)",
+    "boosts": [
+      { "day": 0, "dayKo": "일", "element": null, "multiplier": 1.0, "description": "휴식의 날" },
+      { "day": 1, "dayKo": "월", "element": "ice", "multiplier": 1.2, "description": "달 → 냉기" },
+      { "day": 2, "dayKo": "화", "element": "fire", "multiplier": 1.2, "description": "불 → 화염" },
+      { "day": 3, "dayKo": "수", "element": "lightning", "multiplier": 1.2, "description": "물 → 번개" },
+      { "day": 4, "dayKo": "목", "element": "earth", "multiplier": 1.2, "description": "나무 → 대지" },
+      { "day": 5, "dayKo": "금", "element": "holy", "multiplier": 1.2, "description": "금 → 신성" },
+      { "day": 6, "dayKo": "토", "element": "dark", "multiplier": 1.2, "description": "흙 → 암흑" }
+    ]
+  }
+}

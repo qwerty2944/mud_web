@@ -1,0 +1,147 @@
+{
+  "element": "fire",
+  "nameKo": "화염",
+  "nameEn": "Fire",
+  "icon": "🔥",
+  "description": "화염 속성 마법. 냉기에 강함, 대지에 약함.",
+  "spells": [
+    {
+      "id": "fire_mastery",
+      "nameKo": "화염 마법 숙련",
+      "nameEn": "Fire Mastery",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🔥",
+      "description": { "ko": "화염 마법의 위력을 높이는 기본 숙련.", "en": "Basic mastery that increases fire magic power." },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        { "level": 1, "effects": { "fireDamage": 0 } },
+        { "level": 10, "effects": { "fireDamage": 5 } },
+        { "level": 25, "effects": { "fireDamage": 12, "mpCostReduction": 5 } },
+        { "level": 40, "effects": { "fireDamage": 18, "mpCostReduction": 10 } },
+        { "level": 50, "effects": { "fireDamage": 25, "mpCostReduction": 15, "burnChance": 10 } }
+      ],
+      "requirements": {}
+    },
+    {
+      "id": "fireball",
+      "nameKo": "파이어볼",
+      "nameEn": "Fireball",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "🔥",
+      "description": { "ko": "화염 구체를 발사하여 적에게 피해를 입힌다.", "en": "Launch a ball of fire at the enemy." },
+      "maxLevel": 30,
+      "expPerLevel": 50,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 25, "mpCost": 10 } },
+        { "level": 10, "effects": { "baseDamage": 32, "mpCost": 10 } },
+        { "level": 20, "effects": { "baseDamage": 40, "mpCost": 9 } },
+        { "level": 30, "effects": { "baseDamage": 50, "mpCost": 8, "burnChance": 15 } }
+      ],
+      "requirements": { "skills": { "fire_mastery": 1 } },
+      "grantsExpTo": ["fire_mastery"],
+      "cooldown": 0
+    },
+    {
+      "id": "flame_wave",
+      "nameKo": "화염 파동",
+      "nameEn": "Flame Wave",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "🔥",
+      "description": { "ko": "화염의 파동을 일으켜 넓은 범위를 공격한다.", "en": "Create a wave of flames to attack a wide area." },
+      "maxLevel": 25,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 35, "mpCost": 18 } },
+        { "level": 10, "effects": { "baseDamage": 45, "mpCost": 17 } },
+        { "level": 20, "effects": { "baseDamage": 55, "mpCost": 15 } },
+        { "level": 25, "effects": { "baseDamage": 65, "mpCost": 14, "aoeRadius": 1.5 } }
+      ],
+      "requirements": { "skills": { "fire_mastery": 10 } },
+      "grantsExpTo": ["fire_mastery"],
+      "cooldown": 2
+    },
+    {
+      "id": "ignite",
+      "nameKo": "점화",
+      "nameEn": "Ignite",
+      "type": "dot",
+      "usageContext": "combat_only",
+      "icon": "🔥",
+      "description": { "ko": "대상에게 불을 붙여 4턴간 지속 피해를 입힌다.", "en": "Set the target on fire, dealing damage over 4 turns." },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        { "level": 1, "effects": { "damagePerTurn": 8, "duration": 4, "mpCost": 12 } },
+        { "level": 10, "effects": { "damagePerTurn": 12, "duration": 4, "mpCost": 11 } },
+        { "level": 20, "effects": { "damagePerTurn": 16, "duration": 5, "mpCost": 10 } },
+        { "level": 25, "effects": { "damagePerTurn": 20, "duration": 5, "mpCost": 9, "spreadChance": 20 } }
+      ],
+      "requirements": { "skills": { "fire_mastery": 8 } },
+      "grantsExpTo": ["fire_mastery"],
+      "cooldown": 0
+    },
+    {
+      "id": "fire_shield",
+      "nameKo": "화염 방패",
+      "nameEn": "Fire Shield",
+      "type": "buff",
+      "usageContext": "both",
+      "icon": "🔥",
+      "description": { "ko": "화염 방패로 감싸 냉기 피해 감소, 접촉자에게 피해.", "en": "Surround yourself with fire. Reduce ice damage, reflect damage." },
+      "maxLevel": 20,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        { "level": 1, "effects": { "iceResist": 30, "reflectDamage": 10, "duration": 5, "mpCost": 20 } },
+        { "level": 10, "effects": { "iceResist": 40, "reflectDamage": 15, "duration": 6, "mpCost": 18 } },
+        { "level": 20, "effects": { "iceResist": 50, "reflectDamage": 25, "duration": 7, "mpCost": 15 } }
+      ],
+      "requirements": { "skills": { "fire_mastery": 15 } },
+      "grantsExpTo": ["fire_mastery"],
+      "cooldown": 5
+    },
+    {
+      "id": "meteor",
+      "nameKo": "유성",
+      "nameEn": "Meteor",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "☄️",
+      "description": { "ko": "하늘에서 유성을 떨어뜨린다. 캐스팅 필요.", "en": "Call down a meteor from the sky. Requires casting." },
+      "maxLevel": 20,
+      "expPerLevel": 150,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 60, "mpCost": 35, "castTime": 2 } },
+        { "level": 10, "effects": { "baseDamage": 80, "mpCost": 32, "castTime": 2 } },
+        { "level": 15, "effects": { "baseDamage": 100, "mpCost": 30, "castTime": 1 } },
+        { "level": 20, "effects": { "baseDamage": 120, "mpCost": 28, "castTime": 1, "stunChance": 30 } }
+      ],
+      "requirements": { "skills": { "fire_mastery": 30 } },
+      "grantsExpTo": ["fire_mastery"],
+      "cooldown": 4
+    },
+    {
+      "id": "inferno",
+      "nameKo": "지옥불",
+      "nameEn": "Inferno",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "🔥",
+      "description": { "ko": "지옥의 화염을 불러온다. 자신도 피해를 입는다.", "en": "Summon hellfire. You also take damage." },
+      "maxLevel": 15,
+      "expPerLevel": 200,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 80, "selfDamage": 20, "mpCost": 45 } },
+        { "level": 5, "effects": { "baseDamage": 100, "selfDamage": 18, "mpCost": 42 } },
+        { "level": 10, "effects": { "baseDamage": 120, "selfDamage": 15, "mpCost": 40 } },
+        { "level": 15, "effects": { "baseDamage": 150, "selfDamage": 10, "mpCost": 35, "aoe": true } }
+      ],
+      "requirements": { "skills": { "fire_mastery": 40, "meteor": 10 } },
+      "grantsExpTo": ["fire_mastery"],
+      "cooldown": 5
+    }
+  ]
+}

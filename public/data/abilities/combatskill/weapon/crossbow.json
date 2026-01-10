@@ -1,0 +1,145 @@
+{
+  "category": "weapon",
+  "weaponType": "crossbow",
+  "nameKo": "석궁",
+  "nameEn": "Crossbow",
+  "icon": "🎯",
+  "description": "강력한 관통력과 방어구 무시에 특화된 석궁술.",
+  "skills": [
+    {
+      "id": "crossbow_mastery",
+      "nameKo": "석궁술 수련",
+      "nameEn": "Crossbow Mastery",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🎯",
+      "description": { "ko": "석궁의 기본기를 익혀 관통력과 재장전 속도를 높인다.", "en": "Master the piercing power and reload speed of crossbow combat." },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        { "level": 1, "effects": { "crossbowDamage": 0, "armorPenetration": 0 } },
+        { "level": 10, "effects": { "crossbowDamage": 6, "armorPenetration": 5 } },
+        { "level": 25, "effects": { "crossbowDamage": 14, "armorPenetration": 12, "reloadSpeed": 10 } },
+        { "level": 40, "effects": { "crossbowDamage": 20, "armorPenetration": 18, "reloadSpeed": 15 } },
+        { "level": 50, "effects": { "crossbowDamage": 28, "armorPenetration": 25, "reloadSpeed": 20, "critChance": 5 } }
+      ],
+      "requirements": {}
+    },
+    {
+      "id": "bolt_shot",
+      "nameKo": "볼트 사격",
+      "nameEn": "Bolt Shot",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "🎯",
+      "description": { "ko": "석궁 볼트를 발사한다.", "en": "Fire a crossbow bolt." },
+      "maxLevel": 30,
+      "expPerLevel": 50,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 30, "spCost": 5, "armorPenetration": 15 } },
+        { "level": 10, "effects": { "baseDamage": 40, "spCost": 5, "armorPenetration": 20 } },
+        { "level": 20, "effects": { "baseDamage": 52, "spCost": 4, "armorPenetration": 25 } },
+        { "level": 30, "effects": { "baseDamage": 68, "spCost": 4, "armorPenetration": 30, "critChance": 10 } }
+      ],
+      "requirements": { "skills": { "crossbow_mastery": 1 } },
+      "grantsExpTo": ["crossbow_mastery"],
+      "cooldown": 0
+    },
+    {
+      "id": "piercing_bolt",
+      "nameKo": "관통탄",
+      "nameEn": "Piercing Bolt",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "📌",
+      "description": { "ko": "갑옷을 관통하는 강력한 볼트.", "en": "A powerful bolt that pierces armor." },
+      "maxLevel": 25,
+      "expPerLevel": 70,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 45, "armorPenetration": 50, "spCost": 14 } },
+        { "level": 10, "effects": { "baseDamage": 60, "armorPenetration": 65, "spCost": 13 } },
+        { "level": 20, "effects": { "baseDamage": 78, "armorPenetration": 80, "spCost": 11 } },
+        { "level": 25, "effects": { "baseDamage": 90, "armorPenetration": 90, "spCost": 10 } }
+      ],
+      "requirements": { "skills": { "crossbow_mastery": 10 } },
+      "grantsExpTo": ["crossbow_mastery"],
+      "cooldown": 2
+    },
+    {
+      "id": "explosive_bolt",
+      "nameKo": "폭발탄",
+      "nameEn": "Explosive Bolt",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "💥",
+      "description": { "ko": "착탄 시 폭발하는 볼트.", "en": "A bolt that explodes on impact." },
+      "maxLevel": 20,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 35, "splashDamage": 20, "aoe": true, "spCost": 18 } },
+        { "level": 10, "effects": { "baseDamage": 48, "splashDamage": 30, "aoe": true, "spCost": 17 } },
+        { "level": 20, "effects": { "baseDamage": 65, "splashDamage": 45, "aoe": true, "spCost": 15, "knockbackChance": 30 } }
+      ],
+      "requirements": { "skills": { "crossbow_mastery": 18 } },
+      "grantsExpTo": ["crossbow_mastery"],
+      "cooldown": 3
+    },
+    {
+      "id": "rapid_reload",
+      "nameKo": "빠른 재장전",
+      "nameEn": "Rapid Reload",
+      "type": "buff",
+      "usageContext": "combat_only",
+      "icon": "⚡",
+      "description": { "ko": "재장전 속도를 대폭 높인다.", "en": "Greatly increase reload speed." },
+      "maxLevel": 20,
+      "expPerLevel": 90,
+      "levelBonuses": [
+        { "level": 1, "effects": { "attackSpeedBonus": 30, "cooldownReduction": 1, "duration": 4, "spCost": 16 } },
+        { "level": 10, "effects": { "attackSpeedBonus": 45, "cooldownReduction": 1, "duration": 5, "spCost": 14 } },
+        { "level": 20, "effects": { "attackSpeedBonus": 60, "cooldownReduction": 2, "duration": 6, "spCost": 12 } }
+      ],
+      "requirements": { "skills": { "crossbow_mastery": 15 } },
+      "grantsExpTo": ["crossbow_mastery"],
+      "cooldown": 5
+    },
+    {
+      "id": "headshot",
+      "nameKo": "헤드샷",
+      "nameEn": "Headshot",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "🎯",
+      "description": { "ko": "머리를 정확히 노린다. 높은 치명타 확률.", "en": "Aim precisely for the head. High critical chance." },
+      "maxLevel": 15,
+      "expPerLevel": 150,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 70, "critChance": 60, "spCost": 25 } },
+        { "level": 8, "effects": { "baseDamage": 95, "critChance": 75, "spCost": 23 } },
+        { "level": 15, "effects": { "baseDamage": 130, "critChance": 90, "critMultiplier": 0.5, "spCost": 20, "stunChance": 30 } }
+      ],
+      "requirements": { "skills": { "crossbow_mastery": 35, "piercing_bolt": 15 } },
+      "grantsExpTo": ["crossbow_mastery"],
+      "cooldown": 4
+    },
+    {
+      "id": "siege_shot",
+      "nameKo": "공성탄",
+      "nameEn": "Siege Shot",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "🏰",
+      "description": { "ko": "방어구를 완전 무시하는 궁극의 일격.", "en": "The ultimate shot that completely ignores armor." },
+      "maxLevel": 10,
+      "expPerLevel": 200,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 120, "ignoreArmor": 100, "spCost": 38 } },
+        { "level": 5, "effects": { "baseDamage": 160, "ignoreArmor": 100, "spCost": 35, "shieldBreak": true } },
+        { "level": 10, "effects": { "baseDamage": 210, "ignoreArmor": 100, "spCost": 30, "shieldBreak": true, "armorBreak": 30 } }
+      ],
+      "requirements": { "skills": { "crossbow_mastery": 45, "headshot": 10 } },
+      "grantsExpTo": ["crossbow_mastery"],
+      "cooldown": 5
+    }
+  ]
+}

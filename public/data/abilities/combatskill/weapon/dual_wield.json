@@ -1,0 +1,183 @@
+{
+  "category": "weapon",
+  "weaponType": "dual_wield",
+  "nameKo": "쌍수",
+  "nameEn": "Dual Wield",
+  "icon": "⚔️",
+  "description": "양손에 각각 무기를 들고 싸우는 기술. 검과 둔기, 단검과 도끼 등 다양한 조합이 가능하다.",
+  "skills": [
+    {
+      "id": "dual_wield_mastery",
+      "nameKo": "쌍수 수련",
+      "nameEn": "Dual Wield Mastery",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "⚔️",
+      "description": { "ko": "양손 무기의 기본기를 익혀 이중 공격 확률을 높인다.", "en": "Master dual wielding to increase double attack chance." },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        { "level": 1, "effects": { "dualAttackChance": 10, "offhandDamage": 50 } },
+        { "level": 10, "effects": { "dualAttackChance": 20, "offhandDamage": 60 } },
+        { "level": 25, "effects": { "dualAttackChance": 35, "offhandDamage": 70, "attackSpeed": 5 } },
+        { "level": 40, "effects": { "dualAttackChance": 50, "offhandDamage": 80, "attackSpeed": 10 } },
+        { "level": 50, "effects": { "dualAttackChance": 65, "offhandDamage": 90, "attackSpeed": 15, "doubleStrikeChance": 15 } }
+      ],
+      "requirements": {}
+    },
+    {
+      "id": "twin_strike",
+      "nameKo": "쌍격",
+      "nameEn": "Twin Strike",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "⚔️",
+      "description": { "ko": "양손으로 동시에 공격한다.", "en": "Attack simultaneously with both weapons." },
+      "maxLevel": 30,
+      "expPerLevel": 50,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 18, "hitCount": 2, "spCost": 6 } },
+        { "level": 10, "effects": { "baseDamage": 24, "hitCount": 2, "spCost": 6 } },
+        { "level": 20, "effects": { "baseDamage": 32, "hitCount": 2, "spCost": 5 } },
+        { "level": 30, "effects": { "baseDamage": 42, "hitCount": 2, "spCost": 5, "critChance": 10 } }
+      ],
+      "requirements": { "skills": { "dual_wield_mastery": 1 } },
+      "grantsExpTo": ["dual_wield_mastery"],
+      "cooldown": 0
+    },
+    {
+      "id": "whirling_blades",
+      "nameKo": "회전 칼날",
+      "nameEn": "Whirling Blades",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "🌀",
+      "description": { "ko": "회전하며 주변을 베어낸다.", "en": "Spin and slash all around you." },
+      "maxLevel": 25,
+      "expPerLevel": 70,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 22, "hitCount": 3, "aoe": true, "spCost": 14 } },
+        { "level": 10, "effects": { "baseDamage": 30, "hitCount": 4, "aoe": true, "spCost": 13 } },
+        { "level": 20, "effects": { "baseDamage": 40, "hitCount": 5, "aoe": true, "spCost": 11 } },
+        { "level": 25, "effects": { "baseDamage": 48, "hitCount": 6, "aoe": true, "spCost": 10, "bleedChance": 20 } }
+      ],
+      "requirements": { "skills": { "dual_wield_mastery": 10 } },
+      "grantsExpTo": ["dual_wield_mastery"],
+      "cooldown": 3
+    },
+    {
+      "id": "parry_riposte",
+      "nameKo": "패리 리포스트",
+      "nameEn": "Parry Riposte",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "↩️",
+      "description": { "ko": "한 손으로 막고 다른 손으로 반격한다.", "en": "Block with one hand and counter with the other." },
+      "maxLevel": 20,
+      "expPerLevel": 90,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 35, "parryChance": 40, "counterDamage": 25, "spCost": 12 } },
+        { "level": 10, "effects": { "baseDamage": 48, "parryChance": 50, "counterDamage": 35, "spCost": 11 } },
+        { "level": 20, "effects": { "baseDamage": 65, "parryChance": 60, "counterDamage": 50, "spCost": 9 } }
+      ],
+      "requirements": { "skills": { "dual_wield_mastery": 15 } },
+      "grantsExpTo": ["dual_wield_mastery"],
+      "cooldown": 2
+    },
+    {
+      "id": "flurry_of_blades",
+      "nameKo": "칼날의 폭풍",
+      "nameEn": "Flurry of Blades",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "💨",
+      "description": { "ko": "눈에 보이지 않는 속도로 연속 공격.", "en": "Attack with blinding speed." },
+      "maxLevel": 20,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 15, "hitCount": 6, "spCost": 20 } },
+        { "level": 10, "effects": { "baseDamage": 20, "hitCount": 8, "spCost": 18 } },
+        { "level": 20, "effects": { "baseDamage": 28, "hitCount": 10, "spCost": 15, "critChancePerHit": 3 } }
+      ],
+      "requirements": { "skills": { "dual_wield_mastery": 22, "whirling_blades": 12 } },
+      "grantsExpTo": ["dual_wield_mastery"],
+      "cooldown": 4
+    },
+    {
+      "id": "cross_cut",
+      "nameKo": "십자 절단",
+      "nameEn": "Cross Cut",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "✖️",
+      "description": { "ko": "양손으로 X자를 그리며 베어낸다.", "en": "Slash an X pattern with both blades." },
+      "maxLevel": 15,
+      "expPerLevel": 150,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 60, "hitCount": 2, "armorPenetration": 20, "spCost": 22 } },
+        { "level": 8, "effects": { "baseDamage": 80, "hitCount": 2, "armorPenetration": 30, "spCost": 20 } },
+        { "level": 15, "effects": { "baseDamage": 105, "hitCount": 2, "armorPenetration": 40, "spCost": 17, "bleedDamage": 15, "bleedDuration": 3 } }
+      ],
+      "requirements": { "skills": { "dual_wield_mastery": 35, "parry_riposte": 12 } },
+      "grantsExpTo": ["dual_wield_mastery"],
+      "cooldown": 3
+    },
+    {
+      "id": "blade_storm",
+      "nameKo": "칼날 폭풍",
+      "nameEn": "Blade Storm",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "🌪️",
+      "description": { "ko": "쌍수의 궁극기. 끝없는 연속 공격.", "en": "The ultimate dual wield technique. Endless strikes." },
+      "maxLevel": 10,
+      "expPerLevel": 200,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 20, "hitCount": 10, "spCost": 40 } },
+        { "level": 5, "effects": { "baseDamage": 28, "hitCount": 12, "spCost": 38, "critChance": 20 } },
+        { "level": 10, "effects": { "baseDamage": 38, "hitCount": 15, "spCost": 35, "critChance": 30, "evasionDuringAttack": 40 } }
+      ],
+      "requirements": { "skills": { "dual_wield_mastery": 45, "flurry_of_blades": 15 } },
+      "grantsExpTo": ["dual_wield_mastery"],
+      "cooldown": 6
+    },
+    {
+      "id": "mainhand_training",
+      "nameKo": "주손 수련",
+      "nameEn": "Mainhand Training",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🤚",
+      "description": { "ko": "주손 무기의 숙련도를 높여 공격력과 명중률을 향상시킨다.", "en": "Improve mainhand weapon proficiency for increased damage and accuracy." },
+      "maxLevel": 50,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        { "level": 1, "effects": { "mainhandDamage": 5, "accuracy": 3 } },
+        { "level": 10, "effects": { "mainhandDamage": 10, "accuracy": 6 } },
+        { "level": 25, "effects": { "mainhandDamage": 18, "accuracy": 10, "attackSpeed": 3 } },
+        { "level": 40, "effects": { "mainhandDamage": 28, "accuracy": 15, "attackSpeed": 6 } },
+        { "level": 50, "effects": { "mainhandDamage": 40, "accuracy": 20, "attackSpeed": 10, "critChance": 5 } }
+      ],
+      "requirements": {}
+    },
+    {
+      "id": "offhand_training",
+      "nameKo": "보조손 수련",
+      "nameEn": "Offhand Training",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "✋",
+      "description": { "ko": "보조손 무기의 숙련도를 높여 이중 공격과 방어를 강화한다.", "en": "Improve offhand weapon proficiency for dual attacks and defense." },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        { "level": 1, "effects": { "offhandDamage": 55, "offhandAccuracy": 60 } },
+        { "level": 10, "effects": { "offhandDamage": 65, "offhandAccuracy": 70, "blockChance": 5 } },
+        { "level": 25, "effects": { "offhandDamage": 75, "offhandAccuracy": 80, "blockChance": 10, "parryChance": 5 } },
+        { "level": 40, "effects": { "offhandDamage": 85, "offhandAccuracy": 90, "blockChance": 15, "parryChance": 10 } },
+        { "level": 50, "effects": { "offhandDamage": 95, "offhandAccuracy": 100, "blockChance": 20, "parryChance": 15, "dualAttackChance": 10 } }
+      ],
+      "requirements": {}
+    }
+  ]
+}

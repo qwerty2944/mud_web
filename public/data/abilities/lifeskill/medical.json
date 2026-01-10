@@ -1,11 +1,14 @@
 {
-  "version": "1.0.0",
+  "category": "medical",
+  "nameKo": "의료",
+  "nameEn": "Medical",
+  "icon": "🏥",
+  "description": "부상 치료와 HP 회복을 위한 생활 스킬",
   "skills": [
     {
       "id": "first_aid",
       "nameKo": "응급처치",
       "nameEn": "First Aid",
-      "category": "medical",
       "description": "붕대와 기본 도구로 응급 치료를 수행합니다.",
       "icon": "🩹",
       "relatedStats": ["dex", "wis"],
@@ -32,7 +35,6 @@
       "id": "herbalism",
       "nameKo": "약초학",
       "nameEn": "Herbalism",
-      "category": "medical",
       "description": "약초를 이용한 한방 치료를 수행합니다.",
       "icon": "🌿",
       "relatedStats": ["int", "wis"],
@@ -62,7 +64,6 @@
       "id": "surgery",
       "nameKo": "수술",
       "nameEn": "Surgery",
-      "category": "medical",
       "description": "외과 수술로 심각한 부상을 치료합니다.",
       "icon": "🏥",
       "relatedStats": ["dex", "int"],

@@ -1,0 +1,260 @@
+{
+  "element": "holy",
+  "nameKo": "신성",
+  "nameEn": "Holy",
+  "icon": "✨",
+  "description": "신성 속성 마법. 암흑에 강함. 카르마와 신앙심의 영향을 받음. 치유 마법 포함.",
+  "spells": [
+    {
+      "id": "holy_mastery",
+      "nameKo": "신성 마법 숙련",
+      "nameEn": "Holy Mastery",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "✨",
+      "description": { "ko": "신성 마법의 위력을 높이는 기본 숙련.", "en": "Basic mastery that increases holy magic power." },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        { "level": 1, "effects": { "holyDamage": 0 } },
+        { "level": 10, "effects": { "holyDamage": 5 } },
+        { "level": 25, "effects": { "holyDamage": 12, "mpCostReduction": 5 } },
+        { "level": 40, "effects": { "holyDamage": 18, "mpCostReduction": 10 } },
+        { "level": 50, "effects": { "holyDamage": 25, "mpCostReduction": 15, "healBonus": 10 } }
+      ],
+      "requirements": {}
+    },
+    {
+      "id": "divine_light",
+      "nameKo": "신성한 빛",
+      "nameEn": "Divine Light",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "✨",
+      "description": { "ko": "신성한 빛으로 공격. 언데드에게 +50% 피해.", "en": "Attack with divine light. +50% damage vs undead." },
+      "maxLevel": 30,
+      "expPerLevel": 50,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 30, "mpCost": 12, "bonusVsUndead": 50 } },
+        { "level": 10, "effects": { "baseDamage": 38, "mpCost": 11, "bonusVsUndead": 55 } },
+        { "level": 20, "effects": { "baseDamage": 48, "mpCost": 10, "bonusVsUndead": 60 } },
+        { "level": 30, "effects": { "baseDamage": 60, "mpCost": 9, "bonusVsUndead": 70 } }
+      ],
+      "requirements": { "skills": { "holy_mastery": 1 } },
+      "grantsExpTo": ["holy_mastery"],
+      "cooldown": 0
+    },
+    {
+      "id": "minor_heal",
+      "nameKo": "경미한 치유",
+      "nameEn": "Minor Heal",
+      "type": "heal",
+      "usageContext": "both",
+      "icon": "💚",
+      "description": { "ko": "HP의 일부를 회복한다.", "en": "Restore some HP." },
+      "maxLevel": 30,
+      "expPerLevel": 50,
+      "levelBonuses": [
+        { "level": 1, "effects": { "healPercent": 20, "mpCost": 12 } },
+        { "level": 10, "effects": { "healPercent": 25, "mpCost": 11 } },
+        { "level": 20, "effects": { "healPercent": 30, "mpCost": 10 } },
+        { "level": 30, "effects": { "healPercent": 35, "mpCost": 9 } }
+      ],
+      "requirements": { "skills": { "holy_mastery": 1 } },
+      "grantsExpTo": ["holy_mastery"],
+      "cooldown": 0
+    },
+    {
+      "id": "smite",
+      "nameKo": "천벌",
+      "nameEn": "Smite",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "⚡",
+      "description": { "ko": "신의 심판을 내린다. 악마에게 +50% 피해.", "en": "Bring divine judgment. +50% damage vs demons." },
+      "maxLevel": 25,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 45, "mpCost": 18, "bonusVsDemon": 50 } },
+        { "level": 10, "effects": { "baseDamage": 55, "mpCost": 17, "bonusVsDemon": 55 } },
+        { "level": 20, "effects": { "baseDamage": 68, "mpCost": 15, "bonusVsDemon": 60 } },
+        { "level": 25, "effects": { "baseDamage": 80, "mpCost": 14, "bonusVsDemon": 70, "stunChance": 15 } }
+      ],
+      "requirements": { "skills": { "holy_mastery": 15 } },
+      "grantsExpTo": ["holy_mastery"],
+      "cooldown": 2
+    },
+    {
+      "id": "heal",
+      "nameKo": "치유",
+      "nameEn": "Heal",
+      "type": "heal",
+      "usageContext": "both",
+      "icon": "💚",
+      "description": { "ko": "HP를 상당량 회복한다.", "en": "Restore significant HP." },
+      "maxLevel": 25,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        { "level": 1, "effects": { "healPercent": 35, "mpCost": 18 } },
+        { "level": 10, "effects": { "healPercent": 42, "mpCost": 17 } },
+        { "level": 20, "effects": { "healPercent": 50, "mpCost": 15 } },
+        { "level": 25, "effects": { "healPercent": 55, "mpCost": 14 } }
+      ],
+      "requirements": { "skills": { "holy_mastery": 12, "minor_heal": 10 } },
+      "grantsExpTo": ["holy_mastery"],
+      "cooldown": 1
+    },
+    {
+      "id": "purify",
+      "nameKo": "정화",
+      "nameEn": "Purify",
+      "type": "buff",
+      "usageContext": "both",
+      "icon": "🌟",
+      "description": { "ko": "모든 디버프를 제거한다.", "en": "Remove all debuffs." },
+      "maxLevel": 20,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        { "level": 1, "effects": { "removeDebuffs": true, "mpCost": 15 } },
+        { "level": 10, "effects": { "removeDebuffs": true, "mpCost": 13, "debuffImmunity": 1 } },
+        { "level": 20, "effects": { "removeDebuffs": true, "mpCost": 11, "debuffImmunity": 2, "healPercent": 10 } }
+      ],
+      "requirements": { "skills": { "holy_mastery": 18 }, "piety": 2 },
+      "grantsExpTo": ["holy_mastery"],
+      "cooldown": 3
+    },
+    {
+      "id": "regeneration",
+      "nameKo": "재생",
+      "nameEn": "Regeneration",
+      "type": "buff",
+      "usageContext": "both",
+      "icon": "💫",
+      "description": { "ko": "매턴 HP를 회복한다.", "en": "Restore HP each turn." },
+      "maxLevel": 20,
+      "expPerLevel": 90,
+      "levelBonuses": [
+        { "level": 1, "effects": { "healPercentPerTurn": 6, "duration": 4, "mpCost": 20 } },
+        { "level": 10, "effects": { "healPercentPerTurn": 8, "duration": 5, "mpCost": 18 } },
+        { "level": 20, "effects": { "healPercentPerTurn": 10, "duration": 6, "mpCost": 15 } }
+      ],
+      "requirements": { "skills": { "holy_mastery": 20, "heal": 10 } },
+      "grantsExpTo": ["holy_mastery"],
+      "cooldown": 4
+    },
+    {
+      "id": "sacred_shield",
+      "nameKo": "성스러운 방패",
+      "nameEn": "Sacred Shield",
+      "type": "buff",
+      "usageContext": "both",
+      "icon": "🛡️",
+      "description": { "ko": "성스러운 방패로 암흑 피해 감소.", "en": "Create a sacred shield. Reduce dark damage." },
+      "maxLevel": 20,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        { "level": 1, "effects": { "darkResist": 40, "duration": 4, "mpCost": 25 } },
+        { "level": 10, "effects": { "darkResist": 50, "duration": 5, "mpCost": 23 } },
+        { "level": 20, "effects": { "darkResist": 60, "duration": 6, "mpCost": 20, "damageReflect": 10 } }
+      ],
+      "requirements": { "skills": { "holy_mastery": 25 }, "piety": 2 },
+      "grantsExpTo": ["holy_mastery"],
+      "cooldown": 5
+    },
+    {
+      "id": "healing_prayer",
+      "nameKo": "치유의 기도",
+      "nameEn": "Healing Prayer",
+      "type": "heal",
+      "usageContext": "both",
+      "icon": "🙏",
+      "description": { "ko": "HP를 대량 회복한다.", "en": "Restore a large amount of HP." },
+      "maxLevel": 20,
+      "expPerLevel": 120,
+      "levelBonuses": [
+        { "level": 1, "effects": { "healPercent": 50, "mpCost": 25 } },
+        { "level": 10, "effects": { "healPercent": 60, "mpCost": 23 } },
+        { "level": 20, "effects": { "healPercent": 70, "mpCost": 20, "removeDebuffs": true } }
+      ],
+      "requirements": { "skills": { "holy_mastery": 30, "heal": 15 } },
+      "grantsExpTo": ["holy_mastery"],
+      "cooldown": 2
+    },
+    {
+      "id": "mass_heal",
+      "nameKo": "대규모 치유",
+      "nameEn": "Mass Heal",
+      "type": "heal",
+      "usageContext": "both",
+      "icon": "💖",
+      "description": { "ko": "파티 전체의 HP를 회복한다.", "en": "Restore HP to all party members." },
+      "maxLevel": 15,
+      "expPerLevel": 150,
+      "levelBonuses": [
+        { "level": 1, "effects": { "healPercent": 25, "aoe": true, "mpCost": 40 } },
+        { "level": 8, "effects": { "healPercent": 32, "aoe": true, "mpCost": 37 } },
+        { "level": 15, "effects": { "healPercent": 40, "aoe": true, "mpCost": 32 } }
+      ],
+      "requirements": { "skills": { "holy_mastery": 40, "healing_prayer": 10 }, "piety": 3 },
+      "grantsExpTo": ["holy_mastery"],
+      "cooldown": 5
+    },
+    {
+      "id": "exorcism",
+      "nameKo": "퇴마",
+      "nameEn": "Exorcism",
+      "type": "special",
+      "usageContext": "combat_only",
+      "icon": "✝️",
+      "description": { "ko": "언데드/악마 즉사. 레벨 차이 필요.", "en": "Instantly destroy undead/demons. Level difference required." },
+      "maxLevel": 10,
+      "expPerLevel": 200,
+      "levelBonuses": [
+        { "level": 1, "effects": { "instantKillEvil": true, "levelDiffRequired": 8, "mpCost": 40 } },
+        { "level": 5, "effects": { "instantKillEvil": true, "levelDiffRequired": 5, "mpCost": 37 } },
+        { "level": 10, "effects": { "instantKillEvil": true, "levelDiffRequired": 3, "mpCost": 32, "damageOnFail": 50 } }
+      ],
+      "requirements": { "skills": { "holy_mastery": 45, "smite": 15 }, "piety": 4 },
+      "grantsExpTo": ["holy_mastery"],
+      "cooldown": 8
+    },
+    {
+      "id": "divine_intervention",
+      "nameKo": "신의 가호",
+      "nameEn": "Divine Intervention",
+      "type": "special",
+      "usageContext": "both",
+      "icon": "👼",
+      "description": { "ko": "치명상을 1회 회피. 하루 제한.", "en": "Avoid fatal damage once. Limited per day." },
+      "maxLevel": 5,
+      "expPerLevel": 500,
+      "levelBonuses": [
+        { "level": 1, "effects": { "deathSave": true, "dailyLimit": 1, "mpCost": 50 } },
+        { "level": 3, "effects": { "deathSave": true, "dailyLimit": 1, "mpCost": 45, "healOnSave": 10 } },
+        { "level": 5, "effects": { "deathSave": true, "dailyLimit": 2, "mpCost": 40, "healOnSave": 25 } }
+      ],
+      "requirements": { "skills": { "holy_mastery": 50 }, "piety": 5 },
+      "grantsExpTo": ["holy_mastery"],
+      "cooldown": 0
+    },
+    {
+      "id": "divine_heal",
+      "nameKo": "신성 치유",
+      "nameEn": "Divine Heal",
+      "type": "heal",
+      "usageContext": "both",
+      "icon": "💛",
+      "description": { "ko": "HP를 완전히 회복한다. 솔라라 신도 전용.", "en": "Fully restore HP. Solara followers only." },
+      "maxLevel": 5,
+      "expPerLevel": 500,
+      "levelBonuses": [
+        { "level": 1, "effects": { "healPercent": 100, "mpCost": 60 } },
+        { "level": 3, "effects": { "healPercent": 100, "mpCost": 55, "removeDebuffs": true } },
+        { "level": 5, "effects": { "healPercent": 100, "mpCost": 50, "removeDebuffs": true, "buffDuration": 3 } }
+      ],
+      "requirements": { "skills": { "holy_mastery": 50, "healing_prayer": 15 }, "piety": 4, "religion": "solara" },
+      "grantsExpTo": ["holy_mastery"],
+      "cooldown": 8
+    }
+  ]
+}

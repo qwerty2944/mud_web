@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { DynamicUnityCanvas, useAppearanceStore } from "@/features/character";
 
 interface SpriteItem {
@@ -31,7 +32,7 @@ type CategoryData = {
   hand?: "left" | "right";  // 무기 손 위치
 };
 
-export default function EquipmentTestPage() {
+export default function SpriteTestPage() {
   const { callUnity, characterState } = useAppearanceStore();
   const [categories, setCategories] = useState<Record<string, CategoryData>>({});
   const [loading, setLoading] = useState(true);
@@ -193,7 +194,15 @@ export default function EquipmentTestPage() {
 
         {/* 드롭다운 패널 */}
         <div className="w-96 bg-gray-800 p-4 overflow-y-auto">
-          <h1 className="text-xl font-bold mb-4">장비 테스트</h1>
+          <div className="flex items-center justify-between mb-4">
+            <h1 className="text-xl font-bold">스프라이트 테스트</h1>
+            <Link
+              href="/test"
+              className="text-sm text-gray-400 hover:text-white"
+            >
+              ← 목록
+            </Link>
+          </div>
 
           {/* 외형 섹션 */}
           <section className="mb-6">

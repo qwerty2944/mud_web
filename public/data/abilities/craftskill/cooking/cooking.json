@@ -1,0 +1,102 @@
+{
+  "category": "cooking",
+  "nameKo": "요리",
+  "nameEn": "Cooking",
+  "icon": "🍳",
+  "description": "재료를 조리하여 버프 음식을 만듭니다",
+  "relatedStats": ["wis"],
+  "skills": [
+    {
+      "id": "ck_basic_cooking",
+      "nameKo": "기초 요리",
+      "nameEn": "Basic Cooking",
+      "description": "기본적인 요리 기술입니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🍳",
+      "effect": { "buffDuration": 300, "successBonus": 0 },
+      "requirements": { "level": 1 }
+    },
+    {
+      "id": "ck_apprentice_cooking",
+      "nameKo": "견습 요리",
+      "nameEn": "Apprentice Cooking",
+      "description": "버프 지속 시간이 증가합니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🍳",
+      "effect": { "buffDuration": 600, "successBonus": 5 },
+      "requirements": { "level": 10, "prerequisite": "ck_basic_cooking" }
+    },
+    {
+      "id": "ck_journeyman_cooking",
+      "nameKo": "숙련 요리",
+      "nameEn": "Journeyman Cooking",
+      "description": "버프 효과가 향상됩니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🍳",
+      "effect": { "buffDuration": 900, "successBonus": 10, "buffPotency": 1.1 },
+      "requirements": { "level": 20, "prerequisite": "ck_apprentice_cooking" }
+    },
+    {
+      "id": "ck_expert_cooking",
+      "nameKo": "전문 요리",
+      "nameEn": "Expert Cooking",
+      "description": "고급 재료를 사용할 수 있습니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🍳",
+      "effect": { "buffDuration": 1200, "successBonus": 15, "buffPotency": 1.2 },
+      "requirements": { "level": 30, "prerequisite": "ck_journeyman_cooking" }
+    },
+    {
+      "id": "ck_master_cooking",
+      "nameKo": "달인 요리",
+      "nameEn": "Master Cooking",
+      "description": "최고급 요리를 만들 수 있습니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🍳",
+      "effect": { "buffDuration": 1800, "successBonus": 20, "buffPotency": 1.5 },
+      "requirements": { "level": 40, "prerequisite": "ck_expert_cooking" }
+    },
+    {
+      "id": "ck_cook_basic_meal",
+      "nameKo": "기본 식사 조리",
+      "nameEn": "Cook Basic Meal",
+      "description": "HP 회복량을 증가시키는 음식을 만듭니다.",
+      "type": "craft",
+      "usageContext": "field_only",
+      "icon": "🍖",
+      "craftType": "food",
+      "buffType": "hp_regen",
+      "materials": ["meat", "vegetable"],
+      "requirements": { "skill": "ck_basic_cooking" }
+    },
+    {
+      "id": "ck_cook_buff_meal",
+      "nameKo": "버프 음식 조리",
+      "nameEn": "Cook Buff Meal",
+      "description": "능력치를 증가시키는 음식을 만듭니다.",
+      "type": "craft",
+      "usageContext": "field_only",
+      "icon": "🍲",
+      "craftType": "buff_food",
+      "buffType": "stat_up",
+      "materials": ["meat", "spice", "vegetable"],
+      "requirements": { "skill": "ck_apprentice_cooking" }
+    },
+    {
+      "id": "ck_preserve_food",
+      "nameKo": "음식 보존",
+      "nameEn": "Preserve Food",
+      "description": "음식의 유통기한을 연장합니다.",
+      "type": "utility",
+      "usageContext": "field_only",
+      "icon": "🧂",
+      "effect": { "shelfLifeMultiplier": 2 },
+      "requirements": { "skill": "ck_journeyman_cooking" }
+    }
+  ]
+}

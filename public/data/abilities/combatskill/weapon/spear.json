@@ -1,0 +1,145 @@
+{
+  "category": "weapon",
+  "weaponType": "spear",
+  "nameKo": "창",
+  "nameEn": "Spear",
+  "icon": "🔱",
+  "description": "긴 사거리와 관통 공격에 특화된 창술.",
+  "skills": [
+    {
+      "id": "spear_mastery",
+      "nameKo": "창술 수련",
+      "nameEn": "Spear Mastery",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🔱",
+      "description": { "ko": "창의 기본기를 익혀 사거리와 관통력을 높인다.", "en": "Master the reach and piercing power of spear combat." },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        { "level": 1, "effects": { "spearDamage": 0 } },
+        { "level": 10, "effects": { "spearDamage": 5, "reach": 5 } },
+        { "level": 25, "effects": { "spearDamage": 12, "reach": 10, "armorPenetration": 5 } },
+        { "level": 40, "effects": { "spearDamage": 18, "reach": 15, "armorPenetration": 10 } },
+        { "level": 50, "effects": { "spearDamage": 25, "reach": 20, "armorPenetration": 15, "firstStrikeBonus": 20 } }
+      ],
+      "requirements": {}
+    },
+    {
+      "id": "spear_thrust",
+      "nameKo": "창 찌르기",
+      "nameEn": "Spear Thrust",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "🔱",
+      "description": { "ko": "창으로 적을 찌른다.", "en": "Thrust the spear at the enemy." },
+      "maxLevel": 30,
+      "expPerLevel": 50,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 25, "spCost": 5, "armorPenetration": 10 } },
+        { "level": 10, "effects": { "baseDamage": 33, "spCost": 5, "armorPenetration": 15 } },
+        { "level": 20, "effects": { "baseDamage": 43, "spCost": 4, "armorPenetration": 20 } },
+        { "level": 30, "effects": { "baseDamage": 55, "spCost": 4, "armorPenetration": 25, "reach": 10 } }
+      ],
+      "requirements": { "skills": { "spear_mastery": 1 } },
+      "grantsExpTo": ["spear_mastery"],
+      "cooldown": 0
+    },
+    {
+      "id": "impale",
+      "nameKo": "꿰뚫기",
+      "nameEn": "Impale",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "📌",
+      "description": { "ko": "적을 관통하여 꿰뚫는다.", "en": "Pierce through the enemy." },
+      "maxLevel": 25,
+      "expPerLevel": 70,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 35, "armorPenetration": 30, "spCost": 12 } },
+        { "level": 10, "effects": { "baseDamage": 48, "armorPenetration": 40, "spCost": 11 } },
+        { "level": 20, "effects": { "baseDamage": 65, "armorPenetration": 50, "spCost": 10 } },
+        { "level": 25, "effects": { "baseDamage": 75, "armorPenetration": 60, "spCost": 10, "bleedDamage": 8 } }
+      ],
+      "requirements": { "skills": { "spear_mastery": 10 } },
+      "grantsExpTo": ["spear_mastery"],
+      "cooldown": 2
+    },
+    {
+      "id": "sweeping_strike",
+      "nameKo": "휩쓸기",
+      "nameEn": "Sweeping Strike",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "🌀",
+      "description": { "ko": "창을 휘둘러 여러 적을 공격한다.", "en": "Sweep the spear to hit multiple enemies." },
+      "maxLevel": 20,
+      "expPerLevel": 90,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 28, "aoe": true, "spCost": 15 } },
+        { "level": 10, "effects": { "baseDamage": 38, "aoe": true, "spCost": 14 } },
+        { "level": 20, "effects": { "baseDamage": 52, "aoe": true, "spCost": 12, "knockbackChance": 25 } }
+      ],
+      "requirements": { "skills": { "spear_mastery": 15 } },
+      "grantsExpTo": ["spear_mastery"],
+      "cooldown": 3
+    },
+    {
+      "id": "phalanx_stance",
+      "nameKo": "팔랑크스",
+      "nameEn": "Phalanx Stance",
+      "type": "buff",
+      "usageContext": "combat_only",
+      "icon": "🛡️",
+      "description": { "ko": "방어적 자세로 방어력과 반격 기회 증가.", "en": "Defensive stance increasing defense and counter chance." },
+      "maxLevel": 20,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        { "level": 1, "effects": { "defenseBonus": 20, "counterChance": 20, "duration": 4, "spCost": 18 } },
+        { "level": 10, "effects": { "defenseBonus": 30, "counterChance": 30, "duration": 4, "spCost": 16 } },
+        { "level": 20, "effects": { "defenseBonus": 40, "counterChance": 40, "duration": 5, "spCost": 14, "firstStrikeChance": 30 } }
+      ],
+      "requirements": { "skills": { "spear_mastery": 22 } },
+      "grantsExpTo": ["spear_mastery"],
+      "cooldown": 5
+    },
+    {
+      "id": "skewer",
+      "nameKo": "꼬치",
+      "nameEn": "Skewer",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "🍢",
+      "description": { "ko": "여러 적을 한 번에 꿰뚫는다.", "en": "Pierce through multiple enemies at once." },
+      "maxLevel": 15,
+      "expPerLevel": 150,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 45, "pierceTargets": 2, "armorPenetration": 50, "spCost": 25 } },
+        { "level": 8, "effects": { "baseDamage": 60, "pierceTargets": 3, "armorPenetration": 60, "spCost": 23 } },
+        { "level": 15, "effects": { "baseDamage": 80, "pierceTargets": 4, "armorPenetration": 75, "spCost": 20 } }
+      ],
+      "requirements": { "skills": { "spear_mastery": 35, "impale": 15 } },
+      "grantsExpTo": ["spear_mastery"],
+      "cooldown": 4
+    },
+    {
+      "id": "dragon_lance",
+      "nameKo": "용의 창",
+      "nameEn": "Dragon Lance",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "🐉",
+      "description": { "ko": "전력을 다한 돌진 공격.", "en": "A charging attack with full power." },
+      "maxLevel": 10,
+      "expPerLevel": 200,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 100, "armorPenetration": 80, "chargeBonus": 30, "spCost": 35 } },
+        { "level": 5, "effects": { "baseDamage": 130, "armorPenetration": 90, "chargeBonus": 40, "spCost": 32 } },
+        { "level": 10, "effects": { "baseDamage": 170, "armorPenetration": 100, "chargeBonus": 50, "knockdownChance": 60, "spCost": 28 } }
+      ],
+      "requirements": { "skills": { "spear_mastery": 45, "skewer": 10 } },
+      "grantsExpTo": ["spear_mastery"],
+      "cooldown": 5
+    }
+  ]
+}

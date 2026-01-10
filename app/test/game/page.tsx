@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
+import Link from "next/link";
 import { DynamicUnityCanvas, useAppearanceStore } from "@/features/character";
 
 interface SpriteItem {
@@ -44,7 +45,7 @@ const RACE_STYLE_MAP: Record<RaceType, string[]> = {
   tiefling: ["tiefling", "common"],
 };
 
-export default function RaceEquipmentTestPage() {
+export default function GameTestPage() {
   const { callUnity, characterState } = useAppearanceStore();
   const [categories, setCategories] = useState<Record<string, CategoryData>>({});
   const [loading, setLoading] = useState(true);
@@ -247,7 +248,15 @@ export default function RaceEquipmentTestPage() {
 
         {/* 드롭다운 패널 */}
         <div className="w-96 bg-gray-800 p-4 overflow-y-auto">
-          <h1 className="text-xl font-bold mb-4">종족별 장비 테스트</h1>
+          <div className="flex items-center justify-between mb-4">
+            <h1 className="text-xl font-bold">종족별 장비 테스트</h1>
+            <Link
+              href="/test"
+              className="text-sm text-gray-400 hover:text-white"
+            >
+              ← 목록
+            </Link>
+          </div>
 
           {/* 종족 선택 */}
           <section className="mb-6 p-3 bg-gray-700 rounded-lg">

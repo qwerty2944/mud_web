@@ -1,0 +1,252 @@
+{
+  "category": "warcry",
+  "nameKo": "함성",
+  "nameEn": "Warcry",
+  "icon": "📣",
+  "description": "전장에서 외치는 함성으로 아군을 고무하고 적의 사기를 꺾는다.",
+  "relatedStats": ["str", "cha"],
+  "skills": [
+    {
+      "id": "warcry_mastery",
+      "nameKo": "함성 수련",
+      "nameEn": "Warcry Mastery",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "📣",
+      "description": { "ko": "함성의 위력과 지속시간을 증가시킨다.", "en": "Increase warcry power and duration." },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        { "level": 1, "effects": { "warcryPower": 5, "warcryDuration": 0 } },
+        { "level": 10, "effects": { "warcryPower": 12, "warcryDuration": 1 } },
+        { "level": 25, "effects": { "warcryPower": 22, "warcryDuration": 1, "warcryRange": 1 } },
+        { "level": 40, "effects": { "warcryPower": 35, "warcryDuration": 2, "warcryRange": 2 } },
+        { "level": 50, "effects": { "warcryPower": 50, "warcryDuration": 2, "warcryRange": 3, "fearImmunity": true } }
+      ],
+      "requirements": {}
+    },
+    {
+      "id": "battle_cry",
+      "nameKo": "함성",
+      "nameEn": "Battle Cry",
+      "type": "buff",
+      "usageContext": "combat_only",
+      "icon": "📣",
+      "description": { "ko": "우렁찬 함성으로 아군의 사기를 높인다.", "en": "Boost ally morale with a mighty shout." },
+      "maxLevel": 30,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        { "level": 1, "effects": { "attackBonus": 10, "duration": 3, "spCost": 10 } },
+        { "level": 10, "effects": { "attackBonus": 18, "duration": 3, "spCost": 10 } },
+        { "level": 20, "effects": { "attackBonus": 25, "duration": 4, "spCost": 9 } },
+        { "level": 30, "effects": { "attackBonus": 35, "duration": 4, "spCost": 8, "critChance": 5 } }
+      ],
+      "target": "all_allies",
+      "requirements": { "skills": { "warcry_mastery": 1 } },
+      "grantsExpTo": ["warcry_mastery"],
+      "cooldown": 4
+    },
+    {
+      "id": "taunt",
+      "nameKo": "도발",
+      "nameEn": "Taunt",
+      "type": "debuff",
+      "usageContext": "combat_only",
+      "icon": "😤",
+      "description": { "ko": "적을 도발하여 자신만 공격하도록 유도한다.", "en": "Provoke enemy to attack only you." },
+      "maxLevel": 25,
+      "expPerLevel": 50,
+      "levelBonuses": [
+        { "level": 1, "effects": { "tauntDuration": 2, "spCost": 5 } },
+        { "level": 10, "effects": { "tauntDuration": 2, "spCost": 5, "defenseBonus": 10 } },
+        { "level": 20, "effects": { "tauntDuration": 3, "spCost": 4, "defenseBonus": 18 } },
+        { "level": 25, "effects": { "tauntDuration": 3, "spCost": 4, "defenseBonus": 25, "counterChance": 20 } }
+      ],
+      "target": "enemy",
+      "requirements": { "skills": { "warcry_mastery": 5 } },
+      "grantsExpTo": ["warcry_mastery"],
+      "cooldown": 3
+    },
+    {
+      "id": "intimidate",
+      "nameKo": "위협",
+      "nameEn": "Intimidate",
+      "type": "debuff",
+      "usageContext": "combat_only",
+      "icon": "👁️",
+      "description": { "ko": "적을 위협하여 전투력을 약화시킨다.", "en": "Intimidate enemy to weaken their combat power." },
+      "maxLevel": 25,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        { "level": 1, "effects": { "attackReduction": 15, "duration": 3, "spCost": 8 } },
+        { "level": 10, "effects": { "attackReduction": 22, "duration": 3, "spCost": 8 } },
+        { "level": 20, "effects": { "attackReduction": 30, "duration": 4, "spCost": 7 } },
+        { "level": 25, "effects": { "attackReduction": 38, "duration": 4, "spCost": 6, "fleeChance": 10 } }
+      ],
+      "target": "enemy",
+      "requirements": { "skills": { "warcry_mastery": 8 } },
+      "grantsExpTo": ["warcry_mastery"],
+      "cooldown": 3
+    },
+    {
+      "id": "rally",
+      "nameKo": "집결",
+      "nameEn": "Rally",
+      "type": "utility",
+      "usageContext": "combat_only",
+      "icon": "🚩",
+      "description": { "ko": "아군을 독려하여 상태이상을 해제한다.", "en": "Rally allies to cleanse debuffs." },
+      "maxLevel": 20,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        { "level": 1, "effects": { "cleanse": 1, "spCost": 12 } },
+        { "level": 10, "effects": { "cleanse": 2, "spCost": 11, "immuneDuration": 1 } },
+        { "level": 20, "effects": { "cleanse": 3, "spCost": 10, "immuneDuration": 2, "healPercent": 5 } }
+      ],
+      "target": "all_allies",
+      "requirements": { "skills": { "warcry_mastery": 15 } },
+      "grantsExpTo": ["warcry_mastery"],
+      "cooldown": 5
+    },
+    {
+      "id": "war_howl",
+      "nameKo": "전쟁의 울부짖음",
+      "nameEn": "War Howl",
+      "type": "debuff",
+      "usageContext": "combat_only",
+      "icon": "🐺",
+      "description": { "ko": "공포스러운 울부짖음으로 적 전체에게 공포를 부여한다.", "en": "Terrifying howl that fears all enemies." },
+      "maxLevel": 20,
+      "expPerLevel": 90,
+      "levelBonuses": [
+        { "level": 1, "effects": { "fearChance": 40, "fearDuration": 2, "spCost": 15 } },
+        { "level": 10, "effects": { "fearChance": 55, "fearDuration": 2, "spCost": 14 } },
+        { "level": 20, "effects": { "fearChance": 70, "fearDuration": 3, "spCost": 12, "attackReduction": 15 } }
+      ],
+      "target": "all_enemies",
+      "requirements": { "skills": { "warcry_mastery": 20, "intimidate": 15 } },
+      "grantsExpTo": ["warcry_mastery"],
+      "cooldown": 5
+    },
+    {
+      "id": "defiant_roar",
+      "nameKo": "반항의 포효",
+      "nameEn": "Defiant Roar",
+      "type": "buff",
+      "usageContext": "combat_only",
+      "icon": "🦁",
+      "description": { "ko": "위기 상황에서 포효하여 방어력을 대폭 증가시킨다.", "en": "Roar defiantly when in danger for massive defense boost." },
+      "maxLevel": 15,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        { "level": 1, "effects": { "defenseBonus": 50, "duration": 3, "hpThreshold": 30, "spCost": 18 } },
+        { "level": 8, "effects": { "defenseBonus": 70, "duration": 3, "hpThreshold": 40, "spCost": 16 } },
+        { "level": 15, "effects": { "defenseBonus": 100, "duration": 4, "hpThreshold": 50, "spCost": 14, "reflectDamage": 15 } }
+      ],
+      "target": "self",
+      "requirements": { "skills": { "warcry_mastery": 25 } },
+      "grantsExpTo": ["warcry_mastery"],
+      "cooldown": 6
+    },
+    {
+      "id": "berserker_rage",
+      "nameKo": "광전사의 분노",
+      "nameEn": "Berserker Rage",
+      "type": "buff",
+      "usageContext": "combat_only",
+      "icon": "🔥",
+      "description": { "ko": "광기에 휩싸여 공격력이 대폭 증가하지만 방어력이 감소한다.", "en": "Enter a berserker rage for massive attack at the cost of defense." },
+      "maxLevel": 15,
+      "expPerLevel": 120,
+      "levelBonuses": [
+        { "level": 1, "effects": { "attackBonus": 40, "defenseReduction": 25, "duration": 4, "spCost": 20 } },
+        { "level": 8, "effects": { "attackBonus": 60, "defenseReduction": 20, "duration": 4, "spCost": 18, "critChance": 15 } },
+        { "level": 15, "effects": { "attackBonus": 80, "defenseReduction": 15, "duration": 5, "spCost": 16, "critChance": 25, "lifeSteal": 10 } }
+      ],
+      "target": "self",
+      "requirements": { "skills": { "warcry_mastery": 30, "battle_cry": 20 } },
+      "grantsExpTo": ["warcry_mastery"],
+      "cooldown": 6
+    },
+    {
+      "id": "coordinated_assault",
+      "nameKo": "협동 공격",
+      "nameEn": "Coordinated Assault",
+      "type": "buff",
+      "usageContext": "combat_only",
+      "icon": "🎯",
+      "description": { "ko": "아군의 공격을 조율하여 치명타 확률을 높인다.", "en": "Coordinate ally attacks for increased critical chance." },
+      "maxLevel": 20,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        { "level": 1, "effects": { "critChance": 15, "duration": 3, "spCost": 15 } },
+        { "level": 10, "effects": { "critChance": 25, "duration": 3, "spCost": 14 } },
+        { "level": 20, "effects": { "critChance": 35, "duration": 4, "spCost": 12, "critDamage": 20 } }
+      ],
+      "target": "all_allies",
+      "requirements": { "skills": { "warcry_mastery": 22, "battle_cry": 15 } },
+      "grantsExpTo": ["warcry_mastery"],
+      "cooldown": 5
+    },
+    {
+      "id": "demoralizing_shout",
+      "nameKo": "사기 저하",
+      "nameEn": "Demoralizing Shout",
+      "type": "debuff",
+      "usageContext": "combat_only",
+      "icon": "📢",
+      "description": { "ko": "적 전체의 사기를 꺾어 공격력과 방어력을 동시에 감소시킨다.", "en": "Demoralize all enemies, reducing both attack and defense." },
+      "maxLevel": 15,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        { "level": 1, "effects": { "attackReduction": 12, "defenseReduction": 12, "duration": 3, "spCost": 18 } },
+        { "level": 8, "effects": { "attackReduction": 18, "defenseReduction": 18, "duration": 3, "spCost": 16 } },
+        { "level": 15, "effects": { "attackReduction": 25, "defenseReduction": 25, "duration": 4, "spCost": 14, "speedReduction": 15 } }
+      ],
+      "target": "all_enemies",
+      "requirements": { "skills": { "warcry_mastery": 28, "intimidate": 18 } },
+      "grantsExpTo": ["warcry_mastery"],
+      "cooldown": 5
+    },
+    {
+      "id": "victory_shout",
+      "nameKo": "승리의 함성",
+      "nameEn": "Victory Shout",
+      "type": "buff",
+      "usageContext": "combat_only",
+      "icon": "🏆",
+      "description": { "ko": "적 처치 시 아군 전체의 HP를 회복시킨다.", "en": "Heal all allies when an enemy is defeated." },
+      "maxLevel": 15,
+      "expPerLevel": 120,
+      "levelBonuses": [
+        { "level": 1, "effects": { "healOnKill": 8, "duration": 5, "spCost": 20 } },
+        { "level": 8, "effects": { "healOnKill": 12, "duration": 5, "spCost": 18, "spRecoverOnKill": 3 } },
+        { "level": 15, "effects": { "healOnKill": 18, "duration": 6, "spCost": 15, "spRecoverOnKill": 5, "attackBonusOnKill": 10 } }
+      ],
+      "target": "all_allies",
+      "requirements": { "skills": { "warcry_mastery": 35, "rally": 12 } },
+      "grantsExpTo": ["warcry_mastery"],
+      "cooldown": 6
+    },
+    {
+      "id": "inspiring_presence",
+      "nameKo": "고무",
+      "nameEn": "Inspiring Presence",
+      "type": "buff",
+      "usageContext": "combat_only",
+      "icon": "✨",
+      "description": { "ko": "강력한 존재감으로 아군 전체의 능력치를 향상시킨다.", "en": "Your inspiring presence boosts all ally stats." },
+      "maxLevel": 10,
+      "expPerLevel": 150,
+      "levelBonuses": [
+        { "level": 1, "effects": { "allStatsBonus": 8, "duration": 4, "spCost": 25 } },
+        { "level": 5, "effects": { "allStatsBonus": 12, "duration": 5, "spCost": 23 } },
+        { "level": 10, "effects": { "allStatsBonus": 18, "duration": 6, "spCost": 20, "resistanceBonus": 15 } }
+      ],
+      "target": "all_allies",
+      "requirements": { "skills": { "warcry_mastery": 45, "coordinated_assault": 15 } },
+      "grantsExpTo": ["warcry_mastery"],
+      "cooldown": 7
+    }
+  ]
+}

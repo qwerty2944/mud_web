@@ -1,0 +1,201 @@
+{
+  "element": "dark",
+  "nameKo": "암흑",
+  "nameEn": "Dark",
+  "icon": "🌑",
+  "description": "암흑 속성 마법. 신성에 강함. 카르마의 영향을 받음.",
+  "spells": [
+    {
+      "id": "dark_mastery",
+      "nameKo": "암흑 마법 숙련",
+      "nameEn": "Dark Mastery",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🌑",
+      "description": { "ko": "암흑 마법의 위력을 높이는 기본 숙련.", "en": "Basic mastery that increases dark magic power." },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        { "level": 1, "effects": { "darkDamage": 0 } },
+        { "level": 10, "effects": { "darkDamage": 5 } },
+        { "level": 25, "effects": { "darkDamage": 12, "mpCostReduction": 5 } },
+        { "level": 40, "effects": { "darkDamage": 18, "mpCostReduction": 10 } },
+        { "level": 50, "effects": { "darkDamage": 25, "mpCostReduction": 15, "lifestealBonus": 10 } }
+      ],
+      "requirements": {}
+    },
+    {
+      "id": "shadow_bolt",
+      "nameKo": "그림자 화살",
+      "nameEn": "Shadow Bolt",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "🌑",
+      "description": { "ko": "어둠의 화살을 발사한다.", "en": "Fire a bolt of shadow." },
+      "maxLevel": 30,
+      "expPerLevel": 50,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 30, "mpCost": 12 } },
+        { "level": 10, "effects": { "baseDamage": 38, "mpCost": 11 } },
+        { "level": 20, "effects": { "baseDamage": 48, "mpCost": 10 } },
+        { "level": 30, "effects": { "baseDamage": 60, "mpCost": 9, "blindChance": 15 } }
+      ],
+      "requirements": { "skills": { "dark_mastery": 1 } },
+      "grantsExpTo": ["dark_mastery"],
+      "cooldown": 0
+    },
+    {
+      "id": "life_drain",
+      "nameKo": "생명력 흡수",
+      "nameEn": "Life Drain",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "💀",
+      "description": { "ko": "피해의 일부를 HP로 흡수한다.", "en": "Absorb a portion of damage dealt as HP." },
+      "maxLevel": 25,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 25, "lifestealPercent": 40, "mpCost": 18 } },
+        { "level": 10, "effects": { "baseDamage": 32, "lifestealPercent": 50, "mpCost": 17 } },
+        { "level": 20, "effects": { "baseDamage": 42, "lifestealPercent": 60, "mpCost": 15 } },
+        { "level": 25, "effects": { "baseDamage": 50, "lifestealPercent": 70, "mpCost": 14 } }
+      ],
+      "requirements": { "skills": { "dark_mastery": 12 } },
+      "grantsExpTo": ["dark_mastery"],
+      "cooldown": 2
+    },
+    {
+      "id": "curse",
+      "nameKo": "저주",
+      "nameEn": "Curse",
+      "type": "debuff",
+      "usageContext": "combat_only",
+      "icon": "☠️",
+      "description": { "ko": "저주를 걸어 받는 피해를 증가시킨다.", "en": "Curse the target, increasing damage taken." },
+      "maxLevel": 20,
+      "expPerLevel": 90,
+      "levelBonuses": [
+        { "level": 1, "effects": { "damageAmplify": 15, "duration": 4, "mpCost": 15 } },
+        { "level": 10, "effects": { "damageAmplify": 20, "duration": 5, "mpCost": 14 } },
+        { "level": 20, "effects": { "damageAmplify": 30, "duration": 6, "mpCost": 12, "healReduction": 30 } }
+      ],
+      "requirements": { "skills": { "dark_mastery": 18 } },
+      "grantsExpTo": ["dark_mastery"],
+      "cooldown": 3
+    },
+    {
+      "id": "fear",
+      "nameKo": "공포",
+      "nameEn": "Fear",
+      "type": "debuff",
+      "usageContext": "combat_only",
+      "icon": "😱",
+      "description": { "ko": "공포에 빠뜨려 공격력 감소, 도주 불가.", "en": "Instill fear. Reduce attack, cannot flee." },
+      "maxLevel": 20,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        { "level": 1, "effects": { "attackReduction": 25, "duration": 2, "noFlee": true, "mpCost": 20 } },
+        { "level": 10, "effects": { "attackReduction": 30, "duration": 3, "noFlee": true, "mpCost": 18 } },
+        { "level": 20, "effects": { "attackReduction": 40, "duration": 4, "noFlee": true, "mpCost": 15, "defenseReduction": 20 } }
+      ],
+      "requirements": { "skills": { "dark_mastery": 22 }, "karma": -30 },
+      "grantsExpTo": ["dark_mastery"],
+      "cooldown": 4
+    },
+    {
+      "id": "pestilence",
+      "nameKo": "역병",
+      "nameEn": "Pestilence",
+      "type": "dot",
+      "usageContext": "combat_only",
+      "icon": "🦠",
+      "description": { "ko": "역병을 퍼뜨려 지속 피해를 입힌다.", "en": "Spread pestilence dealing damage over time." },
+      "maxLevel": 20,
+      "expPerLevel": 90,
+      "levelBonuses": [
+        { "level": 1, "effects": { "damagePerTurn": 10, "duration": 5, "mpCost": 22 } },
+        { "level": 10, "effects": { "damagePerTurn": 15, "duration": 6, "mpCost": 20 } },
+        { "level": 20, "effects": { "damagePerTurn": 22, "duration": 7, "mpCost": 17, "spreadChance": 30 } }
+      ],
+      "requirements": { "skills": { "dark_mastery": 30 } },
+      "grantsExpTo": ["dark_mastery"],
+      "cooldown": 4
+    },
+    {
+      "id": "soul_rend",
+      "nameKo": "영혼 파열",
+      "nameEn": "Soul Rend",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "👻",
+      "description": { "ko": "영혼을 찢는 공격. WIS 방어 무시.", "en": "Tear at the soul. Ignores WIS defense." },
+      "maxLevel": 20,
+      "expPerLevel": 120,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 50, "ignoreWisdom": true, "mpCost": 25 } },
+        { "level": 10, "effects": { "baseDamage": 65, "ignoreWisdom": true, "mpCost": 23 } },
+        { "level": 20, "effects": { "baseDamage": 85, "ignoreWisdom": true, "mpCost": 20, "mpDrain": 15 } }
+      ],
+      "requirements": { "skills": { "dark_mastery": 35 }, "karma": -50 },
+      "grantsExpTo": ["dark_mastery"],
+      "cooldown": 3
+    },
+    {
+      "id": "death_coil",
+      "nameKo": "죽음의 고리",
+      "nameEn": "Death Coil",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "💀",
+      "description": { "ko": "죽음의 고리로 피해와 기절.", "en": "Death coil deals damage and stuns." },
+      "maxLevel": 15,
+      "expPerLevel": 150,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 40, "stunDuration": 1, "mpCost": 30 } },
+        { "level": 8, "effects": { "baseDamage": 55, "stunDuration": 2, "mpCost": 28 } },
+        { "level": 15, "effects": { "baseDamage": 75, "stunDuration": 2, "mpCost": 25, "lifestealPercent": 30 } }
+      ],
+      "requirements": { "skills": { "dark_mastery": 40 }, "karma": -70 },
+      "grantsExpTo": ["dark_mastery"],
+      "cooldown": 4
+    },
+    {
+      "id": "summon_shadow",
+      "nameKo": "그림자 소환",
+      "nameEn": "Summon Shadow",
+      "type": "special",
+      "usageContext": "combat_only",
+      "icon": "👤",
+      "description": { "ko": "그림자를 소환하여 함께 싸운다.", "en": "Summon a shadow to fight alongside you." },
+      "maxLevel": 10,
+      "expPerLevel": 200,
+      "levelBonuses": [
+        { "level": 1, "effects": { "summonDamage": 15, "summonHp": 30, "duration": 4, "mpCost": 35 } },
+        { "level": 5, "effects": { "summonDamage": 22, "summonHp": 45, "duration": 5, "mpCost": 32 } },
+        { "level": 10, "effects": { "summonDamage": 30, "summonHp": 60, "duration": 6, "mpCost": 28, "summonCount": 2 } }
+      ],
+      "requirements": { "skills": { "dark_mastery": 45 } },
+      "grantsExpTo": ["dark_mastery"],
+      "cooldown": 6
+    },
+    {
+      "id": "doom",
+      "nameKo": "파멸",
+      "nameEn": "Doom",
+      "type": "special",
+      "usageContext": "combat_only",
+      "icon": "💀",
+      "description": { "ko": "일정 턴 후 대상을 즉사시킨다.", "en": "Instantly kill target after certain turns." },
+      "maxLevel": 5,
+      "expPerLevel": 500,
+      "levelBonuses": [
+        { "level": 1, "effects": { "doomTurns": 5, "mpCost": 50 } },
+        { "level": 3, "effects": { "doomTurns": 4, "mpCost": 45, "damageOnRemove": 30 } },
+        { "level": 5, "effects": { "doomTurns": 3, "mpCost": 40, "damageOnRemove": 50, "ignoreResist": true } }
+      ],
+      "requirements": { "skills": { "dark_mastery": 50, "death_coil": 10 }, "karma": -80 },
+      "grantsExpTo": ["dark_mastery"],
+      "cooldown": 10
+    }
+  ]
+}

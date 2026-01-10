@@ -1,0 +1,145 @@
+{
+  "category": "weapon",
+  "weaponType": "mace",
+  "nameKo": "둔기",
+  "nameEn": "Mace",
+  "icon": "🔨",
+  "description": "방어구를 무시하는 타격과 기절에 특화된 둔기술.",
+  "skills": [
+    {
+      "id": "mace_mastery",
+      "nameKo": "둔기술 수련",
+      "nameEn": "Mace Mastery",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🔨",
+      "description": { "ko": "둔기의 기본기를 익혀 방어구 무시 타격을 가한다.", "en": "Master the armor-crushing power of mace combat." },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        { "level": 1, "effects": { "maceDamage": 0 } },
+        { "level": 10, "effects": { "maceDamage": 5, "ignoreArmor": 3 } },
+        { "level": 25, "effects": { "maceDamage": 12, "ignoreArmor": 8, "stunChance": 3 } },
+        { "level": 40, "effects": { "maceDamage": 18, "ignoreArmor": 12, "stunChance": 5 } },
+        { "level": 50, "effects": { "maceDamage": 25, "ignoreArmor": 18, "stunChance": 8, "bonusVsArmored": 15 } }
+      ],
+      "requirements": {}
+    },
+    {
+      "id": "smash",
+      "nameKo": "내려치기",
+      "nameEn": "Smash",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "🔨",
+      "description": { "ko": "둔기로 강하게 내려친다.", "en": "Smash down with the mace." },
+      "maxLevel": 30,
+      "expPerLevel": 50,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 28, "spCost": 6, "ignoreArmor": 10 } },
+        { "level": 10, "effects": { "baseDamage": 38, "spCost": 6, "ignoreArmor": 15 } },
+        { "level": 20, "effects": { "baseDamage": 50, "spCost": 5, "ignoreArmor": 20 } },
+        { "level": 30, "effects": { "baseDamage": 65, "spCost": 5, "ignoreArmor": 25, "stunChance": 10 } }
+      ],
+      "requirements": { "skills": { "mace_mastery": 1 } },
+      "grantsExpTo": ["mace_mastery"],
+      "cooldown": 0
+    },
+    {
+      "id": "concussion",
+      "nameKo": "뇌진탕",
+      "nameEn": "Concussion",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "💫",
+      "description": { "ko": "머리를 강타하여 기절시킨다.", "en": "Strike the head to cause stun." },
+      "maxLevel": 25,
+      "expPerLevel": 70,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 25, "stunChance": 35, "stunDuration": 1, "spCost": 12 } },
+        { "level": 10, "effects": { "baseDamage": 35, "stunChance": 45, "stunDuration": 1, "spCost": 11 } },
+        { "level": 20, "effects": { "baseDamage": 48, "stunChance": 55, "stunDuration": 2, "spCost": 10 } },
+        { "level": 25, "effects": { "baseDamage": 55, "stunChance": 65, "stunDuration": 2, "spCost": 9 } }
+      ],
+      "requirements": { "skills": { "mace_mastery": 10 } },
+      "grantsExpTo": ["mace_mastery"],
+      "cooldown": 3
+    },
+    {
+      "id": "crushing_blow",
+      "nameKo": "분쇄의 일격",
+      "nameEn": "Crushing Blow",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "💥",
+      "description": { "ko": "갑옷을 완전히 무시하는 강타.", "en": "A blow that completely ignores armor." },
+      "maxLevel": 20,
+      "expPerLevel": 90,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 45, "ignoreArmor": 100, "spCost": 18 } },
+        { "level": 10, "effects": { "baseDamage": 60, "ignoreArmor": 100, "spCost": 16 } },
+        { "level": 20, "effects": { "baseDamage": 80, "ignoreArmor": 100, "spCost": 14, "armorBreak": 20 } }
+      ],
+      "requirements": { "skills": { "mace_mastery": 18 } },
+      "grantsExpTo": ["mace_mastery"],
+      "cooldown": 3
+    },
+    {
+      "id": "holy_hammer",
+      "nameKo": "성스러운 망치",
+      "nameEn": "Holy Hammer",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "✨",
+      "description": { "ko": "신성한 힘을 담은 타격. 언데드에 강함.", "en": "Strike with holy power. Strong vs undead." },
+      "maxLevel": 20,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 40, "holyDamage": 15, "bonusVsUndead": 50, "spCost": 20 } },
+        { "level": 10, "effects": { "baseDamage": 55, "holyDamage": 22, "bonusVsUndead": 60, "spCost": 18 } },
+        { "level": 20, "effects": { "baseDamage": 75, "holyDamage": 30, "bonusVsUndead": 75, "spCost": 16, "stunChance": 20 } }
+      ],
+      "requirements": { "skills": { "mace_mastery": 25, "concussion": 10 } },
+      "grantsExpTo": ["mace_mastery"],
+      "cooldown": 4
+    },
+    {
+      "id": "shockwave",
+      "nameKo": "충격파",
+      "nameEn": "Shockwave",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "🌊",
+      "description": { "ko": "바닥을 강타하여 충격파를 일으킨다.", "en": "Slam the ground creating a shockwave." },
+      "maxLevel": 15,
+      "expPerLevel": 150,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 35, "aoe": true, "knockdownChance": 30, "spCost": 25 } },
+        { "level": 8, "effects": { "baseDamage": 50, "aoe": true, "knockdownChance": 40, "spCost": 23 } },
+        { "level": 15, "effects": { "baseDamage": 70, "aoe": true, "knockdownChance": 55, "stunDuration": 1, "spCost": 20 } }
+      ],
+      "requirements": { "skills": { "mace_mastery": 35, "crushing_blow": 12 } },
+      "grantsExpTo": ["mace_mastery"],
+      "cooldown": 4
+    },
+    {
+      "id": "skull_crusher",
+      "nameKo": "두개골 분쇄",
+      "nameEn": "Skull Crusher",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "💀",
+      "description": { "ko": "머리를 노린 치명적 일격.", "en": "A deadly blow aimed at the skull." },
+      "maxLevel": 10,
+      "expPerLevel": 200,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 100, "ignoreArmor": 100, "stunDuration": 2, "spCost": 35 } },
+        { "level": 5, "effects": { "baseDamage": 130, "ignoreArmor": 100, "stunDuration": 2, "spCost": 32, "confuseChance": 30 } },
+        { "level": 10, "effects": { "baseDamage": 170, "ignoreArmor": 100, "stunDuration": 3, "spCost": 28, "confuseChance": 50, "critChance": 25 } }
+      ],
+      "requirements": { "skills": { "mace_mastery": 45, "shockwave": 10 } },
+      "grantsExpTo": ["mace_mastery"],
+      "cooldown": 5
+    }
+  ]
+}

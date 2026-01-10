@@ -1,0 +1,39 @@
+{
+  "version": "1.0.0",
+  "description": "마법 주문 메타데이터",
+  "elements": [
+    { "id": "fire", "nameKo": "화염", "nameEn": "Fire", "icon": "🔥", "strongVs": "ice", "weakVs": "earth" },
+    { "id": "ice", "nameKo": "냉기", "nameEn": "Ice", "icon": "❄️", "strongVs": "lightning", "weakVs": "fire" },
+    { "id": "lightning", "nameKo": "번개", "nameEn": "Lightning", "icon": "⚡", "strongVs": "earth", "weakVs": "ice" },
+    { "id": "earth", "nameKo": "대지", "nameEn": "Earth", "icon": "🪨", "strongVs": "fire", "weakVs": "lightning" },
+    { "id": "holy", "nameKo": "신성", "nameEn": "Holy", "icon": "✨", "strongVs": "dark", "weakVs": null },
+    { "id": "dark", "nameKo": "암흑", "nameEn": "Dark", "icon": "🌑", "strongVs": "holy", "weakVs": null }
+  ],
+  "spellTypes": [
+    { "id": "attack", "nameKo": "공격", "nameEn": "Attack" },
+    { "id": "heal", "nameKo": "치유", "nameEn": "Heal" },
+    { "id": "buff", "nameKo": "버프", "nameEn": "Buff" },
+    { "id": "debuff", "nameKo": "디버프", "nameEn": "Debuff" },
+    { "id": "dot", "nameKo": "지속피해", "nameEn": "DoT" },
+    { "id": "special", "nameKo": "특수", "nameEn": "Special" }
+  ],
+  "karmaEffects": {
+    "holy": {
+      "positive": { "threshold": 20, "bonus": 0.15 },
+      "negative": { "threshold": -20, "penalty": 0.15 }
+    },
+    "dark": {
+      "positive": { "threshold": 20, "penalty": 0.15 },
+      "negative": { "threshold": -20, "bonus": 0.15 }
+    }
+  },
+  "dayBoosts": {
+    "월": { "element": "ice", "bonus": 0.2 },
+    "화": { "element": "fire", "bonus": 0.2 },
+    "수": { "element": "lightning", "bonus": 0.2 },
+    "목": { "element": "earth", "bonus": 0.2 },
+    "금": { "element": "holy", "bonus": 0.2 },
+    "토": { "element": "dark", "bonus": 0.2 },
+    "일": { "element": null, "bonus": 0 }
+  }
+}

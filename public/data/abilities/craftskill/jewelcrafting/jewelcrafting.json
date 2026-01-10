@@ -1,0 +1,111 @@
+{
+  "category": "jewelcrafting",
+  "nameKo": "보석세공",
+  "nameEn": "Jewelcrafting",
+  "icon": "💎",
+  "description": "보석을 가공하여 악세서리를 제작합니다",
+  "relatedStats": ["dex", "int"],
+  "skills": [
+    {
+      "id": "jc_basic_crafting",
+      "nameKo": "기초 세공",
+      "nameEn": "Basic Jewelcrafting",
+      "description": "기본적인 보석 가공 기술입니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "💎",
+      "effect": { "craftTier": "common", "gemSlots": 0 },
+      "requirements": { "level": 1 }
+    },
+    {
+      "id": "jc_apprentice_crafting",
+      "nameKo": "견습 세공",
+      "nameEn": "Apprentice Jewelcrafting",
+      "description": "고급 등급까지 제작하고 보석 1개를 박을 수 있습니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "💎",
+      "effect": { "craftTier": "grand", "gemSlots": 1 },
+      "requirements": { "level": 10, "prerequisite": "jc_basic_crafting" }
+    },
+    {
+      "id": "jc_journeyman_crafting",
+      "nameKo": "숙련 세공",
+      "nameEn": "Journeyman Jewelcrafting",
+      "description": "희귀 등급까지 제작이 가능합니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "💎",
+      "effect": { "craftTier": "rare", "gemSlots": 1 },
+      "requirements": { "level": 20, "prerequisite": "jc_apprentice_crafting" }
+    },
+    {
+      "id": "jc_expert_crafting",
+      "nameKo": "전문 세공",
+      "nameEn": "Expert Jewelcrafting",
+      "description": "고대 등급까지 제작하고 보석 2개를 박을 수 있습니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "💎",
+      "effect": { "craftTier": "arcane", "gemSlots": 2 },
+      "requirements": { "level": 30, "prerequisite": "jc_journeyman_crafting" }
+    },
+    {
+      "id": "jc_master_crafting",
+      "nameKo": "달인 세공",
+      "nameEn": "Master Jewelcrafting",
+      "description": "영웅 등급까지 제작하고 보석 3개를 박을 수 있습니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "💎",
+      "effect": { "craftTier": "heroic", "gemSlots": 3 },
+      "requirements": { "level": 40, "prerequisite": "jc_expert_crafting" }
+    },
+    {
+      "id": "jc_craft_ring",
+      "nameKo": "반지 제작",
+      "nameEn": "Craft Ring",
+      "description": "반지를 제작합니다.",
+      "type": "craft",
+      "usageContext": "field_only",
+      "icon": "💍",
+      "craftType": "ring",
+      "materials": ["metal_ingot", "gem"],
+      "requirements": { "skill": "jc_basic_crafting" }
+    },
+    {
+      "id": "jc_craft_necklace",
+      "nameKo": "목걸이 제작",
+      "nameEn": "Craft Necklace",
+      "description": "목걸이를 제작합니다.",
+      "type": "craft",
+      "usageContext": "field_only",
+      "icon": "📿",
+      "craftType": "necklace",
+      "materials": ["metal_ingot", "gem", "chain"],
+      "requirements": { "skill": "jc_apprentice_crafting" }
+    },
+    {
+      "id": "jc_socket_gem",
+      "nameKo": "보석 장착",
+      "nameEn": "Socket Gem",
+      "description": "장비에 보석을 장착합니다.",
+      "type": "utility",
+      "usageContext": "field_only",
+      "icon": "✨",
+      "requirements": { "skill": "jc_apprentice_crafting" }
+    },
+    {
+      "id": "jc_cut_gem",
+      "nameKo": "보석 커팅",
+      "nameEn": "Cut Gem",
+      "description": "원석을 가공하여 보석으로 만듭니다.",
+      "type": "craft",
+      "usageContext": "field_only",
+      "icon": "💠",
+      "craftType": "gem",
+      "materials": ["raw_gem"],
+      "requirements": { "skill": "jc_basic_crafting" }
+    }
+  ]
+}

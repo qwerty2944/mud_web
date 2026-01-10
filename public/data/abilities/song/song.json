@@ -1,0 +1,332 @@
+{
+  "category": "song",
+  "nameKo": "노래",
+  "nameEn": "Song",
+  "icon": "🎵",
+  "description": "음악의 힘으로 아군을 돕고 적을 약화시킨다. 유지형 노래는 부르는 동안 효과가 지속되며, 즉시형은 한 번 부르면 효과가 적용된다.",
+  "relatedStats": ["cha", "wis"],
+  "skills": [
+    {
+      "id": "song_mastery",
+      "nameKo": "노래 수련",
+      "nameEn": "Song Mastery",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🎵",
+      "description": { "ko": "노래의 효과와 지속시간을 증가시킨다.", "en": "Increase song effects and duration." },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        { "level": 1, "effects": { "songPower": 5, "songDuration": 0 } },
+        { "level": 10, "effects": { "songPower": 12, "songDuration": 1, "mpCostReduction": 5 } },
+        { "level": 25, "effects": { "songPower": 22, "songDuration": 1, "mpCostReduction": 10, "songRange": 1 } },
+        { "level": 40, "effects": { "songPower": 35, "songDuration": 2, "mpCostReduction": 15, "songRange": 2 } },
+        { "level": 50, "effects": { "songPower": 50, "songDuration": 2, "mpCostReduction": 20, "songRange": 3, "dualSong": true } }
+      ],
+      "requirements": {}
+    },
+    {
+      "id": "perfect_pitch",
+      "nameKo": "완벽한 음정",
+      "nameEn": "Perfect Pitch",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🎼",
+      "description": { "ko": "정확한 음정으로 노래의 실패 확률을 줄이고 효율을 높인다.", "en": "Perfect pitch reduces song failure and improves efficiency." },
+      "maxLevel": 30,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        { "level": 1, "effects": { "songSuccessRate": 5, "mpCostReduction": 3 } },
+        { "level": 10, "effects": { "songSuccessRate": 12, "mpCostReduction": 7, "concentration": 5 } },
+        { "level": 20, "effects": { "songSuccessRate": 20, "mpCostReduction": 12, "concentration": 10 } },
+        { "level": 30, "effects": { "songSuccessRate": 30, "mpCostReduction": 18, "concentration": 15, "interruptResist": 30 } }
+      ],
+      "requirements": { "skills": { "song_mastery": 10 } }
+    },
+    {
+      "id": "song_of_valor",
+      "nameKo": "용맹의 노래",
+      "nameEn": "Song of Valor",
+      "type": "buff",
+      "usageContext": "combat_only",
+      "songType": "concentration",
+      "icon": "⚔️",
+      "description": { "ko": "부르는 동안 아군의 공격력이 지속적으로 증가한다.", "en": "While singing, ally attack power continuously increases." },
+      "maxLevel": 25,
+      "expPerLevel": 70,
+      "levelBonuses": [
+        { "level": 1, "effects": { "attackBonus": 12, "mpCostPerTurn": 5 } },
+        { "level": 10, "effects": { "attackBonus": 20, "mpCostPerTurn": 5 } },
+        { "level": 20, "effects": { "attackBonus": 30, "mpCostPerTurn": 4 } },
+        { "level": 25, "effects": { "attackBonus": 38, "mpCostPerTurn": 4, "critChance": 8 } }
+      ],
+      "target": "all_allies",
+      "requirements": { "skills": { "song_mastery": 1 } },
+      "grantsExpTo": ["song_mastery"],
+      "cooldown": 0,
+      "maintainCost": true
+    },
+    {
+      "id": "song_of_protection",
+      "nameKo": "수호의 노래",
+      "nameEn": "Song of Protection",
+      "type": "buff",
+      "usageContext": "combat_only",
+      "songType": "concentration",
+      "icon": "🛡️",
+      "description": { "ko": "부르는 동안 아군의 방어력이 지속적으로 증가한다.", "en": "While singing, ally defense continuously increases." },
+      "maxLevel": 25,
+      "expPerLevel": 70,
+      "levelBonuses": [
+        { "level": 1, "effects": { "defenseBonus": 15, "mpCostPerTurn": 5 } },
+        { "level": 10, "effects": { "defenseBonus": 25, "mpCostPerTurn": 5 } },
+        { "level": 20, "effects": { "defenseBonus": 35, "mpCostPerTurn": 4 } },
+        { "level": 25, "effects": { "defenseBonus": 45, "mpCostPerTurn": 4, "damageReduction": 10 } }
+      ],
+      "target": "all_allies",
+      "requirements": { "skills": { "song_mastery": 5 } },
+      "grantsExpTo": ["song_mastery"],
+      "cooldown": 0,
+      "maintainCost": true
+    },
+    {
+      "id": "song_of_swiftness",
+      "nameKo": "신속의 노래",
+      "nameEn": "Song of Swiftness",
+      "type": "buff",
+      "usageContext": "combat_only",
+      "songType": "concentration",
+      "icon": "💨",
+      "description": { "ko": "부르는 동안 아군의 속도와 회피율이 증가한다.", "en": "While singing, ally speed and evasion increase." },
+      "maxLevel": 25,
+      "expPerLevel": 70,
+      "levelBonuses": [
+        { "level": 1, "effects": { "speedBonus": 15, "evasion": 8, "mpCostPerTurn": 6 } },
+        { "level": 10, "effects": { "speedBonus": 25, "evasion": 14, "mpCostPerTurn": 6 } },
+        { "level": 20, "effects": { "speedBonus": 35, "evasion": 20, "mpCostPerTurn": 5 } },
+        { "level": 25, "effects": { "speedBonus": 45, "evasion": 28, "mpCostPerTurn": 5, "initiativeBonus": 15 } }
+      ],
+      "target": "all_allies",
+      "requirements": { "skills": { "song_mastery": 10 } },
+      "grantsExpTo": ["song_mastery"],
+      "cooldown": 0,
+      "maintainCost": true
+    },
+    {
+      "id": "song_of_restoration",
+      "nameKo": "회복의 노래",
+      "nameEn": "Song of Restoration",
+      "type": "heal",
+      "usageContext": "both",
+      "songType": "concentration",
+      "icon": "💚",
+      "description": { "ko": "부르는 동안 아군의 HP가 매 턴 회복된다.", "en": "While singing, ally HP recovers each turn." },
+      "maxLevel": 25,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        { "level": 1, "effects": { "healPerTurn": 5, "mpCostPerTurn": 8 } },
+        { "level": 10, "effects": { "healPerTurn": 8, "mpCostPerTurn": 8 } },
+        { "level": 20, "effects": { "healPerTurn": 12, "mpCostPerTurn": 7 } },
+        { "level": 25, "effects": { "healPerTurn": 16, "mpCostPerTurn": 7, "regenBonus": 20 } }
+      ],
+      "target": "all_allies",
+      "requirements": { "skills": { "song_mastery": 15 } },
+      "grantsExpTo": ["song_mastery"],
+      "cooldown": 0,
+      "maintainCost": true
+    },
+    {
+      "id": "lullaby",
+      "nameKo": "자장가",
+      "nameEn": "Lullaby",
+      "type": "debuff",
+      "usageContext": "combat_only",
+      "songType": "concentration",
+      "icon": "😴",
+      "description": { "ko": "부르는 동안 적이 수면 상태에 빠질 수 있다.", "en": "While singing, enemies may fall asleep." },
+      "maxLevel": 20,
+      "expPerLevel": 90,
+      "levelBonuses": [
+        { "level": 1, "effects": { "sleepChance": 20, "mpCostPerTurn": 10 } },
+        { "level": 10, "effects": { "sleepChance": 35, "mpCostPerTurn": 10 } },
+        { "level": 20, "effects": { "sleepChance": 50, "mpCostPerTurn": 8, "sleepDuration": 1 } }
+      ],
+      "target": "all_enemies",
+      "requirements": { "skills": { "song_mastery": 18 } },
+      "grantsExpTo": ["song_mastery"],
+      "cooldown": 0,
+      "maintainCost": true
+    },
+    {
+      "id": "requiem",
+      "nameKo": "진혼곡",
+      "nameEn": "Requiem",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "songType": "concentration",
+      "icon": "💀",
+      "description": { "ko": "부르는 동안 언데드에게 지속적인 피해를 입힌다.", "en": "While singing, deal continuous damage to undead." },
+      "maxLevel": 20,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        { "level": 1, "effects": { "damagePerTurn": 15, "undeadBonus": 50, "mpCostPerTurn": 12 } },
+        { "level": 10, "effects": { "damagePerTurn": 25, "undeadBonus": 75, "mpCostPerTurn": 12 } },
+        { "level": 20, "effects": { "damagePerTurn": 40, "undeadBonus": 100, "mpCostPerTurn": 10, "turnChance": 10 } }
+      ],
+      "target": "all_enemies",
+      "requirements": { "skills": { "song_mastery": 25 } },
+      "grantsExpTo": ["song_mastery"],
+      "cooldown": 0,
+      "maintainCost": true
+    },
+    {
+      "id": "anthem_of_war",
+      "nameKo": "전쟁의 찬가",
+      "nameEn": "Anthem of War",
+      "type": "buff",
+      "usageContext": "combat_only",
+      "songType": "instant",
+      "icon": "🎺",
+      "description": { "ko": "강렬한 찬가로 아군 전체를 강화한다.", "en": "A powerful anthem that buffs all allies." },
+      "maxLevel": 20,
+      "expPerLevel": 90,
+      "levelBonuses": [
+        { "level": 1, "effects": { "attackBonus": 15, "defenseBonus": 10, "duration": 4, "mpCost": 20 } },
+        { "level": 10, "effects": { "attackBonus": 25, "defenseBonus": 15, "duration": 4, "mpCost": 20 } },
+        { "level": 20, "effects": { "attackBonus": 35, "defenseBonus": 22, "duration": 5, "mpCost": 18, "critChance": 10 } }
+      ],
+      "target": "all_allies",
+      "requirements": { "skills": { "song_mastery": 20, "song_of_valor": 15 } },
+      "grantsExpTo": ["song_mastery"],
+      "cooldown": 5
+    },
+    {
+      "id": "hymn_of_healing",
+      "nameKo": "치유의 찬송",
+      "nameEn": "Hymn of Healing",
+      "type": "heal",
+      "usageContext": "both",
+      "songType": "instant",
+      "icon": "🙏",
+      "description": { "ko": "성스러운 찬송으로 아군 전체를 즉시 치유한다.", "en": "A holy hymn that instantly heals all allies." },
+      "maxLevel": 20,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        { "level": 1, "effects": { "healPercent": 15, "mpCost": 25 } },
+        { "level": 10, "effects": { "healPercent": 25, "mpCost": 25, "cleanse": 1 } },
+        { "level": 20, "effects": { "healPercent": 35, "mpCost": 22, "cleanse": 2, "regenDuration": 3 } }
+      ],
+      "target": "all_allies",
+      "requirements": { "skills": { "song_mastery": 22, "song_of_restoration": 15 } },
+      "grantsExpTo": ["song_mastery"],
+      "cooldown": 5
+    },
+    {
+      "id": "march_of_victory",
+      "nameKo": "승리의 행진곡",
+      "nameEn": "March of Victory",
+      "type": "buff",
+      "usageContext": "both",
+      "songType": "instant",
+      "icon": "🏁",
+      "description": { "ko": "용맹한 행진곡으로 이동속도와 선제권을 높인다.", "en": "A victorious march that boosts movement and initiative." },
+      "maxLevel": 15,
+      "expPerLevel": 80,
+      "levelBonuses": [
+        { "level": 1, "effects": { "speedBonus": 25, "initiativeBonus": 20, "duration": 5, "mpCost": 15 } },
+        { "level": 8, "effects": { "speedBonus": 40, "initiativeBonus": 30, "duration": 5, "mpCost": 14 } },
+        { "level": 15, "effects": { "speedBonus": 55, "initiativeBonus": 45, "duration": 6, "mpCost": 12, "staminaRegen": 10 } }
+      ],
+      "target": "all_allies",
+      "requirements": { "skills": { "song_mastery": 15 } },
+      "grantsExpTo": ["song_mastery"],
+      "cooldown": 4
+    },
+    {
+      "id": "elegy_of_sorrow",
+      "nameKo": "슬픔의 비가",
+      "nameEn": "Elegy of Sorrow",
+      "type": "debuff",
+      "usageContext": "combat_only",
+      "songType": "instant",
+      "icon": "😢",
+      "description": { "ko": "슬픈 선율로 적 전체를 약화시킨다.", "en": "A sorrowful melody that weakens all enemies." },
+      "maxLevel": 15,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        { "level": 1, "effects": { "attackReduction": 15, "defenseReduction": 15, "duration": 4, "mpCost": 22 } },
+        { "level": 8, "effects": { "attackReduction": 22, "defenseReduction": 22, "duration": 4, "mpCost": 20 } },
+        { "level": 15, "effects": { "attackReduction": 30, "defenseReduction": 30, "duration": 5, "mpCost": 18, "despairChance": 20 } }
+      ],
+      "target": "all_enemies",
+      "requirements": { "skills": { "song_mastery": 28, "lullaby": 12 } },
+      "grantsExpTo": ["song_mastery"],
+      "cooldown": 5
+    },
+    {
+      "id": "battle_hymn",
+      "nameKo": "전투 찬가",
+      "nameEn": "Battle Hymn",
+      "type": "buff",
+      "usageContext": "combat_only",
+      "songType": "instant",
+      "icon": "🎶",
+      "description": { "ko": "짧은 찬가로 다음 공격을 강화한다.", "en": "A short hymn that empowers the next attack." },
+      "maxLevel": 20,
+      "expPerLevel": 60,
+      "levelBonuses": [
+        { "level": 1, "effects": { "nextAttackBonus": 30, "mpCost": 8 } },
+        { "level": 10, "effects": { "nextAttackBonus": 50, "mpCost": 8, "critChance": 15 } },
+        { "level": 20, "effects": { "nextAttackBonus": 75, "mpCost": 7, "critChance": 25, "armorPenetration": 15 } }
+      ],
+      "target": "self",
+      "requirements": { "skills": { "song_mastery": 8 } },
+      "grantsExpTo": ["song_mastery"],
+      "cooldown": 2
+    },
+    {
+      "id": "discordant_note",
+      "nameKo": "불협화음",
+      "nameEn": "Discordant Note",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "songType": "instant",
+      "icon": "🔊",
+      "description": { "ko": "날카로운 불협화음으로 적에게 피해를 입힌다.", "en": "A sharp discord that damages enemies." },
+      "maxLevel": 25,
+      "expPerLevel": 50,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 25, "mpCost": 10 } },
+        { "level": 10, "effects": { "baseDamage": 38, "mpCost": 10, "stunChance": 10 } },
+        { "level": 20, "effects": { "baseDamage": 55, "mpCost": 9, "stunChance": 20 } },
+        { "level": 25, "effects": { "baseDamage": 70, "mpCost": 8, "stunChance": 25, "silenceChance": 15 } }
+      ],
+      "target": "enemy",
+      "requirements": { "skills": { "song_mastery": 5 } },
+      "grantsExpTo": ["song_mastery"],
+      "cooldown": 1
+    },
+    {
+      "id": "finale",
+      "nameKo": "피날레",
+      "nameEn": "Finale",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "songType": "instant",
+      "icon": "🎆",
+      "description": { "ko": "노래의 궁극기. 유지 중인 노래를 종료하며 강력한 효과를 발휘한다.", "en": "Ultimate song. End your concentration song with a powerful effect." },
+      "maxLevel": 10,
+      "expPerLevel": 200,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 80, "bonusPerSongTurn": 10, "mpCost": 30 } },
+        { "level": 5, "effects": { "baseDamage": 120, "bonusPerSongTurn": 15, "mpCost": 28, "aoe": true } },
+        { "level": 10, "effects": { "baseDamage": 180, "bonusPerSongTurn": 25, "mpCost": 25, "aoe": true, "resetSongCooldowns": true } }
+      ],
+      "target": "all_enemies",
+      "requirements": { "skills": { "song_mastery": 45, "anthem_of_war": 15 } },
+      "grantsExpTo": ["song_mastery"],
+      "cooldown": 8,
+      "specialCondition": "requires_active_song"
+    }
+  ]
+}

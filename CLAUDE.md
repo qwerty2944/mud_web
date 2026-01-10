@@ -338,7 +338,6 @@ races/
 ├── orcs/
 ├── undead/
 ├── others/
-├── appearance/             # 외형 데이터 (별도)
 ├── metadata.json           # 메타데이터 (색상 프리셋 등)
 └── races.json              # ← 생성됨 (모든 종족 통합)
 ```
@@ -366,11 +365,14 @@ appearance/
 │   ├── human.json
 │   ├── elf.json
 │   ├── dwarf.json
+│   ├── metadata.json       # 눈 메타데이터
 │   └── ...
 ├── facehair/               # 수염 외형 (종족별 개별 파일)
 │   ├── human.json
 │   ├── dwarf.json
+│   ├── metadata.json       # 수염 메타데이터
 │   └── ...
+├── metadata.json           # 외형 메타데이터 (카테고리, 색상 프리셋 등)
 ├── eyes.json               # ← 생성됨 (모든 종족 눈 통합)
 └── facehair.json           # ← 생성됨 (모든 종족 수염 통합)
 ```
@@ -378,6 +380,138 @@ appearance/
 **생성 명령:**
 ```bash
 npx tsx scripts/generate-appearance.ts
+```
+
+### 능력 데이터 (`/public/data/abilities/`)
+
+```
+abilities/
+├── spell/                  # 마법 주문 (속성별 개별 파일)
+│   ├── fire.json           # 화염 마법
+│   ├── ice.json            # 냉기 마법
+│   ├── lightning.json      # 번개 마법
+│   ├── earth.json          # 대지 마법
+│   ├── holy.json           # 신성 마법 + 치유 마법
+│   ├── dark.json           # 암흑 마법
+│   └── metadata.json       # 속성 상성, 요일 강화 등
+├── lifeskill/              # 생활 스킬
+│   ├── medical.json        # 의료 (응급처치, 약초학, 수술)
+│   └── knowledge.json      # 지식 (해부학, 금속학, 식물학, 보석학)
+├── craftskill/             # 제작 스킬 (하위 폴더 구조)
+│   ├── blacksmithing/      # 대장장이
+│   ├── tailoring/          # 재봉
+│   ├── cooking/            # 요리
+│   ├── alchemy/            # 연금술
+│   └── jewelcrafting/      # 보석세공
+├── combatskill/            # 전투 스킬 (하위 폴더 구조)
+│   ├── weapon/             # 무기 스킬
+│   │   ├── sword/          # 검술 (common, light_sword, medium_sword, great_sword)
+│   │   ├── axe.json        # 도끼술
+│   │   ├── mace.json       # 둔기술
+│   │   ├── dagger.json     # 단검술
+│   │   ├── spear.json      # 창술
+│   │   ├── bow.json        # 궁술
+│   │   ├── crossbow.json   # 석궁술
+│   │   ├── staff.json      # 장봉술
+│   │   ├── shield.json     # 방패술
+│   │   └── dual_wield.json # 쌍수
+│   ├── martial/            # 무술 스킬 (fist, kick, stance)
+│   ├── defense/            # 방어 스킬
+│   ├── utility/            # 전술 스킬
+│   └── warcry/             # 함성 스킬 (전투 외침)
+├── song/                   # 노래 스킬 (별도 카테고리)
+│   └── song.json           # 유지형/즉시형 노래
+├── metadata.json           # 능력 메타데이터
+├── spells.json             # ← 생성됨 (43개 마법 통합)
+├── lifeskills.json         # ← 생성됨 (7개 생활 스킬 통합)
+├── craftskills.json        # ← 생성됨 (42개 제작 스킬 통합)
+└── combatskills.json       # ← 생성됨 (89개 전투 스킬 통합)
+```
+
+### 스킬 타입 체계 (v2.0)
+
+모든 스킬은 `type` 필드로 주요 효과를 분류하고, 공격 스킬은 추가로 `attackType`으로 데미지 계산 방식을 지정합니다.
+
+#### 스킬 타입 (type)
+| type | 한글 | 설명 | UI 색상 |
+|------|------|------|---------|
+| `passive` | 패시브 | 항상 적용되는 지속 효과 | #9CA3AF (회색) |
+| `attack` | 공격 | 적에게 피해를 주는 스킬 | #EF4444 (빨강) |
+| `heal` | 치유 | HP를 회복하는 스킬 | #22C55E (초록) |
+| `buff` | 버프 | 자신/아군 능력치 강화 | #3B82F6 (파랑) |
+| `debuff` | 디버프 | 적 능력치 약화 | #A855F7 (보라) |
+| `utility` | 유틸리티 | 전투 보조 (분석, 이동, 상태해제) | #F59E0B (주황) |
+| `craft` | 제작 | 아이템 제작 스킬 | #8B5CF6 (보라) |
+
+#### 공격 타입 (attackType)
+`type: "attack"`인 스킬에만 적용됩니다.
+
+| attackType | 한글 | 데미지 스케일링 | 방어 타입 |
+|------------|------|----------------|----------|
+| `melee_physical` | 근접 물리 | STR/DEX | physical |
+| `ranged_physical` | 원거리 물리 | DEX | physical |
+| `magic` | 마법 | INT/WIS | magical |
+| `dot` | 지속 피해 | varies | varies |
+
+#### 스킬 데이터 예시
+```json
+{
+  "id": "chop",
+  "nameKo": "찍기",
+  "type": "attack",
+  "attackType": "melee_physical",
+  "usageContext": "combat_only",
+  "baseDamage": 30,
+  "spCost": 6
+}
+```
+
+### 스킬 사용 컨텍스트 (usageContext)
+
+모든 스킬에는 `usageContext` 필드가 있어 언제 사용 가능한지 구분합니다.
+
+| usageContext | 설명 | 예시 |
+|--------------|------|------|
+| `passive` | 항상 적용 (패시브 스킬) | 제작 숙련도 보너스, 지식 스킬 |
+| `combat_only` | 전투에서만 사용 가능 | 공격 마법, 무기 스킬, 디버프 |
+| `field_only` | 일반 상황에서만 사용 가능 | 제작, 수리, 채집 |
+| `both` | 전투/일반 모두 사용 가능 | 치유 마법, 버프 마법 |
+
+### 속성 상성 시스템
+
+마법 속성 간 상성 관계가 적용됩니다.
+
+```
+fire ─(강함)→ ice ─(강함)→ lightning ─(강함)→ earth ─(강함)→ fire (순환)
+holy ←→ dark (상호 강함)
+```
+
+| 공격 속성 | 강한 대상 | 약한 대상 | 강함 배율 | 약함 배율 |
+|----------|----------|----------|----------|----------|
+| fire | ice | earth | 1.5x | 0.75x |
+| ice | lightning | fire | 1.5x | 0.75x |
+| lightning | earth | ice | 1.5x | 0.75x |
+| earth | fire | lightning | 1.5x | 0.75x |
+| holy | dark | - | 1.5x | 1.0x |
+| dark | holy | - | 1.5x | 1.0x |
+
+### 요일별 속성 강화
+
+한국어 요일 한자를 기반으로 매일 특정 마법 속성이 +20% 강화됩니다.
+
+| 요일 | 한자 | 속성 | 배율 |
+|------|------|------|------|
+| 월 | 月 (달) | ice | 1.2x |
+| 화 | 火 (불) | fire | 1.2x |
+| 수 | 水 (물) | lightning | 1.2x |
+| 목 | 木 (나무) | earth | 1.2x |
+| 금 | 金 (금) | holy | 1.2x |
+| 토 | 土 (흙) | dark | 1.2x |
+| 일 | 日 (해) | - | 휴식의 날 |
+
+**생성 명령:**
+```bash
+npx tsx scripts/generate-abilities.ts
 ```
 
 ### 데이터 파일 규칙

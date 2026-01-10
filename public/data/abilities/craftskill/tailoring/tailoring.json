@@ -1,0 +1,101 @@
+{
+  "category": "tailoring",
+  "nameKo": "재봉",
+  "nameEn": "Tailoring",
+  "icon": "🧵",
+  "description": "천과 가죽으로 의류와 장비를 제작합니다",
+  "relatedStats": ["dex"],
+  "skills": [
+    {
+      "id": "tl_basic_sewing",
+      "nameKo": "기초 재봉",
+      "nameEn": "Basic Sewing",
+      "description": "기본적인 천 가공 기술입니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🧵",
+      "effect": { "craftTier": "common", "successBonus": 0 },
+      "requirements": { "level": 1 }
+    },
+    {
+      "id": "tl_apprentice_sewing",
+      "nameKo": "견습 재봉",
+      "nameEn": "Apprentice Sewing",
+      "description": "고급 등급까지 제작이 가능합니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🧵",
+      "effect": { "craftTier": "grand", "successBonus": 5 },
+      "requirements": { "level": 10, "prerequisite": "tl_basic_sewing" }
+    },
+    {
+      "id": "tl_journeyman_sewing",
+      "nameKo": "숙련 재봉",
+      "nameEn": "Journeyman Sewing",
+      "description": "희귀 등급까지 제작이 가능합니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🧵",
+      "effect": { "craftTier": "rare", "successBonus": 10 },
+      "requirements": { "level": 20, "prerequisite": "tl_apprentice_sewing" }
+    },
+    {
+      "id": "tl_expert_sewing",
+      "nameKo": "전문 재봉",
+      "nameEn": "Expert Sewing",
+      "description": "고대 등급까지 제작이 가능합니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🧵",
+      "effect": { "craftTier": "arcane", "successBonus": 15 },
+      "requirements": { "level": 30, "prerequisite": "tl_journeyman_sewing" }
+    },
+    {
+      "id": "tl_master_sewing",
+      "nameKo": "달인 재봉",
+      "nameEn": "Master Sewing",
+      "description": "영웅 등급까지 제작이 가능합니다.",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🧵",
+      "effect": { "craftTier": "heroic", "successBonus": 20 },
+      "requirements": { "level": 40, "prerequisite": "tl_expert_sewing" }
+    },
+    {
+      "id": "tl_craft_cloth_armor",
+      "nameKo": "천 갑옷 제작",
+      "nameEn": "Craft Cloth Armor",
+      "description": "천으로 된 방어구를 제작합니다.",
+      "type": "craft",
+      "usageContext": "field_only",
+      "icon": "👘",
+      "craftType": "cloth_armor",
+      "materials": ["cloth", "thread"],
+      "requirements": { "skill": "tl_basic_sewing" }
+    },
+    {
+      "id": "tl_craft_leather_armor",
+      "nameKo": "가죽 갑옷 제작",
+      "nameEn": "Craft Leather Armor",
+      "description": "가죽으로 된 방어구를 제작합니다.",
+      "type": "craft",
+      "usageContext": "field_only",
+      "icon": "🦺",
+      "craftType": "leather_armor",
+      "materials": ["leather", "thread"],
+      "requirements": { "skill": "tl_apprentice_sewing" }
+    },
+    {
+      "id": "tl_craft_bag",
+      "nameKo": "가방 제작",
+      "nameEn": "Craft Bag",
+      "description": "인벤토리를 확장하는 가방을 제작합니다.",
+      "type": "craft",
+      "usageContext": "field_only",
+      "icon": "🎒",
+      "craftType": "bag",
+      "materials": ["cloth", "leather_strip"],
+      "requirements": { "skill": "tl_journeyman_sewing" }
+    }
+  ]
+}

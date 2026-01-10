@@ -1,0 +1,145 @@
+{
+  "category": "weapon",
+  "weaponType": "staff",
+  "nameKo": "지팡이",
+  "nameEn": "Staff",
+  "icon": "🪄",
+  "description": "마법 증폭과 원소 조작에 특화된 장봉술.",
+  "skills": [
+    {
+      "id": "staff_mastery",
+      "nameKo": "장봉술 수련",
+      "nameEn": "Staff Mastery",
+      "type": "passive",
+      "usageContext": "passive",
+      "icon": "🪄",
+      "description": { "ko": "지팡이의 기본기를 익혀 마법 위력과 MP를 높인다.", "en": "Master the magical amplification of staff combat." },
+      "maxLevel": 50,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        { "level": 1, "effects": { "magicDamage": 0, "mpBonus": 0 } },
+        { "level": 10, "effects": { "magicDamage": 5, "mpBonus": 5 } },
+        { "level": 25, "effects": { "magicDamage": 12, "mpBonus": 10, "mpRegen": 2 } },
+        { "level": 40, "effects": { "magicDamage": 18, "mpBonus": 15, "mpRegen": 4 } },
+        { "level": 50, "effects": { "magicDamage": 25, "mpBonus": 20, "mpRegen": 6, "castSpeed": 10 } }
+      ],
+      "requirements": {}
+    },
+    {
+      "id": "staff_strike",
+      "nameKo": "지팡이 타격",
+      "nameEn": "Staff Strike",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "🪄",
+      "description": { "ko": "지팡이로 적을 친다.", "en": "Strike the enemy with the staff." },
+      "maxLevel": 30,
+      "expPerLevel": 50,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 20, "spCost": 4, "magicDamageBonus": 5 } },
+        { "level": 10, "effects": { "baseDamage": 28, "spCost": 4, "magicDamageBonus": 10 } },
+        { "level": 20, "effects": { "baseDamage": 38, "spCost": 3, "magicDamageBonus": 15 } },
+        { "level": 30, "effects": { "baseDamage": 50, "spCost": 3, "magicDamageBonus": 20, "mpOnHit": 3 } }
+      ],
+      "requirements": { "skills": { "staff_mastery": 1 } },
+      "grantsExpTo": ["staff_mastery"],
+      "cooldown": 0
+    },
+    {
+      "id": "arcane_burst",
+      "nameKo": "마력 폭발",
+      "nameEn": "Arcane Burst",
+      "type": "attack",
+      "usageContext": "combat_only",
+      "icon": "✨",
+      "description": { "ko": "지팡이에서 마력을 폭발시킨다.", "en": "Release a burst of arcane energy from the staff." },
+      "maxLevel": 25,
+      "expPerLevel": 70,
+      "levelBonuses": [
+        { "level": 1, "effects": { "baseDamage": 35, "magicDamageBonus": 15, "spCost": 10, "mpCost": 8 } },
+        { "level": 10, "effects": { "baseDamage": 48, "magicDamageBonus": 20, "spCost": 9, "mpCost": 7 } },
+        { "level": 20, "effects": { "baseDamage": 65, "magicDamageBonus": 25, "spCost": 8, "mpCost": 6 } },
+        { "level": 25, "effects": { "baseDamage": 75, "magicDamageBonus": 30, "spCost": 8, "mpCost": 5, "aoe": true } }
+      ],
+      "requirements": { "skills": { "staff_mastery": 10 } },
+      "grantsExpTo": ["staff_mastery"],
+      "cooldown": 2
+    },
+    {
+      "id": "mana_channel",
+      "nameKo": "마나 흡수",
+      "nameEn": "Mana Channel",
+      "type": "buff",
+      "usageContext": "both",
+      "icon": "💧",
+      "description": { "ko": "주변 마나를 흡수하여 MP를 회복한다.", "en": "Channel ambient mana to restore MP." },
+      "maxLevel": 20,
+      "expPerLevel": 90,
+      "levelBonuses": [
+        { "level": 1, "effects": { "mpRestore": 15, "spCost": 8 } },
+        { "level": 10, "effects": { "mpRestore": 25, "spCost": 7 } },
+        { "level": 20, "effects": { "mpRestore": 40, "spCost": 5, "mpRegenBuff": 3, "duration": 3 } }
+      ],
+      "requirements": { "skills": { "staff_mastery": 15 } },
+      "grantsExpTo": ["staff_mastery"],
+      "cooldown": 3
+    },
+    {
+      "id": "magic_barrier",
+      "nameKo": "마법 장벽",
+      "nameEn": "Magic Barrier",
+      "type": "buff",
+      "usageContext": "both",
+      "icon": "🛡️",
+      "description": { "ko": "마법 장벽으로 피해를 흡수한다.", "en": "Create a magic barrier that absorbs damage." },
+      "maxLevel": 20,
+      "expPerLevel": 100,
+      "levelBonuses": [
+        { "level": 1, "effects": { "shieldAmount": 30, "duration": 4, "spCost": 12, "mpCost": 15 } },
+        { "level": 10, "effects": { "shieldAmount": 50, "duration": 5, "spCost": 10, "mpCost": 13 } },
+        { "level": 20, "effects": { "shieldAmount": 80, "duration": 6, "spCost": 8, "mpCost": 10, "reflectMagic": 20 } }
+      ],
+      "requirements": { "skills": { "staff_mastery": 20 } },
+      "grantsExpTo": ["staff_mastery"],
+      "cooldown": 5
+    },
+    {
+      "id": "spell_amplify",
+      "nameKo": "주문 증폭",
+      "nameEn": "Spell Amplify",
+      "type": "buff",
+      "usageContext": "combat_only",
+      "icon": "⬆️",
+      "description": { "ko": "다음 마법의 위력을 증폭한다.", "en": "Amplify the power of the next spell." },
+      "maxLevel": 15,
+      "expPerLevel": 150,
+      "levelBonuses": [
+        { "level": 1, "effects": { "nextSpellBonus": 40, "spCost": 18, "mpCost": 10 } },
+        { "level": 8, "effects": { "nextSpellBonus": 60, "spCost": 16, "mpCost": 8 } },
+        { "level": 15, "effects": { "nextSpellBonus": 80, "spCost": 14, "mpCost": 6, "guaranteedCrit": true } }
+      ],
+      "requirements": { "skills": { "staff_mastery": 32, "arcane_burst": 15 } },
+      "grantsExpTo": ["staff_mastery"],
+      "cooldown": 4
+    },
+    {
+      "id": "archmage_aura",
+      "nameKo": "대마법사의 오라",
+      "nameEn": "Archmage Aura",
+      "type": "buff",
+      "usageContext": "both",
+      "icon": "🌟",
+      "description": { "ko": "대마법사의 오라로 모든 마법을 강화.", "en": "Aura of the Archmage enhancing all magic." },
+      "maxLevel": 10,
+      "expPerLevel": 200,
+      "levelBonuses": [
+        { "level": 1, "effects": { "allMagicBonus": 20, "mpCostReduction": 10, "duration": 5, "spCost": 25, "mpCost": 20 } },
+        { "level": 5, "effects": { "allMagicBonus": 30, "mpCostReduction": 15, "duration": 6, "spCost": 22, "mpCost": 18 } },
+        { "level": 10, "effects": { "allMagicBonus": 40, "mpCostReduction": 20, "duration": 8, "spCost": 18, "mpCost": 15, "castSpeedBonus": 20 } }
+      ],
+      "requirements": { "skills": { "staff_mastery": 45, "spell_amplify": 10 } },
+      "grantsExpTo": ["staff_mastery"],
+      "cooldown": 6
+    }
+  ]
+}
