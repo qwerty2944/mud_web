@@ -554,223 +554,111 @@ export default function GameTestPage() {
         </div>
 
         {/* 설정 패널 */}
-        <div className="flex-none lg:w-80 max-h-[45vh] lg:max-h-full overflow-y-auto bg-gray-800 p-4">
+        <div className="flex-none lg:w-80 max-h-[45vh] lg:max-h-full overflow-y-auto bg-gray-800 p-3 space-y-3">
 
           {/* 종족 선택 */}
-          <section className="mb-6 p-3 bg-gray-700 rounded-lg">
-            <h2 className="text-sm font-semibold text-yellow-400 mb-2">종족 선택</h2>
+          <section className="rounded-lg border border-yellow-500/50 bg-yellow-500/5 p-2">
+            <h2 className="text-sm font-semibold mb-2 text-gray-300">🏷️ 종족</h2>
             <select
-              className="w-full bg-gray-600 text-white rounded px-3 py-2 text-sm"
+              className="w-full bg-gray-800 text-sm rounded px-2 py-1 border border-gray-600"
               value={selectedRaceId}
               onChange={(e) => handleRaceChange(e.target.value)}
             >
               {races.map((race) => (
-                <option key={race.id} value={race.id}>
-                  {race.nameKo} ({race.nameEn})
-                </option>
+                <option key={race.id} value={race.id}>{race.nameKo}</option>
               ))}
             </select>
           </section>
 
           {/* 외형 섹션 */}
-          <section className="mb-6">
-            <h2 className="text-sm font-semibold text-gray-400 mb-2 border-b border-gray-700 pb-1">
-              외형 (Appearance)
-            </h2>
-            <div className="space-y-3">
-              {/* 눈 (ID 기반) */}
-              <div>
-                <label className="block text-xs text-gray-400 mb-1">
-                  눈 ({filteredEyes.length}개)
-                </label>
-                <select
-                  className="w-full bg-gray-700 text-white rounded px-3 py-2 text-sm"
-                  value={appearance.eyeId || ""}
-                  onChange={(e) => handleAppearanceSelect("eye", e.target.value || null)}
-                >
-                  <option value="">선택 안함</option>
-                  {filteredEyes.map((eye) => (
-                    <option key={eye.id} value={eye.id}>
-                      {eye.ko} [{eye.id}] (Unity: {eye.sprite}, idx:{eye.index})
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* 머리카락 (ID 기반) */}
-              <div>
-                <label className="block text-xs text-gray-400 mb-1">
-                  머리 ({appearanceData.hair.length}개)
-                </label>
-                <select
-                  className="w-full bg-gray-700 text-white rounded px-3 py-2 text-sm"
-                  value={appearance.hairId || ""}
-                  onChange={(e) => handleAppearanceSelect("hair", e.target.value || null)}
-                >
-                  <option value="">없음</option>
-                  {appearanceData.hair.map((hair) => (
-                    <option key={hair.id} value={hair.id}>
-                      {hair.ko} [{hair.id}] (Unity: {hair.sprite}, idx:{hair.index})
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* 수염 (ID 기반) */}
-              <div>
-                <label className="block text-xs text-gray-400 mb-1">
-                  수염/장식 ({appearanceData.facehair.length}개)
-                </label>
-                <select
-                  className="w-full bg-gray-700 text-white rounded px-3 py-2 text-sm"
-                  value={appearance.facehairId || ""}
-                  onChange={(e) => handleAppearanceSelect("facehair", e.target.value || null)}
-                >
-                  <option value="">없음</option>
-                  {appearanceData.facehair.map((fh) => (
-                    <option key={fh.id} value={fh.id}>
-                      {fh.ko} [{fh.id}] (Unity: {fh.sprite}, idx:{fh.index})
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* 색상 - 기본 색상 팔레트 사용 */}
-              <div className="space-y-2 mt-2">
-                {/* 머리 색상 */}
-                <div>
-                  <label className="block text-xs text-gray-400 mb-1">머리 색상</label>
-                  <input
-                    type="color"
-                    value={appearance.hairColor}
-                    onChange={(e) => handleColorSelect("hair", e.target.value)}
-                    className="w-8 h-8 rounded cursor-pointer"
-                  />
-                </div>
-
-                {/* 눈 색상 */}
-                <div>
-                  <label className="block text-xs text-gray-400 mb-1">눈 색상 (양쪽)</label>
-                  <input
-                    type="color"
-                    value={appearance.leftEyeColor}
-                    onChange={(e) => handleBothEyeColorSelect(e.target.value)}
-                    className="w-8 h-8 rounded cursor-pointer"
-                  />
-                </div>
-
-                {/* 개별 눈 색상 */}
-                <div className="grid grid-cols-2 gap-2">
-                  <div>
-                    <label className="block text-xs text-gray-400 mb-1">왼쪽 눈</label>
-                    <input
-                      type="color"
-                      value={appearance.leftEyeColor}
-                      onChange={(e) => handleColorSelect("leftEye", e.target.value)}
-                      className="w-6 h-6 rounded cursor-pointer"
-                    />
+          <section className="rounded-lg border border-purple-500/50 bg-purple-500/5 p-2">
+            <h2 className="text-sm font-semibold mb-2 text-gray-300">👤 외형</h2>
+            <div className="space-y-1">
+              {/* 눈 */}
+              <div className="bg-gray-700/30 rounded p-1.5">
+                <div className="flex items-center justify-between text-sm">
+                  <div className="flex items-center gap-1">
+                    <span className="w-8 text-gray-400 text-xs">눈</span>
+                    <input type="color" value={appearance.leftEyeColor} onChange={(e) => handleColorSelect("leftEye", e.target.value)} className="w-5 h-5 rounded cursor-pointer" title="왼쪽 눈" />
+                    <input type="color" value={appearance.rightEyeColor} onChange={(e) => handleColorSelect("rightEye", e.target.value)} className="w-5 h-5 rounded cursor-pointer" title="오른쪽 눈" />
                   </div>
-                  <div>
-                    <label className="block text-xs text-gray-400 mb-1">오른쪽 눈</label>
-                    <input
-                      type="color"
-                      value={appearance.rightEyeColor}
-                      onChange={(e) => handleColorSelect("rightEye", e.target.value)}
-                      className="w-6 h-6 rounded cursor-pointer"
-                    />
-                  </div>
+                  <select className="bg-gray-800 text-xs rounded px-1 py-0.5 border border-gray-600 max-w-[140px]" value={appearance.eyeId || ""} onChange={(e) => handleAppearanceSelect("eye", e.target.value || null)}>
+                    <option value="">없음</option>
+                    {filteredEyes.map((eye) => (<option key={eye.id} value={eye.id}>{eye.ko}</option>))}
+                  </select>
                 </div>
+              </div>
 
-                {/* 수염 색상 */}
-                <div>
-                  <label className="block text-xs text-gray-400 mb-1">수염 색상</label>
-                  <input
-                    type="color"
-                    value={appearance.faceHairColor}
-                    onChange={(e) => handleColorSelect("facehair", e.target.value)}
-                    className="w-8 h-8 rounded cursor-pointer"
-                  />
+              {/* 머리 */}
+              <div className="bg-gray-700/30 rounded p-1.5">
+                <div className="flex items-center justify-between text-sm">
+                  <div className="flex items-center gap-1">
+                    <span className="w-8 text-gray-400 text-xs">머리</span>
+                    <input type="color" value={appearance.hairColor} onChange={(e) => handleColorSelect("hair", e.target.value)} className="w-5 h-5 rounded cursor-pointer" />
+                  </div>
+                  <select className="bg-gray-800 text-xs rounded px-1 py-0.5 border border-gray-600 max-w-[140px]" value={appearance.hairId || ""} onChange={(e) => handleAppearanceSelect("hair", e.target.value || null)}>
+                    <option value="">없음</option>
+                    {appearanceData.hair.map((h) => (<option key={h.id} value={h.id}>{h.ko}</option>))}
+                  </select>
+                </div>
+              </div>
+
+              {/* 수염 */}
+              <div className="bg-gray-700/30 rounded p-1.5">
+                <div className="flex items-center justify-between text-sm">
+                  <div className="flex items-center gap-1">
+                    <span className="w-8 text-gray-400 text-xs">수염</span>
+                    <input type="color" value={appearance.faceHairColor} onChange={(e) => handleColorSelect("facehair", e.target.value)} className="w-5 h-5 rounded cursor-pointer" />
+                  </div>
+                  <select className="bg-gray-800 text-xs rounded px-1 py-0.5 border border-gray-600 max-w-[140px]" value={appearance.facehairId || ""} onChange={(e) => handleAppearanceSelect("facehair", e.target.value || null)}>
+                    <option value="">없음</option>
+                    {appearanceData.facehair.map((f) => (<option key={f.id} value={f.id}>{f.ko}</option>))}
+                  </select>
                 </div>
               </div>
             </div>
           </section>
 
           {/* 양손 장비 섹션 */}
-          <section className="mb-6">
-            <h2 className="text-sm font-semibold text-gray-400 mb-2 border-b border-gray-700 pb-1">
-              양손 장비 (Hands)
-            </h2>
-            <div className="space-y-4">
+          <section className="rounded-lg border border-amber-500/50 bg-amber-500/5 p-2">
+            <h2 className="text-sm font-semibold mb-2 text-gray-300">⚔️ 무기</h2>
+            <div className="space-y-2">
               {/* 오른손 */}
-              <div className="p-3 bg-gray-700/50 rounded-lg">
-                <label className="block text-xs text-yellow-400 font-semibold mb-2">🖐️ 오른손</label>
-                <div className="flex flex-wrap gap-1 mb-2">
-                  {HAND_WEAPON_CATEGORIES.map((cat) => (
-                    <button
-                      key={cat.key}
-                      onClick={() => handleHandCategoryChange("right", cat.key)}
-                      className={`px-2 py-1 rounded text-xs ${
-                        rightHandCategory === cat.key
-                          ? "bg-yellow-500 text-gray-900"
-                          : "bg-gray-600 text-gray-300 hover:bg-gray-500"
-                      }`}
-                    >
-                      {cat.label}
-                    </button>
-                  ))}
+              <div className="bg-gray-700/50 rounded p-2 space-y-1">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium text-gray-300">✋ 오른손</span>
+                  <select
+                    value={rightHandCategory}
+                    onChange={(e) => handleHandCategoryChange("right", e.target.value)}
+                    className="bg-gray-800 text-sm rounded px-2 py-1 border border-gray-600"
+                  >
+                    {HAND_WEAPON_CATEGORIES.map((cat) => (<option key={cat.key} value={cat.key}>{cat.label}</option>))}
+                  </select>
                 </div>
                 {equipmentData[rightHandCategory] && (
-                  <select
-                    className="w-full bg-gray-700 text-white rounded px-3 py-2 text-sm"
-                    value={equipment.rightHandId || ""}
-                    onChange={(e) => handleEquipmentSelect("rightHandId", e.target.value || null, rightHandCategory)}
-                  >
+                  <select className="w-full bg-gray-800 text-xs rounded px-2 py-1 border border-gray-600" value={equipment.rightHandId || ""} onChange={(e) => handleEquipmentSelect("rightHandId", e.target.value || null, rightHandCategory)}>
                     <option value="">없음</option>
-                    {equipmentData[rightHandCategory].items.map((item) => {
-                      const spriteInfo = getSpriteInfo(rightHandCategory, item.spriteId);
-                      return (
-                        <option key={item.id} value={item.id}>
-                          {item.nameKo} [{item.id}] (idx:{spriteInfo.index})
-                        </option>
-                      );
-                    })}
+                    {equipmentData[rightHandCategory].items.map((item) => (<option key={item.id} value={item.id}>{item.nameKo}</option>))}
                   </select>
                 )}
               </div>
 
               {/* 왼손 */}
-              <div className="p-3 bg-gray-700/50 rounded-lg">
-                <label className="block text-xs text-yellow-400 font-semibold mb-2">🤚 왼손</label>
-                <div className="flex flex-wrap gap-1 mb-2">
-                  {HAND_WEAPON_CATEGORIES.map((cat) => (
-                    <button
-                      key={cat.key}
-                      onClick={() => handleHandCategoryChange("left", cat.key)}
-                      className={`px-2 py-1 rounded text-xs ${
-                        leftHandCategory === cat.key
-                          ? "bg-yellow-500 text-gray-900"
-                          : "bg-gray-600 text-gray-300 hover:bg-gray-500"
-                      }`}
-                    >
-                      {cat.label}
-                    </button>
-                  ))}
+              <div className="bg-gray-700/50 rounded p-2 space-y-1">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium text-gray-300">🤚 왼손</span>
+                  <select
+                    value={leftHandCategory}
+                    onChange={(e) => handleHandCategoryChange("left", e.target.value)}
+                    className="bg-gray-800 text-sm rounded px-2 py-1 border border-gray-600"
+                  >
+                    {HAND_WEAPON_CATEGORIES.map((cat) => (<option key={cat.key} value={cat.key}>{cat.label}</option>))}
+                  </select>
                 </div>
                 {equipmentData[leftHandCategory] && (
-                  <select
-                    className="w-full bg-gray-700 text-white rounded px-3 py-2 text-sm"
-                    value={equipment.leftHandId || ""}
-                    onChange={(e) => handleEquipmentSelect("leftHandId", e.target.value || null, leftHandCategory)}
-                  >
+                  <select className="w-full bg-gray-800 text-xs rounded px-2 py-1 border border-gray-600" value={equipment.leftHandId || ""} onChange={(e) => handleEquipmentSelect("leftHandId", e.target.value || null, leftHandCategory)}>
                     <option value="">없음</option>
-                    {equipmentData[leftHandCategory].items.map((item) => {
-                      const spriteInfo = getSpriteInfo(leftHandCategory, item.spriteId);
-                      return (
-                        <option key={item.id} value={item.id}>
-                          {item.nameKo} [{item.id}] (idx:{spriteInfo.index})
-                        </option>
-                      );
-                    })}
+                    {equipmentData[leftHandCategory].items.map((item) => (<option key={item.id} value={item.id}>{item.nameKo}</option>))}
                   </select>
                 )}
               </div>
@@ -778,82 +666,51 @@ export default function GameTestPage() {
           </section>
 
           {/* 방어구 섹션 */}
-          <section className="mb-6">
-            <h2 className="text-sm font-semibold text-gray-400 mb-2 border-b border-gray-700 pb-1">
-              방어구 (Armor)
-            </h2>
-            <div className="space-y-3">
+          <section className="rounded-lg border border-indigo-500/50 bg-indigo-500/5 p-2">
+            <h2 className="text-sm font-semibold mb-2 text-gray-300">🛡️ 장비</h2>
+            <div className="space-y-1">
               {ARMOR_SLOTS.map((slotConfig) => {
                 const categoryData = equipmentData[slotConfig.category];
                 if (!categoryData || categoryData.items.length === 0) return null;
 
                 return (
-                  <div key={slotConfig.slot}>
-                    <label className="block text-xs text-gray-400 mb-1">
-                      {slotConfig.label} ({categoryData.items.length}개)
-                    </label>
-                    <select
-                      className="w-full bg-gray-700 text-white rounded px-3 py-2 text-sm"
-                      value={equipment[slotConfig.slot] || ""}
-                      onChange={(e) => handleEquipmentSelect(
-                        slotConfig.slot,
-                        e.target.value || null,
-                        slotConfig.category
-                      )}
-                    >
-                      <option value="">없음</option>
-                      {categoryData.items.map((item) => {
-                        const spriteInfo = getSpriteInfo(slotConfig.category, item.spriteId);
-                        return (
-                          <option key={item.id} value={item.id}>
-                            {item.nameKo} [{item.id}] (idx:{spriteInfo.index})
-                          </option>
-                        );
-                      })}
-                    </select>
+                  <div key={slotConfig.slot} className="bg-gray-700/30 rounded p-1.5">
+                    <div className="flex items-center justify-between text-sm">
+                      <span className="w-10 text-gray-400 text-xs">{slotConfig.label}</span>
+                      <select
+                        className="bg-gray-800 text-xs rounded px-1 py-0.5 border border-gray-600 max-w-[160px]"
+                        value={equipment[slotConfig.slot] || ""}
+                        onChange={(e) => handleEquipmentSelect(slotConfig.slot, e.target.value || null, slotConfig.category)}
+                      >
+                        <option value="">없음</option>
+                        {categoryData.items.map((item) => (<option key={item.id} value={item.id}>{item.nameKo}</option>))}
+                      </select>
+                    </div>
                   </div>
                 );
               })}
             </div>
           </section>
 
-          {/* Unity 형식 JSON */}
-          <section className="mt-4">
-            <h3 className="text-sm font-semibold text-blue-400 mb-2">Unity 형식 (스프라이트 인덱스)</h3>
-
-            <div className="mb-3">
-              <label className="block text-xs text-gray-400 mb-1">Unity Appearance</label>
-              <pre className="p-2 bg-gray-900 rounded text-xs font-mono text-blue-300 overflow-auto max-h-32">
-                {JSON.stringify(unityAppearance, null, 2)}
-              </pre>
-            </div>
-
-            <div className="mb-3">
-              <label className="block text-xs text-gray-400 mb-1">Unity Equipment</label>
-              <pre className="p-2 bg-gray-900 rounded text-xs font-mono text-blue-300 overflow-auto max-h-32">
-                {JSON.stringify(unityEquipment, null, 2)}
-              </pre>
-            </div>
-          </section>
-
-          {/* DB 저장 형식 JSON */}
-          <section className="mt-4">
-            <h3 className="text-sm font-semibold text-green-400 mb-2">DB 저장 형식 (아이템 ID)</h3>
-
-            <div className="mb-3">
-              <label className="block text-xs text-gray-400 mb-1">appearance (profiles.appearance)</label>
-              <pre className="p-2 bg-gray-900 rounded text-xs font-mono text-green-300 overflow-auto max-h-32">
-                {JSON.stringify(appearance, null, 2)}
-              </pre>
-            </div>
-
-            <div>
-              <label className="block text-xs text-gray-400 mb-1">equipment (profiles.equipment)</label>
-              <pre className="p-2 bg-gray-900 rounded text-xs font-mono text-green-300 overflow-auto max-h-32">
-                {JSON.stringify(equipment, null, 2)}
-              </pre>
+          {/* 디버그 JSON */}
+          <section className="rounded-lg border border-gray-500/50 bg-gray-500/5 p-2">
+            <h2 className="text-sm font-semibold mb-2 text-gray-300">🔧 디버그</h2>
+            <div className="space-y-2">
+              <details className="text-xs">
+                <summary className="text-blue-400 cursor-pointer">Unity 형식</summary>
+                <pre className="p-2 bg-gray-900 rounded text-xs font-mono text-blue-300 overflow-auto max-h-24 mt-1">
+{JSON.stringify({ appearance: unityAppearance, equipment: unityEquipment }, null, 2)}
+                </pre>
+              </details>
+              <details className="text-xs">
+                <summary className="text-green-400 cursor-pointer">DB 형식</summary>
+                <pre className="p-2 bg-gray-900 rounded text-xs font-mono text-green-300 overflow-auto max-h-24 mt-1">
+{JSON.stringify({ appearance, equipment }, null, 2)}
+                </pre>
+              </details>
             </div>
           </section>
+
         </div>
       </div>
 
