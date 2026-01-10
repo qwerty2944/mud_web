@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo, useCallback } from "react";
 import Link from "next/link";
 import { DynamicUnityCanvas, useAppearanceStore } from "@/features/character";
 import { globalStyles } from "@/shared/ui";
+import { UnityProvider } from "@/application/providers";
 
 // ===== 타입 정의 =====
 interface EquipmentItem {
@@ -119,7 +120,7 @@ const ARMOR_SLOTS: { slot: keyof EquipmentState; label: string; category: string
   { slot: "backId", label: "등", category: "back" },
 ];
 
-export default function GameTestPage() {
+function GameTestContent() {
   const { callUnity, clearAll } = useAppearanceStore();
 
   // 데이터 로딩 상태
@@ -725,5 +726,13 @@ export default function GameTestPage() {
 
       <style jsx global>{globalStyles}</style>
     </div>
+  );
+}
+
+export default function GameTestPage() {
+  return (
+    <UnityProvider>
+      <GameTestContent />
+    </UnityProvider>
   );
 }

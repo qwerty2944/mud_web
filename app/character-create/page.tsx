@@ -19,6 +19,7 @@ import {
 import { CharacterCreator } from "@/widgets/character-creator";
 import { globalStyles } from "@/shared/ui";
 import { useAuthStore } from "@/features/auth";
+import { UnityProvider } from "@/application/providers";
 
 export default function CharacterCreatePage() {
   const router = useRouter();
@@ -112,11 +113,12 @@ export default function CharacterCreatePage() {
   };
 
   return (
-    <div className="h-dvh w-full bg-gray-900 text-white flex flex-col overflow-hidden">
-      {/* 헤더 */}
-      <header className="flex-none p-3 border-b border-gray-700 safe-area-top">
-        <h1 className="text-lg font-bold text-center">캐릭터 생성</h1>
-      </header>
+    <UnityProvider>
+      <div className="h-dvh w-full bg-gray-900 text-white flex flex-col overflow-hidden">
+        {/* 헤더 */}
+        <header className="flex-none p-3 border-b border-gray-700 safe-area-top">
+          <h1 className="text-lg font-bold text-center">캐릭터 생성</h1>
+        </header>
 
       {step === "info" ? (
         // Step 1: 기본 정보
@@ -325,7 +327,8 @@ export default function CharacterCreatePage() {
         loading={saveCharacter.isPending}
       />
 
-      <style jsx global>{globalStyles}</style>
-    </div>
+        <style jsx global>{globalStyles}</style>
+      </div>
+    </UnityProvider>
   );
 }
