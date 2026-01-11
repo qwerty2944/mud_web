@@ -47,6 +47,7 @@ export {
   getEffectsAtLevel,
   getApCost,
   getMpCost,
+  isPhysicalAttack,
   clearAbilityCache,
   // 몬스터 어빌리티
   fetchMonsterAbilities,

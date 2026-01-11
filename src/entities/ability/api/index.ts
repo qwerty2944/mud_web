@@ -214,11 +214,38 @@ export function getEffectsAtLevel(
 }
 
 /**
- * AP 비용 계산 (레벨 보너스 적용)
+ * 물리 공격인지 확인
  */
-export function getApCost(ability: Ability, level: number): number {
+export function isPhysicalAttack(ability: Ability): boolean {
+  return (
+    ability.type === "attack" &&
+    (ability.attackType === "melee_physical" || ability.attackType === "ranged_physical")
+  );
+}
+
+/**
+ * AP 비용 계산 (레벨 보너스 + 무기 공격속도 적용)
+ * @param ability 어빌리티
+ * @param level 어빌리티 레벨
+ * @param weaponAttackSpeed 무기 공격속도 (0.65~1.15, 물리 공격만 적용)
+ * @returns 최종 AP 비용
+ */
+export function getApCost(
+  ability: Ability,
+  level: number,
+  weaponAttackSpeed?: number
+): number {
   const effects = getEffectsAtLevel(ability, level);
-  return effects.apCost ?? ability.baseCost.ap ?? 5;
+  const baseAp = effects.apCost ?? ability.baseCost.ap ?? 5;
+
+  // 무기 공격속도 적용 (물리 공격만)
+  if (weaponAttackSpeed && isPhysicalAttack(ability)) {
+    // 역수 배율: AP = baseAP / attackSpeed
+    // attackSpeed 0.65 → AP ~1.54배, attackSpeed 1.15 → AP ~0.87배
+    return Math.max(1, Math.round(baseAp / weaponAttackSpeed));
+  }
+
+  return baseAp;
 }
 
 /**

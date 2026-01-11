@@ -4,7 +4,7 @@ import { useState, useMemo } from "react";
 import { useThemeStore } from "@/shared/config";
 import { useBattleStore, useEquipmentStore } from "@/application/stores";
 import type { Ability, ProficiencyType, CombatProficiencyType, WeaponType, Proficiencies, MagicElement as AbilityMagicElement } from "@/entities/ability";
-import { getProficiencyInfo, getProficiencyValue, useAbilities } from "@/entities/ability";
+import { getProficiencyInfo, getProficiencyValue, useAbilities, getApCost, isPhysicalAttack } from "@/entities/ability";
 import type { BattleActionTab, CombatSubTab } from "./ActionTabs";
 import { CombatSubTabs, COMBAT_SUB_TABS, COMBAT_SUB_TAB_ORDER } from "./ActionTabs";
 import { MagicSubTabs, MAGIC_ELEMENTS, type MagicElement } from "./MagicSubTabs";
@@ -115,6 +115,20 @@ export function ActionPanel({
     ? getProficiencyInfo(equippedWeaponType)
     : null;
 
+  // 무기 공격속도 (0.65~1.15, 기본 1.0)
+  const weaponAttackSpeed = (mainHand?.attackSpeed as number) ?? 1.0;
+
+  // 스킬의 실제 AP 비용 계산 (무기 공격속도 적용)
+  const getSkillApCost = useMemo(() => {
+    return (skill: Ability) => {
+      // 물리 공격 스킬에만 무기 공격속도 적용
+      if (isPhysicalAttack(skill)) {
+        return getApCost(skill, 1, weaponAttackSpeed);
+      }
+      return getApCost(skill, 1);
+    };
+  }, [weaponAttackSpeed]);
+
   return (
     <div className="flex flex-col" style={{ height: "280px" }}>
       {/* 전투 탭 */}
@@ -222,6 +236,7 @@ export function ActionPanel({
                 </div>
                 <div className="grid grid-cols-4 gap-1.5">
                   {filteredCombatSkills.map((skill) => {
+                    const skillApCost = getSkillApCost(skill);
                     const canCast = canUseSkill(skill.baseCost?.mp ?? 0);
                     const hasEnoughAp = true; // TODO: AP 체크 추가
                     const canUse = canCast && hasEnoughAp;
@@ -233,6 +248,7 @@ export function ActionPanel({
                         disabled={disabled || !canUse}
                         onClick={() => onCastSkill(skill)}
                         compact
+                        apCost={skillApCost}
                       />
                     );
                   })}
@@ -401,6 +417,7 @@ interface SkillButtonProps {
   disabled: boolean;
   onClick: () => void;
   compact?: boolean;
+  apCost?: number; // 계산된 AP 비용 (무기 공격속도 적용)
 }
 
 function SkillButton({
@@ -410,8 +427,12 @@ function SkillButton({
   disabled,
   onClick,
   compact = false,
+  apCost,
 }: SkillButtonProps) {
   const { theme } = useThemeStore();
+
+  // 실제 표시할 AP 비용 (제공된 값 또는 기본값)
+  const displayApCost = apCost ?? skill.baseCost?.ap;
 
   if (compact) {
     return (
@@ -440,14 +461,14 @@ function SkillButton({
           >
             {skill.baseCost.mp}MP
           </span>
-        ) : skill.baseCost?.ap ? (
+        ) : displayApCost ? (
           <span
             className="text-[9px]"
             style={{
               color: canCast ? theme.colors.warning : theme.colors.error,
             }}
           >
-            {skill.baseCost.ap}AP
+            {displayApCost}AP
           </span>
         ) : null}
       </button>

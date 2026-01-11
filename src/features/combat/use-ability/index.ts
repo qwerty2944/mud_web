@@ -16,6 +16,7 @@ import {
   calculateMagicDamage,
   calculateMonsterDamage,
   determineHitResult,
+  getWeaponElementMultiplier,
 } from "../lib/damage";
 import {
   getAttackMessage,
@@ -38,6 +39,7 @@ interface UseAbilityOptions {
 interface QueueAbilityParams {
   ability: Ability;
   abilityLevel: number;
+  weaponAttackSpeed?: number; // 장착 무기 공격속도 (0.65~1.15, 물리 공격 AP에 적용)
 }
 
 interface ExecuteAbilityParams {
@@ -50,6 +52,7 @@ interface ExecuteAbilityParams {
   period?: Period;
   weather?: WeatherType;
   karma?: number;
+  weaponElement?: MagicElement; // 장착 무기 속성 (물리 공격에 적용)
 }
 
 interface ExecuteAbilityResult {
@@ -91,10 +94,10 @@ export function useAbility(options: UseAbilityOptions = {}) {
    */
   const queueAbility = useCallback(
     (params: QueueAbilityParams): boolean => {
-      const { ability, abilityLevel } = params;
+      const { ability, abilityLevel, weaponAttackSpeed } = params;
 
-      // 비용 계산
-      const apCost = getApCost(ability, abilityLevel);
+      // 비용 계산 (무기 공격속도 적용)
+      const apCost = getApCost(ability, abilityLevel, weaponAttackSpeed);
       const mpCost = getMpCost(ability, abilityLevel);
 
       // AP 체크
@@ -158,6 +161,7 @@ export function useAbility(options: UseAbilityOptions = {}) {
         period,
         weather,
         karma,
+        weaponElement,
       } = params;
 
       // MP 소모
@@ -179,6 +183,7 @@ export function useAbility(options: UseAbilityOptions = {}) {
             period,
             weather,
             karma,
+            weaponElement,
           });
 
         case "heal":
@@ -218,8 +223,9 @@ export function useAbility(options: UseAbilityOptions = {}) {
       period?: Period;
       weather?: WeatherType;
       karma?: number;
+      weaponElement?: MagicElement;
     }): ExecuteAbilityResult => {
-      const { ability, effects, casterStats, proficiencyLevel, period, weather, karma } = params;
+      const { ability, effects, casterStats, proficiencyLevel, period, weather, karma, weaponElement } = params;
 
       if (!battle.monster) {
         return { success: false, message: "대상이 없습니다" };
@@ -241,6 +247,8 @@ export function useAbility(options: UseAbilityOptions = {}) {
 
       // 저항 배율 (물리 공격용)
       let resistanceMultiplier = 1.0;
+      // 무기 속성 배율 (물리 공격 + 무기 속성 있을 때)
+      let elementMultiplier = 1.0;
 
       if (hitResult.result === "missed") {
         message = getMissMessage(battle.monster.nameKo);
@@ -258,13 +266,18 @@ export function useAbility(options: UseAbilityOptions = {}) {
             }
           }
 
+          // 무기 속성 적용 (물리 데미지 전체가 속성 데미지로 변환)
+          if (weaponElement) {
+            elementMultiplier = getWeaponElementMultiplier(weaponElement, battle.monster.element);
+          }
+
           damage = calculatePhysicalDamage({
             baseDamage,
             attackerStr: casterStats.str,
             weaponType: (ability.category as WeaponType) || "fist",
             proficiencyLevel,
             targetDefense: battle.monster.stats.defense,
-            attackTypeResistance: resistanceMultiplier,
+            attackTypeResistance: resistanceMultiplier * elementMultiplier,
           });
         } else {
           // 마법 공격

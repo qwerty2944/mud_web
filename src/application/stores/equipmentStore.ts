@@ -19,6 +19,8 @@ export interface EquippedItem {
   // 무기 정보
   handType?: WeaponHandType;
   offHandType?: OffHandItemType;
+  attackSpeed?: number; // 무기 공격속도 (0.65~1.15, 기본 1.0)
+  elementDamage?: { element: string; value: number }; // 무기 속성 데미지
   // 장신구 정보
   accessoryType?: AccessoryType;
   // Unity 외형 (deprecated, use sprite)

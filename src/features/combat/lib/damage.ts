@@ -24,6 +24,57 @@ import {
   WEAPON_ATTACK_TYPE,
   WEAPON_BLOCK_CONFIG,
 } from "@/entities/ability";
+
+// ============ 속성 상성 맵 (무기 속성용) ============
+const ELEMENT_ADVANTAGE: Record<MagicElement, MagicElement | null> = {
+  fire: "ice",
+  ice: "lightning",
+  lightning: "earth",
+  earth: "fire",
+  holy: "dark",
+  dark: "holy",
+  poison: null,
+};
+
+const ELEMENT_WEAKNESS: Record<MagicElement, MagicElement | null> = {
+  fire: "earth",
+  ice: "fire",
+  lightning: "ice",
+  earth: "lightning",
+  holy: null,
+  dark: null,
+  poison: null,
+};
+
+/**
+ * 무기 속성 데미지 배율 계산
+ * 물리 공격에 무기 속성이 있을 때 사용
+ * @param weaponElement 무기 속성
+ * @param targetElement 대상 속성
+ * @returns 배율 (유리: 1.5, 불리: 0.75, 동일: 0.75, 무관: 1.0)
+ */
+export function getWeaponElementMultiplier(
+  weaponElement: MagicElement | undefined | null,
+  targetElement: MagicElement | undefined | null
+): number {
+  // 무기 속성이 없으면 배율 없음
+  if (!weaponElement) return 1.0;
+
+  // 대상 속성이 없으면 배율 없음
+  if (!targetElement) return 1.0;
+
+  // 동일 속성 = 저항 (0.75x)
+  if (weaponElement === targetElement) return 0.75;
+
+  // 유리 상성 = 1.5x
+  if (ELEMENT_ADVANTAGE[weaponElement] === targetElement) return 1.5;
+
+  // 불리 상성 = 0.75x
+  if (ELEMENT_WEAKNESS[weaponElement] === targetElement) return 0.75;
+
+  // 무관 = 1.0x
+  return 1.0;
+}
 import { getElementTimeMultiplier, type Period } from "@/entities/game-time";
 import {
   getWeatherElementMultiplier,
