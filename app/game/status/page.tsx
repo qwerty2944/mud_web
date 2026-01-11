@@ -15,8 +15,8 @@ import {
 } from "@/entities/user";
 import { usePersonalInventory, type InventorySlotItem } from "@/entities/inventory";
 import { useThemeStore } from "@/shared/config";
-import { useProficiencies, WEAPON_PROFICIENCIES, MAGIC_PROFICIENCIES, getRankInfo, getProficiencyValue } from "@/entities/proficiency";
-import type { ProficiencyType } from "@/entities/proficiency";
+import { useProficiencies, WEAPON_PROFICIENCIES, MAGIC_PROFICIENCIES, getRankInfo, getProficiencyValue } from "@/entities/ability";
+import type { ProficiencyType } from "@/entities/ability";
 import { useEquipmentStore } from "@/application/stores";
 import { SLOT_CONFIG, type EquipmentSlot } from "@/entities/item";
 import { useCharacterTraitsWithDetails, TraitList, TRAIT_CATEGORIES, TRAIT_CATEGORY_ORDER, TRAIT_RARITIES, formatTraitEffects } from "@/entities/trait";

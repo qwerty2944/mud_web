@@ -50,3 +50,6 @@ export {
 
 // Lib (Resistance)
 export { getPhysicalResistance, getResistanceText } from "./lib/resistance";
+
+// UI Components
+export { MonsterList } from "./ui";

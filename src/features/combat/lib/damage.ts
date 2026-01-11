@@ -11,10 +11,10 @@ import type {
   MagicElement,
   WeaponType,
   ProficiencyType,
-  AttackType,
+  PhysicalAttackType,
   WeaponBlockInfo,
   WeaponBlockSpecial,
-} from "@/entities/proficiency";
+} from "@/entities/ability";
 import {
   getDamageMultiplier,
   getMagicEffectiveness,
@@ -23,7 +23,7 @@ import {
   isMagicProficiency,
   WEAPON_ATTACK_TYPE,
   WEAPON_BLOCK_CONFIG,
-} from "@/entities/proficiency";
+} from "@/entities/ability";
 import { getElementTimeMultiplier, type Period } from "@/entities/game-time";
 import {
   getWeatherElementMultiplier,
@@ -124,9 +124,9 @@ export function calculatePhysicalDamage(params: PhysicalAttackParams): number {
 }
 
 /**
- * 무기 타입에서 공격 타입 가져오기
+ * 무기 타입에서 물리 공격 타입 가져오기 (slash/pierce/blunt/crush)
  */
-export function getAttackTypeFromWeapon(weaponType: WeaponType): AttackType {
+export function getAttackTypeFromWeapon(weaponType: WeaponType): PhysicalAttackType {
   return WEAPON_ATTACK_TYPE[weaponType];
 }
 

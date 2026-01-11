@@ -1,0 +1,1 @@
+export { InjuryDisplay } from "./InjuryDisplay";

@@ -6,6 +6,20 @@ export { useEndBattle } from "./end-battle";
 export { useAbility } from "./use-ability";
 export { useExecuteQueue } from "./execute-queue";
 
+// UI Components
+export {
+  BattlePanel,
+  BattleHeader,
+  BattleLog,
+  StatusEffectDisplay,
+  ActionTabs,
+  ActionPanel,
+  ActionQueue,
+  AbilitySelector,
+  MagicSubTabs,
+  type MagicElement,
+} from "./ui";
+
 // Passive Skills
 export { usePassiveSkills } from "./lib/usePassiveSkills";
 

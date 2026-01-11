@@ -1,4 +1,4 @@
-import type { CombatProficiencyType, WeaponBlockSpecial } from "@/entities/proficiency";
+import type { CombatProficiencyType, WeaponBlockSpecial } from "@/entities/ability";
 
 // 랜덤 선택 헬퍼
 function randomPick<T>(arr: T[]): T {

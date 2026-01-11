@@ -1,4 +1,4 @@
-import type { MagicElement } from "@/entities/proficiency";
+import type { MagicElement } from "@/entities/ability";
 import type { Period } from "@/entities/game-time";
 import type { MonsterAlignment } from "@/entities/karma";
 import type { MonsterAbility } from "@/entities/ability";

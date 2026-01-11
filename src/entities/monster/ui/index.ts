@@ -1,0 +1,1 @@
+export { MonsterList } from "./MonsterList";

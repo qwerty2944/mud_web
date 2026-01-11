@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback, useMemo } from "react";
 import { useBattleStore } from "@/application/stores";
 import { useThemeStore } from "@/shared/config";
 import type { CharacterStats } from "@/entities/character";
-import type { Proficiencies } from "@/entities/proficiency";
+import type { Proficiencies } from "@/entities/ability";
 import type { Ability } from "@/entities/ability";
 import {
   useAbilities,
@@ -15,10 +15,10 @@ import {
   type UserAbilities,
 } from "@/entities/ability";
 import { useAbility, useExecuteQueue } from "@/features/combat";
-import { BattleHeader } from "./battle/BattleHeader";
-import { BattleLog } from "./battle/BattleLog";
-import { ActionQueue } from "./battle/ActionQueue";
-import { AbilitySelector } from "./battle/AbilitySelector";
+import { BattleHeader } from "./BattleHeader";
+import { BattleLog } from "./BattleLog";
+import { ActionQueue } from "./ActionQueue";
+import { AbilitySelector } from "./AbilitySelector";
 
 // 전투 탭 타입
 type BattleTab = "attack" | "defense" | "magic" | "item";

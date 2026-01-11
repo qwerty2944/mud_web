@@ -1,4 +1,4 @@
-import type { ProficiencyType } from "@/entities/proficiency";
+import type { ProficiencyType } from "@/entities/ability";
 
 // ============ Item Rarity (아키에이지 13단계 시스템) ============
 

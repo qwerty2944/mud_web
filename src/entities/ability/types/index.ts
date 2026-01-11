@@ -3,8 +3,83 @@
  * 모든 전투 행동(물리 공격, 마법, 버프, 디버프 등)을 하나의 Ability로 관리
  */
 
-import type { MagicElement } from "@/entities/proficiency";
 import type { StatusType } from "@/entities/status";
+
+// ============ 무기 타입 ============
+export type WeaponType =
+  | "light_sword"
+  | "medium_sword"
+  | "great_sword"
+  | "axe"
+  | "mace"
+  | "dagger"
+  | "spear"
+  | "bow"
+  | "crossbow"
+  | "staff"
+  | "fist"
+  | "shield";
+
+// ============ 마법 속성 ============
+export type MagicElement = "fire" | "ice" | "lightning" | "earth" | "holy" | "dark" | "poison";
+
+// ============ 생활/제작 스킬 타입 ============
+export type MedicalType = "first_aid" | "herbalism" | "surgery";
+export type KnowledgeType = "anatomy" | "metallurgy" | "botany" | "gemology";
+export type CraftingType = "blacksmithing" | "tailoring" | "cooking" | "alchemy" | "jewelcrafting";
+export type LifeSkillType = MedicalType | KnowledgeType | CraftingType;
+
+// ============ 물리 공격 타입 (데미지 계산용) ============
+export type PhysicalAttackType = "slash" | "pierce" | "blunt" | "crush";
+
+// ============ 숙련도 타입 ============
+export type CombatProficiencyType = WeaponType | MagicElement;
+export type ProficiencyType = CombatProficiencyType | MedicalType | KnowledgeType;
+
+// ============ 숙련도 정보 ============
+export interface ProficiencyInfo {
+  id: string;
+  nameKo: string;
+  nameEn: string;
+  icon: string;
+  category: "weapon" | "magic" | "medical" | "knowledge";
+}
+
+// ============ 숙련도 값 ============
+export interface Proficiencies {
+  light_sword: number;
+  medium_sword: number;
+  great_sword: number;
+  axe: number;
+  mace: number;
+  dagger: number;
+  spear: number;
+  bow: number;
+  crossbow: number;
+  staff: number;
+  fist: number;
+  shield: number;
+  fire: number;
+  ice: number;
+  lightning: number;
+  earth: number;
+  holy: number;
+  dark: number;
+  poison: number;
+}
+
+// ============ 무기 블록 ============
+export type WeaponBlockEffectType = "counter" | "riposte" | "disarm" | "stun" | "deflect" | "none";
+export type WeaponBlockSpecial = WeaponBlockEffectType;
+
+export interface WeaponBlockConfig {
+  blockChance: number;
+  damageReduction: number;
+  specialEffect?: WeaponBlockEffectType;
+  specialChance?: number;
+}
+
+export type WeaponBlockInfo = WeaponBlockConfig;
 
 // 어빌리티 소스 (어디서 온 데이터인지)
 export type AbilitySource = "spell" | "combatskill" | "monster";

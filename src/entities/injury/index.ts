@@ -27,3 +27,6 @@ export {
   getInjuryOccurredMessage,
   getInjurySummaryMessage,
 } from "./lib";
+
+// UI Components
+export { InjuryDisplay } from "./ui";

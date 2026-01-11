@@ -23,13 +23,13 @@ import {
   formatKarma,
   getKarmaRank,
 } from "@/entities/karma";
-import type { ProficiencyType } from "@/entities/proficiency";
+import type { ProficiencyType } from "@/entities/ability";
 import {
   calculateProficiencyGain,
   canGainProficiency,
   useProficiencies,
   getProficiencyValue,
-} from "@/entities/proficiency";
+} from "@/entities/ability";
 import {
   checkInjuryOccurrence,
   getInjuryOccurredMessage,

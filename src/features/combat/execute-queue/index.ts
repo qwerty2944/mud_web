@@ -3,8 +3,8 @@
 import { useState, useCallback, useRef } from "react";
 import { useBattleStore, type QueuedAction } from "@/application/stores";
 import type { CharacterStats } from "@/entities/character";
-import type { Proficiencies, CombatProficiencyType } from "@/entities/proficiency";
-import { getProficiencyValue } from "@/entities/proficiency";
+import type { Proficiencies, CombatProficiencyType } from "@/entities/ability";
+import { getProficiencyValue } from "@/entities/ability";
 import type { RawMonsterAbility } from "@/entities/ability";
 import { getEffectsAtLevel } from "@/entities/ability";
 import {
@@ -74,8 +74,8 @@ export function useExecuteQueue(options: UseExecuteQueueOptions) {
 
     setIsExecuting(true);
 
-    // 몬스터 큐 생성
-    if (battle.monster && battle.monster.abilities && battle.monster.abilities.length > 0) {
+    // 몬스터 큐 생성 (abilities가 없어도 기본 공격 사용)
+    if (battle.monster) {
       const monsterQueue = buildMonsterQueue(
         {
           monster: battle.monster,

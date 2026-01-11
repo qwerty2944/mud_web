@@ -1,16 +1,16 @@
-import type { AttackType } from "@/entities/proficiency";
+import type { PhysicalAttackType } from "@/entities/ability";
 import type { PhysicalResistance, MonsterStats } from "../types";
 import { DEFAULT_PHYSICAL_RESISTANCE } from "../types";
 
 /**
  * 몬스터의 특정 공격 타입에 대한 저항 배율 가져오기
  * @param stats 몬스터 스탯
- * @param attackType 공격 타입
+ * @param attackType 공격 타입 (slash/pierce/blunt/crush)
  * @returns 저항 배율 (1.0 = 보통, 1.5 = 약함, 0.5 = 강함)
  */
 export function getPhysicalResistance(
   stats: MonsterStats,
-  attackType: AttackType
+  attackType: PhysicalAttackType
 ): number {
   const resistance = stats.resistance ?? DEFAULT_PHYSICAL_RESISTANCE;
 

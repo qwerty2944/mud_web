@@ -2,7 +2,7 @@
 
 import { useCallback } from "react";
 import { usePvpStore, type DuelAction } from "@/application/stores";
-import type { CombatProficiencyType } from "@/entities/proficiency";
+import type { CombatProficiencyType } from "@/entities/ability";
 import {
   calculatePvpDamage,
   attemptFlee,

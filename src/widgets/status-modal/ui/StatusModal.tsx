@@ -21,8 +21,8 @@ import {
   KNOWLEDGE_PROFICIENCIES,
   getRankInfo,
   getProficiencyValue,
-} from "@/entities/proficiency";
-import type { ProficiencyType } from "@/entities/proficiency";
+} from "@/entities/ability";
+import type { ProficiencyType } from "@/entities/ability";
 import { useEquipmentStore } from "@/application/stores";
 import { useThemeStore } from "@/shared/config";
 import { SLOT_CONFIG, type EquipmentSlot } from "@/entities/item";

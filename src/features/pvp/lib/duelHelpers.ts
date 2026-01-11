@@ -1,7 +1,7 @@
 import type { DuelParticipant } from "@/application/stores";
 import { calculateDamage, applyCritical } from "@/features/combat";
-import type { ProficiencyType, CombatProficiencyType } from "@/entities/proficiency";
-import { getProficiencyValue } from "@/entities/proficiency";
+import type { ProficiencyType, CombatProficiencyType } from "@/entities/ability";
+import { getProficiencyValue } from "@/entities/ability";
 
 // ============ 선공 결정 ============
 

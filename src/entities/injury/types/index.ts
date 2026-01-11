@@ -1,4 +1,4 @@
-import type { MedicalType } from "@/entities/proficiency";
+import type { MedicalType } from "@/entities/ability";
 
 // ============ 부상 타입 ============
 

@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import type { CharacterStats } from "@/entities/character";
-import type { Proficiencies, ProficiencyType } from "@/entities/proficiency";
+import type { Proficiencies, ProficiencyType } from "@/entities/ability";
 
 // ============ 타입 정의 ============
 

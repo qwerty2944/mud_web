@@ -4,20 +4,14 @@ import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { useAuthStore } from "@/features/auth";
-import {
-  useGameStore,
-  useRealtimeChat,
-  ChatBox,
-  PlayerList,
-  MapSelector,
-  WorldMapModal,
-  MonsterList,
-  BattlePanel,
-  NpcList,
-  HealerDialog,
-  InjuryDisplay,
-} from "@/features/game";
-import { useNpcsByMap, type Npc } from "@/entities/npc";
+import { useGameStore } from "@/application/stores";
+import { ChatBox, useRealtimeChat } from "@/features/chat";
+import { BattlePanel } from "@/features/combat";
+import { PlayerList } from "@/entities/player";
+import { MapSelector, WorldMapModal } from "@/entities/map";
+import { MonsterList } from "@/entities/monster";
+import { NpcList, HealerDialog, useNpcsByMap, type Npc } from "@/entities/npc";
+import { InjuryDisplay } from "@/entities/injury";
 import {
   useProfile,
   getMainCharacter,
@@ -31,8 +25,8 @@ import {
   getMapDisplayName,
 } from "@/entities/map";
 import type { Monster } from "@/entities/monster";
-import { useProficiencies } from "@/entities/proficiency";
-import type { ProficiencyType } from "@/entities/proficiency";
+import { useProficiencies } from "@/entities/ability";
+import type { ProficiencyType } from "@/entities/ability";
 import { GameTimeClock, AtmosphericText, useRealtimeGameTime, getPeriodOverlayStyle } from "@/entities/game-time";
 import { WeatherDisplay } from "@/entities/weather";
 import { useBattleStore, usePvpStore } from "@/application/stores";

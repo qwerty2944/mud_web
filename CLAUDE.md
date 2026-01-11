@@ -41,10 +41,16 @@ src/
 │   │   ├── types/              # 타입, 프리셋, 상수
 │   │   ├── ui/                 # UI 컴포넌트
 │   │   └── index.ts
-│   ├── game/
-│   │   ├── update-location/    # 위치 업데이트 액션
-│   │   ├── lib/                # useRealtimeChat 등 훅
-│   │   ├── ui/                 # UI 컴포넌트
+│   ├── chat/                   # 채팅 기능
+│   │   ├── send-message/       # 메시지 전송 액션
+│   │   ├── lib/                # useRealtimeChat 훅
+│   │   ├── ui/                 # ChatBox, ChatInput, ChatMessage
+│   │   └── index.ts
+│   ├── duel/                   # 결투 기능
+│   │   ├── request-duel/       # 결투 신청
+│   │   ├── respond-duel/       # 결투 수락/거절
+│   │   ├── lib/                # useRealtimeDuel 훅
+│   │   ├── ui/                 # DuelRequestModal, DuelBattlePanel
 │   │   └── index.ts
 │   ├── inventory/
 │   │   ├── add-item/           # 아이템 추가
@@ -58,9 +64,11 @@ src/
 │   │   └── index.ts
 │   ├── combat/                 # PvE 전투
 │   │   ├── start-battle/       # 전투 시작
-│   │   ├── attack/             # 공격
+│   │   ├── use-ability/        # 어빌리티 사용
+│   │   ├── execute-queue/      # 큐 실행
 │   │   ├── end-battle/         # 전투 종료
-│   │   ├── lib/damage.ts       # 데미지 계산
+│   │   ├── lib/                # damage.ts, monsterAi.ts, messages.ts
+│   │   ├── ui/                 # BattlePanel, ActionPanel, BattleHeader 등
 │   │   └── index.ts
 │   └── pvp/                    # PvP 결투
 │       ├── request-duel/       # 결투 신청
@@ -87,16 +95,37 @@ src/
 │   │   ├── api/                # DB 조회 (fetchMaps)
 │   │   ├── queries/            # React Query 훅 (useMaps)
 │   │   ├── types/              # 타입 정의
+│   │   ├── ui/                 # WorldMap, WorldMapModal, MapSelector
+│   │   └── index.ts
+│   ├── monster/
+│   │   ├── api/                # JSON 데이터 로드 (fetchMonsters)
+│   │   ├── queries/            # React Query 훅 (useMonsters)
+│   │   ├── lib/                # 유틸리티 (rollDrops, resistance)
+│   │   ├── types/              # 타입 정의
+│   │   ├── ui/                 # MonsterList
+│   │   └── index.ts
+│   ├── npc/
+│   │   ├── api/                # JSON 데이터 로드 (fetchNpcs)
+│   │   ├── queries/            # React Query 훅 (useNpcs)
+│   │   ├── types/              # 타입 정의
+│   │   ├── ui/                 # NpcList, HealerDialog
+│   │   └── index.ts
+│   ├── player/
+│   │   ├── ui/                 # PlayerList, PlayerContextMenu
+│   │   └── index.ts
+│   ├── injury/
+│   │   ├── lib/                # 유틸리티 (checkInjuryOccurrence)
+│   │   ├── types/              # 타입 정의 (constants)
+│   │   ├── ui/                 # InjuryDisplay
 │   │   └── index.ts
 │   ├── chat/
 │   │   ├── api/                # DB 조회/저장
 │   │   ├── types/              # 타입 정의
 │   │   └── index.ts
-│   ├── proficiency/
-│   │   ├── api/                # DB 조회/수정 (fetchProficiencies, increaseProficiency)
-│   │   ├── queries/            # React Query 훅 (useProficiencies)
-│   │   ├── lib/                # 유틸리티 (getRank, getDamageBonus, getMagicEffectiveness)
-│   │   ├── types/              # 타입 및 상수 정의
+│   ├── ability/                # 통합 어빌리티 시스템 (마법+스킬+숙련도)
+│   │   ├── api/                # JSON 데이터 로드, 숙련도 함수
+│   │   ├── queries/            # React Query 훅 (useAbilities)
+│   │   ├── types/              # Ability, AbilityType, Proficiencies 타입
 │   │   └── index.ts
 │   └── item/
 │       ├── api/                # JSON 데이터 로드 (fetchItems, fetchItemById)
@@ -122,6 +151,11 @@ src/
 5. **액션 분리**: 동사형 폴더 (sign-out, register-location 등)로 비동기 액션 분리
 6. **DB 조회 분리**: entities/*/api/에서 Supabase 조회 로직 관리
 7. **타입 폴더 통일**: `model/` 대신 `types/` 폴더명 사용 (타입, 상수, 프리셋 등)
+8. **UI 위치 규칙**:
+   - **기능 UI** (액션 포함): `features/*/ui/` (예: BattlePanel → `features/combat/ui/`)
+   - **엔티티 표시 UI** (리스트, 뷰어): `entities/*/ui/` (예: MonsterList → `entities/monster/ui/`)
+   - **채팅 UI**: `features/chat/ui/`
+   - **결투 UI**: `features/duel/ui/`
 
 ### 상태 관리 원칙
 | 상태 종류 | 관리 방식 | 위치 |
@@ -669,27 +703,34 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=xxx
 
 경험치와 별개로 동작하는 사용 기반 숙련 시스템. 무기/마법을 사용할수록 해당 숙련도가 상승.
 
-### 무기 숙련 (8종)
-| ID | 이름 | 영문 | 관련 스탯 |
-|----|------|------|----------|
-| sword | 검 | Sword | STR/DEX |
-| axe | 도끼 | Axe | STR |
-| mace | 둔기 | Mace | STR |
-| dagger | 단검 | Dagger | DEX |
-| spear | 창 | Spear | STR/DEX |
-| bow | 활 | Bow | DEX |
-| crossbow | 석궁 | Crossbow | DEX |
-| staff | 지팡이 | Staff | INT/WIS |
+**참고**: 숙련도 타입과 함수는 `@/entities/ability`에서 관리합니다. (어빌리티 시스템 섹션 참조)
 
-### 마법 숙련 (6속성)
-| ID | 이름 | 영문 | 상성 (강함→약함) |
-|----|------|------|-----------------|
-| fire | 화염 | Fire | ice에 강함, earth에 약함 |
-| ice | 냉기 | Ice | lightning에 강함, fire에 약함 |
-| lightning | 번개 | Lightning | earth에 강함, ice에 약함 |
-| earth | 대지 | Earth | fire에 강함, lightning에 약함 |
-| holy | 신성 | Holy | dark에 강함 |
-| dark | 암흑 | Dark | holy에 강함 |
+### 무기 숙련 (12종)
+| ID | 이름 | 아이콘 | 관련 스탯 |
+|----|------|--------|----------|
+| light_sword | 세검 | 🗡️ | DEX |
+| medium_sword | 중검 | ⚔️ | STR/DEX |
+| great_sword | 대검 | 🗡️ | STR |
+| axe | 도끼 | 🪓 | STR |
+| mace | 둔기 | 🔨 | STR |
+| dagger | 단검 | 🔪 | DEX |
+| spear | 창 | 🔱 | STR/DEX |
+| bow | 활 | 🏹 | DEX |
+| crossbow | 석궁 | 🎯 | DEX |
+| staff | 지팡이 | 🪄 | INT/WIS |
+| fist | 주먹 | 👊 | STR/DEX |
+| shield | 방패 | 🛡️ | CON |
+
+### 마법 숙련 (7속성)
+| ID | 이름 | 아이콘 | 상성 (강함→약함) |
+|----|------|--------|-----------------|
+| fire | 화염 | 🔥 | ice에 강함, earth에 약함 |
+| ice | 냉기 | ❄️ | lightning에 강함, fire에 약함 |
+| lightning | 번개 | ⚡ | earth에 강함, ice에 약함 |
+| earth | 대지 | 🪨 | fire에 강함, lightning에 약함 |
+| holy | 신성 | ✨ | dark에 강함 |
+| dark | 암흑 | 🌑 | holy에 강함 |
+| poison | 독 | ☠️ | - |
 
 ### 숙련도 등급 (0-100)
 | 레벨 | 등급 | 데미지 보너스 | 속도 보너스 |
@@ -703,28 +744,31 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=xxx
 
 ### 사용법
 ```typescript
+// 숙련도 관련 함수는 @/entities/ability에서 import
+import {
+  useProficiencies,
+  getProficiencyValue,
+  getProficiencyInfo,
+  getRankInfo,
+  getDamageMultiplier,
+  getMagicEffectiveness,
+  getDayBoostMultiplier,
+  WEAPON_PROFICIENCIES,
+  MAGIC_PROFICIENCIES,
+} from "@/entities/ability";
+
 // 숙련도 조회
-import { useProficiencies, getRankInfo, getDamageBonus } from "@/entities/proficiency";
-
 const { data: proficiencies } = useProficiencies(userId);
-const swordLevel = proficiencies?.sword ?? 0;
+const swordLevel = getProficiencyValue(proficiencies, "medium_sword");
 const rank = getRankInfo(swordLevel); // { id: "novice", nameKo: "초보", ... }
-const bonus = getDamageBonus(swordLevel); // 0
-
-// 숙련도 증가 (전투 시)
-import { useGainProficiency } from "@/features/proficiency";
-
-const gainProficiency = useGainProficiency(userId);
-gainProficiency.mutate({ type: "sword", amount: 1 });
+const bonus = getDamageMultiplier(swordLevel);
 
 // 마법 상성 계산
-import { getMagicEffectiveness } from "@/entities/proficiency";
-
 const multiplier = getMagicEffectiveness("fire", "ice"); // 1.5 (강함)
 ```
 
 ### DB 테이블
-- `proficiencies`: user_id별 14개 숙련도 값 (0-100)
+- `proficiencies`: user_id별 숙련도 값 (0-100)
 - RPC `increase_proficiency(p_user_id, p_type, p_amount)`: 감소율 적용된 숙련도 증가
 
 ### 요일별 속성 강화
@@ -742,11 +786,7 @@ const multiplier = getMagicEffectiveness("fire", "ice"); // 1.5 (강함)
 
 **사용법**:
 ```typescript
-import { getTodayBoostInfo, getDayBoostMultiplier } from "@/entities/proficiency";
-
-// 오늘 강화 정보
-const { element, dayNameKo, multiplier } = getTodayBoostInfo();
-// 화요일: { element: "fire", dayNameKo: "화", multiplier: 1.2 }
+import { getDayBoostMultiplier } from "@/entities/ability";
 
 // 특정 속성의 요일 배율
 const boost = getDayBoostMultiplier("fire"); // 화요일이면 1.2, 아니면 1.0
@@ -806,345 +846,228 @@ const { endBattle, isVictory } = useEndBattle({ userId });
 if (isVictory) endBattle(); // 보상 지급 + 숙련도 상승
 ```
 
-## 스킬 시스템 (Skill) v2
+## 어빌리티 시스템 (Ability)
 
-전투 스킬과 생활 스킬로 분리. 마법은 `spells.json`에서 관리하고, `skills.json`은 물리 전투 스킬에 집중.
+**중요**: 이 프로젝트에서는 "스킬(Skill)"이나 "마법(Spell)" 대신 **"어빌리티(Ability)"** 용어를 사용합니다.
+모든 전투 행동(물리 공격, 마법, 버프, 디버프 등)은 통합된 `Ability` 타입으로 관리됩니다.
 
-### 스킬 타입 (SkillType)
-| 타입 | 설명 | UI 탭 |
-|------|------|-------|
-| `weapon_attack` | 무기 공격 (검, 도끼, 창 등) | 무기 |
-| `martial_attack` | 무술 공격 (맨손 격투) | 무술 |
-| `defensive` | 방어 스킬 (막기, 회피, 반격) | 방어 |
-| `buff` | 버프 (자신/아군 강화) | 보조 |
-| `debuff` | 디버프 (적 약화) | 보조 |
-| `life` | 생활 스킬 (향후 추가) | 생활 |
+### 데이터 구조 (`public/data/abilities/`)
 
-### 스킬 카테고리 (SkillCategory)
-**무기 스킬 (8종)**
-| 카테고리 | 이름 | 스킬 수 |
-|----------|------|--------|
-| `sword` | 검술 ⚔️ | 6 |
-| `axe` | 도끼술 🪓 | 6 |
-| `mace` | 둔기술 🔨 | 6 |
-| `dagger` | 단검술 🔪 | 6 |
-| `spear` | 창술 🔱 | 6 |
-| `bow` | 궁술 🏹 | 6 |
-| `crossbow` | 석궁술 🎯 | 6 |
-| `staff` | 장봉술 🏑 | 6 |
+```
+public/data/abilities/
+├── spell/                  # 마법 주문 (속성별)
+│   ├── fire.json           # 화염 마법
+│   ├── ice.json            # 냉기 마법
+│   ├── lightning.json      # 번개 마법
+│   ├── earth.json          # 대지 마법
+│   ├── holy.json           # 신성 마법 + 치유
+│   ├── dark.json           # 암흑 마법
+│   └── metadata.json       # 속성 상성, 요일 강화
+├── combatskill/            # 전투 스킬
+│   ├── weapon/             # 무기 스킬
+│   │   ├── sword/          # 검술 (common, light_sword, medium_sword, great_sword)
+│   │   ├── axe.json        # 도끼술
+│   │   ├── mace.json       # 둔기술
+│   │   ├── dagger.json     # 단검술
+│   │   ├── spear.json      # 창술
+│   │   ├── bow.json        # 궁술
+│   │   ├── crossbow.json   # 석궁술
+│   │   ├── staff.json      # 장봉술
+│   │   ├── shield.json     # 방패술
+│   │   └── dual_wield.json # 쌍수
+│   ├── martial/            # 무술 (fist, kick, stance)
+│   ├── defense/            # 방어 스킬
+│   ├── utility/            # 전술 스킬
+│   ├── warcry/             # 함성 스킬
+│   └── common/             # 공용 스킬
+├── lifeskill/              # 생활 스킬
+│   ├── medical.json        # 의료 (응급처치, 약초학, 수술)
+│   └── knowledge.json      # 지식 (해부학, 금속학, 식물학, 보석학)
+├── craftskill/             # 제작 스킬
+│   ├── blacksmithing/      # 대장장이
+│   ├── tailoring/          # 재봉
+│   ├── cooking/            # 요리
+│   ├── alchemy/            # 연금술
+│   └── jewelcrafting/      # 보석세공
+├── song/                   # 노래 스킬
+│   └── song.json           # 유지형/즉시형 노래
+├── metadata.json           # 어빌리티 메타데이터
+├── spells.json             # 생성됨 (마법 통합)
+├── combatskills.json       # 생성됨 (전투 스킬 통합)
+├── lifeskills.json         # 생성됨 (생활 스킬 통합)
+└── craftskills.json        # 생성됨 (제작 스킬 통합)
+```
 
-**무술 스킬 (손/발 분리)**
-| 카테고리 | 이름 | 스킬 수 | 숙련도 |
-|----------|------|--------|--------|
-| `fist` | 주먹 👊 | 8 | fist 숙련도 |
-| `kick` | 발차기 🦶 | 8 | kick 숙련도 |
-| `martial` | 자세/내공 🥋 | 8 | martial 숙련도 |
+### 어빌리티 타입 (AbilityType)
 
-**기타 카테고리**
-| 카테고리 | 이름 | 스킬 수 |
-|----------|------|--------|
-| `defense` | 방어 🛡️ | 8 |
-| `utility` | 보조 💊 | 8 |
-| `life` | 생활 🌿 | 0 (placeholder) |
+| type | 설명 | UI 색상 |
+|------|------|---------|
+| `passive` | 패시브 (항상 적용) | #9CA3AF (회색) |
+| `attack` | 공격 (적에게 피해) | #EF4444 (빨강) |
+| `heal` | 치유 (HP 회복) | #22C55E (초록) |
+| `buff` | 버프 (자신/아군 강화) | #3B82F6 (파랑) |
+| `debuff` | 디버프 (적 약화) | #A855F7 (보라) |
+| `utility` | 유틸리티 (분석, 이동) | #F59E0B (주황) |
+| `defense` | 방어 (가드, 회피) | - |
 
-### UI 탭 (SkillUITab)
-| 탭 | 이름 | 포함 카테고리 |
-|----|------|--------------|
-| `weapon` | 무기 ⚔️ | sword, axe, mace, dagger, spear, bow, crossbow, staff |
-| `martial` | 무술 👊 | fist, kick, martial |
-| `defense` | 방어 🛡️ | defense |
-| `utility` | 보조 💊 | utility |
-| `life` | 생활 🌿 | life (disabled) |
+### 공격 타입 (AttackType)
 
-### 스킬 데이터
-- **위치**: `/public/data/skills.json`
-- **총 88개 전투 스킬**: 무기 48개 + 무술 24개 (주먹 8 + 발차기 8 + 자세 8) + 방어 8개 + 보조 8개
-- **비용**: AP (Action Point) 사용 (전투 중 스킬 사용 비용)
+`type: "attack"`인 어빌리티에만 적용됩니다.
 
-### 주요 스킬 속성
+| attackType | 데미지 스케일링 | 방어 타입 |
+|------------|----------------|----------|
+| `melee_physical` | STR/DEX | 물리 |
+| `ranged_physical` | DEX | 물리 |
+| `magic` | INT/WIS | 마법 |
+
+### 물리 공격 타입 (PhysicalAttackType)
+
+무기별 물리 데미지 속성 (저항 계산용):
+
+| 타입 | 설명 | 주요 무기 |
+|------|------|----------|
+| `slash` | 베기 | 검, 도끼 |
+| `pierce` | 찌르기 | 창, 단검, 활 |
+| `blunt` | 타격 | 둔기, 방패, 주먹 |
+| `crush` | 분쇄 | 도끼, 둔기 |
+
+### 마법 속성 (MagicElement)
+
+| 속성 | 아이콘 | 상성 (강함) | 상성 (약함) |
+|------|--------|------------|------------|
+| fire | 🔥 | ice | earth |
+| ice | ❄️ | lightning | fire |
+| lightning | ⚡ | earth | ice |
+| earth | 🪨 | fire | lightning |
+| holy | ✨ | dark | - |
+| dark | 🌑 | holy | - |
+| poison | ☠️ | - | - |
+
+### 무기 숙련도 타입 (WeaponType)
+
+| 타입 | 이름 | 아이콘 | 특성 |
+|------|------|--------|------|
+| `light_sword` | 세검 | 🗡️ | DEX, 찌르기 |
+| `medium_sword` | 중검 | ⚔️ | STR/DEX, 베기 |
+| `great_sword` | 대검 | 🗡️ | STR, 베기/패리 |
+| `axe` | 도끼 | 🪓 | STR, 강력 일격 |
+| `mace` | 둔기 | 🔨 | STR, 방어 무시 |
+| `dagger` | 단검 | 🔪 | DEX, 빠른 연속 |
+| `spear` | 창 | 🔱 | STR/DEX, 긴 사거리 |
+| `bow` | 활 | 🏹 | DEX, 원거리 |
+| `crossbow` | 석궁 | 🎯 | DEX, 강한 원거리 |
+| `staff` | 지팡이 | 🪄 | INT/WIS, 마법 증폭 |
+| `fist` | 주먹 | 👊 | STR/DEX, 맨손 |
+| `shield` | 방패 | 🛡️ | CON, 방어 |
+
+### Ability 인터페이스
+
 ```typescript
-interface Skill {
+interface Ability {
   id: string;
   nameKo: string;
   nameEn: string;
-  description: string;
-
-  // 분류
-  type: SkillType;           // weapon_attack, martial_attack, defensive, buff, debuff
-  category: SkillCategory;   // sword, axe, martial, defense, utility 등
+  description: { ko: string; en: string };
   icon: string;
 
+  // 분류
+  source: "spell" | "combatskill" | "monster";
+  type: AbilityType;           // attack, heal, buff 등
+  attackType?: AttackType;     // attack일 때만 (melee_physical, ranged_physical, magic)
+  element?: MagicElement;      // 마법 속성
+
+  // 사용 컨텍스트
+  usageContext: "passive" | "combat_only" | "field_only" | "both";
+
+  // 레벨/숙련도
+  maxLevel: number;
+  expPerLevel: number;
+  levelBonuses: AbilityLevelBonus[];
+
   // 비용
-  apCost: number;            // 액션 포인트 (전투 스킬용)
-  mpCost?: number;           // 마나 포인트 (마법/힐 스킬용)
-  cooldown?: number;         // 쿨다운 턴
-
-  // 공격 스킬용
-  baseDamage?: number;
-  hitCount?: [number, number];  // 다중 타격 [min, max]
-  armorPenetration?: number;    // 방어력 관통률 (0-1)
-  critBonus?: number;           // 치명타 추가 확률 (%)
-
-  // 방어 스킬용
-  blockBonus?: number;       // 막기 확률 보너스 (%)
-  dodgeBonus?: number;       // 회피 확률 보너스 (%)
-  damageReduction?: number;  // 피해 감소율 (%)
-
-  // 상태이상
-  statusEffect?: StatusType;
-  statusDuration?: number;
-  statusValue?: number;
-  statusChance?: number;     // 발동 확률 (%)
-
-  // 요구 조건
-  requirements: {
-    proficiency?: number;    // 무기/무술 숙련도 (0-100)
-    stats?: { str?: number; dex?: number; con?: number; ... };
-    equipment?: string;      // 필요 장비 (예: "shield")
+  baseCost: {
+    ap?: number;    // 액션 포인트 (물리)
+    mp?: number;    // 마나 포인트 (마법)
   };
 
-  target: SkillTarget;       // self | enemy | all_enemies | all_allies
+  // 요구 조건
+  requirements: AbilityRequirements;
+
+  // 타겟
+  target?: "self" | "enemy" | "all_enemies" | "all_allies";
 }
 ```
 
-### 주요 스킬 예시
+### 숙련도 타입 (통합)
 
-**검술 스킬**
-| ID | 이름 | SP | 효과 | 요구 숙련도 |
-|----|------|-----|------|------------|
-| slash | 참격 | 0 | 기본 베기 | 0 |
-| blade_dance | 검무 | 10 | 2-3회 연속 공격 | 25 |
-| cross_slash | 십자 베기 | 15 | 높은 피해 | 50 |
-| mortal_strike | 죽음의 검 | 20 | 회복량 50% 감소 | 70 |
+숙련도 관련 타입들은 `@/entities/ability`에서 관리합니다:
 
-**방어 스킬**
-| ID | 이름 | SP | 효과 | 요구 조건 |
-|----|------|-----|------|----------|
-| block | 막기 | 3 | 다음 공격 막기 | CON 12 |
-| dodge | 회피 | 5 | 다음 공격 회피 | DEX 18 |
-| shield_wall | 방패벽 | 10 | 3턴간 막기 +30% | 방패 장착 |
-| perfect_guard | 완벽한 방어 | 25 | 1회 피해 무효 | CON 30, DEX 25 |
-
-### 사용법
 ```typescript
-import {
-  useSkills,
-  useSkillsByCategory,
-  useSkillsByUITab,
-  useDefensiveSkills,
-  checkSkillRequirements,
-  getSkillUITab,
-  SKILL_UI_TABS,
-  WEAPON_CATEGORIES,
-} from "@/entities/skill";
-
-// 모든 스킬 조회
-const { data: skills } = useSkills();
-
-// 검술 스킬만 조회
-const { data: swordSkills } = useSkillsByCategory("sword");
-
-// UI 탭별 조회 (무기 탭)
-const { data: weaponSkills } = useSkillsByUITab("weapon");
-
-// 방어 스킬 조회
-const { data: defSkills } = useDefensiveSkills();
-
-// 스킬 사용 가능 여부 체크
-const result = checkSkillRequirements(skill, {
-  proficiency: 30,
-  stats: { dex: 15, con: 12 },
-  equipment: ["shield"],
-});
-if (!result.canUse) {
-  console.log(result.reasons); // ["숙련도 50 필요 (현재: 30)"]
-}
-```
-
-### 폴더 구조
-```
-src/entities/skill/
-├── types/index.ts           # SkillType, SkillCategory, Skill 타입
-├── queries/index.ts         # useSkills, useSkillsByCategory 등
-└── index.ts                 # Public API
-```
-
-## 마법 시스템 (Magic/Spell)
-
-마법 주문 시스템. `skills.json`의 기존 스킬과 별개로 `spells.json`에서 확장 마법을 관리합니다.
-
-### 마법 속성 (6종)
-| ID | 이름 | 아이콘 | 상성 |
-|----|------|--------|------|
-| fire | 화염 | 🔥 | ice에 강함, earth에 약함 |
-| ice | 냉기 | ❄️ | lightning에 강함, fire에 약함 |
-| lightning | 번개 | ⚡ | earth에 강함, ice에 약함 |
-| earth | 대지 | 🪨 | fire에 강함, lightning에 약함 |
-| holy | 신성 | ✨ | dark에 강함, 카르마 영향 |
-| dark | 암흑 | 🌑 | holy에 강함, 카르마 영향 |
-
-### 주문 타입
-| 타입 | 설명 |
-|------|------|
-| attack | 공격 주문 |
-| heal | 치유 주문 |
-| buff | 버프 주문 |
-| debuff | 디버프 주문 |
-| dot | 지속 피해 (Damage over Time) |
-| special | 특수 효과 (즉사, 석화 등) |
-
-### 카르마-마법 배율
-| 카르마 등급 | 신성 배율 | 암흑 배율 |
-|------------|----------|----------|
-| 성인 (+80~100) | 1.2x | 0.7x |
-| 신성 (+50~79) | 1.1x | 0.85x |
-| 중립 (-19~+19) | 1.0x | 1.0x |
-| 사악 (-50~-79) | 0.85x | 1.1x |
-| 심연 (-80~-100) | 0.7x | 1.2x |
-
-### 개별 주문 숙련도
-각 주문마다 별도의 숙련도가 있습니다. 사용 횟수에 따라 경험치가 증가합니다.
-
-| 경험치 | 등급 | 데미지 보너스 | MP 감소 | 쿨다운 감소 |
-|--------|------|--------------|---------|------------|
-| 0-19 | 미숙 | +0% | -0% | 0턴 |
-| 20-39 | 익숙 | +5% | -5% | 0턴 |
-| 40-59 | 숙련 | +10% | -10% | 0턴 |
-| 60-79 | 정통 | +15% | -15% | 1턴 |
-| 80-99 | 달인 | +20% | -20% | 1턴 |
-| 100 | 대가 | +25% | -25% | 2턴 |
-
-### 치유 시스템
-- **기본**: 모든 플레이어 치유 가능
-- **솔라라 신도**: Piety에 따라 치유량 +5%~+30%
-- **베르단티스 신도**: Piety에 따라 치유량 +0%~+15%
-- **네스로스 신도**: 치유 사용 시 Piety -15 페널티
-
-### 주문 해금 조건
-| 조건 | 설명 |
-|------|------|
-| proficiency | 해당 속성 숙련도 |
-| karma | 양수: 이상, 음수: 이하 |
-| piety | 신앙심 레벨 |
-| religion | 특정 종교 필수 |
-
-### 주요 주문 목록
-**화염 (Fire)**
-- fireball: 파이어볼 (기본 공격)
-- flame_wave: 화염 파동 (광역)
-- ignite: 점화 (DoT)
-- fire_shield: 화염 방패 (냉기 저항)
-- meteor: 유성 (강력, 캐스팅 필요)
-- inferno: 지옥불 (최강, 자해 피해)
-
-**냉기 (Ice)**
-- ice_spike: 얼음창 (기본 공격)
-- frost_nova: 서리 폭발 (슬로우)
-- blizzard: 눈보라 (DoT + 슬로우)
-- ice_armor: 얼음 갑옷 (방어 버프)
-- glacial_spike: 빙하 창 (동결 확률)
-- absolute_zero: 절대 영도 (50% 즉사)
-
-**신성 (Holy)** - 카르마 +20 이상 권장
-- divine_light: 신성한 빛 (기본, 언데드 보너스)
-- smite: 천벌 (악마 보너스)
-- purify: 정화 (디버프 해제)
-- sacred_shield: 성스러운 방패 (암흑 저항)
-- exorcism: 퇴마 (언데드/악마 즉사)
-- divine_intervention: 신의 가호 (1회 치명타 회피)
-
-**암흑 (Dark)** - 카르마 -20 이하 권장
-- shadow_bolt: 그림자 화살 (기본)
-- life_drain: 생명력 흡수 (흡혈)
-- curse: 저주 (피해 증가 디버프)
-- fear: 공포 (공격력 감소, 도주 불가)
-- soul_rend: 영혼 파열 (WIS 무시)
-- death_coil: 죽음의 고리 (스턴)
-
-**치유 (Heal)** - 모두 사용 가능
-- minor_heal: 경미한 치유 (HP 20%)
-- heal: 치유 (HP 35%)
-- healing_prayer: 치유의 기도 (HP 50%)
-- regeneration: 재생 (HoT 5턴)
-- mass_heal: 대규모 치유 (파티 전체)
-- divine_heal: 신성 치유 (HP 100%)
-
-### 폴더 구조
-```
-public/data/
-└── spells.json              # 전체 주문 데이터 (42개)
-
-src/entities/spell/
-├── types/index.ts           # Spell, SpellType 타입
-├── api/index.ts             # fetchSpells, increaseSpellProficiency
-├── queries/index.ts         # useSpells, useSpellProficiency
-├── lib/index.ts             # checkSpellRequirements, calculateHealAmount
-└── index.ts                 # Public API
-
-src/features/combat/
-└── spell-cast/index.ts      # useSpellCast 훅
+import type {
+  WeaponType,           // 무기 12종
+  MagicElement,         // 마법 7속성
+  PhysicalAttackType,   // 물리 공격 타입
+  CombatProficiencyType, // WeaponType | MagicElement
+  ProficiencyType,      // 전체 숙련도 타입
+  Proficiencies,        // 숙련도 값 객체
+} from "@/entities/ability";
 ```
 
 ### 사용법
+
 ```typescript
 import {
-  useSpells,
-  useSpellsByElement,
-  useAvailableSpells,
-  checkSpellRequirements,
-  calculateHealAmount,
-} from "@/entities/spell";
-import { useSpellCast } from "@/features/combat";
+  useAbilities,
+  getProficiencyValue,
+  getProficiencyInfo,
+  getDamageMultiplier,
+  getMagicEffectiveness,
+  getDayBoostMultiplier,
+  WEAPON_ATTACK_TYPE,
+  WEAPON_PROFICIENCIES,
+  MAGIC_PROFICIENCIES,
+} from "@/entities/ability";
+import type { Ability, WeaponType, MagicElement } from "@/entities/ability";
 
-// 모든 주문 조회
-const { data: spells } = useSpells();
+// 모든 어빌리티 조회
+const { data: abilities } = useAbilities();
 
-// 화염 주문만 조회
-const { data: fireSpells } = useSpellsByElement("fire");
-
-// 사용 가능한 주문 (요구 조건 충족)
-const { data: available } = useAvailableSpells(userId, {
-  karma: playerKarma,
-  piety: playerPiety,
-  religion: playerReligion,
-  proficiencies: { fire: 30, ice: 20, ... }
-});
-
-// 주문 시전
-const { castSpell } = useSpellCast({
-  userId,
-  onMonsterTurn: handleMonsterTurn,
-  onPietyPenalty: handlePietyPenalty,
-});
-
-const result = await castSpell({
-  spell: fireballSpell,
-  casterStats: characterStats,
-  elementProficiency: proficiencies.fire,
-  spellExperience: 25,  // 개별 주문 숙련도
-  karma: playerKarma,
-  piety: playerPiety,
-  religion: playerReligion,
-  period: currentPeriod,
-  weather: currentWeather,
-});
-```
-
-### DB 테이블
-```sql
--- 개별 주문 숙련도
-CREATE TABLE spell_proficiency (
-  user_id UUID REFERENCES profiles(id),
-  spell_id TEXT NOT NULL,
-  experience INTEGER DEFAULT 0,  -- 0-100
-  cast_count INTEGER DEFAULT 0,
-  last_cast_at TIMESTAMPTZ,
-  PRIMARY KEY (user_id, spell_id)
+// 마법 어빌리티 필터링
+const magicAbilities = abilities.filter(
+  (a) => a.type === "attack" && a.attackType === "magic"
 );
 
--- RPC 함수
-increase_spell_proficiency(p_user_id, p_spell_id, p_amount)
+// 숙련도 값 조회
+const swordLevel = getProficiencyValue(proficiencies, "medium_sword");
+
+// 숙련도 정보 조회
+const info = getProficiencyInfo("fire"); // { nameKo: "화염", icon: "🔥", ... }
+
+// 무기별 물리 공격 타입 조회
+const attackType = WEAPON_ATTACK_TYPE["medium_sword"]; // "slash"
 ```
+
+### 폴더 구조 (코드)
+
+```
+src/entities/ability/
+├── types/index.ts           # Ability, AbilityType, Proficiencies 타입
+├── api/index.ts             # fetchAbilities, 숙련도 함수, 상수
+├── queries/index.ts         # useAbilities
+└── index.ts                 # Public API
+```
+
+### 용어 규칙
+
+| 사용하지 않음 | 대신 사용 |
+|--------------|----------|
+| Skill | Ability |
+| Spell | Ability (source: "spell") |
+| useSkills | useAbilities |
+| skill.mpCost | ability.baseCost.mp |
+| skill.description | ability.description.ko |
+
+코드에서 "skill"이라는 단어가 보이면 "ability"로 변경하세요.
 
 ## 아이템 시스템 (Item)
 
@@ -1368,7 +1291,7 @@ src/
 │   ├── inventory/
 │   │   └── use-crystal/      # useUseCrystal 훅
 │   │
-│   └── game/lib/
+│   └── chat/lib/
 │       └── useRealtimeChat.ts  # 귓말 시 충전 체크/소모
 │
 └── public/data/items.json    # crystal_basic, crystal_advanced, crystal_superior
@@ -1404,26 +1327,28 @@ src/
 │   └── pvpStore.ts              # PvP 상태 관리
 │
 ├── features/
-│   ├── pvp/                     # PvP 기능
+│   ├── pvp/                     # PvP 액션
 │   │   ├── request-duel/        # useRequestDuel - 도전 신청
 │   │   ├── respond-duel/        # useRespondDuel - 수락/거절
 │   │   ├── duel-action/         # useDuelAction - 턴 행동
 │   │   ├── lib/duelHelpers.ts   # 유틸리티
 │   │   └── index.ts
 │   │
-│   └── game/
-│       ├── lib/
-│       │   └── useRealtimeDuel.ts   # 결투 이벤트 처리
-│       └── ui/
-│           ├── PlayerContextMenu.tsx # 유저 클릭 메뉴
-│           ├── DuelRequestModal.tsx  # 도전 수락/거절 모달
-│           └── DuelBattlePanel.tsx   # 결투 UI
+│   ├── duel/                    # 결투 UI/훅
+│   │   ├── lib/
+│   │   │   └── useRealtimeDuel.ts   # 결투 이벤트 처리
+│   │   └── ui/
+│   │       ├── DuelRequestModal.tsx  # 도전 수락/거절 모달
+│   │       └── DuelBattlePanel.tsx   # 결투 UI
+│   │
+│   └── game/ui/
+│       └── PlayerContextMenu.tsx # 유저 클릭 메뉴
 ```
 
 ### 사용법
 ```typescript
 import { useRequestDuel, useRespondDuel, useDuelAction } from "@/features/pvp";
-import { useRealtimeDuel, DuelRequestModal, DuelBattlePanel } from "@/features/game";
+import { useRealtimeDuel, DuelRequestModal, DuelBattlePanel } from "@/features/duel";
 import { usePvpStore } from "@/application/stores";
 
 // 결투 신청
@@ -1490,9 +1415,9 @@ const { activeDuel, isInDuel } = usePvpStore();
 ### UI 컴포넌트
 | 컴포넌트 | 파일 | 용도 |
 |---------|------|------|
-| WorldMap | `src/features/game/ui/WorldMap.tsx` | 맵 목록 (데이터 기반) |
-| WorldMapModal | `src/features/game/ui/WorldMapModal.tsx` | 월드맵 모달 래퍼 |
-| MapSelector | `src/features/game/ui/MapSelector.tsx` | 드롭다운 이동 UI |
+| WorldMap | `src/entities/map/ui/WorldMap.tsx` | 맵 목록 (데이터 기반) |
+| WorldMapModal | `src/entities/map/ui/WorldMapModal.tsx` | 월드맵 모달 래퍼 |
+| MapSelector | `src/entities/map/ui/MapSelector.tsx` | 드롭다운 이동 UI |
 
 ### 월드맵 상태 표시
 | 상태 | 색상 | 설명 |
@@ -1504,7 +1429,7 @@ const { activeDuel, isInDuel } = usePvpStore();
 
 ### 사용법
 ```typescript
-import { WorldMapModal, MapSelector } from "@/features/game";
+import { WorldMapModal, MapSelector } from "@/entities/map";
 
 // 게임 페이지에서
 const [showWorldMap, setShowWorldMap] = useState(false);
@@ -1801,23 +1726,8 @@ await updateProfile({
 
 ## 숙련도 시스템 확장 (v2)
 
-무기 숙련도가 12종으로 확장되었습니다.
-
-### 무기 숙련도 (12종)
-| ID | 이름 | 아이콘 | 관련 스탯 | 설명 |
-|----|------|--------|----------|------|
-| light_sword | 세검 | 🗡️ | DEX | 찌르기 특화 |
-| medium_sword | 중검 | ⚔️ | STR/DEX | 베기 특화 |
-| great_sword | 대검 | 🗡️ | STR | 베기/패리 |
-| axe | 도끼 | 🪓 | STR | 강력한 일격 |
-| mace | 둔기 | 🔨 | STR | 방어 무시 |
-| dagger | 단검 | 🔪 | DEX | 빠른 연속 공격 |
-| spear | 창 | 🔱 | STR/DEX | 긴 사거리 |
-| bow | 활 | 🏹 | DEX | 원거리 |
-| crossbow | 석궁 | 🎯 | DEX | 강한 원거리 |
-| staff | 지팡이 | 🪄 | INT/WIS | 마법 증폭 |
-| fist | 주먹 | 👊 | STR/DEX | 맨손 격투 |
-| shield | 방패 | 🛡️ | CON | 방어 특화 |
+**참고**: 이 섹션의 내용은 "숙련도 시스템" 및 "어빌리티 시스템" 섹션으로 통합되었습니다.
+숙련도 관련 타입과 함수는 모두 `@/entities/ability`에서 import하세요.
 
 ### 숙련도 획득 (레벨 기반)
 몬스터 레벨과 플레이어 레벨 차이에 따라 숙련도 획득량이 결정됩니다.
@@ -1829,28 +1739,14 @@ await updateProfile({
 | 몬스터 = 플레이어 | 1 | 동등 레벨 |
 | 몬스터 < 플레이어-5 | 0 | 너무 낮은 몬스터 |
 
-```typescript
-import { calculateProficiencyGain } from "@/entities/proficiency";
-
-const result = calculateProficiencyGain({
-  proficiencyType: "medium_sword",
-  currentProficiency: 30,
-  playerLevel: 5,
-  monsterLevel: 7,
-  attackSuccess: true,
-});
-// { gained: true, amount: 2, levelDiff: 2, reason: "success" }
-```
-
 ### 숙련도 상수 export
 ```typescript
 import {
   WEAPON_PROFICIENCIES,      // 무기 12종
-  MAGIC_PROFICIENCIES,       // 마법 6종
-  MARTIAL_PROFICIENCIES,     // 무술 (fist)
-  ALL_PROFICIENCIES,         // 전체 숙련도
-  PROFICIENCY_RANKS,         // 등급 (초보~대가)
-} from "@/entities/proficiency";
+  MAGIC_PROFICIENCIES,       // 마법 7속성
+  WEAPON_ATTACK_TYPE,        // 무기별 물리 공격 타입
+  DEFAULT_PROFICIENCIES,     // 기본 숙련도 값
+} from "@/entities/ability";
 ```
 
 ## 데미지 계산 시스템

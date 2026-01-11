@@ -10,7 +10,7 @@ import {
   DEFAULT_PHYSICAL_RESISTANCE,
 } from "../types";
 import type { EquipmentStats } from "@/entities/item";
-import type { MagicElement, AttackType } from "@/entities/proficiency";
+import type { MagicElement, PhysicalAttackType } from "@/entities/ability";
 import type { CharacterInjury } from "@/entities/injury";
 import { calculateTotalRecoveryReduction } from "@/entities/injury";
 
@@ -300,7 +300,7 @@ export function getElementDamageMultiplier(
  */
 export function getCharacterPhysicalResistance(
   resistance: PhysicalResistance | undefined,
-  attackType: AttackType
+  attackType: PhysicalAttackType
 ): number {
   const res = resistance ?? DEFAULT_PHYSICAL_RESISTANCE;
 

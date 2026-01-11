@@ -3,7 +3,7 @@
 import { useRef, useEffect } from "react";
 import { useThemeStore, type Theme } from "@/shared/config";
 import { usePvpStore, type DuelState, type DuelLogEntry } from "@/application/stores";
-import type { ProficiencyType } from "@/entities/proficiency";
+import type { ProficiencyType } from "@/entities/ability";
 
 interface DuelBattlePanelProps {
   userId: string;

@@ -10,7 +10,7 @@ import {
   type DuelEndResult,
 } from "@/application/stores";
 import type { RealtimeChannel } from "@supabase/supabase-js";
-import { DEFAULT_PROFICIENCIES } from "@/entities/proficiency";
+import { DEFAULT_PROFICIENCIES } from "@/entities/ability";
 
 // ============ Realtime 이벤트 페이로드 타입 ============
 

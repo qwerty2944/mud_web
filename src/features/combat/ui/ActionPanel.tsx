@@ -1,12 +1,12 @@
 "use client";
 
+import { useState } from "react";
 import { useThemeStore } from "@/shared/config";
 import { useBattleStore, useEquipmentStore } from "@/application/stores";
-import type { Skill } from "@/entities/skill";
-import type { ProficiencyType, CombatProficiencyType, WeaponType, Proficiencies } from "@/entities/proficiency";
-import { getProficiencyInfo, getProficiencyValue } from "@/entities/proficiency";
-import { useSkills } from "@/entities/skill";
+import type { Ability, ProficiencyType, CombatProficiencyType, WeaponType, Proficiencies, MagicElement as AbilityMagicElement } from "@/entities/ability";
+import { getProficiencyInfo, getProficiencyValue, useAbilities } from "@/entities/ability";
 import type { BattleActionTab } from "./ActionTabs";
+import { MagicSubTabs, MAGIC_ELEMENTS, type MagicElement } from "./MagicSubTabs";
 
 // 방어 행동 타입
 export type DefenseAction = "guard" | "dodge" | "counter";
@@ -16,7 +16,7 @@ interface ActionPanelProps {
   proficiencies: Proficiencies | undefined;
   onWeaponAttack: (weaponType: CombatProficiencyType) => void;
   onDefenseAction: (action: DefenseAction) => void;
-  onCastSkill: (skill: Skill) => void;
+  onCastSkill: (ability: Ability) => void;
   onFlee: () => void;
   disabled?: boolean;
 }
@@ -34,26 +34,47 @@ export function ActionPanel({
   const { canUseSkill, isPlayerSilenced } = useBattleStore();
   const { mainHand, learnedSkills } = useEquipmentStore();
 
-  // 스킬 데이터 로드
-  const { data: allSkills = [] } = useSkills();
+  // 마법 속성 서브탭 상태
+  const [activeMagicElement, setActiveMagicElement] = useState<MagicElement>("all");
 
-  // 배운 스킬만 필터링
-  const learnedSkillData = allSkills.filter((skill) =>
-    learnedSkills.includes(skill.id)
+  // 어빌리티 데이터 로드
+  const { data: allAbilities = [] } = useAbilities();
+
+  // 배운 어빌리티만 필터링
+  const learnedAbilityData = allAbilities.filter((ability) =>
+    learnedSkills.includes(ability.id)
   );
 
-  // 마법 스킬 (공격 + 힐)
-  const magicSkills = learnedSkillData.filter(
-    (skill) => skill.type === "magic_attack" || skill.type === "heal"
+  // 마법 스킬 (마법 공격 + 힐)
+  const magicSkills = learnedAbilityData.filter(
+    (skill) => (skill.type === "attack" && skill.attackType === "magic") || skill.type === "heal"
   );
+
+  // 현재 선택된 속성의 마법만 필터링
+  const filteredMagicSkills = activeMagicElement === "all"
+    ? magicSkills
+    : magicSkills.filter((skill) => {
+        // heal 스킬은 holy 속성으로 분류
+        const skillElement = skill.element || (skill.type === "heal" ? "holy" : null);
+        return skillElement === activeMagicElement;
+      });
+
+  // 배운 마법이 있는 속성 목록
+  const availableElements = [
+    ...new Set(
+      magicSkills
+        .map((skill) => skill.element || (skill.type === "heal" ? ("holy" as AbilityMagicElement) : null))
+        .filter((e): e is AbilityMagicElement => e !== null)
+    ),
+  ];
 
   // 버프 스킬
-  const buffSkills = learnedSkillData.filter(
+  const buffSkills = learnedAbilityData.filter(
     (skill) => skill.type === "buff"
   );
 
   // 디버프 스킬
-  const debuffSkills = learnedSkillData.filter(
+  const debuffSkills = learnedAbilityData.filter(
     (skill) => skill.type === "debuff"
   );
 
@@ -257,6 +278,17 @@ export function ActionPanel({
       {/* 마법 탭 */}
       {activeTab === "magic" && (
         <div className="space-y-2">
+          {/* 속성별 서브탭 */}
+          {magicSkills.length > 0 && (
+            <MagicSubTabs
+              activeElement={activeMagicElement}
+              onElementChange={setActiveMagicElement}
+              availableElements={availableElements}
+              disabled={disabled || isSilenced}
+            />
+          )}
+
+          {/* 침묵 상태 표시 */}
           {isSilenced && (
             <div
               className="text-center py-2 font-mono text-sm"
@@ -266,16 +298,19 @@ export function ActionPanel({
             </div>
           )}
 
-          {magicSkills.length > 0 ? (
+          {/* 필터링된 마법 스킬 그리드 */}
+          {filteredMagicSkills.length > 0 ? (
             <div className="grid grid-cols-3 gap-2">
-              {magicSkills.map((skill) => {
-                const canCast = canUseSkill(skill.mpCost ?? 0) && !isSilenced;
+              {filteredMagicSkills.map((skill) => {
+                const canCast = canUseSkill(skill.baseCost?.mp ?? 0) && !isSilenced;
+                // 마법 스킬의 숙련도는 element 기반
+                const proficiencyType = skill.element ?? "fire";
                 return (
                   <SkillButton
                     key={skill.id}
                     skill={skill}
                     proficiency={
-                      getProficiencyValue(proficiencies, skill.proficiencyType as ProficiencyType)
+                      getProficiencyValue(proficiencies, proficiencyType as ProficiencyType)
                     }
                     canCast={canCast}
                     disabled={disabled || !canCast}
@@ -283,6 +318,13 @@ export function ActionPanel({
                   />
                 );
               })}
+            </div>
+          ) : magicSkills.length > 0 ? (
+            <div
+              className="text-center py-4 font-mono text-sm"
+              style={{ color: theme.colors.textMuted }}
+            >
+              {MAGIC_ELEMENTS[activeMagicElement].nameKo} 마법이 없습니다
             </div>
           ) : (
             <div
@@ -318,7 +360,7 @@ export function ActionPanel({
               </div>
               <div className="grid grid-cols-3 gap-2">
                 {buffSkills.map((skill) => {
-                  const canCast = canUseSkill(skill.mpCost ?? 0) && !isSilenced;
+                  const canCast = canUseSkill(skill.baseCost?.mp ?? 0) && !isSilenced;
                   return (
                     <SkillButton
                       key={skill.id}
@@ -344,7 +386,7 @@ export function ActionPanel({
               </div>
               <div className="grid grid-cols-3 gap-2">
                 {debuffSkills.map((skill) => {
-                  const canCast = canUseSkill(skill.mpCost ?? 0) && !isSilenced;
+                  const canCast = canUseSkill(skill.baseCost?.mp ?? 0) && !isSilenced;
                   return (
                     <SkillButton
                       key={skill.id}
@@ -401,7 +443,7 @@ export function ActionPanel({
 
 // 스킬 버튼 컴포넌트
 interface SkillButtonProps {
-  skill: Skill;
+  skill: Ability;
   proficiency?: number;
   canCast: boolean;
   disabled: boolean;
@@ -429,7 +471,7 @@ function SkillButton({
         opacity: disabled ? 0.5 : 1,
         cursor: disabled ? "not-allowed" : "pointer",
       }}
-      title={skill.description}
+      title={skill.description.ko}
     >
       <span className="text-lg">{skill.icon}</span>
       <span className="text-xs truncate w-full text-center">{skill.nameKo}</span>
@@ -439,7 +481,7 @@ function SkillButton({
           color: canCast ? theme.colors.primary : theme.colors.error,
         }}
       >
-        MP {skill.mpCost ?? 0}
+        MP {skill.baseCost?.mp ?? 0}
       </span>
       {proficiency !== undefined && proficiency > 0 && (
         <span className="text-[10px]" style={{ color: theme.colors.textMuted }}>
