@@ -1,7 +1,6 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-01-11T10:57:57.014Z",
-  "type": "equipment",
+  "generatedAt": "2026-01-11T10:57:57.035Z",
   "items": [
     {
       "id": "rusty_axe",
@@ -2435,23 +2434,2232 @@
       "requirements": {
         "level": 50
       }
+    },
+    {
+      "id": "bread",
+      "nameKo": "빵",
+      "nameEn": "Bread",
+      "description": {
+        "ko": "평범한 밀빵. 체력을 10 회복한다.",
+        "en": "평범한 밀빵. 체력을 10 회복한다."
+      },
+      "type": "consumable",
+      "subtype": "food",
+      "rarity": "crude",
+      "value": 5,
+      "weight": 0.2,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "food_bread",
+      "effect": {
+        "type": "heal_hp",
+        "value": 10
+      }
+    },
+    {
+      "id": "cheese",
+      "nameKo": "치즈",
+      "nameEn": "Cheese",
+      "description": {
+        "ko": "숙성된 치즈 조각. 체력을 15 회복한다.",
+        "en": "숙성된 치즈 조각. 체력을 15 회복한다."
+      },
+      "type": "consumable",
+      "subtype": "food",
+      "rarity": "common",
+      "value": 10,
+      "weight": 0.2,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "food_cheese",
+      "effect": {
+        "type": "heal_hp",
+        "value": 15
+      }
+    },
+    {
+      "id": "apple",
+      "nameKo": "사과",
+      "nameEn": "Apple",
+      "description": {
+        "ko": "싱싱한 사과. 체력을 12 회복한다.",
+        "en": "싱싱한 사과. 체력을 12 회복한다."
+      },
+      "type": "consumable",
+      "subtype": "food",
+      "rarity": "common",
+      "value": 8,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "food_apple",
+      "effect": {
+        "type": "heal_hp",
+        "value": 12
+      }
+    },
+    {
+      "id": "meat_raw",
+      "nameKo": "생고기",
+      "nameEn": "Raw Meat",
+      "description": {
+        "ko": "날것의 고기. 요리해서 먹어야 한다.",
+        "en": "날것의 고기. 요리해서 먹어야 한다."
+      },
+      "type": "consumable",
+      "subtype": "food",
+      "rarity": "common",
+      "value": 15,
+      "weight": 0.5,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "food_meat_raw",
+      "effect": {
+        "type": "heal_hp",
+        "value": 5,
+        "sideEffect": {
+          "type": "status",
+          "status": "food_poisoning",
+          "chance": 30
+        }
+      }
+    },
+    {
+      "id": "meat_cooked",
+      "nameKo": "구운 고기",
+      "nameEn": "Cooked Meat",
+      "description": {
+        "ko": "잘 구워진 고기. 체력을 40 회복한다.",
+        "en": "잘 구워진 고기. 체력을 40 회복한다."
+      },
+      "type": "consumable",
+      "subtype": "food",
+      "rarity": "grand",
+      "value": 35,
+      "weight": 0.4,
+      "stackable": true,
+      "stackSize": 15,
+      "icon": "food_meat_cooked",
+      "effect": {
+        "type": "heal_hp",
+        "value": 40
+      }
+    },
+    {
+      "id": "fish_grilled",
+      "nameKo": "구운 생선",
+      "nameEn": "Grilled Fish",
+      "description": {
+        "ko": "바삭하게 구운 생선. 체력 25, 마나 10 회복.",
+        "en": "바삭하게 구운 생선. 체력 25, 마나 10 회복."
+      },
+      "type": "consumable",
+      "subtype": "food",
+      "rarity": "grand",
+      "value": 30,
+      "weight": 0.3,
+      "stackable": true,
+      "stackSize": 15,
+      "icon": "food_fish",
+      "effect": {
+        "type": "heal_both",
+        "hp": 25,
+        "mp": 10
+      }
+    },
+    {
+      "id": "stew",
+      "nameKo": "스튜",
+      "nameEn": "Stew",
+      "description": {
+        "ko": "따뜻한 고기 스튜. 체력을 60 회복하고 3턴간 회복력 증가.",
+        "en": "따뜻한 고기 스튜. 체력을 60 회복하고 3턴간 회복력 증가."
+      },
+      "type": "consumable",
+      "subtype": "food",
+      "rarity": "rare",
+      "value": 80,
+      "weight": 0.6,
+      "stackable": true,
+      "stackSize": 10,
+      "icon": "food_stew",
+      "effect": {
+        "type": "heal_hp",
+        "value": 60,
+        "buff": {
+          "type": "regen",
+          "value": 5,
+          "duration": 3
+        }
+      }
+    },
+    {
+      "id": "royal_feast",
+      "nameKo": "왕실 만찬",
+      "nameEn": "Royal Feast",
+      "description": {
+        "ko": "왕실 요리사가 만든 최고급 요리. 모든 스탯 +3, 5턴 지속.",
+        "en": "왕실 요리사가 만든 최고급 요리. 모든 스탯 +3, 5턴 지속."
+      },
+      "type": "consumable",
+      "subtype": "food",
+      "rarity": "heroic",
+      "value": 500,
+      "weight": 1,
+      "stackable": true,
+      "stackSize": 5,
+      "icon": "food_feast",
+      "effect": {
+        "type": "buff_all",
+        "value": 3,
+        "duration": 5
+      }
+    },
+    {
+      "id": "ale",
+      "nameKo": "에일",
+      "nameEn": "Ale",
+      "description": {
+        "ko": "거품이 넘치는 맥주. STR +2, DEX -1, 3턴 지속.",
+        "en": "거품이 넘치는 맥주. STR +2, DEX -1, 3턴 지속."
+      },
+      "type": "consumable",
+      "subtype": "food",
+      "rarity": "common",
+      "value": 12,
+      "weight": 0.3,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "drink_ale",
+      "effect": {
+        "type": "buff_debuff",
+        "buffs": [
+          {
+            "stat": "str",
+            "value": 2
+          }
+        ],
+        "debuffs": [
+          {
+            "stat": "dex",
+            "value": 1
+          }
+        ],
+        "duration": 3
+      }
+    },
+    {
+      "id": "wine",
+      "nameKo": "와인",
+      "nameEn": "Wine",
+      "description": {
+        "ko": "숙성된 포도주. CHA +3, 3턴 지속.",
+        "en": "숙성된 포도주. CHA +3, 3턴 지속."
+      },
+      "type": "consumable",
+      "subtype": "food",
+      "rarity": "grand",
+      "value": 50,
+      "weight": 0.4,
+      "stackable": true,
+      "stackSize": 15,
+      "icon": "drink_wine",
+      "effect": {
+        "type": "buff",
+        "stat": "cha",
+        "value": 3,
+        "duration": 3
+      }
+    },
+    {
+      "id": "health_potion_small",
+      "nameKo": "소형 체력 포션",
+      "nameEn": "Small Health Potion",
+      "description": {
+        "ko": "붉은 액체가 담긴 작은 유리병. 체력을 30 회복한다.",
+        "en": "붉은 액체가 담긴 작은 유리병. 체력을 30 회복한다."
+      },
+      "type": "consumable",
+      "subtype": "potion",
+      "rarity": "common",
+      "value": 25,
+      "weight": 0.3,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "potion_red_small",
+      "effect": {
+        "type": "heal_hp",
+        "value": 30
+      }
+    },
+    {
+      "id": "health_potion_medium",
+      "nameKo": "중형 체력 포션",
+      "nameEn": "Medium Health Potion",
+      "description": {
+        "ko": "진한 붉은 액체가 담긴 유리병. 체력을 70 회복한다.",
+        "en": "진한 붉은 액체가 담긴 유리병. 체력을 70 회복한다."
+      },
+      "type": "consumable",
+      "subtype": "potion",
+      "rarity": "grand",
+      "value": 75,
+      "weight": 0.5,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "potion_red_medium",
+      "effect": {
+        "type": "heal_hp",
+        "value": 70
+      }
+    },
+    {
+      "id": "health_potion_large",
+      "nameKo": "대형 체력 포션",
+      "nameEn": "Large Health Potion",
+      "description": {
+        "ko": "순수한 붉은빛이 맥동하는 대형 유리병. 체력을 150 회복한다.",
+        "en": "순수한 붉은빛이 맥동하는 대형 유리병. 체력을 150 회복한다."
+      },
+      "type": "consumable",
+      "subtype": "potion",
+      "rarity": "rare",
+      "value": 200,
+      "weight": 0.8,
+      "stackable": true,
+      "stackSize": 15,
+      "icon": "potion_red_large",
+      "effect": {
+        "type": "heal_hp",
+        "value": 150
+      }
+    },
+    {
+      "id": "mana_potion_small",
+      "nameKo": "소형 마나 포션",
+      "nameEn": "Small Mana Potion",
+      "description": {
+        "ko": "파란 액체가 담긴 작은 유리병. 마나를 20 회복한다.",
+        "en": "파란 액체가 담긴 작은 유리병. 마나를 20 회복한다."
+      },
+      "type": "consumable",
+      "subtype": "potion",
+      "rarity": "common",
+      "value": 30,
+      "weight": 0.3,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "potion_blue_small",
+      "effect": {
+        "type": "heal_mp",
+        "value": 20
+      }
+    },
+    {
+      "id": "mana_potion_medium",
+      "nameKo": "중형 마나 포션",
+      "nameEn": "Medium Mana Potion",
+      "description": {
+        "ko": "진한 푸른 액체가 담긴 유리병. 마나를 50 회복한다.",
+        "en": "진한 푸른 액체가 담긴 유리병. 마나를 50 회복한다."
+      },
+      "type": "consumable",
+      "subtype": "potion",
+      "rarity": "grand",
+      "value": 90,
+      "weight": 0.5,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "potion_blue_medium",
+      "effect": {
+        "type": "heal_mp",
+        "value": 50
+      }
+    },
+    {
+      "id": "mana_potion_large",
+      "nameKo": "대형 마나 포션",
+      "nameEn": "Large Mana Potion",
+      "description": {
+        "ko": "심해처럼 깊은 푸른빛의 대형 유리병. 마나를 100 회복한다.",
+        "en": "심해처럼 깊은 푸른빛의 대형 유리병. 마나를 100 회복한다."
+      },
+      "type": "consumable",
+      "subtype": "potion",
+      "rarity": "rare",
+      "value": 250,
+      "weight": 0.8,
+      "stackable": true,
+      "stackSize": 15,
+      "icon": "potion_blue_large",
+      "effect": {
+        "type": "heal_mp",
+        "value": 100
+      }
+    },
+    {
+      "id": "stamina_potion",
+      "nameKo": "피로 회복제",
+      "nameEn": "Stamina Potion",
+      "description": {
+        "ko": "노란 액체가 담긴 유리병. 피로도를 30 회복한다.",
+        "en": "노란 액체가 담긴 유리병. 피로도를 30 회복한다."
+      },
+      "type": "consumable",
+      "subtype": "potion",
+      "rarity": "grand",
+      "value": 100,
+      "weight": 0.4,
+      "stackable": true,
+      "stackSize": 10,
+      "icon": "potion_yellow",
+      "effect": {
+        "type": "heal_stamina",
+        "value": 30
+      }
+    },
+    {
+      "id": "antidote",
+      "nameKo": "해독제",
+      "nameEn": "Antidote",
+      "description": {
+        "ko": "연두색 액체가 담긴 유리병. 독 상태를 해제한다.",
+        "en": "연두색 액체가 담긴 유리병. 독 상태를 해제한다."
+      },
+      "type": "consumable",
+      "subtype": "potion",
+      "rarity": "common",
+      "value": 40,
+      "weight": 0.3,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "potion_green",
+      "effect": {
+        "type": "cure_status",
+        "status": "poison"
+      }
+    },
+    {
+      "id": "elixir",
+      "nameKo": "엘릭서",
+      "nameEn": "Elixir",
+      "description": {
+        "ko": "황금빛이 도는 신비로운 약. HP와 MP를 모두 완전 회복한다.",
+        "en": "황금빛이 도는 신비로운 약. HP와 MP를 모두 완전 회복한다."
+      },
+      "type": "consumable",
+      "subtype": "potion",
+      "rarity": "heroic",
+      "value": 1000,
+      "weight": 0.5,
+      "stackable": true,
+      "stackSize": 5,
+      "icon": "potion_gold",
+      "effect": {
+        "type": "full_restore"
+      }
+    },
+    {
+      "id": "strength_potion",
+      "nameKo": "힘의 물약",
+      "nameEn": "Strength Potion",
+      "description": {
+        "ko": "붉은 기운이 감도는 물약. 5턴간 STR +5.",
+        "en": "붉은 기운이 감도는 물약. 5턴간 STR +5."
+      },
+      "type": "consumable",
+      "subtype": "potion",
+      "rarity": "rare",
+      "value": 150,
+      "weight": 0.4,
+      "stackable": true,
+      "stackSize": 10,
+      "icon": "potion_str",
+      "effect": {
+        "type": "buff",
+        "stat": "str",
+        "value": 5,
+        "duration": 5
+      }
+    },
+    {
+      "id": "agility_potion",
+      "nameKo": "민첩의 물약",
+      "nameEn": "Agility Potion",
+      "description": {
+        "ko": "녹색 기운이 감도는 물약. 5턴간 DEX +5.",
+        "en": "녹색 기운이 감도는 물약. 5턴간 DEX +5."
+      },
+      "type": "consumable",
+      "subtype": "potion",
+      "rarity": "rare",
+      "value": 150,
+      "weight": 0.4,
+      "stackable": true,
+      "stackSize": 10,
+      "icon": "potion_dex",
+      "effect": {
+        "type": "buff",
+        "stat": "dex",
+        "value": 5,
+        "duration": 5
+      }
+    },
+    {
+      "id": "intelligence_potion",
+      "nameKo": "지능의 물약",
+      "nameEn": "Intelligence Potion",
+      "description": {
+        "ko": "보라색 기운이 감도는 물약. 5턴간 INT +5.",
+        "en": "보라색 기운이 감도는 물약. 5턴간 INT +5."
+      },
+      "type": "consumable",
+      "subtype": "potion",
+      "rarity": "rare",
+      "value": 150,
+      "weight": 0.4,
+      "stackable": true,
+      "stackSize": 10,
+      "icon": "potion_int",
+      "effect": {
+        "type": "buff",
+        "stat": "int",
+        "value": 5,
+        "duration": 5
+      }
+    },
+    {
+      "id": "scroll_teleport_village",
+      "nameKo": "마을 귀환 주문서",
+      "nameEn": "Village Teleport Scroll",
+      "description": {
+        "ko": "시작 마을로 즉시 이동한다.",
+        "en": "시작 마을로 즉시 이동한다."
+      },
+      "type": "consumable",
+      "subtype": "scroll",
+      "rarity": "common",
+      "value": 50,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 10,
+      "icon": "scroll_blue",
+      "effect": {
+        "type": "teleport",
+        "destination": "starting_village"
+      }
+    },
+    {
+      "id": "scroll_identify",
+      "nameKo": "감정 주문서",
+      "nameEn": "Identification Scroll",
+      "description": {
+        "ko": "미확인 아이템의 정체를 밝힌다.",
+        "en": "미확인 아이템의 정체를 밝힌다."
+      },
+      "type": "consumable",
+      "subtype": "scroll",
+      "rarity": "grand",
+      "value": 100,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 10,
+      "icon": "scroll_yellow",
+      "effect": {
+        "type": "identify"
+      }
+    },
+    {
+      "id": "scroll_fireball",
+      "nameKo": "화염구 주문서",
+      "nameEn": "Fireball Scroll",
+      "description": {
+        "ko": "강력한 화염구를 발사한다. 80 화염 피해.",
+        "en": "강력한 화염구를 발사한다. 80 화염 피해."
+      },
+      "type": "consumable",
+      "subtype": "scroll",
+      "rarity": "rare",
+      "value": 200,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 5,
+      "icon": "scroll_red",
+      "effect": {
+        "type": "spell",
+        "spellId": "fireball",
+        "damage": 80,
+        "element": "fire"
+      }
+    },
+    {
+      "id": "scroll_lightning",
+      "nameKo": "번개 주문서",
+      "nameEn": "Lightning Scroll",
+      "description": {
+        "ko": "번개를 내리쳐 60 번개 피해를 입힌다.",
+        "en": "번개를 내리쳐 60 번개 피해를 입힌다."
+      },
+      "type": "consumable",
+      "subtype": "scroll",
+      "rarity": "rare",
+      "value": 180,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 5,
+      "icon": "scroll_purple",
+      "effect": {
+        "type": "spell",
+        "spellId": "lightning_bolt",
+        "damage": 60,
+        "element": "lightning"
+      }
+    },
+    {
+      "id": "scroll_protection",
+      "nameKo": "보호 주문서",
+      "nameEn": "Protection Scroll",
+      "description": {
+        "ko": "5턴간 받는 피해 20% 감소.",
+        "en": "5턴간 받는 피해 20% 감소."
+      },
+      "type": "consumable",
+      "subtype": "scroll",
+      "rarity": "rare",
+      "value": 250,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 5,
+      "icon": "scroll_white",
+      "effect": {
+        "type": "buff",
+        "buffType": "damage_reduction",
+        "value": 20,
+        "duration": 5
+      }
+    },
+    {
+      "id": "scroll_enchant_weapon",
+      "nameKo": "무기 강화 주문서",
+      "nameEn": "Weapon Enchant Scroll",
+      "description": {
+        "ko": "무기의 공격력을 영구적으로 +1 강화한다.",
+        "en": "무기의 공격력을 영구적으로 +1 강화한다."
+      },
+      "type": "consumable",
+      "subtype": "scroll",
+      "rarity": "heroic",
+      "value": 1000,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 3,
+      "icon": "scroll_gold",
+      "effect": {
+        "type": "enchant",
+        "target": "weapon",
+        "stat": "damage",
+        "value": 1
+      }
+    },
+    {
+      "id": "scroll_enchant_armor",
+      "nameKo": "방어구 강화 주문서",
+      "nameEn": "Armor Enchant Scroll",
+      "description": {
+        "ko": "방어구의 방어력을 영구적으로 +1 강화한다.",
+        "en": "방어구의 방어력을 영구적으로 +1 강화한다."
+      },
+      "type": "consumable",
+      "subtype": "scroll",
+      "rarity": "heroic",
+      "value": 1000,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 3,
+      "icon": "scroll_silver",
+      "effect": {
+        "type": "enchant",
+        "target": "armor",
+        "stat": "defense",
+        "value": 1
+      }
+    },
+    {
+      "id": "scroll_resurrection",
+      "nameKo": "부활 주문서",
+      "nameEn": "Resurrection Scroll",
+      "description": {
+        "ko": "사망 시 자동으로 HP 50%로 부활한다. 전투 중 소지시 효과 발동.",
+        "en": "사망 시 자동으로 HP 50%로 부활한다. 전투 중 소지시 효과 발동."
+      },
+      "type": "consumable",
+      "subtype": "scroll",
+      "rarity": "unique",
+      "value": 5000,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 1,
+      "icon": "scroll_divine",
+      "effect": {
+        "type": "auto_resurrect",
+        "hpPercent": 50
+      }
+    },
+    {
+      "id": "acorn",
+      "nameKo": "도토리",
+      "nameEn": "Acorn",
+      "description": {
+        "ko": "다람쥐가 모아둔 도토리.",
+        "en": "다람쥐가 모아둔 도토리."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "crude",
+      "value": 2,
+      "weight": 0.05,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "drop_acorn"
+    },
+    {
+      "id": "squirrel_tail",
+      "nameKo": "다람쥐 꼬리",
+      "nameEn": "Squirrel Tail",
+      "description": {
+        "ko": "복슬복슬한 다람쥐 꼬리.",
+        "en": "복슬복슬한 다람쥐 꼬리."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "common",
+      "value": 8,
+      "weight": 0.05,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "drop_tail"
+    },
+    {
+      "id": "rabbit_fur",
+      "nameKo": "토끼 털",
+      "nameEn": "Rabbit Fur",
+      "description": {
+        "ko": "부드러운 토끼 털.",
+        "en": "부드러운 토끼 털."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "common",
+      "value": 5,
+      "weight": 0.05,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "drop_fur"
+    },
+    {
+      "id": "raw_meat",
+      "nameKo": "생고기",
+      "nameEn": "Raw Meat",
+      "description": {
+        "ko": "요리하지 않은 생고기.",
+        "en": "요리하지 않은 생고기."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "crude",
+      "value": 3,
+      "weight": 0.3,
+      "stackable": true,
+      "stackSize": 50,
+      "icon": "drop_meat"
+    },
+    {
+      "id": "fox_tail",
+      "nameKo": "여우 꼬리",
+      "nameEn": "Fox Tail",
+      "description": {
+        "ko": "윤기 나는 여우 꼬리.",
+        "en": "윤기 나는 여우 꼬리."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "common",
+      "value": 15,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "drop_tail"
+    },
+    {
+      "id": "fox_fur",
+      "nameKo": "여우 가죽",
+      "nameEn": "Fox Fur",
+      "description": {
+        "ko": "부드러운 여우 가죽.",
+        "en": "부드러운 여우 가죽."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "common",
+      "value": 20,
+      "weight": 0.2,
+      "stackable": true,
+      "stackSize": 50,
+      "icon": "drop_fur"
+    },
+    {
+      "id": "wolf_fang",
+      "nameKo": "늑대 송곳니",
+      "nameEn": "Wolf Fang",
+      "description": {
+        "ko": "날카로운 늑대의 송곳니.",
+        "en": "날카로운 늑대의 송곳니."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "common",
+      "value": 15,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "drop_fang"
+    },
+    {
+      "id": "wolf_pelt",
+      "nameKo": "늑대 가죽",
+      "nameEn": "Wolf Pelt",
+      "description": {
+        "ko": "질긴 늑대의 가죽.",
+        "en": "질긴 늑대의 가죽."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "common",
+      "value": 25,
+      "weight": 0.5,
+      "stackable": true,
+      "stackSize": 50,
+      "icon": "drop_pelt"
+    },
+    {
+      "id": "dire_wolf_pelt",
+      "nameKo": "흉포한 늑대 가죽",
+      "nameEn": "Dire Wolf Pelt",
+      "description": {
+        "ko": "크고 질긴 흉포한 늑대의 가죽.",
+        "en": "크고 질긴 흉포한 늑대의 가죽."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "grand",
+      "value": 60,
+      "weight": 0.8,
+      "stackable": true,
+      "stackSize": 30,
+      "icon": "drop_pelt"
+    },
+    {
+      "id": "boar_tusk",
+      "nameKo": "멧돼지 엄니",
+      "nameEn": "Boar Tusk",
+      "description": {
+        "ko": "날카로운 멧돼지 엄니.",
+        "en": "날카로운 멧돼지 엄니."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "common",
+      "value": 12,
+      "weight": 0.15,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "drop_tusk"
+    },
+    {
+      "id": "thick_hide",
+      "nameKo": "두꺼운 가죽",
+      "nameEn": "Thick Hide",
+      "description": {
+        "ko": "두껍고 질긴 가죽.",
+        "en": "두껍고 질긴 가죽."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "common",
+      "value": 18,
+      "weight": 0.5,
+      "stackable": true,
+      "stackSize": 50,
+      "icon": "drop_hide"
+    },
+    {
+      "id": "bear_claw",
+      "nameKo": "곰 발톱",
+      "nameEn": "Bear Claw",
+      "description": {
+        "ko": "크고 날카로운 곰의 발톱.",
+        "en": "크고 날카로운 곰의 발톱."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "grand",
+      "value": 35,
+      "weight": 0.2,
+      "stackable": true,
+      "stackSize": 50,
+      "icon": "drop_claw"
+    },
+    {
+      "id": "bear_pelt",
+      "nameKo": "곰 가죽",
+      "nameEn": "Bear Pelt",
+      "description": {
+        "ko": "두껍고 따뜻한 곰 가죽.",
+        "en": "두껍고 따뜻한 곰 가죽."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "grand",
+      "value": 80,
+      "weight": 1,
+      "stackable": true,
+      "stackSize": 30,
+      "icon": "drop_pelt"
+    },
+    {
+      "id": "beast_essence",
+      "nameKo": "야수의 정수",
+      "nameEn": "Beast Essence",
+      "description": {
+        "ko": "강력한 야수에게서 추출한 정수.",
+        "en": "강력한 야수에게서 추출한 정수."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "rare",
+      "value": 80,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 50,
+      "icon": "drop_essence"
+    },
+    {
+      "id": "earth_essence",
+      "nameKo": "대지의 정수",
+      "nameEn": "Earth Essence",
+      "description": {
+        "ko": "대지의 힘이 응축된 정수.",
+        "en": "대지의 힘이 응축된 정수."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "rare",
+      "value": 60,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 50,
+      "icon": "drop_essence"
+    },
+    {
+      "id": "spider_silk",
+      "nameKo": "거미줄",
+      "nameEn": "Spider Silk",
+      "description": {
+        "ko": "질기고 끈적이는 거미줄.",
+        "en": "질기고 끈적이는 거미줄."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "common",
+      "value": 18,
+      "weight": 0.05,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "drop_silk"
+    },
+    {
+      "id": "spider_venom",
+      "nameKo": "거미 독액",
+      "nameEn": "Spider Venom",
+      "description": {
+        "ko": "독 무기 제작에 사용되는 독액.",
+        "en": "독 무기 제작에 사용되는 독액."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "grand",
+      "value": 40,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 50,
+      "icon": "drop_venom"
+    },
+    {
+      "id": "slime_core",
+      "nameKo": "슬라임 핵",
+      "nameEn": "Slime Core",
+      "description": {
+        "ko": "슬라임의 중심에서 발견되는 젤리 같은 구슬.",
+        "en": "슬라임의 중심에서 발견되는 젤리 같은 구슬."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "common",
+      "value": 12,
+      "weight": 0.2,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "drop_slime"
+    },
+    {
+      "id": "goblin_ear",
+      "nameKo": "고블린 귀",
+      "nameEn": "Goblin Ear",
+      "description": {
+        "ko": "고블린의 뾰족한 귀. 현상금 증거용.",
+        "en": "고블린의 뾰족한 귀. 현상금 증거용."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "common",
+      "value": 20,
+      "weight": 0.05,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "drop_ear"
+    },
+    {
+      "id": "skeleton_bone",
+      "nameKo": "해골 뼈",
+      "nameEn": "Skeleton Bone",
+      "description": {
+        "ko": "언데드에서 떨어진 뼈 조각.",
+        "en": "언데드에서 떨어진 뼈 조각."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "common",
+      "value": 15,
+      "weight": 0.2,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "drop_bone"
+    },
+    {
+      "id": "magic_essence",
+      "nameKo": "마력의 정수",
+      "nameEn": "Magic Essence",
+      "description": {
+        "ko": "응축된 마력 덩어리.",
+        "en": "응축된 마력 덩어리."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "rare",
+      "value": 100,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 50,
+      "icon": "drop_essence"
+    },
+    {
+      "id": "dragon_scale",
+      "nameKo": "용의 비늘",
+      "nameEn": "Dragon Scale",
+      "description": {
+        "ko": "드래곤의 단단한 비늘 조각.",
+        "en": "드래곤의 단단한 비늘 조각."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "heroic",
+      "value": 800,
+      "weight": 0.5,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "drop_scale"
+    },
+    {
+      "id": "phoenix_feather",
+      "nameKo": "불사조의 깃털",
+      "nameEn": "Phoenix Feather",
+      "description": {
+        "ko": "불꽃처럼 타오르는 신비로운 깃털.",
+        "en": "불꽃처럼 타오르는 신비로운 깃털."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "unique",
+      "value": 2000,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 10,
+      "icon": "drop_feather"
+    },
+    {
+      "id": "demon_heart",
+      "nameKo": "악마의 심장",
+      "nameEn": "Demon Heart",
+      "description": {
+        "ko": "여전히 맥동하는 악마의 검은 심장.",
+        "en": "여전히 맥동하는 악마의 검은 심장."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "unique",
+      "value": 3000,
+      "weight": 1,
+      "stackable": true,
+      "stackSize": 5,
+      "icon": "drop_heart"
+    },
+    {
+      "id": "wasp_stinger",
+      "nameKo": "말벌 침",
+      "nameEn": "Wasp Stinger",
+      "description": {
+        "ko": "날카로운 말벌의 침.",
+        "en": "날카로운 말벌의 침."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "common",
+      "value": 10,
+      "weight": 0.02,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "drop_stinger"
+    },
+    {
+      "id": "wasp_honey",
+      "nameKo": "말벌 꿀",
+      "nameEn": "Wasp Honey",
+      "description": {
+        "ko": "말벌이 모은 진한 꿀.",
+        "en": "말벌이 모은 진한 꿀."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "grand",
+      "value": 25,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 50,
+      "icon": "drop_honey"
+    },
+    {
+      "id": "beetle_shell",
+      "nameKo": "딱정벌레 껍질",
+      "nameEn": "Beetle Shell",
+      "description": {
+        "ko": "단단한 딱정벌레의 껍질.",
+        "en": "단단한 딱정벌레의 껍질."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "common",
+      "value": 8,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "drop_shell"
+    },
+    {
+      "id": "beetle_horn",
+      "nameKo": "딱정벌레 뿔",
+      "nameEn": "Beetle Horn",
+      "description": {
+        "ko": "단단한 딱정벌레의 뿔.",
+        "en": "단단한 딱정벌레의 뿔."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "common",
+      "value": 12,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "drop_horn"
+    },
+    {
+      "id": "plant_fiber",
+      "nameKo": "식물 섬유",
+      "nameEn": "Plant Fiber",
+      "description": {
+        "ko": "질긴 식물의 섬유.",
+        "en": "질긴 식물의 섬유."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "crude",
+      "value": 3,
+      "weight": 0.05,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "drop_fiber"
+    },
+    {
+      "id": "small_branch",
+      "nameKo": "작은 나뭇가지",
+      "nameEn": "Small Branch",
+      "description": {
+        "ko": "작은 나뭇가지.",
+        "en": "작은 나뭇가지."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "crude",
+      "value": 2,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "drop_branch"
+    },
+    {
+      "id": "thorny_vine",
+      "nameKo": "가시 덩굴",
+      "nameEn": "Thorny Vine",
+      "description": {
+        "ko": "날카로운 가시가 달린 덩굴.",
+        "en": "날카로운 가시가 달린 덩굴."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "common",
+      "value": 15,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "drop_vine"
+    },
+    {
+      "id": "poison_thorn",
+      "nameKo": "독가시",
+      "nameEn": "Poison Thorn",
+      "description": {
+        "ko": "독이 묻은 가시.",
+        "en": "독이 묻은 가시."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "grand",
+      "value": 30,
+      "weight": 0.05,
+      "stackable": true,
+      "stackSize": 50,
+      "icon": "drop_thorn"
+    },
+    {
+      "id": "strange_mushroom",
+      "nameKo": "이상한 버섯",
+      "nameEn": "Strange Mushroom",
+      "description": {
+        "ko": "이상한 색의 버섯. 먹지 마세요.",
+        "en": "이상한 색의 버섯. 먹지 마세요."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "common",
+      "value": 10,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "drop_mushroom"
+    },
+    {
+      "id": "spore_sac",
+      "nameKo": "포자낭",
+      "nameEn": "Spore Sac",
+      "description": {
+        "ko": "버섯의 포자가 담긴 주머니.",
+        "en": "버섯의 포자가 담긴 주머니."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "common",
+      "value": 18,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 50,
+      "icon": "drop_spore"
+    },
+    {
+      "id": "hallucinogenic_powder",
+      "nameKo": "환각 가루",
+      "nameEn": "Hallucinogenic Powder",
+      "description": {
+        "ko": "환각을 일으키는 가루. 연금술 재료.",
+        "en": "환각을 일으키는 가루. 연금술 재료."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "rare",
+      "value": 50,
+      "weight": 0.05,
+      "stackable": true,
+      "stackSize": 30,
+      "icon": "drop_powder"
+    },
+    {
+      "id": "toxic_petal",
+      "nameKo": "독성 꽃잎",
+      "nameEn": "Toxic Petal",
+      "description": {
+        "ko": "독성이 있는 꽃잎.",
+        "en": "독성이 있는 꽃잎."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "grand",
+      "value": 25,
+      "weight": 0.05,
+      "stackable": true,
+      "stackSize": 50,
+      "icon": "drop_petal"
+    },
+    {
+      "id": "poison_nectar",
+      "nameKo": "독 꿀",
+      "nameEn": "Poison Nectar",
+      "description": {
+        "ko": "독이 섞인 달콤한 꿀.",
+        "en": "독이 섞인 달콤한 꿀."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "rare",
+      "value": 60,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 30,
+      "icon": "drop_nectar"
+    },
+    {
+      "id": "living_wood",
+      "nameKo": "살아있는 나무",
+      "nameEn": "Living Wood",
+      "description": {
+        "ko": "아직 살아 움직이는 나무 조각.",
+        "en": "아직 살아 움직이는 나무 조각."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "rare",
+      "value": 70,
+      "weight": 0.3,
+      "stackable": true,
+      "stackSize": 30,
+      "icon": "drop_wood"
+    },
+    {
+      "id": "treant_sap",
+      "nameKo": "트렌트 수액",
+      "nameEn": "Treant Sap",
+      "description": {
+        "ko": "트렌트에서 추출한 신비로운 수액.",
+        "en": "트렌트에서 추출한 신비로운 수액."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "rare",
+      "value": 80,
+      "weight": 0.2,
+      "stackable": true,
+      "stackSize": 30,
+      "icon": "drop_sap"
+    },
+    {
+      "id": "nature_blessing",
+      "nameKo": "자연의 축복",
+      "nameEn": "Nature's Blessing",
+      "description": {
+        "ko": "숲의 수호자에게서 얻은 축복의 결정.",
+        "en": "숲의 수호자에게서 얻은 축복의 결정."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "heroic",
+      "value": 300,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 10,
+      "icon": "drop_blessing"
+    },
+    {
+      "id": "wind_essence",
+      "nameKo": "바람의 정수",
+      "nameEn": "Wind Essence",
+      "description": {
+        "ko": "바람의 힘이 응축된 정수.",
+        "en": "바람의 힘이 응축된 정수."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "rare",
+      "value": 60,
+      "weight": 0.05,
+      "stackable": true,
+      "stackSize": 50,
+      "icon": "drop_essence"
+    },
+    {
+      "id": "slime_gel",
+      "nameKo": "슬라임 젤",
+      "nameEn": "Slime Gel",
+      "description": {
+        "ko": "끈적끈적한 슬라임 젤리.",
+        "en": "끈적끈적한 슬라임 젤리."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "crude",
+      "value": 5,
+      "weight": 0.2,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "drop_gel"
+    },
+    {
+      "id": "dark_essence",
+      "nameKo": "암흑의 정수",
+      "nameEn": "Dark Essence",
+      "description": {
+        "ko": "암흑의 힘이 응축된 정수.",
+        "en": "암흑의 힘이 응축된 정수."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "rare",
+      "value": 80,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 50,
+      "icon": "drop_dark"
+    },
+    {
+      "id": "holy_essence",
+      "nameKo": "신성의 정수",
+      "nameEn": "Holy Essence",
+      "description": {
+        "ko": "신성한 힘이 응축된 정수.",
+        "en": "신성한 힘이 응축된 정수."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "rare",
+      "value": 100,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 50,
+      "icon": "drop_holy"
+    },
+    {
+      "id": "fire_essence",
+      "nameKo": "화염의 정수",
+      "nameEn": "Fire Essence",
+      "description": {
+        "ko": "화염의 힘이 응축된 정수.",
+        "en": "화염의 힘이 응축된 정수."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "rare",
+      "value": 60,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 50,
+      "icon": "drop_fire"
+    },
+    {
+      "id": "ice_essence",
+      "nameKo": "냉기의 정수",
+      "nameEn": "Ice Essence",
+      "description": {
+        "ko": "냉기의 힘이 응축된 정수.",
+        "en": "냉기의 힘이 응축된 정수."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "rare",
+      "value": 60,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 50,
+      "icon": "drop_ice"
+    },
+    {
+      "id": "bone_fragment",
+      "nameKo": "뼈 조각",
+      "nameEn": "Bone Fragment",
+      "description": {
+        "ko": "부서진 뼈 조각.",
+        "en": "부서진 뼈 조각."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "crude",
+      "value": 5,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "drop_bone"
+    },
+    {
+      "id": "rotting_flesh",
+      "nameKo": "썩은 살점",
+      "nameEn": "Rotting Flesh",
+      "description": {
+        "ko": "언데드에게서 떨어진 썩은 살점.",
+        "en": "언데드에게서 떨어진 썩은 살점."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "crude",
+      "value": 3,
+      "weight": 0.2,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "drop_flesh"
+    },
+    {
+      "id": "stolen_coin",
+      "nameKo": "훔친 동전",
+      "nameEn": "Stolen Coin",
+      "description": {
+        "ko": "도적에게서 되찾은 동전.",
+        "en": "도적에게서 되찾은 동전."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "common",
+      "value": 1,
+      "weight": 0.01,
+      "stackable": true,
+      "stackSize": 999,
+      "icon": "drop_coin"
+    },
+    {
+      "id": "bandit_mask",
+      "nameKo": "도적 마스크",
+      "nameEn": "Bandit Mask",
+      "description": {
+        "ko": "도적이 쓰던 마스크.",
+        "en": "도적이 쓰던 마스크."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "grand",
+      "value": 30,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 10,
+      "icon": "drop_mask"
+    },
+    {
+      "id": "bandit_insignia",
+      "nameKo": "도적단 휘장",
+      "nameEn": "Bandit Insignia",
+      "description": {
+        "ko": "도적단의 휘장.",
+        "en": "도적단의 휘장."
+      },
+      "type": "material",
+      "subtype": "drop",
+      "rarity": "rare",
+      "value": 50,
+      "weight": 0.05,
+      "stackable": true,
+      "stackSize": 10,
+      "icon": "drop_insignia"
+    },
+    {
+      "id": "gem_ruby",
+      "nameKo": "루비",
+      "nameEn": "Ruby",
+      "description": {
+        "ko": "붉게 빛나는 보석. 화염 속성 강화에 사용.",
+        "en": "붉게 빛나는 보석. 화염 속성 강화에 사용."
+      },
+      "type": "material",
+      "subtype": "gem",
+      "rarity": "rare",
+      "value": 150,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 30,
+      "icon": "gem_red"
+    },
+    {
+      "id": "gem_sapphire",
+      "nameKo": "사파이어",
+      "nameEn": "Sapphire",
+      "description": {
+        "ko": "차갑게 빛나는 푸른 보석. 냉기 속성 강화에 사용.",
+        "en": "차갑게 빛나는 푸른 보석. 냉기 속성 강화에 사용."
+      },
+      "type": "material",
+      "subtype": "gem",
+      "rarity": "rare",
+      "value": 150,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 30,
+      "icon": "gem_blue"
+    },
+    {
+      "id": "gem_topaz",
+      "nameKo": "토파즈",
+      "nameEn": "Topaz",
+      "description": {
+        "ko": "번개처럼 빛나는 노란 보석. 번개 속성 강화에 사용.",
+        "en": "번개처럼 빛나는 노란 보석. 번개 속성 강화에 사용."
+      },
+      "type": "material",
+      "subtype": "gem",
+      "rarity": "rare",
+      "value": 150,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 30,
+      "icon": "gem_yellow"
+    },
+    {
+      "id": "gem_emerald",
+      "nameKo": "에메랄드",
+      "nameEn": "Emerald",
+      "description": {
+        "ko": "자연의 힘이 담긴 녹색 보석. 대지 속성 강화에 사용.",
+        "en": "자연의 힘이 담긴 녹색 보석. 대지 속성 강화에 사용."
+      },
+      "type": "material",
+      "subtype": "gem",
+      "rarity": "rare",
+      "value": 150,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 30,
+      "icon": "gem_green"
+    },
+    {
+      "id": "gem_diamond",
+      "nameKo": "다이아몬드",
+      "nameEn": "Diamond",
+      "description": {
+        "ko": "완벽하게 투명한 최고급 보석. 신성 속성 강화에 사용.",
+        "en": "완벽하게 투명한 최고급 보석. 신성 속성 강화에 사용."
+      },
+      "type": "material",
+      "subtype": "gem",
+      "rarity": "heroic",
+      "value": 500,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "gem_white"
+    },
+    {
+      "id": "gem_onyx",
+      "nameKo": "오닉스",
+      "nameEn": "Onyx",
+      "description": {
+        "ko": "칠흑같이 어두운 보석. 암흑 속성 강화에 사용.",
+        "en": "칠흑같이 어두운 보석. 암흑 속성 강화에 사용."
+      },
+      "type": "material",
+      "subtype": "gem",
+      "rarity": "heroic",
+      "value": 450,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "gem_black"
+    },
+    {
+      "id": "gem_amethyst",
+      "nameKo": "자수정",
+      "nameEn": "Amethyst",
+      "description": {
+        "ko": "보라색 빛의 아름다운 보석. MP 강화에 사용.",
+        "en": "보라색 빛의 아름다운 보석. MP 강화에 사용."
+      },
+      "type": "material",
+      "subtype": "gem",
+      "rarity": "arcane",
+      "value": 200,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 25,
+      "icon": "gem_purple"
+    },
+    {
+      "id": "gem_garnet",
+      "nameKo": "가넷",
+      "nameEn": "Garnet",
+      "description": {
+        "ko": "진한 적색의 보석. HP 강화에 사용.",
+        "en": "진한 적색의 보석. HP 강화에 사용."
+      },
+      "type": "material",
+      "subtype": "gem",
+      "rarity": "arcane",
+      "value": 200,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 25,
+      "icon": "gem_darkred"
+    },
+    {
+      "id": "gem_chaos",
+      "nameKo": "혼돈의 보석",
+      "nameEn": "Chaos Gem",
+      "description": {
+        "ko": "무지개빛으로 빛나는 기이한 보석. 모든 속성을 담고 있다.",
+        "en": "무지개빛으로 빛나는 기이한 보석. 모든 속성을 담고 있다."
+      },
+      "type": "material",
+      "subtype": "gem",
+      "rarity": "legendary",
+      "value": 5000,
+      "weight": 0.2,
+      "stackable": true,
+      "stackSize": 5,
+      "icon": "gem_rainbow"
+    },
+    {
+      "id": "herb_healing",
+      "nameKo": "치유초",
+      "nameEn": "Healing Herb",
+      "description": {
+        "ko": "녹색 잎의 약초. 체력 포션 제조에 사용.",
+        "en": "녹색 잎의 약초. 체력 포션 제조에 사용."
+      },
+      "type": "material",
+      "subtype": "herb",
+      "rarity": "common",
+      "value": 8,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "herb_green"
+    },
+    {
+      "id": "herb_mana",
+      "nameKo": "마나초",
+      "nameEn": "Mana Herb",
+      "description": {
+        "ko": "푸른 잎의 약초. 마나 포션 제조에 사용.",
+        "en": "푸른 잎의 약초. 마나 포션 제조에 사용."
+      },
+      "type": "material",
+      "subtype": "herb",
+      "rarity": "common",
+      "value": 10,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "herb_blue"
+    },
+    {
+      "id": "herb_antidote",
+      "nameKo": "해독초",
+      "nameEn": "Antidote Herb",
+      "description": {
+        "ko": "연두색 잎의 약초. 해독제 제조에 사용.",
+        "en": "연두색 잎의 약초. 해독제 제조에 사용."
+      },
+      "type": "material",
+      "subtype": "herb",
+      "rarity": "common",
+      "value": 12,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "herb_lime"
+    },
+    {
+      "id": "herb_fire",
+      "nameKo": "화염초",
+      "nameEn": "Fire Herb",
+      "description": {
+        "ko": "붉은 잎을 가진 열기를 품은 약초.",
+        "en": "붉은 잎을 가진 열기를 품은 약초."
+      },
+      "type": "material",
+      "subtype": "herb",
+      "rarity": "grand",
+      "value": 25,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 50,
+      "icon": "herb_red"
+    },
+    {
+      "id": "herb_ice",
+      "nameKo": "냉기초",
+      "nameEn": "Ice Herb",
+      "description": {
+        "ko": "서리가 맺힌 차가운 약초.",
+        "en": "서리가 맺힌 차가운 약초."
+      },
+      "type": "material",
+      "subtype": "herb",
+      "rarity": "grand",
+      "value": 25,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 50,
+      "icon": "herb_cyan"
+    },
+    {
+      "id": "herb_lightning",
+      "nameKo": "번개초",
+      "nameEn": "Lightning Herb",
+      "description": {
+        "ko": "전기가 흐르는 듯한 노란 약초.",
+        "en": "전기가 흐르는 듯한 노란 약초."
+      },
+      "type": "material",
+      "subtype": "herb",
+      "rarity": "grand",
+      "value": 25,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 50,
+      "icon": "herb_yellow"
+    },
+    {
+      "id": "herb_moonlight",
+      "nameKo": "달빛초",
+      "nameEn": "Moonlight Herb",
+      "description": {
+        "ko": "밤에만 피는 은빛 약초. 강화 물약 제조에 필수.",
+        "en": "밤에만 피는 은빛 약초. 강화 물약 제조에 필수."
+      },
+      "type": "material",
+      "subtype": "herb",
+      "rarity": "rare",
+      "value": 80,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 30,
+      "icon": "herb_silver"
+    },
+    {
+      "id": "herb_sunlight",
+      "nameKo": "햇빛초",
+      "nameEn": "Sunlight Herb",
+      "description": {
+        "ko": "한낮에만 피는 금빛 약초. 엘릭서 제조에 필수.",
+        "en": "한낮에만 피는 금빛 약초. 엘릭서 제조에 필수."
+      },
+      "type": "material",
+      "subtype": "herb",
+      "rarity": "rare",
+      "value": 100,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 30,
+      "icon": "herb_gold"
+    },
+    {
+      "id": "herb_divine",
+      "nameKo": "신성초",
+      "nameEn": "Divine Herb",
+      "description": {
+        "ko": "성스러운 기운이 감도는 희귀 약초.",
+        "en": "성스러운 기운이 감도는 희귀 약초."
+      },
+      "type": "material",
+      "subtype": "herb",
+      "rarity": "arcane",
+      "value": 250,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "herb_white"
+    },
+    {
+      "id": "herb_cursed",
+      "nameKo": "저주초",
+      "nameEn": "Cursed Herb",
+      "description": {
+        "ko": "어둠의 기운이 감도는 위험한 약초.",
+        "en": "어둠의 기운이 감도는 위험한 약초."
+      },
+      "type": "material",
+      "subtype": "herb",
+      "rarity": "arcane",
+      "value": 200,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "herb_purple"
+    },
+    {
+      "id": "copper_ore",
+      "nameKo": "구리 광석",
+      "nameEn": "Copper Ore",
+      "description": {
+        "ko": "붉은빛이 도는 기본 광석.",
+        "en": "붉은빛이 도는 기본 광석."
+      },
+      "type": "material",
+      "subtype": "ore",
+      "rarity": "crude",
+      "value": 5,
+      "weight": 1,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "ore_copper"
+    },
+    {
+      "id": "iron_ore",
+      "nameKo": "철 광석",
+      "nameEn": "Iron Ore",
+      "description": {
+        "ko": "대장간에서 가장 많이 사용되는 광석.",
+        "en": "대장간에서 가장 많이 사용되는 광석."
+      },
+      "type": "material",
+      "subtype": "ore",
+      "rarity": "common",
+      "value": 10,
+      "weight": 1.2,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "ore_iron"
+    },
+    {
+      "id": "silver_ore",
+      "nameKo": "은 광석",
+      "nameEn": "Silver Ore",
+      "description": {
+        "ko": "은빛으로 빛나는 광석. 마법 무기 제작에 사용.",
+        "en": "은빛으로 빛나는 광석. 마법 무기 제작에 사용."
+      },
+      "type": "material",
+      "subtype": "ore",
+      "rarity": "grand",
+      "value": 30,
+      "weight": 1,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "ore_silver"
+    },
+    {
+      "id": "gold_ore",
+      "nameKo": "금 광석",
+      "nameEn": "Gold Ore",
+      "description": {
+        "ko": "황금빛으로 빛나는 귀중한 광석.",
+        "en": "황금빛으로 빛나는 귀중한 광석."
+      },
+      "type": "material",
+      "subtype": "ore",
+      "rarity": "rare",
+      "value": 80,
+      "weight": 1.5,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "ore_gold"
+    },
+    {
+      "id": "mithril_ore",
+      "nameKo": "미스릴 광석",
+      "nameEn": "Mithril Ore",
+      "description": {
+        "ko": "은빛 푸른 광채를 내는 희귀 광석.",
+        "en": "은빛 푸른 광채를 내는 희귀 광석."
+      },
+      "type": "material",
+      "subtype": "ore",
+      "rarity": "arcane",
+      "value": 200,
+      "weight": 0.8,
+      "stackable": true,
+      "stackSize": 50,
+      "icon": "ore_mithril"
+    },
+    {
+      "id": "adamantite_ore",
+      "nameKo": "아다만타이트 광석",
+      "nameEn": "Adamantite Ore",
+      "description": {
+        "ko": "세상에서 가장 단단한 금속의 원석.",
+        "en": "세상에서 가장 단단한 금속의 원석."
+      },
+      "type": "material",
+      "subtype": "ore",
+      "rarity": "heroic",
+      "value": 500,
+      "weight": 2,
+      "stackable": true,
+      "stackSize": 30,
+      "icon": "ore_adamantite"
+    },
+    {
+      "id": "orichalcum_ore",
+      "nameKo": "오리하르콘 광석",
+      "nameEn": "Orichalcum Ore",
+      "description": {
+        "ko": "전설 속 금속의 원석. 붉은 금빛을 낸다.",
+        "en": "전설 속 금속의 원석. 붉은 금빛을 낸다."
+      },
+      "type": "material",
+      "subtype": "ore",
+      "rarity": "unique",
+      "value": 1500,
+      "weight": 1.8,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "ore_orichalcum"
+    },
+    {
+      "id": "dark_ore",
+      "nameKo": "암흑 광석",
+      "nameEn": "Dark Ore",
+      "description": {
+        "ko": "빛을 흡수하는 기이한 광석.",
+        "en": "빛을 흡수하는 기이한 광석."
+      },
+      "type": "material",
+      "subtype": "ore",
+      "rarity": "unique",
+      "value": 1200,
+      "weight": 1.5,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "ore_dark"
+    },
+    {
+      "id": "iron_key",
+      "nameKo": "철 열쇠",
+      "nameEn": "Iron Key",
+      "description": {
+        "ko": "일반적인 철 열쇠.",
+        "en": "일반적인 철 열쇠."
+      },
+      "icon": "key_iron",
+      "rarity": "common",
+      "stackSize": 10,
+      "value": 25,
+      "weight": 0.1,
+      "unlocks": [
+        "iron_chest"
+      ],
+      "type": "misc",
+      "subtype": "key",
+      "stackable": true
+    },
+    {
+      "id": "silver_key",
+      "nameKo": "은 열쇠",
+      "nameEn": "Silver Key",
+      "description": {
+        "ko": "은으로 만든 열쇠.",
+        "en": "은으로 만든 열쇠."
+      },
+      "icon": "key_silver",
+      "rarity": "grand",
+      "stackSize": 5,
+      "value": 100,
+      "weight": 0.1,
+      "unlocks": [
+        "silver_chest"
+      ],
+      "type": "misc",
+      "subtype": "key",
+      "stackable": true
+    },
+    {
+      "id": "gold_key",
+      "nameKo": "금 열쇠",
+      "nameEn": "Gold Key",
+      "description": {
+        "ko": "금으로 만든 열쇠.",
+        "en": "금으로 만든 열쇠."
+      },
+      "icon": "key_gold",
+      "rarity": "rare",
+      "stackSize": 3,
+      "value": 300,
+      "weight": 0.1,
+      "unlocks": [
+        "gold_chest"
+      ],
+      "type": "misc",
+      "subtype": "key",
+      "stackable": true
+    },
+    {
+      "id": "dungeon_key",
+      "nameKo": "던전 열쇠",
+      "nameEn": "Dungeon Key",
+      "description": {
+        "ko": "던전 문을 여는 열쇠.",
+        "en": "던전 문을 여는 열쇠."
+      },
+      "icon": "key_dungeon",
+      "rarity": "arcane",
+      "stackSize": 1,
+      "value": 500,
+      "weight": 0.2,
+      "unlocks": [
+        "dungeon_door"
+      ],
+      "type": "misc",
+      "subtype": "key",
+      "stackable": true
+    },
+    {
+      "id": "boss_key",
+      "nameKo": "보스 열쇠",
+      "nameEn": "Boss Key",
+      "description": {
+        "ko": "보스 방 문을 여는 열쇠.",
+        "en": "보스 방 문을 여는 열쇠."
+      },
+      "icon": "key_boss",
+      "rarity": "heroic",
+      "stackSize": 1,
+      "value": 1000,
+      "weight": 0.3,
+      "unlocks": [
+        "boss_room"
+      ],
+      "type": "misc",
+      "subtype": "key",
+      "stackable": true
+    },
+    {
+      "id": "master_key",
+      "nameKo": "마스터 키",
+      "nameEn": "Master Key",
+      "description": {
+        "ko": "대부분의 문을 열 수 있는 만능 열쇠.",
+        "en": "대부분의 문을 열 수 있는 만능 열쇠."
+      },
+      "icon": "key_master",
+      "rarity": "unique",
+      "stackSize": 1,
+      "value": 5000,
+      "weight": 0.15,
+      "unlocks": [
+        "all_chests",
+        "all_doors"
+      ],
+      "type": "misc",
+      "subtype": "key",
+      "stackable": true
+    },
+    {
+      "id": "old_letter",
+      "nameKo": "오래된 편지",
+      "nameEn": "Old Letter",
+      "description": {
+        "ko": "누렇게 바랜 오래된 편지. 읽을 수 있을지도 모른다.",
+        "en": "누렇게 바랜 오래된 편지. 읽을 수 있을지도 모른다."
+      },
+      "icon": "quest_letter",
+      "rarity": "common",
+      "stackSize": 1,
+      "value": 0,
+      "weight": 0.01,
+      "questId": "village_mystery",
+      "type": "misc",
+      "subtype": "quest",
+      "stackable": true
+    },
+    {
+      "id": "ancient_key",
+      "nameKo": "고대의 열쇠",
+      "nameEn": "Ancient Key",
+      "description": {
+        "ko": "고대 유적의 어딘가를 열 수 있을 것 같다.",
+        "en": "고대 유적의 어딘가를 열 수 있을 것 같다."
+      },
+      "icon": "quest_key",
+      "rarity": "rare",
+      "stackSize": 1,
+      "value": 0,
+      "weight": 0.1,
+      "questId": "ancient_ruins",
+      "type": "misc",
+      "subtype": "quest",
+      "stackable": true
+    },
+    {
+      "id": "village_chief_seal",
+      "nameKo": "촌장의 인장",
+      "nameEn": "Village Chief's Seal",
+      "description": {
+        "ko": "시작 마을 촌장의 인장. 신분을 증명할 수 있다.",
+        "en": "시작 마을 촌장의 인장. 신분을 증명할 수 있다."
+      },
+      "icon": "quest_seal",
+      "rarity": "grand",
+      "stackSize": 1,
+      "value": 0,
+      "weight": 0.05,
+      "questId": "main_quest_1",
+      "type": "misc",
+      "subtype": "quest",
+      "stackable": true
+    },
+    {
+      "id": "mysterious_orb",
+      "nameKo": "수상한 구슬",
+      "nameEn": "Mysterious Orb",
+      "description": {
+        "ko": "이상한 빛을 내는 구슬. 누군가에게 보여줘야 할 것 같다.",
+        "en": "이상한 빛을 내는 구슬. 누군가에게 보여줘야 할 것 같다."
+      },
+      "icon": "quest_orb",
+      "rarity": "arcane",
+      "stackSize": 1,
+      "value": 0,
+      "weight": 0.2,
+      "questId": "magic_academy",
+      "type": "misc",
+      "subtype": "quest",
+      "stackable": true
+    },
+    {
+      "id": "dragon_tooth",
+      "nameKo": "드래곤의 이빨",
+      "nameEn": "Dragon's Tooth",
+      "description": {
+        "ko": "드래곤을 처치한 증거. 왕에게 가져가야 한다.",
+        "en": "드래곤을 처치한 증거. 왕에게 가져가야 한다."
+      },
+      "icon": "quest_dragon",
+      "rarity": "unique",
+      "stackSize": 1,
+      "value": 0,
+      "weight": 0.5,
+      "questId": "dragon_slayer",
+      "type": "misc",
+      "subtype": "quest",
+      "stackable": true
     }
   ],
   "summary": {
-    "total": 86,
-    "bySubtype": {
-      "weapon": 63,
-      "accessory": 23
+    "total": 205,
+    "byType": {
+      "equipment": 86,
+      "consumable": 30,
+      "material": 78,
+      "misc": 11
     },
     "byRarity": {
-      "crude": 9,
-      "common": 9,
-      "grand": 11,
-      "rare": 17,
-      "arcane": 11,
-      "heroic": 12,
-      "unique": 7,
-      "legendary": 9,
+      "crude": 18,
+      "common": 42,
+      "grand": 32,
+      "rare": 48,
+      "arcane": 18,
+      "heroic": 22,
+      "unique": 14,
+      "legendary": 10,
       "celestial": 1
     }
   }

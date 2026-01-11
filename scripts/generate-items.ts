@@ -11,6 +11,13 @@
  *   ├── materials/*.json      → materials.json
  *   └── misc/*.json           → misc.json
  *
+ * 출력:
+ *   - equipment.json (장비)
+ *   - consumables.json (소비)
+ *   - materials.json (재료)
+ *   - misc.json (기타)
+ *   - items.json (전체 통합 - API에서 사용)
+ *
  * 사용법: npx tsx scripts/generate-items.ts
  */
 
@@ -99,7 +106,7 @@ interface OutputItem {
   id: string;
   nameKo: string;
   nameEn: string;
-  description: string;
+  description: { ko: string; en: string };
   type: string;
   subtype?: string;
   rarity: string;
@@ -120,6 +127,14 @@ interface OutputItem {
   craftingUse?: string[];
 }
 
+// 설명 정규화 (문자열 → 객체)
+function normalizeDescription(desc: string | { ko: string; en: string }): { ko: string; en: string } {
+  if (typeof desc === "string") {
+    return { ko: desc, en: desc };
+  }
+  return desc;
+}
+
 // 장비 아이템 변환
 function convertEquipmentItem(
   item: EquipmentSourceItem,
@@ -129,7 +144,7 @@ function convertEquipmentItem(
     id: item.id,
     nameKo: item.nameKo,
     nameEn: item.nameEn,
-    description: item.description,
+    description: normalizeDescription(item.description),
     type: "equipment",
     subtype: source.subcategory,
     rarity: item.rarity,
@@ -155,7 +170,7 @@ function convertConsumableItem(
     id: item.id,
     nameKo: item.nameKo,
     nameEn: item.nameEn,
-    description: item.description,
+    description: normalizeDescription(item.description),
     type: "consumable",
     subtype: source.subcategory,
     rarity: item.rarity,
@@ -177,7 +192,7 @@ function convertMaterialItem(
     id: item.id,
     nameKo: item.nameKo,
     nameEn: item.nameEn,
-    description: item.description,
+    description: normalizeDescription(item.description),
     type: "material",
     subtype: source.subcategory,
     rarity: item.rarity,
@@ -226,6 +241,7 @@ function processCategory(
           } else {
             outputItem = {
               ...item,
+              description: normalizeDescription(item.description),
               type: "misc",
               subtype: source.subcategory || "other",
               stackable: item.stackable ?? true,
@@ -256,6 +272,9 @@ async function main(): Promise<void> {
     byRarity: {} as Record<string, number>,
   };
 
+  // 전체 아이템 모음 (items.json용)
+  const allItems: OutputItem[] = [];
+
   // 각 카테고리별로 처리
   for (const [categoryKey, config] of Object.entries(CATEGORIES)) {
     console.log(`📁 ${categoryKey} 처리 중...`);
@@ -284,12 +303,33 @@ async function main(): Promise<void> {
     fs.writeFileSync(outputPath, JSON.stringify(output, null, 2));
     console.log(`  ✅ ${config.output}: ${items.length}개 아이템\n`);
 
+    // 전체 아이템 모음에 추가
+    allItems.push(...items);
+
     // 전체 통계 업데이트
     totalSummary.total += items.length;
     totalSummary.byType[config.type] = items.length;
     for (const [rarity, count] of Object.entries(byRarity)) {
       totalSummary.byRarity[rarity] = (totalSummary.byRarity[rarity] || 0) + count;
     }
+  }
+
+  // 통합 items.json 생성 (API에서 사용)
+  if (allItems.length > 0) {
+    const unifiedOutput = {
+      version: "1.0.0",
+      generatedAt: new Date().toISOString(),
+      items: allItems,
+      summary: {
+        total: totalSummary.total,
+        byType: totalSummary.byType,
+        byRarity: totalSummary.byRarity,
+      },
+    };
+
+    const unifiedPath = path.join(ITEMS_DIR, "items.json");
+    fs.writeFileSync(unifiedPath, JSON.stringify(unifiedOutput, null, 2));
+    console.log(`📦 items.json: ${allItems.length}개 아이템 (통합)\n`);
   }
 
   console.log("═".repeat(50));
