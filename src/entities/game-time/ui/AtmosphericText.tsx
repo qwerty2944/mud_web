@@ -67,17 +67,17 @@ export function AtmosphericText({ mapId, className = "" }: AtmosphericTextProps)
     }
   }, [messages, mapId, gameTime?.period]);
 
-  if (!currentMessage) return null;
-
+  // 레이아웃 시프트 방지: 메시지가 없어도 공간 유지
   return (
     <div
       className={`text-xs font-mono italic transition-opacity duration-500 ${className}`}
       style={{
         color: theme.colors.textMuted,
-        opacity: fadeIn ? 1 : 0,
+        opacity: fadeIn && currentMessage ? 1 : 0,
+        minHeight: "1.25rem", // 메시지 높이만큼 공간 예약
       }}
     >
-      {currentMessage}
+      {currentMessage || "\u00A0"} {/* 빈 메시지면 non-breaking space로 높이 유지 */}
     </div>
   );
 }
