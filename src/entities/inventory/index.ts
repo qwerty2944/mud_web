@@ -32,3 +32,6 @@ export {
   useStorageInventory,
   inventoryKeys,
 } from "./queries";
+
+// UI Components
+export { InventorySlot, InventoryGrid } from "./ui";

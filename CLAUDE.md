@@ -59,9 +59,6 @@ src/
 │   │   ├── use-item/           # 아이템 사용
 │   │   ├── move-item/          # 아이템 이동
 │   │   └── index.ts
-│   ├── proficiency/
-│   │   ├── gain-proficiency/   # 숙련도 증가 액션
-│   │   └── index.ts
 │   ├── combat/                 # PvE 전투
 │   │   ├── start-battle/       # 전투 시작
 │   │   ├── use-ability/        # 어빌리티 사용
@@ -122,10 +119,10 @@ src/
 │   │   ├── api/                # DB 조회/저장
 │   │   ├── types/              # 타입 정의
 │   │   └── index.ts
-│   ├── ability/                # 통합 어빌리티 시스템 (마법+스킬+숙련도)
-│   │   ├── api/                # JSON 데이터 로드, 숙련도 함수
+│   ├── ability/                # 통합 어빌리티 시스템 (마법+스킬)
+│   │   ├── api/                # JSON 데이터 로드
 │   │   ├── queries/            # React Query 훅 (useAbilities)
-│   │   ├── types/              # Ability, AbilityType, Proficiencies 타입
+│   │   ├── types/              # Ability, AbilityType 타입
 │   │   └── index.ts
 │   └── item/
 │       ├── api/                # JSON 데이터 로드 (fetchItems, fetchItemById)
@@ -648,7 +645,7 @@ abilities/
 
 | usageContext | 설명 | 예시 |
 |--------------|------|------|
-| `passive` | 항상 적용 (패시브 스킬) | 제작 숙련도 보너스, 지식 스킬 |
+| `passive` | 항상 적용 (패시브 스킬) | 제작 보너스, 지식 스킬 |
 | `combat_only` | 전투에서만 사용 가능 | 공격 마법, 무기 스킬, 디버프 |
 | `field_only` | 일반 상황에서만 사용 가능 | 제작, 수리, 채집 |
 | `both` | 전투/일반 모두 사용 가능 | 치유 마법, 버프 마법 |
@@ -730,99 +727,6 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=xxx
 - `JS_NextBody`, `JS_PrevBody`, `JS_SetBody`
 - `JS_SetHairColor`, `JS_SetClothColor`, ...
 - `JS_Randomize`, `JS_ClearAll`, `JS_ResetColors`
-
-## 숙련도 시스템 (Proficiency)
-
-경험치와 별개로 동작하는 사용 기반 숙련 시스템. 무기/마법을 사용할수록 해당 숙련도가 상승.
-
-**참고**: 숙련도 타입과 함수는 `@/entities/ability`에서 관리합니다. (어빌리티 시스템 섹션 참조)
-
-### 무기 숙련 (12종)
-| ID | 이름 | 아이콘 | 관련 스탯 |
-|----|------|--------|----------|
-| light_sword | 세검 | 🗡️ | DEX |
-| medium_sword | 중검 | ⚔️ | STR/DEX |
-| great_sword | 대검 | 🗡️ | STR |
-| axe | 도끼 | 🪓 | STR |
-| mace | 둔기 | 🔨 | STR |
-| dagger | 단검 | 🔪 | DEX |
-| spear | 창 | 🔱 | STR/DEX |
-| bow | 활 | 🏹 | DEX |
-| crossbow | 석궁 | 🎯 | DEX |
-| staff | 지팡이 | 🪄 | INT/WIS |
-| fist | 주먹 | 👊 | STR/DEX |
-| shield | 방패 | 🛡️ | CON |
-
-### 마법 숙련 (7속성)
-| ID | 이름 | 아이콘 | 상성 (강함→약함) |
-|----|------|--------|-----------------|
-| fire | 화염 | 🔥 | ice에 강함, earth에 약함 |
-| ice | 냉기 | ❄️ | lightning에 강함, fire에 약함 |
-| lightning | 번개 | ⚡ | earth에 강함, ice에 약함 |
-| earth | 대지 | 🪨 | fire에 강함, lightning에 약함 |
-| holy | 신성 | ✨ | dark에 강함 |
-| dark | 암흑 | 🌑 | holy에 강함 |
-| poison | 독 | ☠️ | - |
-
-### 숙련도 등급 (0-100)
-| 레벨 | 등급 | 데미지 보너스 | 속도 보너스 |
-|------|------|--------------|------------|
-| 0-19 | 초보 (Novice) | 0% | 0% |
-| 20-39 | 견습 (Apprentice) | +5% | 0% |
-| 40-59 | 숙련 (Journeyman) | +10% | +5% |
-| 60-79 | 전문가 (Expert) | +15% | +10% |
-| 80-99 | 달인 (Master) | +20% | +15% |
-| 100 | 대가 (Grandmaster) | +25% | +20% |
-
-### 사용법
-```typescript
-// 숙련도 관련 함수는 @/entities/ability에서 import
-import {
-  useProficiencies,
-  getProficiencyValue,
-  getProficiencyInfo,
-  getRankInfo,
-  getDamageMultiplier,
-  getMagicEffectiveness,
-  getDayBoostMultiplier,
-  WEAPON_PROFICIENCIES,
-  MAGIC_PROFICIENCIES,
-} from "@/entities/ability";
-
-// 숙련도 조회
-const { data: proficiencies } = useProficiencies(userId);
-const swordLevel = getProficiencyValue(proficiencies, "medium_sword");
-const rank = getRankInfo(swordLevel); // { id: "novice", nameKo: "초보", ... }
-const bonus = getDamageMultiplier(swordLevel);
-
-// 마법 상성 계산
-const multiplier = getMagicEffectiveness("fire", "ice"); // 1.5 (강함)
-```
-
-### DB 테이블
-- `proficiencies`: user_id별 숙련도 값 (0-100)
-- RPC `increase_proficiency(p_user_id, p_type, p_amount)`: 감소율 적용된 숙련도 증가
-
-### 요일별 속성 강화
-한국어 요일 한자를 기반으로 매일 특정 마법 속성이 +20% 강화됨.
-
-| 요일 | 한자 | 속성 | 배율 |
-|------|------|------|------|
-| 월 | 月 (달) | ice ❄️ | +20% |
-| 화 | 火 (불) | fire 🔥 | +20% |
-| 수 | 水 (물) | lightning ⚡ | +20% |
-| 목 | 木 (나무) | earth 🪨 | +20% |
-| 금 | 金 (금) | holy ✨ | +20% |
-| 토 | 土 (흙) | dark 🌑 | +20% |
-| 일 | 日 (해) | - | 휴식 |
-
-**사용법**:
-```typescript
-import { getDayBoostMultiplier } from "@/entities/ability";
-
-// 특정 속성의 요일 배율
-const boost = getDayBoostMultiplier("fire"); // 화요일이면 1.2, 아니면 1.0
-```
 
 ## 전투 시스템 (Combat)
 
@@ -947,13 +851,12 @@ start(monster, playerHp, playerMaxHp);
 const { attack } = useAttack();
 attack({
   attackType: "sword",
-  proficiencyLevel: 10,
   attackerStats: { str: 10, dex: 8, ... },
 });
 
 // 전투 종료 및 보상
 const { endBattle, isVictory } = useEndBattle({ userId });
-if (isVictory) endBattle(); // 보상 지급 + 숙련도 상승
+if (isVictory) endBattle(); // 보상 지급
 ```
 
 ## 어빌리티 시스템 (Ability)
@@ -1053,7 +956,7 @@ public/data/abilities/
 | dark | 🌑 | holy | - |
 | poison | ☠️ | - | - |
 
-### 무기 숙련도 타입 (WeaponType)
+### 무기 타입 (WeaponType)
 
 | 타입 | 이름 | 아이콘 | 특성 |
 |------|------|--------|------|
@@ -1089,7 +992,7 @@ interface Ability {
   // 사용 컨텍스트
   usageContext: "passive" | "combat_only" | "field_only" | "both";
 
-  // 레벨/숙련도
+  // 레벨
   maxLevel: number;
   expPerLevel: number;
   levelBonuses: AbilityLevelBonus[];
@@ -1108,34 +1011,14 @@ interface Ability {
 }
 ```
 
-### 숙련도 타입 (통합)
-
-숙련도 관련 타입들은 `@/entities/ability`에서 관리합니다:
-
-```typescript
-import type {
-  WeaponType,           // 무기 12종
-  MagicElement,         // 마법 7속성
-  PhysicalAttackType,   // 물리 공격 타입
-  CombatProficiencyType, // WeaponType | MagicElement
-  ProficiencyType,      // 전체 숙련도 타입
-  Proficiencies,        // 숙련도 값 객체
-} from "@/entities/ability";
-```
-
 ### 사용법
 
 ```typescript
 import {
   useAbilities,
-  getProficiencyValue,
-  getProficiencyInfo,
-  getDamageMultiplier,
   getMagicEffectiveness,
   getDayBoostMultiplier,
   WEAPON_ATTACK_TYPE,
-  WEAPON_PROFICIENCIES,
-  MAGIC_PROFICIENCIES,
 } from "@/entities/ability";
 import type { Ability, WeaponType, MagicElement } from "@/entities/ability";
 
@@ -1147,12 +1030,6 @@ const magicAbilities = abilities.filter(
   (a) => a.type === "attack" && a.attackType === "magic"
 );
 
-// 숙련도 값 조회
-const swordLevel = getProficiencyValue(proficiencies, "medium_sword");
-
-// 숙련도 정보 조회
-const info = getProficiencyInfo("fire"); // { nameKo: "화염", icon: "🔥", ... }
-
 // 무기별 물리 공격 타입 조회
 const attackType = WEAPON_ATTACK_TYPE["medium_sword"]; // "slash"
 ```
@@ -1161,8 +1038,8 @@ const attackType = WEAPON_ATTACK_TYPE["medium_sword"]; // "slash"
 
 ```
 src/entities/ability/
-├── types/index.ts           # Ability, AbilityType, Proficiencies 타입
-├── api/index.ts             # fetchAbilities, 숙련도 함수, 상수
+├── types/index.ts           # Ability, AbilityType 타입
+├── api/index.ts             # fetchAbilities, 상수
 ├── queries/index.ts         # useAbilities
 └── index.ts                 # Public API
 ```
@@ -1423,7 +1300,7 @@ src/
 3. 상대방에게 모달 표시 (30초 제한)
 4. 수락 시 → DEX 비교로 선공 결정 → 결투 시작
 5. 턴 진행 (Realtime 동기화)
-6. HP 0 → 결투 종료 → 숙련도 증가 (양쪽 모두)
+6. HP 0 → 결투 종료
 ```
 
 ### PvP 방어력
@@ -1566,14 +1443,13 @@ const [showWorldMap, setShowWorldMap] = useState(false);
 
 ## 상태 모달 시스템 (Status Modal)
 
-캐릭터 정보를 확인하는 5탭 모달 시스템.
+캐릭터 정보를 확인하는 4탭 모달 시스템.
 
 ### 탭 구성
 | 탭 | 내용 | 데이터 소스 |
 |---|------|------------|
 | 상태 | 캐릭터 프리뷰, 레벨, 경험치, **HP/MP**, 스태미나, 능력치, 재화 | `useProfile` |
-| 숙련도 | 무기 12종 + 마법 6종 숙련도 | `useProficiencies` |
-| 스킬 | 습득한 스킬 목록 | `equipmentStore.learnedSkills` |
+| 어빌리티 | 습득한 어빌리티 목록 | `equipmentStore.learnedSkills`, `useAbilities` |
 | 장비 | 12슬롯 장비 현황 (무기, 방어구, 장신구) | `equipmentStore` |
 | 인벤토리 | 보유 아이템 그리드 | `useInventory` |
 
@@ -1834,31 +1710,6 @@ await updateProfile({
 - ❤️ HP: 빨간색 바 (50% 이하 노란색, 20% 이하 진한 빨강)
 - 💧 MP: 파란색(primary) 바
 
-## 숙련도 시스템 확장 (v2)
-
-**참고**: 이 섹션의 내용은 "숙련도 시스템" 및 "어빌리티 시스템" 섹션으로 통합되었습니다.
-숙련도 관련 타입과 함수는 모두 `@/entities/ability`에서 import하세요.
-
-### 숙련도 획득 (레벨 기반)
-몬스터 레벨과 플레이어 레벨 차이에 따라 숙련도 획득량이 결정됩니다.
-
-| 레벨 차이 | 획득량 | 설명 |
-|----------|--------|------|
-| 몬스터 > 플레이어+5 | 3 | 높은 레벨 도전 보너스 |
-| 몬스터 > 플레이어 | 2 | 약간 높은 몬스터 |
-| 몬스터 = 플레이어 | 1 | 동등 레벨 |
-| 몬스터 < 플레이어-5 | 0 | 너무 낮은 몬스터 |
-
-### 숙련도 상수 export
-```typescript
-import {
-  WEAPON_PROFICIENCIES,      // 무기 12종
-  MAGIC_PROFICIENCIES,       // 마법 7속성
-  WEAPON_ATTACK_TYPE,        // 무기별 물리 공격 타입
-  DEFAULT_PROFICIENCIES,     // 기본 숙련도 값
-} from "@/entities/ability";
-```
-
 ## 데미지 계산 시스템
 
 전투 데미지 계산을 위한 함수들.
@@ -1870,8 +1721,6 @@ import { calculatePhysicalDamage } from "@/features/combat";
 const damage = calculatePhysicalDamage({
   baseDamage: 10,
   str: 15,
-  proficiencyLevel: 30,
-  proficiencyBonus: getDamageBonus(30), // +10%
   criticalHit: false,
   criticalMultiplier: 1.5,
 });
@@ -1884,7 +1733,6 @@ import { calculateMagicDamage } from "@/features/combat";
 const damage = calculateMagicDamage({
   baseDamage: 20,
   int: 15,
-  proficiencyLevel: 40,
   element: "fire",
   targetElement: "ice",      // 상성 보너스
   period: "day",             // 시간대 보너스

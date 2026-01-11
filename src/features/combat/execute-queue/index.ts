@@ -3,15 +3,17 @@
 import { useState, useCallback, useRef } from "react";
 import { useBattleStore, type QueuedAction } from "@/application/stores";
 import type { CharacterStats } from "@/entities/character";
-import type { Proficiencies, CombatProficiencyType } from "@/entities/ability";
-import { getProficiencyValue } from "@/entities/ability";
+import type { Proficiencies, CombatProficiencyType, WeaponType, MagicElement } from "@/entities/ability";
+import { getProficiencyValue, isWeaponProficiency, WEAPON_ATTACK_TYPE } from "@/entities/ability";
 import type { RawMonsterAbility } from "@/entities/ability";
 import { getEffectsAtLevel } from "@/entities/ability";
+import { getPhysicalResistance, getElementResistance } from "@/entities/monster";
 import {
   buildMonsterQueue,
   calculateMonsterAbilityDamage,
 } from "../lib/monsterAi";
 import { applyDamageVariance } from "../lib/damage";
+import { getAttackMessage } from "../lib/messages";
 
 // ============ 타입 정의 ============
 
@@ -115,14 +117,76 @@ export function useExecuteQueue(options: UseExecuteQueueOptions) {
 
       // 어빌리티 타입별 처리
       if (action.ability.type === "attack") {
-        // 데미지 계산 (±15% 편차 적용)
+        const currentBattle = currentStore.battle;
+        const monster = currentBattle.monster;
+
+        // 물리/마법 구분
+        const isPhysical = action.ability.attackType === "melee_physical" || action.ability.attackType === "ranged_physical";
+
+        // 데미지 계산 기본
         const baseDamage = effects.baseDamage ?? action.ability.baseCost.ap ?? 10;
-        const rawDamage = baseDamage * (1 + profLevel * 0.02) * (1 + (stats.str || 10) * 0.05);
-        const damage = applyDamageVariance(rawDamage);
+        let rawDamage = baseDamage * (1 + profLevel * 0.02) * (1 + (stats.str || 10) * 0.05);
+
+        // 저항 배율 계산
+        let resistanceMultiplier = 1.0;
+
+        if (monster) {
+          if (isPhysical) {
+            // 물리 저항 계산
+            const weaponType = (action.ability.category && isWeaponProficiency(action.ability.category as CombatProficiencyType))
+              ? action.ability.category as WeaponType
+              : "fist";
+            const physicalAttackType = WEAPON_ATTACK_TYPE[weaponType];
+            if (physicalAttackType) {
+              resistanceMultiplier = getPhysicalResistance(monster.stats, physicalAttackType);
+            }
+          } else {
+            // 마법 속성 저항 계산
+            if (action.ability.element) {
+              resistanceMultiplier = getElementResistance(monster.stats, action.ability.element as MagicElement);
+            }
+          }
+        }
+
+        // 저항 적용
+        rawDamage = rawDamage * resistanceMultiplier;
+
+        // 편차 적용 및 최소 데미지
+        const damage = Math.max(1, applyDamageVariance(rawDamage));
+        const isMinDamage = damage === 1;
+
+        // 메시지 생성 (저항 피드백 포함)
+        let message: string;
+        if (isPhysical) {
+          const msgWeaponType = (action.ability.category && isWeaponProficiency(action.ability.category as CombatProficiencyType))
+            ? action.ability.category as CombatProficiencyType
+            : "fist";
+          message = getAttackMessage(
+            msgWeaponType,
+            monster?.nameKo ?? "적",
+            damage,
+            false, // isCritical - TODO: 추가 필요 시 구현
+            resistanceMultiplier,
+            isMinDamage
+          );
+        } else {
+          // 마법 공격 메시지
+          const icon = action.ability.icon ?? "✨";
+          message = `${icon} ${action.ability.nameKo}! ${monster?.nameKo ?? "적"}에게 ${damage} 데미지!`;
+
+          // 속성 저항 피드백 추가
+          if (isMinDamage) {
+            message += " (간신히 스쳤다!)";
+          } else if (resistanceMultiplier >= 1.3) {
+            message += " (효과적이다!)";
+          } else if (resistanceMultiplier <= 0.7) {
+            message += " (효과가 없다...)";
+          }
+        }
 
         currentStore.dealDamageToMonster(
           damage,
-          `${action.ability.icon ?? "⚔️"} ${action.ability.nameKo}! ${damage} 데미지!`,
+          message,
           action.ability.category
         );
       } else if (action.ability.type === "heal") {

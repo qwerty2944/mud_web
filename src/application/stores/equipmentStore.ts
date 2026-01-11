@@ -76,10 +76,6 @@ interface EquipmentState {
   initializeDefaultSkills: () => void;
 }
 
-// 기본 시작 스킬 (heal은 마법 시스템으로 이전됨)
-// 패시브 스킬: iron_skin(철갑 피부), thorns_aura(가시 오라)
-const DEFAULT_SKILLS: string[] = ["iron_skin", "thorns_aura"];
-
 const initialEquipmentState = {
   // 외형 슬롯
   mainHand: null,
@@ -95,8 +91,8 @@ const initialEquipmentState = {
   earring1: null,
   earring2: null,
   bracelet: null,
-  // 스킬
-  learnedSkills: DEFAULT_SKILLS,
+  // 어빌리티 (DB에서 로드)
+  learnedSkills: [] as string[],
 };
 
 // 모든 슬롯 키
@@ -207,14 +203,14 @@ export const useEquipmentStore = create<EquipmentState>()(
         set(initialEquipmentState);
       },
 
-      // 기본 스킬 초기화
+      // 어빌리티 초기화 (DB에서 로드되므로 빈 배열로 초기화)
       initializeDefaultSkills: () => {
-        set({ learnedSkills: DEFAULT_SKILLS });
+        set({ learnedSkills: [] });
       },
     }),
     {
       name: "equipment-storage",
-      version: 3, // 마이그레이션 버전 (v3: heal 스킬 제거)
+      version: 4, // v4: 어빌리티 시스템 통합 - learnedSkills 초기화
       storage: createJSONStorage(() => localStorage),
       partialize: (state) => ({
         mainHand: state.mainHand,
@@ -236,17 +232,12 @@ export const useEquipmentStore = create<EquipmentState>()(
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const state = persistedState as any;
 
-        // 항상 마이그레이션 수행 (버전과 관계없이 데이터 정합성 보장)
         // v1 → v2 마이그레이션: 4슬롯 → 12슬롯
-        // weapon → mainHand
         if (state.weapon && !state.mainHand) {
           state.mainHand = state.weapon;
-          delete state.weapon;
         }
-        // accessory → ring1
         if (state.accessory && !state.ring1) {
           state.ring1 = state.accessory;
-          delete state.accessory;
         }
 
         // 모든 슬롯 초기화 (누락된 필드 채우기)
@@ -262,18 +253,13 @@ export const useEquipmentStore = create<EquipmentState>()(
         state.earring1 = state.earring1 ?? null;
         state.earring2 = state.earring2 ?? null;
         state.bracelet = state.bracelet ?? null;
-        state.learnedSkills = state.learnedSkills ?? DEFAULT_SKILLS;
 
-        // 잘못된 데이터 정리 (old fields 삭제)
+        // v4: 기존 하드코딩 스킬 정리 (어빌리티는 DB에서 로드)
+        state.learnedSkills = [];
+
+        // 잘못된 데이터 정리
         delete state.weapon;
         delete state.accessory;
-
-        // v3 마이그레이션: heal 스킬 제거 (마법 시스템으로 이전됨)
-        if (state.learnedSkills && Array.isArray(state.learnedSkills)) {
-          state.learnedSkills = state.learnedSkills.filter(
-            (id: string) => id !== "heal"
-          );
-        }
 
         return state;
       },

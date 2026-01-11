@@ -21,7 +21,7 @@ const ELEMENT_ORDER: MagicElement[] = ["all", "fire", "ice", "lightning", "earth
 interface MagicSubTabsProps {
   activeElement: MagicElement;
   onElementChange: (element: MagicElement) => void;
-  availableElements: string[];  // 배운 마법이 있는 속성만 활성화
+  availableElements: string[];  // 배운 마법이 있는 속성 (UI 표시용, 모든 탭은 항상 클릭 가능)
   disabled?: boolean;
 }
 
@@ -40,27 +40,27 @@ export function MagicSubTabs({
     >
       {ELEMENT_ORDER.map((element) => {
         const isActive = activeElement === element;
-        const isAvailable = element === "all" || availableElements.includes(element);
+        const hasSpells = element === "all" || availableElements.includes(element);
         const { nameKo, icon } = MAGIC_ELEMENTS[element];
 
         return (
           <button
             key={element}
-            onClick={() => !disabled && isAvailable && onElementChange(element)}
-            disabled={disabled || !isAvailable}
+            onClick={() => !disabled && onElementChange(element)}
+            disabled={disabled}
             className="flex items-center gap-0.5 px-2 py-1 text-xs font-mono whitespace-nowrap transition-colors"
             style={{
               background: isActive ? theme.colors.primary + "30" : "transparent",
               color: isActive
                 ? theme.colors.primary
-                : isAvailable
+                : hasSpells
                 ? theme.colors.text
                 : theme.colors.textMuted,
               borderRadius: "4px",
-              opacity: disabled || !isAvailable ? 0.4 : 1,
-              cursor: disabled || !isAvailable ? "not-allowed" : "pointer",
+              opacity: disabled ? 0.4 : hasSpells ? 1 : 0.6,
+              cursor: disabled ? "not-allowed" : "pointer",
             }}
-            title={isAvailable ? nameKo : `${nameKo} 마법 없음`}
+            title={hasSpells ? nameKo : `${nameKo} (마법 없음)`}
           >
             <span>{icon}</span>
             <span className="hidden sm:inline">{nameKo}</span>

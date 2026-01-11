@@ -11,18 +11,9 @@ import {
   getMaxFatigueFromProfile,
   getCurrentFatigue,
 } from "@/entities/user";
-import { usePersonalInventory, type InventorySlotItem } from "@/entities/inventory";
-import {
-  useProficiencies,
-  WEAPON_PROFICIENCIES,
-  MAGIC_PROFICIENCIES,
-  CRAFTING_PROFICIENCIES,
-  MEDICAL_PROFICIENCIES,
-  KNOWLEDGE_PROFICIENCIES,
-  getRankInfo,
-  getProficiencyValue,
-} from "@/entities/ability";
-import type { ProficiencyType } from "@/entities/ability";
+import { usePersonalInventory, InventoryGrid, type InventorySlotItem } from "@/entities/inventory";
+import { useItems } from "@/entities/item";
+import { useAbilities } from "@/entities/ability";
 import { useEquipmentStore } from "@/application/stores";
 import { useThemeStore } from "@/shared/config";
 import { SLOT_CONFIG, type EquipmentSlot } from "@/entities/item";
@@ -101,7 +92,7 @@ function useAppearanceIndexes(appearance: ProfileAppearance | null | undefined) 
   return { indexes, loaded };
 }
 
-type TabType = "status" | "proficiency" | "skills" | "equipment" | "inventory";
+type TabType = "status" | "abilities" | "equipment" | "inventory";
 
 interface StatusModalProps {
   open: boolean;
@@ -116,8 +107,10 @@ export function StatusModal({ open, onClose }: StatusModalProps) {
   // React Query로 서버 상태 관리
   const { data: profile, isLoading: profileLoading } = useProfile(session?.user?.id);
   const { data: inventoryData } = usePersonalInventory(session?.user?.id);
-  const inventoryItems = inventoryData?.items?.filter((item): item is InventorySlotItem => item !== null) ?? [];
-  const { data: proficiencies } = useProficiencies(session?.user?.id);
+  const inventoryItems = inventoryData?.items ?? [];
+  const inventoryMaxSlots = inventoryData?.maxSlots ?? 20;
+  const { data: allItems = [] } = useItems();
+  const { data: abilities = [] } = useAbilities();
 
   // 장비 스토어
   const equipmentStore = useEquipmentStore();
@@ -179,8 +172,7 @@ export function StatusModal({ open, onClose }: StatusModalProps) {
 
   const tabs: { id: TabType; label: string }[] = [
     { id: "status", label: "상태" },
-    { id: "proficiency", label: "숙련도" },
-    { id: "skills", label: "스킬" },
+    { id: "abilities", label: "어빌리티" },
     { id: "equipment", label: "장비" },
     { id: "inventory", label: "인벤토리" },
   ];
@@ -466,265 +458,46 @@ export function StatusModal({ open, onClose }: StatusModalProps) {
                 </div>
               </div>
 
-              {/* 숙련도 탭 */}
-              <div className={`col-start-1 row-start-1 ${activeTab === "proficiency" ? "" : "invisible"}`}>
-                <div className="space-y-6">
-                  {/* 무기 숙련도 */}
-                  <div>
-                    <h3 className="text-lg font-mono font-bold mb-3" style={{ color: theme.colors.text }}>
-                      무기 숙련도
-                    </h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {WEAPON_PROFICIENCIES.map((prof) => {
-                        const level = getProficiencyValue(proficiencies, prof.id as ProficiencyType) ?? 0;
-                        const rank = getRankInfo(level);
-                        return (
-                          <div
-                            key={prof.id}
-                            className="p-3 flex items-center gap-3"
-                            style={{ background: theme.colors.bgDark }}
-                          >
-                            <span className="text-2xl">{prof.icon}</span>
-                            <div className="flex-1">
-                              <div className="flex justify-between">
-                                <span className="font-mono" style={{ color: theme.colors.text }}>
-                                  {prof.nameKo}
-                                </span>
-                                <span className="text-sm font-mono" style={{ color: theme.colors.primary }}>
-                                  {rank.nameKo}
-                                </span>
-                              </div>
-                              <div className="mt-1 h-2" style={{ background: theme.colors.bgLight }}>
-                                <div
-                                  className="h-full transition-all"
-                                  style={{
-                                    width: `${level}%`,
-                                    background: theme.colors.primary,
-                                  }}
-                                />
-                              </div>
-                              <div className="text-xs font-mono mt-0.5" style={{ color: theme.colors.textMuted }}>
-                                {level}/100
-                              </div>
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-
-                  {/* 마법 숙련도 */}
-                  <div>
-                    <h3 className="text-lg font-mono font-bold mb-3" style={{ color: theme.colors.text }}>
-                      마법 숙련도
-                    </h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {MAGIC_PROFICIENCIES.map((prof) => {
-                        const level = getProficiencyValue(proficiencies, prof.id as ProficiencyType) ?? 0;
-                        const rank = getRankInfo(level);
-                        return (
-                          <div
-                            key={prof.id}
-                            className="p-3 flex items-center gap-3"
-                            style={{ background: theme.colors.bgDark }}
-                          >
-                            <span className="text-2xl">{prof.icon}</span>
-                            <div className="flex-1">
-                              <div className="flex justify-between">
-                                <span className="font-mono" style={{ color: theme.colors.text }}>
-                                  {prof.nameKo}
-                                </span>
-                                <span className="text-sm font-mono" style={{ color: theme.colors.primary }}>
-                                  {rank.nameKo}
-                                </span>
-                              </div>
-                              <div className="mt-1 h-2" style={{ background: theme.colors.bgLight }}>
-                                <div
-                                  className="h-full transition-all"
-                                  style={{
-                                    width: `${level}%`,
-                                    background: theme.colors.primary,
-                                  }}
-                                />
-                              </div>
-                              <div className="text-xs font-mono mt-0.5" style={{ color: theme.colors.textMuted }}>
-                                {level}/100
-                              </div>
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-
-                  {/* 제작 숙련도 */}
-                  <div>
-                    <h3 className="text-lg font-mono font-bold mb-3" style={{ color: theme.colors.text }}>
-                      🛠️ 제작 숙련도
-                    </h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {CRAFTING_PROFICIENCIES.map((prof) => {
-                        const level = getProficiencyValue(proficiencies, prof.id as ProficiencyType) ?? 0;
-                        const rank = getRankInfo(level);
-                        return (
-                          <div
-                            key={prof.id}
-                            className="p-3 flex items-center gap-3"
-                            style={{ background: theme.colors.bgDark }}
-                          >
-                            <span className="text-2xl">{prof.icon}</span>
-                            <div className="flex-1">
-                              <div className="flex justify-between">
-                                <span className="font-mono" style={{ color: theme.colors.text }}>
-                                  {prof.nameKo}
-                                </span>
-                                <span className="text-sm font-mono" style={{ color: theme.colors.warning }}>
-                                  {rank.nameKo}
-                                </span>
-                              </div>
-                              <div className="mt-1 h-2" style={{ background: theme.colors.bgLight }}>
-                                <div
-                                  className="h-full transition-all"
-                                  style={{
-                                    width: `${level}%`,
-                                    background: theme.colors.warning,
-                                  }}
-                                />
-                              </div>
-                              <div className="text-xs font-mono mt-0.5" style={{ color: theme.colors.textMuted }}>
-                                {level}/100
-                              </div>
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-
-                  {/* 의료 숙련도 */}
-                  <div>
-                    <h3 className="text-lg font-mono font-bold mb-3" style={{ color: theme.colors.text }}>
-                      🏥 의료 숙련도
-                    </h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {MEDICAL_PROFICIENCIES.map((prof) => {
-                        const level = getProficiencyValue(proficiencies, prof.id as ProficiencyType) ?? 0;
-                        const rank = getRankInfo(level);
-                        return (
-                          <div
-                            key={prof.id}
-                            className="p-3 flex items-center gap-3"
-                            style={{ background: theme.colors.bgDark }}
-                          >
-                            <span className="text-2xl">{prof.icon}</span>
-                            <div className="flex-1">
-                              <div className="flex justify-between">
-                                <span className="font-mono" style={{ color: theme.colors.text }}>
-                                  {prof.nameKo}
-                                </span>
-                                <span className="text-sm font-mono" style={{ color: theme.colors.success }}>
-                                  {rank.nameKo}
-                                </span>
-                              </div>
-                              <div className="mt-1 h-2" style={{ background: theme.colors.bgLight }}>
-                                <div
-                                  className="h-full transition-all"
-                                  style={{
-                                    width: `${level}%`,
-                                    background: theme.colors.success,
-                                  }}
-                                />
-                              </div>
-                              <div className="text-xs font-mono mt-0.5" style={{ color: theme.colors.textMuted }}>
-                                {level}/100
-                              </div>
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-
-                  {/* 지식 숙련도 */}
-                  <div>
-                    <h3 className="text-lg font-mono font-bold mb-3" style={{ color: theme.colors.text }}>
-                      📚 지식 숙련도
-                    </h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                      {KNOWLEDGE_PROFICIENCIES.map((prof) => {
-                        const level = getProficiencyValue(proficiencies, prof.id as ProficiencyType) ?? 0;
-                        const rank = getRankInfo(level);
-                        return (
-                          <div
-                            key={prof.id}
-                            className="p-3 flex items-center gap-3"
-                            style={{ background: theme.colors.bgDark }}
-                          >
-                            <span className="text-2xl">{prof.icon}</span>
-                            <div className="flex-1">
-                              <div className="flex justify-between items-start">
-                                <div>
-                                  <span className="font-mono" style={{ color: theme.colors.text }}>
-                                    {prof.nameKo}
-                                  </span>
-                                  <div className="text-[10px] font-mono" style={{ color: theme.colors.textMuted }}>
-                                    {prof.nameEn}
-                                  </div>
-                                </div>
-                                <span className="text-sm font-mono" style={{ color: theme.colors.error }}>
-                                  {rank.nameKo}
-                                </span>
-                              </div>
-                              <div className="mt-1 h-2" style={{ background: theme.colors.bgLight }}>
-                                <div
-                                  className="h-full transition-all"
-                                  style={{
-                                    width: `${level}%`,
-                                    background: theme.colors.error,
-                                  }}
-                                />
-                              </div>
-                              <div className="text-xs font-mono mt-0.5" style={{ color: theme.colors.textMuted }}>
-                                {level}/100
-                              </div>
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* 스킬 탭 */}
-              <div className={`col-start-1 row-start-1 ${activeTab === "skills" ? "" : "invisible"}`}>
+              {/* 어빌리티 탭 */}
+              <div className={`col-start-1 row-start-1 ${activeTab === "abilities" ? "" : "invisible"}`}>
                 {equipmentStore.learnedSkills.length === 0 ? (
                   <div
                     className="flex flex-col items-center justify-center h-64 font-mono"
                     style={{ color: theme.colors.textMuted }}
                   >
                     <p className="text-4xl mb-4">📖</p>
-                    <p>배운 스킬이 없습니다</p>
+                    <p>습득한 어빌리티가 없습니다</p>
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {equipmentStore.learnedSkills.map((skillId) => (
-                      <div
-                        key={skillId}
-                        className="p-4 flex items-start gap-3"
-                        style={{ background: theme.colors.bgDark }}
-                      >
-                        <span className="text-3xl">📖</span>
-                        <div className="flex-1">
-                          <div className="font-mono font-medium" style={{ color: theme.colors.text }}>
-                            {skillId}
-                          </div>
-                          <div className="text-sm font-mono mt-1" style={{ color: theme.colors.textMuted }}>
-                            습득한 스킬
+                    {equipmentStore.learnedSkills.map((skillId) => {
+                      const ability = abilities.find((a) => a.id === skillId);
+                      return (
+                        <div
+                          key={skillId}
+                          className="p-4 flex items-start gap-3"
+                          style={{
+                            background: theme.colors.bgDark,
+                            border: `1px solid ${theme.colors.border}`,
+                          }}
+                        >
+                          <span className="text-3xl">{ability?.icon ?? "📖"}</span>
+                          <div className="flex-1 min-w-0">
+                            <div className="font-mono font-medium" style={{ color: theme.colors.text }}>
+                              {ability?.nameKo ?? skillId}
+                            </div>
+                            {ability?.description?.ko && (
+                              <div
+                                className="text-sm font-mono mt-1"
+                                style={{ color: theme.colors.textMuted }}
+                              >
+                                {ability.description.ko}
+                              </div>
+                            )}
                           </div>
                         </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 )}
               </div>
@@ -908,47 +681,19 @@ export function StatusModal({ open, onClose }: StatusModalProps) {
 
               {/* 인벤토리 탭 */}
               <div className={`col-start-1 row-start-1 ${activeTab === "inventory" ? "" : "invisible"}`}>
-                {inventoryItems.length === 0 ? (
-                  <div
-                    className="flex flex-col items-center justify-center h-64 font-mono"
-                    style={{ color: theme.colors.textMuted }}
-                  >
-                    <p className="text-4xl mb-4">📦</p>
-                    <p>인벤토리가 비어있습니다</p>
-                  </div>
-                ) : (
-                  <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 gap-2">
-                    {inventoryItems.map((item) => (
-                      <div
-                        key={`slot-${item.slot}`}
-                        className="aspect-square flex flex-col items-center justify-center p-2 cursor-pointer transition-colors"
-                        style={{
-                          background: theme.colors.bgDark,
-                          border: `1px solid ${theme.colors.border}`,
-                        }}
-                      >
-                        <span className="text-2xl">📦</span>
-                        <span
-                          className="text-xs font-mono truncate w-full text-center mt-1"
-                          style={{ color: theme.colors.textMuted }}
-                        >
-                          {item.itemId}
-                        </span>
-                        {item.quantity > 1 && (
-                          <span
-                            className="text-xs font-mono px-1.5 mt-1"
-                            style={{
-                              background: theme.colors.bgLight,
-                              color: theme.colors.text,
-                            }}
-                          >
-                            x{item.quantity}
-                          </span>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                )}
+                <InventoryGrid
+                  items={inventoryItems}
+                  allItems={allItems}
+                  maxSlots={inventoryMaxSlots}
+                  onUseItem={(slot, item) => {
+                    // TODO: 아이템 사용 기능 구현
+                    console.log("Use item:", slot, item);
+                  }}
+                  onDropItem={(slot) => {
+                    // TODO: 아이템 버리기 기능 구현
+                    console.log("Drop item:", slot);
+                  }}
+                />
               </div>
             </div>
           )}

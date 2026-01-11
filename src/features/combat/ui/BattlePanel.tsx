@@ -14,6 +14,8 @@ import {
   type RawMonsterAbility,
   type UserAbilities,
 } from "@/entities/ability";
+import { rollDrops } from "@/entities/monster";
+import { useItems, RARITY_CONFIG, type Item } from "@/entities/item";
 import { useAbility, useExecuteQueue } from "@/features/combat";
 import { BattleHeader } from "./BattleHeader";
 import { BattleLog } from "./BattleLog";
@@ -21,6 +23,13 @@ import { ActionQueue } from "./ActionQueue";
 import { AbilitySelector } from "./AbilitySelector";
 import { CombatSubTabs, COMBAT_SUB_TABS, type CombatSubTab } from "./ActionTabs";
 import { MagicSubTabs, MAGIC_ELEMENTS, type MagicElement } from "./MagicSubTabs";
+
+// 드랍 아이템 타입 (아이템 데이터 포함)
+interface DropWithItem {
+  itemId: string;
+  quantity: number;
+  item?: Item;
+}
 
 // 전투 탭 타입 (abilities 폴더 구조 기반)
 type BattleTab = "combat" | "magic" | "item";
@@ -30,7 +39,7 @@ interface BattlePanelProps {
   characterStats: CharacterStats;
   proficiencies: Proficiencies | undefined;
   onFlee: () => void;
-  onVictory: () => void;
+  onVictory: (drops: DropWithItem[]) => void;
   onDefeat: () => void;
 }
 
@@ -54,6 +63,10 @@ export function BattlePanel({
   const [activeCombatSubTab, setActiveCombatSubTab] = useState<CombatSubTab>("all");
   const [activeMagicElement, setActiveMagicElement] = useState<MagicElement>("all");
   const [monsterAbilitiesData, setMonsterAbilitiesData] = useState<Map<string, RawMonsterAbility>>(new Map());
+  const [pendingDrops, setPendingDrops] = useState<DropWithItem[]>([]);
+
+  // 아이템 데이터 로드 (드랍 아이템 정보 표시용)
+  const { data: allItems = [] } = useItems();
 
   // 어빌리티 데이터 로드
   const { data: allAbilities = [] } = useAbilities();
@@ -179,17 +192,33 @@ export function BattlePanel({
     }
   }, [playerFlee, onFlee, isExecuting]);
 
+  // 승리 시 드랍 아이템 계산
+  useEffect(() => {
+    if (battle.result === "victory" && battle.monster && pendingDrops.length === 0) {
+      const drops = rollDrops(battle.monster.drops);
+      const dropsWithItems: DropWithItem[] = drops.map((drop) => ({
+        ...drop,
+        item: allItems.find((item) => item.id === drop.itemId),
+      }));
+      setPendingDrops(dropsWithItems);
+    }
+    // 전투 초기화 시 드랍도 초기화
+    if (!battle.isInBattle) {
+      setPendingDrops([]);
+    }
+  }, [battle.result, battle.monster, battle.isInBattle, allItems, pendingDrops.length]);
+
   // 전투 종료 처리
   const handleCloseBattle = useCallback(() => {
     const currentResult = useBattleStore.getState().battle.result;
     if (currentResult === "victory") {
-      onVictory();
+      onVictory(pendingDrops);
     } else if (currentResult === "defeat") {
       onDefeat();
     } else if (currentResult === "fled") {
       resetBattle();
     }
-  }, [onVictory, onDefeat, resetBattle]);
+  }, [onVictory, onDefeat, resetBattle, pendingDrops]);
 
   // 선제공격 처리
   useEffect(() => {
@@ -306,8 +335,8 @@ export function BattlePanel({
                   </div>
                 )}
 
-                {/* 서브탭: 마법 탭일 때 */}
-                {activeTab === "magic" && magicAbilities.length > 0 && (
+                {/* 서브탭: 마법 탭일 때 (항상 표시) */}
+                {activeTab === "magic" && (
                   <div className="px-3 pt-2">
                     <MagicSubTabs
                       activeElement={activeMagicElement}
@@ -357,6 +386,7 @@ export function BattlePanel({
           <BattleResult
             result={battle.result}
             monster={battle.monster}
+            drops={pendingDrops}
             onClose={handleCloseBattle}
           />
         )}
@@ -369,10 +399,11 @@ export function BattlePanel({
 interface BattleResultProps {
   result: "victory" | "defeat" | "fled" | "ongoing";
   monster: { nameKo: string; rewards: { exp: number; gold: number } } | null;
+  drops?: DropWithItem[];
   onClose: () => void;
 }
 
-function BattleResult({ result, monster, onClose }: BattleResultProps) {
+function BattleResult({ result, monster, drops = [], onClose }: BattleResultProps) {
   const { theme } = useThemeStore();
 
   return (
@@ -398,6 +429,59 @@ function BattleResult({ result, monster, onClose }: BattleResultProps) {
               >
                 +{monster.rewards.exp} EXP
                 {monster.rewards.gold > 0 && ` · +${monster.rewards.gold} Gold`}
+              </div>
+            )}
+            {/* 드랍 아이템 표시 */}
+            {drops.length > 0 && (
+              <div
+                className="mt-4 mx-auto max-w-xs"
+                style={{
+                  background: theme.colors.bgDark,
+                  border: `1px solid ${theme.colors.border}`,
+                  borderRadius: "4px",
+                }}
+              >
+                <div
+                  className="text-xs px-3 py-2 border-b"
+                  style={{
+                    color: theme.colors.textMuted,
+                    borderColor: theme.colors.border,
+                  }}
+                >
+                  📦 획득 아이템
+                </div>
+                <div className="px-3 py-2 space-y-1">
+                  {drops.map((drop, idx) => {
+                    const rarityColor = drop.item?.rarity
+                      ? RARITY_CONFIG[drop.item.rarity].color
+                      : theme.colors.text;
+                    return (
+                      <div
+                        key={`${drop.itemId}-${idx}`}
+                        className="flex items-center gap-2 text-sm"
+                      >
+                        <span className="text-lg">{drop.item?.icon ?? "📦"}</span>
+                        <span
+                          className="flex-1 text-left truncate"
+                          style={{ color: rarityColor }}
+                        >
+                          {drop.item?.nameKo ?? drop.itemId}
+                        </span>
+                        {drop.quantity > 1 && (
+                          <span
+                            className="text-xs px-1.5 rounded"
+                            style={{
+                              background: theme.colors.bgLight,
+                              color: theme.colors.text,
+                            }}
+                          >
+                            x{drop.quantity}
+                          </span>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             )}
           </div>

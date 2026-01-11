@@ -6,7 +6,7 @@ import { useThemeStore } from "@/shared/config";
 export type BattleActionTab = "combat" | "magic" | "item";
 
 // 전투 스킬 서브탭 (combatskill 폴더 구조)
-export type CombatSubTab = "all" | "weapon" | "martial" | "defense" | "utility" | "warcry";
+export type CombatSubTab = "all" | "weapon" | "martial" | "defense" | "utility" | "warcry" | "common";
 
 // 탭 정보
 const BATTLE_ACTION_TABS: Record<BattleActionTab, { nameKo: string; icon: string }> = {
@@ -72,9 +72,10 @@ export const COMBAT_SUB_TABS: Record<CombatSubTab, { nameKo: string; icon: strin
   defense: { nameKo: "방어", icon: "🛡️" },
   utility: { nameKo: "전술", icon: "🎯" },
   warcry: { nameKo: "함성", icon: "📢" },
+  common: { nameKo: "공용", icon: "🔄" },
 };
 
-export const COMBAT_SUB_TAB_ORDER: CombatSubTab[] = ["all", "weapon", "martial", "defense", "utility", "warcry"];
+export const COMBAT_SUB_TAB_ORDER: CombatSubTab[] = ["all", "weapon", "martial", "defense", "utility", "warcry", "common"];
 
 interface CombatSubTabsProps {
   activeSubTab: CombatSubTab;

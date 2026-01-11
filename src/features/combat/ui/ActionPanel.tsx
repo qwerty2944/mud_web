@@ -310,17 +310,15 @@ export function ActionPanel({
       {/* 마법 탭 */}
       {activeTab === "magic" && (
         <div className="flex flex-col h-full">
-          {/* 속성 서브탭 */}
-          {magicSkills.length > 0 && (
-            <div className="flex-shrink-0 px-3 pt-2">
-              <MagicSubTabs
-                activeElement={activeMagicElement}
-                onElementChange={setActiveMagicElement}
-                availableElements={availableElements}
-                disabled={disabled || isSilenced}
-              />
-            </div>
-          )}
+          {/* 속성 서브탭 (항상 표시) */}
+          <div className="flex-shrink-0 px-3 pt-2">
+            <MagicSubTabs
+              activeElement={activeMagicElement}
+              onElementChange={setActiveMagicElement}
+              availableElements={availableElements}
+              disabled={disabled || isSilenced}
+            />
+          </div>
 
           {/* 마법 스킬 목록 - 스크롤 영역 */}
           <div className="flex-1 overflow-y-auto px-3 py-2">

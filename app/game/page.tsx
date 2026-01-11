@@ -231,9 +231,9 @@ export default function GamePage() {
     [profile, battle.isInBattle, startBattle, mainCharacter]
   );
 
-  // 전투 승리 - endBattle이 보상 지급 처리
-  const handleVictory = useCallback(() => {
-    endBattle();
+  // 전투 승리 - endBattle이 보상 지급 처리 (드랍 아이템 전달)
+  const handleVictory = useCallback((drops: { itemId: string; quantity: number }[]) => {
+    endBattle(drops);
   }, [endBattle]);
 
   // 전투 패배

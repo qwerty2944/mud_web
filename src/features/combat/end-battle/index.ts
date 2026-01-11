@@ -79,7 +79,8 @@ export function useEndBattle(options: UseEndBattleOptions) {
 
   // 보상 지급 처리
   // 주의: useBattleStore.getState()로 직접 읽어서 stale 클로저 문제 방지
-  const processRewards = useCallback((): BattleRewards | null => {
+  // preRolledDrops: BattlePanel에서 미리 계산된 드랍 (UI에 표시된 것)
+  const processRewards = useCallback((preRolledDrops?: { itemId: string; quantity: number }[]): BattleRewards | null => {
     const currentBattle = useBattleStore.getState().battle;
     if (!currentBattle.monster || currentBattle.result !== "victory") return null;
 
@@ -89,8 +90,8 @@ export function useEndBattle(options: UseEndBattleOptions) {
     // 골드
     const gold = currentBattle.monster.rewards.gold;
 
-    // 드롭 아이템 롤
-    const drops = rollDrops(currentBattle.monster.drops);
+    // 드롭 아이템 - 미리 계산된 드랍 사용 (없으면 새로 롤)
+    const drops = preRolledDrops ?? rollDrops(currentBattle.monster.drops);
 
     // 숙련도 증가 (사용한 무기/마법) - 레벨 기반 시스템
     let proficiencyGain: BattleRewards["proficiencyGain"] = undefined;
@@ -126,9 +127,9 @@ export function useEndBattle(options: UseEndBattleOptions) {
     return { exp, gold, drops, proficiencyGain, karmaChange };
   }, [playerLevel, proficiencies]);
 
-  // 승리 처리
-  const handleVictory = useCallback(async () => {
-    const rewards = processRewards();
+  // 승리 처리 (preRolledDrops: UI에서 미리 표시된 드랍 아이템)
+  const handleVictory = useCallback(async (preRolledDrops?: { itemId: string; quantity: number }[]) => {
+    const rewards = processRewards(preRolledDrops);
     const currentBattleState = useBattleStore.getState().battle;
     const monsterName = currentBattleState.monster?.nameKo || "몬스터";
 
@@ -353,11 +354,12 @@ export function useEndBattle(options: UseEndBattleOptions) {
 
   // 전투 결과에 따른 종료 처리
   // 주의: useBattleStore.getState()로 최신 상태를 읽어서 stale closure 문제 방지
-  const endBattle = useCallback(() => {
+  // preRolledDrops: 승리 시 UI에서 미리 계산/표시된 드랍 아이템
+  const endBattle = useCallback((preRolledDrops?: { itemId: string; quantity: number }[]) => {
     const currentResult = useBattleStore.getState().battle.result;
     switch (currentResult) {
       case "victory":
-        handleVictory();
+        handleVictory(preRolledDrops);
         break;
       case "defeat":
         handleDefeat();

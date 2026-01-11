@@ -322,20 +322,37 @@ export function useAbility(options: UseAbilityOptions = {}) {
           const msgWeaponType = (ability.category && isWeaponProficiency(ability.category as CombatProficiencyType))
             ? ability.category as CombatProficiencyType
             : "fist";
+          // 물리 저항과 무기 속성 배율을 결합하여 메시지 표시
+          const combinedMultiplier = resistanceMultiplier * elementMultiplier;
           message = getAttackMessage(
             msgWeaponType,
             battle.monster.nameKo,
             damage,
             isCritical,
-            resistanceMultiplier,
+            combinedMultiplier,
             isMinDamage
           );
         } else {
-          // 마법 공격
+          // 마법 공격: 속성 저항 피드백 추가
           const icon = ability.icon ?? "✨";
-          message = isCritical
+          const monsterElementResist = ability.element
+            ? getElementResistance(battle.monster.stats, ability.element as MagicElement)
+            : 1.0;
+
+          let baseMessage = isCritical
             ? `💥 ${ability.nameKo} 치명타! ${battle.monster.nameKo}에게 ${damage} 데미지!`
             : `${icon} ${ability.nameKo}! ${battle.monster.nameKo}에게 ${damage} 데미지!`;
+
+          // 속성 저항 피드백 추가
+          if (isMinDamage) {
+            baseMessage += " (간신히 스쳤다!)";
+          } else if (monsterElementResist >= 1.3) {
+            baseMessage += " (효과적이다!)";
+          } else if (monsterElementResist <= 0.7) {
+            baseMessage += " (효과가 없다...)";
+          }
+
+          message = baseMessage;
         }
       }
 
