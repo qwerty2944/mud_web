@@ -10,6 +10,7 @@ export type {
   MonsterType,
   MonsterTypeInfo,
   PhysicalResistance,
+  ElementResistance,
   ActionWeights,
   BorrowedAbility,
 } from "./types";
@@ -18,7 +19,7 @@ export type {
 export type { MonsterAbility } from "@/entities/ability";
 
 // Constants
-export { MONSTER_TYPE_INFO, DEFAULT_PHYSICAL_RESISTANCE } from "./types";
+export { MONSTER_TYPE_INFO, DEFAULT_PHYSICAL_RESISTANCE, DEFAULT_ELEMENT_RESISTANCE } from "./types";
 
 // API
 export {
@@ -49,7 +50,7 @@ export {
 } from "./lib";
 
 // Lib (Resistance)
-export { getPhysicalResistance, getResistanceText } from "./lib/resistance";
+export { getPhysicalResistance, getElementResistance, getResistanceText } from "./lib/resistance";
 
 // UI Components
 export { MonsterList } from "./ui";

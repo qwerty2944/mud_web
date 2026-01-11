@@ -22,7 +22,7 @@
           "pierceResist": 1.0,
           "crushResist": 1.0
         },
-        "magicResist": {
+        "elementResist": {
           "fire": 1.2,
           "ice": 1.0,
           "lightning": 1.1,
@@ -65,7 +65,7 @@
           "pierceResist": 1.0,
           "crushResist": 1.0
         },
-        "magicResist": {
+        "elementResist": {
           "fire": 1.2,
           "ice": 1.0,
           "lightning": 1.2,
@@ -109,7 +109,7 @@
           "pierceResist": 1.2,
           "crushResist": 1.0
         },
-        "magicResist": {
+        "elementResist": {
           "fire": 1.1,
           "ice": 0.9,
           "lightning": 1.0,
@@ -155,7 +155,7 @@
           "pierceResist": 1.0,
           "crushResist": 0.9
         },
-        "magicResist": {
+        "elementResist": {
           "fire": 1.1,
           "ice": 0.8,
           "lightning": 1.0,
@@ -202,7 +202,7 @@
           "pierceResist": 1.0,
           "crushResist": 0.7
         },
-        "magicResist": {
+        "elementResist": {
           "fire": 1.1,
           "ice": 1.0,
           "lightning": 1.0,
@@ -246,7 +246,7 @@
           "pierceResist": 0.9,
           "crushResist": 0.7
         },
-        "magicResist": {
+        "elementResist": {
           "fire": 1.2,
           "ice": 0.8,
           "lightning": 1.0,
@@ -291,7 +291,7 @@
           "pierceResist": 1.2,
           "crushResist": 1.2
         },
-        "magicResist": {
+        "elementResist": {
           "fire": 1.1,
           "ice": 1.0,
           "lightning": 1.0,
@@ -334,7 +334,7 @@
           "pierceResist": 1.0,
           "crushResist": 1.0
         },
-        "magicResist": {
+        "elementResist": {
           "fire": 1.0,
           "ice": 1.0,
           "lightning": 1.0,

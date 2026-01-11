@@ -102,6 +102,34 @@ export const DEFAULT_PHYSICAL_RESISTANCE: PhysicalResistance = {
   crushResist: 1.0,
 };
 
+// ============ 속성 저항 ============
+
+/**
+ * 마법 속성별 저항 배율
+ * 1.0 = 보통 (100% 데미지)
+ * 1.5 = 약함 (150% 데미지)
+ * 0.5 = 강함 (50% 데미지)
+ */
+export interface ElementResistance {
+  fire?: number;      // 화염 저항
+  ice?: number;       // 냉기 저항
+  lightning?: number; // 번개 저항
+  earth?: number;     // 대지 저항
+  holy?: number;      // 신성 저항
+  dark?: number;      // 암흑 저항
+  poison?: number;    // 독 저항
+}
+
+export const DEFAULT_ELEMENT_RESISTANCE: ElementResistance = {
+  fire: 1.0,
+  ice: 1.0,
+  lightning: 1.0,
+  earth: 1.0,
+  holy: 1.0,
+  dark: 1.0,
+  poison: 1.0,
+};
+
 // ============ 몬스터 스탯 ============
 
 // 몬스터 스탯
@@ -111,7 +139,8 @@ export interface MonsterStats {
   defense: number;
   speed: number;          // DEX 역할 (선공 결정, 회피 등)
   magicAttack?: number;   // 마법 공격력 (없으면 attack 사용)
-  resistance?: PhysicalResistance;  // 물리 저항 (없으면 모두 1.0)
+  resistance?: PhysicalResistance;   // 물리 저항 (없으면 모두 1.0)
+  elementResist?: ElementResistance; // 속성 저항 (없으면 모두 1.0)
 }
 
 // 몬스터 드롭 아이템

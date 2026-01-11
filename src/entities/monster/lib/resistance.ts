@@ -1,6 +1,6 @@
-import type { PhysicalAttackType } from "@/entities/ability";
-import type { PhysicalResistance, MonsterStats } from "../types";
-import { DEFAULT_PHYSICAL_RESISTANCE } from "../types";
+import type { PhysicalAttackType, MagicElement } from "@/entities/ability";
+import type { PhysicalResistance, ElementResistance, MonsterStats } from "../types";
+import { DEFAULT_PHYSICAL_RESISTANCE, DEFAULT_ELEMENT_RESISTANCE } from "../types";
 
 /**
  * 몬스터의 특정 공격 타입에 대한 저항 배율 가져오기
@@ -24,6 +24,20 @@ export function getPhysicalResistance(
     default:
       return 1.0;
   }
+}
+
+/**
+ * 몬스터의 특정 속성에 대한 저항 배율 가져오기
+ * @param stats 몬스터 스탯
+ * @param element 마법 속성 (fire/ice/lightning/earth/holy/dark/poison)
+ * @returns 저항 배율 (1.0 = 보통, 1.5 = 약함, 0.5 = 강함)
+ */
+export function getElementResistance(
+  stats: MonsterStats,
+  element: MagicElement
+): number {
+  const resistance = stats.elementResist ?? DEFAULT_ELEMENT_RESISTANCE;
+  return resistance[element] ?? 1.0;
 }
 
 /**

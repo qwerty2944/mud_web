@@ -301,7 +301,7 @@
     }
   },
 
-  "magicResistTypes": {
+  "elementResistTypes": {
     "fire": {
       "id": "fire",
       "nameKo": "화염 저항",

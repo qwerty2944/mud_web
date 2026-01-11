@@ -7,7 +7,7 @@ import { getApCost, getMpCost, getEffectsAtLevel } from "@/entities/ability";
 import type { CharacterStats } from "@/entities/character";
 import type { CombatProficiencyType, MagicElement, WeaponType } from "@/entities/ability";
 import { isWeaponProficiency, WEAPON_ATTACK_TYPE } from "@/entities/ability";
-import { getPhysicalResistance } from "@/entities/monster";
+import { getPhysicalResistance, getElementResistance } from "@/entities/monster";
 import type { StatusType } from "@/entities/status";
 import type { Period } from "@/entities/game-time";
 import type { WeatherType } from "@/entities/weather";
@@ -282,6 +282,12 @@ export function useAbility(options: UseAbilityOptions = {}) {
         } else {
           // 마법 공격
           const magicModifier = getPlayerMagicModifier();
+          // 몬스터의 해당 속성 저항 배율 가져오기
+          // 0.5 = 강함 (50% 데미지), 1.0 = 보통, 1.5 = 약함 (150% 데미지)
+          const monsterElementResist = ability.element
+            ? getElementResistance(battle.monster.stats, ability.element as MagicElement)
+            : 1.0;
+
           damage = calculateMagicDamage({
             baseDamage,
             attackerInt: casterStats.int,
@@ -293,6 +299,9 @@ export function useAbility(options: UseAbilityOptions = {}) {
             weather,
             karma,
           });
+
+          // 몬스터 속성 저항 배율 적용
+          damage = Math.floor(damage * monsterElementResist);
 
           // 마법 버프 적용
           if (magicModifier !== 0) {

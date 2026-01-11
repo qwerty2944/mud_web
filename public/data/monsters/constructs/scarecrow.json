@@ -22,7 +22,7 @@
           "pierceResist": 1.5,
           "crushResist": 0.5
         },
-        "magicResist": {
+        "elementResist": {
           "fire": 1.5,
           "ice": 1.0,
           "lightning": 1.0,
@@ -62,7 +62,7 @@
           "pierceResist": 1.0,
           "crushResist": 1.0
         },
-        "magicResist": {
+        "elementResist": {
           "fire": 1.0,
           "ice": 1.0,
           "lightning": 1.0,
