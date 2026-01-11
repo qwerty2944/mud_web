@@ -220,32 +220,6 @@ export function BattlePanel({
     }
   }, [onVictory, onDefeat, resetBattle, pendingDrops]);
 
-  // 선제공격 처리
-  useEffect(() => {
-    if (
-      battle.isInBattle &&
-      battle.isPreemptivePhase &&
-      battle.monsterGoesFirst &&
-      battle.monster &&
-      battle.result === "ongoing"
-    ) {
-      const timer = setTimeout(() => {
-        const damage = Math.floor(battle.monster!.stats.attack * 0.8);
-        dealDamageToPlayer(
-          damage,
-          `${battle.monster!.icon} ${battle.monster!.nameKo}의 선제 공격! ${damage} 데미지!`
-        );
-        // 선제공격 페이즈 종료
-        useBattleStore.setState((state) => ({
-          battle: {
-            ...state.battle,
-            isPreemptivePhase: false,
-          },
-        }));
-      }, 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [battle.isInBattle, battle.isPreemptivePhase, battle.monsterGoesFirst, battle.monster, battle.result, dealDamageToPlayer]);
 
   if (!battle.isInBattle || !battle.monster) return null;
 

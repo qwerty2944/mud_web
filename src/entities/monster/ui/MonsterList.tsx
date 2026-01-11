@@ -177,9 +177,10 @@ function getElementIcon(element: string): string {
 
 function getBehaviorText(behavior: string): string {
   const texts: Record<string, string> = {
-    passive: "수동적",
-    aggressive: "공격적",
+    passive: "평화적",
     defensive: "방어적",
+    aggressive: "공격적",
+    territorial: "영역적",
   };
   return texts[behavior] || behavior;
 }

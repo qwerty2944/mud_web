@@ -184,7 +184,6 @@ interface BattleStore {
   playerAttack: (damage: number, message: string, weaponType?: string) => void;
   monsterAttack: (damage: number, message: string) => void;
   healHp: (amount: number) => void;
-  monsterPreemptiveAttack: (damage: number, message: string) => void;
 
   // MP
   useMp: (amount: number) => boolean;
@@ -243,10 +242,31 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
     const monsterDex = monster.stats.speed ?? 5;
     const monsterAp = monster.maxAp ?? DEFAULT_MONSTER_MAX_AP;
     const pMaxAp = playerMaxAp ?? DEFAULT_PLAYER_MAX_AP;
-    const playerGoesFirst = playerDex >= monsterDex;
+
+    // 주사위 굴림 (1-20)
+    const playerRoll = Math.floor(Math.random() * 20) + 1;
+    const monsterRoll = Math.floor(Math.random() * 20) + 1;
+
+    // 행동 성향에 따른 보너스
+    const behaviorBonus: Record<string, number> = {
+      passive: -5,    // 평화적: 페널티
+      defensive: 0,   // 방어적: 보너스 없음
+      aggressive: 5,  // 공격적: 보너스
+      territorial: 3, // 영역적: 약간의 보너스
+    };
+    const monsterBonus = behaviorBonus[monster.behavior] ?? 0;
+
+    // 선공 판정: DEX + 주사위
+    const playerInitiative = playerDex + playerRoll;
+    const monsterInitiative = monsterDex + monsterRoll + monsterBonus;
+    const playerGoesFirst = playerInitiative >= monsterInitiative;
     const monsterGoesFirst = !playerGoesFirst;
-    // 레거시: aggressive 몬스터는 선제공격 페이즈 진입
-    const isPreemptivePhase = monsterGoesFirst && monster.behavior === "aggressive";
+
+    // 로그 메시지
+    const bonusText = monsterBonus > 0 ? `+${monsterBonus}` : monsterBonus < 0 ? `${monsterBonus}` : "";
+    const initiativeMsg = playerGoesFirst
+      ? `🎲 선공 판정: ${playerDex}+${playerRoll}=${playerInitiative} vs ${monsterDex}+${monsterRoll}${bonusText}=${monsterInitiative} → 플레이어 선공!`
+      : `🎲 선공 판정: ${playerDex}+${playerRoll}=${playerInitiative} vs ${monsterDex}+${monsterRoll}${bonusText}=${monsterInitiative} → ${monster.nameKo} 선공!`;
 
     set({
       battle: {
@@ -267,7 +287,7 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
         playerDex,
         monsterDex,
         playerGoesFirst,
-        isPreemptivePhase,
+        isPreemptivePhase: false, // 더 이상 사용 안 함
         monsterGoesFirst,
         turn: 1,
         battleLog: [
@@ -282,9 +302,7 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
             turn: 0,
             actor: "system",
             action: "initiative",
-            message: playerGoesFirst
-              ? `DEX ${playerDex} vs ${monsterDex} - 플레이어 선공!`
-              : `DEX ${playerDex} vs ${monsterDex} - ${monster.nameKo} 선공!`,
+            message: initiativeMsg,
             timestamp: Date.now(),
           },
         ],
@@ -624,18 +642,6 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
 
   healHp: (amount) => {
     get().healPlayer(amount);
-  },
-
-  monsterPreemptiveAttack: (damage, message) => {
-    // 선제공격 후 isPreemptivePhase를 false로 설정
-    const { battle } = get();
-    get().dealDamageToPlayer(damage, message);
-    set({
-      battle: {
-        ...get().battle,
-        isPreemptivePhase: false,
-      },
-    });
   },
 
   // MP 사용
