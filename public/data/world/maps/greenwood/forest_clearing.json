@@ -1,0 +1,95 @@
+{
+  "id": "forest_clearing",
+  "region": "greenwood",
+  "nameKo": "숲속 공터",
+  "nameEn": "Forest Clearing",
+  "descriptionKo": "숲 속 빈터. 야생 동물과 식물 괴물이 서식합니다.",
+  "descriptionEn": "A clearing in the forest. Wild animals and plant creatures dwell here.",
+  "icon": "🌿",
+  "terrain": "forest",
+  "minLevel": 3,
+  "maxPlayers": 80,
+  "isPvp": false,
+  "isSafeZone": false,
+  "connectedMaps": ["forest_entrance", "deep_forest", "bandit_camp"],
+
+  "zones": [
+    {
+      "id": "clearing_center",
+      "nameKo": "공터 중앙",
+      "type": "spawn_point",
+      "position": { "x": 40, "y": 40, "width": 30, "height": 30 },
+      "isDefault": true,
+      "description": "숲속 공터의 중심부"
+    },
+    {
+      "id": "boar_territory",
+      "nameKo": "멧돼지 영역",
+      "type": "event_area",
+      "position": { "x": 10, "y": 20, "width": 25, "height": 25 },
+      "eventTriggers": ["boar_charge"],
+      "description": "멧돼지가 텃세를 부리는 곳"
+    },
+    {
+      "id": "insect_nest",
+      "nameKo": "곤충 서식지",
+      "type": "event_area",
+      "position": { "x": 70, "y": 15, "width": 20, "height": 20 },
+      "description": "말벌과 딱정벌레가 서식하는 곳"
+    },
+    {
+      "id": "shrub_grove",
+      "nameKo": "관목 숲",
+      "type": "event_area",
+      "position": { "x": 60, "y": 70, "width": 25, "height": 20 },
+      "description": "살아 움직이는 관목이 자라는 곳"
+    },
+    {
+      "id": "windy_hill",
+      "nameKo": "바람의 언덕",
+      "type": "event_area",
+      "position": { "x": 15, "y": 70, "width": 20, "height": 20 },
+      "description": "바람의 요정이 나타나는 언덕"
+    }
+  ],
+
+  "spawns": [
+    {
+      "monsterId": "wild_boar",
+      "spawnType": "always",
+      "spawnRate": 0.4,
+      "maxCount": 5,
+      "zoneId": "boar_territory",
+      "respawnTime": 90
+    },
+    {
+      "monsterId": "forest_wasp",
+      "spawnType": "always",
+      "spawnRate": 0.35,
+      "maxCount": 6,
+      "zoneId": "insect_nest",
+      "respawnTime": 60
+    },
+    {
+      "monsterId": "walking_shrub",
+      "spawnType": "always",
+      "spawnRate": 0.4,
+      "maxCount": 4,
+      "zoneId": "shrub_grove",
+      "respawnTime": 120
+    },
+    {
+      "monsterId": "wind_sprite",
+      "spawnType": "conditional",
+      "spawnChance": 0.3,
+      "maxCount": 2,
+      "zoneId": "windy_hill",
+      "respawnTime": 180,
+      "conditions": {
+        "weather": ["stormy"]
+      }
+    }
+  ],
+
+  "npcs": []
+}

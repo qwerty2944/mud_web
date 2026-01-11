@@ -1,0 +1,100 @@
+{
+  "id": "bandit_camp",
+  "region": "greenwood",
+  "nameKo": "도적 캠프",
+  "nameEn": "Bandit Camp",
+  "descriptionKo": "숲 깊숙이 숨겨진 도적들의 근거지입니다.",
+  "descriptionEn": "A bandit hideout hidden deep in the forest.",
+  "icon": "🗡️",
+  "terrain": "forest",
+  "minLevel": 4,
+  "maxPlayers": 60,
+  "isPvp": false,
+  "isSafeZone": false,
+  "connectedMaps": ["forest_clearing", "deep_forest"],
+
+  "zones": [
+    {
+      "id": "camp_entrance",
+      "nameKo": "캠프 입구",
+      "type": "spawn_point",
+      "position": { "x": 20, "y": 80, "width": 20, "height": 15 },
+      "isDefault": true,
+      "description": "도적 캠프로 들어가는 입구"
+    },
+    {
+      "id": "patrol_area",
+      "nameKo": "순찰 구역",
+      "type": "event_area",
+      "position": { "x": 30, "y": 50, "width": 25, "height": 25 },
+      "description": "도적들이 순찰하는 구역"
+    },
+    {
+      "id": "archer_tower",
+      "nameKo": "궁수 망루",
+      "type": "event_area",
+      "position": { "x": 70, "y": 30, "width": 20, "height": 20 },
+      "description": "도적 궁수들이 감시하는 망루"
+    },
+    {
+      "id": "training_ground",
+      "nameKo": "훈련장",
+      "type": "event_area",
+      "position": { "x": 50, "y": 15, "width": 30, "height": 25 },
+      "description": "도적 깡패들이 훈련하는 곳"
+    },
+    {
+      "id": "leader_tent",
+      "nameKo": "두목 천막",
+      "type": "boss_area",
+      "position": { "x": 10, "y": 10, "width": 25, "height": 25 },
+      "description": "도적 두목이 머무는 천막"
+    }
+  ],
+
+  "spawns": [
+    {
+      "monsterId": "forest_bandit",
+      "spawnType": "always",
+      "spawnRate": 0.5,
+      "maxCount": 6,
+      "zoneId": "patrol_area",
+      "respawnTime": 90
+    },
+    {
+      "monsterId": "bandit_archer",
+      "spawnType": "always",
+      "spawnRate": 0.4,
+      "maxCount": 4,
+      "zoneId": "archer_tower",
+      "respawnTime": 120
+    },
+    {
+      "monsterId": "bandit_brute",
+      "spawnType": "always",
+      "spawnRate": 0.3,
+      "maxCount": 3,
+      "zoneId": "training_ground",
+      "respawnTime": 150
+    },
+    {
+      "monsterId": "bandit_leader",
+      "spawnType": "boss",
+      "maxCount": 1,
+      "zoneId": "leader_tent",
+      "schedule": {
+        "preset": "daily_night",
+        "dayOfWeek": [0, 1, 2, 3, 4, 5, 6],
+        "hourRange": [21, 24],
+        "timezone": "Asia/Seoul"
+      },
+      "respawnTime": 3600,
+      "announcement": {
+        "spawn": "도적 두목이 캠프에 나타났습니다!",
+        "defeat": "도적 두목이 처치되었습니다!"
+      }
+    }
+  ],
+
+  "npcs": []
+}

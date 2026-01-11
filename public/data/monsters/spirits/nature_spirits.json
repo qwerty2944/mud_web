@@ -191,7 +191,7 @@
       "nameEn": "Wind Sprite",
       "rank": "normal",
       "alignment": "good",
-      "mapId": "forest_entrance",
+      "mapId": "forest_clearing",
       "level": 5,
       "element": "lightning",
       "icon": "🌬️",

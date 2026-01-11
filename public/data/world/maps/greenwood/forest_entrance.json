@@ -11,7 +11,7 @@
   "maxPlayers": 100,
   "isPvp": false,
   "isSafeZone": false,
-  "connectedMaps": ["starting_village", "deep_forest", "training_ground"],
+  "connectedMaps": ["starting_village", "deep_forest", "training_ground", "forest_clearing"],
 
   "zones": [
     {
@@ -31,12 +31,18 @@
       "description": "다람쥐들이 서식하는 곳"
     },
     {
-      "id": "bandit_hideout",
-      "nameKo": "도적 은신처",
+      "id": "meadow",
+      "nameKo": "풀밭",
       "type": "event_area",
       "position": { "x": 70, "y": 60, "width": 25, "height": 25 },
-      "eventTriggers": ["bandit_ambush"],
-      "description": "도적들이 숨어있는 위험 구역"
+      "description": "토끼와 여우가 뛰노는 풀밭"
+    },
+    {
+      "id": "beetle_hollow",
+      "nameKo": "딱정벌레 굴",
+      "type": "event_area",
+      "position": { "x": 60, "y": 30, "width": 20, "height": 20 },
+      "description": "거대 딱정벌레가 서식하는 곳"
     },
     {
       "id": "deep_forest_path",
@@ -45,6 +51,14 @@
       "position": { "x": 80, "y": 10, "width": 15, "height": 15 },
       "portalTo": "deep_forest",
       "description": "깊은 숲으로 향하는 길"
+    },
+    {
+      "id": "clearing_path",
+      "nameKo": "공터 길",
+      "type": "portal",
+      "position": { "x": 10, "y": 30, "width": 15, "height": 15 },
+      "portalTo": "forest_clearing",
+      "description": "숲속 공터로 향하는 길"
     },
     {
       "id": "herb_patch",
@@ -58,10 +72,18 @@
 
   "spawns": [
     {
+      "monsterId": "rabbit",
+      "spawnType": "always",
+      "spawnRate": 0.6,
+      "maxCount": 6,
+      "zoneId": "meadow",
+      "respawnTime": 45
+    },
+    {
       "monsterId": "squirrel",
       "spawnType": "always",
       "spawnRate": 0.5,
-      "maxCount": 8,
+      "maxCount": 6,
       "zoneId": "squirrel_grove",
       "respawnTime": 60
     },
@@ -74,29 +96,20 @@
       "respawnTime": 300
     },
     {
-      "monsterId": "forest_bandit",
+      "monsterId": "fox",
       "spawnType": "always",
-      "spawnRate": 0.3,
-      "maxCount": 4,
-      "zoneId": "bandit_hideout",
-      "respawnTime": 120
+      "spawnRate": 0.35,
+      "maxCount": 3,
+      "zoneId": "meadow",
+      "respawnTime": 90
     },
     {
-      "monsterId": "bandit_leader",
-      "spawnType": "boss",
-      "maxCount": 1,
-      "zoneId": "bandit_hideout",
-      "schedule": {
-        "preset": "daily_night",
-        "dayOfWeek": [0, 1, 2, 3, 4, 5, 6],
-        "hourRange": [21, 24],
-        "timezone": "Asia/Seoul"
-      },
-      "respawnTime": 3600,
-      "announcement": {
-        "spawn": "도적 두목이 은신처에 나타났습니다!",
-        "defeat": "도적 두목이 처치되었습니다!"
-      }
+      "monsterId": "giant_beetle",
+      "spawnType": "always",
+      "spawnRate": 0.4,
+      "maxCount": 4,
+      "zoneId": "beetle_hollow",
+      "respawnTime": 120
     }
   ],
 
