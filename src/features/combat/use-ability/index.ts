@@ -257,13 +257,13 @@ export function useAbility(options: UseAbilityOptions = {}) {
       } else {
         // 데미지 계산
         if (isPhysical) {
-          // 물리 저항 확인
-          if (ability.category && isWeaponProficiency(ability.category as CombatProficiencyType)) {
-            const weaponType = ability.category as WeaponType;
-            const physicalAttackType = WEAPON_ATTACK_TYPE[weaponType];
-            if (physicalAttackType) {
-              resistanceMultiplier = getPhysicalResistance(battle.monster.stats, physicalAttackType);
-            }
+          // 물리 저항 확인 (무기 타입, 없으면 fist)
+          const weaponType = (ability.category && isWeaponProficiency(ability.category as CombatProficiencyType))
+            ? ability.category as WeaponType
+            : "fist";
+          const physicalAttackType = WEAPON_ATTACK_TYPE[weaponType];
+          if (physicalAttackType) {
+            resistanceMultiplier = getPhysicalResistance(battle.monster.stats, physicalAttackType);
           }
 
           // 무기 속성 적용 (물리 데미지 전체가 속성 데미지로 변환)
@@ -317,23 +317,25 @@ export function useAbility(options: UseAbilityOptions = {}) {
         // 메시지 생성 (저항 피드백 포함)
         if (hitResult.result === "blocked") {
           message = getBlockMessage(battle.monster.nameKo, damage);
+        } else if (isPhysical) {
+          // 물리 공격: 저항 피드백 메시지 추가 (무기 없으면 fist)
+          const msgWeaponType = (ability.category && isWeaponProficiency(ability.category as CombatProficiencyType))
+            ? ability.category as CombatProficiencyType
+            : "fist";
+          message = getAttackMessage(
+            msgWeaponType,
+            battle.monster.nameKo,
+            damage,
+            isCritical,
+            resistanceMultiplier,
+            isMinDamage
+          );
         } else {
-          // 물리 공격: 저항 피드백 메시지 추가
-          if (isPhysical && ability.category) {
-            message = getAttackMessage(
-              ability.category as CombatProficiencyType,
-              battle.monster.nameKo,
-              damage,
-              isCritical,
-              resistanceMultiplier,
-              isMinDamage
-            );
-          } else {
-            const icon = ability.icon ?? (isPhysical ? "⚔️" : "✨");
-            message = isCritical
-              ? `💥 ${ability.nameKo} 치명타! ${battle.monster.nameKo}에게 ${damage} 데미지!`
-              : `${icon} ${ability.nameKo}! ${battle.monster.nameKo}에게 ${damage} 데미지!`;
-          }
+          // 마법 공격
+          const icon = ability.icon ?? "✨";
+          message = isCritical
+            ? `💥 ${ability.nameKo} 치명타! ${battle.monster.nameKo}에게 ${damage} 데미지!`
+            : `${icon} ${ability.nameKo}! ${battle.monster.nameKo}에게 ${damage} 데미지!`;
         }
       }
 
