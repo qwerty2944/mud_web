@@ -1,6 +1,6 @@
 {
   "version": "2.0.0",
-  "generatedAt": "2026-01-11T07:51:48.435Z",
+  "generatedAt": "2026-01-11T07:58:19.189Z",
   "metadata": {
     "version": "1.0.0",
     "description": "몬스터 시스템 메타데이터",
@@ -448,9 +448,9 @@
         "defense": 3,
         "speed": 4,
         "physicalResist": {
-          "slashResist": 0.5,
+          "slashResist": 1.5,
           "pierceResist": 1.3,
-          "crushResist": 1.8
+          "crushResist": 0.4
         },
         "elementResist": {
           "fire": 1.3,
@@ -507,9 +507,9 @@
         "defense": 4,
         "speed": 5,
         "physicalResist": {
-          "slashResist": 0.5,
+          "slashResist": 1.5,
           "pierceResist": 1.4,
-          "crushResist": 1.8
+          "crushResist": 0.4
         },
         "elementResist": {
           "fire": 1.5,
@@ -574,9 +574,9 @@
         "defense": 3,
         "speed": 6,
         "physicalResist": {
-          "slashResist": 0.5,
+          "slashResist": 1.5,
           "pierceResist": 1.3,
-          "crushResist": 1.7
+          "crushResist": 0.5
         },
         "elementResist": {
           "fire": 0.4,
@@ -647,9 +647,9 @@
         "defense": 5,
         "speed": 5,
         "physicalResist": {
-          "slashResist": 0.5,
+          "slashResist": 1.5,
           "pierceResist": 1.4,
-          "crushResist": 1.9
+          "crushResist": 0.3
         },
         "elementResist": {
           "fire": 1.2,
@@ -728,9 +728,9 @@
         "defense": 8,
         "speed": 15,
         "physicalResist": {
-          "slashResist": 0.6,
+          "slashResist": 1.4,
           "pierceResist": 1.5,
-          "crushResist": 2
+          "crushResist": 0.3
         },
         "elementResist": {
           "fire": 0.8,
@@ -806,9 +806,9 @@
         "defense": 15,
         "speed": 3,
         "physicalResist": {
-          "slashResist": 0.4,
+          "slashResist": 1.6,
           "pierceResist": 1.5,
-          "crushResist": 2
+          "crushResist": 0.3
         },
         "elementResist": {
           "fire": 1.4,
@@ -898,9 +898,9 @@
         "defense": 4,
         "speed": 10,
         "physicalResist": {
-          "slashResist": 0.5,
+          "slashResist": 1.5,
           "pierceResist": 1.4,
-          "crushResist": 1.8
+          "crushResist": 0.4
         },
         "elementResist": {
           "fire": 1,
