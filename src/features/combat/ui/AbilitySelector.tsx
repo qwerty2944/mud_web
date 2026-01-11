@@ -26,7 +26,7 @@ export function AbilitySelector({
 
   const remainingAp = getRemainingPlayerAp();
 
-  // 필터링된 어빌리티 (배운 것만 = level >= 1)
+  // 필터링된 어빌리티 (배운 것 + common 카테고리는 항상 표시)
   const filteredAbilities = useMemo(() => {
     let result = abilities;
 
@@ -35,8 +35,11 @@ export function AbilitySelector({
       result = result.filter((a) => a.type === filterType);
     }
 
-    // 배운 어빌리티만 (level >= 1)
+    // 배운 어빌리티 또는 common 카테고리 (기본 공격 등)
     result = result.filter((a) => {
+      // common 카테고리는 항상 표시 (기본 공격 등)
+      if (a.category === "common") return true;
+      // 그 외는 배운 것만 (level >= 1)
       const level = abilityLevels[a.id] ?? 0;
       return level >= 1;
     });

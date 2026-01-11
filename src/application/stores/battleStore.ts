@@ -482,33 +482,55 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
     const { battle } = get();
     if (!battle.isInBattle || battle.result !== "ongoing") return;
 
-    // 플레이어 보호막 확인
     let finalDamage = damage;
     let newPlayerBuffs = [...battle.playerBuffs];
+    let defensiveMessage = "";
+
+    // 1. 방어 자세 확인 (guard = 데미지 감소, dodge = 회피 시도)
+    if (battle.defensiveStance === "guard" && battle.defensiveValue > 0) {
+      const reduction = battle.defensiveValue / 100; // % -> 소수
+      const reduced = Math.floor(finalDamage * reduction);
+      finalDamage = finalDamage - reduced;
+      defensiveMessage = `🛡️ 막기로 ${reduced} 피해 감소! `;
+    } else if (battle.defensiveStance === "dodge") {
+      // 회피 확률 (defensiveValue가 회피 확률)
+      const dodgeRoll = Math.random() * 100;
+      if (dodgeRoll < battle.defensiveValue) {
+        finalDamage = 0;
+        defensiveMessage = `💨 회피 성공! `;
+      }
+    }
+
+    // 2. 플레이어 보호막 확인
     const playerShield = getShieldAmount(newPlayerBuffs);
 
-    if (playerShield > 0) {
-      const { effects, remainingDamage } = applyDamageToShield(newPlayerBuffs, damage);
+    if (playerShield > 0 && finalDamage > 0) {
+      const { effects, remainingDamage } = applyDamageToShield(newPlayerBuffs, finalDamage);
       newPlayerBuffs = effects;
-      finalDamage = remainingDamage;
 
-      if (remainingDamage < damage) {
+      if (remainingDamage < finalDamage) {
         get().addLog({
           turn: battle.turn,
           actor: "system",
           action: "shield_absorb",
-          message: `보호막이 ${damage - remainingDamage} 피해를 흡수했다!`,
+          message: `보호막이 ${finalDamage - remainingDamage} 피해를 흡수했다!`,
         });
       }
+      finalDamage = remainingDamage;
     }
 
+    // 3. 방어 자세 초기화 (1회용)
+    const newDefensiveStance = "none" as const;
+    const newDefensiveValue = 0;
+
     const newPlayerHp = Math.max(0, battle.playerCurrentHp - finalDamage);
+    const finalMessage = defensiveMessage + message;
     const newLog: BattleLogEntry = {
       turn: battle.turn,
       actor: "monster",
       action: "attack",
       damage: finalDamage,
-      message,
+      message: finalMessage,
       timestamp: Date.now(),
     };
 
@@ -518,6 +540,8 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
           ...battle,
           playerCurrentHp: 0,
           playerBuffs: newPlayerBuffs,
+          defensiveStance: newDefensiveStance,
+          defensiveValue: newDefensiveValue,
           battleLog: [
             ...battle.battleLog,
             newLog,
@@ -539,6 +563,8 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
           ...battle,
           playerCurrentHp: newPlayerHp,
           playerBuffs: newPlayerBuffs,
+          defensiveStance: newDefensiveStance,
+          defensiveValue: newDefensiveValue,
           battleLog: [...battle.battleLog, newLog],
         },
       });

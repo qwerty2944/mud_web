@@ -235,8 +235,8 @@ function processCombatSkills(): {
     return { items, byCategory, byType };
   }
 
-  // 하위 폴더들: weapon, martial, defense, utility
-  const subdirs = ["weapon", "martial", "defense", "utility"];
+  // 하위 폴더들: common, weapon, martial, defense, utility, warcry
+  const subdirs = ["common", "weapon", "martial", "defense", "utility", "warcry"];
 
   for (const subdir of subdirs) {
     const subdirPath = path.join(fullDir, subdir);

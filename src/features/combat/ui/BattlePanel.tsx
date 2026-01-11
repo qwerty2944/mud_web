@@ -94,10 +94,12 @@ export function BattlePanel({
     return levels;
   }, [learnedAbilities]);
 
-  // 배운 어빌리티 목록 (allAbilities에서 learnedAbilities에 있는 것만 필터)
+  // 배운 어빌리티 목록 (learnedAbilities + common 카테고리는 항상 포함)
   const myAbilities = useMemo(() => {
     const learnedIds = new Set(Object.keys(learnedAbilities));
-    return allAbilities.filter((a) => learnedIds.has(a.id));
+    return allAbilities.filter((a) =>
+      learnedIds.has(a.id) || a.category === "common"
+    );
   }, [allAbilities, learnedAbilities]);
 
   // 전투 스킬

@@ -147,12 +147,36 @@ export function useExecuteQueue(options: UseExecuteQueueOptions) {
           message: `${action.ability.icon ?? "💀"} ${action.ability.nameKo} 시전!`,
         });
       } else if (action.ability.type === "defense") {
-        currentStore.addLog({
-          turn: currentStore.battle.turn,
-          actor: "player",
-          action: "defense",
-          message: `${action.ability.icon ?? "🛡️"} ${action.ability.nameKo} 자세!`,
-        });
+        // 방어 스킬별 효과 처리
+        if (action.ability.id === "block") {
+          // 막기: 다음 공격 데미지 감소
+          const damageReduction = typeof effects.damageReduction === "number" ? effects.damageReduction : 25;
+          currentStore.setDefensiveStance("guard", damageReduction);
+          currentStore.addLog({
+            turn: currentStore.battle.turn,
+            actor: "player",
+            action: "defense",
+            message: `${action.ability.icon ?? "🛡️"} ${action.ability.nameKo}! 피해 ${damageReduction}% 감소!`,
+          });
+        } else if (action.ability.id === "dodge") {
+          // 회피: 다음 공격 회피 시도
+          const evasionChance = typeof effects.evasionChance === "number" ? effects.evasionChance : 70;
+          currentStore.setDefensiveStance("dodge", evasionChance);
+          currentStore.addLog({
+            turn: currentStore.battle.turn,
+            actor: "player",
+            action: "defense",
+            message: `${action.ability.icon ?? "💨"} ${action.ability.nameKo}! 회피 확률 ${evasionChance}%!`,
+          });
+        } else {
+          // 기타 방어 스킬
+          currentStore.addLog({
+            turn: currentStore.battle.turn,
+            actor: "player",
+            action: "defense",
+            message: `${action.ability.icon ?? "🛡️"} ${action.ability.nameKo} 자세!`,
+          });
+        }
       }
 
       // MP 소모
