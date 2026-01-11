@@ -58,6 +58,9 @@ const initialState = {
   onlinePlayers: [],
   isConnected: false,
   activeCharacterName: "",
+  // 하위호환 aliases (동기화됨)
+  onlineUsers: [] as OnlinePlayer[],
+  myCharacterName: "",
 };
 
 // ============ 스토어 ============
@@ -65,47 +68,45 @@ const initialState = {
 export const useGameStore = create<GameState>((set, get) => ({
   ...initialState,
 
-  // 하위호환 getter
-  get onlineUsers() {
-    return get().onlinePlayers;
-  },
-  get myCharacterName() {
-    return get().activeCharacterName;
-  },
-
   setCurrentMap: (map) => set({ currentMap: map }),
 
-  setOnlinePlayers: (players) => set({ onlinePlayers: players }),
+  // onlinePlayers 설정 시 onlineUsers도 동기화
+  setOnlinePlayers: (players) => set({ onlinePlayers: players, onlineUsers: players }),
 
   addOnlinePlayer: (player) => {
     const { onlinePlayers } = get();
     if (!onlinePlayers.find((p) => p.userId === player.userId)) {
-      set({ onlinePlayers: [...onlinePlayers, player] });
+      const updated = [...onlinePlayers, player];
+      set({ onlinePlayers: updated, onlineUsers: updated });
     }
   },
 
   removeOnlinePlayer: (userId) => {
     const { onlinePlayers } = get();
-    set({ onlinePlayers: onlinePlayers.filter((p) => p.userId !== userId) });
+    const updated = onlinePlayers.filter((p) => p.userId !== userId);
+    set({ onlinePlayers: updated, onlineUsers: updated });
   },
 
   setConnected: (connected) => set({ isConnected: connected }),
 
-  setActiveCharacterName: (name) => set({ activeCharacterName: name }),
+  // activeCharacterName 설정 시 myCharacterName도 동기화
+  setActiveCharacterName: (name) => set({ activeCharacterName: name, myCharacterName: name }),
 
   // 하위호환 setter aliases
-  setOnlineUsers: (users) => set({ onlinePlayers: users }),
+  setOnlineUsers: (users) => set({ onlinePlayers: users, onlineUsers: users }),
   addOnlineUser: (user) => {
     const { onlinePlayers } = get();
     if (!onlinePlayers.find((p) => p.userId === user.userId)) {
-      set({ onlinePlayers: [...onlinePlayers, user] });
+      const updated = [...onlinePlayers, user];
+      set({ onlinePlayers: updated, onlineUsers: updated });
     }
   },
   removeOnlineUser: (userId) => {
     const { onlinePlayers } = get();
-    set({ onlinePlayers: onlinePlayers.filter((p) => p.userId !== userId) });
+    const updated = onlinePlayers.filter((p) => p.userId !== userId);
+    set({ onlinePlayers: updated, onlineUsers: updated });
   },
-  setMyCharacterName: (name) => set({ activeCharacterName: name }),
+  setMyCharacterName: (name) => set({ activeCharacterName: name, myCharacterName: name }),
 
   reset: () => set(initialState),
 }));
