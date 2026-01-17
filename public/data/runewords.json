@@ -1,0 +1,174 @@
+{
+  "version": "1.0",
+  "runewords": [
+    {
+      "id": "steel",
+      "nameKo": "강철",
+      "nameEn": "Steel",
+      "description": {
+        "ko": "기초적인 룬워드. 물리 공격력을 높인다.",
+        "en": "A basic runeword. Increases physical attack."
+      },
+      "requiredRunes": ["Tir", "El"],
+      "requiredSlots": ["mainHand"],
+      "requiredSockets": 2,
+      "rarity": "rare",
+      "stats": {
+        "physicalAttack": 20,
+        "speed": 5
+      }
+    },
+    {
+      "id": "malice",
+      "nameKo": "악의",
+      "nameEn": "Malice",
+      "description": {
+        "ko": "적에게 추가 피해를 입히는 룬워드.",
+        "en": "A runeword that deals additional damage to enemies."
+      },
+      "requiredRunes": ["Ith", "El", "Eth"],
+      "requiredSlots": ["mainHand"],
+      "requiredSockets": 3,
+      "rarity": "rare",
+      "stats": {
+        "physicalAttack": 33,
+        "physicalPenetration": 10
+      }
+    },
+    {
+      "id": "stealth",
+      "nameKo": "은신",
+      "nameEn": "Stealth",
+      "description": {
+        "ko": "빠른 이동과 회피를 제공하는 방어구 룬워드.",
+        "en": "An armor runeword providing fast movement and evasion."
+      },
+      "requiredRunes": ["Tal", "Eth"],
+      "requiredSlots": ["armor"],
+      "requiredSockets": 2,
+      "rarity": "rare",
+      "stats": {
+        "dodgeChance": 15,
+        "speed": 10,
+        "dex": 5
+      }
+    },
+    {
+      "id": "lore",
+      "nameKo": "지식",
+      "nameEn": "Lore",
+      "description": {
+        "ko": "마법 능력을 강화하는 투구 룬워드.",
+        "en": "A helmet runeword that enhances magical abilities."
+      },
+      "requiredRunes": ["Ort", "Sol"],
+      "requiredSlots": ["helmet"],
+      "requiredSockets": 2,
+      "rarity": "arcane",
+      "stats": {
+        "magicAttack": 15,
+        "int": 5,
+        "wis": 5,
+        "mp": 20
+      }
+    },
+    {
+      "id": "insight",
+      "nameKo": "통찰",
+      "nameEn": "Insight",
+      "description": {
+        "ko": "마나 회복을 극대화하는 무기 룬워드.",
+        "en": "A weapon runeword that maximizes mana recovery."
+      },
+      "requiredRunes": ["Ral", "Tir", "Tal", "Sol"],
+      "requiredSlots": ["mainHand"],
+      "requiredSockets": 4,
+      "rarity": "heroic",
+      "stats": {
+        "magicAttack": 35,
+        "mp": 50
+      },
+      "specialEffects": [
+        {
+          "type": "aura",
+          "effectId": "meditation",
+          "value": 15,
+          "description": {
+            "ko": "명상 오라: 주변 아군의 마나 회복 +15%",
+            "en": "Meditation Aura: Ally mana recovery +15%"
+          }
+        }
+      ]
+    },
+    {
+      "id": "fury",
+      "nameKo": "분노",
+      "nameEn": "Fury",
+      "description": {
+        "ko": "공격 속도와 생명력 흡수를 제공하는 무기 룬워드.",
+        "en": "A weapon runeword providing attack speed and life steal."
+      },
+      "requiredRunes": ["Jah", "Gul", "Eth"],
+      "requiredSlots": ["mainHand"],
+      "requiredSockets": 3,
+      "rarity": "unique",
+      "stats": {
+        "physicalAttack": 66,
+        "speed": 20,
+        "critRate": 10
+      },
+      "specialEffects": [
+        {
+          "type": "onHit",
+          "effectId": "lifesteal",
+          "value": 6,
+          "description": {
+            "ko": "적중 시 6% 생명력 흡수",
+            "en": "6% life steal on hit"
+          }
+        }
+      ]
+    },
+    {
+      "id": "breath_of_dying",
+      "nameKo": "죽음의 숨결",
+      "nameEn": "Breath of the Dying",
+      "description": {
+        "ko": "최강의 룬워드 중 하나. 압도적인 파괴력을 자랑한다.",
+        "en": "One of the most powerful runewords. Overwhelming destructive power."
+      },
+      "requiredRunes": ["Vex", "Hel", "El", "Eld", "Zod", "Eth"],
+      "requiredSlots": ["mainHand"],
+      "requiredSockets": 6,
+      "rarity": "legendary",
+      "stats": {
+        "physicalAttack": 100,
+        "critRate": 15,
+        "critDamage": 50,
+        "str": 10,
+        "dex": 10
+      },
+      "specialEffects": [
+        {
+          "type": "onKill",
+          "effectId": "poison_nova",
+          "value": 50,
+          "chance": 50,
+          "description": {
+            "ko": "적 처치 시 50% 확률로 독 폭발",
+            "en": "50% chance to cast Poison Nova on kill"
+          }
+        },
+        {
+          "type": "onHit",
+          "effectId": "lifesteal",
+          "value": 12,
+          "description": {
+            "ko": "적중 시 12% 생명력 흡수",
+            "en": "12% life steal on hit"
+          }
+        }
+      ]
+    }
+  ]
+}

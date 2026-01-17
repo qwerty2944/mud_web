@@ -1,0 +1,253 @@
+{
+  "category": "material",
+  "subcategory": "socketable",
+  "socketType": "rune",
+  "version": "1.0",
+  "items": [
+    {
+      "id": "rune_el",
+      "nameKo": "엘 룬",
+      "nameEn": "El Rune",
+      "description": {
+        "ko": "가장 기초적인 룬. 희미한 빛을 발한다.",
+        "en": "The most basic rune. Emits a faint light."
+      },
+      "icon": "rune_el",
+      "rarity": "common",
+      "stackable": true,
+      "maxStack": 20,
+      "value": 50,
+      "weight": 0.05,
+      "tags": ["rune", "socketable"],
+      "runeData": {
+        "runeId": "El",
+        "runeOrder": 1,
+        "individualStats": {
+          "lightRadius": 1
+        },
+        "runewords": ["steel", "malice", "stealth"]
+      }
+    },
+    {
+      "id": "rune_eld",
+      "nameKo": "엘드 룬",
+      "nameEn": "Eld Rune",
+      "description": {
+        "ko": "기초적인 룬. 방어력을 약간 높여준다.",
+        "en": "A basic rune. Slightly increases defense."
+      },
+      "icon": "rune_eld",
+      "rarity": "common",
+      "stackable": true,
+      "maxStack": 20,
+      "value": 75,
+      "weight": 0.05,
+      "tags": ["rune", "socketable"],
+      "runeData": {
+        "runeId": "Eld",
+        "runeOrder": 2,
+        "individualStats": {
+          "physicalDefense": 5,
+          "blockChance": 3
+        },
+        "runewords": ["steel", "leaf"]
+      }
+    },
+    {
+      "id": "rune_tir",
+      "nameKo": "티르 룬",
+      "nameEn": "Tir Rune",
+      "description": {
+        "ko": "적을 처치할 때 마나를 회복시켜준다.",
+        "en": "Restores mana when killing enemies."
+      },
+      "icon": "rune_tir",
+      "rarity": "common",
+      "stackable": true,
+      "maxStack": 20,
+      "value": 100,
+      "weight": 0.05,
+      "tags": ["rune", "socketable"],
+      "runeData": {
+        "runeId": "Tir",
+        "runeOrder": 3,
+        "individualStats": {
+          "mp": 5
+        },
+        "runewords": ["steel", "stealth", "insight"]
+      }
+    },
+    {
+      "id": "rune_nef",
+      "nameKo": "네프 룬",
+      "nameEn": "Nef Rune",
+      "description": {
+        "ko": "적의 방어력을 무시하는 힘을 지닌다.",
+        "en": "Has the power to ignore enemy defense."
+      },
+      "icon": "rune_nef",
+      "rarity": "common",
+      "stackable": true,
+      "maxStack": 20,
+      "value": 125,
+      "weight": 0.05,
+      "tags": ["rune", "socketable"],
+      "runeData": {
+        "runeId": "Nef",
+        "runeOrder": 4,
+        "individualStats": {
+          "physicalPenetration": 5
+        },
+        "runewords": ["nadir", "malice"]
+      }
+    },
+    {
+      "id": "rune_eth",
+      "nameKo": "에스 룬",
+      "nameEn": "Eth Rune",
+      "description": {
+        "ko": "적의 방어력을 낮추는 힘을 지닌다.",
+        "en": "Has the power to lower enemy defense."
+      },
+      "icon": "rune_eth",
+      "rarity": "grand",
+      "stackable": true,
+      "maxStack": 20,
+      "value": 200,
+      "weight": 0.05,
+      "tags": ["rune", "socketable"],
+      "runeData": {
+        "runeId": "Eth",
+        "runeOrder": 5,
+        "individualStats": {
+          "physicalPenetration": 10
+        },
+        "runewords": ["breath_of_dying", "fury"]
+      }
+    },
+    {
+      "id": "rune_ral",
+      "nameKo": "랄 룬",
+      "nameEn": "Ral Rune",
+      "description": {
+        "ko": "화염의 힘이 깃든 룬.",
+        "en": "A rune imbued with the power of fire."
+      },
+      "icon": "rune_ral",
+      "rarity": "grand",
+      "stackable": true,
+      "maxStack": 20,
+      "value": 300,
+      "weight": 0.05,
+      "tags": ["rune", "socketable", "fire"],
+      "runeData": {
+        "runeId": "Ral",
+        "runeOrder": 8,
+        "individualStats": {
+          "fireBoost": 5
+        },
+        "runewords": ["leaf", "fury"]
+      }
+    },
+    {
+      "id": "rune_sol",
+      "nameKo": "솔 룬",
+      "nameEn": "Sol Rune",
+      "description": {
+        "ko": "물리 피해를 증가시키는 룬.",
+        "en": "A rune that increases physical damage."
+      },
+      "icon": "rune_sol",
+      "rarity": "rare",
+      "stackable": true,
+      "maxStack": 15,
+      "value": 500,
+      "weight": 0.05,
+      "tags": ["rune", "socketable"],
+      "runeData": {
+        "runeId": "Sol",
+        "runeOrder": 12,
+        "individualStats": {
+          "physicalAttack": 10
+        },
+        "runewords": ["insight", "lore"]
+      }
+    },
+    {
+      "id": "rune_vex",
+      "nameKo": "벡스 룬",
+      "nameEn": "Vex Rune",
+      "description": {
+        "ko": "고위 룬. 적중 시 마나를 흡수한다.",
+        "en": "A high rune. Absorbs mana on hit."
+      },
+      "icon": "rune_vex",
+      "rarity": "unique",
+      "stackable": true,
+      "maxStack": 5,
+      "value": 50000,
+      "weight": 0.05,
+      "tags": ["rune", "socketable", "high_rune"],
+      "runeData": {
+        "runeId": "Vex",
+        "runeOrder": 26,
+        "individualStats": {
+          "mp": 30
+        },
+        "runewords": ["breath_of_dying", "call_to_arms"]
+      }
+    },
+    {
+      "id": "rune_hel",
+      "nameKo": "헬 룬",
+      "nameEn": "Hel Rune",
+      "description": {
+        "ko": "장비 요구 조건을 낮춰주는 룬.",
+        "en": "A rune that lowers equipment requirements."
+      },
+      "icon": "rune_hel",
+      "rarity": "rare",
+      "stackable": true,
+      "maxStack": 10,
+      "value": 800,
+      "weight": 0.05,
+      "tags": ["rune", "socketable"],
+      "runeData": {
+        "runeId": "Hel",
+        "runeOrder": 15,
+        "individualStats": {},
+        "runewords": ["breath_of_dying"]
+      }
+    },
+    {
+      "id": "rune_zod",
+      "nameKo": "조드 룬",
+      "nameEn": "Zod Rune",
+      "description": {
+        "ko": "최고 등급의 룬. 불멸의 힘을 담고 있다.",
+        "en": "The highest rune. Contains the power of immortality."
+      },
+      "icon": "rune_zod",
+      "rarity": "legendary",
+      "stackable": false,
+      "maxStack": 1,
+      "value": 1000000,
+      "weight": 0.05,
+      "tags": ["rune", "socketable", "high_rune"],
+      "runeData": {
+        "runeId": "Zod",
+        "runeOrder": 33,
+        "individualStats": {
+          "str": 5,
+          "dex": 5,
+          "con": 5,
+          "int": 5,
+          "wis": 5,
+          "cha": 5,
+          "lck": 5
+        },
+        "runewords": ["breath_of_dying"]
+      }
+    }
+  ]
+}

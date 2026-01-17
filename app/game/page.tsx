@@ -2,15 +2,15 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
 import toast from "react-hot-toast";
 import { useAuthStore } from "@/features/auth";
 import { useGameStore } from "@/application/stores";
 import { ChatBox, useRealtimeChat } from "@/features/chat";
-import { BattlePanel } from "@/features/combat";
 import { PlayerList } from "@/entities/player";
-import { MapSelector, WorldMapModal } from "@/entities/map";
+import { MapSelector } from "@/entities/map";
 import { MonsterList } from "@/entities/monster";
-import { NpcList, HealerDialog, useNpcsByMap, type Npc } from "@/entities/npc";
+import { NpcList, useNpcsByMap, type Npc } from "@/entities/npc";
 import { InjuryDisplay } from "@/entities/injury";
 import {
   useProfile,
@@ -33,8 +33,33 @@ import { useBattleStore, usePvpStore } from "@/application/stores";
 import { useStartBattle, useEndBattle } from "@/features/combat";
 import { useUpdateLocation } from "@/features/player";
 import { useThemeStore } from "@/shared/config";
-import { ThemeSettingsModal } from "@/shared/ui";
-import { StatusModal } from "@/widgets/status-modal";
+
+// 동적 임포트: 조건부 렌더링 컴포넌트 (번들 최적화)
+// @see docs/performance/bundle-optimization.md
+const BattlePanel = dynamic(
+  () => import("@/features/combat").then((m) => m.BattlePanel),
+  { ssr: false }
+);
+
+const StatusModal = dynamic(
+  () => import("@/widgets/status-modal").then((m) => m.StatusModal),
+  { ssr: false }
+);
+
+const WorldMapModal = dynamic(
+  () => import("@/entities/map").then((m) => m.WorldMapModal),
+  { ssr: false }
+);
+
+const ThemeSettingsModal = dynamic(
+  () => import("@/shared/ui").then((m) => m.ThemeSettingsModal),
+  { ssr: false }
+);
+
+const HealerDialog = dynamic(
+  () => import("@/entities/npc").then((m) => m.HealerDialog),
+  { ssr: false }
+);
 
 export default function GamePage() {
   const router = useRouter();

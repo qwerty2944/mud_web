@@ -4,7 +4,8 @@ import { useCallback } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useBattleStore } from "@/application/stores";
 import { rollDrops, calculateExpBonus } from "@/entities/monster";
-import { useGainProficiency } from "@/features/proficiency";
+// TODO: Re-enable after implementing proficiency gain with useIncreaseAbilityExp
+// import { useIncreaseAbilityExp } from "@/entities/ability";
 import {
   profileKeys,
   updateProfile,
@@ -70,7 +71,8 @@ export function useEndBattle(options: UseEndBattleOptions) {
   const { userId, onVictory, onDefeat, onFled } = options;
   const { battle, resetBattle } = useBattleStore();
   const queryClient = useQueryClient();
-  const gainProficiency = useGainProficiency(userId);
+  // TODO: useGainProficiency was removed, need to implement with useIncreaseAbilityExp
+  // const gainProficiency = useIncreaseAbilityExp(userId ?? "");
   const { data: profile } = useProfile(userId);
   const { data: proficiencies } = useProficiencies(userId);
   const { data: maps = [] } = useMaps();
@@ -178,16 +180,11 @@ export function useEndBattle(options: UseEndBattleOptions) {
       }
 
       // 2. 숙련도 증가 (레벨 기반)
+      // TODO: Implement with useIncreaseAbilityExp after refactoring
       if (rewards.proficiencyGain && userId) {
         if (rewards.proficiencyGain.gained && rewards.proficiencyGain.amount > 0) {
-          try {
-            await gainProficiency.mutateAsync({
-              type: rewards.proficiencyGain.type,
-              amount: rewards.proficiencyGain.amount,
-            });
-          } catch (error) {
-            console.error("Failed to increase proficiency:", error);
-          }
+          // Proficiency gain temporarily disabled - needs refactoring
+          console.log(`[Proficiency] Would gain ${rewards.proficiencyGain.amount} ${rewards.proficiencyGain.type}`);
         } else if (rewards.proficiencyGain.reason === "level_too_low") {
           // 레벨이 너무 낮아 숙련도 미획득 (조용히 처리, 토스트 안 띄움)
           console.log(`[Proficiency] Level too low for gain (level diff: ${rewards.proficiencyGain.levelDiff})`);
@@ -242,7 +239,7 @@ export function useEndBattle(options: UseEndBattleOptions) {
     } catch (error) {
       console.error("[Battle] Error processing rewards:", error);
     }
-  }, [processRewards, profile, userId, gainProficiency, queryClient, onVictory, resetBattle]);
+  }, [processRewards, profile, userId, queryClient, onVictory, resetBattle]);
 
   // 패배 처리
   const handleDefeat = useCallback(async () => {

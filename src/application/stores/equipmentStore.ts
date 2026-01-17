@@ -8,7 +8,13 @@ import type {
   OffHandItemType,
   AccessoryType,
   SpriteReference,
+  EnhancementInfo,
+  EquipmentSockets,
 } from "@/entities/item";
+import {
+  calculateEnhancedStats,
+  getEnhancementMultiplier,
+} from "@/entities/item/types/enhancement";
 
 // 장착된 아이템 정보
 export interface EquippedItem {
@@ -29,6 +35,18 @@ export interface EquippedItem {
   sprite?: SpriteReference;
   // 스탯
   stats?: EquipmentStats;
+
+  // === 인스턴스 시스템 (신규) ===
+  /** 장비 인스턴스 ID (서버에서 관리) */
+  instanceId?: string;
+  /** 강화 정보 */
+  enhancement?: EnhancementInfo;
+  /** 소켓 정보 */
+  sockets?: EquipmentSockets;
+  /** 활성 룬워드 ID */
+  activeRunewordId?: string;
+  /** 소켓에서 오는 추가 스탯 */
+  socketStats?: Partial<EquipmentStats>;
 }
 
 // 장착 가능 여부 결과
@@ -154,15 +172,33 @@ export const useEquipmentStore = create<EquipmentState>()(
         return mainHand?.handType === "two_handed";
       },
 
-      // 전체 장비 스탯 합산
+      // 전체 장비 스탯 합산 (기본 + 강화 + 소켓)
       getTotalStats: () => {
         const state = get();
         const totalStats: EquipmentStats = {};
 
         for (const slot of ALL_SLOTS) {
           const item = state[slot] as EquippedItem | null;
-          if (item?.stats) {
-            for (const [key, value] of Object.entries(item.stats)) {
+          if (!item) continue;
+
+          // 1. 기본 스탯 계산 (강화 배율 적용)
+          if (item.stats) {
+            const enhancementLevel = item.enhancement?.level ?? 0;
+            const enhancedStats = enhancementLevel > 0
+              ? calculateEnhancedStats(item.stats, enhancementLevel)
+              : item.stats;
+
+            for (const [key, value] of Object.entries(enhancedStats)) {
+              if (typeof value === "number") {
+                totalStats[key as keyof EquipmentStats] =
+                  (totalStats[key as keyof EquipmentStats] || 0) + value;
+              }
+            }
+          }
+
+          // 2. 소켓 스탯 추가
+          if (item.socketStats) {
+            for (const [key, value] of Object.entries(item.socketStats)) {
               if (typeof value === "number") {
                 totalStats[key as keyof EquipmentStats] =
                   (totalStats[key as keyof EquipmentStats] || 0) + value;

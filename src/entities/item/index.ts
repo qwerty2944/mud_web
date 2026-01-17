@@ -22,6 +22,19 @@ export type {
   SpriteCategory,
   SpriteReference,
   SpriteColorPreset,
+  // Enhancement System
+  EnhancementInfo,
+  EnhancementResultType,
+  FailPenaltyType,
+  EnhancementLevelConfig,
+  EnhanceAttemptParams,
+  EnhanceAttemptResult,
+  // Socket System
+  EquipmentSockets,
+  SocketSlot,
+  RunewordDefinition,
+  // Equipment Instance
+  EquipmentInstance,
 } from "./types";
 
 export {

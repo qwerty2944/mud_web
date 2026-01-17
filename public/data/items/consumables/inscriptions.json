@@ -1,0 +1,122 @@
+{
+  "category": "consumable",
+  "subcategory": "socketable",
+  "socketType": "inscription",
+  "version": "1.0",
+  "items": [
+    {
+      "id": "inscription_fireball_1",
+      "nameKo": "화염구 각인 I",
+      "nameEn": "Fireball Inscription I",
+      "description": "소켓에 장착하면 화염구 스킬을 사용할 수 있다.",
+      "icon": "inscription_fire",
+      "rarity": "rare",
+      "stackable": false,
+      "value": 1000,
+      "weight": 0.05,
+      "tags": ["inscription", "socketable", "spell", "fire"],
+      "inscriptionData": {
+        "abilityId": "spell_fireball",
+        "abilityLevel": 1,
+        "charges": 50,
+        "maxCharges": 50,
+        "cooldown": 3
+      }
+    },
+    {
+      "id": "inscription_heal_1",
+      "nameKo": "치유 각인 I",
+      "nameEn": "Heal Inscription I",
+      "description": "소켓에 장착하면 치유 스킬을 사용할 수 있다.",
+      "icon": "inscription_heal",
+      "rarity": "rare",
+      "stackable": false,
+      "value": 1500,
+      "weight": 0.05,
+      "tags": ["inscription", "socketable", "spell", "holy"],
+      "inscriptionData": {
+        "abilityId": "spell_heal",
+        "abilityLevel": 1,
+        "charges": 30,
+        "maxCharges": 30,
+        "cooldown": 5
+      }
+    },
+    {
+      "id": "inscription_lightning_1",
+      "nameKo": "번개 각인 I",
+      "nameEn": "Lightning Inscription I",
+      "description": "소켓에 장착하면 번개 스킬을 사용할 수 있다.",
+      "icon": "inscription_lightning",
+      "rarity": "rare",
+      "stackable": false,
+      "value": 1200,
+      "weight": 0.05,
+      "tags": ["inscription", "socketable", "spell", "lightning"],
+      "inscriptionData": {
+        "abilityId": "spell_lightning_bolt",
+        "abilityLevel": 1,
+        "charges": 40,
+        "maxCharges": 40,
+        "cooldown": 4
+      }
+    },
+    {
+      "id": "inscription_shield_1",
+      "nameKo": "보호막 각인 I",
+      "nameEn": "Shield Inscription I",
+      "description": "소켓에 장착하면 보호막 스킬을 사용할 수 있다.",
+      "icon": "inscription_shield",
+      "rarity": "arcane",
+      "stackable": false,
+      "value": 2000,
+      "weight": 0.05,
+      "tags": ["inscription", "socketable", "spell", "buff"],
+      "inscriptionData": {
+        "abilityId": "spell_magic_shield",
+        "abilityLevel": 1,
+        "charges": 20,
+        "maxCharges": 20,
+        "cooldown": 10
+      }
+    },
+    {
+      "id": "inscription_teleport",
+      "nameKo": "순간이동 각인",
+      "nameEn": "Teleport Inscription",
+      "description": "소켓에 장착하면 순간이동 스킬을 사용할 수 있다.",
+      "icon": "inscription_teleport",
+      "rarity": "heroic",
+      "stackable": false,
+      "value": 5000,
+      "weight": 0.05,
+      "tags": ["inscription", "socketable", "spell", "utility"],
+      "inscriptionData": {
+        "abilityId": "spell_teleport",
+        "abilityLevel": 1,
+        "charges": 10,
+        "maxCharges": 10,
+        "cooldown": 60
+      }
+    },
+    {
+      "id": "inscription_berserk",
+      "nameKo": "광전사 각인",
+      "nameEn": "Berserk Inscription",
+      "description": "소켓에 장착하면 광전사 스킬을 사용할 수 있다.",
+      "icon": "inscription_rage",
+      "rarity": "heroic",
+      "stackable": false,
+      "value": 4000,
+      "weight": 0.05,
+      "tags": ["inscription", "socketable", "skill", "buff"],
+      "inscriptionData": {
+        "abilityId": "skill_berserk",
+        "abilityLevel": 1,
+        "charges": 15,
+        "maxCharges": 15,
+        "cooldown": 30
+      }
+    }
+  ]
+}

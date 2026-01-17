@@ -276,7 +276,7 @@ export type Database = {
           created_at: string | null
           id: string
           inventory_type: string
-          items: Json
+          items: Json | null
           max_slots: number
           updated_at: string | null
         }
@@ -285,7 +285,7 @@ export type Database = {
           created_at?: string | null
           id?: string
           inventory_type: string
-          items?: Json
+          items?: Json | null
           max_slots?: number
           updated_at?: string | null
         }
@@ -294,7 +294,7 @@ export type Database = {
           created_at?: string | null
           id?: string
           inventory_type?: string
-          items?: Json
+          items?: Json | null
           max_slots?: number
           updated_at?: string | null
         }
@@ -304,6 +304,66 @@ export type Database = {
             columns: ["character_id"]
             isOneToOne: false
             referencedRelation: "characters"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      equipment_instances: {
+        Row: {
+          acquired_at: string | null
+          acquired_from: string | null
+          base_item_id: string
+          bound_to: string | null
+          created_at: string | null
+          equipment: Json | null
+          id: string
+          inventory_id: string
+          item_type: string
+          quantity: number
+          slot: number
+          updated_at: string | null
+        }
+        Insert: {
+          acquired_at?: string | null
+          acquired_from?: string | null
+          base_item_id: string
+          bound_to?: string | null
+          created_at?: string | null
+          equipment?: Json | null
+          id?: string
+          inventory_id: string
+          item_type: string
+          quantity?: number
+          slot: number
+          updated_at?: string | null
+        }
+        Update: {
+          acquired_at?: string | null
+          acquired_from?: string | null
+          base_item_id?: string
+          bound_to?: string | null
+          created_at?: string | null
+          equipment?: Json | null
+          id?: string
+          inventory_id?: string
+          item_type?: string
+          quantity?: number
+          slot?: number
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "equipment_instances_bound_to_fkey"
+            columns: ["bound_to"]
+            isOneToOne: false
+            referencedRelation: "characters"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "equipment_instances_inventory_id_fkey"
+            columns: ["inventory_id"]
+            isOneToOne: false
+            referencedRelation: "inventories"
             referencedColumns: ["id"]
           },
         ]
@@ -450,6 +510,14 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      activate_runeword: {
+        Args: {
+          p_character_id: string
+          p_instance_id: string
+          p_runeword_id: string
+        }
+        Returns: Json
+      }
       add_injury: {
         Args: { p_injury: Json; p_user_id: string }
         Returns: undefined
@@ -480,6 +548,24 @@ export type Database = {
           remaining_charges: number
           success: boolean
         }[]
+      }
+      create_equipment_instance: {
+        Args: {
+          p_acquired_from?: string
+          p_base_item_id: string
+          p_character_id: string
+          p_max_sockets?: number
+        }
+        Returns: Json
+      }
+      enhance_equipment: {
+        Args: {
+          p_character_id: string
+          p_instance_id: string
+          p_use_luck_boost?: boolean
+          p_use_protection?: boolean
+        }
+        Returns: Json
       }
       get_current_fatigue: { Args: { p_user_id: string }; Returns: number }
       get_main_character_con: { Args: { p_character: Json }; Returns: number }
@@ -537,6 +623,19 @@ export type Database = {
         }
         Returns: number
       }
+      initialize_default_abilities: {
+        Args: { p_user_id: string }
+        Returns: undefined
+      }
+      insert_socket_item: {
+        Args: {
+          p_character_id: string
+          p_instance_id: string
+          p_item_id: string
+          p_socket_index: number
+        }
+        Returns: Json
+      }
       inventory_add_item: {
         Args: {
           p_inventory_type: string
@@ -593,6 +692,14 @@ export type Database = {
           old_religion: string
           success: boolean
         }[]
+      }
+      remove_socket_item: {
+        Args: {
+          p_character_id: string
+          p_instance_id: string
+          p_socket_index: number
+        }
+        Returns: Json
       }
       remove_user_location: { Args: { p_user_id: string }; Returns: undefined }
       restore_fatigue: {
@@ -783,3 +890,38 @@ export const Constants = {
     Enums: {},
   },
 } as const
+
+// 장비 데이터 타입 (equipment_instances.equipment JSONB)
+export interface EquipmentData {
+  enhancement: {
+    level: number       // 0-15
+    failCount: number   // 실패 횟수
+  }
+  sockets: Array<{
+    runeId: string
+    insertedAt: string  // ISO timestamp
+  }>
+  runeword: {
+    id: string
+    completedAt: string // ISO timestamp
+  } | null
+}
+
+// 일반 아이템 타입 (inventories.items JSONB)
+export interface InventoryItem {
+  slot: number
+  itemId: string
+  itemType: string      // consumable, material, misc, rune, quest
+  quantity: number
+  acquiredAt: string    // ISO timestamp
+}
+
+// 장비 인스턴스 타입 (equipment_instances 테이블)
+export type EquipmentInstance = Database['public']['Tables']['equipment_instances']['Row']
+export type EquipmentInstanceInsert = Database['public']['Tables']['equipment_instances']['Insert']
+export type EquipmentInstanceUpdate = Database['public']['Tables']['equipment_instances']['Update']
+
+// 인벤토리 타입
+export type Inventory = Database['public']['Tables']['inventories']['Row']
+export type InventoryInsert = Database['public']['Tables']['inventories']['Insert']
+export type InventoryUpdate = Database['public']['Tables']['inventories']['Update']

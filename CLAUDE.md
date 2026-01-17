@@ -67,6 +67,16 @@ src/
 │   │   ├── lib/                # damage.ts, monsterAi.ts, messages.ts
 │   │   ├── ui/                 # BattlePanel, ActionPanel, BattleHeader 등
 │   │   └── index.ts
+│   ├── equipment/              # 장비 시스템 (강화/소켓)
+│   │   ├── enhance/            # 강화하다
+│   │   ├── insert-rune/        # 룬 삽입하다
+│   │   ├── remove-rune/        # 룬 제거하다
+│   │   ├── activate-runeword/  # 룬워드 활성화하다
+│   │   ├── api/                # 공용 API
+│   │   ├── queries/            # 공용 쿼리
+│   │   ├── lib/                # runewordLogic.ts
+│   │   ├── ui/                 # EnhancePanel, SocketPanel
+│   │   └── index.ts
 │   └── pvp/                    # PvP 결투
 │       ├── request-duel/       # 결투 신청
 │       ├── respond-duel/       # 수락/거절
@@ -300,6 +310,56 @@ function MyComponent() {
 **테마 변경 기능:**
 - `ThemeSettingsModal` 컴포넌트로 테마 선택 UI 제공
 - 5가지 테마: amber(골드), green(터미널), cyan(사이버), purple(마법), red(지옥)
+
+### 성능 최적화 규칙
+
+> 상세 가이드: [docs/performance/README.md](docs/performance/README.md)
+
+**비동기 처리:**
+- 독립적인 요청은 `Promise.all`로 병렬화
+- React Query 훅은 자동으로 병렬 실행됨
+- Early return으로 불필요한 await 제거
+
+```typescript
+// Bad: 순차 실행
+const a = await fetchA();
+const b = await fetchB();
+
+// Good: 병렬 실행
+const [a, b] = await Promise.all([fetchA(), fetchB()]);
+```
+
+**동적 임포트:**
+- 모달, 패널 등 조건부 렌더링 컴포넌트는 `dynamic()` 사용
+- 예: `const Modal = dynamic(() => import('./Modal'), { ssr: false })`
+
+```typescript
+import dynamic from 'next/dynamic';
+
+const StatusModal = dynamic(
+  () => import("@/widgets/status-modal").then(m => m.StatusModal),
+  { ssr: false }
+);
+```
+
+**캐싱 전략 (React Query staleTime):**
+```typescript
+import { STALE_TIME } from "@/shared/config";
+
+// 정적 데이터 (아이템, 몬스터 정의)
+staleTime: STALE_TIME.STATIC    // Infinity
+
+// 동적 데이터 (프로필, 인벤토리)
+staleTime: STALE_TIME.DYNAMIC   // 30초
+
+// 실시간 데이터 (채팅, 접속자)
+staleTime: STALE_TIME.REALTIME  // 0
+```
+
+**리렌더링 최적화:**
+- 비용이 큰 계산은 `useMemo` 사용
+- 자식에 전달되는 함수는 `useCallback` 고려
+- Zustand 선택적 구독: `useStore(state => state.value)`
 
 ## 테스트 페이지 (`/test`)
 
@@ -1835,4 +1895,138 @@ src/entities/injury/
 ├── lib/
 │   └── index.ts        # checkInjuryOccurrence, filterNaturallyHealedInjuries
 └── index.ts            # Public API
+```
+
+## 인벤토리/장비 시스템
+
+### 데이터 구조
+
+```
+characters
+    ↓ (character_id)
+inventories (personal, storage)
+├── items JSONB (일반 아이템: consumable, material, misc 등)
+│   [{slot, itemId, itemType, quantity, acquiredAt}]
+└── id
+    ↓ (inventory_id)
+equipment_instances (장비만 - 강화/소켓 상태 저장)
+├── id
+├── inventory_id → inventories.id
+├── slot (인벤토리 슬롯)
+├── base_item_id (아이템 정의 참조)
+├── equipment JSONB
+│   ├── enhancement: {level, failCount}
+│   ├── sockets: [{runeId, insertedAt}]
+│   └── runeword: {id, completedAt}
+├── bound_to (귀속 캐릭터)
+└── acquired_at, acquired_from
+```
+
+### 저장 방식 차이
+
+| 아이템 종류 | 저장 위치 | 이유 |
+|------------|----------|------|
+| 일반 아이템 (소모품, 재료 등) | `inventories.items` JSONB | 개별 상태 없음, 가벼움 |
+| 장비 | `equipment_instances` 테이블 | 강화/소켓 등 개별 상태 관리 필요 |
+
+### 거래 시 처리
+
+```typescript
+// 장비: inventory_id만 변경
+await supabase
+  .from('equipment_instances')
+  .update({ inventory_id: newInventoryId })
+  .eq('id', equipmentId);
+
+// 일반 아이템: JSONB 조작
+// (기존 인벤토리에서 제거, 새 인벤토리에 추가)
+```
+
+### FSD 구조
+
+```
+features/equipment/           # 장비 시스템
+├── enhance/                  # 강화하다
+│   └── index.ts              # useEnhance 훅
+├── insert-rune/              # 룬 삽입하다
+│   └── index.ts              # useInsertRune 훅
+├── remove-rune/              # 룬 제거하다
+│   └── index.ts              # useRemoveRune 훅
+├── activate-runeword/        # 룬워드 활성화하다
+│   └── index.ts              # useActivateRuneword 훅
+├── api/                      # 공용 API
+│   └── index.ts              # enhance, insertRune, removeRune 등
+├── queries/                  # 공용 쿼리
+│   └── index.ts              # useEquipmentInstances, equipmentKeys
+├── lib/                      # 공용 라이브러리
+│   └── runewordLogic.ts      # 룬워드 조합 로직
+├── ui/                       # 공용 UI
+│   ├── EnhancePanel.tsx
+│   ├── EnhanceResult.tsx
+│   ├── SocketPanel.tsx
+│   └── SocketSlot.tsx
+└── index.ts                  # Public API
+```
+
+### 사용법
+
+```typescript
+import {
+  // 동사형 액션
+  useEnhance,
+  useInsertRune,
+  useRemoveRune,
+  useActivateRuneword,
+  // 쿼리
+  useEquipmentInstances,
+  useEquipmentInstance,
+  equipmentKeys,
+  // UI
+  EnhancePanel,
+  SocketPanel,
+} from "@/features/equipment";
+
+// 장비 강화
+const enhance = useEnhance(characterId);
+await enhance.mutateAsync({
+  instanceId: equipment.id,
+  useProtection: false,
+});
+
+// 룬 삽입
+const insertRune = useInsertRune(characterId);
+await insertRune.mutateAsync({
+  instanceId: equipment.id,
+  socketIndex: 0,
+  itemId: "rune_fire",
+});
+```
+
+### 타입 정의
+
+```typescript
+// 장비 데이터 (equipment_instances.equipment JSONB)
+interface EquipmentData {
+  enhancement: {
+    level: number;       // 0-15
+    failCount: number;   // 연속 실패 횟수
+  };
+  sockets: Array<{
+    runeId: string;
+    insertedAt: string;  // ISO timestamp
+  }>;
+  runeword: {
+    id: string;
+    completedAt: string;
+  } | null;
+}
+
+// 일반 아이템 (inventories.items JSONB)
+interface InventoryItem {
+  slot: number;
+  itemId: string;
+  itemType: string;      // consumable, material, misc, rune, quest
+  quantity: number;
+  acquiredAt: string;
+}
 ```

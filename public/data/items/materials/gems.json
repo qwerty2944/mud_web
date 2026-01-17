@@ -1,6 +1,8 @@
 {
   "category": "material",
-  "subcategory": "gem",
+  "subcategory": "socketable",
+  "socketType": "gem",
+  "version": "1.0",
   "items": [
     {
       "id": "gem_ruby",
@@ -9,10 +11,20 @@
       "description": "붉게 빛나는 보석. 화염 속성 강화에 사용.",
       "icon": "gem_red",
       "rarity": "rare",
-      "stackSize": 30,
+      "stackable": true,
+      "maxStack": 30,
       "value": 150,
       "weight": 0.1,
-      "element": "fire"
+      "tags": ["gem", "socketable", "fire"],
+      "gemData": {
+        "color": "red",
+        "tier": 2,
+        "element": "fire",
+        "stats": {
+          "fireBoost": 5,
+          "physicalAttack": 3
+        }
+      }
     },
     {
       "id": "gem_sapphire",
@@ -21,10 +33,20 @@
       "description": "차갑게 빛나는 푸른 보석. 냉기 속성 강화에 사용.",
       "icon": "gem_blue",
       "rarity": "rare",
-      "stackSize": 30,
+      "stackable": true,
+      "maxStack": 30,
       "value": 150,
       "weight": 0.1,
-      "element": "ice"
+      "tags": ["gem", "socketable", "ice"],
+      "gemData": {
+        "color": "blue",
+        "tier": 2,
+        "element": "ice",
+        "stats": {
+          "iceBoost": 5,
+          "magicAttack": 3
+        }
+      }
     },
     {
       "id": "gem_topaz",
@@ -33,10 +55,20 @@
       "description": "번개처럼 빛나는 노란 보석. 번개 속성 강화에 사용.",
       "icon": "gem_yellow",
       "rarity": "rare",
-      "stackSize": 30,
+      "stackable": true,
+      "maxStack": 30,
       "value": 150,
       "weight": 0.1,
-      "element": "lightning"
+      "tags": ["gem", "socketable", "lightning"],
+      "gemData": {
+        "color": "yellow",
+        "tier": 2,
+        "element": "lightning",
+        "stats": {
+          "lightningBoost": 5,
+          "speed": 2
+        }
+      }
     },
     {
       "id": "gem_emerald",
@@ -45,10 +77,20 @@
       "description": "자연의 힘이 담긴 녹색 보석. 대지 속성 강화에 사용.",
       "icon": "gem_green",
       "rarity": "rare",
-      "stackSize": 30,
+      "stackable": true,
+      "maxStack": 30,
       "value": 150,
       "weight": 0.1,
-      "element": "earth"
+      "tags": ["gem", "socketable", "earth"],
+      "gemData": {
+        "color": "green",
+        "tier": 2,
+        "element": "earth",
+        "stats": {
+          "earthBoost": 5,
+          "hp": 15
+        }
+      }
     },
     {
       "id": "gem_diamond",
@@ -57,10 +99,19 @@
       "description": "완벽하게 투명한 최고급 보석. 신성 속성 강화에 사용.",
       "icon": "gem_white",
       "rarity": "heroic",
-      "stackSize": 20,
+      "stackable": true,
+      "maxStack": 20,
       "value": 500,
       "weight": 0.1,
-      "element": "holy"
+      "tags": ["gem", "socketable", "holy"],
+      "gemData": {
+        "color": "white",
+        "tier": 3,
+        "element": "holy",
+        "stats": {
+          "holyBoost": 8
+        }
+      }
     },
     {
       "id": "gem_onyx",
@@ -69,10 +120,19 @@
       "description": "칠흑같이 어두운 보석. 암흑 속성 강화에 사용.",
       "icon": "gem_black",
       "rarity": "heroic",
-      "stackSize": 20,
+      "stackable": true,
+      "maxStack": 20,
       "value": 450,
       "weight": 0.1,
-      "element": "dark"
+      "tags": ["gem", "socketable", "dark"],
+      "gemData": {
+        "color": "black",
+        "tier": 3,
+        "element": "dark",
+        "stats": {
+          "darkBoost": 8
+        }
+      }
     },
     {
       "id": "gem_amethyst",
@@ -81,10 +141,19 @@
       "description": "보라색 빛의 아름다운 보석. MP 강화에 사용.",
       "icon": "gem_purple",
       "rarity": "arcane",
-      "stackSize": 25,
+      "stackable": true,
+      "maxStack": 25,
       "value": 200,
       "weight": 0.1,
-      "statBonus": "mp"
+      "tags": ["gem", "socketable"],
+      "gemData": {
+        "color": "prismatic",
+        "tier": 2,
+        "stats": {
+          "mp": 20,
+          "wis": 2
+        }
+      }
     },
     {
       "id": "gem_garnet",
@@ -93,10 +162,19 @@
       "description": "진한 적색의 보석. HP 강화에 사용.",
       "icon": "gem_darkred",
       "rarity": "arcane",
-      "stackSize": 25,
+      "stackable": true,
+      "maxStack": 25,
       "value": 200,
       "weight": 0.1,
-      "statBonus": "hp"
+      "tags": ["gem", "socketable"],
+      "gemData": {
+        "color": "red",
+        "tier": 2,
+        "stats": {
+          "hp": 25,
+          "con": 2
+        }
+      }
     },
     {
       "id": "gem_chaos",
@@ -105,10 +183,115 @@
       "description": "무지개빛으로 빛나는 기이한 보석. 모든 속성을 담고 있다.",
       "icon": "gem_rainbow",
       "rarity": "legendary",
-      "stackSize": 5,
+      "stackable": true,
+      "maxStack": 5,
       "value": 5000,
       "weight": 0.2,
-      "element": "all"
+      "tags": ["gem", "socketable", "all_elements"],
+      "gemData": {
+        "color": "prismatic",
+        "tier": 5,
+        "stats": {
+          "fireBoost": 5,
+          "iceBoost": 5,
+          "lightningBoost": 5,
+          "earthBoost": 5,
+          "holyBoost": 5,
+          "darkBoost": 5,
+          "str": 3,
+          "int": 3
+        },
+        "specialEffect": {
+          "type": "onHit",
+          "value": 5,
+          "chance": 15
+        }
+      }
+    },
+    {
+      "id": "ruby_t1",
+      "nameKo": "거친 루비",
+      "nameEn": "Rough Ruby",
+      "description": "낮은 등급의 루비. 화염의 힘을 담고 있다.",
+      "icon": "gem_ruby_1",
+      "rarity": "common",
+      "stackable": true,
+      "maxStack": 50,
+      "value": 50,
+      "weight": 0.1,
+      "tags": ["gem", "socketable", "fire"],
+      "gemData": {
+        "color": "red",
+        "tier": 1,
+        "element": "fire",
+        "stats": {
+          "fireBoost": 2
+        }
+      }
+    },
+    {
+      "id": "sapphire_t1",
+      "nameKo": "거친 사파이어",
+      "nameEn": "Rough Sapphire",
+      "description": "낮은 등급의 사파이어. 냉기의 힘을 담고 있다.",
+      "icon": "gem_sapphire_1",
+      "rarity": "common",
+      "stackable": true,
+      "maxStack": 50,
+      "value": 50,
+      "weight": 0.1,
+      "tags": ["gem", "socketable", "ice"],
+      "gemData": {
+        "color": "blue",
+        "tier": 1,
+        "element": "ice",
+        "stats": {
+          "iceBoost": 2
+        }
+      }
+    },
+    {
+      "id": "topaz_t1",
+      "nameKo": "거친 토파즈",
+      "nameEn": "Rough Topaz",
+      "description": "낮은 등급의 토파즈. 번개의 힘을 담고 있다.",
+      "icon": "gem_topaz_1",
+      "rarity": "common",
+      "stackable": true,
+      "maxStack": 50,
+      "value": 50,
+      "weight": 0.1,
+      "tags": ["gem", "socketable", "lightning"],
+      "gemData": {
+        "color": "yellow",
+        "tier": 1,
+        "element": "lightning",
+        "stats": {
+          "lightningBoost": 2
+        }
+      }
+    },
+    {
+      "id": "emerald_t1",
+      "nameKo": "거친 에메랄드",
+      "nameEn": "Rough Emerald",
+      "description": "낮은 등급의 에메랄드. 대지의 힘을 담고 있다.",
+      "icon": "gem_emerald_1",
+      "rarity": "common",
+      "stackable": true,
+      "maxStack": 50,
+      "value": 50,
+      "weight": 0.1,
+      "tags": ["gem", "socketable", "earth"],
+      "gemData": {
+        "color": "green",
+        "tier": 1,
+        "element": "earth",
+        "stats": {
+          "earthBoost": 2,
+          "hp": 5
+        }
+      }
     }
   ]
 }

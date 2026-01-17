@@ -2,6 +2,14 @@
 
 ## 📁 문서 목록
 
+### 성능 최적화 (신규)
+- [성능 최적화 개요](./performance/README.md) - React Best Practices 기반
+- [비동기 워터폴 제거](./performance/async-waterfall.md) - Promise.all, 병렬 쿼리
+- [번들 크기 최적화](./performance/bundle-optimization.md) - 동적 임포트
+- [데이터 페칭 최적화](./performance/data-fetching.md) - staleTime 전략
+- [리렌더링 최적화](./performance/rendering-optimization.md) - useMemo, useCallback
+- [PR 체크리스트](./performance/checklist.md) - 코드 리뷰용
+
 ### 전투 관련
 - [전투 시스템](./combat-system.md) - 데미지 계산, 공격 판정, 몬스터
 - [선공/비선공 시스템](./preemptive-system.md) - 몬스터 behavior 기반 선공 규칙
