@@ -103,6 +103,11 @@ export interface BattleState {
 
   // 방어 행동 큐 (여러 번 방어 시 스택)
   defensiveActions: DefensiveAction[];
+
+  // 통계 추적용 (전투 종료 시 DB에 기록)
+  totalDamageDealt: number;
+  totalDamageTaken: number;
+  criticalHitCount: number;
 }
 
 // 방어 행동 타입
@@ -145,6 +150,9 @@ const initialBattleState: BattleState = {
   monsterBuffs: [],
   monsterDebuffs: [],
   defensiveActions: [],
+  totalDamageDealt: 0,
+  totalDamageTaken: 0,
+  criticalHitCount: 0,
 };
 
 // ============ 스토어 인터페이스 ============
@@ -230,6 +238,10 @@ interface BattleStore {
   getPlayerShieldAmount: () => number;
   getRemainingPlayerAp: () => number;
   getQueuedApCost: () => number;
+
+  // 통계 추적
+  addDamageDealt: (amount: number, isCritical: boolean) => void;
+  addDamageTaken: (amount: number) => void;
 }
 
 // ============ 스토어 구현 ============
@@ -313,6 +325,9 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
         monsterBuffs: [],
         monsterDebuffs: [],
         defensiveActions: [],
+        totalDamageDealt: 0,
+        totalDamageTaken: 0,
+        criticalHitCount: 0,
       },
     });
   },
@@ -1074,5 +1089,29 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
   getQueuedApCost: () => {
     const { battle } = get();
     return battle.playerQueue.reduce((sum, a) => sum + a.apCost, 0);
+  },
+
+  // 통계 추적
+  addDamageDealt: (amount, isCritical) => {
+    const { battle } = get();
+    set({
+      battle: {
+        ...battle,
+        totalDamageDealt: battle.totalDamageDealt + amount,
+        criticalHitCount: isCritical
+          ? battle.criticalHitCount + 1
+          : battle.criticalHitCount,
+      },
+    });
+  },
+
+  addDamageTaken: (amount) => {
+    const { battle } = get();
+    set({
+      battle: {
+        ...battle,
+        totalDamageTaken: battle.totalDamageTaken + amount,
+      },
+    });
   },
 }));

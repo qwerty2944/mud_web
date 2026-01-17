@@ -37,6 +37,7 @@ import {
   INJURY_CONFIG,
 } from "@/entities/injury";
 import { getMapById, useMaps, getMapDisplayName } from "@/entities/map";
+import { useRecordBattleResult } from "@/entities/statistics";
 import toast from "react-hot-toast";
 
 interface BattleRewards {
@@ -76,6 +77,9 @@ export function useEndBattle(options: UseEndBattleOptions) {
   const { data: profile } = useProfile(userId);
   const { data: proficiencies } = useProficiencies(userId);
   const { data: maps = [] } = useMaps();
+
+  // 통계 기록 훅
+  const recordBattle = useRecordBattleResult(profile?.id);
 
   const playerLevel = profile?.level ?? 1;
 
@@ -228,7 +232,23 @@ export function useEndBattle(options: UseEndBattleOptions) {
         }
       }
 
-      // 5. 캐시 무효화
+      // 5. 통계 기록
+      if (profile?.id) {
+        try {
+          await recordBattle.mutateAsync({
+            result: "victory",
+            monsterId: currentBattleState.monster?.id,
+            monsterType: currentBattleState.monster?.type,
+            damageDealt: currentBattleState.totalDamageDealt,
+            damageTaken: currentBattleState.totalDamageTaken,
+            criticalCount: currentBattleState.criticalHitCount,
+          });
+        } catch (error) {
+          console.error("[Statistics] Failed to record battle:", error);
+        }
+      }
+
+      // 6. 캐시 무효화
       if (userId) {
         queryClient.invalidateQueries({ queryKey: profileKeys.detail(userId) });
         queryClient.invalidateQueries({ queryKey: inventoryKeys.detail(userId) });
@@ -239,7 +259,7 @@ export function useEndBattle(options: UseEndBattleOptions) {
     } catch (error) {
       console.error("[Battle] Error processing rewards:", error);
     }
-  }, [processRewards, profile, userId, queryClient, onVictory, resetBattle]);
+  }, [processRewards, profile, userId, queryClient, onVictory, resetBattle, recordBattle]);
 
   // 패배 처리
   const handleDefeat = useCallback(async () => {
@@ -302,7 +322,23 @@ export function useEndBattle(options: UseEndBattleOptions) {
         duration: 3000,
       });
 
-      // 7. 캐시 무효화
+      // 7. 통계 기록
+      if (profile?.id) {
+        try {
+          await recordBattle.mutateAsync({
+            result: "defeat",
+            monsterId: monster?.id,
+            monsterType: monster?.type,
+            damageDealt: currentBattleState.totalDamageDealt,
+            damageTaken: currentBattleState.totalDamageTaken,
+            criticalCount: currentBattleState.criticalHitCount,
+          });
+        } catch (statsError) {
+          console.error("[Statistics] Failed to record defeat:", statsError);
+        }
+      }
+
+      // 8. 캐시 무효화
       queryClient.invalidateQueries({ queryKey: profileKeys.detail(userId) });
     } catch (error) {
       console.error("Failed to process defeat:", error);
@@ -321,7 +357,7 @@ export function useEndBattle(options: UseEndBattleOptions) {
     }
 
     onDefeat?.();
-  }, [userId, profile, maps, onDefeat, resetBattle, queryClient]);
+  }, [userId, profile, maps, onDefeat, resetBattle, queryClient, recordBattle]);
 
   // 도주 처리
   const handleFled = useCallback(async () => {
@@ -346,8 +382,24 @@ export function useEndBattle(options: UseEndBattleOptions) {
       }
     }
 
+    // 통계 기록 (도주)
+    if (profile?.id) {
+      try {
+        await recordBattle.mutateAsync({
+          result: "fled",
+          monsterId: currentBattleState.monster?.id,
+          monsterType: currentBattleState.monster?.type,
+          damageDealt: currentBattleState.totalDamageDealt,
+          damageTaken: currentBattleState.totalDamageTaken,
+          criticalCount: currentBattleState.criticalHitCount,
+        });
+      } catch (error) {
+        console.error("[Statistics] Failed to record flee:", error);
+      }
+    }
+
     onFled?.();
-  }, [userId, onFled, resetBattle, queryClient]);
+  }, [userId, profile, onFled, resetBattle, queryClient, recordBattle]);
 
   // 전투 결과에 따른 종료 처리
   // 주의: useBattleStore.getState()로 최신 상태를 읽어서 stale closure 문제 방지
