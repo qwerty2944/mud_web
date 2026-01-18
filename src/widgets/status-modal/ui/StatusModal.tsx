@@ -345,7 +345,7 @@ export function StatusModal({ open, onClose }: StatusModalProps) {
           ) : (
             <div className="grid">
               {/* 상태 탭 */}
-              <div className={`col-start-1 row-start-1 ${activeTab === "status" ? "" : "invisible"}`}>
+              <div className={`col-start-1 row-start-1 ${activeTab === "status" ? "" : "hidden"}`}>
                 <div className="flex flex-col lg:flex-row gap-4">
                   {/* 캐릭터 프리뷰 */}
                   <div className="lg:w-1/2 flex-shrink-0">
@@ -740,7 +740,7 @@ export function StatusModal({ open, onClose }: StatusModalProps) {
               </div>
 
               {/* 특성 탭 */}
-              <div className={`col-start-1 row-start-1 ${activeTab === "traits" ? "" : "invisible"}`}>
+              <div className={`col-start-1 row-start-1 ${activeTab === "traits" ? "" : "hidden"}`}>
                 <div className="space-y-4">
                   {/* 헤더 */}
                   <div
@@ -808,7 +808,7 @@ export function StatusModal({ open, onClose }: StatusModalProps) {
               </div>
 
               {/* 어빌리티 탭 */}
-              <div className={`col-start-1 row-start-1 ${activeTab === "abilities" ? "" : "invisible"}`}>
+              <div className={`col-start-1 row-start-1 ${activeTab === "abilities" ? "" : "hidden"}`}>
                 {equipmentStore.learnedSkills.length === 0 ? (
                   <div
                     className="flex flex-col items-center justify-center h-64 font-mono"
@@ -852,7 +852,7 @@ export function StatusModal({ open, onClose }: StatusModalProps) {
               </div>
 
               {/* 장비 탭 */}
-              <div className={`col-start-1 row-start-1 ${activeTab === "equipment" ? "" : "invisible"}`}>
+              <div className={`col-start-1 row-start-1 ${activeTab === "equipment" ? "" : "hidden"}`}>
                 <div className="space-y-6">
                   {/* 무기 카테고리 */}
                   <div>
@@ -1029,7 +1029,7 @@ export function StatusModal({ open, onClose }: StatusModalProps) {
               </div>
 
               {/* 인벤토리 탭 */}
-              <div className={`col-start-1 row-start-1 ${activeTab === "inventory" ? "" : "invisible"}`}>
+              <div className={`col-start-1 row-start-1 ${activeTab === "inventory" ? "" : "hidden"}`}>
                 <InventoryGrid
                   items={inventoryItems}
                   allItems={allItems}
