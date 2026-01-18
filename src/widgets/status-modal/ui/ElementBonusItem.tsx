@@ -31,11 +31,11 @@ export function ElementBonusItem({ element }: ElementBonusItemProps) {
         ? theme.colors.error
         : theme.colors.textMuted;
 
-  // 보너스 소스 텍스트 (아이콘 대신 텍스트로 표시)
-  const bonusSources: string[] = [];
-  if (element.timeBonus !== 0) bonusSources.push("시간");
-  if (element.weatherBonus !== 0) bonusSources.push("날씨");
-  if (element.terrainBonus !== 0) bonusSources.push("지형");
+  // 보너스 소스 아이콘
+  const sourceIcons: string[] = [];
+  if (element.timeBonus !== 0) sourceIcons.push(element.timeBonus > 0 ? "🌙" : "☀️");
+  if (element.weatherBonus !== 0) sourceIcons.push("🌧️");
+  if (element.terrainBonus !== 0) sourceIcons.push("🌲");
 
   return (
     <div
@@ -58,16 +58,15 @@ export function ElementBonusItem({ element }: ElementBonusItemProps) {
           {element.totalBonus >= 0 ? "+" : ""}
           {element.totalBonus}%
         </span>
-        {/* 보너스 소스 텍스트 */}
+        {/* 보너스 소스 아이콘 */}
         <span
-          className="text-[9px] font-mono leading-none mt-0.5"
+          className="text-[10px] leading-none mt-0.5"
           style={{
-            minHeight: "12px",
-            color: theme.colors.textMuted,
-            visibility: bonusSources.length > 0 ? "visible" : "hidden",
+            minHeight: "14px",
+            visibility: sourceIcons.length > 0 ? "visible" : "hidden",
           }}
         >
-          {bonusSources.length > 0 ? bonusSources.join("/") : "\u00A0"}
+          {sourceIcons.length > 0 ? sourceIcons.join("") : "\u00A0"}
         </span>
       </div>
 
