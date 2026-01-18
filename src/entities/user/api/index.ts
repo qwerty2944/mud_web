@@ -37,7 +37,7 @@ export async function fetchProfile(userId: string): Promise<UserProfile> {
     experience: data.experience || 0,
     gold: data.gold || 0,
     gems: data.gems || 0,
-    fatigue: data.fatigue || 100,
+    fatigue: data.fatigue ?? 100,
     maxFatigue: data.max_fatigue || 100,
     fatigueUpdatedAt: data.fatigue_updated_at || new Date().toISOString(),
     isPremium: data.is_premium || false,
@@ -166,9 +166,9 @@ export async function consumeFatigue(
 
   return {
     success: result.success,
-    remaining: result.remaining ?? 0,
+    remaining: result.fatigue ?? 0,
     consumed: result.consumed ?? amount,
-    max: result.max ?? 100,
+    max: result.maxFatigue ?? 100,
     message: result.message,
   };
 }

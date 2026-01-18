@@ -295,7 +295,7 @@ export function BattlePanel({
             </div>
 
             {/* 서브탭 + 어빌리티 선택 영역 (고정 높이로 레이아웃 시프트 방지) */}
-            <div className="flex flex-col" style={{ height: "240px" }}>
+            <div className="flex flex-col" style={{ height: "180px" }}>
               {/* 서브탭 영역 (고정 높이 예약) */}
               <div className="flex-shrink-0" style={{ minHeight: "40px" }}>
                 {/* 서브탭: 전투 탭일 때 */}
@@ -363,6 +363,7 @@ export function BattlePanel({
             monster={battle.monster}
             drops={pendingDrops}
             skillExpGains={battle.skillExpGains}
+            allAbilities={allAbilities}
             onClose={handleCloseBattle}
           />
         )}
@@ -377,14 +378,21 @@ interface BattleResultProps {
   monster: { nameKo: string; rewards: { exp: number; gold: number } } | null;
   drops?: DropWithItem[];
   skillExpGains?: Record<string, number>;
+  allAbilities?: Ability[];
   onClose: () => void;
 }
 
-function BattleResult({ result, monster, drops = [], skillExpGains = {}, onClose }: BattleResultProps) {
+function BattleResult({ result, monster, drops = [], skillExpGains = {}, allAbilities = [], onClose }: BattleResultProps) {
   const { theme } = useThemeStore();
 
+  // 스킬 ID로 한국어 이름 찾기
+  const getSkillName = (skillId: string): string => {
+    const ability = allAbilities.find((a) => a.id === skillId);
+    return ability?.nameKo ?? skillId;
+  };
+
   return (
-    <div className="text-center py-6 font-mono">
+    <div className="text-center py-4 font-mono">
       <div
         style={{
           color:
@@ -502,7 +510,7 @@ function BattleResult({ result, monster, drops = [], skillExpGains = {}, onClose
                 key={skillId}
                 className="flex items-center justify-between text-sm"
               >
-                <span style={{ color: theme.colors.text }}>{skillId}</span>
+                <span style={{ color: theme.colors.text }}>{getSkillName(skillId)}</span>
                 <span style={{ color: theme.colors.primary }}>+{amount}</span>
               </div>
             ))}

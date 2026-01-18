@@ -35,6 +35,7 @@ export interface AbilitiesTabProps {
   theme: Theme;
   learnedSkills: string[];
   abilities: import("@/entities/ability").Ability[];
+  userAbilities?: import("@/entities/ability").UserAbilities;
 }
 
 export interface EquipmentTabProps {

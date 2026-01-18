@@ -10,7 +10,7 @@ import {
 } from "@/entities/user";
 import { usePersonalInventory } from "@/entities/inventory";
 import { useItems } from "@/entities/item";
-import { useAbilities } from "@/entities/ability";
+import { useAbilities, useUserAbilities } from "@/entities/ability";
 import { useEquipmentStore } from "@/application/stores";
 import { useThemeStore } from "@/shared/config";
 import { calculateDerivedStats } from "@/entities/character";
@@ -144,6 +144,7 @@ export function StatusModal({ open, onClose }: StatusModalProps) {
   const inventoryMaxSlots = inventoryData?.maxSlots ?? 20;
   const { data: allItems = [] } = useItems();
   const { data: abilities = [] } = useAbilities();
+  const { data: userAbilities } = useUserAbilities(session?.user?.id);
 
   // 장비 스토어
   const equipmentStore = useEquipmentStore();
@@ -370,6 +371,7 @@ export function StatusModal({ open, onClose }: StatusModalProps) {
                     theme={theme}
                     learnedSkills={equipmentStore.learnedSkills}
                     abilities={abilities}
+                    userAbilities={userAbilities}
                   />
                 </Tabs.Content>
 
