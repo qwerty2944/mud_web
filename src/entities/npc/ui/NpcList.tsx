@@ -7,12 +7,14 @@ interface NpcListProps {
   mapId: string;
   onSelectNpc: (npcId: string) => void;
   disabled?: boolean;
+  /** compact 모드 (CollapsibleSection 안에서 사용 시) */
+  compact?: boolean;
 }
 
 /**
  * 현재 맵의 NPC 목록 표시
  */
-export function NpcList({ mapId, onSelectNpc, disabled }: NpcListProps) {
+export function NpcList({ mapId, onSelectNpc, disabled, compact = false }: NpcListProps) {
   const { theme } = useThemeStore();
   const { data: npcs = [] } = useNpcsByMap(mapId);
 
@@ -20,25 +22,28 @@ export function NpcList({ mapId, onSelectNpc, disabled }: NpcListProps) {
 
   return (
     <div
-      className="p-3"
+      className={compact ? "" : "p-3"}
       style={{
-        background: theme.colors.bgLight,
-        border: `1px solid ${theme.colors.border}`,
+        background: compact ? "transparent" : theme.colors.bgLight,
+        border: compact ? "none" : `1px solid ${theme.colors.border}`,
       }}
     >
-      <h3
-        className="text-xs font-mono font-medium mb-2 flex items-center gap-1.5"
-        style={{ color: theme.colors.textMuted }}
-      >
-        <span>👤</span>
-        <span>NPC</span>
-        <span
-          className="ml-auto px-1.5 py-0.5 text-[10px]"
-          style={{ background: theme.colors.bgDark }}
+      {/* 헤더 (compact 모드에서는 숨김) */}
+      {!compact && (
+        <h3
+          className="text-xs font-mono font-medium mb-2 flex items-center gap-1.5"
+          style={{ color: theme.colors.textMuted }}
         >
-          {npcs.length}
-        </span>
-      </h3>
+          <span>👤</span>
+          <span>NPC</span>
+          <span
+            className="ml-auto px-1.5 py-0.5 text-[10px]"
+            style={{ background: theme.colors.bgDark }}
+          >
+            {npcs.length}
+          </span>
+        </h3>
+      )}
       <div className="space-y-1">
         {npcs.map((npc) => (
           <button

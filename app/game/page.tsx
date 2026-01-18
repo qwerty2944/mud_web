@@ -34,6 +34,7 @@ import { useStartBattle, useEndBattle } from "@/features/combat";
 import { useUpdateLocation } from "@/features/player";
 import { useCheckDailyLogin } from "@/features/login-streak";
 import { useThemeStore } from "@/application/stores";
+import { CollapsibleSection } from "@/shared/ui";
 import type { DailyLoginResult } from "@/entities/user";
 
 // 동적 임포트: 조건부 렌더링 컴포넌트 (번들 최적화)
@@ -482,45 +483,59 @@ export default function GamePage() {
         </div>
 
         {/* 사이드바 */}
-        <div className="flex-none lg:w-64 flex flex-col gap-3 min-h-0 max-h-[50vh] lg:max-h-full overflow-y-auto">
+        <div className="flex-none lg:w-64 flex flex-col gap-2 min-h-0 max-h-[50vh] lg:max-h-full overflow-y-auto">
           {/* 접속 유저 */}
-          <PlayerList currentUserId={session.user.id} />
+          <CollapsibleSection id="sidebar_players" title="접속 유저" icon="👥" defaultOpen={true}>
+            <PlayerList currentUserId={session.user.id} compact />
+          </CollapsibleSection>
 
           {/* 몬스터 목록 */}
-          <MonsterList
-            mapId={mapId || "starting_village"}
-            playerLevel={profile.level}
-            onSelectMonster={handleSelectMonster}
-            disabled={battle.isInBattle}
-          />
+          <CollapsibleSection id="sidebar_monsters" title="몬스터" icon="👹" defaultOpen={true}>
+            <MonsterList
+              mapId={mapId || "starting_village"}
+              playerLevel={profile.level}
+              onSelectMonster={handleSelectMonster}
+              disabled={battle.isInBattle}
+              compact
+            />
+          </CollapsibleSection>
 
           {/* NPC 목록 */}
-          <NpcList
-            mapId={mapId || "starting_village"}
-            onSelectNpc={handleSelectNpc}
-            disabled={battle.isInBattle}
-          />
+          <CollapsibleSection id="sidebar_npcs" title="NPC" icon="🧑‍🤝‍🧑" defaultOpen={true}>
+            <NpcList
+              mapId={mapId || "starting_village"}
+              onSelectNpc={handleSelectNpc}
+              disabled={battle.isInBattle}
+              compact
+            />
+          </CollapsibleSection>
 
-          {/* 월드맵 버튼 */}
-          <button
-            onClick={() => setShowWorldMap(true)}
-            className="w-full flex-shrink-0 px-3 py-2 text-sm font-mono font-medium transition-colors flex items-center justify-center gap-2"
-            style={{
-              background: theme.colors.bgLight,
-              border: `1px solid ${theme.colors.border}`,
-              color: theme.colors.text,
-            }}
-          >
-            <span>🗺️</span>
-            <span>월드맵</span>
-          </button>
+          {/* 이동 */}
+          <CollapsibleSection id="sidebar_travel" title="이동" icon="🗺️" defaultOpen={true}>
+            <div className="space-y-2">
+              {/* 월드맵 버튼 */}
+              <button
+                onClick={() => setShowWorldMap(true)}
+                className="w-full px-3 py-2 text-sm font-mono font-medium transition-colors flex items-center justify-center gap-2"
+                style={{
+                  background: theme.colors.bgLight,
+                  border: `1px solid ${theme.colors.border}`,
+                  color: theme.colors.text,
+                  borderRadius: "4px",
+                }}
+              >
+                <span>🌍</span>
+                <span>월드맵 보기</span>
+              </button>
 
-          {/* 맵 이동 */}
-          <MapSelector
-            currentMapId={mapId || "starting_village"}
-            onMapChange={handleMapChange}
-            playerLevel={profile.level}
-          />
+              {/* 맵 이동 */}
+              <MapSelector
+                currentMapId={mapId || "starting_village"}
+                onMapChange={handleMapChange}
+                playerLevel={profile.level}
+              />
+            </div>
+          </CollapsibleSection>
         </div>
       </div>
 

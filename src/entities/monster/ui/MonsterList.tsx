@@ -9,6 +9,8 @@ interface MonsterListProps {
   playerLevel: number;
   onSelectMonster: (monster: Monster) => void;
   disabled?: boolean;
+  /** compact 모드 (CollapsibleSection 안에서 사용 시) */
+  compact?: boolean;
 }
 
 export function MonsterList({
@@ -16,6 +18,7 @@ export function MonsterList({
   playerLevel,
   onSelectMonster,
   disabled = false,
+  compact = false,
 }: MonsterListProps) {
   const { theme } = useThemeStore();
   const { data: monsters = [], isLoading } = useMonstersByMap(mapId);
@@ -59,28 +62,30 @@ export function MonsterList({
     <div
       className="flex flex-col overflow-hidden flex-shrink-0"
       style={{
-        background: theme.colors.bg,
-        border: `1px solid ${theme.colors.border}`,
+        background: compact ? "transparent" : theme.colors.bg,
+        border: compact ? "none" : `1px solid ${theme.colors.border}`,
       }}
     >
-      {/* 헤더 */}
-      <div
-        className="px-3 py-2 flex items-center justify-between border-b"
-        style={{
-          background: theme.colors.bgLight,
-          borderColor: theme.colors.border,
-        }}
-      >
-        <span className="text-sm font-mono font-medium" style={{ color: theme.colors.text }}>
-          ⚔️ 전투
-        </span>
-        <span className="text-xs font-mono" style={{ color: theme.colors.textMuted }}>
-          {monsters.length}종 출현
-        </span>
-      </div>
+      {/* 헤더 (compact 모드에서는 숨김) */}
+      {!compact && (
+        <div
+          className="px-3 py-2 flex items-center justify-between border-b"
+          style={{
+            background: theme.colors.bgLight,
+            borderColor: theme.colors.border,
+          }}
+        >
+          <span className="text-sm font-mono font-medium" style={{ color: theme.colors.text }}>
+            ⚔️ 전투
+          </span>
+          <span className="text-xs font-mono" style={{ color: theme.colors.textMuted }}>
+            {monsters.length}종 출현
+          </span>
+        </div>
+      )}
 
       {/* 몬스터 목록 */}
-      <div className="p-2 space-y-2 max-h-40 overflow-y-auto flex-1 min-h-0">
+      <div className={compact ? "space-y-2 max-h-40 overflow-y-auto" : "p-2 space-y-2 max-h-40 overflow-y-auto flex-1 min-h-0"}>
         {monsters.map((monster) => {
           const levelDiff = monster.level - playerLevel;
           const diffColor =

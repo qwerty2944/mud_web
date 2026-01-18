@@ -56,6 +56,7 @@ interface BattleRewards {
     levelsGained: number;
   };
   karmaChange?: number;
+  skillExpGains?: Record<string, number>;  // 스킬 경험치 획득
 }
 
 interface UseEndBattleOptions {
@@ -130,7 +131,12 @@ export function useEndBattle(options: UseEndBattleOptions) {
       currentBattle.monster.level
     );
 
-    return { exp, gold, drops, proficiencyGain, karmaChange };
+    // 스킬 경험치 획득 (battleStore에서 추적)
+    const skillExpGains = Object.keys(currentBattle.skillExpGains).length > 0
+      ? currentBattle.skillExpGains
+      : undefined;
+
+    return { exp, gold, drops, proficiencyGain, karmaChange, skillExpGains };
   }, [playerLevel, proficiencies]);
 
   // 승리 처리 (preRolledDrops: UI에서 미리 표시된 드랍 아이템)

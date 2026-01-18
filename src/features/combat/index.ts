@@ -66,6 +66,9 @@ export {
   type ParryResult,
 } from "./lib/damage";
 
+// Experience
+export { grantSkillExperience } from "./lib/experience";
+
 // Messages
 export {
   getAttackMessage,

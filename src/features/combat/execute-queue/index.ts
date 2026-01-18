@@ -14,11 +14,14 @@ import {
 } from "../lib/monsterAi";
 import { applyDamageVariance, calculateStealthAmbushDamage } from "../lib/damage";
 import { getAttackMessage } from "../lib/messages";
+import { grantSkillExperience } from "../lib/experience";
 import { isStealthed, breakStealth } from "@/entities/status";
 
 // ============ 타입 정의 ============
 
 interface UseExecuteQueueOptions {
+  /** 유저 ID (스킬 경험치 부여용) */
+  userId: string;
   /** 플레이어 스탯 */
   characterStats: CharacterStats;
   /** 숙련도 정보 */
@@ -44,6 +47,7 @@ interface ExecuteQueueResult {
  */
 export function useExecuteQueue(options: UseExecuteQueueOptions) {
   const {
+    userId,
     characterStats,
     proficiencies,
     monsterAbilitiesData,
@@ -54,11 +58,13 @@ export function useExecuteQueue(options: UseExecuteQueueOptions) {
   const [isExecuting, setIsExecuting] = useState(false);
 
   // Refs for stable values (avoid infinite loops)
+  const userIdRef = useRef(userId);
   const characterStatsRef = useRef(characterStats);
   const proficienciesRef = useRef(proficiencies);
   const monsterAbilitiesDataRef = useRef(monsterAbilitiesData);
 
   // Update refs when values change
+  userIdRef.current = userId;
   characterStatsRef.current = characterStats;
   proficienciesRef.current = proficiencies;
   monsterAbilitiesDataRef.current = monsterAbilitiesData;
@@ -219,6 +225,16 @@ export function useExecuteQueue(options: UseExecuteQueueOptions) {
           message,
           action.ability.category
         );
+
+        // 공격 성공 시 스킬 경험치 부여
+        if (damage > 0 && action.ability.grantsExpTo && action.ability.grantsExpTo.length > 0) {
+          // 비동기로 경험치 부여 (전투 흐름 blocking 안 함)
+          grantSkillExperience(
+            userIdRef.current,
+            action.ability.grantsExpTo,
+            action.ability.source
+          );
+        }
 
         // 공격 후 은신 해제
         if (playerWasStealthed) {

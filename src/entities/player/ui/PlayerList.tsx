@@ -11,6 +11,8 @@ interface PlayerListProps {
   onWhisper?: (target: OnlineUser) => void;
   onViewProfile?: (target: OnlineUser) => void;
   canDuel?: boolean;
+  /** compact 모드 (CollapsibleSection 안에서 사용 시) */
+  compact?: boolean;
 }
 
 interface ContextMenuState {
@@ -25,6 +27,7 @@ export function PlayerList({
   onWhisper,
   onViewProfile,
   canDuel = true,
+  compact = false,
 }: PlayerListProps) {
   const { theme } = useThemeStore();
   const { onlineUsers } = useGameStore();
@@ -104,34 +107,36 @@ export function PlayerList({
       <div
         className="overflow-hidden"
         style={{
-          background: theme.colors.bg,
-          border: `1px solid ${theme.colors.border}`,
+          background: compact ? "transparent" : theme.colors.bg,
+          border: compact ? "none" : `1px solid ${theme.colors.border}`,
         }}
       >
-        {/* 헤더 */}
-        <div
-          className="px-3 py-2 flex items-center justify-between border-b"
-          style={{
-            background: theme.colors.bgLight,
-            borderColor: theme.colors.border,
-          }}
-        >
-          <span className="text-sm font-mono font-medium" style={{ color: theme.colors.text }}>
-            👥 접속 유저
-          </span>
-          <span
-            className="text-xs px-2 py-0.5 font-mono"
+        {/* 헤더 (compact 모드에서는 숨김) */}
+        {!compact && (
+          <div
+            className="px-3 py-2 flex items-center justify-between border-b"
             style={{
-              background: `${theme.colors.primary}20`,
-              color: theme.colors.primary,
+              background: theme.colors.bgLight,
+              borderColor: theme.colors.border,
             }}
           >
-            {onlineUsers.length}명
-          </span>
-        </div>
+            <span className="text-sm font-mono font-medium" style={{ color: theme.colors.text }}>
+              👥 접속 유저
+            </span>
+            <span
+              className="text-xs px-2 py-0.5 font-mono"
+              style={{
+                background: `${theme.colors.primary}20`,
+                color: theme.colors.primary,
+              }}
+            >
+              {onlineUsers.length}명
+            </span>
+          </div>
+        )}
 
         {/* 유저 목록 */}
-        <div className="p-2 space-y-1 max-h-60 overflow-y-auto">
+        <div className={compact ? "space-y-1 max-h-40 overflow-y-auto" : "p-2 space-y-1 max-h-60 overflow-y-auto"}>
           {onlineUsers.length === 0 ? (
             <div className="text-center text-xs py-2 font-mono" style={{ color: theme.colors.textMuted }}>
               접속자 없음

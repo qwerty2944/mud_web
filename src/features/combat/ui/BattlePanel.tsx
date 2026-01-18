@@ -82,6 +82,7 @@ export function BattlePanel({
 
   // 큐 실행 훅
   const { executeQueue, isExecuting } = useExecuteQueue({
+    userId,
     characterStats,
     proficiencies,
     monsterAbilitiesData,
@@ -361,6 +362,7 @@ export function BattlePanel({
             result={battle.result}
             monster={battle.monster}
             drops={pendingDrops}
+            skillExpGains={battle.skillExpGains}
             onClose={handleCloseBattle}
           />
         )}
@@ -374,10 +376,11 @@ interface BattleResultProps {
   result: "victory" | "defeat" | "fled" | "ongoing";
   monster: { nameKo: string; rewards: { exp: number; gold: number } } | null;
   drops?: DropWithItem[];
+  skillExpGains?: Record<string, number>;
   onClose: () => void;
 }
 
-function BattleResult({ result, monster, drops = [], onClose }: BattleResultProps) {
+function BattleResult({ result, monster, drops = [], skillExpGains = {}, onClose }: BattleResultProps) {
   const { theme } = useThemeStore();
 
   return (
@@ -473,6 +476,39 @@ function BattleResult({ result, monster, drops = [], onClose }: BattleResultProp
           </div>
         )}
       </div>
+
+      {/* 스킬 경험치 획득 표시 (승리/패배/도주 모두) */}
+      {Object.keys(skillExpGains).length > 0 && (
+        <div
+          className="mt-4 mx-auto max-w-xs"
+          style={{
+            background: theme.colors.bgDark,
+            border: `1px solid ${theme.colors.border}`,
+            borderRadius: "4px",
+          }}
+        >
+          <div
+            className="text-xs px-3 py-2 border-b"
+            style={{
+              color: theme.colors.textMuted,
+              borderColor: theme.colors.border,
+            }}
+          >
+            📖 스킬 경험치
+          </div>
+          <div className="px-3 py-2 space-y-1">
+            {Object.entries(skillExpGains).map(([skillId, amount]) => (
+              <div
+                key={skillId}
+                className="flex items-center justify-between text-sm"
+              >
+                <span style={{ color: theme.colors.text }}>{skillId}</span>
+                <span style={{ color: theme.colors.primary }}>+{amount}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       <button
         onClick={onClose}

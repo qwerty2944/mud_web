@@ -112,6 +112,9 @@ export interface BattleState {
 
   // 도주 확률 보너스용 (연속 빗나감 횟수)
   consecutiveMisses: number;
+
+  // 스킬 경험치 획득 추적 (전투 결과에 표시용)
+  skillExpGains: Record<string, number>;
 }
 
 // 방어 행동 타입
@@ -157,6 +160,7 @@ const initialBattleState: BattleState = {
   totalDamageDealt: 0,
   totalDamageTaken: 0,
   criticalHitCount: 0,
+  skillExpGains: {},
   consecutiveMisses: 0,
 };
 
@@ -248,6 +252,9 @@ interface BattleStore {
   // 통계 추적
   addDamageDealt: (amount: number, isCritical: boolean) => void;
   addDamageTaken: (amount: number) => void;
+
+  // 스킬 경험치 추적
+  addSkillExpGain: (skillId: string, amount: number) => void;
 }
 
 // ============ 스토어 구현 ============
@@ -335,6 +342,7 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
         totalDamageTaken: 0,
         criticalHitCount: 0,
         consecutiveMisses: 0,
+        skillExpGains: {},
       },
     });
   },
@@ -1158,6 +1166,21 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
       battle: {
         ...battle,
         totalDamageTaken: battle.totalDamageTaken + amount,
+      },
+    });
+  },
+
+  // 스킬 경험치 추적
+  addSkillExpGain: (skillId, amount) => {
+    const { battle } = get();
+    const currentGain = battle.skillExpGains[skillId] || 0;
+    set({
+      battle: {
+        ...battle,
+        skillExpGains: {
+          ...battle.skillExpGains,
+          [skillId]: currentGain + amount,
+        },
       },
     });
   },
