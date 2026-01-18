@@ -45,7 +45,7 @@ export async function fetchProfile(userId: string): Promise<UserProfile> {
     character: data.character || null,
     appearance: data.appearance || null,
     buffs: data.buffs || [],
-    currentMapId: data.current_map_id || "town_square",
+    currentMapId: data.current_map_id || "starting_village",
     whisperCharges: data.whisper_charges || 0,
     crystalTier: (data.crystal_tier as CrystalTier) || null,
     currentHp: data.current_hp ?? null,

@@ -103,14 +103,15 @@ created_at, updated_at
 
 | ID | 이름 | 레벨 | 안전 | PvP | 연결 |
 |----|------|------|------|-----|------|
-| `town_square` | 마을 광장 | 1 | O | X | 수련장, 숲 입구, 상점가 |
-| `training_ground` | 수련장 | 1 | O | X | 마을 광장, 숲 입구 |
-| `starting_village` | 시작 마을 | 1 | O | X | 숲 입구, 시장 광장 |
+| `starting_village` | 시작 마을 | 1 | O | X | 수련장, 숲 입구, 시장 광장 |
+| `training_ground` | 수련장 | 1 | O | X | 시작 마을, 숲 입구 |
 | `market_square` | 시장 광장 | 1 | O | X | 시작 마을, 투기장 |
-| `forest_entrance` | 숲 입구 | 1 | X | X | 마을들, 깊은 숲 |
+| `forest_entrance` | 숲 입구 | 1 | X | X | 시작 마을, 수련장, 깊은 숲 |
 | `deep_forest` | 깊은 숲 | 5 | X | X | 숲 입구, 고대 유적 |
 | `ancient_ruins` | 고대 유적 | 10 | X | X | 깊은 숲 |
 | `arena` | 투기장 | 10 | X | O | 시장 광장 |
+
+**기본 시작 맵**: `starting_village` (시작 마을)
 
 ### 5.2 맵 타입
 - **안전지대**: 몬스터 없음, 전투 불가

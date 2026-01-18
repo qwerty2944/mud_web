@@ -161,7 +161,7 @@ export default function GamePage() {
   // 프로필에서 마지막 위치 로드 (초기 로드 시)
   useEffect(() => {
     if (profile && maps.length > 0 && mapId === null) {
-      const savedMapId = profile.currentMapId || "town_square";
+      const savedMapId = profile.currentMapId || "starting_village";
       const savedMap = getMapById(maps, savedMapId);
       if (savedMap) {
         setMapId(savedMapId);
@@ -172,9 +172,9 @@ export default function GamePage() {
         });
       } else {
         // 저장된 맵이 없으면 기본 위치로
-        const defaultMap = getMapById(maps, "town_square");
+        const defaultMap = getMapById(maps, "starting_village");
         if (defaultMap) {
-          setMapId("town_square");
+          setMapId("starting_village");
           setCurrentMap({
             id: defaultMap.id,
             name: getMapDisplayName(defaultMap),
@@ -214,7 +214,7 @@ export default function GamePage() {
   }, [mapId, maps, setThemeByTerrain]);
 
   const { sendMessage } = useRealtimeChat({
-    mapId: mapId || "town_square",
+    mapId: mapId || "starting_village",
     userId: session?.user?.id || "",
     characterName: myCharacterName,
   });
@@ -240,7 +240,7 @@ export default function GamePage() {
       } catch (error) {
         console.error("Failed to move:", error);
         // 피로도 부족 등의 에러 시 이전 위치로 롤백
-        const prevMapId = profile?.currentMapId || "town_square";
+        const prevMapId = profile?.currentMapId || "starting_village";
         const prevMap = getMapById(maps, prevMapId);
         if (prevMap) {
           setMapId(prevMapId);
@@ -409,7 +409,7 @@ export default function GamePage() {
           {/* 왼쪽: 맵 아이콘 + 정보 */}
           <div className="flex items-center gap-2 min-w-0 flex-1">
             <span className="text-lg sm:text-xl flex-shrink-0">
-              {getMapById(maps, mapId || "town_square")?.icon || "🏠"}
+              {getMapById(maps, mapId || "starting_village")?.icon || "🏠"}
             </span>
             <div className="min-w-0 flex-1">
               <h1
@@ -488,7 +488,7 @@ export default function GamePage() {
 
           {/* 몬스터 목록 */}
           <MonsterList
-            mapId={mapId || "town_square"}
+            mapId={mapId || "starting_village"}
             playerLevel={profile.level}
             onSelectMonster={handleSelectMonster}
             disabled={battle.isInBattle}
@@ -517,7 +517,7 @@ export default function GamePage() {
 
           {/* 맵 이동 */}
           <MapSelector
-            currentMapId={mapId || "town_square"}
+            currentMapId={mapId || "starting_village"}
             onMapChange={handleMapChange}
             playerLevel={profile.level}
           />
@@ -540,7 +540,7 @@ export default function GamePage() {
       <WorldMapModal
         open={showWorldMap}
         onClose={() => setShowWorldMap(false)}
-        currentMapId={mapId || "town_square"}
+        currentMapId={mapId || "starting_village"}
         onMapSelect={handleMapChange}
         playerLevel={profile.level}
       />
