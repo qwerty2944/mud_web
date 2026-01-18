@@ -3,6 +3,11 @@
 import { useMemo } from "react";
 import type { AbilitiesTabProps } from "./types";
 import type { AbilityProgress } from "@/entities/ability";
+import {
+  CATEGORY_NAMES,
+  groupAbilitiesByCategory,
+} from "@/entities/ability/lib/abilityHelpers";
+import { AbilityCard } from "./AbilityCard";
 
 // 어빌리티 진행도 가져오기 (레벨과 경험치)
 function getAbilityProgress(
@@ -57,6 +62,11 @@ export function AbilitiesTab({ theme, learnedSkills, abilities, userAbilities, i
     return Array.from(combined);
   }, [dbLearnedSkills, learnedSkills, inProgressSkills]);
 
+  // 카테고리별 그룹핑
+  const groupedSkills = useMemo(() => {
+    return groupAbilitiesByCategory(allDisplaySkills, abilities, userAbilities);
+  }, [allDisplaySkills, abilities, userAbilities]);
+
   // 로딩 상태
   if (isLoading) {
     return (
@@ -81,60 +91,54 @@ export function AbilitiesTab({ theme, learnedSkills, abilities, userAbilities, i
     );
   }
 
+  // 카테고리별 렌더링
+  const categories = ["combat", "magic", "life"] as const;
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-      {allDisplaySkills.map((skillId) => {
-        const ability = abilities.find((a) => a.id === skillId);
-        const progress = getAbilityProgress(userAbilities, skillId);
-        const isInProgress = inProgressSkills.includes(skillId); // 레벨 0, 경험치 있음
+    <div className="space-y-6">
+      {categories.map((category) => {
+        const skillIds = groupedSkills[category];
+        if (skillIds.length === 0) return null;
 
         return (
-          <div
-            key={skillId}
-            className="p-4 flex items-start gap-3"
-            style={{
-              background: theme.colors.bgDark,
-              border: `1px solid ${theme.colors.border}`,
-              opacity: isInProgress ? 0.5 : 1,
-            }}
-          >
-            <span className="text-3xl" style={{ opacity: isInProgress ? 0.6 : 1 }}>
-              {ability?.icon ?? "📖"}
-            </span>
-            <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-2">
-                <span className="font-mono font-medium" style={{ color: theme.colors.text }}>
-                  {ability?.nameKo ?? skillId}
-                </span>
-                {progress && (
-                  <span
-                    className="text-xs font-mono px-1.5 py-0.5"
-                    style={{
-                      background: isInProgress ? theme.colors.bgLight : `${theme.colors.primary}20`,
-                      color: isInProgress ? theme.colors.textMuted : theme.colors.primary,
-                    }}
-                  >
-                    Lv.{progress.level}
-                  </span>
-                )}
-              </div>
-              {ability?.description?.ko && (
-                <div
-                  className="text-sm font-mono mt-1"
-                  style={{ color: theme.colors.textMuted }}
-                >
-                  {ability.description.ko}
-                </div>
-              )}
-              {/* 진행 중인 스킬의 경험치 표시 */}
-              {isInProgress && progress && (
-                <div
-                  className="text-xs font-mono mt-1"
-                  style={{ color: theme.colors.textMuted }}
-                >
-                  경험치: {progress.exp}
-                </div>
-              )}
+          <div key={category}>
+            {/* 카테고리 헤더 */}
+            <div className="flex items-center gap-2 mb-3">
+              <h3
+                className="font-mono font-medium"
+                style={{ color: theme.colors.text }}
+              >
+                {CATEGORY_NAMES[category]}
+              </h3>
+              <span
+                className="text-xs font-mono px-2 py-0.5 rounded"
+                style={{
+                  background: `${theme.colors.primary}20`,
+                  color: theme.colors.primary,
+                }}
+              >
+                {skillIds.length}
+              </span>
+            </div>
+
+            {/* 스킬 그리드 */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {skillIds.map((skillId) => {
+                const ability = abilities.find((a) => a.id === skillId);
+                const progress = getAbilityProgress(userAbilities, skillId);
+                const isInProgress = inProgressSkills.includes(skillId);
+
+                return (
+                  <AbilityCard
+                    key={skillId}
+                    ability={ability}
+                    skillId={skillId}
+                    progress={progress}
+                    isInProgress={isInProgress}
+                    theme={theme}
+                  />
+                );
+              })}
             </div>
           </div>
         );
