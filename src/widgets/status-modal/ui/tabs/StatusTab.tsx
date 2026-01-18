@@ -182,7 +182,10 @@ function HpBar({ theme, profile, derivedStats }: {
             {currentHp} / {maxHp}
           </span>
           {hasInjury && (
-            <span className="text-xs font-mono ml-2" style={{ color: theme.colors.warning }}>
+            <span
+              className="text-xs font-mono ml-2 animate-pulse"
+              style={{ color: theme.colors.warning }}
+            >
               (회복: {recoverableHp})
             </span>
           )}
@@ -205,19 +208,49 @@ function HpBar({ theme, profile, derivedStats }: {
         />
         {hasInjury && (
           <div
-            className="h-full"
+            className="h-full injury-pulse"
             style={{
               width: `${injuryPercent}%`,
-              background: "#4a1515",
             }}
           />
         )}
       </div>
       {hasInjury && (
-        <div className="text-xs font-mono mt-1" style={{ color: theme.colors.warning }}>
-          🩹 부상으로 HP 회복 상한 -{Math.floor(derivedStats.injuryRecoveryReduction * 100)}%
+        <div
+          className="text-xs font-mono mt-1 flex items-center gap-1 animate-pulse"
+          style={{ color: theme.colors.warning }}
+        >
+          <span className="injury-icon-pulse">🩹</span>
+          부상으로 HP 회복 상한 -{Math.floor(derivedStats.injuryRecoveryReduction * 100)}%
         </div>
       )}
+      {/* 부상 점멸 애니메이션 */}
+      <style jsx>{`
+        .injury-pulse {
+          animation: injuryPulse 1.5s ease-in-out infinite;
+        }
+        .injury-icon-pulse {
+          animation: iconPulse 1s ease-in-out infinite;
+        }
+        @keyframes injuryPulse {
+          0%, 100% {
+            background: #4a1515;
+          }
+          50% {
+            background: #6b2020;
+          }
+        }
+        @keyframes iconPulse {
+          0%, 100% {
+            opacity: 1;
+            transform: scale(1);
+          }
+          50% {
+            opacity: 0.6;
+            transform: scale(1.1);
+          }
+        }
+      `}</style>
     </div>
   );
 }
