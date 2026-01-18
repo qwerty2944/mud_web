@@ -93,7 +93,7 @@ export function CollapsibleSection({
       </Collapsible.Trigger>
 
       <Collapsible.Content
-        className="overflow-hidden data-[state=open]:animate-slideDown data-[state=closed]:animate-slideUp"
+        className="collapsible-content overflow-hidden"
         style={{
           background: theme.colors.bgDark,
           border: `1px solid ${theme.colors.border}`,
@@ -105,34 +105,30 @@ export function CollapsibleSection({
       </Collapsible.Content>
 
       <style jsx global>{`
-        @keyframes slideDown {
+        .collapsible-content[data-state="open"] {
+          animation: collapsibleSlideDown 150ms ease-out;
+        }
+
+        .collapsible-content[data-state="closed"] {
+          animation: collapsibleSlideUp 150ms ease-out;
+        }
+
+        @keyframes collapsibleSlideDown {
           from {
             height: 0;
-            opacity: 0;
           }
           to {
             height: var(--radix-collapsible-content-height);
-            opacity: 1;
           }
         }
 
-        @keyframes slideUp {
+        @keyframes collapsibleSlideUp {
           from {
             height: var(--radix-collapsible-content-height);
-            opacity: 1;
           }
           to {
             height: 0;
-            opacity: 0;
           }
-        }
-
-        [data-state="open"] {
-          animation: slideDown 200ms ease-out;
-        }
-
-        [data-state="closed"] {
-          animation: slideUp 200ms ease-out;
         }
       `}</style>
     </Collapsible.Root>
