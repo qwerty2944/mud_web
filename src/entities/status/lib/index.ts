@@ -190,6 +190,31 @@ export function isSilenced(effects: StatusEffect[]): boolean {
 }
 
 /**
+ * 은신 상태 확인
+ */
+export function isStealthed(effects: StatusEffect[]): boolean {
+  return hasStatus(effects, "stealth");
+}
+
+/**
+ * 은신 해제 (공격 시 또는 피격 시 호출)
+ * @returns 은신이 해제된 경우 true
+ */
+export function breakStealth(effects: StatusEffect[]): {
+  effects: StatusEffect[];
+  wasStealthed: boolean;
+} {
+  const wasStealthed = isStealthed(effects);
+  if (!wasStealthed) {
+    return { effects, wasStealthed: false };
+  }
+  return {
+    effects: removeStatusByType(effects, "stealth"),
+    wasStealthed: true,
+  };
+}
+
+/**
  * 버프만 필터
  */
 export function getBuffs(effects: StatusEffect[]): StatusEffect[] {

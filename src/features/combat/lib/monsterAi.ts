@@ -284,6 +284,12 @@ export function buildMonsterQueue(
   monsterAbilitiesData: Map<string, RawMonsterAbility>
 ): QueuedAction[] {
   const queue: QueuedAction[] = [];
+
+  // passive 몬스터는 공격하지 않음 (훈련용 허수아비 등)
+  if (context.monster.behavior === "passive") {
+    return queue;
+  }
+
   let remainingAp = context.monsterMaxAp;
 
   const monsterAbilities = context.monster.abilities || [];
@@ -421,5 +427,139 @@ export function getMonsterBuffEffect(abilityData: RawMonsterAbility): {
     buff: abilityData.selfBuff,
     value: abilityData.buffValue,
     duration: abilityData.buffDuration,
+  };
+}
+
+// ============ 은신 감지 시스템 ============
+
+/**
+ * 은신 감지 결과 타입
+ */
+export type StealthTargetingMode = "normal" | "confused" | "searching";
+
+export interface StealthDetectionResult {
+  targetingMode: StealthTargetingMode;
+  hitPenalty: number; // 명중 페널티 (0-50%)
+  detectedPlayer: boolean;
+}
+
+/**
+ * 몬스터의 은신 감지 체크
+ * 몬스터 speed 스탯을 감지력으로 활용
+ *
+ * @param monsterSpeed 몬스터 speed 스탯 (감지력)
+ * @param isPlayerStealthed 플레이어 은신 여부
+ * @returns 감지 결과
+ */
+export function getStealthDetectionResult(
+  monsterSpeed: number,
+  isPlayerStealthed: boolean
+): StealthDetectionResult {
+  // 은신 상태가 아니면 정상 전투
+  if (!isPlayerStealthed) {
+    return {
+      targetingMode: "normal",
+      hitPenalty: 0,
+      detectedPlayer: true,
+    };
+  }
+
+  // 감지 확률: speed * 2 (최대 50%)
+  const detectionChance = Math.min(50, monsterSpeed * 2);
+  const roll = Math.random() * 100;
+
+  if (roll < detectionChance) {
+    // 감지 성공: 10% 페널티만
+    return {
+      targetingMode: "normal",
+      hitPenalty: 10,
+      detectedPlayer: true,
+    };
+  }
+
+  // 감지 실패: speed에 따라 행동 결정
+  if (monsterSpeed >= 15) {
+    // 부분 감지: 대략적인 위치 파악
+    return {
+      targetingMode: "searching",
+      hitPenalty: 30,
+      detectedPlayer: false,
+    };
+  }
+
+  // 완전 실패: 혼란
+  return {
+    targetingMode: "confused",
+    hitPenalty: 50,
+    detectedPlayer: false,
+  };
+}
+
+/**
+ * 혼란 상태 몬스터 행동 생성
+ * - 40%: 아무것도 안 함 (주위를 둘러본다)
+ * - 20%: 주변 수색 (허공을 휘두른다)
+ * - 40%: 무작위 공격 (페널티 적용)
+ */
+export function buildConfusedMonsterQueue(
+  context: MonsterAiContext,
+  monsterAbilitiesData: Map<string, RawMonsterAbility>,
+  detectionResult: StealthDetectionResult
+): { queue: QueuedAction[]; confusedMessages: string[] } {
+  const queue: QueuedAction[] = [];
+  const confusedMessages: string[] = [];
+
+  const roll = Math.random() * 100;
+
+  if (roll < 40) {
+    // 40%: 아무것도 안 함
+    confusedMessages.push(`${context.monster.icon} ${context.monster.nameKo}이(가) 주위를 두리번거린다...`);
+    return { queue, confusedMessages };
+  }
+
+  if (roll < 60) {
+    // 20%: 허공 공격
+    confusedMessages.push(`${context.monster.icon} ${context.monster.nameKo}이(가) 허공을 휘두른다!`);
+    return { queue, confusedMessages };
+  }
+
+  // 40%: 무작위 공격 (명중 페널티 적용됨)
+  confusedMessages.push(`${context.monster.icon} ${context.monster.nameKo}이(가) 기척을 느끼고 공격한다!`);
+
+  // 기본 공격만 사용 (혼란 상태에서는 스킬 사용 불가)
+  queue.push(createDefaultConfusedAttack(context.monster, detectionResult.hitPenalty));
+
+  return { queue, confusedMessages };
+}
+
+/**
+ * 혼란 상태 기본 공격 생성 (명중 페널티 표시용)
+ */
+function createDefaultConfusedAttack(monster: Monster, hitPenalty: number): QueuedAction {
+  const confusedAbility = {
+    id: "monster_confused_attack",
+    nameKo: `불확실한 공격 (-${hitPenalty}%)`,
+    nameEn: "Confused Attack",
+    description: { ko: "플레이어의 위치를 파악하지 못한 상태로 공격", en: "Attack while unable to locate player" },
+    icon: "❓",
+    source: "monster" as const,
+    type: "attack" as const,
+    attackType: "melee_physical" as const,
+    baseCost: { ap: 3 },
+    levelBonuses: [],
+    usageContext: "combat_only" as const,
+    maxLevel: 1,
+    expPerLevel: 0,
+    requirements: {},
+    target: "enemy" as const,
+    // 커스텀 필드: 페널티 정보
+    hitPenalty,
+  };
+
+  return {
+    ability: confusedAbility,
+    level: 1,
+    apCost: 3,
+    mpCost: 0,
   };
 }

@@ -101,6 +101,18 @@
       "maxStacks": 1,
       "effectType": "ap_modifier",
       "targetStat": "ap"
+    },
+    {
+      "id": "stealth",
+      "nameKo": "은신",
+      "nameEn": "Stealth",
+      "icon": "👻",
+      "description": { "ko": "적에게 보이지 않는다. 공격 시 암습 효과 발동.", "en": "Invisible to enemies. Triggers ambush on attack." },
+      "category": "buff",
+      "defaultDuration": 3,
+      "stackable": false,
+      "maxStacks": 1,
+      "effectType": "stealth"
     }
   ]
 }

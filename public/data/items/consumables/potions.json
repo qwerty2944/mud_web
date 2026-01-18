@@ -186,6 +186,54 @@
         "value": 5,
         "duration": 5
       }
+    },
+    {
+      "id": "stealth_potion_small",
+      "nameKo": "소형 은신 물약",
+      "nameEn": "Small Stealth Potion",
+      "description": "어둠의 정수가 담긴 작은 유리병. 2턴간 은신 상태가 된다.",
+      "icon": "potion_shadow_small",
+      "rarity": "rare",
+      "stackSize": 10,
+      "value": 200,
+      "weight": 0.3,
+      "effect": {
+        "type": "apply_status",
+        "status": "stealth",
+        "duration": 2
+      }
+    },
+    {
+      "id": "stealth_potion_medium",
+      "nameKo": "중형 은신 물약",
+      "nameEn": "Medium Stealth Potion",
+      "description": "응축된 어둠의 정수가 담긴 유리병. 3턴간 은신 상태가 된다.",
+      "icon": "potion_shadow_medium",
+      "rarity": "arcane",
+      "stackSize": 10,
+      "value": 500,
+      "weight": 0.5,
+      "effect": {
+        "type": "apply_status",
+        "status": "stealth",
+        "duration": 3
+      }
+    },
+    {
+      "id": "stealth_potion_large",
+      "nameKo": "대형 은신 물약",
+      "nameEn": "Large Stealth Potion",
+      "description": "순수한 암흑의 정수가 담긴 대형 유리병. 4턴간 은신 상태가 된다.",
+      "icon": "potion_shadow_large",
+      "rarity": "heroic",
+      "stackSize": 5,
+      "value": 1200,
+      "weight": 0.8,
+      "effect": {
+        "type": "apply_status",
+        "status": "stealth",
+        "duration": 4
+      }
     }
   ]
 }

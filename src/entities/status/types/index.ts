@@ -15,7 +15,8 @@ export type EffectType =
   | "silence"             // 마법 불가
   | "counter"             // 반격
   | "recovery_reduction"  // HP 회복 감소 (부상)
-  | "ap_modifier";        // AP 소모량 변경 (비전 마법)
+  | "ap_modifier"         // AP 소모량 변경 (비전 마법)
+  | "stealth";            // 은신 (적에게 보이지 않음)
 
 // ============ 버프 종류 ============
 
@@ -27,7 +28,8 @@ export type BuffType =
   | "shield"       // 보호막
   | "magic_boost"  // 마법 데미지 증가
   | "counter"      // 반격 자세 (피해 반사)
-  | "ap_cost_down"; // AP 소모 감소 (비전 마법)
+  | "ap_cost_down" // AP 소모 감소 (비전 마법)
+  | "stealth";     // 은신 (적에게 보이지 않음, 암습 효과)
 
 // ============ 디버프 종류 ============
 
@@ -249,6 +251,18 @@ export const STATUS_DEFINITIONS: Record<StatusType, Omit<StatusDefinition, 'id' 
     maxStacks: 1,
     effectType: "ap_modifier",
     targetStat: "ap",
+  },
+  stealth: {
+    type: "stealth",
+    category: "buff",
+    nameKo: "은신",
+    nameEn: "Stealth",
+    icon: "👻",
+    description: "적에게 보이지 않습니다. 공격 시 암습 효과.",
+    defaultDuration: 3,
+    stackable: false,
+    maxStacks: 1,
+    effectType: "stealth",
   },
 
   // 디버프

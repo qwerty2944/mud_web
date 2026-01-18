@@ -108,6 +108,8 @@ export {
   hasStatus,
   isIncapacitated,
   isSilenced,
+  isStealthed,
+  breakStealth,
   getBuffs,
   getDebuffs,
   getShieldAmount,

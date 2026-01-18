@@ -12,8 +12,9 @@ import {
   buildMonsterQueue,
   calculateMonsterAbilityDamage,
 } from "../lib/monsterAi";
-import { applyDamageVariance } from "../lib/damage";
+import { applyDamageVariance, calculateStealthAmbushDamage } from "../lib/damage";
 import { getAttackMessage } from "../lib/messages";
+import { isStealthed, breakStealth } from "@/entities/status";
 
 // ============ 타입 정의 ============
 
@@ -123,9 +124,32 @@ export function useExecuteQueue(options: UseExecuteQueueOptions) {
         // 물리/마법 구분
         const isPhysical = action.ability.attackType === "melee_physical" || action.ability.attackType === "ranged_physical";
 
+        // 은신 상태 확인
+        const playerWasStealthed = isStealthed(currentBattle.playerBuffs);
+
         // 데미지 계산 기본
         const baseDamage = effects.baseDamage ?? action.ability.baseCost.ap ?? 10;
         let rawDamage = baseDamage * (1 + profLevel * 0.02) * (1 + (stats.str || 10) * 0.05);
+
+        // 은신 암습 보너스 적용
+        let stealthAmbushApplied = false;
+        let ambushBonusMultiplier = 1.0;
+        if (playerWasStealthed) {
+          // 단검 사용 시 추가 보너스
+          const isDagger = action.ability.category === "dagger";
+          const daggerProficiency = isDagger
+            ? getProficiencyValue(proficienciesRef.current, "dagger") || 0
+            : 0;
+
+          const stealthResult = calculateStealthAmbushDamage(rawDamage, true, {
+            daggerProficiency,
+            skillAmbushBonus: 0, // vanish 스킬 보너스는 나중에 구현
+          });
+
+          rawDamage = stealthResult.damage;
+          stealthAmbushApplied = stealthResult.isAmbush;
+          ambushBonusMultiplier = stealthResult.bonusMultiplier;
+        }
 
         // 저항 배율 계산
         let resistanceMultiplier = 1.0;
@@ -157,11 +181,17 @@ export function useExecuteQueue(options: UseExecuteQueueOptions) {
 
         // 메시지 생성 (저항 피드백 포함)
         let message: string;
+
+        // 암습 성공 메시지 프리픽스
+        const ambushPrefix = stealthAmbushApplied
+          ? `👻 암습! (+${Math.round((ambushBonusMultiplier - 1) * 100)}%) `
+          : "";
+
         if (isPhysical) {
           const msgWeaponType = (action.ability.category && isWeaponProficiency(action.ability.category as CombatProficiencyType))
             ? action.ability.category as CombatProficiencyType
             : "fist";
-          message = getAttackMessage(
+          message = ambushPrefix + getAttackMessage(
             msgWeaponType,
             monster?.nameKo ?? "적",
             damage,
@@ -172,7 +202,7 @@ export function useExecuteQueue(options: UseExecuteQueueOptions) {
         } else {
           // 마법 공격 메시지
           const icon = action.ability.icon ?? "✨";
-          message = `${icon} ${action.ability.nameKo}! ${monster?.nameKo ?? "적"}에게 ${damage} 데미지!`;
+          message = `${ambushPrefix}${icon} ${action.ability.nameKo}! ${monster?.nameKo ?? "적"}에게 ${damage} 데미지!`;
 
           // 속성 저항 피드백 추가
           if (isMinDamage) {
@@ -189,6 +219,20 @@ export function useExecuteQueue(options: UseExecuteQueueOptions) {
           message,
           action.ability.category
         );
+
+        // 공격 후 은신 해제
+        if (playerWasStealthed) {
+          const stealthBreakResult = breakStealth(currentBattle.playerBuffs);
+          if (stealthBreakResult.wasStealthed) {
+            currentStore.setPlayerBuffs(stealthBreakResult.effects);
+            currentStore.addLog({
+              turn: currentBattle.turn,
+              actor: "player",
+              action: "status",
+              message: "👻 은신이 해제되었다!",
+            });
+          }
+        }
       } else if (action.ability.type === "heal") {
         const healAmount = effects.healAmount ?? 20;
         currentStore.healPlayer(healAmount);

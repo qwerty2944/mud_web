@@ -563,6 +563,63 @@ export function getDaggerAmbushBonus(proficiencyLevel: number): number {
   return base + profBonus; // 최대 100% (숙련도 100 기준)
 }
 
+/**
+ * 은신 암습 결과 타입
+ */
+export interface StealthAmbushResult {
+  damage: number;
+  isAmbush: boolean;
+  bonusMultiplier: number;
+  guaranteedCrit?: boolean; // vanish 스킬 Lv.15 효과
+}
+
+/**
+ * 은신 상태에서의 암습 데미지 계산
+ * 은신 시: 100% 암습 성공, 기본 +75% 피해
+ * 단검 사용 시: 추가 +숙련도*0.5% 보너스
+ *
+ * @param baseDamage 기본 데미지
+ * @param isStealthed 은신 상태 여부
+ * @param options 추가 옵션 (단검 숙련도, 스킬 보너스 등)
+ */
+export function calculateStealthAmbushDamage(
+  baseDamage: number,
+  isStealthed: boolean,
+  options?: {
+    daggerProficiency?: number;
+    skillAmbushBonus?: number; // vanish 스킬 레벨 보너스 (%)
+    guaranteedCritOnAmbush?: boolean; // vanish Lv.15 효과
+  }
+): StealthAmbushResult {
+  if (!isStealthed) {
+    return {
+      damage: baseDamage,
+      isAmbush: false,
+      bonusMultiplier: 1.0,
+    };
+  }
+
+  // 기본 은신 암습 보너스: +75%
+  const baseStealthBonus = 75;
+
+  // 단검 숙련도 보너스: 숙련도 * 0.5%
+  const daggerBonus = (options?.daggerProficiency ?? 0) * 0.5;
+
+  // 스킬 보너스 (vanish 레벨 효과)
+  const skillBonus = options?.skillAmbushBonus ?? 0;
+
+  // 총 보너스 배율
+  const totalBonusPercent = baseStealthBonus + daggerBonus + skillBonus;
+  const bonusMultiplier = 1 + totalBonusPercent / 100;
+
+  return {
+    damage: Math.floor(baseDamage * bonusMultiplier),
+    isAmbush: true,
+    bonusMultiplier,
+    guaranteedCrit: options?.guaranteedCritOnAmbush,
+  };
+}
+
 // ============ 패리 시스템 (Parry) - 대검 전용 ============
 
 /**

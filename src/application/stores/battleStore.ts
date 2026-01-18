@@ -12,6 +12,7 @@ import {
   calculateStatModifier,
   isIncapacitated,
   isSilenced,
+  isStealthed,
   getShieldAmount,
   applyDamageToShield,
 } from "@/entities/status";
@@ -108,6 +109,9 @@ export interface BattleState {
   totalDamageDealt: number;
   totalDamageTaken: number;
   criticalHitCount: number;
+
+  // 도주 확률 보너스용 (연속 빗나감 횟수)
+  consecutiveMisses: number;
 }
 
 // 방어 행동 타입
@@ -153,6 +157,7 @@ const initialBattleState: BattleState = {
   totalDamageDealt: 0,
   totalDamageTaken: 0,
   criticalHitCount: 0,
+  consecutiveMisses: 0,
 };
 
 // ============ 스토어 인터페이스 ============
@@ -207,6 +212,7 @@ interface BattleStore {
   applyMonsterStatus: (type: StatusType, value: number, duration?: number) => void;
   removePlayerStatus: (effectId: string) => void;
   removeMonsterStatus: (effectId: string) => void;
+  setPlayerBuffs: (buffs: StatusEffect[]) => void;
   processStatusEffects: () => void;
   tickAllStatuses: () => void;
 
@@ -328,6 +334,7 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
         totalDamageDealt: 0,
         totalDamageTaken: 0,
         criticalHitCount: 0,
+        consecutiveMisses: 0,
       },
     });
   },
@@ -587,6 +594,20 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
       timestamp: Date.now(),
     };
 
+    // 연속 빗나감 추적 (damage가 0이면 빗나감)
+    const newConsecutiveMisses = finalDamage === 0 ? battle.consecutiveMisses + 1 : 0;
+
+    // 피격 시 은신 해제 (데미지가 0보다 클 때)
+    if (finalDamage > 0 && isStealthed(newPlayerBuffs)) {
+      newPlayerBuffs = newPlayerBuffs.filter(b => b.type !== "stealth");
+      get().addLog({
+        turn: battle.turn,
+        actor: "system",
+        action: "status",
+        message: "👻 피격으로 은신이 해제되었다!",
+      });
+    }
+
     if (newPlayerHp <= 0) {
       set({
         battle: {
@@ -594,6 +615,7 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
           playerCurrentHp: 0,
           playerBuffs: newPlayerBuffs,
           defensiveActions: newDefensiveActions,
+          consecutiveMisses: newConsecutiveMisses,
           battleLog: [
             ...battle.battleLog,
             newLog,
@@ -616,6 +638,7 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
           playerCurrentHp: newPlayerHp,
           playerBuffs: newPlayerBuffs,
           defensiveActions: newDefensiveActions,
+          consecutiveMisses: newConsecutiveMisses,
           battleLog: [...battle.battleLog, newLog],
         },
       });
@@ -678,7 +701,20 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
     const { battle } = get();
     if (!battle.isInBattle || battle.result !== "ongoing") return false;
 
-    const fleeChance = 0.5;
+    // 기본 도주 확률 50%
+    let fleeChance = 0.5;
+
+    // 은신 보너스 +30%
+    if (isStealthed(battle.playerBuffs)) {
+      fleeChance += 0.3;
+    }
+
+    // 연속 빗나감 보너스 (빗나감당 +5%, 최대 +25%)
+    fleeChance += Math.min(0.25, battle.consecutiveMisses * 0.05);
+
+    // 최대 90%
+    fleeChance = Math.min(0.9, fleeChance);
+
     const success = Math.random() < fleeChance;
 
     if (success) {
@@ -871,6 +907,17 @@ export const useBattleStore = create<BattleStore>((set, get) => ({
         ...battle,
         monsterBuffs: removeStatusEffect(battle.monsterBuffs, effectId),
         monsterDebuffs: removeStatusEffect(battle.monsterDebuffs, effectId),
+      },
+    });
+  },
+
+  // 플레이어 버프 직접 설정 (은신 해제 등에 사용)
+  setPlayerBuffs: (buffs) => {
+    const { battle } = get();
+    set({
+      battle: {
+        ...battle,
+        playerBuffs: buffs,
       },
     });
   },
