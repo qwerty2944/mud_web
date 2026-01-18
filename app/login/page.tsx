@@ -19,7 +19,14 @@ export default function LoginPage() {
   } = useAuth();
 
   return (
-    <div className="h-dvh w-full flex items-center justify-center p-4 bg-gradient-to-b from-gray-950 via-gray-900 to-black">
+    <>
+      {/* Unity 백그라운드 프리로드 - 게임 페이지 진입 전 미리 다운로드 */}
+      <link rel="prefetch" href="/unity/characterbuilder.loader.js" as="script" />
+      <link rel="prefetch" href="/unity/characterbuilder.framework.js" as="script" />
+      <link rel="prefetch" href="/unity/characterbuilder.wasm" as="fetch" crossOrigin="anonymous" />
+      <link rel="prefetch" href="/unity/characterbuilder.data" as="fetch" crossOrigin="anonymous" />
+
+      <div className="h-dvh w-full flex items-center justify-center p-4 bg-gradient-to-b from-gray-950 via-gray-900 to-black">
       {/* 배경 효과 */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div
@@ -135,5 +142,6 @@ export default function LoginPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }
