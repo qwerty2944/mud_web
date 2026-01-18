@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { useThemeStore } from "@/application/stores";
 import type { Theme } from "@/shared/config";
 
@@ -21,6 +22,8 @@ interface ElementBonusItemProps {
 
 export function ElementBonusItem({ element }: ElementBonusItemProps) {
   const [showTooltip, setShowTooltip] = useState(false);
+  const [coords, setCoords] = useState({ top: 0, left: 0 });
+  const containerRef = useRef<HTMLDivElement>(null);
   const { theme } = useThemeStore();
 
   const hasBonus = element.totalBonus !== 0;
@@ -37,8 +40,40 @@ export function ElementBonusItem({ element }: ElementBonusItemProps) {
   if (element.weatherBonus !== 0) sourceIcons.push("🌧️");
   if (element.terrainBonus !== 0) sourceIcons.push("🌲");
 
+  useEffect(() => {
+    if (showTooltip && containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      const tooltipWidth = 160;
+      const tooltipHeight = 150;
+
+      // 기본 위치: 위쪽
+      let top = rect.top - tooltipHeight - 8;
+      let left = rect.left + rect.width / 2 - tooltipWidth / 2;
+
+      // 상단 공간이 부족하면 아래로
+      if (top < 8) {
+        top = rect.bottom + 8;
+      }
+      // 좌측 경계
+      if (left < 8) {
+        left = 8;
+      }
+      // 우측 경계
+      if (left + tooltipWidth > window.innerWidth - 8) {
+        left = window.innerWidth - tooltipWidth - 8;
+      }
+      // 하단 경계 (아래로 표시했는데도 공간 부족하면 위로)
+      if (top + tooltipHeight > window.innerHeight - 8) {
+        top = rect.top - tooltipHeight - 8;
+      }
+
+      setCoords({ top, left });
+    }
+  }, [showTooltip]);
+
   return (
     <div
+      ref={containerRef}
       className="relative"
       onMouseEnter={() => setShowTooltip(true)}
       onMouseLeave={() => setShowTooltip(false)}
@@ -70,10 +105,18 @@ export function ElementBonusItem({ element }: ElementBonusItemProps) {
         </span>
       </div>
 
-      {/* 툴팁 */}
-      {showTooltip && (
-        <ElementTooltip element={element} theme={theme} bonusColor={bonusColor} />
-      )}
+      {/* 툴팁 - Portal 사용 */}
+      {showTooltip &&
+        typeof document !== "undefined" &&
+        createPortal(
+          <ElementTooltip
+            element={element}
+            theme={theme}
+            bonusColor={bonusColor}
+            coords={coords}
+          />,
+          document.body
+        )}
     </div>
   );
 }
@@ -82,15 +125,19 @@ function ElementTooltip({
   element,
   theme,
   bonusColor,
+  coords,
 }: {
   element: ElementBonusData;
   theme: Theme;
   bonusColor: string;
+  coords: { top: number; left: number };
 }) {
   return (
     <div
-      className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 p-2 min-w-[140px] pointer-events-none"
+      className="fixed z-[100] p-2 min-w-[140px] pointer-events-none"
       style={{
+        top: coords.top,
+        left: coords.left,
         background: theme.colors.bgLight,
         border: `1px solid ${theme.colors.border}`,
         boxShadow: `0 4px 12px rgba(0,0,0,0.5), 0 0 0 1px ${theme.colors.primary}20`,

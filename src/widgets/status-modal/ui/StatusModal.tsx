@@ -662,7 +662,7 @@ export function StatusModal({ open, onClose }: StatusModalProps) {
                           (시간대/날씨/지형)
                         </span>
                       </div>
-                      <div className="grid grid-cols-4 gap-1">
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-1 sm:gap-2">
                         {elementBonuses.map((element) => (
                           <ElementBonusItem key={element.id} element={element} />
                         ))}
