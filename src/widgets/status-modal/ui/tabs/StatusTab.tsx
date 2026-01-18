@@ -9,7 +9,7 @@ import {
 } from "@/entities/user";
 import { StatTooltip } from "../StatTooltip";
 import { ElementBonusItem } from "../ElementBonusItem";
-import { STAT_TOOLTIPS } from "../../constants/tooltips";
+import { STAT_TOOLTIPS, COMBAT_TOOLTIPS, ELEMENTS } from "../../constants/tooltips";
 import type { StatusTabProps } from "./types";
 
 export function StatusTab({
@@ -105,20 +105,25 @@ export function StatusTab({
           <CombatStatsSection theme={theme} combatStats={combatStats} derivedStats={derivedStats} />
         )}
 
-        {/* 속성 보너스 */}
+        {/* 속성 공격 보너스 */}
         <div className="p-4" style={{ background: theme.colors.bgDark }}>
           <div className="text-sm font-mono mb-3" style={{ color: theme.colors.textMuted }}>
-            속성 보너스
-            <span className="text-xs ml-2" style={{ color: theme.colors.primary }}>
+            속성 공격 보너스
+            <span className="text-xs ml-2" style={{ color: theme.colors.success }}>
               (시간대/날씨/지형)
             </span>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-1 sm:gap-2">
+          <div className="grid grid-cols-4 sm:grid-cols-8 gap-1">
             {elementBonuses.map((element) => (
               <ElementBonusItem key={element.id} element={element} />
             ))}
           </div>
         </div>
+
+        {/* 속성 저항 */}
+        {derivedStats && (
+          <ElementResistSection theme={theme} elementResist={derivedStats.totalElementResist} />
+        )}
 
         {/* 능력치 */}
         {mainCharacter?.stats && (
@@ -276,22 +281,62 @@ function CombatStatsSection({ theme, combatStats, derivedStats }: {
 
       {/* 공격력 / 방어력 - 4칸 그리드 */}
       <div className="grid grid-cols-4 gap-2 mb-3 text-sm font-mono">
-        <div className="p-2 text-center" style={{ background: theme.colors.bgLight, border: `1px solid ${theme.colors.border}` }}>
-          <div className="text-xs" style={{ color: theme.colors.textMuted }}>물리공격</div>
-          <div className="mt-1" style={{ color: theme.colors.error }}>{combatStats.physicalAttack}</div>
-        </div>
-        <div className="p-2 text-center" style={{ background: theme.colors.bgLight, border: `1px solid ${theme.colors.border}` }}>
-          <div className="text-xs" style={{ color: theme.colors.textMuted }}>마법공격</div>
-          <div className="mt-1" style={{ color: theme.colors.primary }}>{combatStats.magicAttack}</div>
-        </div>
-        <div className="p-2 text-center" style={{ background: theme.colors.bgLight, border: `1px solid ${theme.colors.border}` }}>
-          <div className="text-xs" style={{ color: theme.colors.textMuted }}>물리방어</div>
-          <div className="mt-1" style={{ color: theme.colors.success }}>{combatStats.physicalDefense}</div>
-        </div>
-        <div className="p-2 text-center" style={{ background: theme.colors.bgLight, border: `1px solid ${theme.colors.border}` }}>
-          <div className="text-xs" style={{ color: theme.colors.textMuted }}>마법방어</div>
-          <div className="mt-1" style={{ color: theme.colors.primary }}>{combatStats.magicDefense}</div>
-        </div>
+        <StatTooltip
+          content={
+            <div>
+              <div className="font-bold mb-1" style={{ color: theme.colors.primary }}>{COMBAT_TOOLTIPS.physicalAttack.title}</div>
+              <div style={{ color: theme.colors.textMuted }}>{COMBAT_TOOLTIPS.physicalAttack.formula}</div>
+              <div className="mt-1" style={{ color: theme.colors.text }}>{COMBAT_TOOLTIPS.physicalAttack.effect}</div>
+            </div>
+          }
+        >
+          <div className="p-2 text-center" style={{ background: theme.colors.bgLight, border: `1px solid ${theme.colors.border}` }}>
+            <div className="text-xs" style={{ color: theme.colors.textMuted }}>물리공격</div>
+            <div className="mt-1" style={{ color: theme.colors.error }}>{combatStats.physicalAttack}</div>
+          </div>
+        </StatTooltip>
+        <StatTooltip
+          content={
+            <div>
+              <div className="font-bold mb-1" style={{ color: theme.colors.primary }}>{COMBAT_TOOLTIPS.magicAttack.title}</div>
+              <div style={{ color: theme.colors.textMuted }}>{COMBAT_TOOLTIPS.magicAttack.formula}</div>
+              <div className="mt-1" style={{ color: theme.colors.text }}>{COMBAT_TOOLTIPS.magicAttack.effect}</div>
+            </div>
+          }
+        >
+          <div className="p-2 text-center" style={{ background: theme.colors.bgLight, border: `1px solid ${theme.colors.border}` }}>
+            <div className="text-xs" style={{ color: theme.colors.textMuted }}>마법공격</div>
+            <div className="mt-1" style={{ color: theme.colors.primary }}>{combatStats.magicAttack}</div>
+          </div>
+        </StatTooltip>
+        <StatTooltip
+          content={
+            <div>
+              <div className="font-bold mb-1" style={{ color: theme.colors.primary }}>{COMBAT_TOOLTIPS.physicalDefense.title}</div>
+              <div style={{ color: theme.colors.textMuted }}>{COMBAT_TOOLTIPS.physicalDefense.formula}</div>
+              <div className="mt-1" style={{ color: theme.colors.text }}>{COMBAT_TOOLTIPS.physicalDefense.effect}</div>
+            </div>
+          }
+        >
+          <div className="p-2 text-center" style={{ background: theme.colors.bgLight, border: `1px solid ${theme.colors.border}` }}>
+            <div className="text-xs" style={{ color: theme.colors.textMuted }}>물리방어</div>
+            <div className="mt-1" style={{ color: theme.colors.success }}>{combatStats.physicalDefense}</div>
+          </div>
+        </StatTooltip>
+        <StatTooltip
+          content={
+            <div>
+              <div className="font-bold mb-1" style={{ color: theme.colors.primary }}>{COMBAT_TOOLTIPS.magicDefense.title}</div>
+              <div style={{ color: theme.colors.textMuted }}>{COMBAT_TOOLTIPS.magicDefense.formula}</div>
+              <div className="mt-1" style={{ color: theme.colors.text }}>{COMBAT_TOOLTIPS.magicDefense.effect}</div>
+            </div>
+          }
+        >
+          <div className="p-2 text-center" style={{ background: theme.colors.bgLight, border: `1px solid ${theme.colors.border}` }}>
+            <div className="text-xs" style={{ color: theme.colors.textMuted }}>마법방어</div>
+            <div className="mt-1" style={{ color: theme.colors.primary }}>{combatStats.magicDefense}</div>
+          </div>
+        </StatTooltip>
       </div>
 
       {/* 물리 저항 (베기/찌르기/타격) */}
@@ -374,6 +419,67 @@ function CombatStatsSection({ theme, combatStats, derivedStats }: {
           <span style={{ color: theme.colors.textMuted }}>치명배율</span>
           <span className="ml-auto" style={{ color: theme.colors.warning }}>{combatStats.critMultiplier.toFixed(2)}x</span>
         </div>
+      </div>
+    </div>
+  );
+}
+
+// 속성 저항 섹션
+function ElementResistSection({ theme, elementResist }: {
+  theme: StatusTabProps["theme"];
+  elementResist: NonNullable<StatusTabProps["derivedStats"]>["totalElementResist"];
+}) {
+  // 저항 표시 헬퍼 (1.0 기준, 낮을수록 저항 높음)
+  const formatResist = (value: number) => {
+    const reduction = Math.round((1 - value) * 100);
+    if (reduction > 0) return `+${reduction}%`;
+    if (reduction < 0) return `${reduction}%`;
+    return "0%";
+  };
+
+  const getResistColor = (value: number) => {
+    if (value < 1) return theme.colors.success; // 저항 있음
+    if (value > 1) return theme.colors.error;   // 약점
+    return theme.colors.textMuted;              // 보통
+  };
+
+  return (
+    <div className="p-4" style={{ background: theme.colors.bgDark }}>
+      <div className="text-sm font-mono mb-3" style={{ color: theme.colors.textMuted }}>
+        속성 저항
+      </div>
+      <div className="grid grid-cols-4 sm:grid-cols-8 gap-1">
+        {ELEMENTS.map((el) => {
+          const resistValue = elementResist[el.id as keyof typeof elementResist] ?? 1;
+          return (
+            <StatTooltip
+              key={el.id}
+              content={
+                <div>
+                  <div className="font-bold mb-1" style={{ color: theme.colors.primary }}>
+                    {el.nameKo} 저항
+                  </div>
+                  <div style={{ color: theme.colors.textMuted }}>
+                    {el.nameKo} 속성 공격에 대한 저항
+                  </div>
+                  <div className="mt-1" style={{ color: theme.colors.text }}>
+                    받는 데미지: {Math.round(resistValue * 100)}%
+                  </div>
+                </div>
+              }
+            >
+              <div
+                className="p-2 text-center"
+                style={{ background: theme.colors.bgLight, border: `1px solid ${theme.colors.border}` }}
+              >
+                <div className="text-sm">{el.icon}</div>
+                <div className="text-xs mt-1" style={{ color: getResistColor(resistValue) }}>
+                  {formatResist(resistValue)}
+                </div>
+              </div>
+            </StatTooltip>
+          );
+        })}
       </div>
     </div>
   );
