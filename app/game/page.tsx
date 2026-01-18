@@ -519,31 +519,29 @@ export default function GamePage() {
           </CollapsibleSection>
 
           {/* 이동 */}
-          <CollapsibleSection id="sidebar_travel" title="이동" icon="🗺️" defaultOpen={true}>
-            <div className="space-y-2">
-              {/* 월드맵 버튼 */}
-              <button
-                onClick={() => setShowWorldMap(true)}
-                className="w-full px-3 py-2 text-sm font-mono font-medium transition-colors flex items-center justify-center gap-2"
-                style={{
-                  background: theme.colors.bgLight,
-                  border: `1px solid ${theme.colors.border}`,
-                  color: theme.colors.text,
-                  borderRadius: "4px",
-                }}
-              >
-                <span>🌍</span>
-                <span>월드맵 보기</span>
-              </button>
-
-              {/* 맵 이동 */}
-              <MapSelector
-                currentMapId={mapId || "starting_village"}
-                onMapChange={handleMapChange}
-                playerLevel={profile.level}
-              />
-            </div>
+          <CollapsibleSection id="sidebar_travel" title="이동" icon="🚶" defaultOpen={true}>
+            <MapSelector
+              currentMapId={mapId || "starting_village"}
+              onMapChange={handleMapChange}
+              playerLevel={profile.level}
+              compact
+            />
           </CollapsibleSection>
+
+          {/* 월드맵 버튼 (별도 분리) */}
+          <button
+            onClick={() => setShowWorldMap(true)}
+            className="w-full px-3 py-2 text-sm font-mono font-medium transition-colors flex items-center justify-center gap-2"
+            style={{
+              background: theme.colors.bgLight,
+              border: `1px solid ${theme.colors.border}`,
+              color: theme.colors.text,
+              borderRadius: "4px",
+            }}
+          >
+            <span>🌍</span>
+            <span>월드맵</span>
+          </button>
         </div>
       </div>
 

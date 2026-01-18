@@ -136,7 +136,7 @@ export function PlayerList({
         )}
 
         {/* 유저 목록 */}
-        <div className={compact ? "space-y-1 max-h-40 overflow-y-auto" : "p-2 space-y-1 max-h-60 overflow-y-auto"}>
+        <div className={compact ? "space-y-1 max-h-40 overflow-y-auto custom-scrollbar" : "p-2 space-y-1 max-h-60 overflow-y-auto custom-scrollbar"}>
           {onlineUsers.length === 0 ? (
             <div className="text-center text-xs py-2 font-mono" style={{ color: theme.colors.textMuted }}>
               접속자 없음

@@ -44,7 +44,7 @@ export function NpcList({ mapId, onSelectNpc, disabled, compact = false }: NpcLi
           </span>
         </h3>
       )}
-      <div className="space-y-1">
+      <div className="space-y-1 max-h-40 overflow-y-auto custom-scrollbar">
         {npcs.map((npc) => (
           <button
             key={npc.id}

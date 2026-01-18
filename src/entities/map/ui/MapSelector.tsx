@@ -14,12 +14,15 @@ interface MapSelectorProps {
   currentMapId: string;
   onMapChange: (mapId: string) => void;
   playerLevel?: number;
+  /** compact 모드 (CollapsibleSection 안에서 사용 시) */
+  compact?: boolean;
 }
 
 export function MapSelector({
   currentMapId,
   onMapChange,
   playerLevel = 1,
+  compact = false,
 }: MapSelectorProps) {
   const { theme } = useThemeStore();
   const { data: maps = [], isLoading } = useMaps();
@@ -51,30 +54,32 @@ export function MapSelector({
     <div
       className="flex flex-col overflow-hidden flex-shrink-0"
       style={{
-        background: theme.colors.bg,
-        border: `1px solid ${theme.colors.border}`,
+        background: compact ? "transparent" : theme.colors.bg,
+        border: compact ? "none" : `1px solid ${theme.colors.border}`,
       }}
     >
-      {/* 헤더 */}
-      <div
-        className="px-3 py-2 flex items-center justify-between border-b"
-        style={{
-          background: theme.colors.bgLight,
-          borderColor: theme.colors.border,
-        }}
-      >
-        <span className="text-sm font-mono font-medium" style={{ color: theme.colors.text }}>
-          🗺️ 이동
-        </span>
-        {currentMap && (
-          <span className="text-xs font-mono" style={{ color: theme.colors.textMuted }}>
-            현재: {currentMap.icon} {getMapDisplayName(currentMap)}
+      {/* 헤더 (compact 모드에서는 숨김) */}
+      {!compact && (
+        <div
+          className="px-3 py-2 flex items-center justify-between border-b"
+          style={{
+            background: theme.colors.bgLight,
+            borderColor: theme.colors.border,
+          }}
+        >
+          <span className="text-sm font-mono font-medium" style={{ color: theme.colors.text }}>
+            🗺️ 이동
           </span>
-        )}
-      </div>
+          {currentMap && (
+            <span className="text-xs font-mono" style={{ color: theme.colors.textMuted }}>
+              현재: {currentMap.icon} {getMapDisplayName(currentMap)}
+            </span>
+          )}
+        </div>
+      )}
 
       {/* 맵 목록 */}
-      <div className="p-2 space-y-2 max-h-40 overflow-y-auto flex-1 min-h-0">
+      <div className={compact ? "space-y-2 max-h-40 overflow-y-auto custom-scrollbar" : "p-2 space-y-2 max-h-40 overflow-y-auto custom-scrollbar flex-1 min-h-0"}>
         {connectedMaps.length === 0 ? (
           <div className="text-center text-sm py-2 font-mono" style={{ color: theme.colors.textMuted }}>
             이동 가능한 맵이 없습니다.

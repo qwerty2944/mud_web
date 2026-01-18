@@ -85,7 +85,7 @@ export function MonsterList({
       )}
 
       {/* 몬스터 목록 */}
-      <div className={compact ? "space-y-2 max-h-40 overflow-y-auto" : "p-2 space-y-2 max-h-40 overflow-y-auto flex-1 min-h-0"}>
+      <div className={compact ? "space-y-2 max-h-40 overflow-y-auto custom-scrollbar" : "p-2 space-y-2 max-h-40 overflow-y-auto custom-scrollbar flex-1 min-h-0"}>
         {monsters.map((monster) => {
           const levelDiff = monster.level - playerLevel;
           const diffColor =
