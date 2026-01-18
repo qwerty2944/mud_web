@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, type ReactNode } from "react";
-import * as Collapsible from "@radix-ui/react-collapsible";
+import { motion, AnimatePresence } from "framer-motion";
 import { useThemeStore } from "@/shared/config";
 
 interface CollapsibleSectionProps {
@@ -23,10 +23,33 @@ interface CollapsibleSectionProps {
 
 const STORAGE_KEY_PREFIX = "collapsible_";
 
+// 커스텀 easing 커브
+const easeOutExpo: [number, number, number, number] = [0.04, 0.62, 0.23, 0.98];
+
+// 애니메이션 variants
+const contentVariants = {
+  open: {
+    height: "auto",
+    opacity: 1,
+    transition: {
+      height: { duration: 0.3, ease: easeOutExpo },
+      opacity: { duration: 0.25, delay: 0.05 },
+    },
+  },
+  collapsed: {
+    height: 0,
+    opacity: 0,
+    transition: {
+      height: { duration: 0.3, ease: easeOutExpo },
+      opacity: { duration: 0.2 },
+    },
+  },
+};
+
 /**
  * 접을 수 있는 섹션 컴포넌트
  * - localStorage로 열림/닫힘 상태 유지
- * - shadcn/radix 스타일
+ * - Framer Motion으로 부드러운 애니메이션
  */
 export function CollapsibleSection({
   id,
@@ -53,84 +76,65 @@ export function CollapsibleSection({
   }, [isOpen, storageKey]);
 
   return (
-    <Collapsible.Root open={isOpen} onOpenChange={setIsOpen} className={className}>
-      <Collapsible.Trigger asChild>
-        <button
-          className="w-full flex items-center justify-between px-3 py-2 text-sm font-mono transition-colors"
-          style={{
-            background: theme.colors.bgLight,
-            border: `1px solid ${theme.colors.border}`,
-            color: theme.colors.text,
-            borderRadius: isOpen ? "4px 4px 0 0" : "4px",
-          }}
-        >
-          <div className="flex items-center gap-2">
-            {icon && <span className="text-base">{icon}</span>}
-            <span className="font-medium">{title}</span>
-            {badge}
-          </div>
-          <svg
-            className="transition-transform duration-200"
-            style={{
-              transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
-              color: theme.colors.textMuted,
-            }}
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M4 6L8 10L12 6"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </button>
-      </Collapsible.Trigger>
-
-      <Collapsible.Content
-        className="collapsible-content overflow-hidden"
+    <div className={className}>
+      {/* 헤더 버튼 */}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex items-center justify-between px-3 py-2 text-sm font-mono transition-colors"
         style={{
-          background: theme.colors.bgDark,
+          background: theme.colors.bgLight,
           border: `1px solid ${theme.colors.border}`,
-          borderTop: "none",
-          borderRadius: "0 0 4px 4px",
+          color: theme.colors.text,
+          borderRadius: isOpen ? "4px 4px 0 0" : "4px",
         }}
       >
-        <div className="p-2">{children}</div>
-      </Collapsible.Content>
+        <div className="flex items-center gap-2">
+          {icon && <span className="text-base">{icon}</span>}
+          <span className="font-medium">{title}</span>
+          {badge}
+        </div>
+        {/* 화살표 아이콘 애니메이션 */}
+        <motion.svg
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.3 }}
+          style={{ color: theme.colors.textMuted }}
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M4 6L8 10L12 6"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </motion.svg>
+      </button>
 
-      <style jsx global>{`
-        .collapsible-content[data-state="open"] {
-          animation: collapsibleSlideDown 150ms ease-out;
-        }
-
-        .collapsible-content[data-state="closed"] {
-          animation: collapsibleSlideUp 150ms ease-out;
-        }
-
-        @keyframes collapsibleSlideDown {
-          from {
-            height: 0;
-          }
-          to {
-            height: var(--radix-collapsible-content-height);
-          }
-        }
-
-        @keyframes collapsibleSlideUp {
-          from {
-            height: var(--radix-collapsible-content-height);
-          }
-          to {
-            height: 0;
-          }
-        }
-      `}</style>
-    </Collapsible.Root>
+      {/* 콘텐츠 영역 */}
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            key="content"
+            variants={contentVariants}
+            initial="collapsed"
+            animate="open"
+            exit="collapsed"
+            style={{
+              overflow: "hidden",
+              background: theme.colors.bgDark,
+              border: `1px solid ${theme.colors.border}`,
+              borderTop: "none",
+              borderRadius: "0 0 4px 4px",
+            }}
+          >
+            <div className="p-2">{children}</div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }

@@ -18,6 +18,7 @@ import {
   getFatiguePercent,
   getMaxFatigueFromProfile,
   getCurrentFatigue,
+  FATIGUE_COST,
 } from "@/entities/user";
 import {
   useMaps,
@@ -223,7 +224,14 @@ export default function GamePage() {
   const handleMapChange = async (newMapId: string) => {
     const newMap = getMapById(maps, newMapId);
     if (newMap && session?.user?.id && myCharacterName) {
-      // 먼저 로컬 상태 업데이트 (동기화 useEffect 경쟁 조건 방지)
+      // 피로도 사전 체크 - 부족하면 이동 자체를 막음
+      const currentFatigue = getCurrentFatigue(profile);
+      if (currentFatigue < FATIGUE_COST.MAP_MOVE) {
+        toast.error("피로도가 부족합니다");
+        return;
+      }
+
+      // 피로도 충분하면 로컬 상태 업데이트
       setMapId(newMapId);
       setCurrentMap({
         id: newMap.id,
@@ -240,7 +248,7 @@ export default function GamePage() {
         });
       } catch (error) {
         console.error("Failed to move:", error);
-        // 피로도 부족 등의 에러 시 이전 위치로 롤백
+        // 서버 에러 시 이전 위치로 롤백
         const prevMapId = profile?.currentMapId || "starting_village";
         const prevMap = getMapById(maps, prevMapId);
         if (prevMap) {
