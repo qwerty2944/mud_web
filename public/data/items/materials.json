@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-01-11T10:57:57.030Z",
+  "generatedAt": "2026-01-18T12:02:46.824Z",
   "type": "material",
   "items": [
     {
@@ -879,12 +879,12 @@
         "en": "붉게 빛나는 보석. 화염 속성 강화에 사용."
       },
       "type": "material",
-      "subtype": "gem",
+      "subtype": "socketable",
       "rarity": "rare",
       "value": 150,
       "weight": 0.1,
       "stackable": true,
-      "stackSize": 30,
+      "stackSize": 99,
       "icon": "gem_red"
     },
     {
@@ -896,12 +896,12 @@
         "en": "차갑게 빛나는 푸른 보석. 냉기 속성 강화에 사용."
       },
       "type": "material",
-      "subtype": "gem",
+      "subtype": "socketable",
       "rarity": "rare",
       "value": 150,
       "weight": 0.1,
       "stackable": true,
-      "stackSize": 30,
+      "stackSize": 99,
       "icon": "gem_blue"
     },
     {
@@ -913,12 +913,12 @@
         "en": "번개처럼 빛나는 노란 보석. 번개 속성 강화에 사용."
       },
       "type": "material",
-      "subtype": "gem",
+      "subtype": "socketable",
       "rarity": "rare",
       "value": 150,
       "weight": 0.1,
       "stackable": true,
-      "stackSize": 30,
+      "stackSize": 99,
       "icon": "gem_yellow"
     },
     {
@@ -930,12 +930,12 @@
         "en": "자연의 힘이 담긴 녹색 보석. 대지 속성 강화에 사용."
       },
       "type": "material",
-      "subtype": "gem",
+      "subtype": "socketable",
       "rarity": "rare",
       "value": 150,
       "weight": 0.1,
       "stackable": true,
-      "stackSize": 30,
+      "stackSize": 99,
       "icon": "gem_green"
     },
     {
@@ -947,12 +947,12 @@
         "en": "완벽하게 투명한 최고급 보석. 신성 속성 강화에 사용."
       },
       "type": "material",
-      "subtype": "gem",
+      "subtype": "socketable",
       "rarity": "heroic",
       "value": 500,
       "weight": 0.1,
       "stackable": true,
-      "stackSize": 20,
+      "stackSize": 99,
       "icon": "gem_white"
     },
     {
@@ -964,12 +964,12 @@
         "en": "칠흑같이 어두운 보석. 암흑 속성 강화에 사용."
       },
       "type": "material",
-      "subtype": "gem",
+      "subtype": "socketable",
       "rarity": "heroic",
       "value": 450,
       "weight": 0.1,
       "stackable": true,
-      "stackSize": 20,
+      "stackSize": 99,
       "icon": "gem_black"
     },
     {
@@ -981,12 +981,12 @@
         "en": "보라색 빛의 아름다운 보석. MP 강화에 사용."
       },
       "type": "material",
-      "subtype": "gem",
+      "subtype": "socketable",
       "rarity": "arcane",
       "value": 200,
       "weight": 0.1,
       "stackable": true,
-      "stackSize": 25,
+      "stackSize": 99,
       "icon": "gem_purple"
     },
     {
@@ -998,12 +998,12 @@
         "en": "진한 적색의 보석. HP 강화에 사용."
       },
       "type": "material",
-      "subtype": "gem",
+      "subtype": "socketable",
       "rarity": "arcane",
       "value": 200,
       "weight": 0.1,
       "stackable": true,
-      "stackSize": 25,
+      "stackSize": 99,
       "icon": "gem_darkred"
     },
     {
@@ -1015,13 +1015,81 @@
         "en": "무지개빛으로 빛나는 기이한 보석. 모든 속성을 담고 있다."
       },
       "type": "material",
-      "subtype": "gem",
+      "subtype": "socketable",
       "rarity": "legendary",
       "value": 5000,
       "weight": 0.2,
       "stackable": true,
-      "stackSize": 5,
+      "stackSize": 99,
       "icon": "gem_rainbow"
+    },
+    {
+      "id": "ruby_t1",
+      "nameKo": "거친 루비",
+      "nameEn": "Rough Ruby",
+      "description": {
+        "ko": "낮은 등급의 루비. 화염의 힘을 담고 있다.",
+        "en": "낮은 등급의 루비. 화염의 힘을 담고 있다."
+      },
+      "type": "material",
+      "subtype": "socketable",
+      "rarity": "common",
+      "value": 50,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "gem_ruby_1"
+    },
+    {
+      "id": "sapphire_t1",
+      "nameKo": "거친 사파이어",
+      "nameEn": "Rough Sapphire",
+      "description": {
+        "ko": "낮은 등급의 사파이어. 냉기의 힘을 담고 있다.",
+        "en": "낮은 등급의 사파이어. 냉기의 힘을 담고 있다."
+      },
+      "type": "material",
+      "subtype": "socketable",
+      "rarity": "common",
+      "value": 50,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "gem_sapphire_1"
+    },
+    {
+      "id": "topaz_t1",
+      "nameKo": "거친 토파즈",
+      "nameEn": "Rough Topaz",
+      "description": {
+        "ko": "낮은 등급의 토파즈. 번개의 힘을 담고 있다.",
+        "en": "낮은 등급의 토파즈. 번개의 힘을 담고 있다."
+      },
+      "type": "material",
+      "subtype": "socketable",
+      "rarity": "common",
+      "value": 50,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "gem_topaz_1"
+    },
+    {
+      "id": "emerald_t1",
+      "nameKo": "거친 에메랄드",
+      "nameEn": "Rough Emerald",
+      "description": {
+        "ko": "낮은 등급의 에메랄드. 대지의 힘을 담고 있다.",
+        "en": "낮은 등급의 에메랄드. 대지의 힘을 담고 있다."
+      },
+      "type": "material",
+      "subtype": "socketable",
+      "rarity": "common",
+      "value": 50,
+      "weight": 0.1,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "gem_emerald_1"
     },
     {
       "id": "herb_healing",
@@ -1328,25 +1396,195 @@
       "stackable": true,
       "stackSize": 20,
       "icon": "ore_dark"
+    },
+    {
+      "id": "rune_el",
+      "nameKo": "엘 룬",
+      "nameEn": "El Rune",
+      "description": {
+        "ko": "가장 기초적인 룬. 희미한 빛을 발한다.",
+        "en": "The most basic rune. Emits a faint light."
+      },
+      "type": "material",
+      "subtype": "socketable",
+      "rarity": "common",
+      "value": 50,
+      "weight": 0.05,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "rune_el"
+    },
+    {
+      "id": "rune_eld",
+      "nameKo": "엘드 룬",
+      "nameEn": "Eld Rune",
+      "description": {
+        "ko": "기초적인 룬. 방어력을 약간 높여준다.",
+        "en": "A basic rune. Slightly increases defense."
+      },
+      "type": "material",
+      "subtype": "socketable",
+      "rarity": "common",
+      "value": 75,
+      "weight": 0.05,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "rune_eld"
+    },
+    {
+      "id": "rune_tir",
+      "nameKo": "티르 룬",
+      "nameEn": "Tir Rune",
+      "description": {
+        "ko": "적을 처치할 때 마나를 회복시켜준다.",
+        "en": "Restores mana when killing enemies."
+      },
+      "type": "material",
+      "subtype": "socketable",
+      "rarity": "common",
+      "value": 100,
+      "weight": 0.05,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "rune_tir"
+    },
+    {
+      "id": "rune_nef",
+      "nameKo": "네프 룬",
+      "nameEn": "Nef Rune",
+      "description": {
+        "ko": "적의 방어력을 무시하는 힘을 지닌다.",
+        "en": "Has the power to ignore enemy defense."
+      },
+      "type": "material",
+      "subtype": "socketable",
+      "rarity": "common",
+      "value": 125,
+      "weight": 0.05,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "rune_nef"
+    },
+    {
+      "id": "rune_eth",
+      "nameKo": "에스 룬",
+      "nameEn": "Eth Rune",
+      "description": {
+        "ko": "적의 방어력을 낮추는 힘을 지닌다.",
+        "en": "Has the power to lower enemy defense."
+      },
+      "type": "material",
+      "subtype": "socketable",
+      "rarity": "grand",
+      "value": 200,
+      "weight": 0.05,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "rune_eth"
+    },
+    {
+      "id": "rune_ral",
+      "nameKo": "랄 룬",
+      "nameEn": "Ral Rune",
+      "description": {
+        "ko": "화염의 힘이 깃든 룬.",
+        "en": "A rune imbued with the power of fire."
+      },
+      "type": "material",
+      "subtype": "socketable",
+      "rarity": "grand",
+      "value": 300,
+      "weight": 0.05,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "rune_ral"
+    },
+    {
+      "id": "rune_sol",
+      "nameKo": "솔 룬",
+      "nameEn": "Sol Rune",
+      "description": {
+        "ko": "물리 피해를 증가시키는 룬.",
+        "en": "A rune that increases physical damage."
+      },
+      "type": "material",
+      "subtype": "socketable",
+      "rarity": "rare",
+      "value": 500,
+      "weight": 0.05,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "rune_sol"
+    },
+    {
+      "id": "rune_vex",
+      "nameKo": "벡스 룬",
+      "nameEn": "Vex Rune",
+      "description": {
+        "ko": "고위 룬. 적중 시 마나를 흡수한다.",
+        "en": "A high rune. Absorbs mana on hit."
+      },
+      "type": "material",
+      "subtype": "socketable",
+      "rarity": "unique",
+      "value": 50000,
+      "weight": 0.05,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "rune_vex"
+    },
+    {
+      "id": "rune_hel",
+      "nameKo": "헬 룬",
+      "nameEn": "Hel Rune",
+      "description": {
+        "ko": "장비 요구 조건을 낮춰주는 룬.",
+        "en": "A rune that lowers equipment requirements."
+      },
+      "type": "material",
+      "subtype": "socketable",
+      "rarity": "rare",
+      "value": 800,
+      "weight": 0.05,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "rune_hel"
+    },
+    {
+      "id": "rune_zod",
+      "nameKo": "조드 룬",
+      "nameEn": "Zod Rune",
+      "description": {
+        "ko": "최고 등급의 룬. 불멸의 힘을 담고 있다.",
+        "en": "The highest rune. Contains the power of immortality."
+      },
+      "type": "material",
+      "subtype": "socketable",
+      "rarity": "legendary",
+      "value": 1000000,
+      "weight": 0.05,
+      "stackable": true,
+      "stackSize": 99,
+      "icon": "rune_zod"
     }
   ],
   "summary": {
-    "total": 78,
+    "total": 92,
     "bySubtype": {
       "drop": 51,
-      "gem": 9,
+      "socketable": 23,
       "herb": 10,
       "ore": 8
     },
     "byRarity": {
       "crude": 8,
-      "common": 23,
-      "grand": 12,
-      "rare": 20,
+      "common": 31,
+      "grand": 14,
+      "rare": 22,
       "heroic": 5,
-      "unique": 4,
+      "unique": 5,
       "arcane": 5,
-      "legendary": 1
+      "legendary": 2
     }
   }
 }

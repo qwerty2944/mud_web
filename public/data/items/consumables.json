@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-01-11T10:57:57.023Z",
+  "generatedAt": "2026-01-18T12:02:46.810Z",
   "type": "consumable",
   "items": [
     {
@@ -238,6 +238,108 @@
         "value": 3,
         "duration": 3
       }
+    },
+    {
+      "id": "inscription_fireball_1",
+      "nameKo": "화염구 각인 I",
+      "nameEn": "Fireball Inscription I",
+      "description": {
+        "ko": "소켓에 장착하면 화염구 스킬을 사용할 수 있다.",
+        "en": "소켓에 장착하면 화염구 스킬을 사용할 수 있다."
+      },
+      "type": "consumable",
+      "subtype": "socketable",
+      "rarity": "rare",
+      "value": 1000,
+      "weight": 0.05,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "inscription_fire"
+    },
+    {
+      "id": "inscription_heal_1",
+      "nameKo": "치유 각인 I",
+      "nameEn": "Heal Inscription I",
+      "description": {
+        "ko": "소켓에 장착하면 치유 스킬을 사용할 수 있다.",
+        "en": "소켓에 장착하면 치유 스킬을 사용할 수 있다."
+      },
+      "type": "consumable",
+      "subtype": "socketable",
+      "rarity": "rare",
+      "value": 1500,
+      "weight": 0.05,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "inscription_heal"
+    },
+    {
+      "id": "inscription_lightning_1",
+      "nameKo": "번개 각인 I",
+      "nameEn": "Lightning Inscription I",
+      "description": {
+        "ko": "소켓에 장착하면 번개 스킬을 사용할 수 있다.",
+        "en": "소켓에 장착하면 번개 스킬을 사용할 수 있다."
+      },
+      "type": "consumable",
+      "subtype": "socketable",
+      "rarity": "rare",
+      "value": 1200,
+      "weight": 0.05,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "inscription_lightning"
+    },
+    {
+      "id": "inscription_shield_1",
+      "nameKo": "보호막 각인 I",
+      "nameEn": "Shield Inscription I",
+      "description": {
+        "ko": "소켓에 장착하면 보호막 스킬을 사용할 수 있다.",
+        "en": "소켓에 장착하면 보호막 스킬을 사용할 수 있다."
+      },
+      "type": "consumable",
+      "subtype": "socketable",
+      "rarity": "arcane",
+      "value": 2000,
+      "weight": 0.05,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "inscription_shield"
+    },
+    {
+      "id": "inscription_teleport",
+      "nameKo": "순간이동 각인",
+      "nameEn": "Teleport Inscription",
+      "description": {
+        "ko": "소켓에 장착하면 순간이동 스킬을 사용할 수 있다.",
+        "en": "소켓에 장착하면 순간이동 스킬을 사용할 수 있다."
+      },
+      "type": "consumable",
+      "subtype": "socketable",
+      "rarity": "heroic",
+      "value": 5000,
+      "weight": 0.05,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "inscription_teleport"
+    },
+    {
+      "id": "inscription_berserk",
+      "nameKo": "광전사 각인",
+      "nameEn": "Berserk Inscription",
+      "description": {
+        "ko": "소켓에 장착하면 광전사 스킬을 사용할 수 있다.",
+        "en": "소켓에 장착하면 광전사 스킬을 사용할 수 있다."
+      },
+      "type": "consumable",
+      "subtype": "socketable",
+      "rarity": "heroic",
+      "value": 4000,
+      "weight": 0.05,
+      "stackable": true,
+      "stackSize": 20,
+      "icon": "inscription_rage"
     },
     {
       "id": "health_potion_small",
@@ -497,6 +599,72 @@
       }
     },
     {
+      "id": "stealth_potion_small",
+      "nameKo": "소형 은신 물약",
+      "nameEn": "Small Stealth Potion",
+      "description": {
+        "ko": "어둠의 정수가 담긴 작은 유리병. 2턴간 은신 상태가 된다.",
+        "en": "어둠의 정수가 담긴 작은 유리병. 2턴간 은신 상태가 된다."
+      },
+      "type": "consumable",
+      "subtype": "potion",
+      "rarity": "rare",
+      "value": 200,
+      "weight": 0.3,
+      "stackable": true,
+      "stackSize": 10,
+      "icon": "potion_shadow_small",
+      "effect": {
+        "type": "apply_status",
+        "status": "stealth",
+        "duration": 2
+      }
+    },
+    {
+      "id": "stealth_potion_medium",
+      "nameKo": "중형 은신 물약",
+      "nameEn": "Medium Stealth Potion",
+      "description": {
+        "ko": "응축된 어둠의 정수가 담긴 유리병. 3턴간 은신 상태가 된다.",
+        "en": "응축된 어둠의 정수가 담긴 유리병. 3턴간 은신 상태가 된다."
+      },
+      "type": "consumable",
+      "subtype": "potion",
+      "rarity": "arcane",
+      "value": 500,
+      "weight": 0.5,
+      "stackable": true,
+      "stackSize": 10,
+      "icon": "potion_shadow_medium",
+      "effect": {
+        "type": "apply_status",
+        "status": "stealth",
+        "duration": 3
+      }
+    },
+    {
+      "id": "stealth_potion_large",
+      "nameKo": "대형 은신 물약",
+      "nameEn": "Large Stealth Potion",
+      "description": {
+        "ko": "순수한 암흑의 정수가 담긴 대형 유리병. 4턴간 은신 상태가 된다.",
+        "en": "순수한 암흑의 정수가 담긴 대형 유리병. 4턴간 은신 상태가 된다."
+      },
+      "type": "consumable",
+      "subtype": "potion",
+      "rarity": "heroic",
+      "value": 1200,
+      "weight": 0.8,
+      "stackable": true,
+      "stackSize": 5,
+      "icon": "potion_shadow_large",
+      "effect": {
+        "type": "apply_status",
+        "status": "stealth",
+        "duration": 4
+      }
+    },
+    {
       "id": "scroll_teleport_village",
       "nameKo": "마을 귀환 주문서",
       "nameEn": "Village Teleport Scroll",
@@ -675,18 +843,20 @@
     }
   ],
   "summary": {
-    "total": 30,
+    "total": 39,
     "bySubtype": {
       "food": 10,
-      "potion": 12,
+      "socketable": 6,
+      "potion": 15,
       "scroll": 8
     },
     "byRarity": {
       "crude": 1,
       "common": 8,
       "grand": 7,
-      "rare": 9,
-      "heroic": 4,
+      "rare": 13,
+      "heroic": 7,
+      "arcane": 2,
       "unique": 1
     }
   }

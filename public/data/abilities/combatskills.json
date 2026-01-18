@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-01-17T15:39:36.025Z",
+  "generatedAt": "2026-01-18T12:02:38.575Z",
   "skills": [
     {
       "id": "basic_attack",
@@ -1645,6 +1645,82 @@
       "grantsExpTo": [
         "dagger_mastery"
       ],
+      "cooldown": 5,
+      "category": "weapon",
+      "skillGroup": "weapon"
+    },
+    {
+      "id": "vanish",
+      "nameKo": "사라지기",
+      "nameEn": "Vanish",
+      "type": "buff",
+      "usageContext": "combat_only",
+      "icon": "👻",
+      "description": {
+        "ko": "그림자 속으로 사라져 은신한다. 다음 공격 시 강력한 암습.",
+        "en": "Vanish into the shadows. Next attack triggers powerful ambush."
+      },
+      "maxLevel": 15,
+      "expPerLevel": 120,
+      "levelBonuses": [
+        {
+          "level": 1,
+          "effects": {
+            "stealthDuration": 2,
+            "apCost": 15,
+            "mpCost": 20,
+            "ambushDamageBonus": 0
+          }
+        },
+        {
+          "level": 5,
+          "effects": {
+            "stealthDuration": 2,
+            "apCost": 14,
+            "mpCost": 18,
+            "ambushDamageBonus": 5
+          }
+        },
+        {
+          "level": 8,
+          "effects": {
+            "stealthDuration": 3,
+            "apCost": 14,
+            "mpCost": 16,
+            "ambushDamageBonus": 10
+          }
+        },
+        {
+          "level": 12,
+          "effects": {
+            "stealthDuration": 3,
+            "apCost": 12,
+            "mpCost": 14,
+            "ambushDamageBonus": 15
+          }
+        },
+        {
+          "level": 15,
+          "effects": {
+            "stealthDuration": 4,
+            "apCost": 12,
+            "mpCost": 12,
+            "ambushDamageBonus": 25,
+            "guaranteedCritOnAmbush": true
+          }
+        }
+      ],
+      "requirements": {
+        "skills": {
+          "dagger_mastery": 20,
+          "backstab": 5
+        },
+        "equipment": "dagger"
+      },
+      "grantsExpTo": [
+        "dagger_mastery"
+      ],
+      "appliesStatus": "stealth",
       "cooldown": 5,
       "category": "weapon",
       "skillGroup": "weapon"
@@ -6765,10 +6841,10 @@
     }
   ],
   "summary": {
-    "total": 123,
+    "total": 124,
     "byCategory": {
       "common": 1,
-      "weapon": 65,
+      "weapon": 66,
       "fist": 9,
       "kick": 9,
       "martial": 9,
@@ -6780,7 +6856,7 @@
       "attack": 61,
       "passive": 22,
       "debuff": 5,
-      "buff": 27,
+      "buff": 28,
       "defensive": 2,
       "defense": 2,
       "utility": 3,
